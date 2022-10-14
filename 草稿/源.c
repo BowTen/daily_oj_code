@@ -2709,169 +2709,169 @@
 //}
 
 
-int main()
-{
-	char t[200];
-	int len = 199;
-	for (int i = 0;i < 200;i++)
-	{
-		t[i] = getchar();
-		if (i > 1 && t[i - 2] == '\n' && t[i - 1] == '.' && t[i] == '\n')
-		{
-			t[i - 1] = 0;
-			len = i;
-			break;
-		}
-	}
-	char copy[200];
-	strcpy(copy, t);
-	while (1)
-	{
-		int ser = 0;
-		int q;
-		int jud = 0;
-		for (int i = 0;i < len;i++)
-		{
-			if (t[i] == '(')
-			{
-				q = i;
-				int kg = 1;
-				int p = 0;
-				for (int j = i + 1;1;j++)
-				{
-					if (t[j] == '/' && t[j + 1] == '*')
-					{
-						kg = 0;
-						p = j;
-					}
-					if (t[j] == '*' && t[j + 1] == '/' && j - p > 1)
-						kg = 1;
-					if (t[j] == ')' && kg)
-					{
-						t[q] = 0;
-						t[j] = 0;
-						i++;
-						break;
-					}
-					if (t[j] == '\n')
-					{
-						t[q] = -1;
-						i++;
-						break;
-					}
-				}
-			}
-			if (t[i] == '[')
-			{
-				int kg = 1;
-				int p = 0;
-				q = i;
-				for (int j = i + 1;1;j++)
-				{
-					if (t[j] == '/' && t[j + 1] == '*')
-					{
-						kg = 0;
-						p = j;
-					}
-					if (t[j] == '*' && t[j + 1] == '/' && j - p > 1)
-						kg = 1;
-					if (t[j] == ']')
-					{
-						t[q] = 0;
-						t[j] = 0;
-						i++;
-						break;
-					}
-					if (t[j] == '\n')
-					{
-						t[q] = -1;
-						i++;
-						break;
-					}
-				}
-			}
-			if (t[i] == '{')
-			{
-				jud = 1;
-				q = i;
-				int kg = 1;
-				int p = 0;
-				for (int j = i + 1;j < len;j++)
-				{
-					if (t[j] == '/' && t[j + 1] == '*')
-					{
-						kg = 0;
-						p = j;
-					}
-					if (t[j] == '*' && t[j + 1] == '/' && j - p > 1)
-						kg = 1;
-					if (t[j] == '{' && kg)
-					{
-						q = j;
-					}
-					if (t[j] == '}' && kg)
-					{
-						t[q] = 0;
-						t[j] = 0;
-						i++;
-						break;
-					}
-					if (j == len - 1)
-					{
-						t[q] = 0;
-						i++;
-						break;
-					}
-				}
-			}
-			if (t[i] == '/' && t[i + 1] =='*')
-			{
-				q = i;
-				for (int j = len - 1;j > 0;j--)
-				{
-					if (t[j] == '/' && t[j - 1] == '*' &&j - q > 2)
-					{
-						t[j] = 0;
-						t[q] = 0;
-						break;
-					}
-					if (j == q)
-					{
-						t[q] = -1;
-						break;
-					}
-				}
-			}
-		}
-		if (jud == 0)
-		{
-			break;
-		}
-	}
-	for (int i = 0;i < len;i++)
-	{
-		if (t[i] == ')' || t[i] == ']' || t[i] == '}')
-		{
-			printf("NO\n?-%c", t[i]);
-			return 0;
-		}
-		else if(t[i] == '*' && t[i + 1] == '/')
-		{
-			printf("NO\n?-*/");
-			return 0;
-		}
-		else if (t[i] == -1)
-		{
-			if (copy[i] == '/' && copy[i + 1] == '*')
-				printf("NO\n/*-?");
-			else
-				printf("NO\n%c-?", copy[i]);
-			return 0;
-		}
-	}
-	puts("YES");
-	return 0;
-}
+//int main()
+//{
+//	char t[200];
+//	int len = 199;
+//	for (int i = 0;i < 200;i++)
+//	{
+//		t[i] = getchar();
+//		if (i > 1 && t[i - 2] == '\n' && t[i - 1] == '.' && t[i] == '\n')
+//		{
+//			t[i - 1] = 0;
+//			len = i;
+//			break;
+//		}
+//	}
+//	char copy[200];
+//	strcpy(copy, t);
+//	while (1)
+//	{
+//		int ser = 0;
+//		int q;
+//		int jud = 0;
+//		for (int i = 0;i < len;i++)
+//		{
+//			if (t[i] == '(')
+//			{
+//				q = i;
+//				int kg = 1;
+//				int p = 0;
+//				for (int j = i + 1;1;j++)
+//				{
+//					if (t[j] == '/' && t[j + 1] == '*')
+//					{
+//						kg = 0;
+//						p = j;
+//					}
+//					if (t[j] == '*' && t[j + 1] == '/' && j - p > 1)
+//						kg = 1;
+//					if (t[j] == ')' && kg)
+//					{
+//						t[q] = 0;
+//						t[j] = 0;
+//						i++;
+//						break;
+//					}
+//					if (t[j] == '\n')
+//					{
+//						t[q] = -1;
+//						i++;
+//						break;
+//					}
+//				}
+//			}
+//			if (t[i] == '[')
+//			{
+//				int kg = 1;
+//				int p = 0;
+//				q = i;
+//				for (int j = i + 1;1;j++)
+//				{
+//					if (t[j] == '/' && t[j + 1] == '*')
+//					{
+//						kg = 0;
+//						p = j;
+//					}
+//					if (t[j] == '*' && t[j + 1] == '/' && j - p > 1)
+//						kg = 1;
+//					if (t[j] == ']')
+//					{
+//						t[q] = 0;
+//						t[j] = 0;
+//						i++;
+//						break;
+//					}
+//					if (t[j] == '\n')
+//					{
+//						t[q] = -1;
+//						i++;
+//						break;
+//					}
+//				}
+//			}
+//			if (t[i] == '{')
+//			{
+//				jud = 1;
+//				q = i;
+//				int kg = 1;
+//				int p = 0;
+//				for (int j = i + 1;j < len;j++)
+//				{
+//					if (t[j] == '/' && t[j + 1] == '*')
+//					{
+//						kg = 0;
+//						p = j;
+//					}
+//					if (t[j] == '*' && t[j + 1] == '/' && j - p > 1)
+//						kg = 1;
+//					if (t[j] == '{' && kg)
+//					{
+//						q = j;
+//					}
+//					if (t[j] == '}' && kg)
+//					{
+//						t[q] = 0;
+//						t[j] = 0;
+//						i++;
+//						break;
+//					}
+//					if (j == len - 1)
+//					{
+//						t[q] = 0;
+//						i++;
+//						break;
+//					}
+//				}
+//			}
+//			if (t[i] == '/' && t[i + 1] =='*')
+//			{
+//				q = i;
+//				for (int j = len - 1;j > 0;j--)
+//				{
+//					if (t[j] == '/' && t[j - 1] == '*' &&j - q > 2)
+//					{
+//						t[j] = 0;
+//						t[q] = 0;
+//						break;
+//					}
+//					if (j == q)
+//					{
+//						t[q] = -1;
+//						break;
+//					}
+//				}
+//			}
+//		}
+//		if (jud == 0)
+//		{
+//			break;
+//		}
+//	}
+//	for (int i = 0;i < len;i++)
+//	{
+//		if (t[i] == ')' || t[i] == ']' || t[i] == '}')
+//		{
+//			printf("NO\n?-%c", t[i]);
+//			return 0;
+//		}
+//		else if(t[i] == '*' && t[i + 1] == '/')
+//		{
+//			printf("NO\n?-*/");
+//			return 0;
+//		}
+//		else if (t[i] == -1)
+//		{
+//			if (copy[i] == '/' && copy[i + 1] == '*')
+//				printf("NO\n/*-?");
+//			else
+//				printf("NO\n%c-?", copy[i]);
+//			return 0;
+//		}
+//	}
+//	puts("YES");
+//	return 0;
+//}
 
 //
 //int main()
@@ -2947,3 +2947,269 @@ int main()
 //{
 //
 //	return 0; {/*/
+
+//typedef struct
+//{
+//	int id;
+//	struct node* next;
+//}node;
+//int main()
+//{
+//	int n,m;
+//	while (~scanf("%d %d", &n, &m))
+//	{
+//		node* head = NULL;
+//		node* t = NULL;
+//		node* p = NULL;
+//		for (int i = 1;i <= n;i++)
+//		{
+//			int tmp = 0;
+//			scanf("%d", &tmp);
+//			t = (node*)malloc(sizeof(node));
+//			t->id = tmp;
+//			if (i == 1)
+//			{
+//				head = t;
+//				p = t;
+//			}
+//			else if (i != n)
+//			{
+//				p->next = t;
+//				p = t;
+//			}
+//			else if (i == n)
+//			{
+//				t->next = NULL;
+//				p->next = t;
+//			}
+//		}
+//		t = (node*)malloc(sizeof(node));
+//		t->next = head;
+//		t->id = -1;
+//		head = t;
+//		for (int i = 0;i < m;i++)
+//		{
+//			int a, b;
+//			node* q = head;
+//			p = head->next;
+//			scanf("%d %d", &a, &b);
+//			t = (node*)malloc(sizeof(node));
+//			t->id = a;
+//			t->next = NULL;
+//			while (1)
+//			{
+//				if (b == p->id)
+//				{
+//					q->next = t;
+//					t->next = p;
+//					break;
+//				}
+//				if (p->next == NULL)
+//					break;
+//				p = p->next;
+//				q = q->next;
+//			}
+//		}
+//		p = head->next;
+//		while (1)
+//		{
+//			printf("%d ", p->id);
+//			if (p->next == NULL)
+//				break;
+//			p = p->next;
+//		}
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n, c, k;
+//		scanf("%d %d %d", &n, &c, &k);
+//		for (int i = 1;i < n;i++)
+//		{
+//			int tmp;
+//			char ch;
+//			scanf("%d %c", &tmp, &ch);
+//			if (tmp < k)
+//				c--;
+//			if (tmp > k && ch == 'Y')
+//				c -= 2;
+//		}
+//		if (c <= 0)
+//			puts("awsl");
+//		else
+//			puts("heihei");
+//	}
+//	return 0;
+//}
+
+
+//typedef struct
+//{
+//	int num;
+//	int jud;
+//	struct node* next;
+//}node;
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n;
+//		scanf("%d", &n);
+//		node* t = (node*)malloc(sizeof(node));
+//		t->next = NULL;
+//		node* head = t;
+//		node* p = head;
+//		scanf("%d", &head->num);
+//		head->jud = -1;
+//		for (int i = 1;i < n;i++)
+//		{
+//			int tmp = 0;
+//			scanf("%d", &tmp);
+//			p = head;
+//			while (1)
+//			{
+//				if (p->num == tmp)
+//				{
+//					p->jud *= -1;
+//					break;
+//				}
+//				if (p->next == NULL)
+//				{
+//					t = (node*)malloc(sizeof(node));
+//					t->next = NULL;
+//					t->num = tmp;
+//					t->jud = -1;
+//					p->next = t;
+//					break;
+//				}
+//				p = p->next;
+//			}
+//		}
+//		p = head;
+//		while (1)
+//		{
+//			if (p->jud == -1)
+//			{
+//				printf("%d\n", p->num);
+//				break;
+//			}
+//			if (p->next == NULL)
+//				break;
+//			p = p->next;
+//		}
+//	}
+//	return 0;
+//}
+
+//typedef struct
+//{
+//	int num;
+//	int jud;
+//	struct node* next;
+//}node;
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n;
+//		n = 30000;
+//		node* t = (node*)malloc(sizeof(node));
+//		t->next = NULL;
+//		node* head = t;
+//		node* p = head;
+//		scanf("%d", &head->num);
+//		head->jud = -1;
+//		for (int i = 1;i <= n/2;i++)
+//		{
+//			int tmp = 0;
+//			tmp = i;
+//			p = head;
+//			while (1)
+//			{
+//				if (p->num == tmp)
+//				{
+//					p->jud *= -1;
+//					break;
+//				}
+//				if (p->next == NULL)
+//				{
+//					t = (node*)malloc(sizeof(node));
+//					t->next = NULL;
+//					t->num = tmp;
+//					t->jud = -1;
+//					p->next = t;
+//					break;
+//				}
+//				p = p->next;
+//			}
+//		}
+//		for (int i = 1;i <= n / 2;i++)
+//		{
+//			int tmp = 0;
+//			tmp = i;
+//			p = head;
+//			while (1)
+//			{
+//				if (p->num == tmp)
+//				{
+//					p->jud *= -1;
+//					break;
+//				}
+//				if (p->next == NULL)
+//				{
+//					t = (node*)malloc(sizeof(node));
+//					t->next = NULL;
+//					t->num = tmp;
+//					t->jud = -1;
+//					p->next = t;
+//					break;
+//				}
+//				p = p->next;
+//			}
+//		}
+//		p = head;
+//		while (1)
+//		{
+//			if (p->jud == -1)
+//			{
+//				printf("%d\n", p->num);
+//				break;
+//			}
+//			if (p->next == NULL)
+//				break;
+//			p = p->next;
+//		}
+//	}
+//	return 0;
+//}
+
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while (t--)
+	{
+		int tmp = 0;
+		int n;
+		scanf("%d", &n);
+		while (n--)
+		{
+			int a;
+			scanf("%d", &a);
+			tmp = tmp ^ a;
+		}
+		printf("%d\n", tmp);
+	}
+	return 0;
+}
