@@ -3194,22 +3194,239 @@
 //	return 0;
 //}
 
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int tmp = 0;
+//		int n;
+//		scanf("%d", &n);
+//		while (n--)
+//		{
+//			int a;
+//			scanf("%d", &a);
+//			tmp = tmp ^ a;
+//		}
+//		printf("%d\n", tmp);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	while (1)
+//	{
+//		scanf("%d", &n);
+//		if (n == 0)
+//			return 0;
+//		int arr[101] = { 0 };
+//		for (int i = 0;i < n;i++)
+//		{
+//			scanf("%d", &arr[i]);
+//		}
+//		int a = 0;
+//		for (int i = 0;i < n;i++)
+//		{
+//			for (int j = 0;j < n - i - 1;j++)
+//			{
+//				if (arr[j] > arr[j + 1])
+//				{
+//					arr[j] = arr[j] ^ arr[j + 1];
+//					arr[j + 1] = arr[j] ^ arr[j + 1];
+//					arr[j] = arr[j] ^ arr[j + 1];
+//				}
+//				else if (arr[j] == arr[j + 1] && arr[j] != 0)
+//				{
+//					arr[j] = 0;
+//					a++;
+//				}
+//			}
+//		}
+//		printf("%d\n", n - a);
+//		for (int i = a;i < n;i++)
+//		{
+//			printf("%d ", arr[i]);
+//		}
+//		puts("\n");
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int count = 1;
+//	while (1)
+//	{
+//		int n, m;
+//		char map[102][102] = { 0 };
+//		scanf("%d %d", &n, &m);
+//		getchar();
+//		if (n == 0 && m == 0)
+//			return 0;
+//		for (int i = 1;i <= n;i++)
+//		{
+//			for (int j = 1;j <= m;j++)
+//			{
+//				scanf("%c", &map[i][j]);
+//			}
+//			getchar();
+//		}
+//		printf("Field #%d:\n", count);
+//		count++;
+//		for (int i = 1;i <= n;i++)
+//		{
+//			for (int j = 1;j <= m;j++)
+//			{
+//				if (map[i][j] == '.')
+//				{
+//					map[i][j] = 0;
+//					for (int x = i - 1;x <= i + 1;x++)
+//					{
+//						for (int y = j - 1;y <= j + 1;y++)
+//						{
+//							if (map[x][y] == '*')
+//								map[i][j]++;
+//						}
+//					}
+//				}
+//				if (map[i][j] == '*')
+//					printf("%c", map[i][j]);
+//				else
+//					printf("%d", map[i][j]);
+//			}
+//			puts("");
+//		}
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+//int jud(int a)
+//{
+//	if (a % 7 == 0)
+//		return 1;
+//	while (1)
+//	{
+//		if (a % 10 == 7)
+//			return 1;
+//		a /= 10;
+//		if (a == 0)
+//			return 0;
+//	}
+//}
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int a;
+//		scanf("%d", &a);
+//		if (jud(a))
+//			puts("pa");
+//		else
+//			printf("%d\n", a);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	while (scanf("%d", &n), n)
+//	{
+//		int arr[30][30] = { 0 };
+//		for (int i = 0;i < n;i++)
+//		{
+//			for (int j = 0; j < n;j++)
+//			{
+//				scanf("%d", &arr[i][j]);
+//			}
+//		}
+//		for (int i = 0;i < n;i++)
+//		{
+//			for (int j = 0; j < n;j++)
+//			{
+//				for (int k = 0;k < n - 1 - j;k++)
+//				{
+//					if (arr[i][k] > arr[i][k + 1])
+//					{
+//						arr[i][k] = arr[i][k] ^ arr[i][k + 1];
+//						arr[i][k + 1] = arr[i][k] ^ arr[i][k + 1];
+//						arr[i][k] = arr[i][k] ^ arr[i][k + 1];
+//					}
+//				}
+//			}
+//			for (int j = 0;j < n;j++)
+//			{
+//				printf("%d ", arr[i][j]);
+//			}
+//			puts("");
+//		}
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	while (1)
+//	{
+//		char arr[100] = { 0 };
+//		int a = 0, b = 0;
+//		for (int i = 0;i < 100;i++)
+//		{
+//			arr[i] = getchar();
+//			if (arr[i] == '{')
+//				a++;
+//			else if (arr[i] == '}')
+//				b++;
+//			else if (arr[i] == '#')
+//				break;
+//			else if (arr[i] == 'p')
+//				return 0;
+//		}
+//		if (a != b)
+//			puts("unpaired");
+//		else
+//			puts("paired");
+//	}
+//	return 0;
+//}
+
+
 int main()
 {
-	int t;
-	scanf("%d", &t);
-	while (t--)
+	char n[100], m[33];
+	while (~scanf("%s %s", n, m))
 	{
-		int tmp = 0;
-		int n;
-		scanf("%d", &n);
-		while (n--)
+		int jud = 1;
+		for (int i = 0;i <= strlen(n) - strlen(m);i++)
 		{
-			int a;
-			scanf("%d", &a);
-			tmp = tmp ^ a;
+			jud = 1;
+			for (int j = i;j < strlen(m) + i;j++)
+			{
+				if (n[j] != m[j - i])
+				{
+					jud = 0;
+					break;
+				}
+			}
+			if (jud == 1)
+			{
+				printf("%d\n", i);
+				break;
+			}
 		}
-		printf("%d\n", tmp);
+		if (jud == 0)
+			puts("-1");
 	}
 	return 0;
 }
