@@ -3991,26 +3991,577 @@
 
 
 
+//int main()
+//{
+//	int n, m;
+//	while (~scanf("%d %d", &n, &m))
+//	{
+//		int city[20][21] = { 0 };
+//		while(m--)
+//		{
+//			int t1, t2, dis;
+//			scanf("%d %d %d", &t1, &t2, &dis);
+//			city[t1][t2] = dis;
+//			city[t2][t1] = dis;
+//		}
+//		int t1, t2;
+//		int d = 0, min = 0;
+//		scanf("%d %d", &t1, &t2);
+//		for (int i = 1;i <= n;i++)
+//		{
+//
+//		}
+//	}
+//	return 0;
+//}
+
+
+//typedef struct
+//{
+//	char word[6];
+//	int times;
+//}word;
+//word arr[10010];
+//int cmp(const void* e1, const void* e2)
+//{
+//	return strcmp(((word*)e1)->word, ((word*)e2)->word);
+//}
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n;
+//		scanf("%d", &n);
+//		int i = 0;
+//		int n2 = n;
+//		while (n2--)
+//		{
+//			char tmp[6] = { 0 };
+//			scanf("%s", tmp);
+//			for (int j = 0;j <= i;j++)
+//			{
+//				if (i == 0)
+//				{
+//					strcpy(arr[i].word, tmp);
+//					arr[i].times = 1;
+//					i++;
+//					break;
+//				}
+//				if (strcmp(tmp, arr[j].word) == 0)
+//				{
+//					arr[j].times++;
+//					break;
+//				}
+//				if (j == i)
+//				{
+//					i++;
+//					strcpy(arr[j].word, tmp);
+//					arr[j].times = 1;
+//					break;
+//				}
+//			}
+//		}
+//		qsort(arr, i, sizeof(arr[0]), cmp);
+//		printf("%d\n", i);
+//		for (int j = 0;j < i;j++)
+//		{
+//			printf("%s:%d\n", arr[j].word, arr[j].times);
+//		}
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+//int main()
+// {
+//	char a;
+//	a = getchar();
+//	if (a == ' ')
+//		printf("¿Õ¸ñ");
+//	if (a == '\n')
+//		puts("»Ø³µ");
+//	printf("%c", a);
+//	return 0;
+//}
+
+
+
+//int main() {
+//    int n, m, i, j, a, b, sum1 = 0, sum2 = 0;
+//    char ch0[] = "Y";
+//    scanf("%d %d", &n, &m);
+//    for (i = 1;i <= n;i++) {
+//        scanf("%d", &a);
+//        sum1 += a;
+//    }
+//    getchar();
+//    char ch1[1];
+//    scanf("%c", ch1);
+//
+//    for (j = 1;j <= m;j++) {
+//        scanf("%d", &b);
+//        sum2 += b;
+//    }
+//    getchar();
+//    char ch2;
+//    scanf("%c", ch2);
+//
+//    int x1, y1 = 0, score1 = 0;
+//    if (sum1 == 2)
+//        score1 = 8;
+//    else {
+//
+//        for (x1 = 3; x1 < sum1; x1++)
+//        {
+//            if ((sum1) % (x1) == 0)
+//                y1++;
+//            else
+//                ;
+//        }
+//        if (y1 == 0)
+//            score1 = sum1 * sum1;
+//        else
+//            if (sum1 % 2 == 0)
+//                score1 = 2 * sum1;
+//            else score1 = 3 * sum1;
+//    }
+//
+//    int x2, y2 = 0, score2 = 0;
+//    if ((sum2) == 2)
+//        score2 = 8;
+//    else {
+//
+//        for (x2 = 3; x2 < sum2; x2++)
+//        {
+//            if (sum2 % x2 == 0)
+//                y2++;
+//            else
+//                ;
+//        }
+//        if (y2 == 0)
+//            score1 = sum2 * sum2;
+//        else
+//            if (sum2 % 2 == 0)
+//                score2 = 2 * sum2;
+//            else score2 = 3 * sum2;
+//    }
+//
+//
+//    if (strcmp(ch0, ch1) == 0)
+//    {
+//        if (score1 > score2)
+//            printf("heiheihei!");
+//        else printf("yingyingying!");
+//    }
+//    else {
+//        if (score1 > score2)
+//            printf("yingyingying!");
+//        else printf("heiheihei!");
+//    }
+//}
+
+
+//int main()
+//{
+//	for (int j = 1;j <= 10;j++)
+//	{
+//		char n[102] = { 0 };
+//		scanf("%s", n);
+//		int len = strlen(n);
+//		if (n[0] == '0')
+//			break;
+//		unsigned long long tmp = 0;
+//		for (int i = 0;i < len;i++)
+//		{
+//			tmp = (tmp * 10 + n[i] - '0') % 17;
+//		}
+//		printf("%d\n", tmp == 0 ? 1 : 0);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n, m;
+//	while (~scanf("%d %d", &n, &m))
+//	{
+//		int arr[20][20] = { 0 };
+//		int m2 = m;
+//		while (m2--)
+//		{
+//			int a, b, c;
+//			scanf("%d %d %d", &a, &b, &c);
+//			arr[a][b] = c;
+//		}
+//		int t1, t2;
+//		scanf("%d %d", &t1, &t2);
+//		for(int )
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		double A, B, H, V, a, b, h, v;
+//		scanf("%lf%lf%lf%lf%lf%lf", &A, &B, &H, &a, &b, &h);
+//		V = A * B * H;
+//		v = a * b * h;
+//		if (h < H || h == H)
+//		{
+//			H += v / (A * B);
+//		}
+//		else
+//		{
+//			double s = A * B - a * b;
+//			H = V / s;
+//			if (H > h)
+//			{
+//				double dh = H - h, dv = dh * s;
+//				H = h;
+//				H += dv / (A * B);
+//			}
+//		}
+//		printf("%.2lf", H);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int a = 23 / 24;
+//	printf("%d", a);
+//	return 0;
+//}
+
+
+//int cmp(const void* e1, const void* e2)
+//{
+//	return *((int*)e2) - *((int*)e1);
+//}
+//int fact(int n)
+//{
+//	if (n == 1)
+//		return 1;
+//	return n * fact(n - 1);
+//}
+//int main()
+//{
+//	int n;
+//	float k;
+//	int arr[10] = { 0 };
+//	scanf("%d %f", &n, &k);
+//	k -= 0.5;
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%d", &arr[i]);
+//	}
+//	qsort(arr, n, sizeof(arr[0]), cmp);
+//	int num[10] = { 0 };
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (i != n - 1)
+//		{
+//			int jc = fact(n - 1 - i);
+//			int tmp = (k / jc);
+//			k -= tmp * jc;
+//			num[i] = arr[tmp];
+//			arr[tmp] = 0;
+//			qsort(arr, n, sizeof(arr[0]), cmp);
+//		}
+//		else
+//			num[i] = arr[0];
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		printf("%d", num[i]);
+//	}
+//	return 0;
+//}
+
+
+//void fun()
+//{
+//	int a = 1;
+//	printf("%d", a);
+//}
+//int main()
+//{
+//	puts("");
+//	fun();
+//	return 0;
+//}
+
+//int smax(int a,int b)
+//{
+//	return a > b ? a : b;
+//}
+//int main()
+//{
+//	int a, b;
+//	scanf("%d%d", &a, &b);
+//	printf("%d", smax(a, b));
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	do {
+//		char arr[10];
+//		scanf("%s", arr);
+//		double a = atof(arr);
+//		printf("%lf\n", a);
+//	} while (1);
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	int n;
+//	scanf("%d", &n);
+//	getchar();
+//	while (n--)
+//	{
+//		char tmp[20] = { 0 };
+//		for (int i = 0;i < 4;i++)
+//		{
+//			char t[20] = { 0 };
+//			scanf("%s", t);
+//			strncat(tmp, t, 4);
+//		}
+//		if (strcmp(tmp, "*...*...*...*...") == 0)
+//			arr[0]++;
+//		else if (strcmp(tmp, ".*...**..*......") == 0)
+//			arr[1]++;
+//		else if (strcmp(tmp, ".....**..**.....") == 0)
+//			arr[2]++;
+//		else if (strcmp(tmp, ".*..**..*.......") == 0)
+//			arr[3]++;
+//		else if (strcmp(tmp, ".*...*...**.....") == 0)
+//			arr[4]++;
+//		else if (strcmp(tmp, "....**..*...*...") == 0)
+//			arr[5]++;
+//		else if (strcmp(tmp, "......**.**.....") == 0)
+//			arr[6]++;
+//	}
+//	for (int i = 0;i < 7;i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	int sum = 0;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		for (int j = 1;j <= n;j++)
+//		{
+//			int tmp;
+//			scanf("%d", &tmp);
+//			if (i + j != n + 1 && i != n && j != n)
+//				sum += tmp;
+//		}
+//	}
+//	printf("%d", sum);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	getchar();
+//	while (n--)
+//	{
+//		for (int i = 0;i < 4;i++)
+//		{
+//			char t1,t2;
+//			scanf("%c-%c", &t1, &t2);
+//			getchar();
+//			if (t2 == 'T')
+//				printf("%d", t1 - 'A' + 1);
+//		}
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	char t;
+//	while (scanf("%c", &t), t != '\n')
+//	{
+//		if (t >= 'A' && t <= 'Z')
+//		{
+//			if (t == 'Z')
+//				t = 'A';
+//			else
+//				t++;
+//			t += 32;
+//		}
+//		else if (t >= 'a' && t <= 'z')
+//		{
+//			if (t == 'z')
+//				t = 'a';
+//			else
+//				t++;
+//			t -= 32;
+//		}
+//		printf("%c", t);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int emo[24] = { 0 };
+//	for (int i = 0;i < 24;i++)
+//	{
+//		scanf("%d", &emo[i]);
+//	}
+//	int time;
+//	while (scanf("%d", &time), (time >= 0 && time <= 23))
+//	{
+//		printf("%d ", emo[time]);
+//		if (emo[time] > 50)
+//			puts("Yes");
+//		else
+//			puts("No");
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	double sum = 0;
+//	scanf("%d", &n);
+//	for (int i = 0;i < n;i++)
+//	{
+//		long long t1, t2;
+//		scanf("%lld/%lld", &t1,&t2);
+//		sum += (double)t1 / t2;
+//	}
+//	long long zs = floor(sum);
+//	double xs = sum - zs;
+//	double a = 1, b = (1 / xs);
+//	if (xs != 0)
+//	{
+//		for (int i = 1;1;i++)
+//		{
+//			if (fabs((b * i) - round(b * i)) < 0.0001)
+//			{
+//				b *= i;
+//				a *= i;
+//				break;
+//			}
+//		}
+//		if (zs != 0)
+//			printf("%lld ", zs);
+//		printf("%.0lf/%.0lf",a, b);
+//	}
+//	else
+//		printf("%lld", zs);
+//	return 0;
+//}
+
+
+//typedef struct
+//{
+//	int add;
+//	int num;
+//	int next;
+//}node;
+//node arr[10010];
+//int main()
+//{
+//	int tmp;
+//	int n;
+//	scanf("%d %d", &tmp, &n);
+//	for (int i = 0;i < n;i++)
+//	{
+//		scnaf("%d %d",)
+//	}
+//	return 0;
+//}
+
+
+//#include<stdio.h>
+//int main(void)
+//{
+//    int n, i, j, m, t1 = 0;
+//    char a;
+//
+//    while ((scanf("%c", &a)) != EOF)
+//    {
+//        if (a == '@') {
+//            break;
+//        }
+//        if (t1 == 0)
+//            t1 = 1;
+//        else
+//            printf("\n");
+//
+//        scanf("%d", &n);
+//        for (j = 1; j <= n; j++)
+//        {
+//            if (j == n)
+//            {
+//                for (m = 1; m <= (2 * j - 1); m++)
+//                    printf("%c", a);
+//            }
+//            else
+//            {
+//                for (i = 1; i <= 2 * n; i++)
+//                {
+//                    int t = 0;
+//                    if (((n + 1 - j) == i) || ((n - 1 + j) == i))
+//                    {
+//                        printf("%c", a);
+//                        t++;
+//                        if (t == 2)
+//                            break;
+//                    }
+//                    else
+//                        printf(" ");
+//                }
+//                printf("\n");
+//            }
+//        }
+//        printf("\n");
+//        getchar();
+//    }
+//    return 0;
+//
+//}
+
+
 int main()
 {
-	int n, m;
-	while (~scanf("%d %d", &n, &m))
-	{
-		int city[20][21] = { 0 };
-		while(m--)
-		{
-			int t1, t2, dis;
-			scanf("%d %d %d", &t1, &t2, &dis);
-			city[t1][t2] = dis;
-			city[t2][t1] = dis;
-		}
-		int t1, t2;
-		int d = 0, min = 0;
-		scanf("%d %d", &t1, &t2);
-		for (int i = 1;i <= n;i++)
-		{
-
-		}
-	}
+	double a;
+	scanf("%lf", &a);
+	int a1 = (int)a;
+	printf("%d", a1);
 	return 0;
 }
