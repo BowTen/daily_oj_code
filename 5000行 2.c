@@ -4487,26 +4487,6 @@
 //}
 
 
-//typedef struct
-//{
-//	int add;
-//	int num;
-//	int next;
-//}node;
-//node arr[10010];
-//int main()
-//{
-//	int tmp;
-//	int n;
-//	scanf("%d %d", &tmp, &n);
-//	for (int i = 0;i < n;i++)
-//	{
-//		scnaf("%d %d",)
-//	}
-//	return 0;
-//}
-
-
 //#include<stdio.h>
 //int main(void)
 //{
@@ -4556,12 +4536,510 @@
 //
 //}
 
+//
+//int main()
+//{
+//	double a;
+//	scanf("%lf", &a);
+//	int a1 = (int)a;
+//	printf("%d", a1);
+//	return 0;
+//}
 
-int main()
-{
-	double a;
-	scanf("%lf", &a);
-	int a1 = (int)a;
-	printf("%d", a1);
-	return 0;
-}
+
+//typedef struct
+//{
+//	char add[6];
+//	int num;
+//	char next[6];
+//}node;
+//node arr[10010];
+//node arr2[10010];
+//int main()
+//{
+//	char t[6];
+//	int n;
+//	scanf("%s %d", t, &n);
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%s %d %s", arr[i].add, &arr[i].num, arr[i].next);
+//	}
+//	for (int j = 0;j < n;j++)
+//	{
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (strcmp(arr[i].add,t) == 0)
+//			{
+//				strcpy(arr2[j].add , arr[i].add);
+//				arr2[j].num = arr[i].num;
+//				strcpy(arr2[j].next , arr[i].next);
+//				arr[i].add[0] = -1;
+//				strcpy(t , arr2[j].next);
+//				break;
+//			}
+//		}
+//		if (t[0] == '-')
+//			break;
+//	}
+//	int m = 0;
+//	int tmp = 0;
+//	for (int j = 0;j < n;j++)
+//	{
+//		for(int x = j;x <= n;x++)
+//		{
+//			if (arr2[x].add[0] != -1)
+//			{
+//				if (x == n)
+//					goto here;
+//				tmp = abs(arr2[x].num);
+//				break;
+//			}
+//		}
+//		int kg = 0;
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (abs(arr2[i].num) == tmp)
+//			{
+//				if (kg)
+//				{
+//					strcpy(arr[m].add, arr2[i].add);
+//					strcpy(arr[m].next, arr2[i].next);
+//					arr[m].num = arr2[i].num;
+//					arr2[i].add[0] = -1;
+//					m++;
+//				}
+//				else
+//					kg = 1;
+//				
+//			}
+//		}
+//	}
+//here:
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (arr2[i].add[0] != -1)
+//			printf("%s %d %s\n", arr2[i].add, arr2[i].num, arr2[i].next);
+//	}
+//	for (int i = 0;i < m;i++)
+//	{
+//		printf("%s %d %s\n", arr[i].add, arr[i].num, arr[i].next);
+//	}
+//	return 0;
+//}
+
+
+
+//#include<stdio.h>
+//int main(void)
+//{
+//
+//	int m, n, k, a;
+//	scanf_s("%d %d %d", &m, &n, &k);
+//	while (k--)
+//	{
+//		scanf_s("%d", &a);
+//		int flag = 0;
+//		while (n--) 
+//		{
+//			if (n != 1)
+//			{
+//				for (int i = n;i <= m;i *= n)
+//				{
+//					if (a == i)
+//					{
+//						flag = 1;break;
+//					}
+//				}
+//				if (flag)
+//				{
+//					printf("No\n");
+//				}
+//				else
+//				{
+//					printf("Yes\n");
+//				}
+//			}
+//			else
+//				puts("Yes");
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+//typedef struct
+//{
+//	char add[6];
+//	int num;
+//	char next[6];
+//	struct node* n;
+//}node;
+//node arr[10010];
+//int main()
+//{
+//	char t[6];
+//	int n;
+//	scanf("%s %d", t, &n);
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%s %d %s", arr[i].add, &arr[i].num, arr[i].next);
+//	}
+//	node* head = NULL;
+//	node* new = NULL;
+//	node* p = NULL;
+//	for (int j = 0;j < n;j++)
+//	{
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (strcmp(arr[i].add, t) == 0)
+//			{
+//				if (j == 0)
+//				{
+//					head = (node*)malloc(sizeof(node));
+//					strcpy(head->add, arr[i].add);
+//					head->num = arr[i].num;
+//					strcpy(head->next, arr[i].next);
+//					head->n = NULL;
+//					p = head;
+//				}
+//				else
+//				{
+//					new = (node*)malloc(sizeof(node));
+//					strcpy(new->add, arr[i].add);
+//					new->num = arr[i].num;
+//					strcpy(new->next, arr[i].next);
+//					new->n = NULL;
+//					p->n = new;
+//					p = new;
+//					arr[i].add[0] = -1;
+//				}
+//				strcpy(t, p->next);
+//				break;
+//			}
+//		}
+//		if (t[0] == '-')
+//			break;
+//	}
+//	int tmp = 0;
+//	int isfirst = 1;
+//	node* head2 = NULL;
+//	node* p2 = NULL;
+//	node* new2 = NULL;
+//	for (node* q = head;1;q = q->n)
+//	{
+//		tmp = abs(q->num);
+//		int kg = 0;
+//		for (node* q2 = q;1;q2 = q2->n)
+//		{
+//			if (abs(q2->num) == tmp)
+//			{
+//				if (kg)
+//				{
+//					if (isfirst)
+//					{
+//						head2 = (node*)malloc(sizeof(node));
+//						strcpy(head2->add, q2->add);
+//						head2->num = q2->num;
+//						strcpy(head2->next, q2->next);
+//						head2->n = NULL;
+//						p2 = head2;
+//						isfirst = 0;
+//					}
+//					else
+//					{
+//						new2 = (node*)malloc(sizeof(node));
+//						strcpy(new2->add, q2->add);
+//						new2->num = q2->num;
+//						strcpy(new2->next, q2->next);
+//						new2->n = NULL;
+//						p2->n = new2;
+//						p2 = new2;
+//					}
+//					q2->add[0] = -1;
+//				}
+//				else
+//					kg = 1;
+//			}
+//			if (q2->n == NULL)
+//				break;
+//		}
+//	}
+////	int m = 0;
+////	int tmp = 0;
+////	for (int j = 0;j < n;j++)
+////	{
+////		for (int x = j;x <= n;x++)
+////		{
+////			if (arr2[x].add[0] != -1)
+////			{
+////				if (x == n)
+////					goto here;
+////				tmp = abs(arr2[x].num);
+////				break;
+////			}
+////		}
+////		int kg = 0;
+////		for (int i = 0;i < n;i++)
+////		{
+////			if (abs(arr2[i].num) == tmp)
+////			{
+////				if (kg)
+////				{
+////					strcpy(arr[m].add, arr2[i].add);
+////					strcpy(arr[m].next, arr2[i].next);
+////					arr[m].num = arr2[i].num;
+////					arr2[i].add[0] = -1;
+////					m++;
+////				}
+////				else
+////					kg = 1;
+////
+////			}
+////		}
+////	}
+////here:
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (arr2[i].add[0] != -1)
+//			printf("%s %d %s\n", arr2[i].add, arr2[i].num, arr2[i].next);
+//	}
+//	for (int i = 0;i < m;i++)
+//	{
+//		printf("%s %d %s\n", arr[i].add, arr[i].num, arr[i].next);
+//	}
+//	return 0;
+//}
+
+
+//typedef struct
+//{
+//	char add[6];
+//	int num;
+//	char next[6];
+//	int jud;
+//}node;
+//node arr[10010];
+//node arr2[10010];
+//int main()
+//{
+//	char t[6];
+//	int n;
+//	scanf("%s %d", t, &n);
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%s %d %s", arr[i].add, &arr[i].num, arr[i].next);
+//	}
+//	for (int j = 0;j < n;j++)
+//	{
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (strcmp(arr[i].add, t) == 0)
+//			{
+//				strcpy(arr2[j].add, arr[i].add);
+//				arr2[j].num = arr[i].num;
+//				strcpy(arr2[j].next, arr[i].next);
+//				arr2[j].jud = 1;
+//				arr[i].add[0] = -1;
+//				strcpy(t, arr2[j].next);
+//				break;
+//			}
+//		}
+//		if (t[0] == '-')
+//			break;
+//	}
+//	int tmp = 0;
+//	for (int j = 0;j < n;j++)
+//	{
+//		for (int x = j;x <= n;x++)
+//		{
+//			if (arr2[x].jud != 0)
+//			{
+//				if (x == n)
+//					goto here;
+//				tmp = abs(arr2[x].num);
+//				break;
+//			}
+//		}
+//		int kg = 0;
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (abs(arr2[i].num) == tmp)
+//			{
+//				if (kg)
+//				{
+//					arr2[i].jud = 0;
+//				}
+//				else
+//					kg = 1;
+//			}
+//		}
+//	}
+//here:
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (arr2[i].jud)
+//			printf("%s %d %s\n", arr2[i].add, arr2[i].num, arr2[i].next);
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		if(arr2[i].jud == 0)
+//		printf("%s %d %s\n", arr2[i].add, arr2[i].num, arr2[i].next);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while(t--)
+//	{
+//		int n;
+//		scanf("%d", &n);
+//		int L = 9;
+//		int H = 5;
+//		L += (n - 2) * 4;
+//		H += (n - 2) * 3;
+//		int m = (L + 1) / 2;
+//		int p = m + 1;
+//		int kg = 1;
+//		for (int i = 1;i <= H;i++)
+//		{
+//			for (int j = 1;j <= L;j++)
+//			{
+//				if (j < m)
+//					printf(" ");
+//				else if (j == m)
+//					printf("*");
+//				else if (i > 1 && j == p && p != m)
+//				{
+//					printf("*");
+//					if ((p - m + 1) == n)
+//						kg = 0;
+//					if (kg)
+//						p++;
+//					else
+//						p--;
+//					break;
+//				}
+//				else if (i > 1 && j < p && p != n)
+//					printf(" ");
+//			}
+//			puts("");
+//		}
+//		for (int i = 1;i <= 3;i++)
+//		{
+//			for (int j = 1;j <= L;j++)
+//			{
+//				if (i == 1)
+//					printf("*");
+//				else if (i == 2)
+//				{
+//					if (j == 2 || j == L - 1)
+//						printf("*");
+//					else
+//						printf(" ");
+//				}
+//				else if (i == 3 && (j > 2 || j <= L - 2))
+//				{
+//					if (j <= 2)
+//						printf(" ");
+//					else if(j <= L - 2)
+//						printf("*");
+//				}
+//			}
+//			puts("");
+//		}
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	double a2, L2, p2, q2;
+//	scanf("%d %lf %lf %lf", &n, &a2, &p2, &q2);
+//	a2 *= a2;
+//	p2 *= p2;
+//	q2 *= q2;
+//	double b = q2 / p2;
+//
+//	for (int i = 0;i < n;i++)
+//	{
+//		L2 = a2 / (1 + b);
+//		a2 = L2;
+//	}
+//	printf("%lf",sqrt(a2));
+//	return 0;
+//}
+
+//typedef struct rub
+//{
+//	int num;
+//	struct rub* next;
+//}rub;
+//rub* head[1010];
+//int main()
+//{
+//	for (int i = 0;i < 1010;i++)
+//	{
+//		head[i] = NULL;
+//	}
+//	int N, M, Q;
+//	scanf("%d %d %d", &N, &M, &Q);
+//	for (int i = 1;i <= N;i++)
+//	{
+//		int c;
+//		scanf("%d", &c);
+//		if (head[c] == NULL)
+//		{
+//			head[c] = (rub*)malloc(sizeof(rub));
+//			head[c]->num = i;
+//			head[c]->next = NULL;
+//		}
+//		else
+//		{
+//			rub* p = head[c];
+//			while (1)
+//			{
+//				if (p->next == NULL)
+//					break;
+//				p = p->next;
+//			}
+//			rub* new = (rub*)malloc(sizeof(rub));
+//			new->num = i;
+//			new->next = NULL;
+//			p->next = new;
+//		}
+//	}
+//	for (int i = 0;i < Q;i++)
+//	{
+//		int ask;
+//		scanf("%d", &ask);
+//		if (head[ask] == NULL)
+//		{
+//			printf("-1\n");
+//			continue;
+//		}
+//		else
+//		{
+//			rub* p = head[ask];
+//			while (1)
+//			{
+//				printf("%d", p->num);
+//				if (p->next == NULL)
+//					break;
+//				else
+//					printf(" ");
+//					p = p->next;
+//			}
+//			puts("");
+//		}
+//	}
+//	return 0;
+//}
