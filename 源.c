@@ -1250,65 +1250,397 @@
 
 
 
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	getchar();
+//	while (t--)
+//	{
+//		char c1, c2;
+//		int d1, d2;
+//		int sum = 0;//总伤害
+//		char c = 0;//附着元素
+//		char C = 0;//第二附着
+//		scanf("%c %c %d %d", &c1, &c2, &d1, &d2);
+//		getchar();
+//		if (c1 == c2)//无特殊反应
+//		{
+//			if (c2 != 'E' && c1 >= 'A' && c1 <= 'Z')//仅不为风元素且为强元素时附着
+//				c = c1;
+//			sum += d1 + d2;//伤害计算公式一致
+//		}
+//		else//元素反应
+//		{
+//			if (c2 == 'E')//扩散
+//			{
+//				if (c1 >= 'A' && c1 <= 'Z')//强扩散
+//				{
+//					sum = (d1 * 2 + d2) * 2;
+//					c = c1;
+//				}
+//				else//弱扩散
+//				{
+//					sum = (d1 + d2) + 2;
+//				}
+//			}
+//			else//元素反应
+//			{
+//				if (abs(c1 - c2) > 10)//强弱
+//				{
+//					sum = d1 + d2 + 2 * d1 * d2;
+//					c = c1 < c2 ? c1 : c2;
+//				}
+//				else if (abs(c1 - c2) < 10 && c1 >= 'A' && c1 <= 'Z')//强强
+//				{
+//					sum = d1 + d2 + 3 * d1 * d2;
+//					c = c1 + ('a' - 'A');//附着弱元素
+//					C = c2 + ('a' - 'A');
+//				}
+//				else if (abs(c1 - c2) < 10 && c1 >= 'a' && c1 <= 'z')//弱弱
+//				{
+//					sum = d1 + d2 + d1 * d2;
+//				}
+//			}
+//		}
+//		printf("%d\n", sum);
+//		if (c)
+//			printf("%c", c);
+//		if (C)
+//			printf(" %c", C);
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+
+
+
+//int main()
+//{
+//	int a, b;
+//	scanf("%d %d", &a, &b);
+//	if (a > 0)
+//		b *= -1;
+//	else
+//		b *= 2;
+//	if (abs(b) % 2 == 1)
+//	{
+//		if (a * b < 0)
+//			a *= b / abs(b);
+//	}
+//	else
+//	{
+//		if (a * b > 0)
+//			a *= b / abs(b);
+//	}
+//	printf("%d", a - b);
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	char t;
+//	while (t = getchar(), ~t)
+//	{
+//		if (t >= 'a' && t <= 'z')
+//		{
+//			if (t >= 'a' && t <= 'c')
+//				printf("2");
+//			else if (t >= 'd' && t <= 'f')
+//				printf("3");
+//			else if (t >= 'g' && t <= 'i')
+//				printf("4");
+//			else if (t >= 'j' && t <= 'l')
+//				printf("5");
+//			else if (t >= 'm' && t <= 'o')
+//				printf("6");
+//			else if (t >= 'p' && t <= 's')
+//				printf("7");
+//			else if (t >= 't' && t <= 'v')
+//				printf("8");
+//			else if (t >= 'w' && t <= 'z')
+//				printf("9");
+//		}
+//		else if (t >= 'A' && t <= 'Z')
+//		{
+//			t += ('a' - 'A') + 1;
+//			if (t > 'z')
+//				t -= ('z' - 'a') + 1;
+//			printf("%c", t);
+//		}
+//		else
+//			printf("%c", t);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	int a[8] = { 0 };
+//	while (n--)
+//	{
+//		int t;
+//		char arr[50];
+//		scanf("%d-%s", &t, arr);
+//		if (t >= 1 && t <= 25)
+//			a[0]++;
+//		else if (t >= 26 && t <= 55)
+//			a[1]++;
+//		else if (t >= 56 && t <= 69)
+//			a[2]++;
+//		else if (t >= 70 && t <= 103)
+//			a[3]++;
+//		else if (t >= 104 && t <= 125)
+//			a[4]++;
+//		else if (t >= 200 && t <= 230)
+//			a[5]++;
+//		else if (t >= 231 && t <= 250)
+//			a[6]++;
+//		else
+//			a[7]++;
+//		
+//	}
+//	for (int i = 0;i < 8;i++)
+//	{
+//		if (i)
+//			printf(" ");
+//		printf("%d", a[i]);
+//	}
+//	return 0;
+//}
+
+//typedef struct
+//{
+//	char name[10];
+//	struct node* next;
+//}node;
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	node* head = (node*)malloc(sizeof(node));
+//	head->next = NULL;
+//	node* p = head->next;
+//	node* q = head;
+//	while (t--)
+//	{
+//		char tmp[10] = { 0 };
+//		scanf("%s", tmp);
+//		for (p = head->next,q = head;p != NULL;p = p->next,q = q->next)
+//		{
+//			if (strcmp(p->name, tmp) == 0)
+//			{
+//				if (q == head)
+//					break;
+//				q->next = p->next;
+//				p->next = head->next;
+//				head->next = p;
+//				break;
+//			}
+//		}
+//		if (p == NULL)
+//		{
+//			p = (node*)malloc(sizeof(node));
+//			strcpy(p->name, tmp);
+//			p->next = head->next;
+//			head->next = p;
+//		}
+//	}
+//	for (p = head->next;p != NULL;p = p->next)
+//	{
+//		printf("%s\n", p->name);
+//	}
+//	return 0;
+//}
+
+//#include<stdio.h>
+//int  main()
+//{
+//    int n, m;
+//    while (~scanf("%d %d", &n, &m))
+//        printf("%d\n", m);
+//    return 0;
+//}
+
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	int sum = 0;
+//	for (int i = 1;i < n;i++)
+//		for (int j = 1;j < n / 2;j++)
+//			for (int x = 1;x < n / 5;x++)
+//				if (i + 2 * j + 5 * x == n)
+//					sum++;
+//	printf("%d", sum);
+//	return 0;
+//}
+
+//int cmp(const void* e1, const void* e2)
+//{
+//	return *(int*)e1 - *(int*)e2;
+//}
+//int arr[100010];
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	int len;
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%d", &arr[i]);
+//		len = i;
+//	}
+//	qsort(arr, len + 1, sizeof(arr[0]), cmp);
+//	for (int i = 0;i <= len;i++)
+//		printf("%d ", arr[i]);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n,sum = 0,x,tmp;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		scanf("%d", &x);
+//		tmp = x % 10;
+//		for (x /= 10;x;x /= 10)
+//			tmp -= x % 10;
+//		if (tmp > 0)
+//			sum++;
+//	}
+//	printf("%d", sum);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int t,d;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		scanf("%d", &d);
+//		for (int x = 1;x<=1000;x++)
+//			for (int y = 1;y<=1000;y++)
+//				if (x * x - d * y * y == 1)
+//				{
+//					printf("%d %d\n", x, y);
+//					goto ss;
+//				}
+//	ss:;
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int arr[10];
+//		
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int t, n, sum = 0,tmp;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		sum = 0;
+//		scanf("%d", &n);
+//		while (n--)
+//		{
+//			scanf("%d", &tmp);
+//			if (tmp % 2 != 0)
+//				sum += tmp;
+//		}
+//		printf("%d\n", sum);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		double tmp;
+//		scanf("%lf", &tmp);
+//		if (tmp/1.2 == tmp / 3.0 + 50)
+//			puts("All");
+//		else if (tmp/1.2 > tmp / 3.0 + 50)
+//			puts("Bike");
+//		else
+//			puts("Walk");
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n, ask, arr[1010] = { 0 };
+//		scanf("%d", &n);
+//		for (int i = 0;i < n;i++)
+//		{
+//			scanf("%d", &arr[i]);
+//		}
+//		scanf("%d", &ask);
+//		while (ask--)
+//		{
+//			int tmp;
+//			scanf("%d", &tmp);
+//			for (int i = 0;i < n;i++)
+//			{
+//				if (arr[i] == tmp)
+//				{
+//					puts("Yes");
+//					break;
+//				}
+//				if (i == n - 1)
+//					puts("No");
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+int arr[10010];
 int main()
 {
 	int t;
 	scanf("%d", &t);
-	getchar();
 	while (t--)
 	{
-		char c1, c2;
-		int d1, d2;
-		int sum = 0;//总伤害
-		char c = 0;//附着元素
-		char C = 0;//第二附着
-		scanf("%c %c %d %d", &c1, &c2, &d1, &d2);
-		getchar();
-		if (c1 == c2)//无特殊反应
+		int n,a,b,s;
+		scanf("%d", &n);
+		for (int i = 0;i < n;i++)
 		{
-			if (c2 != 'E' && c1 >= 'A' && c1 <= 'Z')//仅不为风元素且为强元素时附着
-				c = c1;
-			sum += d1 + d2;//伤害计算公式一致
+			scanf("%d", &arr[i]);
 		}
-		else//元素反应
+		scanf("%d %d %d", &a, &b, &s);
+		for (int i = a;i <= b;i++)
 		{
-			if (c2 == 'E')//扩散
-			{
-				if (c1 >= 'A' && c1 <= 'Z')//强扩散
-				{
-					sum = (d1 * 2 + d2) * 2;
-					c = c1;
-				}
-				else//弱扩散
-				{
-					sum = (d1 + d2) + 2;
-				}
-			}
-			else//元素反应
-			{
-				if (abs(c1 - c2) > 10)//强弱
-				{
-					sum = d1 + d2 + 2 * d1 * d2;
-					c = c1 < c2 ? c1 : c2;
-				}
-				else if (abs(c1 - c2) < 10 && c1 >= 'A' && c1 <= 'Z')//强强
-				{
-					sum = d1 + d2 + 3 * d1 * d2;
-					c = c1 + ('a' - 'A');//附着弱元素
-					C = c2 + ('a' - 'A');
-				}
-				else if (abs(c1 - c2) < 10 && c1 >= 'a' && c1 <= 'z')//弱弱
-				{
-					sum = d1 + d2 + d1 * d2;
-				}
-			}
+			s += arr[i];
 		}
-		printf("%d\n", sum);
-		if (c)
-			printf("%c", c);
-		if (C)
-			printf(" %c", C);
-		puts("");
+		printf("%d\n", s);
 	}
 	return 0;
 }
