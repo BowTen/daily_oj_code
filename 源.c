@@ -1622,25 +1622,294 @@
 //	return 0;
 //}
 
-int arr[10010];
+//int arr[10010];
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n,a,b,s;
+//		scanf("%d", &n);
+//		for (int i = 0;i < n;i++)
+//		{
+//			scanf("%d", &arr[i]);
+//		}
+//		scanf("%d %d %d", &a, &b, &s);
+//		for (int i = a;i <= b;i++)
+//		{
+//			s += arr[i];
+//		}
+//		printf("%d\n", s);
+//	}
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//void bubble_sort(int arr[], int sz)
+//{
+//    int i = 0;
+//    for (i = 0; i < sz - 1; i++)
+//    {
+//        int j = 0;
+//        for (j = 0; j < sz - i - 1; j++)
+//        {
+//            if (arr[j] > arr[j + 1])
+//            {
+//                int tmp = arr[j];
+//                arr[j] = arr[j + 1];
+//                arr[j + 1] = tmp;
+//            }
+//        }
+//    }
+//}
+//int main()
+//{
+//    int i = 1;
+//    int arr[1010];
+//    int t, n, k, m, x, y = 0, w = 1;
+//    scanf("%d", &t);
+//    for (t; t >= 1; t--)
+//    {
+//        scanf("%d%d%d", &n, &k, &m);
+//        int sz = m;
+//        for (i; i <= m; i++)
+//        {
+//            scanf("%d", &arr[i]);
+//        }
+//        bubble_sort(arr, sz);
+//        for (w; w <= k; w++)
+//        {
+//            y += (arr[w]);
+//        }
+//        if (y >= n)
+//        {
+//            int x;
+//            x = y - n;
+//            printf("%d", x);
+//        }
+//        else
+//        {
+//            printf("%", 0);
+//        }
+//        y = 0;
+//        x = 0;
+//    }
+//    return 0;
+//}
+
+
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	getchar();
+//	while (t--)
+//	{
+//		int sum = 0;
+//		char tmp;
+//		while (scanf("%c", &tmp), tmp != '\n')
+//			if (tmp == 'a' || tmp == 'e' || tmp == 'i' || tmp == 'o' || tmp == 'u')
+//				sum++;
+//		printf("%d\n", sum);
+//	}
+//	return 0;
+//}
+
+
+//typedef struct
+//{
+//	char name[31];
+//	int a, b, sum;
+//}stu;
+//stu arr[101];
+//int cmp(const void* e1, const void* e2)
+//{
+//	return ((stu*)e2)->sum - ((stu*)e1)->sum;
+//}
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n;
+//		scanf("%d", &n);
+//		for (int i = 0;i < n;i++)
+//		{
+//			scanf("%s %d %d", arr[i].name, &arr[i].a, &arr[i].b);
+//			arr[i].sum = arr[i].a + arr[i].b;
+//		}
+//		qsort(arr, n, sizeof(stu), cmp);
+//		for (int i = 0;i < n;i++)
+//		{
+//			printf("%s\n", arr[i].name);
+//		}
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n1, n2, n3;
+//		char a, b;
+//		scanf("%d %c %d %c %d", &n1, &a, &n2, &b, &n3);
+//		if (a == '+' && b == '+')
+//			printf("%d\n", n1 + n2 + n3);
+//		else if (a == '+' && b == '-')
+//			printf("%d\n", n1 + n2 - n3);
+//		else if (a == '+' && b == '*')
+//			printf("%d\n", n1 + n2 * n3);
+//		else if (a == '+' && b == '/')
+//			printf("%d\n", n1 + n2 / n3);
+//		else if (a == '-' && b == '+')
+//			printf("%d\n", n1 - n2 + n3);
+//		else if (a == '-' && b == '-')
+//			printf("%d\n", n1 - n2 - n3);
+//		else if (a == '-' && b == '*')
+//			printf("%d\n", n1 - n2 * n3);
+//		else if (a == '-' && b == '/')
+//			printf("%d\n", n1 - n2 / n3);
+//		else if (a == '*' && b == '+')
+//			printf("%d\n", n1 * n2 + n3);
+//		else if (a == '*' && b == '-')
+//			printf("%d\n", n1 * n2 - n3);
+//		else if (a == '*' && b == '*')
+//			printf("%d\n", n1 * n2 * n3);
+//		else if (a == '*' && b == '/')
+//			printf("%d\n", n1 * n2 / n3);
+//		else if (a == '/' && b == '+')
+//			printf("%d\n", n1 / n2 + n3);
+//		else if (a == '/' && b == '-')
+//			printf("%d\n", n1 / n2 - n3);
+//		else if (a == '/' && b == '*')
+//			printf("%d\n", n1 / n2 * n3);
+//		else if (a == '/' && b == '/')
+//			printf("%d\n", n1 / n2 / n3);
+//		else if (a == '%' && b == '+')
+//			printf("%d\n", n1 % n2 + n3);
+//		else if (a == '%' && b == '%')
+//			printf("%d\n", n1 % n2 % n3);
+//		else if (a == '%' && b == '-')
+//			printf("%d\n", n1 % n2 - n3);
+//		else if (a == '%' && b == '*')
+//			printf("%d\n", n1 % n2 * n3);
+//		else if (a == '%' && b == '/')
+//			printf("%d\n", n1 % n2 / n3);
+//		else if (a == '+' && b == '%')
+//			printf("%d\n", n1 + n2 % n3);
+//		else if (a == '-' && b == '%')
+//			printf("%d\n", n1 - n2 % n3);
+//		else if (a == '*' && b == '%')
+//			printf("%d\n", n1 * n2 % n3);
+//		else if (a == '/' && b == '%')
+//			printf("%d\n", n1 / n2 % n3);
+//	}
+//	return 0;
+//}
+
+
+
 int main()
 {
-	int t;
-	scanf("%d", &t);
-	while (t--)
+	int n, sum[2] = { 0 },a,b;
+	scanf("%d", &n);
+	while (n--)
 	{
-		int n,a,b,s;
-		scanf("%d", &n);
-		for (int i = 0;i < n;i++)
+		scanf("%d/%d", &a, &b);
+		if (sum[1] == 0)//第一个数时
 		{
-			scanf("%d", &arr[i]);
+			sum[0] += a;
+			sum[1] += b;
 		}
-		scanf("%d %d %d", &a, &b, &s);
-		for (int i = a;i <= b;i++)
+		else//多个数时
 		{
-			s += arr[i];
+			if (sum[1] > b)//前面分母大
+			{
+				if (sum[1] % b == 0)//两个分母成倍
+				{
+					int tmp = sum[1] / b;
+					b = sum[1];
+					a *= tmp;
+				}
+				else//不成倍
+				{
+					sum[1] *= b;
+					sum[0] *= b;
+					b *= sum[1];
+					a *= sum[1];
+				}
+			}
+			if (sum[1] < b)//后面分母大
+			{
+				if (b % sum[1] == 0)//两个分母成倍
+				{
+					int tmp = b / sum[1];
+					sum[1] = b;
+					sum[0] *= tmp;
+				}
+				else//不成倍
+				{
+					int t1 = sum[1];
+					sum[1] *= b;
+					sum[0] *= b;
+					b *= t1;
+					a *= t1;
+				}
+			}
+			sum[0] += a;
 		}
-		printf("%d\n", s);
 	}
+	int zs;
+	if (sum[0] || sum[1])
+	{
+		zs = sum[0] / sum[1];
+		sum[0] -= zs * sum[1];
+		if (zs < 0)
+			sum[0] = abs(sum[0]);
+		int i = 1;
+		while (i)
+		{
+			i = 0;
+			if (sum[0] % 2 == 0 && sum[1] % 2 == 0)
+			{
+				sum[0] /= 2;
+				sum[1] /= 2;
+				i = 1;
+			}
+			if (sum[0] % 3 == 0 && sum[1] % 3 == 0)
+			{
+				sum[0] /= 3;
+				sum[1] /= 3;
+				i = 1;
+			}
+			if (sum[0] % 5 == 0 && sum[1] % 5 == 0)
+			{
+				sum[0] /= 5;
+				sum[1] /= 5;
+				i = 1;
+			}
+			if (sum[0] % 7 == 0 && sum[1] % 7 == 0)
+			{
+				sum[0] /= 7;
+				sum[1] /= 7;
+				i = 1;
+			}
+		}
+	}
+	else
+		zs = 0;
+	if (zs)
+		printf("%d ", zs);
+	if (sum[0])
+		printf("%d/%d", sum[0], sum[1]);
+	if (zs == 0 && sum[0] == 0)
+		printf("0");
 	return 0;
 }
