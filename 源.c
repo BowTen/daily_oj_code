@@ -1816,100 +1816,184 @@
 
 
 
-int main()
-{
-	int n, sum[2] = { 0 },a,b;
-	scanf("%d", &n);
-	while (n--)
-	{
-		scanf("%d/%d", &a, &b);
-		if (sum[1] == 0)//第一个数时
-		{
-			sum[0] += a;
-			sum[1] += b;
-		}
-		else//多个数时
-		{
-			if (sum[1] > b)//前面分母大
-			{
-				if (sum[1] % b == 0)//两个分母成倍
-				{
-					int tmp = sum[1] / b;
-					b = sum[1];
-					a *= tmp;
-				}
-				else//不成倍
-				{
-					sum[1] *= b;
-					sum[0] *= b;
-					b *= sum[1];
-					a *= sum[1];
-				}
-			}
-			if (sum[1] < b)//后面分母大
-			{
-				if (b % sum[1] == 0)//两个分母成倍
-				{
-					int tmp = b / sum[1];
-					sum[1] = b;
-					sum[0] *= tmp;
-				}
-				else//不成倍
-				{
-					int t1 = sum[1];
-					sum[1] *= b;
-					sum[0] *= b;
-					b *= t1;
-					a *= t1;
-				}
-			}
-			sum[0] += a;
-		}
-	}
-	int zs;
-	if (sum[0] || sum[1])
-	{
-		zs = sum[0] / sum[1];
-		sum[0] -= zs * sum[1];
-		if (zs < 0)
-			sum[0] = abs(sum[0]);
-		int i = 1;
-		while (i)
-		{
-			i = 0;
-			if (sum[0] % 2 == 0 && sum[1] % 2 == 0)
-			{
-				sum[0] /= 2;
-				sum[1] /= 2;
-				i = 1;
-			}
-			if (sum[0] % 3 == 0 && sum[1] % 3 == 0)
-			{
-				sum[0] /= 3;
-				sum[1] /= 3;
-				i = 1;
-			}
-			if (sum[0] % 5 == 0 && sum[1] % 5 == 0)
-			{
-				sum[0] /= 5;
-				sum[1] /= 5;
-				i = 1;
-			}
-			if (sum[0] % 7 == 0 && sum[1] % 7 == 0)
-			{
-				sum[0] /= 7;
-				sum[1] /= 7;
-				i = 1;
-			}
-		}
-	}
-	else
-		zs = 0;
-	if (zs)
-		printf("%d ", zs);
-	if (sum[0])
-		printf("%d/%d", sum[0], sum[1]);
-	if (zs == 0 && sum[0] == 0)
-		printf("0");
-	return 0;
-}
+//int main()
+//{
+//	int n, sum[2] = { 0 },a,b;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		scanf("%d/%d", &a, &b);
+//		if (sum[1] == 0)//第一个数时
+//		{
+//			sum[0] += a;
+//			sum[1] += b;
+//		}
+//		else//多个数时
+//		{
+//			if (sum[1] > b)//前面分母大
+//			{
+//				if (sum[1] % b == 0)//两个分母成倍
+//				{
+//					int tmp = sum[1] / b;
+//					b = sum[1];
+//					a *= tmp;
+//				}
+//				else//不成倍
+//				{
+//					sum[1] *= b;
+//					sum[0] *= b;
+//					b *= sum[1];
+//					a *= sum[1];
+//				}
+//			}
+//			if (sum[1] < b)//后面分母大
+//			{
+//				if (b % sum[1] == 0)//两个分母成倍
+//				{
+//					int tmp = b / sum[1];
+//					sum[1] = b;
+//					sum[0] *= tmp;
+//				}
+//				else//不成倍
+//				{
+//					int t1 = sum[1];
+//					sum[1] *= b;
+//					sum[0] *= b;
+//					b *= t1;
+//					a *= t1;
+//				}
+//			}
+//			sum[0] += a;
+//		}
+//	}
+//	int zs;
+//	if (sum[0] || sum[1])
+//	{
+//		zs = sum[0] / sum[1];
+//		sum[0] -= zs * sum[1];
+//		if (zs < 0)
+//			sum[0] = abs(sum[0]);
+//		int i = 1;
+//		while (i)
+//		{
+//			i = 0;
+//			if (sum[0] % 2 == 0 && sum[1] % 2 == 0)
+//			{
+//				sum[0] /= 2;
+//				sum[1] /= 2;
+//				i = 1;
+//			}
+//			if (sum[0] % 3 == 0 && sum[1] % 3 == 0)
+//			{
+//				sum[0] /= 3;
+//				sum[1] /= 3;
+//				i = 1;
+//			}
+//			if (sum[0] % 5 == 0 && sum[1] % 5 == 0)
+//			{
+//				sum[0] /= 5;
+//				sum[1] /= 5;
+//				i = 1;
+//			}
+//			if (sum[0] % 7 == 0 && sum[1] % 7 == 0)
+//			{
+//				sum[0] /= 7;
+//				sum[1] /= 7;
+//				i = 1;
+//			}
+//		}
+//	}
+//	else
+//		zs = 0;
+//	if (zs)
+//		printf("%d ", zs);
+//	if (sum[0])
+//		printf("%d/%d", sum[0], sum[1]);
+//	if (zs == 0 && sum[0] == 0)
+//		printf("0");
+//	return 0;
+//}
+
+//int fun(int n)
+//{
+//	if (n == 1)
+//		return 1;
+//	if (n == 2)
+//		return 2;
+//	if (n == 3)
+//		return 4;
+//	return fun(n - 1) + fun(n - 2) + fun(n - 3);
+//}
+//int main()
+//{
+//	int n;
+//	while (scanf("%d", &n), n)
+//	{
+//		printf("%d\n", fun(n));
+//	}
+//	return 0;
+//}
+
+
+//int fun(int n)
+//{
+//	if (n == 1 || n == 2)
+//		return 1;
+//	int a = 1, b = 1, c = 0;
+//	for (int i = 3;i <= n;i++)
+//	{
+//		c = a + b;
+//		if (c >= 26)
+//			c %= 26;
+//		a = b;
+//		b = c;
+//	}
+//	if (c == 0)
+//		c = 26;
+//	return c;
+//}
+//
+//int main()
+//{
+//	int n;
+//	while (~scanf("%d", &n))
+//	{
+//		printf("%c\n", fun(n)+'a'-1);
+//	}
+//	return 0;
+//}
+
+//int fun(int n)
+//{
+//	int sum = 0;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		if (n % i == 0)
+//			sum++;
+//	}
+//	return sum;
+//}
+//int  main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int k, sum = 0;
+//		scanf("%d", &k);
+//		for (int x = 1;x <= 1001;x++)
+//		{
+//			if (x == 1001)
+//			{
+//				printf("-1\n");
+//				break;
+//			}
+//			if (fun(x) == k)
+//			{
+//				printf("%d\n", x);
+//				break;
+//			}
+//		}
+//	}
+//	return 0;
+//}
