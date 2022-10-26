@@ -1997,3 +1997,588 @@
 //	}
 //	return 0;
 //}
+
+
+//int main()
+//{
+//	double x1, x2, h1, h2, m1, m2;
+//	scanf("%lf %lf %lf %lf %lf %lf", &x1, &h1, &m1, &x2, &h2, &m2);
+//	if (x2 < x1)
+//		x2 += 7;
+//	if (x2 - x1 == 0)
+//		puts("Y e s");
+//	else if (x2 - x1 == 1 && h2 + (24 - h1) + (m2 - m1) / 60 <= 24)
+//		puts("Y e s");
+//	else
+//		puts("N o");
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	char arr[100] = { 0 };
+//	while (gets(arr), strcmp(arr, "END"))
+//	{
+//		for (int i = 0;i < strlen(arr);i++)
+//		{
+//			if (arr[i] == 'A' || arr[i] == 'F' || arr[i] == 'W')
+//				printf("I");
+//			else if (arr[i] == 'C')
+//				printf("L");
+//			else if (arr[i] == 'M')
+//				printf("o");
+//			else if (arr[i] == 'S')
+//				printf("v");
+//			else if (arr[i] == 'D' || arr[i] == 'P' || arr[i] == 'G' || arr[i] == 'B')
+//				printf("e");
+//			else if (arr[i] == 'L')
+//				printf("Y");
+//			else if (arr[i] == 'X')
+//				printf("u");
+//			else
+//				printf("%c", arr[i]);
+//		}
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n, arr[1010] = { 0 },det = 0;
+//	scanf("%d", &n);
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%d", &arr[i]);
+//	}
+//	for (int i = n - 2;i >= 0;i--)
+//	{
+//		for (int j = n - 1;j > i;j--)
+//		{
+//			if (arr[i] > arr[j])
+//			{
+//				det = arr[i] - arr[j];
+//				arr[i] -= det;
+//				arr[j] += det;
+//			}
+//		}
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (i)
+//			printf(" ");
+//		printf("%d", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int arr[1025] = { 0 };
+//		int n;
+//		scanf("%d", &n);
+//		for (int i = 0;i < n;i++)
+//		{
+//			for (int j = 0;j < n;j++)
+//			{
+//				if (j)
+//					printf(" ");
+//				int tmp;
+//				scanf("%d", &tmp);
+//				if (arr[tmp] == 0)
+//				{
+//					arr[tmp] = 1;
+//					printf("%d", tmp);
+//				}
+//				else
+//					printf("X");
+//			}
+//			puts("");
+//		}
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	char arr[15] = { 0 };
+//	while (~scanf("%s", arr))
+//	{
+//		int sum = 0;
+//		int count = 1;
+//		for (int i = 0;i < 11;i++)
+//		{
+//			if (i != 1 && i != 5)
+//			{
+//				sum += (arr[i] - '0')*count;
+//				count++;
+//			}
+//		}
+//		if (arr[12] == 'X')
+//			arr[12] = '0' + 10;
+//		if (sum%11 + '0' == arr[12])
+//			puts("Right");
+//		else
+//		{
+//			if (sum % 11 == 10)
+//				arr[12] = 'X';
+//			else
+//				arr[12] = sum%11 + '0';
+//			printf("%s\n", arr);
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int n,kk = 3,dup = 0;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		char t1[10], t2[10];
+//		int k = 0, d = 0;
+//		scanf("%s %s", t1, t2);
+//		if (strcmp(t1, "Metal") == 0)
+//			k = 1;
+//		else if (strcmp(t1, "Wood") == 0)
+//			k = 2;
+//		else if (strcmp(t1, "Earth") == 0)
+//			k = 3;
+//		else if (strcmp(t1, "Water") == 0)
+//			k = 4;
+//		else if (strcmp(t1, "Fire") == 0)
+//			k = 5;
+//		if (strcmp(t2, "Metal") == 0)
+//			d = 1;
+//		else if (strcmp(t2, "Wood") == 0)
+//			d = 2;
+//		else if (strcmp(t2, "Earth") == 0)
+//			d = 3;
+//		else if (strcmp(t2, "Water") == 0)
+//			d = 4;
+//		else if (strcmp(t2, "Fire") == 0)
+//			d = 5;
+//		if (k - d == -1 || k - d == 4)
+//			kk++;
+//		else if (d - k == -1 || d - k == 4)
+//			dup++;
+//	}
+//	if (kk > dup)
+//		printf("KK");
+//	else if (dup > kk)
+//		printf("Dup4");
+//	else
+//		printf("Draw");
+//	return 0;
+//}
+
+//typedef enum{met,wod,wat,fir,ear}ele;
+//int main()
+//{
+//	ele tmp;
+//	scanf("%s", &tmp);
+//	printf("%s", tmp);
+//	/*char t[4] = "wod";
+//	tmp = wat;
+//	tmp = t;*/
+//	return 0;
+//}
+
+//int main()
+//{
+//	int n, m;
+//	double h;
+//	while (~scanf("%d %d %lf", &n, &m, &h))
+//	{
+//		double v = 0;
+//		for (int i = 0;i < n;i++)
+//		{
+//			for (int j = 0;j < m;j++)
+//			{
+//				double sea;
+//				scanf("%lf", &sea);
+//				if (sea <= h)
+//					sea = h - sea;
+//				else
+//					sea = 0;
+//				v += 100 * sea;
+//			}
+//		}
+//		printf("%d\n", (int)v);
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t,;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n, m;
+//		double x, a, b;
+//		int sum = 0;
+//		scanf("%lf %d %d %lf %lf", &x, &n, &m, &a, &b);
+//		if (a >= b)//男生抬得多
+//		{
+//			if (n * a + m * b < x)//抬不完
+//				sum = -1;
+//			else if (n * a >= x)//男生能抬完
+//				sum = ceil(x / a);
+//			else//男生 抬不完
+//				sum = ceil((x - n * a) / b) + n;
+//		}
+//		else//女生抬得多
+//		{
+//			if (n * a + m * b < x)//抬不完
+//				sum = -1;
+//			else if (m * b >= x)//女生能抬完
+//				sum = ceil(x / b);
+//			else//女生 抬不完
+//				sum = ceil((x - m * b) / a) + m;
+//		}
+//		if (sum == -1)
+//			puts("you are too heavy to move!");
+//		else
+//			printf("%d\n", sum);
+//	}
+//	return 0;
+//}
+
+//int arr[25][4];
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int t1, t2, t3;
+//		scanf("%d %d %d", &t1, &t2, &t3);
+//		arr[t1][t2] += t3;
+//	}
+//	int a, b;
+//	while (scanf("%d %d", &a, &b), a && b)
+//	{
+//		printf("%d\n", arr[a][b]);
+//	}
+//	return 0;
+//}
+
+//int cmp(const void* e1, const void* e2)
+//{
+//	int a = *(int*)e1, b = *(int*)e2;
+//	if ((a / 10) % 10 > (b / 10) % 10)
+//		return 1;
+//	else if ((a / 10) % 10 < (b / 10) % 10)
+//		return -1;
+//	else if ((a / 100) > (b / 100))
+//		return 1;
+//	else if ((a / 100) < (b / 100))
+//		return -1;
+//	else if (a % 10 > b % 10)
+//		return 1;
+//	else return -1;
+//}
+//int main()
+//{
+//	int t, n, k;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int arr[101] = { 0 };
+//		scanf("%d %d", &n, &k);
+//		for (int i = 0;i < n;i++)
+//		{
+//			scanf("%d", &arr[i]);
+//		}
+//		qsort(arr, n, sizeof(int), cmp);
+//		printf("%d\n", arr[k]);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	long long n, f = 0,z = 0,fmin = -1*0xffffffffff, zm = 0xffffffffff,fmax = 0;
+//	scanf("%lld", &n);
+//	while (n--)
+//	{
+//		long long t;
+//		scanf("%lld",&t);
+//		if (t > 0)
+//		{
+//			z++;
+//			if (t < zm)
+//				zm = t;
+//		}
+//		else
+//		{
+//			f++;
+//			if (t > fmin)
+//				fmin = t;
+//			if(t < fmax)
+//				fmax = t;
+//		}
+//	}
+//	if (z != 0)
+//	{
+//		if (f % 2 == 0)
+//			printf("%lld", zm);
+//		else
+//			printf("%lld", fmin);
+//	}
+//	else
+//	{
+//		if (f % 2 == 0)
+//			printf("%lld", fmax);
+//		else
+//			printf("%lld", fmin);
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int n;
+//	char ch;
+//	while (~scanf("%d %c", &n, &ch))
+//	{
+//		int len = 7 + n * 4, hi = 4 + n,Z= 2 + 2 * n,N = 6 + 2*n;
+//		for (int i = 1;i <= hi;i++)
+//		{
+//			int i2 = 0;
+//			for (int j = 1;j <= len;j++)
+//			{
+//				if (i == 1 || i == hi)
+//					printf("-");
+//				else if (i == 2 || i == hi - 1)
+//					if (j == 1 || j == len)
+//						printf("|");
+//					else
+//						printf(" ");
+//				else
+//				{
+//					if (j == 1 || j == len)
+//						printf("|");
+//					else if (j == 3 || j == 2 + n || j == 5 + 2 * n || j == 4 + 3 * n || j == 6 + 3 * n || j == 5 + 4 * n)//打印所有竖线
+//						printf("%c", ch);
+//					else if(j > 3 && j < 2 + n && i == (hi+1)/2)//H的横线
+//						printf("%c", ch);
+//					else if ((i == 3 || i == hi-2) && j >= 4 + n && j <= 3 + 2 * n)//打印Z的横线
+//						printf("%c", ch);
+//					else if (i > 3 && i < hi - 2 && j == Z)
+//					{
+//						printf("%c", ch);
+//						Z--;
+//					}
+//					else if (i > 3 && i < hi - 2 && j == N && (i2 == 0 || i2 != i))
+//					{
+//						printf("%c", ch);
+//						N++;
+//						i2 = i;
+//					}
+//					else if(j > 6 + 3 * n && j < 5 + 4 * n && i == hi - 2)//U的横线
+//						printf("%c", ch);
+//					else printf(" ");
+//				}
+//			}
+//			puts("");
+//
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t,n;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		scanf("%d",&n);
+//		for (int x = 0;x <= n / 2;x++)
+//		{
+//			for (int y = 0;y <= n / 3;y++)
+//			{
+//				if (x * 2 + 3 * y == n)
+//				{
+//					printf("%d %d\n", x, y);
+//					goto ss;
+//				}
+//			}
+//		}
+//		puts("WA");
+//	ss:;
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int k;
+//	scanf("%d", &k);
+//	double sum = 0;
+//	for (long long n = 1;1;n++)
+//	{
+//		sum += 1.0/ n;
+//		if (sum > k)
+//		{
+//			printf("%lld", n);
+//			return 0;
+//		}
+//	}
+//	return 0;
+//}
+
+//int tree[30], a[30];
+//void gettree(int n)
+//{
+//	printf("%d-", n);
+//	if()
+//}
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	gettree(t);
+//	return 0;
+//}
+
+
+
+
+//int main()
+//{
+//	for (int n = 1988;n <= 1989;n++)
+//	{
+//		for (int y = 1;y <= 12;y++)
+//		{
+//			for (int r = 1;1;r++)
+//			{
+//				if ((y == 4 || y == 6 || y == 9 || y == 11) && r == 31)
+//					break;
+//				else if (y == 2)
+//				{
+//					if (r == 30 && n == 1988)
+//						break;
+//					else if (r == 29 && n == 1989)
+//					{
+//						break;
+//					}
+//				}
+//				else if (r == 32)
+//					break;
+//				long long tmp = (n * 10000 + y * 100 + r);
+//				long long t = (long long)sqrt((double)(n * 10000 + y * 100 + r));
+//				int jud = 1;
+//				for (int i = 2;i < t;i++)
+//				{
+//					if (tmp % i == 0)
+//					{
+//						jud = 0;break;
+//					}
+//				}
+//				if (jud)
+//					printf("%lld\n",tmp);
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n, k;
+//	scanf("%d %d", &n, &k);
+//	int arr[110] = { 0 };
+//	int t = k % n;
+//	int count = 0;
+//	for (int i = n-t;count < n;i++)
+//	{
+//		if (i == n)
+//			i = 0;
+//		scanf("%d", &arr[i]);
+//		count++;
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (i)
+//			printf(" ");
+//		printf("%d", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+int main()
+{
+	while (1)
+	{
+		puts("1-Ball");
+		puts("2-Cylinder");
+		puts("3-Cone");
+		puts("other-Exit");
+		puts("Please enter your command:");
+		int input;
+		scanf("%d", &input);
+		if (input == 1)
+		{
+			puts("Please enter the radius:");
+			double r;
+			scanf("%lf", &r);
+			printf("%.2lf\n", (4.0 / 3) * 3.14159 * r * r * r);
+		}
+		else if (input == 2)
+		{
+			puts("Please enter the radius and the height:");
+			double r,h;
+			scanf("%lf %lf", &r,&h);
+			printf("%.2lf\n", 3.14159 * r * r * h);
+		}
+		else if (input == 3)
+		{
+			puts("Please enter the radius and the height:");
+			double r,h;
+			scanf("%lf %lf", &r,&h);
+			printf("%.2lf\n", (1.0 / 3) * 3.14159 * r * r * h);
+		}
+		else return 0;
+	}
+	return 0;
+}
