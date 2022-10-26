@@ -2546,39 +2546,408 @@
 //}
 
 
+//int main()
+//{
+//	while (1)
+//	{
+//		puts("1-Ball");
+//		puts("2-Cylinder");
+//		puts("3-Cone");
+//		puts("other-Exit");
+//		puts("Please enter your command:");
+//		int input;
+//		scanf("%d", &input);
+//		if (input == 1)
+//		{
+//			puts("Please enter the radius:");
+//			double r;
+//			scanf("%lf", &r);
+//			printf("%.2lf\n", (4.0 / 3) * 3.14159 * r * r * r);
+//		}
+//		else if (input == 2)
+//		{
+//			puts("Please enter the radius and the height:");
+//			double r,h;
+//			scanf("%lf %lf", &r,&h);
+//			printf("%.2lf\n", 3.14159 * r * r * h);
+//		}
+//		else if (input == 3)
+//		{
+//			puts("Please enter the radius and the height:");
+//			double r,h;
+//			scanf("%lf %lf", &r,&h);
+//			printf("%.2lf\n", (1.0 / 3) * 3.14159 * r * r * h);
+//		}
+//		else return 0;
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	int a = 0;
+//	while (n--)
+//	{
+//		getchar();
+//		int jud = 1;
+//		int sum = 0;
+//		char arr[20] = { 0 };
+//		for (int i = 0;i < 17;i++)
+//		{
+//			scanf("%c", &arr[i]);
+//			if (arr[i] >= '0' && arr[i] <= '9')
+//			{
+//				if (i == 0)
+//					sum += (arr[i] - '0') * 7;
+//				else if (i == 1)
+//					sum += (arr[i] - '0') * 9;
+//				else if (i == 2)
+//					sum += (arr[i] - '0') * 10;
+//				else if (i == 3)
+//					sum += (arr[i] - '0') * 5;
+//				else if (i == 4)
+//					sum += (arr[i] - '0') * 8;
+//				else if (i == 5)
+//					sum += (arr[i] - '0') * 4;
+//				else if (i == 6)
+//					sum += (arr[i] - '0') * 2;
+//				else if (i == 7)
+//					sum += (arr[i] - '0') * 1;
+//				else if (i == 8)
+//					sum += (arr[i] - '0') * 6;
+//				else if (i == 9)
+//					sum += (arr[i] - '0') * 3;
+//				else if (i == 10)
+//					sum += (arr[i] - '0') * 7;
+//				else if (i == 11)
+//					sum += (arr[i] - '0') * 9;
+//				else if (i == 12)
+//					sum += (arr[i] - '0') * 10;
+//				else if (i == 13)
+//					sum += (arr[i] - '0') * 5;
+//				else if (i == 14)
+//					sum += (arr[i] - '0') * 8;
+//				else if (i == 15)
+//					sum += (arr[i] - '0') * 4;
+//				else if (i == 16)
+//					sum += (arr[i] - '0') * 2;
+//			}
+//			else
+//				jud = 0;
+//		}
+//		scanf("%c", &arr[17]);
+//		if (jud == 0)
+//		{
+//			printf("%s\n", arr);
+//			a++;;
+//		}
+//		else if ((sum % 11 == 0 && arr[17] != '1') || \
+//			(sum % 11 == 1 && arr[17] != '0') || \
+//			(sum % 11 == 2 && arr[17] != 'X') || \
+//			(sum % 11 == 3 && arr[17] != '9') || \
+//			(sum % 11 == 4 && arr[17] != '8') || \
+//			(sum % 11 == 5 && arr[17] != '7') || \
+//			(sum % 11 == 6 && arr[17] != '6') || \
+//			(sum % 11 == 7 && arr[17] != '5') || \
+//			(sum % 11 == 8 && arr[17] != '4') || \
+//			(sum % 11 == 9 && arr[17] != '3') || \
+//			(sum % 11 == 10 && arr[17] != '2'))
+//		{
+//			printf("%s\n", arr);
+//			a++;
+//		}
+//	}
+//	if (a == 0)
+//		puts("All passed");
+//	return 0;
+//}
+
+
+
+//int isPrime(int n)
+//{
+//	int i;
+//	for (i = 2; i <= sqrt(n); i++)
+//	{
+//		if (n % i == 0)    // 如果不为素数返回0 
+//		{
+//			return 0;
+//		}
+//	}
+//	return 1;    // 反之则返回1 
+//
+//}
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		long long t;
+//		scanf("%lld", &t);
+//		if (isPrime(t))
+//			puts("Yes");
+//		else
+//			puts("No");
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int i = 1;
+//	char tmp[11],a[11] = {0}, b[11] = {0};
+//	while (scanf("%s", tmp), strcmp(tmp, ".") != 0)
+//	{
+//		if (i == 2)
+//			strcpy(a, tmp);
+//		else if (i == 14)
+//			strcpy(b, tmp);
+//		i++;
+//	}
+//	if (a[0] && b[0])
+//		printf("%s and %s are inviting you to dinner...", a, b);
+//	else if (a[0])
+//		printf("%s is the only one for you...", a);
+//	else
+//		printf("Momo... No one is for you ...");
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	while (~scanf("%d", &n))
+//	{
+//		for (int a = 0;2 * a <= n;a++)
+//			for (int b = 0;3 * b <= n;b++)
+//				for (int c = 0;5 * c <= n;c++)
+//					for (int d = 0;7 * d <= n;d++)
+//						if (a * 2 + 3 * b + 5 * c + 7 * d == n)
+//						{
+//							printf("%d\n", a + b + c + d);
+//							goto ss;
+//						}
+//	ss:;
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int n, sum = 1, arr[60] = { 0 };
+//	arr[1] = 1;
+//	scanf("%d", &n);
+//	for (int i = 1;i <= n;i++)
+//	{
+//		for (int j = 1;j <= i - 3;j++)
+//		{
+//			sum += arr[j];
+//			arr[i] += arr[j];
+//		}
+//	}
+//	printf("%d", sum);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int arr[1010] = { 0 },n;
+//		scanf("%d", &n);
+//		for (int i = 1;i <= n;i++)
+//		{
+//			scanf("%d", &arr[i]);
+//		}
+//		arr[0] = 0;arr[n + 1] = 0;
+//		int m[500];int j = 0;
+//		for (int i = 1;i <= n;i++)
+//		{
+//			if (arr[i] > arr[i - 1] && arr[i] > arr[i + 1])
+//			{
+//				m[j] = arr[i];
+//				j++;
+//			}
+//		}
+//		int max = 0, min = 0x7fffffff;
+//		for (int i = 0;i < j;i++)
+//		{
+//			if (m[i] > max)
+//				max = m[i];
+//			if (m[i] < min)
+//				min = m[i];
+//		}
+//		printf("%d %d\n", min, max);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		int a, b;
+//		scanf("%d %d", &a, &b);
+//		for(int x = 0;x < b;x++)
+//		{
+//			if(x == 0)
+//			for (int i = 1;i <= a;i++)
+//			{
+//				for (int j = 1;j <= a;j++)
+//				{
+//					if (i + j == a + 1 || i == j)
+//						printf("X");
+//					else
+//						printf(" ");
+//				}
+//				puts("");
+//			}
+//			else
+//				for (int i = 2;i <= a;i++)
+//				{
+//					for (int j = 1;j <= a;j++)
+//					{
+//						if (i + j == a + 1 || i == j)
+//							printf("X");
+//						else
+//							printf(" ");
+//					}
+//					puts("");
+//				}
+//		}
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n, m;
+//	while (~scanf("%d %d", &n, &m))
+//	{
+//		int* arr = (int*)malloc(sizeof(int) * (n + 1));
+//		memset(arr, 0, sizeof(int) * (n + 1));
+//		//int arr[100] = { 0 };
+//		int count = 0;
+//			int x = 0;
+//			for (int i = 1;i <= n;i++)
+//			{
+//				if (arr[i] == 0)
+//				{
+//					x++;
+//					if (x == m)
+//					{
+//						arr[i] = -1;
+//						x = 0;
+//						count++;
+//					}
+//					if (count == n-1)
+//						break;
+//				}
+//				if (i == n)
+//					i = 0;
+//			}
+//		for (int i = 1;i <= n;i++)
+//		{
+//			if (arr[i] != -1)
+//				printf("%d\n", i);
+//		}
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	while (~scanf("%d", &n))
+//	{
+//		int sum = 1;
+//		for (int i = 1;i < n;i++)
+//		{
+//			sum = (sum + 1) * 2;
+//		}
+//		printf("%d\n", sum);
+//	}
+//	return 0;
+//}
+//
+//
+//int main()
+//{
+//	int n;
+//	while (~scanf("%d", &n))
+//	{
+//		for (int i = 1; i <= n;i++)
+//		{
+//			for (int j = 1;j <= n;j++)
+//			{
+//				if (j < i)
+//					printf(" ");
+//				else if(j == i || j == n - i + 1)
+//					ptintf("1")
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n, arr[110][110] = { 0 };
+//	scanf("%d", &n);
+//	for(int i = )
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n, jud = 0;;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		int t;
+//		scanf("%d", &t);
+//		if (t == 1)
+//			jud = 1;
+//	}
+//	if (jud)
+//		printf("YES");
+//	else
+//		printf("NO");
+//	return 0;
+//}
+
+
 int main()
 {
-	while (1)
+	int t, a;
+	scanf("%d", &t);
+	while (t--)
 	{
-		puts("1-Ball");
-		puts("2-Cylinder");
-		puts("3-Cone");
-		puts("other-Exit");
-		puts("Please enter your command:");
-		int input;
-		scanf("%d", &input);
-		if (input == 1)
-		{
-			puts("Please enter the radius:");
-			double r;
-			scanf("%lf", &r);
-			printf("%.2lf\n", (4.0 / 3) * 3.14159 * r * r * r);
-		}
-		else if (input == 2)
-		{
-			puts("Please enter the radius and the height:");
-			double r,h;
-			scanf("%lf %lf", &r,&h);
-			printf("%.2lf\n", 3.14159 * r * r * h);
-		}
-		else if (input == 3)
-		{
-			puts("Please enter the radius and the height:");
-			double r,h;
-			scanf("%lf %lf", &r,&h);
-			printf("%.2lf\n", (1.0 / 3) * 3.14159 * r * r * h);
-		}
-		else return 0;
+		scanf("%d", &a);
+		if (a < 15)
+			printf("-1\n");
+		else
+			printf("%d\n", a - 7);
 	}
 	return 0;
 }
