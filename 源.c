@@ -3013,27 +3013,237 @@
 
 
 
+//int main()
+//{
+//	int n,max = 0,min = 101,t;
+//	char name[110] = { 0 }, id[110] = { 0 }, t1[110] = { 0 }, t2[110] = { 0 }, name2[110] = { 0 }, id2[110] = { 0 };
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		scanf("%s %s %d", t1, t2, &t);
+//		if (t > max)
+//		{
+//			max = t;
+//			strcpy(name, t1);
+//			strcpy(id, t2);
+//		}
+//		if (t < min)
+//		{
+//			min = t;
+//			strcpy(name2, t1);
+//			strcpy(id2, t2);
+//		}
+//	}
+//	printf("%s %s\n%s %s", name, id, name2, id2);
+//	return 0;
+//}
+
+//int arr[110][2];
+//int arr2[110];
+//int cmp(const void* e1, const void* e2)
+//{
+//	return *(int*)e2 - *(int*)e1;
+//}
+//int main()
+//{
+//	int k,x = 0;
+//	scanf("%d", &k);
+//	for (int i = 0;i < k;i++)
+//	{
+//		scanf("%d", &arr[i][0]);
+//	}
+//	for (int i = 0;i < k;i++)
+//	{
+//		int tmp = arr[i][0];
+//		while (tmp != 1)
+//		{
+//			if (tmp % 2 == 0)
+//				tmp /= 2;
+//			else
+//				tmp = (3 * tmp + 1) / 2;
+//			for (int j = 0;j < k;j++)
+//			{
+//				if (tmp == arr[j][0])
+//					arr[j][1] = 1;
+//			}
+//		}
+//	}
+//	for (int i = 0;i < k;i++)
+//	{
+//		if (arr[i][1] == 0)
+//		{
+//			arr2[x] = arr[i][0];
+//			x++;
+//		}
+//	}
+//	for (int i = 0;i < x - 1;i++)
+//	{
+//		for (int j = i;j < x - 1;j++)
+//		{
+//			if (arr2[j] < arr2[j + 1])
+//			{
+//				arr2[j] = arr2[j] ^ arr2[j + 1];
+//				arr2[j + 1] = arr2[j] ^ arr2[j + 1];
+//				arr2[j] = arr2[j] ^ arr2[j + 1];
+//			}
+//		}
+//	}
+//	for (int i = 0;i < x;i++)
+//	{
+//		if (i)
+//			printf(" ");
+//		printf("%d", arr2[i]);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	int b = n / 100;
+//	int s = (n % 100) / 10;
+//	int g = n % 10;
+//	while (b--)
+//		printf("B");
+//	while (s--)
+//		printf("S");
+//	for (int i = 1;i <= g;i++)
+//		printf("%d", i);
+//	return 0;
+//}
+
+//int jud(int n)
+//{
+//	int tmp = (int)sqrt((double)n);
+//	for (int i = 2;i <= tmp;i++)
+//	{
+//		if (n % i == 0)
+//			return 0;
+//	}
+//	return 1;
+//}
+//int arr[1000];
+//int main()
+//{
+//	int n,sum = 0,x = 0;
+//	scanf("%d", &n);
+//	for (int i = 2;i < n;i++)
+//	{
+//		if (jud(i))
+//		{
+//			arr[x] = i;
+//			x++;
+//		}
+//	}
+//	for (int i = 1;i < x;i++)
+//	{
+//		if (arr[i] - arr[i - 1] == 2)
+//			sum++;
+//	}
+//	printf("%d", sum);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n, m, arr[110] = { 0 };
+//	scanf("%d %d", &n,&m);
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%d", &arr[i]);
+//	}
+//	int count = 0;
+//	for (int i = n - (m % n);count < n;i++)
+//	{
+//		if (i == n)
+//			i = 0;
+//		if (count)
+//			printf(" ");
+//		printf("%d",arr[i]);
+//		count++;
+//		if (i == n - 1)
+//			i = -1;
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	char arr[100] = { 0 };
+//	gets(arr);
+//	for (int i = strlen(arr) - 1;i >= 0;i--)
+//	{
+//		for (;(arr[i] >= 'a' && arr[i] <= 'z') || (arr[i] >= 'A' && arr[i] <= 'Z') && i >= 0;i--);
+//		for (int j = i + 1;arr[j] != 0 && arr[j] != ' ';j++)
+//			printf("%c", arr[j]);
+//		if (arr[i] == ' ')
+//			printf(" ");
+//	}
+//	return 0;
+//}
+
+
+//#include<stdio.h>
+//int main()
+//{
+//    int t, a = 0, b = 0, c = 0;
+//    scanf("%d", &t);
+//    for (int i = 1;i <= t;i++)
+//    {
+//        scanf("%d %d %d", &a, &b, &c);
+//        printf("Case #%d: ", i);
+//        if (a + b > c)
+//            puts("true");
+//        else
+//            puts("false");
+//    }
+//    return 0;
+//}
+
+
 int main()
 {
-	int n,max = 0,min = 101,t;
-	char name[110] = { 0 }, id[110] = { 0 }, t1[110] = { 0 }, t2[110] = { 0 }, name2[110] = { 0 }, id2[110] = { 0 };
-	scanf("%d", &n);
-	while (n--)
+	char a[110] = { 0 }, b[110] = { 0 };
+	scanf("%s %s", a, b);
+	int la = strlen(a), lb = strlen(b);
+	for (int i = 0;i < la / 2;i++)
 	{
-		scanf("%s %s %d", t1, t2, &t);
-		if (t > max)
-		{
-			max = t;
-			strcpy(name, t1);
-			strcpy(id, t2);
-		}
-		if (t < min)
-		{
-			min = t;
-			strcpy(name2, t1);
-			strcpy(id2, t2);
-		}
+		a[i] = a[i] ^ a[la - 1 - i];
+		a[la - 1 - i] = a[i] ^ a[la - 1 - i];
+		a[i] = a[i] ^ a[la - 1 - i];
 	}
-	printf("%s %s\n%s %s", name, id, name2, id2);
+	for (int i = 0;i < lb / 2;i++)
+	{
+		b[i] = b[i] ^ b[lb - 1 - i];
+		b[lb - 1 - i] = b[i] ^ b[lb - 1 - i];
+		b[i] = b[i] ^ b[lb - 1 - i];
+	}
+	for (int i = 0;i < lb;i++)
+	{
+		if (a[i] != 0)
+		{
+			if ((i + 1) % 2 != 0)
+				b[i] = (a[i] + b[i] - 2 * '0') % 13;
+			else
+				b[i] = b[i] - a[i] >= 0 ? b[i] - a[i] : b[i] - a[i] + 10;
+		}
+		else
+			b[i] -= '0';
+	}
+	for (int i = lb - 1;i >= 0;i--)
+	{
+		if (b[i] == 10)
+			printf("J");
+		else if (b[i] == 11)
+			printf("Q");
+		else if (b[i] == 12)
+			printf("K");
+		else
+			printf("%d", b[i]);
+	}
 	return 0;
 }
