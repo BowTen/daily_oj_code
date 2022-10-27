@@ -2937,17 +2937,103 @@
 //}
 
 
+//int main()
+//{
+//	int t, a;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		scanf("%d", &a);
+//		if (a < 15)
+//			printf("-1\n");
+//		else
+//			printf("%d\n", a - 7);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	int i = 0;
+//	for (i = 0;n != 1;i++)
+//	{
+//		if (n % 2 == 0)
+//			n /= 2;
+//		else
+//			n = (3 * n + 1) / 2;
+//	}
+//	printf("%d", i);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	char arr[110] = { 0 };
+//	int sum = 0;
+//	for (int i = 0;scanf("%c", &arr[i]), arr[i] != '\n';i++)
+//		sum += arr[i] - '0';
+//	int x = 0;
+//	for(int i = 0;sum;i++)
+//	{
+//		arr[i] = sum % 10;
+//		x = i;
+//		sum /= 10;
+//	}
+//	for (int i = x;i >= 0;i--)
+//	{
+//		if (i != x)
+//			printf(" ");
+//		if (arr[i] == 1)
+//			printf("yi");
+//		else if (arr[i] == 2)
+//			printf("er");
+//		else if (arr[i] == 3)
+//			printf("san");
+//		else if (arr[i] == 4)
+//			printf("si");
+//		else if (arr[i] == 5)
+//			printf("wu");
+//		else if (arr[i] == 6)
+//			printf("liu");
+//		else if (arr[i] == 7)
+//			printf("qi");
+//		else if (arr[i] == 8)
+//			printf("ba");
+//		else if (arr[i] == 9)
+//			printf("jiu");
+//		else if (arr[i] == 0)
+//			printf("ling");
+//	}
+//	return 0;
+//}
+
+
+
 int main()
 {
-	int t, a;
-	scanf("%d", &t);
-	while (t--)
+	int n,max = 0,min = 101,t;
+	char name[110] = { 0 }, id[110] = { 0 }, t1[110] = { 0 }, t2[110] = { 0 }, name2[110] = { 0 }, id2[110] = { 0 };
+	scanf("%d", &n);
+	while (n--)
 	{
-		scanf("%d", &a);
-		if (a < 15)
-			printf("-1\n");
-		else
-			printf("%d\n", a - 7);
+		scanf("%s %s %d", t1, t2, &t);
+		if (t > max)
+		{
+			max = t;
+			strcpy(name, t1);
+			strcpy(id, t2);
+		}
+		if (t < min)
+		{
+			min = t;
+			strcpy(name2, t1);
+			strcpy(id2, t2);
+		}
 	}
+	printf("%s %s\n%s %s", name, id, name2, id2);
 	return 0;
 }
