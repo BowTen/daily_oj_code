@@ -3205,45 +3205,353 @@
 //}
 
 
-int main()
-{
-	char a[110] = { 0 }, b[110] = { 0 };
-	scanf("%s %s", a, b);
-	int la = strlen(a), lb = strlen(b);
-	for (int i = 0;i < la / 2;i++)
-	{
-		a[i] = a[i] ^ a[la - 1 - i];
-		a[la - 1 - i] = a[i] ^ a[la - 1 - i];
-		a[i] = a[i] ^ a[la - 1 - i];
-	}
-	for (int i = 0;i < lb / 2;i++)
-	{
-		b[i] = b[i] ^ b[lb - 1 - i];
-		b[lb - 1 - i] = b[i] ^ b[lb - 1 - i];
-		b[i] = b[i] ^ b[lb - 1 - i];
-	}
-	for (int i = 0;i < lb;i++)
-	{
-		if (a[i] != 0)
-		{
-			if ((i + 1) % 2 != 0)
-				b[i] = (a[i] + b[i] - 2 * '0') % 13;
-			else
-				b[i] = b[i] - a[i] >= 0 ? b[i] - a[i] : b[i] - a[i] + 10;
-		}
-		else
-			b[i] -= '0';
-	}
-	for (int i = lb - 1;i >= 0;i--)
-	{
-		if (b[i] == 10)
-			printf("J");
-		else if (b[i] == 11)
-			printf("Q");
-		else if (b[i] == 12)
-			printf("K");
-		else
-			printf("%d", b[i]);
-	}
-	return 0;
-}
+//int main()
+//{
+//	char a[110] = { 0 }, b[110] = { 0 };
+//	scanf("%s %s", a, b);
+//	int la = strlen(a), lb = strlen(b);
+//	for (int i = 0;i < la / 2;i++)
+//	{
+//		a[i] = a[i] ^ a[la - 1 - i];
+//		a[la - 1 - i] = a[i] ^ a[la - 1 - i];
+//		a[i] = a[i] ^ a[la - 1 - i];
+//	}
+//	for (int i = 0;i < lb / 2;i++)
+//	{
+//		b[i] = b[i] ^ b[lb - 1 - i];
+//		b[lb - 1 - i] = b[i] ^ b[lb - 1 - i];
+//		b[i] = b[i] ^ b[lb - 1 - i];
+//	}
+//	for (int i = 0;i < lb;i++)
+//	{
+//		if (a[i] != 0)
+//		{
+//			if ((i + 1) % 2 != 0)
+//				b[i] = (a[i] + b[i] - 2 * '0') % 13;
+//			else
+//				b[i] = b[i] - a[i] >= 0 ? b[i] - a[i] : b[i] - a[i] + 10;
+//		}
+//		else
+//			b[i] -= '0';
+//	}
+//	for (int i = lb - 1;i >= 0;i--)
+//	{
+//		if (b[i] == 10)
+//			printf("J");
+//		else if (b[i] == 11)
+//			printf("Q");
+//		else if (b[i] == 12)
+//			printf("K");
+//		else
+//			printf("%d", b[i]);
+//	}
+//	return 0;
+
+
+
+//long long arr[1010];
+//int main()
+//{
+//	long long n, a = 0, b = 0,c = 0,e = 0,dn = 0;
+//	double ds = 0;
+//	scanf("%lld", &n);
+//	int j = 1;
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%lld", &arr[i]);
+//		if (arr[i] % 10 == 0)
+//			a += arr[i];
+//		else if (arr[i] % 5 == 1)
+//		{
+//			if (j % 2 == 0)
+//				b -= arr[i];
+//			else
+//				b += arr[i];
+//			j++;
+//		}
+//		else if (arr[i] % 5 == 2)
+//			c++;
+//		else if (arr[i] % 5 == 3)
+//		{
+//			dn++;
+//			ds += arr[i];
+//		}
+//		else if (arr[i] % 5 == 4 && arr[i] > e)
+//			e = arr[i];
+//	}
+//	if (a == 0)
+//		printf("N");
+//	else
+//		printf("%lld", a);
+//	if (j == 1)
+//		printf(" N");
+//	else
+//		printf(" %lld", b);
+//	if (c == 0)
+//		printf(" N");
+//	else
+//		printf(" %lld", c);
+//	if (dn == 0)
+//		printf(" N");
+//	else
+//		printf(" %.1lf", ds/dn);
+//	if (e == 0)
+//		printf(" N");
+//	else
+//		printf(" %lld", e);
+//	return 0;
+//}
+
+//int arr[10010];
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	for (int i = 0;i < n;i++)
+//	{
+//		int t1, t2, t3;
+//		scanf("%d-%d %d", &t1,&t2,&t3);
+//		arr[t1] += t3;
+//	}
+//	int max = 0,m;
+//	for (int i = 0;i < 10010;i++)
+//	{
+//		if (arr[i] > max)
+//		{
+//			max = arr[i];
+//			m = i;
+//		}
+//	}
+//	printf("%d %d", m, max);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n, a = 0,b = 0;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		int t1, t2, t3, t4;
+//		scanf("%d %d %d %d", &t1, &t2, &t3, &t4);
+//		if (t2 == t1 + t3 && t4 != t1 + t3)
+//			b++;
+//		else if (t2 != t1 + t3 && t4 == t1 + t3)
+//			a++;
+//	}
+//	printf("%d %d", a, b);
+//	return 0;
+//}
+
+
+//typedef long long lint;
+//lint arr[10010];
+//lint a2[10010];//存放可能是主元的数
+//int cmp(const void* e1, const void* e2)
+//{
+//	return *(lint*)e1 - *(lint*)e2;
+//}
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	for (int i = 0;i < n;i++)//输入所有数据
+//	{
+//		scanf("%lld", &arr[i]);
+//	}
+//	lint x = 0;
+//	for (int i = 0;i < n;i++)//检查每个数据
+//	{
+//		int jud = 0;
+//		for (int j = 0;j < n;j++)
+//		{
+//			if (j < i && arr[j] > arr[i])
+//				break;
+//			else if (j > i && arr[j] < arr[i])
+//				break;
+//			jud = j;
+//		}
+//		if (jud == n - 1)
+//		{
+//			a2[x] = arr[i];
+//			x++;
+//		}
+//	}
+//	printf("%lld\n", x);
+//	qsort(a2, x, sizeof(lint), cmp);
+//	for (int i = 0;i < x;i++)
+//	{
+//		if (i)
+//			printf(" ");
+//		printf("%lld", a2[i]);
+//	}
+//	return 0;
+//}
+
+//int cmp(const void* e1, const void* e2)
+//{
+//	return *(int*)e1 - *(int*)e2;
+//}
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	int arr[10];
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%d", &arr[i]);
+//	}
+//	qsort(arr, n, sizeof(int), cmp);
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (i)
+//			printf(" ");
+//		printf("%d", arr[i]);
+//	}
+//	return 0;
+//}
+
+//typedef long long lint;
+//lint arr[100010];
+//lint my_abs(lint n)
+//{
+//	return n > 0 ? n : n * -1;
+//}
+//int cmp(const void* e1, const void* e2)
+//{
+//	return *(lint*)e1 - *(lint*)e2;
+//}
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%d", &arr[i]);
+//	}
+//	int count = 0;
+//	for (int i = 0;i < n;i++)
+//	{
+//		for (int j = 0;j < n;j++)
+//		{
+//			if (j < i && my_abs(arr[j]) > arr[i])
+//			{
+//				arr[i] *= -1;
+//				count++;
+//				break;
+//			}
+//			else if (j > i && arr[j] < arr[i])
+//			{
+//				arr[i] *= -1;
+//				count++;
+//				break;
+//			}
+//		}
+//	}
+//	qsort(arr, n, sizeof(arr[0]), cmp);
+//	printf("%d", n - count);
+//	for (int i = count;i < n;i++)
+//	{
+//		if (i != count)
+//			printf(" ");
+//		else
+//			puts("");
+//		printf("%lld", arr[i]);
+//	}
+//	return 0;
+//}
+
+//typedef long long lint;
+//int jud(lint n)
+//{
+//	lint a = (lint)sqrt((double)n);
+//	for (lint i = 2;i <= a;i++)
+//		if (n % i == 0)
+//			return 0;
+//	return 1;
+//}
+//int main()
+//{
+//	int n, m;
+//	scanf("%d %d", &n, &m);
+//	int count = 0,c = 0;
+//	for (lint i = 2;count <= m;i++)
+//	{
+//		if (jud(i))
+//		{
+//			count++;
+//			if (count >= n && count <= m)
+//			{
+//				if (c)
+//					printf(" ");
+//				printf("%lld", i);
+//				c++;
+//				if (c == 10)
+//				{
+//					puts("");
+//					c = 0;
+//				}
+//			}
+//		}
+//		if (count == m)
+//			break;
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	char s1[70] = { 0 };
+//	char s2[70] = { 0 };
+//	scanf("%s %s", s1, s2);
+//	int len = strlen(s1) > strlen(s2) ? strlen(s2) : strlen(s1);
+//	int c = 0;
+//	for (int i = 0;i < len;i++)
+//	{
+//		if (c == 0 && s1[i] >= 'A' && s1[i] <= 'Z' && s1[i] == s2[i])
+//		{
+//			int tmp = s1[i] - 'A' + 1;
+//			if (tmp == 1)
+//				printf("MON ");
+//			else if (tmp == 2)
+//				printf("TUE ");
+//			else if (tmp == 3)
+//				printf("WED ");
+//			else if (tmp == 4)
+//				printf("THU ");
+//			else if (tmp == 5)
+//				printf("FRI ");
+//			else if (tmp == 6)
+//				printf("SAT ");
+//			else if (tmp == 7)
+//				printf("SUN ");
+//			c++;
+//		}
+//		else if (c == 1 && s1[i] == s2[i] && ((s1[i] >= 'A' && s1[i] <= 'N') || (s1[i] >= '0' && s1[i] <= '9')))
+//		{
+//			int tmp = 0;
+//			if (s1[i] >= '0' && s1[i] <= '9')
+//				tmp = s1[i] - '0';
+//			else
+//				tmp = 10 + s1[i] - 'A';
+//			printf("%d:", tmp);
+//			c++;
+//		}
+//		if (c == 2)
+//			break;
+//	}
+//	scanf("%s %s", s1, s2);
+//	len = strlen(s1) > strlen(s2) ? strlen(s2) : strlen(s1);
+//	for (int i = 0;i < len;i++)
+//	{
+//		if (s1[i] == s2[i] && ((s1[i] >= 'A' && s1[i] <= 'Z') || (s1[i] >= 'a' && s1[i] <= 'z')))
+//		{
+//			if (i < 10)
+//				printf("0");
+//			printf("%d", i);
+//		}
+//	}
+//	return 0;
+//}
