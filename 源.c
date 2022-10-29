@@ -3555,3 +3555,179 @@
 //	}
 //	return 0;
 //}
+
+//int arr[100100];
+//int main()
+//{
+//	for (int i = 0;i < 100100;i++)
+//	{
+//		arr[i] = 1;
+//	}
+//	arr[1] = 0;
+//	for (int i = 2;i < 100100;i++)
+//	{
+//		for (int j = 2 * i;j < 100100;j += i)
+//			arr[j] = 0;
+//	}
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n;
+//		scanf("%d", &n);
+//		for (int i = 2;i < 10010;i++)
+//		{
+//			if (arr[i] == 1 && arr[i + n] == 0)
+//			{
+//				printf("%d\n", i);
+//				break;
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+//typedef long long lint;
+////lint arr[200010][2];
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		int n;
+//		scanf("%d", &n);
+//		lint max = 0;
+//		lint m = 0;
+//		lint sum = 0;
+//		for (int i = 0;i < n;i++)
+//		{
+//			lint a, b;
+//			scanf("%lld %lld", &a,&b);
+//			if (a > max)
+//				max = a;
+//			if (b > max)
+//				max = b;
+//			sum += 2 * (a >= b ? b : a);
+//		}
+//		sum += max * 2;
+//		printf("%lld\n", sum);
+//	}
+//	return 0;
+//}
+
+
+
+//typedef long long lint;
+//lint arr[200010];
+//int cmp(const void* e1, const void* e2)
+//{
+//	return *(lint*)e1 - *(lint*)e2;
+//}
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		memset(arr, 0, sizeof(arr));
+//		int n;
+//		scanf("%d", &n);
+//		for (int i = 0;i < n;i++)
+//		{
+//			scanf("%lld", &arr[i]);
+//		}
+//		qsort(arr, n, sizeof(arr[0]), cmp);
+//		lint sum = 0;
+//		sum += 2*arr[n - 1] - arr[0] - arr[n - 2];
+//		printf("%lld\n", sum);
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n,a,b;
+//	scanf("%d", &n);
+//	int sum = 0;
+//	int arr[110] = { 0 };
+//	for (int i = 0;i < n - 1;i++)
+//	{
+//		int t;
+//		scanf("%d", &arr[i]);
+//	}
+//	scanf("%d %d", &a, &b);
+//	for (int i = 0;i < n - 1;i++)
+//	{
+//		if (i + 1 >= a && i + 1 <= b-1)
+//		{
+//			sum += arr[i];
+//		}
+//	}
+//	printf("%d", sum);
+//	return 0;
+//}
+
+//typedef struct kid
+//{
+//	char name[11];
+//	char id[11];
+//}kid;
+//int main()
+//{
+//	int n;
+//	kid arr[110];
+//	scanf("%d", &n);
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%s %s", &arr[i].name, &arr[i].id);
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (strcmp(arr[i].id, "rat") == 0)
+//			printf("%s\n", arr[i].name);
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (strcmp(arr[i].id, "woman") == 0 || strcmp(arr[i].id, "child") == 0)
+//			printf("%s\n", arr[i].name);
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (strcmp(arr[i].id, "man") == 0)
+//			printf("%s\n", arr[i].name);
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (strcmp(arr[i].id, "captain") == 0)
+//			printf("%s\n", arr[i].name);
+//	}
+//	return 0;
+//}
+
+
+int tree[50010];
+void fun(int r2)
+{
+	if (tree[r2] != 0)
+		fun(tree[r2]);
+	tree[tree[r2]] = r2;	
+}
+int main()
+{
+	int n, r1, r2;
+	scanf("%d %d %d", &n, &r1, &r2);
+	for (int i = 1;i <= n;i++)
+	{
+		if (i != r1)
+			scanf("%d", &tree[i]);
+	}
+	fun(r2);
+	for (int i = 1;i <= n;i++)
+	{
+		if(i!=r2)
+			printf("%d ", tree[i]);
+	}
+	return 0;
+}
