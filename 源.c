@@ -3707,27 +3707,164 @@
 //}
 
 
-int tree[50010];
-void fun(int r2)
-{
-	if (tree[r2] != 0)
-		fun(tree[r2]);
-	tree[tree[r2]] = r2;	
-}
-int main()
-{
-	int n, r1, r2;
-	scanf("%d %d %d", &n, &r1, &r2);
-	for (int i = 1;i <= n;i++)
-	{
-		if (i != r1)
-			scanf("%d", &tree[i]);
-	}
-	fun(r2);
-	for (int i = 1;i <= n;i++)
-	{
-		if(i!=r2)
-			printf("%d ", tree[i]);
-	}
-	return 0;
-}
+//int tree[50010];
+//void fun(int r2)
+//{
+//	if (tree[r2] != 0)
+//		fun(tree[r2]);
+//	tree[tree[r2]] = r2;	
+//}
+//int main()
+//{
+//	int n, r1, r2;
+//	scanf("%d %d %d", &n, &r1, &r2);
+//	for (int i = 1;i <= n;i++)
+//	{
+//		if (i != r1)
+//			scanf("%d", &tree[i]);
+//	}
+//	fun(r2);
+//	for (int i = 1;i <= n;i++)
+//	{
+//		if(i!=r2)
+//			printf("%d ", tree[i]);
+//	}
+//	return 0;
+//}
+
+//
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	getchar();
+//	while (n--)
+//	{
+//		char ch;
+//		int a = 0, b = 0, c = 0;
+//		int jud = 0;
+//		int tmp = 1;
+//		while (ch = getchar(), ch != '\n')
+//		{
+//			if (tmp && (ch == 'P' || ch == 'A' || ch == 'T'))
+//			{
+//				if (jud == 0)
+//				{
+//					if (ch == 'A')
+//						a++;
+//					else if (ch == 'P')
+//						jud++;
+//					else
+//					{
+//						tmp = 0;
+//					}
+//				}
+//				else if (jud == 1)
+//				{
+//					if (ch == 'A')
+//						b++;
+//					else if (ch == 'T' && b != 0)
+//						jud++;
+//					else
+//					{
+//						tmp = 0;
+//					}
+//				}
+//				else if (jud == 2)
+//				{
+//					if (ch == 'A')
+//						c++;
+//					else
+//					{
+//						tmp = 0;
+//					}
+//				}
+//			}
+//			else
+//			{
+//				tmp = 0;
+//			}
+//		}
+//		if (tmp && a * b == c)
+//			puts("YES");
+//		else
+//			puts("NO");
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	getchar();
+//	while (n--)
+//	{
+//		char arr[110] = { 0 };
+//		gets(arr);
+//		int len = strlen(arr);
+//		int jud = 1, count = 0, a = 0, b = 0, c = 0, x = 0, y = 0;
+//		for (int i = 0;i < len;i++)
+//		{
+//			if (arr[i] == 'A' || arr[i] == 'P' || arr[i] == 'T')
+//			{
+//				if (arr[i] == 'P' && count == 0)
+//				{
+//					count++;
+//					x++;
+//				}
+//				else if (arr[i] == 'T' && count == 1 && b != 0)
+//				{
+//					count++;
+//					y++;
+//				}
+//				else if (count == 0 && arr[i] == 'A')
+//					a++;
+//				else if (count == 1 && arr[i] == 'A')
+//					b++;
+//				else if (count == 2 && arr[i] == 'A')
+//					c++;
+//				else
+//				{
+//					jud = 0;
+//					break;
+//				}
+//			}
+//			else
+//			{
+//				jud = 0;
+//				break;
+//			}
+//		}
+//		if (a * b != c)
+//			jud = 0;
+//		if (x != 1 || y != 1)
+//			jud = 0;
+//		if (jud)
+//			puts("YES");
+//		else
+//			puts("NO");
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int a, da, b, db;
+//
+//	return 0;
+//}
+
+
+//struct stu
+//{
+//	int a;
+//};
+//int main()
+//{
+//	void* e1;
+//	*(struct stu*)e1
+//	return 0;
+//}
