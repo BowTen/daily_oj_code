@@ -1,4 +1,134 @@
 //#include<iostream>
+//using namespace std;
+//int jud(int n)
+//{
+//	int t = (int)sqrt((double)n);
+//	for (int i = 2;i <= t;i++)
+//		if (n % i == 0)
+//			return 0;
+//	return 1;
+//}
+//int main()
+//{
+//	for (int i = 100;i <= 200;i++)
+//		if (jud(i))
+//			cout << i << endl;
+//	return 0;
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	if ((n % 4 == 0 && n % 100 != 0) || n % 400 == 0)
+//		puts("YES");
+//	else
+//		puts("NO");
+//	return 0;
+//}
+
+
+
+//#include<iostream>
+//using namespace std;
+//void fun(int* a, int* b)
+//{
+//	*a = *a ^ *b;
+//	*b = *a ^ *b;
+//	*a = *a ^ *b;
+//}
+//int main()
+//{
+//	int a, b;
+//	cin >> a >> b;
+//	fun(&a, &b);
+//	cout << a << " " << b;
+//	return 0;
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	int n;
+//	while(cin >> n)
+//	for (int i = 1;i <= n;i++)
+//	{
+//		for (int j = 1;j <= i;j++)
+//			cout << i << "*" << j << "=" << i * j << " ";
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//int main()
+//{
+//	int n;
+//	while (cin >> n)
+//		if (n > 0)
+//			puts("1");
+//		else if (n == 0)
+//			puts("0.5");
+//		else
+//			puts("0");
+//	return 0;
+//}
+
+
+
+//#include<iostream>
+//using namespace std;
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	cout << n / 3600 << " " << n % 3600 / 60 << " " << n % 60;
+//	return 0;
+//}
+
+
+
+
+//#include<iostream>
+//using namespace std;
+//int main()
+//{
+//	int n;
+//	while (cin >> n)
+//	{
+//		while (n--)
+//			cout << "*";
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//int main()
+//{
+//	for (int i = 0;i < 5;i++)
+//	{
+//		double a, b, c, d, e;
+//		cin >> a >> b >> c >> d >> e;
+//		cout << a << " " << b << " " << c << " " << d << " " << e;
+//		printf(" %.1lf\n", (a + b + c + d + e));
+//	}
+//	return 0;
+//}
+
+
+
+//#include<iostream>
 //#include<math.h>
 //using namespace std;
 //typedef long long lint;
