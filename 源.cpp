@@ -1,4 +1,5 @@
 #include<iostream>
+#include<string>
 using namespace std;
 
 //int jud(int n)
@@ -574,3 +575,16 @@ using namespace std;
 //		b = c < b ? c : b;
 //	}
 //}
+
+
+
+int main()
+{
+	char arr[] = "holle world!";
+	string str1(arr);
+	string str2(arr, 2);
+	string str3(arr, 2,12);
+	string str4 = str2 + str3;
+	cout << str1 << endl << str2 << endl << str3 << endl << str4;
+	return 0;
+}
