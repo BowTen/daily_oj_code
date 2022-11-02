@@ -578,13 +578,300 @@ using namespace std;
 
 
 
-int main()
-{
-	char arr[] = "holle world!";
-	string str1(arr);
-	string str2(arr, 2);
-	string str3(arr, 2,12);
-	string str4 = str2 + str3;
-	cout << str1 << endl << str2 << endl << str3 << endl << str4;
-	return 0;
-}
+//int main()
+//{
+//	char arr[] = "holle world!";
+//	string str1(arr);
+//	string str2(arr, 2);
+//	string str3(arr, 2,12);
+//	string str4 = str2 + str3;
+//	cout << str1 << endl << str2 << endl << str3 << endl << str4;
+//	return 0;
+//}
+
+//int jud(long long t)
+//{
+//	long long ret = (long long)sqrt((double)t);
+//	for (int i = 2;i <= ret;i++)
+//	{
+//		if (t % i == 0)
+//			return 0;
+//	}
+//	return 1;
+//}
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	while (n--)
+//	{
+//		long long t;
+//		cin >> t;
+//		if (jud(t))
+//			puts("YES");
+//		else
+//			puts("NO");
+//	}
+//	return 0;
+//}
+
+//void fun(int* last, int* mid, int n)
+//{
+//	if(n > 0)
+//		cout << " " << last[n - 1];
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (mid[i] == last[n - 1])
+//		{
+//			fun(last, mid, i);
+//			fun(last + i , mid + 1 + i, n - i - 1);
+//			break;
+//		}
+//	}
+//}
+//int main()
+//{
+//	int n, last[31], mid[30];
+//	cin >> n;
+//	for (int i = 0;i < n;i++)
+//		cin >> last[i];
+//	for (int i = 0;i < n;i++)
+//		cin >> mid[i];
+//	cout << "Preorder:";
+//	fun(last, mid, n);
+//	return 0;
+//}
+
+//int a[10], b[10];
+//void print(int* a,int n)
+//{
+//	for (int i = 1;i <= n;i++)
+//		cout << a[i];
+//	puts("");
+//}
+//void fun(int n,int t)
+//{
+//	for (int i = 1;i <= n;i++)
+//	{
+//		if (b[i] == 0)
+//		{
+//			a[t] = i;
+//			b[i] = 1;
+//			if (t == n)
+//				print(a,n);
+//			else
+//				fun(n, t + 1);
+//			b[i] = 0;
+//		}
+//	}
+//}
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	fun(n,1);
+//	return 0;
+//}
+
+
+
+//typedef struct node
+//{
+//	char ch;
+//	struct node* pl[2];
+//}node;
+//node* creatn()
+//{
+//	char tmp = getchar();
+//	if (tmp == '#')
+//	{
+//		return NULL;
+//	}
+//	else
+//	{
+//		node* p = new node;
+//		p->ch = tmp;
+//		p->pl[0] = creatn();
+//		p->pl[1] = creatn();
+//		return p;
+//	}
+//}
+//void printx(node* head)
+//{
+//	cout << head->ch;
+//	for (int i = 0;i < 2;i++)
+//	{
+//		if (head->pl[i] != NULL)
+//			printx(head->pl[i]);
+//	}
+//}
+//void printz(node* head)
+//{
+//	if (head->pl[0] != NULL)
+//		printz(head->pl[0]);
+//	cout << head->ch;
+//	if (head->pl[1] != NULL)
+//		printz(head->pl[1]);
+//}
+//void printh(node* head)
+//{
+//	if (head->pl[0] != NULL)
+//		printh(head->pl[0]);
+//	if (head->pl[1] != NULL)
+//		printh(head->pl[1]);
+//	cout << head->ch;
+//}
+//int fun(node* head)
+//{
+//	if (head == NULL)
+//		return 0;
+//	int dep = 1;
+//	dep += fun(head->pl[0]) > fun(head->pl[1]) ? fun(head->pl[0]) : fun(head->pl[1]);
+//	return dep;
+//}
+//int count(node* head)
+//{
+//	int ret = 0;
+//	if (head->pl[0] != NULL)
+//		ret += count(head->pl[0]);
+//	if (head->pl[1] != NULL)
+//		ret += count(head->pl[1]);
+//	if (ret == 0)
+//		return 1;
+//	else
+//		return ret;
+//}
+//int main()
+//{
+//	node* head = new node;
+//	head->ch = getchar();
+//	head->pl[0] = creatn();
+//	head->pl[1] = creatn();
+//	cout << "PreOrder:";
+//	printx(head);
+//	cout << endl << "InOrder:";
+//	printz(head);
+//	cout << endl << "PostOrder:";
+//	printh(head);
+//	cout << endl << "Depth:" << fun(head);
+//;	cout << endl << "Leaf:" << count(head);
+//	return 0;
+//}
+
+//
+//#include<math.h>
+//int jud(int i)
+//{
+//	if (i == 2 || i == 3 || i == 5)
+//		return 1;
+//	for (int t = 2;t * t <= i;t++)
+//	{
+//		if (i % t == 0)
+//			return 0;
+//	}
+//	return 1;
+//}
+//int a[1000010], b[1000010], c[1000010];
+//void print_s(int n,int* a,int * b)
+//{
+//	cout << n << "=";
+//	while (*a)
+//	{
+//		cout << *a++;
+//		if (*b != 1)
+//			cout << "^" << *b++;
+//		if (*a)
+//			cout << "*";
+//	}
+//}
+//int fun_s(long long n,long long mul,int x)
+//{
+//	for (int i = 2;mul * i <= n;i++)
+//	{
+//		if (jud(i) && c[i] == 0)
+//		{
+//			c[i] = 1;
+//			for (int j = 1;1;j++)
+//			{
+//				a[x] = i;
+//				b[x] = j;
+//				mul *= pow(i, j);
+//				if (mul == n)
+//				{
+//					print_s(n, a, b);
+//					return 0;
+//				}
+//				else if (mul > n)
+//				{
+//					a[x] = 0;
+//					b[x] = 0;
+//					c[i] = 0;
+//					mul /= pow(i, j);
+//					break;
+//				}
+//				else
+//					fun_s(n, mul, x + 1);
+//				a[x] = 0;
+//				b[x] = 0;
+//				mul /= pow(i, j);
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	long long n;
+//	
+//	cin >> n;
+//	if (n == 1)
+//		printf("1=1");
+//	else
+//		fun_s(n,1,0);
+//	return 0;
+//}
+
+
+
+//int a[31], jud = 0;
+//void print_s(int n,int* a)
+//{
+//	jud++;
+//	cout << n << "=";
+//	while (*a)
+//	{
+//		cout << *a++;
+//		if (*a)
+//			cout << "+";
+//		else if(jud != 4 && *(a-1) != n)
+//			cout << ";";
+//	}
+//	if (jud == 4)
+//	{
+//		puts("");
+//		jud = 0;
+//	}
+//}
+//void search(int n,int sum,int x)
+//{
+//	for (int i = 1;i <= n;i++)
+//	{
+//		if ((x > 0 && i >= a[x-1] && i + sum <= n) || (x == 0 && i + sum <= n))
+//		{
+//			a[x] = i;
+//			sum += i;
+//			if (sum == n)
+//				print_s(n, a);
+//			else
+//				search(n, sum, x + 1);
+//			a[x] = 0;
+//			sum -= i;
+//		}
+//	}
+//}
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	search(n,0,0);
+//	return 0;
+//}
