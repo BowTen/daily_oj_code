@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<string>
 using namespace std;
@@ -875,3 +876,136 @@ using namespace std;
 //	search(n,0,0);
 //	return 0;
 //}
+
+
+
+//int main()
+//{
+//	char arr[10];
+//	int t = scanf("%s", arr);
+//	cout << t;
+//	return 0;
+//}
+
+
+//
+
+
+
+
+//int Digit(int n)
+//{
+//	if (n == 1 || n == 2)
+//		return 1;
+//	return Digit(n - 1) + Digit(n - 2);
+//}
+//int fun(int n)
+//{
+//	if (n == 1 || n == 2)
+//		return 1;
+//	int ret = 0;
+//	int a = 1, b = 1;
+//	for (int i = 3;i <= n;i++)
+//	{
+//		ret = a + b;
+//		a = b;
+//		b = ret;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	cout << Digit(n);
+//	cout << endl << fun(n);
+//	return 0;
+//}
+
+
+//void fun(char* arr)
+//{
+//	int len = strlen(arr);
+//	for (int i = 0;i <= (len-1) / 2;i++)
+//	{
+//		if (i != len - 1 - i)
+//		{
+//			arr[i] = arr[i] ^ arr[len - 1 - i];
+//			arr[len - 1 - i] = arr[i] ^ arr[len - 1 - i];
+//			arr[i] = arr[i] ^ arr[len - 1 - i];
+//		}
+//	}
+//}
+//int main()
+//{
+//	char arr[20] = { 0 };
+//	cin >> arr;
+//	fun(arr);
+//	cout << arr;
+//	return 0;
+//
+
+
+//int Digit(int n)
+//{
+//	if (n == 1)
+//		return 1;
+//	return Digit(n - 1) * n;
+//}
+//int fun(int n)
+//{
+//	if (n == 1)
+//		return 1;
+//	int ret = 1;
+//	for (int i = 2;i <= n;i++)
+//		ret *= i;
+//	return ret;
+//}
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	cout << Digit(n);
+//	cout << endl << fun(n);
+//	return 0;
+//}
+
+
+int main()
+{
+	int arr[1010] = { 0 }, ans[1010] = { 0 }, n, len;
+	for (int i = 0;1;i++)
+	{
+		char tmp = getchar();
+		if (tmp != ' ')
+		{
+			arr[i] = tmp - '0';
+		}
+		else
+		{
+			len = i;
+			break;
+		}
+	}
+	cin >> n;
+	for (int i = 0;i < len;i++)
+	{
+		if (arr[i - 1] && i)
+		{
+			arr[i] += arr[i - 1] * 10;
+			arr[i - 1] = 0;
+		}
+		ans[i] = arr[i] / n;
+		arr[i] %= n;
+	}
+	int kg = 0;
+	for (int i = 0;i < len;i++)
+	{
+		if (kg == 0 && ans[i] != 0)
+			kg = 1;
+		if (kg)
+			cout << ans[i];
+	}
+	cout << ' ' << arr[len - 1];
+	return 0;
+}
