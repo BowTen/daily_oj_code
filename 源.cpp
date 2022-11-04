@@ -971,41 +971,69 @@ using namespace std;
 //}
 
 
-int main()
-{
-	int arr[1010] = { 0 }, ans[1010] = { 0 }, n, len;
-	for (int i = 0;1;i++)
-	{
-		char tmp = getchar();
-		if (tmp != ' ')
-		{
-			arr[i] = tmp - '0';
-		}
-		else
-		{
-			len = i;
-			break;
-		}
-	}
-	cin >> n;
-	for (int i = 0;i < len;i++)
-	{
-		if (arr[i - 1] && i)
-		{
-			arr[i] += arr[i - 1] * 10;
-			arr[i - 1] = 0;
-		}
-		ans[i] = arr[i] / n;
-		arr[i] %= n;
-	}
-	int kg = 0;
-	for (int i = 0;i < len;i++)
-	{
-		if (kg == 0 && ans[i] != 0)
-			kg = 1;
-		if (kg)
-			cout << ans[i];
-	}
-	cout << ' ' << arr[len - 1];
-	return 0;
-}
+//int main()
+//{
+//	int arr[1010] = { 0 }, ans[1010] = { 0 }, n, len;
+//	for (int i = 0;1;i++)
+//	{
+//		char tmp = getchar();
+//		if (tmp != ' ')
+//		{
+//			arr[i] = tmp - '0';
+//		}
+//		else
+//		{
+//			len = i;
+//			break;
+//		}
+//	}
+//	cin >> n;
+//	for (int i = 0;i < len;i++)
+//	{
+//		if (arr[i - 1] && i)
+//		{
+//			arr[i] += arr[i - 1] * 10;
+//			arr[i - 1] = 0;
+//		}
+//		ans[i] = arr[i] / n;
+//		arr[i] %= n;
+//	}
+//	int kg = 0;
+//	for (int i = 0;i < len;i++)
+//	{
+//		if (kg == 0 && ans[i] != 0)
+//			kg = 1;
+//		if (kg)
+//			cout << ans[i];
+//	}
+//	cout << ' ' << arr[len - 1];
+//	return 0;
+//}
+
+
+
+//class m_obj
+//{
+//public:
+//	m_obj();
+//	m_obj(m_obj& a);
+//	~m_obj();
+//};
+//m_obj::m_obj()
+//{
+//	cout << "无参构造" << endl;
+//}
+//m_obj::m_obj(m_obj& a)
+//{
+//	cout << "拷贝构造" << endl;
+//}
+//m_obj::~m_obj()
+//{
+//	cout << "析构" << endl;
+//}
+//int main()
+//{
+//	m_obj ab;
+//	m_obj ac = ab;
+//	return 0;
+//}
