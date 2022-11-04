@@ -1006,6 +1006,8 @@ using namespace std;
 //		if (kg)
 //			cout << ans[i];
 //	}
+//	if (kg == 0)
+//		cout << 0;
 //	cout << ' ' << arr[len - 1];
 //	return 0;
 //}
@@ -1035,5 +1037,129 @@ using namespace std;
 //{
 //	m_obj ab;
 //	m_obj ac = ab;
+//	return 0;
+//}
+
+
+//int arr[100];
+//int map[10][10];
+//int cmp(const void* e1, const void* e2)
+//{
+//	return *(int*)e2 - *(int*)e1;
+//}
+//int main()
+//{
+//	int a,m,n;
+//	cin >> a;
+//	for (int i = a;i > 0;i--)
+//	{
+//		int j = a / i;
+//		if (i * j == a)
+//		{
+//			m = i;
+//			n = j;
+//		}
+//		if (m <= n)
+//		{
+//			m = m ^ n;
+//			n = m ^ n;
+//			m = m ^ n;
+//			break;
+//		}
+//	}
+//	for (int i = 0;i < a;i++)
+//		cin >> arr[i];
+//	qsort(arr, a, sizeof(arr[0]), cmp);
+//	int x = 0,j = 0, i = 0,count = 0;
+//	while(1)
+//	{
+//		for (j;j < n;)
+//		{
+//			map[i][j] = arr[x];
+//			x++;
+//			count++;
+//			if (count == a)
+//				goto ss;
+//			if (j == n-1)
+//			{
+//				i++;
+//				break;
+//			}
+//			if (map[i][j + 1] == 0)
+//				j++;
+//			else
+//			{
+//				i++;
+//				break;
+//			}
+//		}
+//		for (i;i < m;)
+//		{
+//			map[i][j] = arr[x];
+//			x++;
+//			count++;
+//			if (count == a)
+//				goto ss;
+//			if (i == m-1)
+//			{
+//				j--;
+//				break;
+//			}
+//			if (map[i + 1][j] == 0)
+//				i++;
+//			else
+//			{
+//				j--;
+//				break;
+//			}
+//		}
+//		for (j;j >= 0;)
+//		{
+//			map[i][j] = arr[x];
+//			x++;
+//			count++;
+//			if (count == a)
+//				goto ss;
+//			if (j == 0)
+//			{
+//				i--;
+//				break;
+//			}
+//			if (map[i][j-1] == 0)
+//				j--;
+//			else
+//			{
+//				i--;
+//				break;
+//			}
+//		}
+//		for (i;i >= 0;)
+//		{
+//			map[i][j] = arr[x];
+//			x++;
+//			count++;
+//			if (count == a)
+//				goto ss;
+//			if (map[i - 1][j] == 0)
+//				i--;
+//			else
+//			{
+//				j++;
+//				break;
+//			}
+//		}
+//	}
+//ss:;
+//	for (i = 0;i < m;i++)
+//	{
+//		for (j = 0;j < n;j++)
+//		{
+//			if (j)
+//				cout << " ";
+//			cout << map[i][j];
+//		}
+//		if(i != m-1)
+//			puts("");
+//	}
 //	return 0;
 //}
