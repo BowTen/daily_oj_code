@@ -1214,67 +1214,125 @@ using namespace std;
 
 
 
-int n, a, b, c, a2, b2, c2, m[4],m2[4];
-int main()
-{
-	cin >> n;
-	getchar();
-	while (n--)
-	{
-		char x, y;
-		scanf("%c %c", &x, &y);
-		getchar();
-		if (x == 'J')
-			x = 3;
-		else if (x == 'B')
-			x = 1;
-		else if (x == 'C')
-			x = 2;
-		if (y == 'J')
-			y = 3;
-		else if (y == 'B')
-			y = 1;
-		else if (y == 'C')
-			y = 2;
-		if (x == y)
-		{
-			b++;
-			b2++;
-		}
-		else if (x - y == -1 || x - y == 2)
-		{
-			a++;
-			c2++;
-			m[x]++;
-		}
-		else if (x - y == 1 || x - y == -2)
-		{
-			c++;
-			a2++;
-			m2[y]++;
-		}
-	}
-	cout << a << " " << b << " " << c << endl;
-	cout << a2 << " " << b2 << " " << c2 << endl;
-	int t = 1, y = 1;
-	for (int i = 1;i <= 3;i++)
-	{
-		if (m[i] > m[t])
-			t = i;
-		if (m2[i] > m2[y])
-			y = i;
-	}
-	if (t == 1)
-		cout << "B ";
-	else if (t == 2)
-		cout << "C ";
-	else
-		cout << "J ";
-	if (y == 1)
-		cout << "B";
-	else if (y == 2)
-		cout << "C";
-	else
-		cout << "J";
-	return 0;
-}
+//int n, a, b, c, a2, b2, c2, m[4],m2[4];
+//int main()
+//{
+//	cin >> n;
+//	getchar();
+//	while (n--)
+//	{
+//		char x, y;
+//		scanf("%c %c", &x, &y);
+//		getchar();
+//		if (x == 'J')
+//			x = 3;
+//		else if (x == 'B')
+//			x = 1;
+//		else if (x == 'C')
+//			x = 2;
+//		if (y == 'J')
+//			y = 3;
+//		else if (y == 'B')
+//			y = 1;
+//		else if (y == 'C')
+//			y = 2;
+//		if (x == y)
+//		{
+//			b++;
+//			b2++;
+//		}
+//		else if (x - y == -1 || x - y == 2)
+//		{
+//			a++;
+//			c2++;
+//			m[x]++;
+//		}
+//		else if (x - y == 1 || x - y == -2)
+//		{
+//			c++;
+//			a2++;
+//			m2[y]++;
+//		}
+//	}
+//	cout << a << " " << b << " " << c << endl;
+//	cout << a2 << " " << b2 << " " << c2 << endl;
+//	int t = 1, y = 1;
+//	for (int i = 1;i <= 3;i++)
+//	{
+//		if (m[i] > m[t])
+//			t = i;
+//		if (m2[i] > m2[y])
+//			y = i;
+//	}
+//	if (t == 1)
+//		cout << "B ";
+//	else if (t == 2)
+//		cout << "C ";
+//	else
+//		cout << "J ";
+//	if (y == 1)
+//		cout << "B";
+//	else if (y == 2)
+//		cout << "C";
+//	else
+//		cout << "J";
+//	return 0;
+//}
+
+
+
+//class fa
+//{
+//public:
+//	int pub;
+//private:
+//	int pri = 0;
+//protected:
+//	int pro;
+//};
+//class son : public fa
+//{
+//public:
+//	void setpri()
+//	{
+//		this->pro = 0;
+//		pub = 0;
+//	}
+//};
+//int main()
+//{
+//	cout << sizeof(fa) << " " << sizeof(son);
+//	son a;
+//	a.setpri();
+//	fa b;
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int arr[11] = { 0 };
+//	for (int i = 0;i < 10;i++)
+//	{
+//		cin >> arr[i];
+//	}
+//	if(arr[0] != 0)
+//		for (int i = 1;i < 10;i++)
+//		{
+//			if (arr[i] != 0)
+//			{
+//				arr[i]--;
+//				cout << i;
+//				break;
+//			}
+//		}
+//	for (int i = 0;i < 10;i++)
+//	{
+//		if (arr[i] != 0)
+//			for (arr[i];arr[i] > 0;arr[i]--)
+//				cout << i;
+//	}
+//	return 0;
+//}
+
+
