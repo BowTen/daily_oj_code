@@ -1163,3 +1163,118 @@ using namespace std;
 //	}
 //	return 0;
 //}
+
+
+
+//class MyClass
+//{
+//public:
+//	int num;
+//	~MyClass();
+//	static MyClass* creatc();
+//private:
+//	MyClass();
+//	MyClass(const MyClass& a);
+//	static MyClass* cp;
+//};
+//MyClass* MyClass::cp = NULL;
+//MyClass::MyClass(){}
+//MyClass::~MyClass(){}
+//MyClass* MyClass::creatc()
+//{
+//	if (cp == NULL)
+//	{
+//		cp = new MyClass;
+//	}
+//	return cp;
+//}
+//
+//class MyClass2
+//{
+//public:
+//	MyClass2(int n,int x,int y,int z);
+//	int num;
+//private:
+//	int a;
+//	int b;
+//	int c;
+//};
+//MyClass2::MyClass2(int n,int x,int y,int z): num(n),a(x),b(y),c(z) {}
+//
+//
+//int main()
+//{
+//	MyClass* obj = MyClass::creatc();
+//	obj->num = 666;
+//	cout << obj->num;
+//	MyClass2 obj2(999,1,2,3);
+//	cout << endl << obj2.num << " ";
+//	return 0;
+//}
+
+
+
+int n, a, b, c, a2, b2, c2, m[4],m2[4];
+int main()
+{
+	cin >> n;
+	getchar();
+	while (n--)
+	{
+		char x, y;
+		scanf("%c %c", &x, &y);
+		getchar();
+		if (x == 'J')
+			x = 3;
+		else if (x == 'B')
+			x = 1;
+		else if (x == 'C')
+			x = 2;
+		if (y == 'J')
+			y = 3;
+		else if (y == 'B')
+			y = 1;
+		else if (y == 'C')
+			y = 2;
+		if (x == y)
+		{
+			b++;
+			b2++;
+		}
+		else if (x - y == -1 || x - y == 2)
+		{
+			a++;
+			c2++;
+			m[x]++;
+		}
+		else if (x - y == 1 || x - y == -2)
+		{
+			c++;
+			a2++;
+			m2[y]++;
+		}
+	}
+	cout << a << " " << b << " " << c << endl;
+	cout << a2 << " " << b2 << " " << c2 << endl;
+	int t = 1, y = 1;
+	for (int i = 1;i <= 3;i++)
+	{
+		if (m[i] > m[t])
+			t = i;
+		if (m2[i] > m2[y])
+			y = i;
+	}
+	if (t == 1)
+		cout << "B ";
+	else if (t == 2)
+		cout << "C ";
+	else
+		cout << "J ";
+	if (y == 1)
+		cout << "B";
+	else if (y == 2)
+		cout << "C";
+	else
+		cout << "J";
+	return 0;
+}
