@@ -3868,3 +3868,343 @@
 //	*(struct stu*)e1
 //	return 0;
 //}
+
+
+
+//void printsum(int a, int b)
+//{
+//	int sum = 0;
+//	sum = a + b;
+//	printf("%d",sum);
+//}
+//int main()
+//{
+//	int a = 0, b = 0;
+//	scanf("%d %d", &a, &b);
+//	printf("%d %d", a, b);
+//	printsum(a, b);
+//	return 0;
+//}
+
+
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	int t, i, n, a = 0, b = 0, m, j;
+//	char arr[10][30];
+//	char k;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		scanf("%d", &n);
+//		scanf("%d", &m);
+//		getchar();
+//		for (i = 0;i < n;i++)
+//		{
+//			gets(arr[i]);
+//
+//		}
+//		for (j = 0;j < m;j++)
+//		{
+//			k = 1;
+//			k = getchar();
+//
+//			if (k == 'A')
+//			{
+//				scanf("%d", &a);
+//				scanf("%d", &b);
+//				getchar();
+//
+//				strcat(arr[a - 1], arr[b - 1]);
+//
+//			}
+//			if (k == 'C')
+//			{
+//				scanf("%d", &a);
+//				scanf("%d", &b);
+//				getchar();
+//
+//				strcpy(arr[a - 1], arr[b - 1]);
+//			}
+//
+//		}
+//		printf("%s", arr[a - 1]);
+//	}
+//	return 0;
+//}
+
+
+
+//#include<stdio.h>
+//int xswl(int m);
+//void main()
+//{
+//	int t = 1;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		long long int m = 0;
+//		scanf("%lld", &m);
+//		xswl(m);
+//		printf("%lld\n", xswl(m));
+//	}
+//}
+//int xswl(m)
+//{
+//	int i = 3;
+//	int n = 1;
+//	int a, b;
+//	a = 1;
+//	b = m;
+//	for (i;i <= 30;i++)
+//	{
+//		n = b + a * 2;
+//		a = b;
+//		b = n;
+//	}
+//	n = n - 1;
+//	return n;
+//}
+
+
+
+//int main()
+//{
+//	int arr[11] = { 0 };
+//	char tmp;
+//	while (tmp = getchar(), tmp != '\n')
+//		arr[tmp - '0'] ++;
+//	for (int i = 0;i < 10;i++)
+//	{
+//		if (arr[i] != 0)
+//		{
+//			printf("%d:%d\n", i, arr[i]);
+//		}
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	char arr[82] = { 0 }, arr2[82] = { 0 },ans[200] = { 0 };
+//	for (int i = 0;arr[i] = getchar(), arr[i] != '\n';i++)
+//		if (arr[i] >= 'a' && arr[i] <= 'z')
+//			arr[i] -= ('a' - 'A');
+//	for (int i = 0;arr2[i] = getchar(), arr2[i] != '\n';i++)
+//		if (arr2[i] >= 'a' && arr2[i] <= 'z')
+//			arr2[i] -= ('a' - 'A');
+//	int x = 0;
+//	for (int i = 0;i < strlen(arr);i++)
+//	{
+//		if (arr2[i-x] != arr[i])
+//		{
+//			ans[arr[i]]++;
+//			x++;
+//		}
+//	}
+//	for (int i = 0;i < 200;i++)
+//		if (ans[arr[i]] != 0 && arr[i] != '\n')
+//		{
+//			printf("%c", arr[i]);
+//			ans[arr[i]] = 0;
+//		}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	char a[] = "holle";
+//	char b[] = "what?";
+//	for (int i = 0;i < strlen(a);i++)
+//	{
+//		a[i] = a[i] ^ b[i];
+//		b[i] = a[i] ^ b[i];
+//		a[i] = a[i] ^ b[i];
+//	}
+//	puts(a);
+//	puts(b);
+//	return 0;
+//}
+
+
+//void init(int* arr,int size)
+//{
+//	memset(arr, 0, size);
+//}
+//void print(int* arr)
+//{
+//	for (int i = 0;i < 10;i++)
+//	{
+//		printf("%d", arr[i]);
+//	}
+//}
+//void reverse(int* arr)
+//{
+//	int len = 10;
+//	for (int i = 0;i < len / 2;i++)
+//	{
+//		arr[i] = arr[i] ^ arr[len - 1 - i];
+//		arr[len - 1 - i] = arr[i] ^ arr[len - i - 1];
+//		arr[i] = arr[i] ^ arr[len - i - 1];
+//	}
+//}
+//unsigned int fun(int arr[10])
+//{
+//	int b[10];
+//	return sizeof(b);
+//}
+//int main()
+//{
+//	int arr[10] = {1,2,3,4,5,6,7,8,9,10};
+//	reverse(arr);
+//	print(arr);
+//	puts("");
+//	init(arr,sizeof(arr));
+//	print(arr);
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	long long c1, c2;
+//	scanf("%lld %lld", &c1, &c2);
+//	long long d = round((c2 - c1) / 100.0);
+//	long long h = d / 3600;
+//	long long int m = (d % 3600) / 60;
+//	long long int s = d % 60;
+//	//if (d * 100 < c2 - c1)
+//	//	s++;
+//	if (h < 10)
+//		printf("0");
+//	printf("%lld:", h);
+//	if (m < 10)
+//		printf("0");
+//	printf("%lld:", m);
+//	if (s < 10)
+//		printf("0");
+//	printf("%lld", s);
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int a, b, i = 0;
+//	while (~scanf("%d %d", &a, &b))
+//	{
+//		if (a != 0 && b != 0)
+//		{
+//			if (i != 0)
+//				printf(" ");
+//			printf("%d %d", a * b, b - 1);
+//			i++;
+//		}
+//	}
+//	if (i == 0)
+//		printf("0 0");
+//	return 0;
+//}
+
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+//int main()
+//{
+//	char a[4] = { 0 };
+//	int tmp;
+//	scanf("%d", &tmp);
+//	a[3] = tmp % 10 + '0';
+//	a[2] = (tmp / 10) % 10 + '0';
+//	a[1] = (tmp / 100) % 10 + '0';
+//	a[0] = (tmp / 1000) + '0';
+//	while (1)
+//	{
+//		for (int i = 0;i < 4;i++)
+//			for (int j = 0;j < 3 - i;j++)
+//				if (a[j] < a[j + 1])
+//				{
+//					a[j] = a[j] ^ a[j + 1];
+//					a[j + 1] = a[j] ^ a[j + 1];
+//					a[j] = a[j] ^ a[j + 1];
+//				}
+//		int x = atoi(a);
+//		for (int i = 0;i < 4;i++)
+//			for (int j = 0;j < 3 - i;j++)
+//				if (a[j] > a[j + 1])
+//				{
+//					a[j] = a[j] ^ a[j + 1];
+//					a[j + 1] = a[j] ^ a[j + 1];
+//					a[j] = a[j] ^ a[j + 1];
+//				}
+//		int y = atoi(a);
+//		int d = x - y;
+//		if (d == 0)
+//		{
+//			printf("%04d - %04d = 0000\n", x, y);
+//			break;
+//		}
+//		printf("%04d - %04d = %04d\n", x, y, d);
+//		if (d == 6174)
+//			break;
+//		else
+//		{
+//			for (int i = 3;i >= 0;i--)
+//			{
+//				a[i] = d % 10 + '0';
+//				d /= 10;
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
+typedef struct
+{
+	double hea;
+	double sum;
+	double pri;
+}cake;
+cake arr[510];
+int cmp(const void* e1, const void* e2)
+{
+	return ((cake*)e2)->pri > ((cake*)e1)->pri ? 1 : 0;
+}
+int main()
+{
+	double n, t;
+	double ret = 0;
+	scanf("%lf %lf", &n, &t);
+	for (int i = 0;i < n;i++)
+		scanf("%lf", &arr[i].hea);
+	for (int i = 0;i < n;i++)
+	{
+		scanf("%lf", &arr[i].sum);
+		arr[i].pri = arr[i].sum / arr[i].hea;
+	}
+	qsort(arr, n, sizeof(cake), cmp);
+	for (int i = 0;i < n;i++)
+	{
+		if (t >= arr[i].hea)
+		{
+			t -= arr[i].hea;
+			ret += arr[i].sum;
+		}
+		else if (t < arr[i].hea)
+		{
+			ret += t * arr[i].pri;
+			t = 0;
+		}
+		if (t == 0)
+			break;
+	}
+	printf("%.2lf", ret);
+	return 0;
+}
