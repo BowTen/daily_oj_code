@@ -1336,3 +1336,56 @@ using namespace std;
 //}
 
 
+
+//class father
+//{
+//public:
+//	father();
+//	virtual ~father();
+//
+//private:
+//
+//};
+//
+//father::father()
+//{
+//	cout << "father::father()" << endl;
+//}
+//
+//father::~father()
+//{
+//	cout << "father::~father()" << endl;
+//}
+//
+//class son : public father
+//{
+//public:
+//	son();
+//	~son();
+//
+//private:
+//
+//};
+//
+//son::son()
+//{
+//	cout << "son::son()" << endl;
+//}
+//
+//son::~son()
+//{
+//	cout << "son::~son()" << endl;
+//}
+//int main()
+//{
+//	
+//	//son objs;
+//	//father objf;
+//	/*father* fp = new son;
+//	delete fp;*/
+//	new son;
+//	return 0;
+//}
+
+
+
