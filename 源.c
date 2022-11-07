@@ -4165,46 +4165,128 @@
 //	return 0;
 //}
 
+//
+//typedef struct
+//{
+//	double hea;
+//	double sum;
+//	double pri;
+//}cake;
+//cake arr[510];
+//int cmp(const void* e1, const void* e2)
+//{
+//	return ((cake*)e2)->pri > ((cake*)e1)->pri ? 1 : 0;
+//}
+//int main()
+//{
+//	double n, t;
+//	double ret = 0;
+//	scanf("%lf %lf", &n, &t);
+//	for (int i = 0;i < n;i++)
+//		scanf("%lf", &arr[i].hea);
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%lf", &arr[i].sum);
+//		arr[i].pri = arr[i].sum / arr[i].hea;
+//	}
+//	qsort(arr, n, sizeof(cake), cmp);
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (t >= arr[i].hea)
+//		{
+//			t -= arr[i].hea;
+//			ret += arr[i].sum;
+//		}
+//		else if (t < arr[i].hea)
+//		{
+//			ret += t * arr[i].pri;
+//			t = 0;
+//		}
+//		if (t == 0)
+//			break;
+//	}
+//	printf("%.2lf", ret);
+//	return 0;
+//}
 
-typedef struct
-{
-	double hea;
-	double sum;
-	double pri;
-}cake;
-cake arr[510];
-int cmp(const void* e1, const void* e2)
-{
-	return ((cake*)e2)->pri > ((cake*)e1)->pri ? 1 : 0;
-}
+
+//int main()
+//{
+//	int a, b, d, c, arr[33] = { 0 };
+//	scanf("%d%d%d", &a, &b, &d);
+//	c = a + b;
+//	int x = 0;
+//	for (int i = 0;c != 0;i++)
+//	{
+//		arr[i] = c % d;
+//		c /= d;
+//		x = i;
+//	}
+//	for (int i = x;i >= 0;i--)
+//		printf("%d", arr[i]);
+//	return 0;
+//}
+
+
+char arr[10100],zs[10];
 int main()
 {
-	double n, t;
-	double ret = 0;
-	scanf("%lf %lf", &n, &t);
-	for (int i = 0;i < n;i++)
-		scanf("%lf", &arr[i].hea);
-	for (int i = 0;i < n;i++)
+	int ff;
+	char fh = getchar();
+	for (int i = 0;i < 1010;i++)
 	{
-		scanf("%lf", &arr[i].sum);
-		arr[i].pri = arr[i].sum / arr[i].hea;
-	}
-	qsort(arr, n, sizeof(cake), cmp);
-	for (int i = 0;i < n;i++)
-	{
-		if (t >= arr[i].hea)
+		arr[i] = getchar();
+		if (arr[i] == '.')
+			i--;
+		else if (arr[i] == 'E')
 		{
-			t -= arr[i].hea;
-			ret += arr[i].sum;
-		}
-		else if (t < arr[i].hea)
-		{
-			ret += t * arr[i].pri;
-			t = 0;
-		}
-		if (t == 0)
+			arr[i] = 0;
 			break;
+		}
 	}
-	printf("%.2lf", ret);
+	char tmp = getchar();
+	if (tmp == '+')
+		ff = 0;
+	else
+		ff = 1;
+	for (int i = 0;i < 10;i++)
+	{
+		zs[i] = getchar();
+		if (zs[i] == '\n')
+		{
+			zs[i] = 0;
+			break;
+		}
+	}
+	int n = atoi(zs);
+	int len = strlen(arr) > 1 + n ? strlen(arr) : 1 + n;
+	if (fh == '-')
+		printf("-");
+	if (ff)
+	{
+		n *= -1;
+		for (int i = n;i < (int)strlen(arr);i++)
+		{
+			if (i < 0)
+				printf("0");
+			if (i == n)
+				printf(".");
+			if (i >= 0)
+				printf("%c", arr[i]);
+		}
+	}
+	else
+	{
+		for (int i = 0;i < len;i++)
+		{
+			if (i == n + 1 && len == strlen(arr))
+				printf(".");
+			if (arr[i] == 0)
+				printf("0");
+			else
+				printf("%c", arr[i]);
+		}
+
+	}
 	return 0;
 }
