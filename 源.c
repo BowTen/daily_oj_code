@@ -4112,9 +4112,9 @@
 //	return 0;
 //}
 
-#include<stdio.h>
-#include<math.h>
-#include<stdlib.h>
+//#include<stdio.h>
+//#include<math.h>
+//#include<stdlib.h>
 //int main()
 //{
 //	char a[4] = { 0 };
@@ -4228,65 +4228,267 @@
 //}
 
 
-char arr[10100],zs[10];
+//char arr[10100],zs[10];
+//int main()
+//{
+//	int ff;
+//	char fh = getchar();
+//	for (int i = 0;i < 1010;i++)
+//	{
+//		arr[i] = getchar();
+//		if (arr[i] == '.')
+//			i--;
+//		else if (arr[i] == 'E')
+//		{
+//			arr[i] = 0;
+//			break;
+//		}
+//	}
+//	char tmp = getchar();
+//	if (tmp == '+')
+//		ff = 0;
+//	else
+//		ff = 1;
+//	for (int i = 0;i < 10;i++)
+//	{
+//		zs[i] = getchar();
+//		if (zs[i] == '\n')
+//		{
+//			zs[i] = 0;
+//			break;
+//		}
+//	}
+//	int n = atoi(zs);
+//	int len = strlen(arr) > 1 + n ? strlen(arr) : 1 + n;
+//	if (fh == '-')
+//		printf("-");
+//	if (ff)
+//	{
+//		n *= -1;
+//		for (int i = n;i < (int)strlen(arr);i++)
+//		{
+//			if (i < 0)
+//				printf("0");
+//			if (i == n)
+//				printf(".");
+//			if (i >= 0)
+//				printf("%c", arr[i]);
+//		}
+//	}
+//	else
+//	{
+//		for (int i = 0;i < len;i++)
+//		{
+//			if (i == n + 1 && len == strlen(arr))
+//				printf(".");
+//			if (arr[i] == 0)
+//				printf("0");
+//			else
+//				printf("%c", arr[i]);
+//		}
+//
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,0 };
+//	for (int i = 0;i < 10;i++)
+//	{
+//		for (int j = 0;j < 10 - i;j++)
+//		{
+//			if (arr[j] < arr[j + 1])
+//			{
+//				arr[j] = arr[j] ^ arr[j + 1];
+//				arr[j + 1] = arr[j] ^ arr[j + 1];
+//				arr[j] = arr[j] ^ arr[j + 1];
+//			}
+//		}
+//	}
+//	for (int i = 0;i < 10;i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+//typedef struct
+//{
+//	int last;
+//	int data;
+//	int next;
+//}list;
+//list add[100000];
+//int main()
+//{
+//	int head,n,k;
+//	scanf("%d %d %d", &head, &n, &k);
+//	for (int i = 0;i < n;i++)
+//	{
+//		int t1,t2,t3;
+//		scanf("%d %d %d", &t1, &t2, &t3);
+//		add[t1].data = t2;
+//		add[t1].next = t3;
+//	}
+//	int count = 1, p = head, flag = head, x = 0;
+//	while (1)
+//	{
+//		p = flag;
+//		while (1)
+//		{
+//			if (add[p].next == -1)
+//			{
+//				flag = p;
+//				break;
+//			}
+//			add[add[p].next].last = p;
+//			p = add[p].next;
+//			count++;
+//			if (count == k)
+//			{
+//				flag = p;
+//				break;
+//			}
+//		}
+//		if (count == k)
+//			for (int i = 0;i < count;i++)
+//			{
+//				if (add[p].next != -1)
+//				{
+//					if (x == 0)
+//					{
+//						printf("%05d %d ", p, add[p].data);
+//						x++;
+//					}
+//					else
+//						printf("%05d\n%05d %d ", p, p, add[p].data);
+//				}
+//				else
+//					printf("%05d\n%05d %d -1",p, p, add[p].data);
+//				p = add[p].last;
+//			}
+//		else
+//		{
+//			for (int i = 0;i < count - 1;i++)
+//				p = add[p].last;
+//			for (int i = 0;i < count;i++)
+//			{
+//				if (add[p].next != -1)
+//					printf("%05d\n%05d %d ",p, p, add[p].data, add[p].next);
+//				else
+//					printf("%05d\n%05d %d -1",p, p, add[p].data);
+//				p = add[p].next;
+//			}
+//		}
+//		count = 0;
+//		if (add[flag].next == -1)
+//			break;
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int n;
+//	char ch;
+//	scanf("%d %c", &n, &ch);
+//	int len = 1,hi = 1;
+//	n -= 1;
+//	for(int i = 1; 1 ;i+=2)
+//	{
+//		if (n < (i + 2) * 2)
+//			break;
+//		len += 2;
+//		hi++;
+//		n -= (i + 2) * 2;
+//	}
+//	int q = 0, p = len + 1;
+//	for (int i = 1;i <= hi;i++)
+//	{
+//		for (int j = 1;j <= len;j++)
+//		{
+//			if (j <= q)
+//				printf(" ");
+//			else if (j > q && j < p)
+//				printf("%c", ch);
+//		}
+//		puts("");
+//		q++;
+//		p--;
+//	}
+//	q-=2;
+//	p+=2;
+//	for (int i = 1;i <= hi - 1;i++)
+//	{
+//		for (int j = 1;j <= len;j++)
+//		{
+//			if (j <= q)
+//				printf(" ");
+//			else if (j > q && j < p)
+//				printf("%c", ch);
+//		}
+//		puts("");
+//		q--;
+//		p++;
+//	}
+//	if (n)
+//		printf("%d", n);
+//	return 0;
+//}
+
+
+typedef struct
+{
+	char name[6];
+	int x, y, z;
+}people;
+people min, max;
 int main()
 {
-	int ff;
-	char fh = getchar();
-	for (int i = 0;i < 1010;i++)
+	int n, sum = 0;
+	scanf("%d", &n);
+	while (n--)
 	{
-		arr[i] = getchar();
-		if (arr[i] == '.')
-			i--;
-		else if (arr[i] == 'E')
+		char tmp[6] = { 0 };
+		int a, b, c,jud = 0;
+		scanf("%s %d/%d/%d", tmp, &a, &b, &c);
+		if (a >= 1814 && a <= 2014)
 		{
-			arr[i] = 0;
-			break;
-		}
-	}
-	char tmp = getchar();
-	if (tmp == '+')
-		ff = 0;
-	else
-		ff = 1;
-	for (int i = 0;i < 10;i++)
-	{
-		zs[i] = getchar();
-		if (zs[i] == '\n')
-		{
-			zs[i] = 0;
-			break;
-		}
-	}
-	int n = atoi(zs);
-	int len = strlen(arr) > 1 + n ? strlen(arr) : 1 + n;
-	if (fh == '-')
-		printf("-");
-	if (ff)
-	{
-		n *= -1;
-		for (int i = n;i < (int)strlen(arr);i++)
-		{
-			if (i < 0)
-				printf("0");
-			if (i == n)
-				printf(".");
-			if (i >= 0)
-				printf("%c", arr[i]);
-		}
-	}
-	else
-	{
-		for (int i = 0;i < len;i++)
-		{
-			if (i == n + 1 && len == strlen(arr))
-				printf(".");
-			if (arr[i] == 0)
-				printf("0");
+			if (a == 1814)
+				if (b > 9 || (b == 9 && c >= 6))
+					jud = 1;
+				else;
+			else if (a == 2014)
+				if (b < 9 || (b == 9 && c <= 6))
+					jud = 1;
+				else;
 			else
-				printf("%c", arr[i]);
+				jud = 1;
 		}
-
+		if (jud)
+		{
+			sum++;
+			if (sum == 1 || ((a < max.x) || (a == max.x && b < max.y) || (a == max.x && b == max.y && c < max.z)))
+			{
+				strcpy(max.name,tmp);
+				max.x = a;
+				max.y = b;
+				max.z = c;
+			}
+			if (sum == 1 || ((a > min.x) || (a == min.x && b > min.y) || (a == min.x && b == min.y && c > min.z)))
+			{
+				strcpy(min.name, tmp);
+				min.x = a;
+				min.y = b;
+				min.z = c;
+			}
+		}
 	}
+	printf("%d %s %s", sum, max.name, min.name);
 	return 0;
 }
