@@ -189,9 +189,9 @@
 //		while (n2--)
 //		{
 //			scanf("%d", &t2);
-//			if (n - n2 != 1)//·ÇµÚÒ»´ÎÊäÈëÊ±
+//			if (n - n2 != 1)//ï¿½Çµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
 //			{
-//				if (jud == 0)//ÅĞ¶ÏÊı×ÖË³Ğò
+//				if (jud == 0)//ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½
 //				{
 //					if (t2 > t1)
 //					{
@@ -205,18 +205,18 @@
 //					else if (t2 < t1)
 //					{
 //						if (t1 - t2 == 1)
-//							jud = 2;//½µĞò
+//							jud = 2;//ï¿½ï¿½ï¿½ï¿½
 //						else if (t2 == 1)
-//							jud = 1;//ÉıĞò
+//							jud = 1;//ï¿½ï¿½ï¿½ï¿½
 //						else
 //							a = 0;
 //					}
 //					else
 //						a = 0;
 //				}
-//				else if (jud == 1 && t2 <= t1 && t2 != 1)//ÉıĞò
+//				else if (jud == 1 && t2 <= t1 && t2 != 1)//ï¿½ï¿½ï¿½ï¿½
 //					a = 0;
-//				else if (jud == 2 && t2 >= t1 && t2 != n)//½µĞò
+//				else if (jud == 2 && t2 >= t1 && t2 != n)//ï¿½ï¿½ï¿½ï¿½
 //					a = 0;
 //			}
 //			t1 = t2;
@@ -667,7 +667,7 @@
 //{
 //	int i, j, n, m, ** a;
 //	scanf("%d%d", &n, &m);
-//	/*ÄãµÄ´úÂë½«»á±»Ç¶ÔÚÕâ*/
+//	/*ï¿½ï¿½Ä´ï¿½ï¿½ë½«ï¿½á±»Ç¶ï¿½ï¿½ï¿½ï¿½*/
 //	a = (int**)malloc(sizeof(int*)*n);
 //	for (int i = 0;i < n;i++)
 //	{
@@ -1259,34 +1259,34 @@
 //	{
 //		char c1, c2;
 //		int d1, d2;
-//		int sum = 0;//×ÜÉËº¦
-//		char c = 0;//¸½×ÅÔªËØ
-//		char C = 0;//µÚ¶ş¸½×Å
+//		int sum = 0;//ï¿½ï¿½ï¿½Ëºï¿½
+//		char c = 0;//ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
+//		char C = 0;//ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½
 //		scanf("%c %c %d %d", &c1, &c2, &d1, &d2);
 //		getchar();
-//		if (c1 == c2)//ÎŞÌØÊâ·´Ó¦
+//		if (c1 == c2)//ï¿½ï¿½ï¿½ï¿½ï¿½â·´Ó¦
 //		{
-//			if (c2 != 'E' && c1 >= 'A' && c1 <= 'Z')//½ö²»Îª·çÔªËØÇÒÎªÇ¿ÔªËØÊ±¸½×Å
+//			if (c2 != 'E' && c1 >= 'A' && c1 <= 'Z')//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ÎªÇ¿Ôªï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 //				c = c1;
-//			sum += d1 + d2;//ÉËº¦¼ÆËã¹«Ê½Ò»ÖÂ
+//			sum += d1 + d2;//ï¿½Ëºï¿½ï¿½ï¿½ï¿½ã¹«Ê½Ò»ï¿½ï¿½
 //		}
-//		else//ÔªËØ·´Ó¦
+//		else//Ôªï¿½Ø·ï¿½Ó¦
 //		{
-//			if (c2 == 'E')//À©É¢
+//			if (c2 == 'E')//ï¿½ï¿½É¢
 //			{
-//				if (c1 >= 'A' && c1 <= 'Z')//Ç¿À©É¢
+//				if (c1 >= 'A' && c1 <= 'Z')//Ç¿ï¿½ï¿½É¢
 //				{
 //					sum = (d1 * 2 + d2) * 2;
 //					c = c1;
 //				}
-//				else//ÈõÀ©É¢
+//				else//ï¿½ï¿½ï¿½ï¿½É¢
 //				{
 //					sum = (d1 + d2) + 2;
 //				}
 //			}
-//			else//ÔªËØ·´Ó¦
+//			else//Ôªï¿½Ø·ï¿½Ó¦
 //			{
-//				if (abs(c1 - c2) > 10)//Ç¿Èõ
+//				if (abs(c1 - c2) > 10)//Ç¿ï¿½ï¿½
 //				{
 //					sum = d1 + d2 + 2 * d1 * d2;
 //					c = c1 < c2 ? c1 : c2;
@@ -1294,10 +1294,10 @@
 //				else if (abs(c1 - c2) < 10 && c1 >= 'A' && c1 <= 'Z')//Ç¿Ç¿
 //				{
 //					sum = d1 + d2 + 3 * d1 * d2;
-//					c = c1 + ('a' - 'A');//¸½×ÅÈõÔªËØ
+//					c = c1 + ('a' - 'A');//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
 //					C = c2 + ('a' - 'A');
 //				}
-//				else if (abs(c1 - c2) < 10 && c1 >= 'a' && c1 <= 'z')//ÈõÈõ
+//				else if (abs(c1 - c2) < 10 && c1 >= 'a' && c1 <= 'z')//ï¿½ï¿½ï¿½ï¿½
 //				{
 //					sum = d1 + d2 + d1 * d2;
 //				}
@@ -1823,22 +1823,22 @@
 //	while (n--)
 //	{
 //		scanf("%d/%d", &a, &b);
-//		if (sum[1] == 0)//µÚÒ»¸öÊıÊ±
+//		if (sum[1] == 0)//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê±
 //		{
 //			sum[0] += a;
 //			sum[1] += b;
 //		}
-//		else//¶à¸öÊıÊ±
+//		else//ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
 //		{
-//			if (sum[1] > b)//Ç°Ãæ·ÖÄ¸´ó
+//			if (sum[1] > b)//Ç°ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½
 //			{
-//				if (sum[1] % b == 0)//Á½¸ö·ÖÄ¸³É±¶
+//				if (sum[1] % b == 0)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½É±ï¿½
 //				{
 //					int tmp = sum[1] / b;
 //					b = sum[1];
 //					a *= tmp;
 //				}
-//				else//²»³É±¶
+//				else//ï¿½ï¿½ï¿½É±ï¿½
 //				{
 //					sum[1] *= b;
 //					sum[0] *= b;
@@ -1846,15 +1846,15 @@
 //					a *= sum[1];
 //				}
 //			}
-//			if (sum[1] < b)//ºóÃæ·ÖÄ¸´ó
+//			if (sum[1] < b)//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½
 //			{
-//				if (b % sum[1] == 0)//Á½¸ö·ÖÄ¸³É±¶
+//				if (b % sum[1] == 0)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½É±ï¿½
 //				{
 //					int tmp = b / sum[1];
 //					sum[1] = b;
 //					sum[0] *= tmp;
 //				}
-//				else//²»³É±¶
+//				else//ï¿½ï¿½ï¿½É±ï¿½
 //				{
 //					int t1 = sum[1];
 //					sum[1] *= b;
@@ -2248,22 +2248,22 @@
 //		double x, a, b;
 //		int sum = 0;
 //		scanf("%lf %d %d %lf %lf", &x, &n, &m, &a, &b);
-//		if (a >= b)//ÄĞÉúÌ§µÃ¶à
+//		if (a >= b)//ï¿½ï¿½ï¿½ï¿½Ì§ï¿½Ã¶ï¿½
 //		{
-//			if (n * a + m * b < x)//Ì§²»Íê
+//			if (n * a + m * b < x)//Ì§ï¿½ï¿½ï¿½ï¿½
 //				sum = -1;
-//			else if (n * a >= x)//ÄĞÉúÄÜÌ§Íê
+//			else if (n * a >= x)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì§ï¿½ï¿½
 //				sum = ceil(x / a);
-//			else//ÄĞÉú Ì§²»Íê
+//			else//ï¿½ï¿½ï¿½ï¿½ Ì§ï¿½ï¿½ï¿½ï¿½
 //				sum = ceil((x - n * a) / b) + n;
 //		}
-//		else//Å®ÉúÌ§µÃ¶à
+//		else//Å®ï¿½ï¿½Ì§ï¿½Ã¶ï¿½
 //		{
-//			if (n * a + m * b < x)//Ì§²»Íê
+//			if (n * a + m * b < x)//Ì§ï¿½ï¿½ï¿½ï¿½
 //				sum = -1;
-//			else if (m * b >= x)//Å®ÉúÄÜÌ§Íê
+//			else if (m * b >= x)//Å®ï¿½ï¿½ï¿½ï¿½Ì§ï¿½ï¿½
 //				sum = ceil(x / b);
-//			else//Å®Éú Ì§²»Íê
+//			else//Å®ï¿½ï¿½ Ì§ï¿½ï¿½ï¿½ï¿½
 //				sum = ceil((x - m * b) / a) + m;
 //		}
 //		if (sum == -1)
@@ -2392,11 +2392,11 @@
 //				{
 //					if (j == 1 || j == len)
 //						printf("|");
-//					else if (j == 3 || j == 2 + n || j == 5 + 2 * n || j == 4 + 3 * n || j == 6 + 3 * n || j == 5 + 4 * n)//´òÓ¡ËùÓĞÊúÏß
+//					else if (j == 3 || j == 2 + n || j == 5 + 2 * n || j == 4 + 3 * n || j == 6 + 3 * n || j == 5 + 4 * n)//ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //						printf("%c", ch);
-//					else if(j > 3 && j < 2 + n && i == (hi+1)/2)//HµÄºáÏß
+//					else if(j > 3 && j < 2 + n && i == (hi+1)/2)//Hï¿½Äºï¿½ï¿½ï¿½
 //						printf("%c", ch);
-//					else if ((i == 3 || i == hi-2) && j >= 4 + n && j <= 3 + 2 * n)//´òÓ¡ZµÄºáÏß
+//					else if ((i == 3 || i == hi-2) && j >= 4 + n && j <= 3 + 2 * n)//ï¿½ï¿½Ó¡Zï¿½Äºï¿½ï¿½ï¿½
 //						printf("%c", ch);
 //					else if (i > 3 && i < hi - 2 && j == Z)
 //					{
@@ -2409,7 +2409,7 @@
 //						N++;
 //						i2 = i;
 //					}
-//					else if(j > 6 + 3 * n && j < 5 + 4 * n && i == hi - 2)//UµÄºáÏß
+//					else if(j > 6 + 3 * n && j < 5 + 4 * n && i == hi - 2)//Uï¿½Äºï¿½ï¿½ï¿½
 //						printf("%c", ch);
 //					else printf(" ");
 //				}
@@ -2673,12 +2673,12 @@
 //	int i;
 //	for (i = 2; i <= sqrt(n); i++)
 //	{
-//		if (n % i == 0)    // Èç¹û²»ÎªËØÊı·µ»Ø0 
+//		if (n % i == 0)    // ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0 
 //		{
 //			return 0;
 //		}
 //	}
-//	return 1;    // ·´Ö®Ôò·µ»Ø1 
+//	return 1;    // ï¿½ï¿½Ö®ï¿½ò·µ»ï¿½1 
 //
 //}
 //int main()
@@ -3347,7 +3347,7 @@
 
 //typedef long long lint;
 //lint arr[10010];
-//lint a2[10010];//´æ·Å¿ÉÄÜÊÇÖ÷ÔªµÄÊı
+//lint a2[10010];//ï¿½ï¿½Å¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½
 //int cmp(const void* e1, const void* e2)
 //{
 //	return *(lint*)e1 - *(lint*)e2;
@@ -3356,12 +3356,12 @@
 //{
 //	int n;
 //	scanf("%d", &n);
-//	for (int i = 0;i < n;i++)//ÊäÈëËùÓĞÊı¾İ
+//	for (int i = 0;i < n;i++)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //	{
 //		scanf("%lld", &arr[i]);
 //	}
 //	lint x = 0;
-//	for (int i = 0;i < n;i++)//¼ì²éÃ¿¸öÊı¾İ
+//	for (int i = 0;i < n;i++)//ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //	{
 //		int jud = 0;
 //		for (int j = 0;j < n;j++)
@@ -4438,92 +4438,416 @@
 //	}
 //	if (n)
 //		printf("%d", n);
-//	return 0;
+//	return 0;mk
 //}
 
 
-//typedef struct
+// typedef struct
+// {
+// 	char name[6];
+// 	int x, y, z;
+// }people;
+// people min, max;
+// int main()
+// {
+// 	int n, sum = 0;
+// 	scanf("%d", &n);
+// 	while (n--)
+// 	{
+// 		char tmp[6] = { 0 };
+// 		int a, b, c,jud = 0;
+// 		scanf("%s %d/%d/%d", tmp, &a, &b, &c);
+// 		if (a >= 1814 && a <= 2014)
+// 		{
+// 			if (a == 1814)
+// 				if (b > 9 || (b == 9 && c >= 6))
+// 					jud = 1;
+// 				else;
+// 			else if (a == 2014)
+// 				if (b < 9 || (b == 9 && c <= 6))
+// 					jud = 1;
+// 				else;
+// 			else
+// 				jud = 1;
+// 		}
+// 		if (jud)
+// 		{
+// 			sum++;
+// 			if (sum == 1 || ((a < max.x) || (a == max.x && b < max.y) || (a == max.x && b == max.y && c < max.z)))
+// 			{
+// 				strcpy(max.name,tmp);
+// 				max.x = a;
+// 				max.y = b;
+// 				max.z = c;
+// 			}
+// 			if (sum == 1 || ((a > min.x) || (a == min.x && b > min.y) || (a == min.x && b == min.y && c > min.z)))
+// 			{
+// 				strcpy(min.name, tmp);
+// 				min.x = a;
+// 				min.y = b;
+// 				min.z = c;
+// 			}
+// 		}
+// 	}
+// 	printf("%d", sum);
+// 	if(sum)
+// 		printf(" %s %s", max.name, min.name);
+// 	printf("\n________________________æŒ‰ä»»æ„é”®ç»“æŸ");
+// 	getchar();getchar();
+// 	return 0;
+// }
+
+// int a[200];
+// int main()
+// {
+// 	while(1)
+// 	{
+// 		char tmp = getchar();
+// 		if(tmp == '\n')
+// 			break;
+// 		a[tmp]++;
+// 	}
+// 	while(1)
+// 	{
+// 		char tmp = getchar();
+// 		if(tmp == '\n')
+// 			break;
+// 		a[tmp]--;
+// 	}
+// 	int div = 0, sum = 0;
+// 	for(int i = 0;i < 200;i++)
+// 	{
+// 		if(a[i] < 0)
+// 			div += a[i];
+// 		else
+// 			sum += a[i];
+// 	}
+// 	if(div == 0)
+// 		printf("Yes %d",sum);
+// 	else
+// 		printf("No %d",-1*div);
+// 	while(1);
+// 	return 0;
+// }
+
+
+
+// int main()
+// {
+// 	int m,n;
+// 	scanf("%d %d",&n,&m);
+// 	for(int i = 0;i  < n;i ++)
+// 	{
+// 		int sum = 0,tmp;
+// 		for(int j = 0;j < m;j++)
+// 		{
+// 			scanf("%d",&tmp);
+// 			sum += tmp;
+// 		}
+// 		printf("%d\n",sum);
+// 	}
+// 	while(1);
+// 	return 0;
+// }
+
+
+
+// int main()
+// {
+// 	int a = 0,b = 0,c = 0,tmp;
+// 	for(int i = 0;i < 4;i++)
+// 	{
+// 		for(int j = 0;j < 4;j++)
+// 		{
+// 			scanf("%d",&tmp);
+// 			if(i == 0 || i == 3 || j == 0 || j == 3)
+// 				a += tmp;
+// 			if(i == j)
+// 				b += tmp;
+// 			if(i + j == 3)
+// 				c += tmp;
+// 		}
+// 	}
+// 	printf("%d\n%d\n%d",a,b,c);
+// 	while(1);
+// 	return 0;
+// }
+
+
+// int main()
+// {
+// 	int n,tmp,jud = 1;
+// 	scanf("%d",&n);
+// 	for(int i = 0;i < n;i++)
+// 	{
+// 		for(int j = 0;j < n;j++)
+// 		{
+// 			scanf("%d",&tmp);
+// 			if(i > j && tmp != 0)
+// 				jud = 0;
+// 		}
+// 	}
+// 	if(jud)
+// 		printf("Yes");
+// 	else 
+// 		printf("No");
+// 	return 0;
+// }
+
+// int map[4][21];
+// int main()
+// {
+// 	int m,n,jud = 0;
+// 	scanf("%d %d",&m,&n);
+// 	for(int i = 1;i<= m;i++)
+// 	{
+// 		for(int j = 1;j <= n;j++)
+// 		{
+// 			scanf("%d",&map[i][j]);
+// 		}
+// 	}
+// 	for(int i = 1;i <= m;i++)
+// 	{
+// 		for(int j = 1;j <= n;j++)
+// 		{
+// 			if(i != 1 && i != m && j != 1 && j != n && map[i][j] > map[i-1][j] && map[i][j] > map[i+1][j] && map[i][j] > map[i][j-1] && map[i][j] > map[i][j+1])
+// 			{
+// 				jud = 1;
+// 				printf("%d %d %d\n",map[i][j],i,j);
+// 			}
+// 		}
+// 	}
+// 	if(jud == 0)
+// 	printf("None %d %d",m,n);
+// 	while(1);
+// 	return 0;
+// }
+
+
+
+// int main()
+// {
+// 	char tmp[100];
+// 	gets(tmp);
+// 	for(int i =0;i < strlen(tmp);i++)
+// 	{
+// 		if(tmp[i] >= '0' && tmp[i] <= '9')
+// 		printf("%c",tmp[i]);
+// 	}
+// 	getchar();getchar();
+// 	return 0;
+// }
+
+
+
+// int main()
+// {
+//     int n;
+//     scanf("%d",&n);
+//     getchar();
+//     int count = 0;
+//     while(n--)
+//     {
+//         char a[20];
+//         int tmp = 0;
+//         int jud = 0;
+//         for(int i = 0;i < 18;i++)
+//         {
+//             a[i] = getchar();
+//             if(a[i] < '0' || a[i] > '9')
+//                 jud = 1;
+//             if(i == 0)
+//                 tmp += 7*(a[i] - '0');
+//             else if(i == 1)
+//                 tmp += 9*(a[i] - '0');
+//             else if(i == 2)
+//                 tmp += 10*(a[i] - '0');
+//             else if(i == 3)
+//                 tmp += 5*(a[i] - '0');
+//             else if(i == 4)
+//                 tmp += 8*(a[i] - '0');
+//             else if(i == 5)
+//                 tmp += 4*(a[i] - '0');
+//             else if(i == 6)
+//                 tmp += 2*(a[i] - '0');
+//             else if(i == 7)
+//                 tmp += (a[i] - '0');
+//             else if(i == 8)
+//                 tmp += 6*(a[i] - '0');
+//             else if(i == 9)
+//                 tmp += 3*(a[i] - '0');
+//             else if(i == 10)
+//                 tmp += 7*(a[i] - '0');
+//             else if(i == 11)
+//                 tmp += 9*(a[i] - '0');
+//             else if(i == 12)
+//                 tmp += 10*(a[i] - '0');
+//             else if(i == 13)
+//                 tmp += 5*(a[i] - '0');
+//             else if(i == 14)
+//                 tmp += 8*(a[i] - '0');
+//             else if(i == 15)
+//                 tmp += 4*(a[i] - '0');
+//             else if(i == 16)
+//                 tmp += 2*(a[i] - '0');
+//         }
+//         getchar();
+//         tmp %= 11;
+//         if((tmp == 0 && a[17] == '1') || 
+//         (tmp == 1 && a[17] == '0') ||
+//         (tmp == 2 && a[17] == 'X') ||
+//         (tmp == 3 && a[17] == '9') ||
+//         (tmp == 4 && a[17] == '8') ||
+//         (tmp == 5 && a[17] == '7') ||
+//         (tmp == 6 && a[17] == '6') ||
+//         (tmp == 7 && a[17] == '5') ||
+//         (tmp == 8 && a[17] == '4') ||
+//         (tmp == 9 && a[17] == '3') ||
+//         (tmp == 10 && a[17] == '2') );
+//         else
+//         {
+//             jud = 1;
+//         }
+//         if(jud)
+//         {
+//             printf("%s\n",a);
+//             count ++;
+//         }
+//     }
+//     if(count == 0)
+//     printf("All passed");
+//     getchar();
+//     return 0;
+// }
+
+
+
+
+// int main()
+// {
+//     int n,count = 0;
+//     int quan[] = {7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
+//     char duiyin[] = {'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'};
+//     scanf("%d",&n);
+//     getchar();
+//     while(n--)
+//     {
+//         int jud = 0,tmp = 0;;
+//         char a[20] = {0};
+//         gets(a);
+//         for(int i = 0;i < 17;i++)
+//         {
+//             if(a[i] >'9' || a[i] < '0')
+//             {
+//             jud = 1;
+//              break;   
+//             }
+//             tmp += quan[i] * (a[i] - '0');
+//         }
+//         tmp %= 11;
+//         if(a[17] != duiyin[tmp])
+//             jud = 1;
+//         if(jud)
+//         {
+//             printf("%s\n",a);
+//             count++;
+//         }
+//     }
+//     if(count == 0)
+//         printf("All passed");
+// while(1);
+//     return 0;
+// }
+
+
+//typedef struct money
 //{
-//	char name[6];
-//	int x, y, z;
-//}people;
-//people min, max;
+//    long long ga;
+//    int si,ku;
+//    long long s;
+//}money;
+//money a,p,r;
 //int main()
 //{
-//	int n, sum = 0;
-//	scanf("%d", &n);
-//	while (n--)
+//    int jud = 0;
+//    scanf("%lld.%d.%d %lld.%d.%d",&p.ga,&p.si,&p.ku,&a.ga,&a.si,&a.ku);
+//    a.s = a.ga*17*29 + a.si * 29 + a.ku;
+//    p.s = p.ga*17*29 + p.si * 29 + p.ku;
+//    r.s = a.s - p.s;
+//    if(r.s < 0)
+//    {
+//        jud = 1;
+//        r.s *= -1;
+//    }
+//    r.ga = r.s / (29*17);
+//    r.si = r.s % (29*17) / 29;
+//    r.ku = r.s % 29;
+//    if(jud)
+//        printf("-");
+//    printf("%lld.%d.%d",r.ga,r.si,r.ku);
+//    while(1);
+//    return 0;
+//}
+
+
+//typedef long long lint;
+//lint a[100010];
+//int cmp(const void* e1, const void* e2)
+//{
+//	return *(lint*)e1 - *(lint*)e2;
+//}
+//int main()
+//{
+//	lint n, p;
+//	scanf("%lld %lld", &n, &p);
+//	for (int i = 0;i < n;i++)
+//		scanf("%lld", &a[i]);
+//	qsort(a, n, sizeof(a[0]), cmp);
+//	int max = 0;
+//	for (int i = 0;i < n;i++)
 //	{
-//		char tmp[6] = { 0 };
-//		int a, b, c,jud = 0;
-//		scanf("%s %d/%d/%d", tmp, &a, &b, &c);
-//		if (a >= 1814 && a <= 2014)
+//		for (int j = i + max;j < n;j++)
 //		{
-//			if (a == 1814)
-//				if (b > 9 || (b == 9 && c >= 6))
-//					jud = 1;
-//				else;
-//			else if (a == 2014)
-//				if (b < 9 || (b == 9 && c <= 6))
-//					jud = 1;
-//				else;
-//			else
-//				jud = 1;
-//		}
-//		if (jud)
-//		{
-//			sum++;
-//			if (sum == 1 || ((a < max.x) || (a == max.x && b < max.y) || (a == max.x && b == max.y && c < max.z)))
+//			if (a[i] * p < a[j + 1] || j == n-1)
 //			{
-//				strcpy(max.name,tmp);
-//				max.x = a;
-//				max.y = b;
-//				max.z = c;
-//			}
-//			if (sum == 1 || ((a > min.x) || (a == min.x && b > min.y) || (a == min.x && b == min.y && c > min.z)))
-//			{
-//				strcpy(min.name, tmp);
-//				min.x = a;
-//				min.y = b;
-//				min.z = c;
+//				if (j - i + 1 > max)
+//					max = j - i + 1;
+//				break;
 //			}
 //		}
+//		if (max >= n - i)
+//			break;
 //	}
-//	printf("%d %s %s", sum, max.name, min.name);
+//	printf("%d", max);
 //	return 0;
 //}
 
 
-
-int a[200];
-int main()
-{
-	while (1)
-	{
-		char tmp = getchar();
-		if (tmp == '\n')
-			break;
-		a[tmp]++;
-	}
-	while (1)
-	{
-		char tmp = getchar();
-		if (tmp == '\n')
-			break;
-		a[tmp]--;
-	}
-	int div = 0, sum = 0;
-	for (int i = 0;i < 200;i++)
-	{
-		if (a[i] < 0)
-			div += a[i];
-		else
-			sum += a[i];
-	}
-	if (div == 0)
-		printf("Yes %d", sum);
-	else
-		printf("No %d", -1 * div);
-	while (1);
-	return 0;
-}
+//#include"stdio.h"
+//int main(void) {
+//    int m, n;
+//    scanf("%d %d", &m, &n);
+//    int i, j;
+//    int dete[100][100];
+//    for (i = 1;i <= m;i++)
+//        for (j = 1;j <= n;j++) {
+//            scanf("%d", &dete[i][j]);
+//
+//        }
+//    int max;
+//    int cent = 0;
+//    for (i = 2;i < m;i++)
+//        for (j = 2;j < n;j++) {
+//            max = dete[i][j];
+//            if ((max > dete[i][j - 1]) && (max > dete[i][j + 1]) && (max > dete[i - 1][j]) && (max > dete[i + 1][j]))
+//                printf("%d %d %d", dete[i][j], i, j);
+//            ++cent;
+//        }
+//    if (cent >= 1) {
+//
+//
+//        printf("None %d %d", m, n);
+//
+//    }
+//    return 0;
+//}
