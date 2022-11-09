@@ -4442,53 +4442,88 @@
 //}
 
 
-typedef struct
-{
-	char name[6];
-	int x, y, z;
-}people;
-people min, max;
+//typedef struct
+//{
+//	char name[6];
+//	int x, y, z;
+//}people;
+//people min, max;
+//int main()
+//{
+//	int n, sum = 0;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		char tmp[6] = { 0 };
+//		int a, b, c,jud = 0;
+//		scanf("%s %d/%d/%d", tmp, &a, &b, &c);
+//		if (a >= 1814 && a <= 2014)
+//		{
+//			if (a == 1814)
+//				if (b > 9 || (b == 9 && c >= 6))
+//					jud = 1;
+//				else;
+//			else if (a == 2014)
+//				if (b < 9 || (b == 9 && c <= 6))
+//					jud = 1;
+//				else;
+//			else
+//				jud = 1;
+//		}
+//		if (jud)
+//		{
+//			sum++;
+//			if (sum == 1 || ((a < max.x) || (a == max.x && b < max.y) || (a == max.x && b == max.y && c < max.z)))
+//			{
+//				strcpy(max.name,tmp);
+//				max.x = a;
+//				max.y = b;
+//				max.z = c;
+//			}
+//			if (sum == 1 || ((a > min.x) || (a == min.x && b > min.y) || (a == min.x && b == min.y && c > min.z)))
+//			{
+//				strcpy(min.name, tmp);
+//				min.x = a;
+//				min.y = b;
+//				min.z = c;
+//			}
+//		}
+//	}
+//	printf("%d %s %s", sum, max.name, min.name);
+//	return 0;
+//}
+
+
+
+int a[200];
 int main()
 {
-	int n, sum = 0;
-	scanf("%d", &n);
-	while (n--)
+	while (1)
 	{
-		char tmp[6] = { 0 };
-		int a, b, c,jud = 0;
-		scanf("%s %d/%d/%d", tmp, &a, &b, &c);
-		if (a >= 1814 && a <= 2014)
-		{
-			if (a == 1814)
-				if (b > 9 || (b == 9 && c >= 6))
-					jud = 1;
-				else;
-			else if (a == 2014)
-				if (b < 9 || (b == 9 && c <= 6))
-					jud = 1;
-				else;
-			else
-				jud = 1;
-		}
-		if (jud)
-		{
-			sum++;
-			if (sum == 1 || ((a < max.x) || (a == max.x && b < max.y) || (a == max.x && b == max.y && c < max.z)))
-			{
-				strcpy(max.name,tmp);
-				max.x = a;
-				max.y = b;
-				max.z = c;
-			}
-			if (sum == 1 || ((a > min.x) || (a == min.x && b > min.y) || (a == min.x && b == min.y && c > min.z)))
-			{
-				strcpy(min.name, tmp);
-				min.x = a;
-				min.y = b;
-				min.z = c;
-			}
-		}
+		char tmp = getchar();
+		if (tmp == '\n')
+			break;
+		a[tmp]++;
 	}
-	printf("%d %s %s", sum, max.name, min.name);
+	while (1)
+	{
+		char tmp = getchar();
+		if (tmp == '\n')
+			break;
+		a[tmp]--;
+	}
+	int div = 0, sum = 0;
+	for (int i = 0;i < 200;i++)
+	{
+		if (a[i] < 0)
+			div += a[i];
+		else
+			sum += a[i];
+	}
+	if (div == 0)
+		printf("Yes %d", sum);
+	else
+		printf("No %d", -1 * div);
+	while (1);
 	return 0;
 }
