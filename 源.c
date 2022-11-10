@@ -4851,3 +4851,169 @@
 //    }
 //    return 0;
 //}
+
+//
+//int a[100010];
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		int t1, t2;
+//		scanf("%d %d", &t1, &t2);
+//		a[t1] += t2;
+//	}
+//	int max = 0,m = 0;
+//	for (int i = 1;i < 100002;i++)
+//	{
+//		if (a[i] > max)
+//		{
+//			max = a[i];
+//			m = i;
+//		}
+//	}
+//	printf("%d %d", m, max);
+//	return 0;
+//}
+
+//char bad[200];
+//int main()
+//{
+//	char tmp;
+//	int up = 1;
+//	while (tmp = getchar(), tmp != '\n')
+//	{
+//		if (tmp >= 'A' && tmp <= 'Z')
+//		{
+//			tmp = tmp - 'A' + 'a';
+//		}
+//		bad[tmp]++;
+//		if (tmp == ',' || tmp == '.' || tmp == '-' || tmp == '+')
+//			up = 0;
+//	}
+//	while (tmp = getchar(), tmp != '\n')
+//	{
+//		//if (bad[tmp] == 0)
+//		//{
+//		//	if (tmp >= 'A' && tmp <= 'Z' && up == 1 && bad[tmp - 'A' + 'a'] == 0)
+//		//		printf("%c", tmp);
+//		//}
+//		if (tmp >= 'A' && tmp <= 'Z' && up == 1 && bad[tmp - 'A' + 'a'] == 0)
+//			printf("%c", tmp);
+//		else if ((tmp < 'A' || tmp > 'Z') && bad[tmp] == 0)
+//			printf("%c", tmp);
+//	}
+//	puts("");
+//	return 0;
+//}
+
+
+
+
+//int main()
+//{
+//	int n;
+//	char ch;
+//	scanf("%d %c", &n,&ch);
+//	int hi = round(n / 2.0);
+//	for (int i = 0;i < hi;i++)
+//	{
+//		for (int j = 0;j < n;j++)
+//		{
+//			if (j == 0 || j == n - 1 || i == 0 || i == hi - 1)
+//				printf("%c", ch);
+//			if (i > 0 && i < hi - 1 && j > 0 && j < n - 1)
+//				printf(" ");
+//		}
+//		puts("");
+//	}
+//	return 0;
+//}
+
+//int cmp_s(const void* e1, const void* e2)
+//{
+//	return *(int*)e1 - *(int*)e2;
+//}
+//int cmp(int* a, int* t,int n)
+//{
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (a[i] != t[i])
+//			return 1;
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	int n, a[101] = { 0 },t[101] = { 0 },jud = 0,b[101] = { 0 };
+//	scanf("%d", &n);
+//	for (int i = 0;i < n; i++)
+//	{
+//		scanf("%d", &a[i]);
+//		b[i] = a[i];
+//	}
+//	for (int i = 0;i < n; i++)
+//		scanf("%d", &t[i]);
+//	for (int i = 0;i < n - 1;i++)
+//	{
+//		int end = i,tmp = a[end + 1];
+//		while (end >= 0)
+//		{
+//			if (a[end] > tmp)
+//			{
+//				a[end + 1] = a[end];
+//				end--;
+//			}
+//			else
+//			{
+//				break;
+//			}
+//		}
+//		a[end + 1] = tmp;
+//		if (jud == 1)
+//		{
+//			for (int i = 0;i < n;i++)
+//			{
+//				if (i != 0)
+//					printf(" ");
+//				printf("%d", a[i]);
+//			}
+//			return 0;
+//		}
+//		if (cmp(t, a, n) == 0)
+//		{
+//			printf("Insertion Sort\n");
+//			jud = 1;
+//		}
+//	}
+//	puts("Merge Sort");
+//	for (int i = 2;i < 2 * n;i *= 2)
+//	{
+//		for (int j = 0;n < i || j < n / i;j++)
+//		{
+//			if (i < n)
+//			{
+//				qsort(b + (i*j), i, sizeof(b[0]), cmp_s);
+//			}
+//			else
+//			{
+//				qsort(b + (i * j), n, sizeof(b[0]), cmp_s);
+//				break;
+//			}
+//		}
+//		if (jud == 1)
+//		{
+//			for (int i = 0;i < n;i++)
+//			{
+//				if (i != 0)
+//					printf(" ");
+//				printf("%d", b[i]);
+//			}
+//				return 0;
+//		}
+//		if (cmp(b, t, n) == 0)
+//			jud = 1;
+//	}
+//	return 0;
+//}
