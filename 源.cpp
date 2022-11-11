@@ -1389,3 +1389,624 @@ using namespace std;
 
 
 
+
+//class fa
+//{
+//public:
+//	fa();
+//	~fa();
+//
+//	int num;
+//};
+//
+//fa::fa()
+//{
+//}
+//
+//fa::~fa()
+//{
+//}
+//
+//class son
+//{
+//public:
+//	int num;
+//};
+//int main()
+//{
+//	fa obj1;
+//	obj1.num = 6;
+//	return 0;
+//	son obj;
+//	obj.num = 9;
+//}
+
+//class son
+//{
+//public:
+//	son()
+//	{
+//		cout << "默认构造" << endl;
+//	}
+//	son(const son& a)
+//	{
+//		cout << "拷贝构造" << endl;
+//	}
+//	int num;
+//};
+//int main()
+//{
+//	son a;
+//	a.num = 6;
+//	son b(a);
+//	cout << b.num;
+//	return 0;
+//}
+
+
+//class real
+//{
+//public:
+//	int fz;
+//	int fm;
+//	int zs;
+//	void fun()
+//	{
+//		if (fm < 0)
+//		{
+//			fz *= -1;
+//			fm *= -1;
+//		}
+//		int max = 1;
+//		int a = abs(this->fz) > abs(this->fm) ? abs(this->fz) : abs(this->fm);
+//		int b = abs(this->fz) < abs(this->fm) ? abs(this->fz) : abs(this->fm);
+//		int c;
+//		if (this->fz != 0 && fm != 0)
+//		{
+//			while (1)
+//			{
+//				if (a == b)
+//				{
+//					max = a;
+//					break;
+//				}
+//				c = a - b;
+//				a = b > c ? b : c;
+//				b = b < c ? b : c;
+//			}
+//			this->fz /= max;
+//			this->fm /= max;
+//			if (abs(this->fz) > abs(this->fm))
+//			{
+//				this->zs = this->fz / this->fm;
+//				this->fz = abs(fz) % this->fm;
+//			}
+//		}
+//	}
+//	void print()
+//	{
+//		if (fm == 0)
+//			cout << "Inf";
+//		else
+//		{
+//			if (this->zs != 0)
+//			{
+//				if (zs < 0)
+//					cout << "(";
+//				cout << this->zs;
+//				if (this->fz != 0)
+//				{
+//					cout << " ";
+//					if (this->fm == 1)
+//						cout << this->fz;
+//					else
+//						cout << fz << "/" << fm;
+//				}
+//				if (zs < 0)
+//					cout << ")";
+//			}
+//			else if (zs == 0)
+//			{
+//				if (this->fz == 0)
+//					cout << "0";
+//				else if (this->fm == 1)
+//				{
+//					if (this->fz < 0)
+//						cout << "(" << this->fz << ")";
+//					else
+//						cout << this->fz;
+//				}
+//				else
+//				{
+//					if (fz < 0)
+//						cout << "(" << fz << "/" << fm << ")";
+//					else
+//						cout << fz << "/" << fm;
+//				}
+//			}
+//		}
+//	}
+//};
+//real a, b, c;
+//int main()
+//{
+//	int e, d, f, g;
+//	scanf("%d/%d %d/%d", &e, &d, &f, &g);
+//	e *= g;
+//	f *= d;
+//	d *= g;
+//	g  = d;
+//	a.fz = e;
+//	a.fm = d;
+//	b.fz = f;
+//	b.fm = g;
+//	a.fun();
+//	b.fun();
+//
+//	a.print();cout << " + ";b.print();cout << " = ";
+//	c.zs = 0;
+//	c.fz = e + f;
+//	c.fm = d;
+//	c.fun(); c.print();
+//	puts("");
+//
+//	a.print();cout << " - ";b.print();cout << " = ";
+//	c.zs = 0;
+//	c.fz = e - f;
+//	c.fm = d;
+//	c.fun(); c.print();
+//	puts("");
+//
+//	a.print();cout << " * ";b.print();cout << " = ";
+//	c.zs = 0;
+//	c.fz = e * f;
+//	c.fm = d * g;
+//	c.fun(); c.print();
+//	puts("");
+//
+//	a.print();cout << " / ";b.print();cout << " = ";
+//	c.zs = 0;
+//	c.fz = e;
+//	c.fm = f;
+//	c.fun(); c.print();
+//	return 0;
+//}
+
+//class a
+//{
+//public:
+//	int num = 9;
+//	void print()
+//	{
+//		cout << this->num;
+//	}
+//};
+//int main()
+//{
+//	a obj;
+//	obj.print();
+//	return 0;
+//}
+
+
+
+//#include<algorithm>
+//bool issame(int a[], int t[],int n)
+//{
+//	for (int i = 0;i < n;i++)
+//		if (a[i] != t[i])
+//			return 0;
+//	return 1;
+//}
+//void m_print(int a[], int n)
+//{
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (i != 0)
+//			cout << " ";
+//		cout << a[i];
+//	}
+//}
+//bool isisort(int a[], int t[], int n)
+//{
+//	for (int i = 2;i < n;i++)
+//	{
+//		sort(a, a + i);
+//		if (issame(a, t, n))
+//		{
+//			sort(a, a + i + 1);
+//			return 1;
+//		}
+//	}
+//	return 0;
+//}
+//bool ismsort(int b[], int t[], int n)
+//{
+//	for (int i = 2;i <= 2 * n;i++)
+//	{
+//		for (int j = 0;j <= n;j += i)
+//		{
+//			sort(b + j, b + min(j + i,n));
+//		}
+//		if (issame(b, t, n))
+//		{
+//			i *= 2;
+//			for (int j = 0;j <= n;j += i)
+//			{
+//				sort(b + j, b + min(j + i, n));
+//			}
+//			return 1;
+//		}
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	int a[110] = { 0 }, b[110] = { 0 }, t[110] = { 0 },n;
+//	cin >> n;
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> a[i];
+//		b[i] = a[i];
+//	}
+//	for (int i = 0;i < n;i++)
+//		cin >> t[i];
+//	if (isisort(a,t,n))
+//	{
+//		puts("Insertion Sort");
+//		m_print(a,n);
+//	}
+//	else if (ismsort(b, t, n))
+//	{
+//		puts("Merge Sort");
+//		m_print(b,n);
+//	}
+//	return 0;
+//}
+
+
+
+//#include<algorithm>
+//int main()
+//{
+//	int a[10] = { 5,8,6,1,9,7,3,4,2,0 };
+//	nth_element(a, a + 2, a + 10);
+//	for (int i = 0;i < 10;i++)
+//		cout << a[i] << " ";
+//	return 0;
+//}
+
+//
+//#include<vector>
+//void print_v(vector<int>vec)
+//{
+//	for (int i = 0;i < vec.size();i++) { cout << vec[i] << " "; }
+//}
+//void recity(string& s,int n)
+//{
+//	s.resize(n);
+//	string tmp = s;
+//	s.swap(tmp);
+//}
+//int main()
+//{
+//	/*vector<int>a1;
+//	cout << "初始：";print_v(a1);cout << endl;
+//
+//	vector<int>a2(5);
+//	cout << "设置大小为5：";print_v(a2);cout << endl;
+//
+//	vector<int>a3(5, 6);
+//	cout << "设置大小为5并初始化为6：";print_v(a3);cout << endl;
+//
+//	vector<int>a4(a3);
+//	cout << "复制上一个：";print_v(a4);cout << endl;
+//
+//	int a[10] = { 1,2,3,4,5,6,7,8,9,0 };
+//	vector<int>a5(a + 1, a + 9);
+//	cout << "从数组中输入（a+1,a+9）：";print_v(a5);cout << endl;
+//
+//	vector<int>a6(a5.begin(), a5.begin() + 5);
+//	cout << "从上一个复制5个：";print_v(a6);cout << endl;
+//
+//	cout << endl;a6.assign(4, 2);print_v(a6);cout << endl;
+//
+//	a6.assign(a5.begin(), a5.begin() + 5);print_v(a6);cout << endl;
+//
+//	cout << "a6最后一个元素：" << a6.back() << endl
+//		<< "a6第一个元素：" << a6.front() << endl
+//		<< "a6第一个元素后3个元素：" << a6.front() + 3 << endl << endl << endl;
+//
+//	vector<int>ax(a6);
+//	cout << "用a6初始化ax：";print_v(ax);cout << endl;
+//	cout << "empty(ax) = ";cout << empty(ax);cout << endl << endl;
+//	cout << "ax clear 后：" << endl;ax.clear();
+//	cout << "empty(ax) = ";cout << empty(ax) << endl << endl;
+//
+//	ax = a6;print_v(ax);cout << endl;
+//	ax.erase(ax.begin()+2, ax.begin() + 4);print_v(ax);cout << endl << endl;
+//
+//	ax = a6;ax.push_back(12);print_v(ax);
+//	ax.insert(ax.begin() + 2, 3, 0);cout << endl; print_v(ax);cout << endl;
+//
+//	ax = a6;ax.insert(ax.begin() + 2, a, a + 3);;print_v(ax);cout << endl;
+//	cout << ax.size() << endl;
+//	cout << ax.capacity() << endl;
+//	ax.push_back(66);ax.push_back(67);ax.push_back(68);cout << ax.capacity() << endl;
+//	ax.resize(15,6);print_v(ax);cout << endl;
+//	cout << ax.capacity() << endl;
+//	ax.resize(16);print_v(ax);cout << endl;
+//	cout << ax.capacity();cout << endl;
+//	ax.reserve(30);cout << ax.capacity() << endl;
+//	cout << "___________________" << endl;
+//	ax.reserve(10);
+//	print_v(ax);
+//	cout << endl << ax.capacity() << endl;
+//	cout << "______________________" << endl;
+//	ax.resize(10, 2);
+//	print_v(ax);cout << endl << ax.capacity() << endl;
+//	cout << "_______________" << endl;
+//	ax.resize(31, 2);
+//	print_v(ax);
+//	cout << ax.capacity() << endl;
+//	cout << "_________________" << endl;
+//
+//	ax.resize(7, 7);ax.reserve(7);
+//	print_v(ax);cout << endl << ax.capacity() << endl;
+//	cout << "_________________" << endl;
+//
+//	ax.clear();
+//	cout << ax.capacity() << endl;*/
+//	
+//	/*vector<int>tmp(ax);
+//	delete(&ax);
+//	vector<int>ax(tmp);
+//	delete(&tmp);
+//	print_v(ax);cout << endl;
+//	cout << ax.capacity() << endl;*/
+//
+//	//cout << tmp.capacity() << endl;
+//	//print_v(tmp);cout << endl;
+//	//delete(&ax);
+//	//print_v(ax);
+//
+//	//vector<int>obj;
+//	//cout << obj.capacity() << endl;
+//
+//	/*vector<int>a = { 1,2,3,4,50 };
+//	vector<int>b = { 6,6,6 };
+//	print_v(a);cout << endl;
+//	print_v(b);cout << endl << endl;
+//	a.swap(b);
+//	print_v(a);cout << endl;
+//	print_v(b);cout << endl;
+//
+//	vector<int>().swap(a);
+//	print_v(a);*/
+//
+//	//string s1 = "holle!";
+//	//string s2 = "world!";
+//	//string s3 = s1 + " " + s2;
+//	//cout << s1 << " " << s2 << endl << s3;
+//
+//	//s1 += "add";
+//	//cout << endl << s1;
+//
+//	//cout << endl << "_________________" << endl;
+//	//s1.resize(100,'6');
+//	//recity(s1, 7);
+//	////cout << s1 << endl;
+//	////s1.resize(7);
+//	////cout << s1 << endl;
+//	//////s1.reserve(7);
+//	////cout << s1;
+//	////{
+//	////	string tmp = s1;
+//	////	s1.swap(tmp);
+//	////}
+//	//cout << s1;
+//
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int a, b, cd;
+//	cin >> a>>b >> cd;
+//	cout << a << " " << b << " " << cd << endl;
+//	return 0;
+//}
+
+//#include<vector>
+//void recity(vector<int>& a,int n)
+//{
+//	a.resize(n);
+//	vector<int>tmp(a);
+//	a.swap(tmp);
+//}
+//int main()
+//{
+//	vector<int>a = {1,2,3,4,5,6,7,8,9,10,11};
+//	a.resize(100);
+//	//a.resize(6);
+//	//a.reserve(7);
+//	recity(a, 7);
+//	cout << a.capacity();
+//	cout << endl;
+//
+//	return 0;
+//}
+
+//
+//int main()
+//{
+//	string a = "abcdeabcde";
+//	cout << a.find_last_of('a');
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//int main()
+//{
+//	int n,k;
+//	cin >> n;
+//	vector<int>stu(n,0);
+//	for (int i = 0;i < n;i++)
+//		cin >> stu[i];
+//	cin >> k;
+//	while (k--)
+//	{
+//		int sum = 0, tmp;
+//		cin >> tmp;
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (tmp == stu[i])
+//				sum++;
+//		}
+//		cout << sum;
+//		if (k)
+//			cout << " ";
+//	}
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int n, a[101] = { 0 };
+//	cin >> n;
+//	while (n--)
+//	{
+//		int tmp;
+//		cin >> tmp;
+//		a[tmp] ++;
+//	}
+//	int k;
+//	cin >> k;
+//	while (k--)
+//	{
+//		int tmp;
+//		cin >> tmp;
+//		cout << a[tmp];
+//		if (k)
+//			cout << " ";
+//	}
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	string str;
+//	long long sum = 0;
+//	cin >> str;
+//	for (int i = 0;i < str.size();i++)
+//		if (str[i] == 'P')
+//			for (int j = i + 1;j < str.size();j++)
+//				if (str[j] == 'A')
+//					for (int x = j + 1;x < str.size();x++)
+//						if (str[x] == 'T')
+//							sum++;
+//	cout << sum % 1000000007;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace  std;
+//int main()
+//{
+//	char a[100010];
+//	cin >> a;
+//	long long p = 0, sum = 0, pa = 0;
+//	for (int i = 0;a[i] != 0;i++)
+//	{
+//		if (a[i] == 'P')
+//			p++;
+//		else if (a[i] == 'A')
+//			pa += p;
+//		else if (a[i] == 'T')
+//			sum += pa;
+//	}
+//	cout << sum % 1000000007;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef struct
+//{
+//public:
+//	char id[17];
+//	int b;
+//}stu;
+//stu arr[1001];
+//int main()
+//{
+//	int n,m;
+//	cin >> n;
+//	while (n--)
+//	{
+//		char tmp[17] = { 0 };
+//		int t = 0;
+//		cin >> tmp >> t;
+//		strcpy(arr[t].id, tmp);
+//		cin >> arr[t].b;
+//	}
+//	cin >> m;
+//	while (m--)
+//	{
+//		int t;
+//		cin >> t;
+//		cout << arr[t].id << " " << arr[t].b << endl;
+//	}
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	char str[1001];int arr[200] = { 0 };
+//	for (int i = 0;str[i] = getchar(), str[i] != '\n';i++)
+//	{
+//		if (str[i] >= 'A' && str[i] <= 'Z')
+//			str[i] = str[i] - 'A' + 'a';
+//		if (str[i] >= 'a' && str[i] <= 'z')
+//			arr[str[i]] ++;
+//	}
+//	int m = 'a', max = 0;
+//	for (int i = 'a'; i <= 'z';i++)
+//	{
+//		if (arr[i] > max)
+//		{
+//			max = arr[i];
+//			m = i;
+//		}
+//	}
+//	printf("%c %d", m, max);
+//	return 0;
+//}
+
+
+#include<bits/stdc++.h>
+using namespace std;
+char text[] = "PATest";
+int main()
+{
+	char tmp;
+	int arr[200] = { 0 };
+	while (tmp = getchar(), tmp != '\n')
+	{
+		if (tmp == 'P' || tmp == 'A' || tmp == 'T' || tmp == 'e' || tmp == 's' || tmp == 't')
+			arr[tmp]++;
+	}
+	return 0;
+}
