@@ -1996,17 +1996,33 @@ using namespace std;
 //}
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//char text[] = "PATest";
+//int main()
+//{
+//	char tmp;
+//	int arr[200] = { 0 };
+//	while (tmp = getchar(), tmp != '\n')
+//	{
+//		if (tmp == 'P' || tmp == 'A' || tmp == 'T' || tmp == 'e' || tmp == 's' || tmp == 't')
+//			arr[tmp]++;
+//	}
+//	return 0;
+//}\
+
+
 #include<bits/stdc++.h>
 using namespace std;
-char text[] = "PATest";
+
 int main()
 {
-	char tmp;
-	int arr[200] = { 0 };
-	while (tmp = getchar(), tmp != '\n')
-	{
-		if (tmp == 'P' || tmp == 'A' || tmp == 'T' || tmp == 'e' || tmp == 's' || tmp == 't')
-			arr[tmp]++;
-	}
+	int a;
+	int b;
+	cin >> a >> b;
+	a = a ^ b;
+	b = a ^ b;
+	a = a ^ b;
+	cout << a << endl << b;
 	return 0;
 }
