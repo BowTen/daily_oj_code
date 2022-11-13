@@ -2012,17 +2012,571 @@ using namespace std;
 //}\
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int a;
+//	int b;
+//	cin >> a >> b;
+//	a = a ^ b;
+//	b = a ^ b;
+//	a = a ^ b;
+//	cout << a << endl << b;
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int fun(int n)
+//{
+//	int ret = 0;
+//	for (n;n != 0;n = (n >> 1))
+//	{
+//		if ((n & 1) == 1)
+//			ret++;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	cout << fun(n);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n = 10;
+//	cout << (n & 1) << endl << ((n >> 1) & 1) << endl << ((n >> 2) & 1) << endl << ((n >> 3) & 1);
+//	int a = n >> 2;
+//	cout << endl << a;
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	char text[7] = "PATest";
+//	int a[200] = { 0 };
+//	char tmp;
+//	while (tmp = getchar(), tmp != '\n')
+//		if (tmp == 'P' || tmp == 'A' || tmp == 'T' || tmp == 'e' || tmp == 's' || tmp == 't')
+//			a[tmp]++;
+//	while (1)
+//	{
+//		int count = 0;
+//		for (int i = 0;i < 7;i++)
+//		{
+//			if (a[text[i]] != 0)
+//			{
+//				cout << text[i];
+//				a[text[i]]--;
+//				count++;
+//			}
+//		}
+//		if (count == 0)
+//			break;
+//	}
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//char num[12][4] = { "jan","feb","mar","apr","may","jun","jly","aug","sep","oct","nov","dec" };
+//char jin[12][4] = { "tam","hel","maa","huh","tou","kes","hei","elo","syy","lok","mer","jou" };
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	getchar();
+//	while (n--)
+//	{
+//		char tmp[10] = { 0 };
+//		cin.getline(tmp, 8, '\n');
+//		if (tmp[0] >= '0' && tmp[0] <= '9')
+//		{
+//			int a = atoi(tmp);
+//			if (a == 0)
+//				cout << "tret" << endl;
+//			if (a >= 13)
+//			{
+//				cout << jin[a / 13 - 1];
+//				if (a % 13 != 0)
+//					cout << " ";
+//				else
+//					cout << endl;
+//			}
+//			if (a % 13 != 0)
+//				cout << num[a % 13 - 1] << endl;
+//		}
+//		else
+//		{
+//			int a = 0;
+//			char t[4] = { 0 };
+//			for (int i = 0;i < 3;i++)
+//			{
+//				t[i] = tmp[i];
+//			}
+//			if (tmp[3] == ' ')
+//			{
+//				for (int i = 0;i < 12;i++)
+//				{
+//					if (strcmp(t, jin[i]) == 0)
+//					{
+//						a += 13 * (i + 1);
+//						break;
+//					}
+//				}
+//				for (int i = 0;i < 3;i++)
+//				{
+//					t[i] = tmp[i + 4];
+//				}
+//				for (int i = 0;i < 12;i++)
+//				{
+//					if (strcmp(t, num[i]) == 0)
+//					{
+//						a += i + 1;
+//						break;
+//					}
+//				}
+//			}
+//			else
+//			{
+//				for (int i = 0;i < 12;i++)
+//				{
+//					if (strcmp(t, jin[i]) == 0)
+//					{
+//						a += 13 * (i + 1);
+//						break;
+//					}
+//				}
+//				for (int i = 0;i < 12;i++)
+//				{
+//					if (strcmp(t, num[i]) == 0)
+//					{
+//						a += i + 1;
+//						break;
+//					}
+//				}
+//			}
+//			cout << a << endl;
+//		}
+//	}
+//	return 0;
+//}
+
+
+//int arr[100010];
+//int main()
+//{
+//	int n,max = 0,m = 0,sum;
+//	cin >> n;
+//	sum = n;
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> arr[i];
+//		if (arr[i] > max)
+//		{
+//			m = i;
+//			max = arr[i];
+//		}
+//		else
+//		{
+//			sum -= 2;
+//			arr[i] = -1;
+//			arr[m] = -1;
+//		}
+//	}
+//	cout << sum << endl;
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (arr[i] != -1)
+//		{
+//			if (i != 0)
+//				cout << " ";
+//			cout << arr[i];
+//		}
+//	}
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int arr[100010];
+//int brr[100010];
+//int main()
+//{
+//	int n,sum;
+//	cin >> n;
+//	sum = n;
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> arr[i];
+//		brr[i] = arr[i];
+//	}
+//	sort(brr, brr+n);
+//	int max = 0;
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (arr[i] > max)
+//			max = arr[i];
+//		if (arr[i] != brr[i] || arr[i] < max)
+//		{
+//			sum--;
+//			brr[i] = -1;
+//		}
+//	}
+//	cout << sum << endl;
+//	int count = 0;
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (brr[i] != -1)
+//		{
+//			if (count != 0)
+//				cout << ' ';
+//			cout << brr[i];
+//			count++;
+//		}
+//	}puts("");
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//void reverse(char a[])
+//{
+//	int len = strlen(a);
+//	for (int i = 0;i < len / 2;i++)
+//	{
+//		a[i] = a[i] ^ a[len - 1 - i];
+//		a[len - 1 - i] = a[i] ^ a[len - 1 - i];
+//		a[i] = a[i] ^ a[len - i - 1];
+//	}
+//}
+//char arr[3] = { 'J','Q','K' };
+//int main()
+//{
+//	char a[110] = { 0 }, b[110] = { 0 };
+//	cin >> a >> b;
+//	reverse(a);reverse(b);
+//	int len = max(strlen(b),strlen(a));
+//	for(int i = 0;i < len;i++)
+//	{
+//		if (b[i] == 0)
+//			b[i] = '0';
+//		if (a[i] != 0)
+//		{
+//			if ((i + 1) % 2 != 0)//奇数
+//			{
+//				int t = (a[i] + b[i] - 2 * '0') % 13;
+//				if (t < 10)
+//					b[i] = t + '0';
+//				else
+//					b[i] = arr[t - 10];
+//			}
+//			else//偶数
+//			{
+//				int t = b[i] - a[i];
+//				if (t < 0)
+//					t += 10;
+//				b[i] = t + '0';
+//			}
+//		}
+//	}
+//	reverse(b);
+//	cout << b;
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int n;
+//	double sum = 0;
+//	cin >> n;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		double tmp;
+//		cin >> tmp;
+//		sum += tmp * (n - (i - 1)) * i;
+//	}
+//	printf("%.2lf", sum);
+//	return 0;
+//}
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long lint;
+//class real_m
+//{
+//public:
+//	lint fz, fm, zs = 0;
+//	lint fh = 0;
+//	lint isreal = 1;
+//
+//	real_m operator+(real_m b)
+//	{
+//		real_m t = *this;
+//		if (t.fm != b.fm)
+//		{
+//			t.fz *= b.fm;
+//			b.fz *= t.fm;
+//			t.fm *= b.fm;
+//			b.fm  = t.fm;
+//		}
+//		t.fz += t.zs * t.fm;
+//		t.zs = 0;
+//		b.fz += b.zs * b.fm;
+//		b.zs = 0;
+//		if (t.fh == b.fh)
+//			t.fz += b.fz;
+//		else
+//			t.fz = t.fz - b.fz;
+//		if (t.fz < 0)
+//		{
+//			t.fz *= -1;
+//			t.fh = 1;
+//		}
+//		t.app();
+//		return t;
+//	}
+//
+//	real_m operator-(real_m b)
+//	{
+//		real_m t = *this;
+//		if (t.fm != b.fm)
+//		{
+//			t.fz *= b.fm;
+//			b.fz *= t.fm;
+//			t.fm *= b.fm;
+//			b.fm = t.fm;
+//		}
+//		t.fz += t.zs * t.fm;
+//		t.zs = 0;
+//		b.fz += b.zs * b.fm;
+//		b.zs = 0;
+//		if (t.fh != b.fh)
+//			t.fz += b.fz;
+//		else
+//			t.fz = t.fz - b.fz;
+//		if (t.fz < 0)
+//		{
+//			t.fz *= -1;
+//			t.fh ^= 1;
+//		}
+//		t.app();
+//		return t;
+//	}
+//
+//	real_m operator*(real_m b)
+//	{
+//		real_m t = *this;
+//		t.fz += t.zs * t.fm;
+//		t.zs = 0;
+//		b.fz += b.zs * b.fm;
+//		b.zs = 0;
+//		t.fz *= b.fz;
+//		t.fm *= b.fm;
+//		t.fh ^= b.fh;
+//		t.app();
+//		return t;
+//	}
+//
+//	real_m operator/(real_m b)
+//	{
+//		real_m t = *this;
+//		t.fz += t.zs * t.fm;
+//		t.zs = 0;
+//		b.fz += b.zs * b.fm;
+//		b.zs = 0;
+//		t.fz *= b.fm;
+//		t.fm *= b.fz;
+//		t.fh ^= b.fh;
+//		t.app();
+//		return t;
+//	}
+//
+//	real_m()
+//	{
+//		scanf("%lld/%lld", &fz, &fm);
+//		if (fz < 0)
+//		{
+//			fz *= -1;
+//			fh = 1;
+//		}
+//	}
+//
+//	void app()
+//	{
+//		if (fm != 0)
+//		{
+//			if (fz != 0)
+//			{
+//				lint a = max(fz, fm), b = min(fz, fm),c;
+//				for (c;c = a % b, c != 0;a = b, b = c);
+//				fz /= b;
+//				fm /= b;
+//			}
+//			if (fz >= fm)
+//			{
+//				zs += fz / fm;
+//				fz %= fm;
+//			}
+//		}
+//		else
+//			isreal = 0;
+//	}
+//
+//	void print()
+//	{
+//		if (isreal == 1)
+//		{
+//			if (zs != 0)//有整数
+//			{
+//				if (fh == 1)
+//					cout << "(-";
+//				cout << zs;
+//				if (fz != 0)//有分式
+//				{
+//					cout << " " << fz << "/" << fm;
+//				}
+//				if (fh == 1)
+//					cout << ")";
+//			}
+//			else
+//			{
+//				if (fh == 1)
+//					cout << "(-";
+//				if (fz == 0)
+//					cout << fz;
+//				else
+//				{
+//					cout << fz << "/" << fm;
+//				}
+//				if (fh == 1)
+//					cout << ")";
+//			}
+//		}
+//		else
+//			cout << "Inf";
+//	}
+//};
+//
+//int main()
+//{
+//	real_m a;
+//	real_m b;
+//	a.app();
+//	b.app();
+//	a.print();  cout << " + ";  b.print();  cout << " = ";  real_m(a + b).print(); 
+//	cout << endl;
+//	a.print();  cout << " - ";  b.print();  cout << " = ";  real_m(a - b).print();
+//	cout << endl;
+//	a.print();  cout << " * ";  b.print();  cout << " = ";  real_m(a * b).print();
+//	cout << endl;
+//	a.print();  cout << " / ";  b.print();  cout << " = ";  real_m(a / b).print();
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int a = 4 / 0;
+//	cout << a;
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int a;
+//	fun();
+//	return 0;
+//}
+//void fun()
+//{
+//	cout << 28;
+//}
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
+typedef struct
+{
+	int data, next;
+}node;
+
+node add[100000];
+int head, n, k,c = 1,fad;
+int isfirst = 0;
+int search_m(int ad);
+int finish = 0;
 int main()
 {
-	int a;
-	int b;
-	cin >> a >> b;
-	a = a ^ b;
-	b = a ^ b;
-	a = a ^ b;
-	cout << a << endl << b;
+	cin >> head >> n >> k;
+	while (n--)
+	{
+		int t1, t2, t3;
+		cin >> t1 >> t2 >> t3;
+		add[t1].data = t2;
+		add[t1].next = t3;
+	}
+	fad = head;
+	while(fad != -1 && finish != 1)
+		search_m(fad);
+	if (fad == -1)
+		cout << -1;
+	if(finish == 1)
+		for (int i = fad;i != -1;i = add[i].next)
+		{
+			if (isfirst != 0)
+				printf("%05d\n",i);
+			printf("%05d %d ", i, add[i].data);
+			if (add[i].next == -1)
+				cout << -1;
+		}
+	return 0;
+}
+int search_m(int ad)
+{
+	if (ad == -1)
+	{
+		finish = 1;
+		return 0;
+	}
+	if (finish == 1)
+		return 0;
+	if (c != k)
+	{
+		c++;
+		search_m(add[ad].next);
+	}
+	else
+	{
+		c = 1;
+		fad = add[ad].next;
+	}
+	if (finish == 1)
+		return 0;
+	if (isfirst != 0)
+		printf("%05d\n", ad);
+	printf("%05d %d ", ad, add[ad].data);
+	isfirst++;
 	return 0;
 }
