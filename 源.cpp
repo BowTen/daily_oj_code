@@ -2514,69 +2514,220 @@ using namespace std;
 //}
 
 
-#include<bits/stdc++.h>
-using namespace std;
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//typedef struct
+//{
+//	int data, next;
+//}node;
+//
+//node add[100000];
+//int head, n, k,c = 1,fad;
+//int isfirst = 0;
+//int search_m(int ad);
+//int finish = 0;
+//int main()
+//{
+//	cin >> head >> n >> k;
+//	while (n--)
+//	{
+//		int t1, t2, t3;
+//		cin >> t1 >> t2 >> t3;
+//		add[t1].data = t2;
+//		add[t1].next = t3;
+//	}
+//	fad = head;
+//	while(fad != -1 && finish != 1)
+//		search_m(fad);
+//	if (fad == -1)
+//		cout << -1;
+//	if(finish == 1)
+//		for (int i = fad;i != -1;i = add[i].next)
+//		{
+//			if (isfirst != 0)
+//				printf("%05d\n",i);
+//			printf("%05d %d ", i, add[i].data);
+//			if (add[i].next == -1)
+//				cout << -1;
+//		}
+//	return 0;
+//}
+//int search_m(int ad)
+//{
+//	if (ad == -1)
+//	{
+//		finish = 1;
+//		return 0;
+//	}
+//	if (finish == 1)
+//		return 0;
+//	if (c != k)
+//	{
+//		c++;
+//		search_m(add[ad].next);
+//	}
+//	else
+//	{
+//		c = 1;
+//		fad = add[ad].next;
+//	}
+//	if (finish == 1)
+//		return 0;
+//	if (isfirst != 0)
+//		printf("%05d\n", ad);
+//	printf("%05d %d ", ad, add[ad].data);
+//	isfirst++;
+//	return 0;
+//}
 
-typedef struct
+//typedef long long lint;
+//long long a[1000010];
+//lint find(long long a[],lint n,long long t)
+//{
+//	lint q = 1, p = n;
+//	while (p >= q)
+//	{
+//		if (a[(p + q) / 2] == t)
+//			break;
+//		else if (a[(p + q) / 2] < t)
+//			q = (q + p) / 2 + 1;
+//		else if (a[(p + q) / 2] > t)
+//			p = (q + p) / 2 - 1;
+//	}
+//	if (q > p)
+//		return -1;
+//	lint x = (q + p) / 2;
+//	while (a[x - 1] == t)
+//		x--;
+//	return x;
+//}
+//int main()
+//{
+//	long long n, m;
+//	scanf("%lld %lld", &n, &m);
+//	for (lint i = 1;i <= n;i++)
+//	{
+//		scanf("%lld", &a[i]);
+//	}
+//	while (m--)
+//	{
+//		long long t;
+//		scanf("%lld", &t);
+//		printf("%lld", find(a,n,t));
+//		if (m)
+//			printf(" ");
+//	}
+//	return 0;
+//}
+
+
+
+//typedef long long lint;
+//lint a[100010];
+//int main()
+//{
+//	lint n, m;
+//	scanf("%lld %lld", &n, &m);
+//	for (int i = 1;i <= n;i++)
+//	{
+//		scanf("%lld", &a[i]);
+//	}
+//	while (m--)
+//	{
+//		lint t;
+//		scanf("%lld", &t);
+//		lint q = 0, p = n - 1,x = (q + p) / 2;
+//		while (q < p)
+//		{
+//			x = (q + p) / 2;
+//			if (a[x] == t)
+//				break;
+//			else if (a[x] > t)
+//				p = x - 1;
+//			else if (a[x] < t)
+//				q = x + 1;
+//		}
+//		x = (q + p) / 2;
+//		if (a[x] == t)
+//		{
+//			while (a[x - 1] == t)
+//				x--;
+//			printf("%lld", x);
+//		}
+//		else
+//			printf("-1");
+//		if (m)
+//			printf(" ");
+//	}
+//	return 0;
+//}
+
+
+int a[100010], n, m;
+
+int find(int p)
 {
-	int data, next;
-}node;
+	int l = 1, r = n;
+	while (r > l)
+	{
+		int mid = l+(r - l) / 2;
+		if (a[mid] >= p)
+			r = mid;
+		else
+			l = mid + 1;
+	}
+	if (a[l] == p)
+		return l;
+	else return -1;
+}
 
-node add[100000];
-int head, n, k,c = 1,fad;
-int isfirst = 0;
-int search_m(int ad);
-int finish = 0;
 int main()
 {
-	cin >> head >> n >> k;
-	while (n--)
+	scanf("%d %d", &n, &m);
+	for (int i = 1;i <= n;i++)
+		scanf("%d", &a[i]);
+	while (m--)
 	{
-		int t1, t2, t3;
-		cin >> t1 >> t2 >> t3;
-		add[t1].data = t2;
-		add[t1].next = t3;
+		int p;
+		scanf("%d", &p);
+		printf("%d", find(p));
+		if (m)
+			printf(" ");
 	}
-	fad = head;
-	while(fad != -1 && finish != 1)
-		search_m(fad);
-	if (fad == -1)
-		cout << -1;
-	if(finish == 1)
-		for (int i = fad;i != -1;i = add[i].next)
-		{
-			if (isfirst != 0)
-				printf("%05d\n",i);
-			printf("%05d %d ", i, add[i].data);
-			if (add[i].next == -1)
-				cout << -1;
-		}
 	return 0;
 }
-int search_m(int ad)
+
+
+int n, m, q, a[1000005];
+
+int find(int x) //二分查找 
 {
-	if (ad == -1)
+	int l = 1, r = n;
+	while (l < r)
 	{
-		finish = 1;
-		return 0;
+		int mid = l + (r - l) / 2;
+		if (a[mid] >= x) r = mid;
+		else l = mid + 1;
 	}
-	if (finish == 1)
-		return 0;
-	if (c != k)
+
+	if (a[l] == x) return l; //找都了就输出他的位置 
+	else return -1; // 没找到输出-1 
+}
+
+int main()
+{
+	scanf("%d %d", &n, &m); //读入 
+
+	for (int i = 1; i <= n; i++)
+		scanf("%d", &a[i]); //还是读入 
+
+	for (int i = 1; i <= m; i++)
 	{
-		c++;
-		search_m(add[ad].next);
+		scanf("%d", &q);
+		int ans = find(q); //看看查找的结果 
+		printf("%d ", ans); //输出 
 	}
-	else
-	{
-		c = 1;
-		fad = add[ad].next;
-	}
-	if (finish == 1)
-		return 0;
-	if (isfirst != 0)
-		printf("%05d\n", ad);
-	printf("%05d %d ", ad, add[ad].data);
-	isfirst++;
+
 	return 0;
 }
