@@ -2664,70 +2664,388 @@ using namespace std;
 //}
 
 
-int a[100010], n, m;
+//int a[100010], n, m;
+//
+//int find(int p)
+//{
+//	int l = 1, r = n;
+//	while (r > l)
+//	{
+//		int mid = l+(r - l) / 2;
+//		if (a[mid] >= p)
+//			r = mid;
+//		else
+//			l = mid + 1;
+//	}
+//	if (a[l] == p)
+//		return l;
+//	else return -1;
+//}
+//
+//int main()
+//{
+//	scanf("%d %d", &n, &m);
+//	for (int i = 1;i <= n;i++)
+//		scanf("%d", &a[i]);
+//	while (m--)
+//	{
+//		int p;
+//		scanf("%d", &p);
+//		printf("%d", find(p));
+//		if (m)
+//			printf(" ");
+//	}
+//	return 0;
+//}
 
-int find(int p)
+
+//char prime[100010] = { 0 };
+//void getprime()
+//{
+//	prime[0] = 1;
+//	prime[1] = 1;
+//	for (int i = 2;i < 100010;i++)
+//		for (int j = 2 * i;j < 100010;j += i)
+//			prime[j] = 1;
+//}
+//char str[100010] = { 0 };
+//int main()
+//{
+//	getprime();
+//	cin >> str;
+//	int len = strlen(str);
+//	int sum = 0;
+//	for (int i = 0;i < len - 1;i++)
+//	{
+//		int tmp = 0;
+//		for (int j = i;j < len;j++)
+//		{
+//			tmp += str[j] - '0';
+//			if (j >= i + 1 && prime[tmp] == 0)
+//				sum++;
+//		}
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+//int a[200010];
+//int main()
+//{
+//	int n, c,sum = 0;
+//	cin >> n >> c;
+//	for (int i = 0;i < n;i++)
+//		cin >> a[i];
+//	for (int i = 0;i < n - 1;i++)
+//	{
+//		for (int j = i + 1;j < n;j++)
+//		{
+//			if (abs(a[i] - a[j] == c))
+//				sum++;
+//		}
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int a, b;
+//	cin >> a >> b;
+//	cout << a + b;
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	for (int i = 0;i < n;i++)
+//	{
+//		for (int j = 0;j < n;j++)
+//		{
+//			int tmp;
+//			cin >> tmp;
+//			if ((i == 0 && j == 0) || (i == 0 && j == n - 1) || (i == n - 1 && j == 0) || (i == n - 1 && j == n - 1))
+//				cout << tmp << " ";
+//		}
+//	}
+//	return 0;
+//}
+
+//int arr[1010];
+//int main()
+//{
+//	int n, sum = 0;
+//	cin >> n;
+//	for (int i = 0;i < n;i++)
+//		cin >> arr[i];
+//	for (int i = 0;i < n - 1;i++)
+//	{
+//		for (int j = 0;j < n - 1 - i;j++)
+//		{
+//			if (arr[j] > arr[j + 1])
+//			{
+//				sum++;
+//				int tmp = arr[j];
+//				arr[j] = arr[j + 1];
+//				arr[j + 1] = tmp;
+//			}
+//		}
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+//void work(int mp[][210], int q)
+//{
+//    while (q--)
+//    {
+//        int x,y;
+//        cin >> x >> y;
+//        if (mp[x][y] == 1)
+//            cout << "Boom!" << endl;
+//        else
+//        {
+//            int sum = 0;
+//            for (int i = x - 1;i <= x + 1;i++)
+//            {
+//                for (int j = y - 1;j <= y + 1;j++)
+//                {
+//                    if (mp[i][j] == 1)
+//                        sum++;
+//                }
+//            }
+//            cout << sum << endl;
+//        }
+//    }
+//}
+//int main() {
+//    int mp[210][210];
+//    int n, m, q, i, j;
+//    scanf("%d%d", &n, &m);
+//    for (i = 1;i <= n;i++) {
+//        for (j = 1;j <= m;j++) {
+//            scanf("%d", &mp[i][j]);
+//        }
+//    }
+//    scanf("%d", &q);
+//    work(mp, q);
+//}
+
+
+//int main()
+//{
+//	int t;
+//	double A, B, H, a, b, h;
+//	cin >> t;
+//	while (t--)
+//	{
+//		cin >> A >> B >> H >> a >> b >> h;
+//		double S = A * B, s = a * b, ss = S - s, v = S * H;
+//		double h1 = v / ss, h2 = 0,hs = 0;
+//		if (h1 <= h)
+//			hs = h1;
+//		else if (h1 > h)
+//		{
+//			h2 = h1 - h;
+//			h2 = (h2 * ss) / S;
+//			hs = h + h2;
+//		}
+//		printf("%.2lf\n", hs);
+//	}
+//	return 0;
+//}
+
+
+//typedef unsigned long long lint;
+//lint taijie[20];
+//int main()
+//{
+//	taijie[1] = 1;
+//	for (lint i = 2;i <= 18;i++)
+//	{
+//		taijie[i] = taijie[i - 1] * i;
+//	}
+//	lint n, m;
+//	while (scanf("%llu %llu", &n, &m) != EOF)
+//	{
+//		while (m--)
+//		{
+//			lint tmp;
+//			cin >> tmp;
+//			lint line[20] = { 0 };
+//			lint L = 1;
+//			for (lint i = 1;i <= 18;i++)
+//			{
+//				if (tmp >= taijie[i])
+//					L = i;
+//				else
+//					break;
+//			}
+//			for (lint i = L;i >= 1;i--)
+//			{
+//				line[i] = tmp / taijie[i];
+//				tmp %= taijie[i];
+//				if (tmp == 0)
+//					break;
+//			}
+//			if (L > n)
+//				cout << -1 << endl;
+//			else
+//			{
+//				for (lint i = n;i >= 1;i--)
+//				{
+//					for (lint j = n;j >= i;j--)
+//					{
+//						if (line[j] >= i)
+//							cout << 1;
+//						else
+//							cout << 0;
+//					}
+//					cout << endl;
+//				}
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
+typedef struct hero
 {
-	int l = 1, r = n;
-	while (r > l)
-	{
-		int mid = l+(r - l) / 2;
-		if (a[mid] >= p)
-			r = mid;
-		else
-			l = mid + 1;
-	}
-	if (a[l] == p)
-		return l;
-	else return -1;
-}
-
+	int h = 0, k = 0, d = 0, bag = 0,fh = 0,jk = 0,sr = 0,live = 1,hm = 0;
+}hero;
+hero a[11], b[11];
 int main()
 {
-	scanf("%d %d", &n, &m);
-	for (int i = 1;i <= n;i++)
-		scanf("%d", &a[i]);
-	while (m--)
+	int n, m, s, x, y, z;
+	cin >> n >> m >> s;
+	for (int i = 1;i <= n;i++)//输入我方英雄数据
 	{
-		int p;
-		scanf("%d", &p);
-		printf("%d", find(p));
-		if (m)
-			printf(" ");
+		cin >> a[i].h >> a[i].k >> a[i].d;
+		a[i].hm = a[i].h;
 	}
-	return 0;
-}
-
-
-int n, m, q, a[1000005];
-
-int find(int x) //二分查找 
-{
-	int l = 1, r = n;
-	while (l < r)
+	for (int i = 1;i <= m;i++)//输入敌方英雄数据
 	{
-		int mid = l + (r - l) / 2;
-		if (a[mid] >= x) r = mid;
-		else l = mid + 1;
+		cin >> b[i].h >> b[i].k >> b[i].d;
+		b[i].hm = b[i].h;
 	}
-
-	if (a[l] == x) return l; //找都了就输出他的位置 
-	else return -1; // 没找到输出-1 
-}
-
-int main()
-{
-	scanf("%d %d", &n, &m); //读入 
-
-	for (int i = 1; i <= n; i++)
-		scanf("%d", &a[i]); //还是读入 
-
-	for (int i = 1; i <= m; i++)
+	cin >> x >> y >> z;//输入三种装备
+	while (s--)
 	{
-		scanf("%d", &q);
-		int ans = find(q); //看看查找的结果 
-		printf("%d ", ans); //输出 
+		int q, p;
+		cin >> q >> p;
+		if (a[p].bag == 0)
+		{
+			a[p].bag += q;
+			if (q == 1)
+				a[p].d += 10;
+			else if (q == 2)
+				a[p].hm = a[p].h += 100;
+			else if (q == 3)
+				a[p].k += 10;
+		}
+		else if (a[p].bag == 1 && q == 1)
+		{
+			a[p].d += 190;
+			a[p].bag = 0;
+		}
+		else if (a[p].bag == 1 && q == 2)
+		{
+			a[p].d += 40;a[p].hm = a[p].h += 300;
+			a[p].bag = 0;
+		}
+		else if (a[p].bag == 1 && q == 3)
+		{
+			a[p].k += 10;a[p].fh = 1;
+			a[p].bag = 0;
+		}
+		else if (a[p].bag == 2 && q == 2)
+		{
+			a[p].hm = a[p].h += 900;
+			a[p].bag = 0;
+		}
+		else if (a[p].bag == 2 && q == 3)
+		{
+			a[p].k += 20;a[p].jk = 1;
+			a[p].bag = 0;
+		}
+		else if (a[p].bag == 3 && q == 3)
+		{
+			a[p].k += 40;a[p].sr = 1;
+			a[p].bag = 0;
+		}
 	}
-
+	int ak1 = 0, ak2 = 0,h1 = 1,h2 = 1;
+	while (1)
+	{
+		if (h1 == 0 || h2 == 0)
+			break;
+		ak1 = 0;
+		ak2 = 0;
+		for (int i = 1;i <= n;i++)
+		{
+			if (a[i].live == 1)
+				ak1 += a[i].k;
+			if (a[i].live == 1 && a[i].jk == 1)
+				ak1 += a[i].k;
+		}
+		for (int i = 1;i <= m;i++)
+		{
+			if (b[i].live == 1)
+				ak2 += b[i].k;
+		}
+		a[h1].h -= (ak2 - a[h1].d >= 0 ? (ak2 - a[h1].d) : 0);
+		b[h2].h -= (ak1 - b[h2].d >= 0 ? (ak2 - b[h2].d) : 0);
+		if (a[h1].h <= 0)
+		{
+			if (a[h1].fh == 1)
+			{
+				a[h1].h = a[h1].hm;
+				a[h1].fh = 0;
+			}
+			else if(h1 == n)
+			{
+				a[h1].live = 0;
+				h1 = 0;
+			}
+			else
+			{
+				a[h1].live = 0;
+				h1++;
+			}
+		}
+		if (b[h2].h <= 0)
+		{
+			for (int i = 1;i <= n;i++)
+			{
+				if (a[i].sr == 1)
+					a[i].k += 10;
+			}
+			if (h2 == n)
+			{
+				b[h2].live = 0;
+				h2 = 0;
+			}
+			else
+			{
+				b[h2].live = 0;
+				h2++;
+			}
+		}
+	}
+	if (h1 == h2)
+		cout << "henfan" << endl;
+	else if (h2 > h1)
+		cout << "G" << endl;
+	else if (h1 > h2)
+		cout << "zhuangshenmedongxi" << endl;
 	return 0;
 }
