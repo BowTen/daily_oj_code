@@ -3140,3 +3140,316 @@ using namespace std;
 //	cout << it;
 //	return 0;
 //}
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int n,k,m;
+//	cin >> n;
+//	map<int, int>round;
+//	while (n--)
+//	{
+//		cin >> k;
+//		for (int i = 0;i < k;i++)
+//		{
+//			int tmp;
+//			cin >> tmp;
+//			if (k != 1)
+//				round[tmp] = k;
+//		}
+//	}
+//	cin >> m;
+//	int count = 0;
+//	while (m--)
+//	{
+//		int ask;
+//		cin >> ask;
+//		if (round[ask] == 0)
+//		{
+//			if (count != 0)
+//				cout << " ";
+//			printf("%05d", ask);
+//			round[ask] = 6;
+//			count++;
+//		}
+//	}
+//	if (count == 0)
+//		cout << "No one is handsome";
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while(t--)
+//	{
+//		int n, a,t;
+//		cin >> n >> a;
+//		n--;
+//		while (n--)
+//			cin >> t;
+//		if (a == 1)
+//			cout << "YES" << endl;
+//		else
+//			cout << "NO" << endl;
+//	}
+//	return 0;
+//}
+
+
+//int a[101000];
+//int main()
+//{
+//    int n,t;
+//    cin >> n;
+//    for (int i = 0;i < n;i++)
+//    {
+//        cin >> t;
+//        a[t]++;
+//    }
+//    for (int i = 0;i <= 100000;i++)
+//        if (a[i] % 2 == 1)
+//        {
+//            cout << "Conan";
+//            return 0;
+//        }
+//    cout << "Agasa";
+//    return 0;
+//}
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int n, school[110] = { 0 },sum = 0;
+//	cin >> n;
+//	vector<int> set;set.push_back(0);
+//	for (int i = 1;i <= n;i++)
+//	{
+//		cin >> school[i];
+//		school[i] *= 10;
+//		sum += school[i];
+//	}
+//	int count = 0,x = 1;
+//	int len = 1;
+//	for (int i = 1;count <= sum;i++)
+//	{
+//		
+//		for (int p = 0;school[x] == 0;p++)
+//		{
+//			x++;
+//			if (x > n)
+//				x = 1;
+//			if (p > n)
+//				goto ss;
+//		}
+//		if (i != 1 && x == set[i - 1])
+//		{
+//			set.push_back(0);
+//			i++;
+//		}
+//		set.push_back(x);
+//		count++;
+//		school[x]--;
+//		if (x == n)
+//			x = 1;
+//		else
+//			x++;
+//		len = i;
+//	}
+//ss:;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		cout << "#" << i << ":" << endl;
+//		int x = 0;
+//		for (int j = 1;j <= len;j++)
+//		{
+//			if (set[j] == i)
+//			{
+//				x++;
+//				cout << j << " ";
+//				if (x == 10)
+//				{
+//					cout << endl;
+//					x = 0;
+//				}
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	vector<int>set;
+//	set.resize(20);
+//	for (int i = 0;i <= 10;i++)
+//	{
+//		set[i] = i;
+//	}
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	vector<int>vet;
+//	vet.resize(3);
+//	cout << vet[1];
+//	return 0;
+//}
+
+
+
+//#include<stdio.h>
+//int main()
+//{
+//    int n, arr[110] = { 0 }, k;
+//    scanf("%d%d", &n, &k);
+//    for (int i = 0;i < n;i++)
+//    {
+//        scanf("%d", &arr[i]);
+//    }
+//    for (int i = 0;i < n - 1;i++)
+//    {
+//        for (int j = 0;j < n-1 - i;j++)
+//        {
+//            if (arr[j] > arr[j + 1])
+//            {
+//                arr[j] = arr[j + 1] ^ arr[j];
+//                arr[j + 1] = arr[j + 1] ^ arr[j];
+//                arr[j] = arr[j + 1] ^ arr[j];
+//            }
+//        }
+//    }
+//    printf("%d", arr[n - k]);
+//    return 0;
+//}
+
+
+//int main()
+//{
+//	int a[10];
+//	for (int i = 0;i < 10;i++)
+//	{
+//		scanf("%d", &a[i]);
+//	}
+//	for (int i = 0;i < 10 - 1;i++)
+//	{
+//		for (int j = 0;j < 10 - 1 - i;j++)
+//		{
+//			if (a[j] > a[j + 1])
+//			{
+//				a[j] = a[j] ^ a[j + 1];
+//				a[j + 1] = a[j] ^ a[j + 1];
+//				a[j] = a[j] ^ a[j + 1];
+//			}
+//		}
+//	}
+//	int c = 0;
+//	for (int i = 0;i < 10;i++)
+//	{
+//		if (a[i] % 2 == 1)
+//		{
+//			if (c != 0)
+//				printf(" ");
+//			printf("%d", a[i]);
+//			c++;
+//		}
+//	}
+//	for (int i = 0;i < 10;i++)
+//	{
+//		if (a[i] % 2 == 0)
+//			printf(" %d", a[i]);
+//	}
+//	return 0;
+//}
+
+//int a[101][101];
+//int main()
+//{
+//	int n,sum = 0;
+//	scanf("%d", &n);
+//	for (int i = 0;i < n;i++)
+//		for (int j = 0;j < n;j++)
+//			scanf("%d", &a[i][j]);
+//	for (int i = 1;i < n - 1;i++)
+//		for (int j = 1;j < n - 1;j++)
+//			if (a[i - 1][j] - a[i][j] >= 50 && a[i + 1][j] - a[i][j] >= 50 && a[i][j - 1] - a[i][j] >= 50 && a[i][j + 1] - a[i][j] >= 50)
+//				sum++;
+//	printf("%d", sum);
+//	return 0;
+//}
+
+//int a[5][5];
+//int main()
+//{
+//	for (int i = 0;i < 5;i++)
+//		for (int j = 0;j < 5;j++)
+//			scanf("%d", &a[i][j]);
+//	int sum = 0;
+//	for (int j = 0;j < 5;j++)
+//		sum += a[0][j];
+//	for (int i = 0;i < 5;i++)
+//	{
+//		int t = 0;
+//		for (int j = 0;j < 5;j++)
+//		{
+//			t += a[i][j];
+//		}
+//		if (t != sum)
+//		{
+//			printf("·Ç»Ã·½¾ØÕó");
+//			return 0;
+//		}
+//	}
+//	for (int i = 0;i < 5;i++)
+//	{
+//		int t = 0;
+//		for (int j = 0;j < 5;j++)
+//		{
+//			t += a[j][i];
+//		}
+//		if (t != sum)
+//		{
+//			printf("·Ç»Ã·½¾ØÕó");
+//			return 0;
+//		}
+//	}
+//	int t = 0;
+//	for (int i = 0;i < 5;i++)
+//		t += a[i][i];
+//	if (t != sum)
+//	{
+//		printf("·Ç»Ã·½¾ØÕó");
+//		return 0;
+//	}
+//	t = 0;
+//	for (int i = 0;i < 5;i++)
+//		t += a[i][4-i];
+//	if (t != sum)
+//	{
+//		printf("·Ç»Ã·½¾ØÕó");
+//		return 0;
+//	}
+//	printf("»Ã·½¾ØÕó");
+//	return 0;
+//}
+
+int main()
+{
+	cout << 1;
+	return 0;
+}
