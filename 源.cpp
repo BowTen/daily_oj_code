@@ -2917,135 +2917,226 @@ using namespace std;
 //	return 0;
 //}
 
+//
+//typedef struct hero
+//{
+//	int h = 0, k = 0, d = 0, bag = 0,fh = 0,jk = 0,sr = 0,live = 1,hm = 0;
+//}hero;
+//hero a[11], b[11];
+//int main()
+//{
+//	int n, m, s, x, y, z;
+//	cin >> n >> m >> s;
+//	for (int i = 1;i <= n;i++)//输入我方英雄数据
+//	{
+//		cin >> a[i].h >> a[i].k >> a[i].d;
+//		a[i].hm = a[i].h;
+//	}
+//	for (int i = 1;i <= m;i++)//输入敌方英雄数据
+//	{
+//		cin >> b[i].h >> b[i].k >> b[i].d;
+//		b[i].hm = b[i].h;
+//	}
+//	cin >> x >> y >> z;//输入三种装备
+//	while (s--)
+//	{
+//		int q, p;
+//		cin >> q >> p;
+//		if (a[p].bag == 0)
+//		{
+//			a[p].bag += q;
+//			if (q == 1)
+//				a[p].d += 10;
+//			else if (q == 2)
+//				a[p].hm = a[p].h += 100;
+//			else if (q == 3)
+//				a[p].k += 10;
+//		}
+//		else if (a[p].bag == 1 && q == 1)
+//		{
+//			a[p].d += 190;
+//			a[p].bag = 0;
+//		}
+//		else if (a[p].bag == 1 && q == 2)
+//		{
+//			a[p].d += 40;a[p].hm = a[p].h += 300;
+//			a[p].bag = 0;
+//		}
+//		else if (a[p].bag == 1 && q == 3)
+//		{
+//			a[p].k += 10;a[p].fh = 1;
+//			a[p].bag = 0;
+//		}
+//		else if (a[p].bag == 2 && q == 2)
+//		{
+//			a[p].hm = a[p].h += 900;
+//			a[p].bag = 0;
+//		}
+//		else if (a[p].bag == 2 && q == 3)
+//		{
+//			a[p].k += 20;a[p].jk = 1;
+//			a[p].bag = 0;
+//		}
+//		else if (a[p].bag == 3 && q == 3)
+//		{
+//			a[p].k += 40;a[p].sr = 1;
+//			a[p].bag = 0;
+//		}
+//	}
+//	int ak1 = 0, ak2 = 0,h1 = 1,h2 = 1;
+//	while (1)
+//	{
+//		if (h1 == 0 || h2 == 0)
+//			break;
+//		ak1 = 0;
+//		ak2 = 0;
+//		for (int i = h1;i <= n;i++)
+//		{
+//			if (a[i].live == 1)
+//				ak1 += a[i].k;
+//			if (a[i].live == 1 && a[i].jk == 1)
+//				ak1 += a[i].k;
+//		}
+//		for (int i = h2;i <= m;i++)
+//		{
+//			if (b[i].live == 1)
+//				ak2 += b[i].k;
+//		}
+//		a[h1].h -= (ak2 - a[h1].d >= 0 ? (ak2 - a[h1].d) : 0);
+//		b[h2].h -= (ak1 - b[h2].d >= 0 ? (ak2 - b[h2].d) : 0);
+//		if (a[h1].h <= 0)
+//		{
+//			if (a[h1].fh == 1)
+//			{
+//				a[h1].h = a[h1].hm;
+//				a[h1].fh = 0;
+//			}
+//			else if(h1 == n)
+//			{
+//				a[h1].live = 0;
+//				h1 = 0;
+//			}
+//			else
+//			{
+//				a[h1].live = 0;
+//				h1++;
+//			}
+//		}
+//		if (b[h2].h <= 0)
+//		{
+//			for (int i = 1;i <= n;i++)
+//			{
+//				if (a[i].sr == 1)
+//					a[i].k += 10;
+//			}
+//			if (h2 == m)
+//			{
+//				b[h2].live = 0;
+//				h2 = 0;
+//			}
+//			else
+//			{
+//				b[h2].live = 0;
+//				h2++;
+//			}
+//		}
+//	}
+//	if (h1 == h2)
+//		cout << "henfan" << endl;
+//	else if (h2 > h1)
+//		cout << "G" << endl;
+//	else if (h1 > h2)
+//		cout << "zhuangshenmedongxi" << endl;
+//	return 0;
+//}
 
-typedef struct hero
-{
-	int h = 0, k = 0, d = 0, bag = 0,fh = 0,jk = 0,sr = 0,live = 1,hm = 0;
-}hero;
-hero a[11], b[11];
-int main()
-{
-	int n, m, s, x, y, z;
-	cin >> n >> m >> s;
-	for (int i = 1;i <= n;i++)//输入我方英雄数据
-	{
-		cin >> a[i].h >> a[i].k >> a[i].d;
-		a[i].hm = a[i].h;
-	}
-	for (int i = 1;i <= m;i++)//输入敌方英雄数据
-	{
-		cin >> b[i].h >> b[i].k >> b[i].d;
-		b[i].hm = b[i].h;
-	}
-	cin >> x >> y >> z;//输入三种装备
-	while (s--)
-	{
-		int q, p;
-		cin >> q >> p;
-		if (a[p].bag == 0)
-		{
-			a[p].bag += q;
-			if (q == 1)
-				a[p].d += 10;
-			else if (q == 2)
-				a[p].hm = a[p].h += 100;
-			else if (q == 3)
-				a[p].k += 10;
-		}
-		else if (a[p].bag == 1 && q == 1)
-		{
-			a[p].d += 190;
-			a[p].bag = 0;
-		}
-		else if (a[p].bag == 1 && q == 2)
-		{
-			a[p].d += 40;a[p].hm = a[p].h += 300;
-			a[p].bag = 0;
-		}
-		else if (a[p].bag == 1 && q == 3)
-		{
-			a[p].k += 10;a[p].fh = 1;
-			a[p].bag = 0;
-		}
-		else if (a[p].bag == 2 && q == 2)
-		{
-			a[p].hm = a[p].h += 900;
-			a[p].bag = 0;
-		}
-		else if (a[p].bag == 2 && q == 3)
-		{
-			a[p].k += 20;a[p].jk = 1;
-			a[p].bag = 0;
-		}
-		else if (a[p].bag == 3 && q == 3)
-		{
-			a[p].k += 40;a[p].sr = 1;
-			a[p].bag = 0;
-		}
-	}
-	int ak1 = 0, ak2 = 0,h1 = 1,h2 = 1;
-	while (1)
-	{
-		if (h1 == 0 || h2 == 0)
-			break;
-		ak1 = 0;
-		ak2 = 0;
-		for (int i = 1;i <= n;i++)
-		{
-			if (a[i].live == 1)
-				ak1 += a[i].k;
-			if (a[i].live == 1 && a[i].jk == 1)
-				ak1 += a[i].k;
-		}
-		for (int i = 1;i <= m;i++)
-		{
-			if (b[i].live == 1)
-				ak2 += b[i].k;
-		}
-		a[h1].h -= (ak2 - a[h1].d >= 0 ? (ak2 - a[h1].d) : 0);
-		b[h2].h -= (ak1 - b[h2].d >= 0 ? (ak2 - b[h2].d) : 0);
-		if (a[h1].h <= 0)
-		{
-			if (a[h1].fh == 1)
-			{
-				a[h1].h = a[h1].hm;
-				a[h1].fh = 0;
-			}
-			else if(h1 == n)
-			{
-				a[h1].live = 0;
-				h1 = 0;
-			}
-			else
-			{
-				a[h1].live = 0;
-				h1++;
-			}
-		}
-		if (b[h2].h <= 0)
-		{
-			for (int i = 1;i <= n;i++)
-			{
-				if (a[i].sr == 1)
-					a[i].k += 10;
-			}
-			if (h2 == n)
-			{
-				b[h2].live = 0;
-				h2 = 0;
-			}
-			else
-			{
-				b[h2].live = 0;
-				h2++;
-			}
-		}
-	}
-	if (h1 == h2)
-		cout << "henfan" << endl;
-	else if (h2 > h1)
-		cout << "G" << endl;
-	else if (h1 > h2)
-		cout << "zhuangshenmedongxi" << endl;
-	return 0;
-}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	map<int, string>ma;
+//	ma[666] = "test";
+//	cout << ma[666] << endl;
+//	ma.insert(pair<int, string>(6, "6"));
+//	ma.insert(make_pair(66, "66"));
+//	ma.insert(map<int, string>::value_type(7, "7"));
+//	cout << ma[66] << endl;
+//	cout << ma[6] << endl;
+//	cout << ma[7] << endl << endl;
+//	for (map<int, string>::iterator iter = ma.begin();iter != ma.end();iter++)
+//	{
+//		cout << iter->first << " " << iter->second << endl;
+//	}
+//	cout << endl;
+//	auto it = ma.begin();
+//	ma.erase(it);
+//	for (auto iter = ma.begin();iter != ma.end();iter++)
+//	{
+//		cout << iter->first << " " << iter->second << endl;
+//	}
+//	
+//	cout << endl;;
+//	for (auto it2 = ma.rbegin();it2 != ma.rend();it2++)
+//	{
+//		cout << it2->first << " " << it2->second << endl;
+//	}
+//
+//	cout << endl;
+//
+//	auto itt = ma.find(66);
+//	cout << itt->second << endl;
+//
+//	cout << ma.find(66)->first << endl;
+//	//map<int, string>::reverse_iterator it = ma.rbegin();
+//	//cout << it->first;
+//
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int n,c;
+//	cin >> n;
+//	while(n--)
+//	{
+//		map<int, int>a;
+//		cin >> c;
+//		for (int i = 0;i < c;i++)
+//		{
+//			int t1, t2;
+//			cin >> t1 >> t2;
+//			a[t2] += t1;
+//		}
+//		for (auto it = a.rbegin();it != a.rend();it++)
+//		{
+//			if (it->second != 0)
+//			{
+//				if (it != a.rbegin() && it->second > 0)
+//					cout << "+";
+//				if (it->second != 1)
+//					cout << it->second;
+//				if(it->first != 0)
+//				cout << "x" << "^" << it->first;
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	map<int, int>a;
+//	a[1] += 2;
+//	cout << a[1] << endl;
+//	a[1] ++;
+//	cout << a[1];
+//	auto it = a.find(6);
+//	cout << it;
+//	return 0;
+//}
