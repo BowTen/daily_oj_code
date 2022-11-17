@@ -3448,8 +3448,28 @@ using namespace std;
 //	return 0;
 //}
 
+//int main()
+//{
+//	cout << 1;
+//	return 0;
+//}
+
+
+#include<bits/stdc++.h>
+using namespace std;
 int main()
 {
-	cout << 1;
+	vector<int>a;
+	//a.reserve(10);
+	a.resize(10);
+	//vector<int>::iterator pa = a.begin();
+	//*pa = 6;
+	auto pa = a.begin();
+	for (int i = 0;i < 10;i++)
+	{
+		*(pa++) = i;
+	}
+	for (int i = 0;i < 10;i++)
+		cout << a[i] << " ";
 	return 0;
 }
