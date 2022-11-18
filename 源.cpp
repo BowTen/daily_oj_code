@@ -3455,21 +3455,241 @@ using namespace std;
 //}
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	vector<int>a;
+//	//a.reserve(10);
+//	a.resize(10);
+//	a.reserve(15);
+//	//vector<int>::iterator pa = a.begin();
+//	//*pa = 6;
+//	auto pa = a.begin();
+//	for (int i = 0;i < 10;i++)
+//	{
+//		*(pa++) = i;
+//	}
+//	for (int i = 0;i < 10;i++)
+//		cout << a[i] << " ";
+//	cout << "______________" << endl;
+//	
+//	cout << 
+//	return 0;
+//}
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
+//int main()
+//{
+//	//deque<int>a;
+//	//vector<int>test;
+//	//vector<int>::iterator p;
+//	//auto pt = test.begin();
+//	//auto p = a.begin();
+//	//cout << "size: " << a.size() << endl;
+//	//a.resize(10,6);
+//	//a.push_back(8);
+//	//a.push_front(7);
+//	//a.pop_back();
+//	//a.pop_front();
+//	//cout << "a[0]: " << a[0] << endl;
+//	//for (int i = 1;i < a.size();i++)
+//	//	cout << "a[" << i << "]" << ": " << a[i] << endl;
+//	//cout << "size: " << a.size();
+//	//cout << endl<< "_________________" << endl;
+//	//a.at(5) = 2;
+//	//cout << a.at(5) << endl;
+//	//int arr[] = { 8,7,1,2 };
+//	//a.insert(a.begin() + 5, arr,arr+3);
+//	////a.reserve(5);
+//	//deque<int>b;
+//
+//	////a.swap(deque<int>);
+//	//cout << endl;
+//
+//
+//	vector<int>a(3,6);
+//	auto p = a.begin();
+//	a.resize(10);
+//	cout << *p;
+//	return 0;
+//}
+
+
+//#include<list>
+//int main() {
+//
+//	list<int> lis;
+//	for (int i = 0;i < 10;i++)
+//		lis.push_back(i);
+//	lis.reverse();
+//	lis.sort();
+//	for (auto p = lis.begin();p != lis.end();p++)
+//		cout << *p << endl;;
+//	return EXIT_SUCCESS;
+//}
+
+
+
+//int main()
+//{
+//	//multiset<int>s;
+//	//s.insert(5);
+//	//s.insert(3);
+//	//s.insert(1);
+//	//s.insert(5);
+//	//s.insert(8);
+//	///*for (int i = 0;i < 10;i++)
+//	//{
+//	//	auto p = s.find(i);
+//	//	if(p != s.end())
+//	//		cout << *p << endl;
+//	//}*/
+//	//for (auto p = s.begin();p != s.end();p++)
+//	//	cout << *p << endl;
+//
+//	set<int>s;
+//	auto a = s.insert(6);
+//	auto b = s.insert(6);
+//	cout << a.second << endl;
+//	cout << *a.first << endl;
+//	cout << b.second << endl;
+//	cout << *b.first << endl;
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	srand(time(0));
+//	int a = rand() % 12;
+//	if (a >= 0 && a <= 3)
+//		cout << "zhuangshenmedongxi";
+//	else if (a >= 4 && a <= 7)
+//		cout << "G";
+//	else
+//		cout << "henfan";
+//	return 0;
+//}
+
+
+
+//int a[11][11], n, k, sum = 0;
+//inline int fun(int i, int j)
+//{
+//	for (int x = i - 1;x <= i + 1;x++)
+//		for (int y = j - 1;y <= j + 1;y++)
+//			if (a[x][y] == 1)
+//				return 0;
+//	return 1;
+//}
+//void search(int k)
+//{
+//	if (k == 0)
+//		sum++;
+//	else
+//	{
+//		for (int x = 1;x <= n;x++)
+//		{
+//			for (int y = 1;y <= n;y++)
+//			{
+//				if (a[x][y] != 21 + k && fun(x, y))
+//				{
+//					a[x][y] = 1;
+//					search(k-1);
+//					a[x][y] = 20+k;
+//				}
+//			}
+//		}
+//	}
+//}
+//int jiec(int n)
+//{
+//	if (n == 1)
+//		return 1;
+//	return n * jiec(n - 1);
+//}
+//int main()
+//{
+//	cin >> n >> k;
+//	search(k);
+//	if (sum == 0)
+//		cout << "jyj died";
+//	else
+//		cout << sum;
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int a[1010][1010];
 int main()
 {
-	vector<int>a;
-	//a.reserve(10);
-	a.resize(10);
-	//vector<int>::iterator pa = a.begin();
-	//*pa = 6;
-	auto pa = a.begin();
-	for (int i = 0;i < 10;i++)
+	int n,jud = 1;
+	cin >> n;
+	for (int i = 0;i < n;i++)
+		for (int j = 0;j < n;j++)
+			cin >> a[i][j];
+	int last = a[0][0];
+	for (int x = n;x >= 1;x -= 2)
 	{
-		*(pa++) = i;
+		int i = (n - x) / 2;
+		int j = i;
+		int len = n - i;
+		int num = a[i][j];
+		if (i != 0 && a[i][j] - 1 != last)
+		{
+			jud = 0;
+			goto ss;
+		}
+		last = a[i][j];
+		for (j++;j < len;j++)//列++
+		{
+			if (a[i][j] != a[i][j - 1])
+			{
+				jud = 0;
+				goto ss;
+			}
+		}
+		j--;
+		for (i++;i < len;i++)//行++
+		{
+			if (a[i][j] != a[i - 1][j])
+			{
+				jud = 0;
+				goto ss;
+			}
+		}
+		i--;
+		for (j--;j >= (n - x) / 2;j--)//列--
+		{
+			if (a[i][j] != a[i][j + 1])
+			{
+				jud = 0;
+				goto ss;
+			}
+		}
+		j++;
+		for (i--;i >= (n - x) / 2;i--)//行--
+		{
+			if (a[i][j] != a[i + 1][j])
+			{
+				jud = 0;
+				goto ss;
+			}
+		}
 	}
-	for (int i = 0;i < 10;i++)
-		cout << a[i] << " ";
+ss:;
+	if (jud == 1)
+		cout << "ok, you are a cool guy.";
+	else
+		cout << "It's too cold.";
 	return 0;
 }
