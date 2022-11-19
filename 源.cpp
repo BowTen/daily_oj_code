@@ -3627,69 +3627,203 @@ using namespace std;
 
 
 
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
+//using namespace std;
+//int a[1010][1010];
+//int main()
+//{
+//	int n,jud = 1;
+//	cin >> n;
+//	for (int i = 0;i < n;i++)
+//		for (int j = 0;j < n;j++)
+//			cin >> a[i][j];
+//	int last = a[0][0];
+//	for (int x = n;x >= 1;x -= 2)
+//	{
+//		int i = (n - x) / 2;
+//		int j = i;
+//		int len = n - i;
+//		int num = a[i][j];
+//		if (i != 0 && a[i][j] - 1 != last)
+//		{
+//			jud = 0;
+//			goto ss;
+//		}
+//		last = a[i][j];
+//		for (j++;j < len;j++)//列++
+//		{
+//			if (a[i][j] != a[i][j - 1])
+//			{
+//				jud = 0;
+//				goto ss;
+//			}
+//		}
+//		j--;
+//		for (i++;i < len;i++)//行++
+//		{
+//			if (a[i][j] != a[i - 1][j])
+//			{
+//				jud = 0;
+//				goto ss;
+//			}
+//		}
+//		i--;
+//		for (j--;j >= (n - x) / 2;j--)//列--
+//		{
+//			if (a[i][j] != a[i][j + 1])
+//			{
+//				jud = 0;
+//				goto ss;
+//			}
+//		}
+//		j++;
+//		for (i--;i >= (n - x) / 2;i--)//行--
+//		{
+//			if (a[i][j] != a[i + 1][j])
+//			{
+//				jud = 0;
+//				goto ss;
+//			}
+//		}
+//	}
+//ss:;
+//	if (jud == 1)
+//		cout << "ok, you are a cool guy.";
+//	else
+//		cout << "It's too cold.";
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int a[11], b[11],n;
+//void m_print()
+//{
+//	for (int i = 1;i <= n;i++)
+//		cout << b[i];
+//	cout << endl;
+//}
+//void search(int c)
+//{
+//	for (int i = 1;i <= n;i++)
+//	{
+//		if (a[i] == 0)
+//		{
+//			a[i] = 1;
+//			b[c] = i;
+//			if (c == n)
+//				m_print();
+//			else
+//				search(c + 1);
+//			a[i] = 0;
+//			b[c] = 0;
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	search(1);
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, k, a[11][11], sum = 0;
+//bool fun(int i, int j)
+//{
+//	for (int x = i - 1; x <= i + 1;x++)
+//		for (int y = j - 1;y <= j + 1;y++)
+//			if (a[x][y] == 1)
+//				return 0;
+//	return 1;
+//}
+//void search(int k)
+//{
+//	if (k == 0)
+//		sum++;
+//	else
+//	{
+//		for (int i = 1;i <= n;i++)
+//		{
+//			for (int j = 1;j <= n;j++)
+//			{
+//				if (fun(i, j) == 1)
+//				{
+//					a[i][j] = 1;
+//					search(k - 1);
+//					a[i][j] = 0;
+//				}
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	cin >> n >> k;
+//	if(k > round(n/2.0)*round(n/2.0))
+//		cout << "jyj died";
+//	else
+//	{
+//		search(k);
+//		cout << sum;
+//	}
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long lint;
+//int main()
+//{
+//	lint n;
+//	cin >> n;
+//	if (n % 2 == 0)
+//		cout << n / 2;
+//	else
+//		cout << (n - 1) / 2;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//void fun(int a)
+//{
+//	if(a / 6 != 0)
+//		fun(a / 6);
+//	cout << a % 6;
+//}
+//int main()
+//{
+//	int a;
+//	cin >> a;
+//	fun(a);
+//	return 0;
+//}
+
+
+
+#include <iostream>
 using namespace std;
-int a[1010][1010];
-int main()
+
+int main() 
 {
-	int n,jud = 1;
-	cin >> n;
-	for (int i = 0;i < n;i++)
-		for (int j = 0;j < n;j++)
-			cin >> a[i][j];
-	int last = a[0][0];
-	for (int x = n;x >= 1;x -= 2)
-	{
-		int i = (n - x) / 2;
-		int j = i;
-		int len = n - i;
-		int num = a[i][j];
-		if (i != 0 && a[i][j] - 1 != last)
-		{
-			jud = 0;
-			goto ss;
-		}
-		last = a[i][j];
-		for (j++;j < len;j++)//列++
-		{
-			if (a[i][j] != a[i][j - 1])
-			{
-				jud = 0;
-				goto ss;
-			}
-		}
-		j--;
-		for (i++;i < len;i++)//行++
-		{
-			if (a[i][j] != a[i - 1][j])
-			{
-				jud = 0;
-				goto ss;
-			}
-		}
-		i--;
-		for (j--;j >= (n - x) / 2;j--)//列--
-		{
-			if (a[i][j] != a[i][j + 1])
-			{
-				jud = 0;
-				goto ss;
-			}
-		}
-		j++;
-		for (i--;i >= (n - x) / 2;i--)//行--
-		{
-			if (a[i][j] != a[i + 1][j])
-			{
-				jud = 0;
-				goto ss;
-			}
-		}
-	}
-ss:;
-	if (jud == 1)
-		cout << "ok, you are a cool guy.";
-	else
-		cout << "It's too cold.";
-	return 0;
+    int a, b;
+    list<int>vec;
+    cin >> a;
+    while (a--)
+    {
+        int t;
+        cin >> t;
+        vec.push_back(t);
+    }
+    cin >> b;
+    vec.remove(b);
+    for (auto p = vec.begin();p != vec.end();p++)
+        cout << *p << " ";
 }
