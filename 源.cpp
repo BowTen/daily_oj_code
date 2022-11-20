@@ -3808,22 +3808,112 @@ using namespace std;
 
 
 
-#include <iostream>
-using namespace std;
+//#include <iostream>
+//using namespace std;
+//
+//int main() 
+//{
+//    int a, b;
+//    list<int>vec;
+//    cin >> a;
+//    while (a--)
+//    {
+//        int t;
+//        cin >> t;
+//        vec.push_back(t);
+//    }
+//    cin >> b;
+//    vec.remove(b);
+//    for (auto p = vec.begin();p != vec.end();p++)
+//        cout << *p << " ";
+//}
 
-int main() 
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//void m_itoa(long long n, char* a)
+//{
+//	char tmp[20] = { 0 };
+//	int i = 0;int j = 0;
+//	while (n)
+//	{
+//		tmp[i++] = n % 10 + '0';
+//		n /= 10;
+//	}
+//	while (i--)
+//		a[j++] = tmp[i];
+//}
+//
+//int main()
+//{
+//	/*long long n;
+//	char a[20] = { 0 };
+//	cin >> n;
+//	_itoa(n, a, 10);
+// 	cout << a << endl;*/
+//
+//
+//	long long n;
+//	cin >> n;
+//	char a[20] = { 0 };
+//	m_itoa(n, a);
+//	cout << a << endl;
+//	return 0;
+//}
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int cla[110];
+int cla2[110];
+int mset[10010];
+int main()
 {
-    int a, b;
-    list<int>vec;
-    cin >> a;
-    while (a--)
+    int n, sum = 0;
+    cin >> n;
+    for (int i = 1;i <= n;i++)
     {
         int t;
         cin >> t;
-        vec.push_back(t);
+        cla2[i] = cla[i] = t * 10;
+        sum += cla[i];
     }
-    cin >> b;
-    vec.remove(b);
-    for (auto p = vec.begin();p != vec.end();p++)
-        cout << *p << " ";
+    for (int i = 1, c = 1, count = 1;count <= sum;i++, c++)
+    {
+
+        if (c == n + 1)
+            c = 1;
+        while (cla[c] == 0)
+        {
+            c++;
+            if (c == n + 1)
+                c = 1;
+        }
+        if (mset[i - 1] == c)
+            i++;
+            mset[i] = c;
+        count++;
+        cla[c]--;
+    }
+
+    for (int i = 1;i <= n;i++)
+    {
+        cout << "#" << i << endl;
+        for (int j = 1, count = 1, line = 1;count <= cla2[i];j++)
+        {
+            if (mset[j] == i)
+            {
+                cout << j;
+                if (line != 10)
+                    cout << " ";
+                else {
+                    line = 0;
+                    cout << endl;
+                }
+                count++;
+                line++;
+            }
+        }
+    }
+    return 0;
 }
