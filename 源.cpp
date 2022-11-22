@@ -3919,42 +3919,320 @@ using namespace std;
 //}
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long lint;
+//lint ys[10];
+//lint f(lint x)
+//{
+//    if (x == 0)
+//        return ys[x];
+//    int tmp[20] = { 0 };
+//    lint i = 0;
+//    while (x)
+//    {
+//        tmp[i++] = ys[x % 10];
+//        x /= 10;
+//    }
+//    lint ret = 0;
+//    for (i--;i >= 0;i--)
+//        ret = ret * 10 + tmp[i];
+//    return ret;
+//}
+//
+//int main()
+//{
+//    int t;
+//    cin >> t;
+//    while (t--)
+//    {
+//        for (int i = 0;i < 10;i++)
+//            cin >> ys[i];
+//        lint x, k;
+//        cin >> x >> k;
+//        while (k--)
+//            x = x + f(x);
+//        cout << x;
+//        if (t)
+//            cout << endl;
+//    }
+//    return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int a, b, c, jud;
+//int now(char s)
+//{
+//    if (s == 'B')
+//        return 120;
+//    else if (s == 'L')
+//        return 100;
+//    else if (s == 'Y')
+//        return 200;
+//}
+//
+//double dapei(char last, char s)
+//{
+//    if (last == 0 || last == 'F')
+//        return 1;
+//    else if (last == s && s == 'Y')
+//        return 1.1;
+//    else if (last == s)
+//        return 1;
+//    else if ((last == 'B' && s == 'L') || (last == 'L' && s == 'B'))
+//        return 1.2;
+//    else if (last == 'B' && s == 'Y')
+//        return 1.1;
+//    else if (last == 'Y' && s == 'B')
+//        return 1.3;
+//    else if (last == 'Y' && s == 'L')
+//        return 2;
+//    else if (last == 'L' && s == 'Y')
+//        return 1.4;
+//}
+//
+//double wuren(int five)
+//{
+//    if (five <= 0)
+//        return 1;
+//    return 1.0 - five * 0.1;
+//}
+//
+//void fun(char s, int& g)
+//{
+//    if (s == 'B')
+//    {
+//        if (a >= g)
+//            a -= g;
+//        else
+//        {
+//            g = a;
+//            a = 0;
+//            jud = 0;
+//        }
+//    }
+//    else if (s == 'L')
+//    {
+//        if (b >= g)
+//            b -= g;
+//        else
+//        {
+//            g = b;
+//            b = 0;
+//            jud = 0;
+//        }
+//    }
+//    else if (s == 'Y')
+//    {
+//        if (c >= g)
+//            c -= g;
+//        else
+//        {
+//            g = c;
+//            c = 0;
+//            jud = 0;
+//        }
+//    }
+//}
+//
+//int main()
+//{
+//    int t;
+//    cin >> t;
+//    while (t--)
+//    {
+//        int n;
+//        jud = 1;
+//        double beau = 1000;
+//        cin >> a >> b >> c >> n;
+//        char last = 0;
+//        int five = 0;
+//        while (n--)
+//        {
+//            char s; int g;
+//            cin >> s >> g;
+//            getchar();
+//            if (s == 'F')
+//            {
+//                five = 3;
+//                beau *= 0.9;
+//                beau -= 50;
+//                if (beau < 0)
+//                    beau = 0.0;
+//            }
+//            else
+//            {
+//                fun(s, g);
+//                if (g != 0)
+//                {
+//                    if (g <= 100)
+//                        beau += (now(s) * g) * dapei(last, s) * wuren(five--) * 1.1;
+//                    else if (g <= 200)
+//                    {
+//                        beau += (now(s) * 100) * dapei(last, s) * wuren(five--) * 1;
+//                        beau += (now(s) * (g - 100)) * dapei(last, s) * wuren(five--) * 0.9;
+//                    }
+//                    else
+//                        beau += (now(s) * g) * dapei(last, s) * wuren(five--) * 0.9;
+//                }
+//
+//            }
+//
+//            last = s;
+//        }
+//        if (jud)
+//            cout << "That is perfect!" << endl;
+//        else
+//            cout << "That is a pity!" << endl;
+//        printf("%lf", beau);
+//        if (t)
+//            cout << endl;
+//    }
+//    return 0;
+//}
+
+
 #include<bits/stdc++.h>
 using namespace std;
-typedef long long lint;
-lint ys[10];
-lint f(lint x)
+typedef long long ll;
+double beilv[3][3] = { 1.0,1.2,1.3,1.2,1.0,2.0,1.1,1.4,1.1 };
+ll a, b, c,n,five,jud;
+double sum;
+ll now(char s)
 {
-    if (x == 0)
-        return ys[x];
-    int tmp[20] = { 0 };
-    lint i = 0;
-    while (x)
-    {
-        tmp[i++] = ys[x % 10];
-        x /= 10;
-    }
-    lint ret = 0;
-    for (i--;i >= 0;i--)
-        ret = ret * 10 + tmp[i];
-    return ret;
+	if (s == 'B')
+		return 120;
+	else if (s == 'L')
+		return 100;
+	return 200;
+}
+ll dapei(char last, char s)
+{
+	if (last == 'F')
+		return 1;
+	int t1, t2;
+	if (last == 'B')
+		t1 = 0;
+	else if (last == 'L')
+		t1 = 1;
+	else
+		t1 = 2;
+	if (s == 'B')
+		t2 = 0;
+	else if (s == 'L')
+		t2 = 1;
+	else
+		t2 = 2;
+	return beilv[t1][t2];
+}
+void inp(char s,ll& g)
+{
+	if (s == 'B')
+	{
+		if (a == 0)
+		{
+			g = 0;
+			jud = 0;
+		}
+		else
+		{
+			g = min(g, a);
+			a -= min(g, a);
+		}
+	}
+	else if (s == 'L')
+	{
+		if (b == 0)
+		{
+			g = 0;
+			jud = 0;
+		}
+		else
+		{
+			g = min(g, b);
+			b -= min(g, b);
+		}
+	}
+	else
+	{
+		if (c == 0)
+		{
+			g = 0;
+			jud = 0;
+		}
+		else
+		{
+			g = min(g, c);
+			c -= min(g, c);
+		}
+	}
+}
+double wr()
+{
+	if (five-- <= 0)
+		return 1.0;
+	return 1.0 - five-- * 0.1;
 }
 
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        for (int i = 0;i < 10;i++)
-            cin >> ys[i];
-        lint x, k;
-        cin >> x >> k;
-        while (k--)
-            x = x + f(x);
-        cout << x;
-        if (t)
-            cout << endl;
-    }
-    return 0;
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		cin >> a >> b >> c;
+		sum = 1000;
+		cin >> n;
+		char last = 0;
+		jud = 1;
+		five = 0;
+		while (n--)
+		{
+			char s;
+			ll g;
+			getchar();
+			cin >> s >> g;
+			if (s == 'F')
+			{
+				sum *= 0.9;
+				sum -= 50;
+				if (sum < 0)
+					sum = 0;
+				five = 3;
+			}
+			else
+			{
+				inp(s,g);
+				if (g <= 100)
+					sum += (now(s) * g) * dapei(last, s) * wr() * 1.1;
+				else if(g > 200)
+					sum += (now(s) * g) * dapei(last, s) * wr() * 0.9;
+				else
+				{
+					sum += (now(s) * 100) * dapei(last, s) * wr();
+					sum += (now(s) * (g-100)) * dapei(last, s) * wr() * 0.9;
+				}
+			}
+			last = s;
+		}
+		if (jud == 1)
+			cout << "That is perfect!\n";
+		else
+			cout << "That is a pity!\n";
+		printf("%.6lf\n", sum);
+	}
+	return 0;
 }
+
+
+//int main()
+//{
+//	char s = 'L';
+//	cake t;
+//	scanf("%u", &t);
+//	int a = t;
+//	cout << a;
+//	return 0;
+//}
