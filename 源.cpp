@@ -4094,137 +4094,137 @@ using namespace std;
 //}
 
 
-#include<bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-double beilv[3][3] = { 1.0,1.2,1.3,1.2,1.0,2.0,1.1,1.4,1.1 };
-ll a, b, c,n,five,jud;
-double sum;
-ll now(char s)
-{
-	if (s == 'B')
-		return 120;
-	else if (s == 'L')
-		return 100;
-	return 200;
-}
-ll dapei(char last, char s)
-{
-	if (last == 'F')
-		return 1;
-	int t1, t2;
-	if (last == 'B')
-		t1 = 0;
-	else if (last == 'L')
-		t1 = 1;
-	else
-		t1 = 2;
-	if (s == 'B')
-		t2 = 0;
-	else if (s == 'L')
-		t2 = 1;
-	else
-		t2 = 2;
-	return beilv[t1][t2];
-}
-void inp(char s,ll& g)
-{
-	if (s == 'B')
-	{
-		if (a == 0)
-		{
-			g = 0;
-			jud = 0;
-		}
-		else
-		{
-			g = min(g, a);
-			a -= min(g, a);
-		}
-	}
-	else if (s == 'L')
-	{
-		if (b == 0)
-		{
-			g = 0;
-			jud = 0;
-		}
-		else
-		{
-			g = min(g, b);
-			b -= min(g, b);
-		}
-	}
-	else
-	{
-		if (c == 0)
-		{
-			g = 0;
-			jud = 0;
-		}
-		else
-		{
-			g = min(g, c);
-			c -= min(g, c);
-		}
-	}
-}
-double wr()
-{
-	if (five-- <= 0)
-		return 1.0;
-	return 1.0 - five-- * 0.1;
-}
-
-int main()
-{
-	int t;
-	cin >> t;
-	while (t--)
-	{
-		cin >> a >> b >> c;
-		sum = 1000;
-		cin >> n;
-		char last = 0;
-		jud = 1;
-		five = 0;
-		while (n--)
-		{
-			char s;
-			ll g;
-			getchar();
-			cin >> s >> g;
-			if (s == 'F')
-			{
-				sum *= 0.9;
-				sum -= 50;
-				if (sum < 0)
-					sum = 0;
-				five = 3;
-			}
-			else
-			{
-				inp(s,g);
-				if (g <= 100)
-					sum += (now(s) * g) * dapei(last, s) * wr() * 1.1;
-				else if(g > 200)
-					sum += (now(s) * g) * dapei(last, s) * wr() * 0.9;
-				else
-				{
-					sum += (now(s) * 100) * dapei(last, s) * wr();
-					sum += (now(s) * (g-100)) * dapei(last, s) * wr() * 0.9;
-				}
-			}
-			last = s;
-		}
-		if (jud == 1)
-			cout << "That is perfect!\n";
-		else
-			cout << "That is a pity!\n";
-		printf("%.6lf\n", sum);
-	}
-	return 0;
-}
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//double beilv[3][3] = { 1.0,1.2,1.3,1.2,1.0,2.0,1.1,1.4,1.1 };
+//ll a, b, c,n,five,jud;
+//double sum;
+//ll now(char s)
+//{
+//	if (s == 'B')
+//		return 120;
+//	else if (s == 'L')
+//		return 100;
+//	return 200;
+//}
+//ll dapei(char last, char s)
+//{
+//	if (last == 'F')
+//		return 1;
+//	int t1, t2;
+//	if (last == 'B')
+//		t1 = 0;
+//	else if (last == 'L')
+//		t1 = 1;
+//	else
+//		t1 = 2;
+//	if (s == 'B')
+//		t2 = 0;
+//	else if (s == 'L')
+//		t2 = 1;
+//	else
+//		t2 = 2;
+//	return beilv[t1][t2];
+//}
+//void inp(char s,ll& g)
+//{
+//	if (s == 'B')
+//	{
+//		if (a == 0)
+//		{
+//			g = 0;
+//			jud = 0;
+//		}
+//		else
+//		{
+//			g = min(g, a);
+//			a -= min(g, a);
+//		}
+//	}
+//	else if (s == 'L')
+//	{
+//		if (b == 0)
+//		{
+//			g = 0;
+//			jud = 0;
+//		}
+//		else
+//		{
+//			g = min(g, b);
+//			b -= min(g, b);
+//		}
+//	}
+//	else
+//	{
+//		if (c == 0)
+//		{
+//			g = 0;
+//			jud = 0;
+//		}
+//		else
+//		{
+//			g = min(g, c);
+//			c -= min(g, c);
+//		}
+//	}
+//}
+//double wr()
+//{
+//	if (five-- <= 0)
+//		return 1.0;
+//	return 1.0 - five-- * 0.1;
+//}
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		cin >> a >> b >> c;
+//		sum = 1000;
+//		cin >> n;
+//		char last = 0;
+//		jud = 1;
+//		five = 0;
+//		while (n--)
+//		{
+//			char s;
+//			ll g;
+//			getchar();
+//			cin >> s >> g;
+//			if (s == 'F')
+//			{
+//				sum *= 0.9;
+//				sum -= 50;
+//				if (sum < 0)
+//					sum = 0;
+//				five = 3;
+//			}
+//			else
+//			{
+//				inp(s,g);
+//				if (g <= 100)
+//					sum += (now(s) * g) * dapei(last, s) * wr() * 1.1;
+//				else if(g > 200)
+//					sum += (now(s) * g) * dapei(last, s) * wr() * 0.9;
+//				else
+//				{
+//					sum += (now(s) * 100) * dapei(last, s) * wr();
+//					sum += (now(s) * (g-100)) * dapei(last, s) * wr() * 0.9;
+//				}
+//			}
+//			last = s;
+//		}
+//		if (jud == 1)
+//			cout << "That is perfect!\n";
+//		else
+//			cout << "That is a pity!\n";
+//		printf("%.6lf\n", sum);
+//	}
+//	return 0;
+//}
 
 
 //int main()
@@ -4236,3 +4236,85 @@ int main()
 //	cout << a;
 //	return 0;
 //}
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//int arr[100010];
+//int main()
+//{
+//	int n, k;
+//	cin >> n >> k;
+//	for (int i = 0;i < n;i++)
+//		cin >> arr[i];
+//	deque<int>wind;
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (wind.empty() == 1)
+//			wind.push_back(i);
+//		else
+//		{
+//			while (wind.empty() == 0 && arr[wind.back()] >= arr[i])
+//				wind.pop_back();
+//			wind.push_back(i);
+//		}
+//		if (i >= k - 1)
+//		{
+//			if (wind.front() < i + 1 - k)
+//				wind.pop_front();
+//			cout << arr[wind.front()] << " ";
+//		}
+//	}cout << endl;
+//	deque<int>wind2;
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (wind2.empty() == 1)
+//			wind2.push_back(i);
+//		else
+//		{
+//			while (wind2.empty() == 0 && arr[wind2.back()] <= arr[i])
+//				wind2.pop_back();
+//			wind2.push_back(i);
+//		}
+//		if (i >= k - 1)
+//		{
+//			if (wind2.front() < i + 1 - k)
+//				wind2.pop_front();
+//			cout << arr[wind2.front()] << " ";
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int a = 9;
+//	short* p = 
+//	cout << a;
+//
+//	return 0;
+//}
+
+void mystrcpy(char* b, const char* a)
+{
+	for (int i = 0;1;)
+	{
+		b[i] = a[i++];
+		if (a[i] == 0)
+		{
+			b[i] = 0;
+			break;
+		}
+	}
+}
+int main()
+{
+	char a[10] = { 0 };
+	char b[10] = { 0 };
+	cin >> a;
+	mystrcpy(b, a);
+	cout << b << endl;
+	return 0;
+}
