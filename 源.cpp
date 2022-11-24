@@ -4295,26 +4295,326 @@ using namespace std;
 //	cout << a;
 //
 //	return 0;
+////}
+//
+//void mystrcpy(char* b, const char* a)
+//{
+//	for (int i = 0;1;)
+//	{
+//		b[i] = a[i++];
+//		if (a[i] == 0)
+//		{
+//			b[i] = 0;
+//			break;
+//		}
+//	}
+//}
+//int main()
+//{
+//	char a[10] = { 0 };
+//	char b[10] = { 0 };
+//	cin >> a;
+//	mystrcpy(b, a);
+//	cout << b << endl;
+//	return 0;
 //}
 
-void mystrcpy(char* b, const char* a)
+
+
+//int n, x = 0, y = 0,fx = 1;
+//void walk(int i)
+//{
+//	if (fx == 1)
+//		y += i;
+//	else if (fx == 2)
+//		x += i;
+//	else if (fx == 3)
+//		y -= i;
+//	else if (fx == 4)
+//		x -= i;
+//}
+//int main()
+//{
+//	cin >> n;
+//	while (n--)
+//	{
+//		char c;
+//		int i;
+//		getchar();
+//		cin >> c;
+//		if (c == 'F')
+//		{
+//			cin >> i;
+//			walk(i);
+//		}
+//		else if (c == 'R')
+//		{
+//			fx++;
+//			if(fx == 5)
+//				fx = 1;
+//		}
+//		else if (c == 'L')
+//		{
+//			fx--;
+//			if (fx == 0)
+//				fx = 4;
+//		}
+//	}
+//	cout << x << " " << y;
+//	return 0;
+//}
+
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int s;
+//	cin >> s;
+//	printf("%.10llf",pow(s / 153.0, 1.0 / 3.0));
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int x1, x2, y1, y2,n,x,y;
+//	cin >> x1 >> y1 >> x2 >> y2 >> n;
+//	while (n--)
+//	{
+//		int jud = 1;
+//		cin >> x >> y;
+//		if (x > max(x1, x2) || x < min(x1, x2) || y > max(y1, y2) || y < min(y1, y2))
+//			jud = 0;
+//		if ((double)(y2 - y1) / (double)(x2 - x1) != (double)(y - y1) / (double)(x - x1))
+//			jud = 0;
+//		if (jud)
+//			cout << "Yes" << endl;
+//		else
+//			cout << "No" << endl;
+//	}
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int n,jud = 1,a,b;
+//	cin >> n;
+//	int t = (int)sqrt(n);
+//	for(int i = 2;i <= t;i++)
+//		if (n % i == 0)
+//		{
+//			jud = 0;
+//			break;
+//		}
+//	if (jud != 0)
+//		cout << "1 " << n - 1;
+//	else
+//	{
+//		for (int i = 2; i < n;i++)
+//		{
+//			if (n % i == 0)
+//			{
+//				a = min(n / i, n - n / i);
+//				b = n - a;
+//				cout << a << " " << b;
+//				return 0;
+//			}
+//		}
+//
+//	}
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	set<string>temp;
+//	char t;
+//	string tmp;
+//	while (t = getchar(), t != '\n')
+//	{
+//		if (t == ' ')
+//		{
+//			temp.insert(tmp);
+//			tmp.clear();
+//		}
+//		else
+//			tmp.push_back(t);
+//	}
+//	temp.insert(tmp);
+//	tmp.clear();
+//	string a;
+//	int as = 1,ap = 0;
+//	while (t = getchar(), t != '\n')
+//	{
+//		if (t == ' ')
+//		{
+//			as++;
+//			auto p = temp.find(a);
+//			if (p != temp.end())
+//				ap++;
+//			a.clear();
+//		}
+//		else
+//			a.push_back(t);
+//	}
+//	double ad = (double)ap / as;
+//
+//	string a1;
+//	int as1 = 1, ap1 = 0;
+//	while (t = getchar(), t != '\n')
+//	{
+//		if (t == ' ')
+//		{
+//			as1++;
+//			if (temp.find(a1) != temp.end())
+//				ap1++;
+//			a1.clear();
+//		}
+//		else
+//			a1.push_back(t);
+//	}
+//	double ad1 = (double)ap1 / as1;
+//
+//	if (ad < ad1)
+//		cout << "NUMBER ONE IS THE HUMAN";
+//	else
+//		cout << "NUMBER TWO IS THE HUMAN";
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//
+//	set<string>a;
+//	string b = "holle";
+//	a.insert(b);
+//	auto p = a.find("dsad");
+//	if (p == a.end())
+//		cout << "end";
+//	else
+//	cout << *p;
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//
+//int main()
+//{
+//	string n;
+//	cin >> n;
+//	for (int i = 0;i < n.size();i++)
+//	{
+//		if (i != 0)
+//			n[i] += n[i - 1] * 10;
+//		n[i] -= '0';
+//		n[i] %= 4;
+//	}
+//	if (n[n.size() - 1] == 0)
+//		cout << 4;
+//	else
+//		cout << 0;
+//	return 0;
+//}
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int n, m;
+char arr[1010][1010];
+bool been[1010][1010];
+int ma;
+int len = 0;
+int search(int x,int y,int jud)
 {
-	for (int i = 0;1;)
+	if (jud == 0)
 	{
-		b[i] = a[i++];
-		if (a[i] == 0)
+		for (int i = x - 1;i <= x + 1;i++)
+			for (int j = y;j <= y + 1;j++)
+				if (been[i][j] == 0 && (arr[i][j] == '.' || arr[i][j] == '>'))
+				{
+
+						been[i][j] = 1;
+						if (j > y)
+							len++;
+						if (len > ma)
+						{
+							if (j > y)
+								len--;
+							been[i][j] = 0;
+							continue;
+						}
+						if (j == m)
+							ma = len;
+						else
+						{
+							if(arr[i][j] == '.')
+								search(i, j, 0);
+							else
+								search(i, j, 1);
+						}
+						if (j > y)
+							len--;
+						been[i][j] = 0;
+				}
+	}
+	else
+	{
+		for (int j = y + 1;j <= m;j++)
 		{
-			b[i] = 0;
-			break;
+			if (arr[x][j] == '.')
+			{
+				been[x][j] = 1;
+				len++;
+				if (len > ma)
+				{
+					len--;
+					been[x][j] = 0;
+					return 0;
+				}
+				if (j == m)
+					ma = len;
+				else
+					search(x, j, 0);
+				len--;
+				been[x][j] = 0;
+				break;
+			}
 		}
 	}
+	return 0;
 }
 int main()
 {
-	char a[10] = { 0 };
-	char b[10] = { 0 };
-	cin >> a;
-	mystrcpy(b, a);
-	cout << b << endl;
+	cin >> n >> m;
+	ma = m;
+	for (int i = 1;i <= n;i++)
+		for (int j = 1;j <= m;j++)
+			cin >> arr[i][j];
+	been[1][1] = 1;
+	search(1, 1, 0);
+	cout << ma;
 	return 0;
 }
