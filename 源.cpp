@@ -4540,81 +4540,371 @@ using namespace std;
 //}
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, m;
+//char arr[1010][1010];
+//bool been[1010][1010];
+//int ma;
+//int len = 0;
+//int search(int x,int y,int jud)
+//{
+//	if (jud == 0)
+//	{
+//		int j = y + 1;
+//		for (int i = x - 1;i <= x + 1;i++)
+//				if (been[i][j] == 0 && (arr[i][j] == '.' || arr[i][j] == '>'))
+//				{
+//
+//						been[i][j] = 1;
+//						if (j > y)
+//							len++;
+//						if (len > ma)
+//						{
+//							if (j > y)
+//								len--;
+//							been[i][j] = 0;
+//							continue;
+//						}
+//						if (j == m)
+//							ma = len;
+//						else
+//						{
+//							if(arr[i][j] == '.')
+//								search(i, j, 0);
+//							else
+//								search(i, j, 1);
+//						}
+//						if (j > y)
+//							len--;
+//						been[i][j] = 0;
+//				}
+//	}
+//	else
+//	{
+//		for (int j = y + 1;j <= m;j++)
+//		{
+//			if (arr[x][j] == '.')
+//			{
+//				been[x][j] = 1;
+//				len++;
+//				if (len > ma)
+//				{
+//					len--;
+//					been[x][j] = 0;
+//					return 0;
+//				}
+//				if (j == m)
+//					ma = len;
+//				else
+//					search(x, j, 0);
+//				len--;
+//				been[x][j] = 0;
+//				break;
+//			}
+//		}
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	cin >> n >> m;
+//	ma = m;
+//	for (int i = 1;i <= n;i++)
+//		for (int j = 1;j <= m;j++)
+//			cin >> arr[i][j];
+//	for (int i = 1;i <= n;i++)
+//	{
+//		been[i][1] = 1;
+//		search(i, 1, 0);
+//	}
+//	cout << ma;
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//char a[1005][1005];
+//bool f[1005][1005];
+//struct node {
+//	int x, y, t;
+//};
+//int vx[] = { -1,0,1 };
+//int vy[] = { 1,1,1 };
+//int main() {
+//	int n, m;
+//	scanf("%d%d", &n, &m);
+//	for (int i = 0;i < n;i++)
+//		scanf("%s", a[i]);
+//	queue<node>q;
+//	for (int i = 0;i < n;i++) {
+//		if (a[1][0] != '#');
+//		q.push({ i,0,0 });
+//		f[i][0] = 1;
+//	}
+//	while (!q.empty()) {
+//		int x = q.front().x, y = q.front().y, t = q.front().t;
+//		q.pop();
+//		if (y == m - 1) {
+//			printf("%d\n", t);
+//			break;
+//		}
+//		if (a[x][y] == '>') {
+//			int ty = y + 1;
+//			while (a[x][ty] == '#' || a[x][ty] == '>') {
+//				ty++;
+//			}
+//			if (ty < m && !f[x][ty]) {
+//				q.push({ x, ty, t + 1 });
+//				f[x][ty] = 1;
+//			}
+//		}
+//		if (a[x][y] == '.') {
+//			for (int i = 0;i < 3;i++) {
+//				int tx = x + vx[i], ty = y + vy[i];
+//				if (tx < 0 || ty < 0 || tx >= n || ty >= m)continue;
+//				if (a[tx][ty] != '#' && !f[tx][ty]) {
+//					q.push({ tx, ty,t + 1 });
+//					f[tx][ty] = 1;
+//				}
+//			}
+//		}
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//bool been[1005][1005];
+//char arr[1005][1005];
+//struct p
+//{
+//	int x, y, z;
+//};
+//queue<p>que;
+//int main()
+//{
+//	int n, m;
+//	cin >> n >> m;
+//	for (int i = 1;i <= n;i++)
+//		for (int j = 1;j <= m;j++)
+//			cin >> arr[i][j];
+//	for (int i = 1;i <= n;i++)
+//	{
+//		been[i][1] = 1;
+//		que.push({ i,1,0 });
+//	}
+//	while (!que.empty())
+//	{
+//		int a = que.front().x, b = que.front().y, t = que.front().z;
+//		que.pop();
+//		if (b == m)
+//		{
+//			cout << t;
+//			break;
+//		}
+//		int j = b + 1;
+//		if(arr[a][b] == '.')
+//			for (int i = a - 1;i <= a + 1;i++)
+//			{
+//				if (!been[i][j] && (arr[i][j] == '.' || arr[i][j] == '>'))
+//				{
+//					been[i][j] = 1;
+//					que.push({ i,j,t + 1 });
+//				}
+//			}
+//		else if (arr[a][b] == '>')
+//			for (j;j <= m;j++)
+//			{
+//				if (arr[a][j] == '.')
+//				{
+//					been[a][j] = 1;
+//					que.push({ a,j,t + 1 });
+//					break;
+//				}
+//			}
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int n, k;
+//	cin >> n >> k;
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//void fun(int* a)
+//{
+//	for(int i = 0;i < 9;i++)
+//		for (int j = 0;j < 9 - i;j++)
+//		{
+//			if (a[j] % 2 == 0 && a[j + 1] % 2 != 0)
+//			{
+//				a[j] = a[j] ^ a[j + 1];
+//				a[j + 1] = a[j] ^ a[j + 1];
+//				a[j] = a[j] ^ a[j + 1];
+//			}
+//		}
+//}
+//int main()
+//{
+//	int a[20];
+//	for (int i = 0;i < 10;i++)
+//		cin >> a[i];
+//	fun(a);
+//	for (int i = 0;i < 10;i++)
+//		cout << a[i] << " ";
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int n,sum = 0,p = 0;
+//	cin >> n;
+//	sum += n;
+//	p += sum;
+//	while (p >= 2)
+//	{
+//		int t = p / 2;
+//		sum += t;
+//		p -= t * 2;
+//		p += t;
+//	}
+//	cout << sum;
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int a[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int* p = a;
+//	for (int i = 0;i < 10;i++)
+//		cout << p[i] << " ";
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	//string str;
+//	//char ch[10] = { 0 };
+//	//cin.get(ch,5);
+//	//int a;
+//	//cin >> a;
+//	//char c[10] = { 0 };
+//	//cin.get(c, 5);
+//	//getline(cin, str);
+//	//cout << ch <<endl<< c<<endl << str;
+//
+//
+//	char ch[10] = { 0 };
+//	cin.getline(ch, 6);
+//	cout << ch;
+//	return 0;
+//}
+
+
 #include<bits/stdc++.h>
 using namespace std;
-int n, m;
-char arr[1010][1010];
-bool been[1010][1010];
-int ma;
-int len = 0;
-int search(int x,int y,int jud)
+int main()
 {
-	if (jud == 0)
+	int n,m;
+	cin >> n;
+	m = (n + 1) / 2;
+	int q = m - 1, p = m + 1;
+	for (int i = 1;i <= n;i++)
 	{
-		for (int i = x - 1;i <= x + 1;i++)
-			for (int j = y;j <= y + 1;j++)
-				if (been[i][j] == 0 && (arr[i][j] == '.' || arr[i][j] == '>'))
-				{
-
-						been[i][j] = 1;
-						if (j > y)
-							len++;
-						if (len > ma)
-						{
-							if (j > y)
-								len--;
-							been[i][j] = 0;
-							continue;
-						}
-						if (j == m)
-							ma = len;
-						else
-						{
-							if(arr[i][j] == '.')
-								search(i, j, 0);
-							else
-								search(i, j, 1);
-						}
-						if (j > y)
-							len--;
-						been[i][j] = 0;
-				}
-	}
-	else
-	{
-		for (int j = y + 1;j <= m;j++)
+		for (int j = 1;j <= n;j++)
 		{
-			if (arr[x][j] == '.')
-			{
-				been[x][j] = 1;
-				len++;
-				if (len > ma)
-				{
-					len--;
-					been[x][j] = 0;
-					return 0;
-				}
-				if (j == m)
-					ma = len;
-				else
-					search(x, j, 0);
-				len--;
-				been[x][j] = 0;
-				break;
-			}
+			if (j <= q)
+				cout << " ";
+			else if (j > q && j < p)
+				cout << "*";
+		}
+		cout << endl;
+		if (i < m)
+		{
+			q--;
+			p++;
+		}
+		else
+		{
+			q++;
+			p--;
 		}
 	}
 	return 0;
 }
-int main()
-{
-	cin >> n >> m;
-	ma = m;
-	for (int i = 1;i <= n;i++)
-		for (int j = 1;j <= m;j++)
-			cin >> arr[i][j];
-	been[1][1] = 1;
-	search(1, 1, 0);
-	cout << ma;
-	return 0;
-}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//bool jud(int i)
+//{
+//	int t = i,n = 0;
+//	while (t)
+//	{
+//		n++;
+//		t /= 10;
+//	}
+//	t = i;
+//	int sum = 0;
+//	while (t)
+//	{
+//		sum += (int)pow(t % 10, n);
+//		t /= 10;
+//	}
+//	if (sum == i)
+//		return 1;
+//	else
+//		return 0;
+//}
+//int main()
+//{
+//	for (int i = 0;i <= 100000;i++)
+//	{
+//		if (jud(i))
+//			cout << i << endl;
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int a,sum = 0,t = 0;
+//	cin >> a;
+//	for (int i = 0;i < 5;i++)
+//	{
+//		t += a * (int)pow(10, i);
+//		sum += t;
+//	}
+//	cout << sum;
+//	return 0;
+//}
