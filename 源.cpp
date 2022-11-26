@@ -4825,38 +4825,38 @@ using namespace std;
 //	return 0;
 //}
 
-
-#include<bits/stdc++.h>
-using namespace std;
-int main()
-{
-	int n,m;
-	cin >> n;
-	m = (n + 1) / 2;
-	int q = m - 1, p = m + 1;
-	for (int i = 1;i <= n;i++)
-	{
-		for (int j = 1;j <= n;j++)
-		{
-			if (j <= q)
-				cout << " ";
-			else if (j > q && j < p)
-				cout << "*";
-		}
-		cout << endl;
-		if (i < m)
-		{
-			q--;
-			p++;
-		}
-		else
-		{
-			q++;
-			p--;
-		}
-	}
-	return 0;
-}
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int n,m;
+//	cin >> n;
+//	m = (n + 1) / 2;
+//	int q = m - 1, p = m + 1;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		for (int j = 1;j <= n;j++)
+//		{
+//			if (j <= q)
+//				cout << " ";
+//			else if (j > q && j < p)
+//				cout << "*";
+//		}
+//		cout << endl;
+//		if (i < m)
+//		{
+//			q--;
+//			p++;
+//		}
+//		else
+//		{
+//			q++;
+//			p--;
+//		}
+//	}
+//	return 0;
+//}
 
 
 
@@ -4907,4 +4907,45 @@ int main()
 //	}
 //	cout << sum;
 //	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//vector<int>dp;
+//int main()
+//{
+//	int n,t,sum = 0;
+//	cin >> n;
+//	dp.resize(n+1);
+//	for (int i = 1;i <= n;i++)
+//	{
+//		cin >> t;
+//		dp[i] += t;
+//		if (dp[i - 1] > 0)
+//			dp[i] += dp[i - 1];
+//	}
+//	sort(dp.begin(), dp.end());
+//	cout << dp[n];
+//	return 0;
+//}
+
+//
+//#include<stdio.h>
+//int main()
+//{
+//	int T;
+//	scanf("%d", &T);
+//	int i, s = 0, x, max = 0;
+//	for (i = 0;i < T;++i)
+//	{
+//		scanf("%d", &x);
+//		s += x;
+//		if (s > max)
+//			max = s;
+//		if (s < 0)
+//			s = 0;
+//	}
+//	printf("%d\n", max);
 //}
