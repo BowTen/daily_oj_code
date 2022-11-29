@@ -90,23 +90,124 @@ using namespace std;
 //}
 
 
-int school[100010];
+//int school[100010];
+//
+//int main()
+//{
+//	int m, n, sum = 0,t;
+//	cin >> m >> n;
+//	for (int i = 0;i < m;i++)
+//		cin >> school[i];
+//	sort(school, school + m);
+//	while (n--)
+//	{
+//		cin >> t;
+//		int a = *lower_bound(school, school + m, t),
+//			b = *(lower_bound(school, school + m, t) - 1);
+//		b = b == 0 ? a : b;
+//		sum += min(abs(t-a),abs(b-t));
+//	}
+//	cout << sum;
+//	return 0;
+//}
 
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//inline void m_strcpy(char* a, const char* b)
+//{
+//	while (*a++ = *b++);
+//}
+//
+//unsigned int m_strlen(const char* a)
+//{
+//	const char* p = a;
+//	while (*++a);
+//	return a - p;
+//}
+//
+//int main()
+//{
+//	char a[] = "holle!";
+//	char b[] = "what";
+//	m_strcpy(a, b);
+//	cout << a << endl;
+//
+//	cout << m_strlen(a);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int m, n;
+//	cin >> m >> n;
+//	set<int>scho;
+//	for (int i = 0;i < m;i++)
+//	{
+//		int t;
+//		cin >> t;
+//		scho.insert(t);
+//	}
+//	int sum = 0;
+//	while (n--)
+//	{
+//		int t,a,b;
+//		cin >> t;
+//		auto p = scho.lower_bound(t);
+//		if (p == scho.end())
+//		{
+//			p--;
+//			b = a = *p;
+//		}
+//		else if(p == scho.begin())
+//		{
+//			a = *p;
+//			p++;
+//			b = *p;
+//		}
+//		else
+//		{
+//			a = *p;
+//			p--;
+//			b = *p;
+//		}
+//		sum += min(abs(a - t), abs(b - t));
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+int arr[100010];
+int n, k;
+int f(int m)
+{
+	int s = 0;
+	for (int i = 0;i < n;i++)
+		s += arr[i] / m;
+	return s - k;
+}
 int main()
 {
-	int m, n, sum = 0,t;
-	cin >> m >> n;
-	for (int i = 0;i < m;i++)
-		cin >> school[i];
-	sort(school, school + m);
-	while (n--)
+	cin >> n >> k;
+	int max  = 0;
+	for (int i = 0;i < n;i++)
 	{
-		cin >> t;
-		int a = *lower_bound(school, school + m, t),
-			b = *(lower_bound(school, school + m, t) - 1);
-		b = b == 0 ? a : b;
-		sum += min(abs(t-a),abs(b-t));
+		cin >> arr[i];
+		max = max > arr[i] ? max : arr[i];
 	}
-	cout << sum;
+	int l = 0, r = 100000001, m = 0, flag;
+	while (r-1 > l)
+	{
+		m = (l + r) >> 1;
+		flag = f(m);
+		if (flag >= 0)
+			l = m;
+		else
+			r = m;
+	}
+	cout << l;
 	return 0;
 }
