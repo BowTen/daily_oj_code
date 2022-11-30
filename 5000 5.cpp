@@ -319,35 +319,195 @@ using namespace std;
 //}
 
 
-int way[1001][2] = { 0 };
+//int way[1001][2] = { 0 };
+//int main()
+//{
+//	int n, m,m2;
+//	cin >> n >> m;
+//	m2 = m;
+//	while (m--)
+//		cin >> way[m][0] >> way[m][1];
+//	int k;
+//	cin >> k;
+//	while (k--)
+//	{
+//		int q;
+//		cin >> q;
+//		set<int>se;
+//		while (q--)
+//		{
+//			int t;
+//			cin >> t;
+//			se.insert(t);
+//		}
+//		for(int i = 0;i < m2;i++)
+//			if (se.find(way[i][0]) == se.end() && se.find(way[i][1]) == se.end())
+//			{
+//				cout << "NO" << endl;
+//				goto ss;
+//			}
+//		cout << "YES" << endl;
+//	ss:;
+//	}
+//	return 0;
+//}
+
+
+
+//int way[201][201] = { 0 };
+//
+//int main()
+//{
+//	int n, m,k;
+//	cin >> n >> m;
+//	for (int i = 0;i < m;i++)
+//	{
+//		int t1, t2;
+//		cin >> t1 >> t2;
+//		way[t1][t2] = way[t2][t1] = 1;
+//	}
+//	cin >> k;
+//	while (k--)
+//	{
+//		int t,jud = 1;
+//		cin >> t;
+//		if (t != n + 1)
+//			jud = 0;
+//		queue<int>que;
+//		int tmp,first;
+//		cin >> first;
+//		que.push(first);
+//		while (--t)
+//		{
+//			cin >> tmp;
+//			way[tmp][0]++;
+//			que.push(tmp);
+//			if (!way[que.front()][que.back()])
+//				jud = 0;
+//			que.pop();
+//		}
+//		for (int i = 1;i <= n;i++)
+//		{
+//			if (way[i][0] != 1)
+//				jud = 0;
+//			way[i][0]=0;
+//		}
+//		if (first != que.back())
+//			jud = 0;
+//		if (jud)
+//			cout << "YES" << endl;
+//		else
+//			cout << "NO" << endl;
+//	}
+//	return 0;
+//}
+
+
+
+
+
+		
+//int n, m, t1, t2, t3;
+//int way[201][201] = { 0 }, been[201] = { 0 };
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	for (int i = 0;i < m;i++)
+//	{
+//		cin >> t1 >> t2 >> t3;
+//		way[t1][t2] = way[t2][t1] = t3;
+//	}
+//	int k,np,mp = 0x0f3f3f3f,max = 0x0f3f3f3f,sum = 0,t;
+//	cin >> k;
+//	for(int x = 1;x <= k;x++)
+//	{
+//		int jud = 1, money = 0;
+//		cin >> np;
+//		if (np != n)
+//			jud = 0;
+//		queue<int>que;
+//		cin >> t;
+//		been[t]++;
+//		if (way[0][t])
+//			money += way[0][t];
+//		else
+//			jud = 0;
+//		que.push(t);
+//		while (--np)
+//		{
+//			cin >> t;
+//			been[t]++;
+//			que.push(t);
+//			if (way[que.front()][que.back()])
+//				money += way[que.front()][que.back()];
+//			else
+//				jud = 0;
+//			que.pop();
+//		}
+//		if (way[t][0])
+//			money += way[t][0];
+//		else
+//			jud = 0;
+//		for (int i = 1;i <= n;i++)
+//		{
+//			if (been[i] != 1)
+//				jud = 0;
+//			been[i] = 0;
+//		}
+//		if (jud)
+//		{
+//			sum++;
+//			if (money < max)
+//			{
+//				mp = x;
+//				max = money;
+//			}
+//		}
+//	}
+//	cout << sum << endl << mp << " " << max;
+//	return 0;
+//}
+
+
+
+
+bool way[1001][1001] = { 0 };
+bool been[1001] = { 0 };
+int road[3001] = { 0 };
+int n, m, t1, t2, s,c = 0;
+void search(int s,int x)
+{
+	road[x] = s;
+	been[s]++;
+	if (been[s] == 1)
+		c++;
+	if (c == n)
+	{
+		int i = 0;
+		for (i = 0;road[i];i++)
+			cout << road[i] << " ";
+		for (i--;i >= 0;i--)
+			cout << road[i] << " ";
+	}
+	else
+	{
+		for (int i = 1;i <= n;i++)
+		{
+			if (way[s][i])
+				search(i,x+1);
+		}
+	}
+}
+
 int main()
 {
-	int n, m,m2;
-	cin >> n >> m;
-	m2 = m;
-	while (m--)
-		cin >> way[m][0] >> way[m][1];
-	int k;
-	cin >> k;
-	while (k--)
+	cin >> n >> m >> s;
+	for (int i = 0;i < m;i++)
 	{
-		int q;
-		cin >> q;
-		set<int>se;
-		while (q--)
-		{
-			int t;
-			cin >> t;
-			se.insert(t);
-		}
-		for(int i = 0;i < m2;i++)
-			if (se.find(way[i][0]) == se.end() && se.find(way[i][1]) == se.end())
-			{
-				cout << "NO" << endl;
-				goto ss;
-			}
-		cout << "YES" << endl;
-	ss:;
+		cin >> t1 >> t2;
+		way[t1][t2] = way[t2][t1] = 1;
 	}
+	search(s,0);
 	return 0;
 }
