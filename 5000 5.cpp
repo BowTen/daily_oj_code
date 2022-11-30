@@ -1,4 +1,4 @@
-
+#define _CRT_SECURE_NO_WARNINGS
 #include<bits/stdc++.h>
 using namespace std;
 //typedef long long ll;
@@ -472,42 +472,292 @@ using namespace std;
 
 
 
-bool way[1001][1001] = { 0 };
-bool been[1001] = { 0 };
-int road[3001] = { 0 };
-int n, m, t1, t2, s,c = 0;
-void search(int s,int x)
-{
-	road[x] = s;
-	been[s]++;
-	if (been[s] == 1)
-		c++;
-	if (c == n)
-	{
-		int i = 0;
-		for (i = 0;road[i];i++)
-			cout << road[i] << " ";
-		for (i--;i >= 0;i--)
-			cout << road[i] << " ";
-	}
-	else
-	{
-		for (int i = 1;i <= n;i++)
-		{
-			if (way[s][i])
-				search(i,x+1);
-		}
-	}
-}
+//bool way[1001][1001] = { 0 };
+//bool been[1001] = { 0 };
+//int road[3001] = { 0 };
+//int n, m, t1, t2, s,c = 0;
+//void search(int s,int x)
+//{
+//	road[x] = s;
+//	been[s]++;
+//	if (been[s] == 1)
+//		c++;
+//	if (c == n)
+//	{
+//		int i = 0;
+//		for (i = 0;road[i];i++)
+//			cout << road[i] << " ";
+//		for (i--;i >= 0;i--)
+//			cout << road[i] << " ";
+//	}
+//	else
+//	{
+//		for (int i = 1;i <= n;i++)
+//		{
+//			if (way[s][i])
+//				search(i,x+1);
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	cin >> n >> m >> s;
+//	for (int i = 0;i < m;i++)
+//	{
+//		cin >> t1 >> t2;
+//		way[t1][t2] = way[t2][t1] = 1;
+//	}
+//	search(s,0);
+//	return 0;
+//}
+
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int n;
+//	int min = 0, max = 0;
+//	while (scanf("%d",&n) != EOF)
+//	{
+//		if (n % 2 == 0 && (min == 0 || n < min))
+//			min = n;
+//		else if (n % 2 == 1 && n > max)
+//			max = n;
+//	}
+//	if (min && max)
+//		cout << max - min;
+//	else
+//		cout << "None";
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int arr[100010] = { 0 };
+//int main()
+//{
+//	int n,t,min = 0;
+//	cin >> n;
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> arr[i];
+//		min = (arr[i] < min || min == 0) ? arr[i] : min;
+//	}
+//	int sum = 0;
+//	for (int i = 0;i < n;i++)
+//	{
+//		sum += (arr[i] - min);
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int n, k;
+//	cin >> n >> k;
+//	queue<int>que;
+//	int t1,t2,sum = 0;
+//	for (int i = 0;i < k;i++)
+//	{
+//		cin >> t1 >> t2;
+//		que.push(t1*t2);
+//		sum += que.back();
+//	}
+//	int max = sum;
+//	for (int i = 0;i < n - k;i++)
+//	{
+//		cin >> t1 >> t2;
+//		que.push(t1 * t2);
+//		sum -= que.front();
+//		sum += que.back();
+//		que.pop();
+//		max = max < sum ? sum : max;
+//	}
+//	cout << max;
+//	return 0;
+//}
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//inline int f(int a, int b)
+//{
+//	int t1 = min(a, b), t2 = max(a, b);
+//	int t = t1;
+//	for (t1;t1 <= t * t2;t1 += t)
+//	{
+//		if (t1 % t2 == 0)
+//		{
+//			return t1;
+//		}
+//	}
+//}
+//int main()
+//{
+//	int n,a,sum = 0,cut = 1;
+//	cin >> n;
+//	while (n--)
+//	{
+//		cin >> a;
+//		sum += a;
+//		cut = f(cut, sum);
+//	}
+//	cout << cut;
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//int main()
+//{
+//	ll n, sum = 0, cut = 1, a,k = 1;
+//	cin >> n;
+//	while (n--)
+//	{
+//		cin >> a;
+//		sum += a;
+//		for (k = 1;1;k++)
+//		{
+//			if (cut * k % sum == 0)
+//			{
+//				cut *= k;
+//				break;
+//			}
+//		}
+//	}
+//	cout << cut;
+//	return 0;
+//}
+
+
+
+//#include<iostream>
+//#include<vector>
+//using namespace std;
+//char arr[17][34] = { 0 };
+//const char col[] = "+-a-+-b-+-c-+-d-+-e-+-f-+-g-+-h-+";
+//const int row[] = { 0,8,0,7,0,6,0,5,0,4,0,3,0,2,0,1 };
+//typedef struct
+//{
+//	int x, y;
+//}node;
+//vector<node> q,r,b,n,p;
+//vector<node> q2, r2, b2, n2, p2;
+//int main()
+//{
+//	for (int i = 0;i < 17;i++)
+//	{
+//		for (int j = 0;j < 34;j++)
+//			scanf("%c", &arr[i][j]);
+//	}
+//	cout << "White:";
+//
+//
+//	for (int i = 0;i < 17;i++)
+//		for (int j = 0;j < 34;j++)
+//		{
+//			if (arr[i][j] == 'K')
+//			{
+//				cout << 'K' << col[j] << row[i];
+//			}
+//			else if (arr[i][j] == 'Q')
+//				q.push_back({ i,j });
+//			else if (arr[i][j] == 'R')
+//				r.push_back({ i,j });
+//			else if (arr[i][j] == 'B')
+//				b.push_back({ i,j });
+//			else if (arr[i][j] == 'N')
+//				n.push_back({ i,j });
+//			else if (arr[i][j] == 'P')
+//				p.push_back({ i,j });
+//		}
+//	for(auto p = q.begin();p != q.end();p++)
+//		cout << "," << 'Q' << col[p->y] << row[p->x];
+//	for (auto p = r.begin();p != r.end();p++)
+//		cout << "," << 'R' << col[p->y] << row[p->x];
+//	for (auto p = b.begin();p != b.end();p++)
+//		cout << "," << 'B' << col[p->y] << row[p->x];
+//	for (auto p = n.begin();p != n.end();p++)
+//		cout << "," << 'N' << col[p->y] << row[p->x];
+//	for (auto pt = p.begin();pt != p.end();pt++)
+//		cout << "," << col[pt->y] << row[pt->x];
+//
+//
+//	cout << "\nBlack:";
+//
+//
+//	for (int i = 0;i < 17;i++)
+//		for (int j = 0;j < 34;j++)
+//		{
+//			if (arr[i][j] == 'k')
+//			{
+//				cout << 'K' << col[j] << row[i];
+//			}
+//			else if (arr[i][j] == 'q')
+//				q2.push_back({ i,j });
+//			else if (arr[i][j] == 'r')
+//				r2.push_back({ i,j });
+//			else if (arr[i][j] == 'b')
+//				b2.push_back({ i,j });
+//			else if (arr[i][j] == 'n')
+//				n2.push_back({ i,j });
+//			else if (arr[i][j] == 'p')
+//				p2.push_back({ i,j });
+//		}
+//	for (auto p = q2.begin();p != q2.end();p++)
+//		cout << "," << 'Q' << col[p->y] << row[p->x];
+//	for (auto p = r2.begin();p != r2.end();p++)
+//		cout << "," << 'R' << col[p->y] << row[p->x];
+//	for (auto p = b2.begin();p != b2.end();p++)
+//		cout << "," << 'B' << col[p->y] << row[p->x];
+//	for (auto p = n2.begin();p != n2.end();p++)
+//		cout << "," << 'N' << col[p->y] << row[p->x];
+//	for (auto pt = p2.begin();pt != p2.end();pt++)
+//		cout << "," << col[pt->y] << row[pt->x];
+//
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
 
 int main()
 {
-	cin >> n >> m >> s;
-	for (int i = 0;i < m;i++)
-	{
-		cin >> t1 >> t2;
-		way[t1][t2] = way[t2][t1] = 1;
-	}
-	search(s,0);
-	return 0;
+    char s[110] = { 0 };
+    cin.getline(s, 101);
+    int len = strlen(s);
+    for (int i = len;i >= 0;i--)
+    {
+        if (s[i] == ' ' || i == 0)
+        {
+            for (int j = i == 0 ? i : i + 1;j <= len;j++)
+            {
+                if (s[j] == ' ')
+                    break;
+                cout << s[j];
+            }
+            cout << " ";
+        }
+    }
+    return 0;
 }
