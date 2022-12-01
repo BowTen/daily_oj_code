@@ -738,26 +738,94 @@ using namespace std;
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//    char s[110] = { 0 };
+//    cin.getline(s, 101);
+//    int len = strlen(s);
+//    for (int i = len;i >= 0;i--)
+//    {
+//        if (s[i] == ' ' || i == 0)
+//        {
+//            for (int j = i == 0 ? i : i + 1;j <= len;j++)
+//            {
+//                if (s[j] == ' ')
+//                    break;
+//                cout << s[j];
+//            }
+//            cout << " ";
+//        }
+//    }
+//    return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	char s[] = "sdasda";
+//	char* p = s;
+//	cout << *p++;
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, m, s;
+//bool isfirst = 0;
+//bool been[1001] = { 0 };
+//int cnt = 0;
+//vector<int>node[1001];
+//void search(int s)
+//{
+//	if (!isfirst)
+//		isfirst = true;
+//	else
+//		cout << " ";
+//	cout << s;
+//	if (!been[s])
+//		cnt++;
+//	been[s] = true;
+//	if(cnt!=n)
+//	for (int i = 0;i < node[s].size();i++)
+//	{
+//		if (!been[node[s][i]])
+//		{
+//			search(node[s][i]);
+//			cout << " " << s;
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	cin >> n >> m >> s;
+//	int t1, t2;
+//	for (int i = 0;i < m;i++)
+//	{
+//		cin >> t1 >> t2;
+//		node[t1].push_back(t2);
+//		node[t2].push_back(t1);
+//	}
+//	search(s);
+//	if (cnt != n)
+//		cout << " 0";
+//	return 0;
+//}
+
+
+
 
 int main()
 {
-    char s[110] = { 0 };
-    cin.getline(s, 101);
-    int len = strlen(s);
-    for (int i = len;i >= 0;i--)
-    {
-        if (s[i] == ' ' || i == 0)
-        {
-            for (int j = i == 0 ? i : i + 1;j <= len;j++)
-            {
-                if (s[j] == ' ')
-                    break;
-                cout << s[j];
-            }
-            cout << " ";
-        }
-    }
-    return 0;
+	printf(" ");
+	putchar('a');
+	return 0;
 }
