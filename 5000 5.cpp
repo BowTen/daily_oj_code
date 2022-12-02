@@ -823,9 +823,137 @@ using namespace std;
 
 
 
+//int main()
+//{
+//	printf(" ");
+//	putchar('a');
+//	return 0;
+//}
+
+
+//int n, m, k, c = 0;
+//bool been[500] = { 0 };
+//int city[500][500] = { 0 };
+//bool fir = true;
+//int main()
+//{
+//	cin >> n >> m;
+//	for (int i = 0;i < m;i++)
+//	{
+//		int t1, t2;
+//		cin >> t1 >> t2;
+//		city[t1][t2] = city[t2][t1] = 1;
+//	}
+//	cin >> k;
+//	while (k--)
+//	{
+//		int t;
+//		cin >> t;
+//		if (!been[t])
+//		{
+//			been[t] = true;
+//			c++;
+//		}
+//		for (int i = 0;i < n;i++)
+//			city[i][t] = city[t][i] = 0;
+//		for (int i = 0;i < n;i++)
+//		{
+//			for (int j = 0;j < n;j++)
+//			{
+//				if (city[i][j] || city[j][i])
+//				{
+//					cout << "City " << t << " is lost.";
+//					if (k)
+//						cout << endl;
+//					goto ss;
+//				}
+//			}
+//		}
+//		if (fir)
+//		{
+//			cout << "Red Alert: City " << t << " is lost.";
+//			if (k)
+//				cout << endl;
+//			fir = false;
+//		}
+//		else
+//		{
+//			cout << "City " << t << " is lost.";
+//			if (k)
+//				cout << endl;
+//		}
+//	ss:;
+//		if (c == n)
+//		{
+//			if (!k)
+//				cout << endl;
+//			cout << "Game Over.";
+//			if (k)
+//				cout << endl;
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int n, m, k, jud = 0, s,coun = 0,c = 0;
+vector<int>vec[500];
+set<int>down;
+bool been[500] = { 0 };
+int last;
+void search(int t)
+{
+	for (int i = 0;i < vec[t].size();i++)
+	{
+		if (!been[vec[t][i]] && down.find(vec[t][i]) == down.end() && last != vec[t][i])
+		{
+			if (t == s)
+				c++;
+			coun++;
+			been[vec[t][i]] = true;
+			if (vec[t][i] == s)
+			{
+				jud = 1;
+				break;
+			}
+			else
+			{
+				last = t;
+				search(vec[t][i]);
+			}
+		}
+	}
+}
+
 int main()
 {
-	printf(" ");
-	putchar('a');
+	cin >> n >> m;
+	while (m--)
+	{
+		int t1, t2;
+		cin >> t1 >> t2;
+		vec[t1].push_back(t2);
+		vec[t2].push_back(t1);
+	}
+	cin >> k;
+	while (k--)
+	{
+		coun = 0;
+		c = 0;
+		memset(been, 0, sizeof(been));
+		cin >> s;
+		jud = 0;
+		last = -1;
+		search(s);
+		down.insert(s);
+		if (c>1||(!jud && coun))
+			cout << "Red Alert: ";
+		cout << "City " << s << " is lost.\n";
+		if (down.size() == n)
+			cout << "Game Over.\n";
+	}
 	return 0;
 }
