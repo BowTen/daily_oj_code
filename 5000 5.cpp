@@ -949,7 +949,7 @@ int main()
 		last = -1;
 		search(s);
 		down.insert(s);
-		if (c>1||(!jud && coun))
+		if (c>1&&(!jud && coun))
 			cout << "Red Alert: ";
 		cout << "City " << s << " is lost.\n";
 		if (down.size() == n)
