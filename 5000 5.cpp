@@ -897,63 +897,195 @@ using namespace std;
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-int n, m, k, jud = 0, s,coun = 0,c = 0;
-vector<int>vec[500];
-set<int>down;
-bool been[500] = { 0 };
-int last;
-void search(int t)
-{
-	for (int i = 0;i < vec[t].size();i++)
-	{
-		if (!been[vec[t][i]] && down.find(vec[t][i]) == down.end() && last != vec[t][i])
-		{
-			if (t == s)
-				c++;
-			coun++;
-			been[vec[t][i]] = true;
-			if (vec[t][i] == s)
-			{
-				jud = 1;
-				break;
-			}
-			else
-			{
-				last = t;
-				search(vec[t][i]);
-			}
-		}
-	}
-}
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, m, k, jud = 0, s,coun = 0,c = 0;
+//vector<int>vec[500];
+//set<int>down;
+//bool been[500] = { 0 };
+//int last;
+//void search(int t)
+//{
+//	for (int i = 0;i < vec[t].size();i++)
+//	{
+//		if (!been[vec[t][i]] && down.find(vec[t][i]) == down.end() && last != vec[t][i])
+//		{
+//			if (t == s)
+//				c++;
+//			coun++;
+//			been[vec[t][i]] = true;
+//			if (vec[t][i] == s)
+//			{
+//				jud = 1;
+//				break;
+//			}
+//			else
+//			{
+//				last = t;
+//				search(vec[t][i]);
+//			}
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	while (m--)
+//	{
+//		int t1, t2;
+//		cin >> t1 >> t2;
+//		vec[t1].push_back(t2);
+//		vec[t2].push_back(t1);
+//	}
+//	cin >> k;
+//	while (k--)
+//	{
+//		coun = 0;
+//		c = 0;
+//		memset(been, 0, sizeof(been));
+//		cin >> s;
+//		jud = 0;
+//		last = -1;
+//		search(s);
+//		down.insert(s);
+//		if (c>1&&(!jud && coun))
+//			cout << "Red Alert: ";
+//		cout << "City " << s << " is lost.\n";
+//		if (down.size() == n)
+//			cout << "Game Over.\n";
+//	}
+//	return 0;
+//}
 
-int main()
-{
-	cin >> n >> m;
-	while (m--)
-	{
-		int t1, t2;
-		cin >> t1 >> t2;
-		vec[t1].push_back(t2);
-		vec[t2].push_back(t1);
-	}
-	cin >> k;
-	while (k--)
-	{
-		coun = 0;
-		c = 0;
-		memset(been, 0, sizeof(been));
-		cin >> s;
-		jud = 0;
-		last = -1;
-		search(s);
-		down.insert(s);
-		if (c>1&&(!jud && coun))
-			cout << "Red Alert: ";
-		cout << "City " << s << " is lost.\n";
-		if (down.size() == n)
-			cout << "Game Over.\n";
-	}
-	return 0;
-}
+
+//int k, n, m;
+//int pre[500] = { 0 };
+//pair<int, int>way[5001];
+//void init()
+//{
+//	for (int i = 0;i < n;i++)
+//		pre[i] = i;
+//}
+//int find_pre(int s)
+//{
+//	if (pre[s] == s)
+//		return s;
+//	return find_pre(pre[s]);
+//}
+//void unite(int x, int y)
+//{
+//	int rx = find_pre(x);
+//	int ry = find_pre(y);
+//	if (rx != ry)
+//	{
+//		pre[rx] = ry;
+//	}
+//}
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	init();
+//	while (m--)
+//	{
+//		int x, y;
+//		cin >> x >> y;
+//		unite(x, y);
+//	}
+//	cin >> k;
+//	int a = 0, b = 0;
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (pre[i] == i)
+//			a++;
+//	}
+//	while (k--)
+//	{
+//		b = 0;
+//		int s;
+//		cin >> s;
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (pre[i] == s)
+//				pre[i] = i;
+//		}
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (pre[i] == i)
+//				b++;
+//		}
+//		if (b > a)
+//			cout << "Red Alert: ";
+//		cout << "City " << s << " is lost.\n";
+//		if (b == 0)
+//			cout << "Game Over.\n";
+//		a = b;
+//	}
+//	return 0;
+//}
+
+
+//typedef struct
+//{
+//	int a, b;
+//}node;
+//node way[5001];
+//int n, m, k,cnt;
+//int merg[501];
+//bool live[501];
+//int find_pre(int s) // find函数
+//{
+//	return s == merg[s] ? s : find_pre(merg[s]);
+//}
+//void unite(int a, int b)   // join函数
+//{
+//	int ra = find_pre(a), rb = find_pre(b);
+//	if (ra != rb)
+//		merg[ra] = rb;
+//}
+//void makemerg()   //构造并查集
+//{
+//	for (int i = 0;i < n;i++)
+//		merg[i] = i;
+//	for (int i = 0;i < m;i++)
+//		if(live[way[i].a] && live[way[i].b])
+//			unite(way[i].a, way[i].b);
+//}
+//int cntall()  // 计算连通分量
+//{
+//	cnt = 0;
+//	for (int i = 0;i < n;i++)
+//		if (live[i]&&merg[i] == i)
+//			cnt++;
+//	return cnt;
+//}
+//
+//
+//int main()
+//{
+//	memset(live, 1, sizeof(live));
+//	cin >> n >> m;
+//	for (int i = 0;i < m;i++)
+//	{
+//		cin >> way[i].a >> way[i].b;
+//	}
+//	makemerg();
+//	cin >> k;
+//	int last = cntall(), now;
+//	while (k--)
+//	{
+//		int t;
+//		cin >> t;
+//		live[t] = 0;
+//		makemerg();
+//		now = cntall();
+//		if (now > last)
+//			cout << "Red Alert: ";
+//		cout << "City " << t << " is lost.\n";
+//		last = now;
+//	}
+//	if (!cntall())
+//		cout << "Game Over.\n";
+//	return 0;
+//}
