@@ -1034,17 +1034,17 @@ using namespace std;
 //int n, m, k,cnt;
 //int merg[501];
 //bool live[501];
-//int find_pre(int s) // findº¯Êý
+//int find_pre(int s) // findï¿½ï¿½ï¿½ï¿½
 //{
 //	return s == merg[s] ? s : find_pre(merg[s]);
 //}
-//void unite(int a, int b)   // joinº¯Êý
+//void unite(int a, int b)   // joinï¿½ï¿½ï¿½ï¿½
 //{
 //	int ra = find_pre(a), rb = find_pre(b);
 //	if (ra != rb)
 //		merg[ra] = rb;
 //}
-//void makemerg()   //¹¹Ôì²¢²é¼¯
+//void makemerg()   //ï¿½ï¿½ï¿½ì²¢ï¿½é¼¯
 //{
 //	for (int i = 0;i < n;i++)
 //		merg[i] = i;
@@ -1052,7 +1052,7 @@ using namespace std;
 //		if(live[way[i].a] && live[way[i].b])
 //			unite(way[i].a, way[i].b);
 //}
-//int cntall()  // ¼ÆËãÁ¬Í¨·ÖÁ¿
+//int cntall()  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
 //{
 //	cnt = 0;
 //	for (int i = 0;i < n;i++)
@@ -1087,5 +1087,217 @@ using namespace std;
 //	}
 //	if (!cntall())
 //		cout << "Game Over.\n";
+//	return 0;
+//}
+
+
+//typedef struct
+//{
+//    int x,y;
+//}nodes;
+//nodes node[101];
+//int n,d;
+//bool flag = 0;
+//bool vis[101]={0};
+//bool last(int i)
+//{
+//    if(abs(node[i].x)>=50-d||abs(node[i].y)>=50-d)
+//    return true;
+//    return false;
+//}
+//bool first()
+//{
+//    for(int i = 1;i <= n;i++)
+//    {
+//        double a = node[i].x*node[i].x,b = node[i].y*node[i].y;
+//        if(a+b>=(d+7.5)*(d+7.5))
+//        return true;
+//    }
+//    return false;
+//}
+//void search(int s)
+//{
+//    if(!s)
+//    {
+//        for(int i = 1;i <= n&&!flag;i++)
+//        {
+//            double a = node[i].x*node[i].x,b = node[i].y*node[i].y;
+//            if(!vis[i]&& a + b >= (d + 7.5) * (d + 7.5))
+//            {
+//                vis[i]=1;
+//                if(last(i))
+//                flag = 1;
+//                else
+//                search(i);
+//                vis[i]=0;
+//            }
+//        }
+//    }
+//    else
+//    {
+//        for(int i = 1;i <= n&&!flag;i++)
+//        {
+//            double a = pow(node[i].x-node[s].x,2),b = pow(node[i].y-node[s].y,2);
+//            if(!vis[i]&&a+b>=d*d)
+//            {
+//                vis[i]=1;
+//                if(last(i))
+//                flag = 1;
+//                else
+//                search(i);
+//                vis[i]=0;
+//            }
+//        }
+//    }
+//}
+//
+//int main()
+//{
+//    cin >> n >> d;
+//    for(int i = 1;i <= n;i++)
+//        cin >> node[i].x >> node[i].y;
+//    
+//    if(d >= 42.5)
+//        cout << "Yes";
+//    else
+//    {
+//        if (first())
+//            search(0);
+//        if(flag)
+//        cout << "Yes";
+//        else
+//        cout << "No";
+//    }
+//    return 9;
+//}
+
+
+
+
+
+//typedef struct
+//{
+//	int x, y;
+//}node;
+//node fish[101];
+//bool vis[101] = { 0 };
+//int n, d, jud = 0;
+//int search(int s)
+//{
+//	for (int i = 0;!jud&&i < n;i++)
+//	{
+//		int len2 = pow(fish[i].x - fish[s].x, 2) + pow(fish[i].y - fish[s].y, 2);
+//		if (!vis[i] && len2 <= d * d)
+//		{
+//			vis[i] = 1;
+//			if (abs(fish[i].x) >= 50 - d || abs(fish[i].x >= 50 - d))
+//				jud = 1;
+//			else
+//				search(i);
+//			vis[i] = 0;
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	cin >> n >> d;
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> fish[i].x >> fish[i].y;
+//	}
+//
+//	if (d >= 42.5)
+//		cout << "Yes";
+//	else
+//	{
+//		for (int i = 0;!jud && i < n;i++)
+//		{
+//			int len2 = pow(fish[i].x, 2) + pow(fish[i].y, 2);
+//			if (!vis[i] && len2 <= pow(7.5 + d, 2))
+//			{
+//				vis[i] = 1;
+//				search(i);
+//				vis[i] = 0;
+//			}
+//		}
+//		if (jud)
+//			cout << "Yes";
+//		else
+//			cout << "No";
+//	}
+//	return 0;
+//}
+
+
+//int way[10][10] = { 0 }, n, e;
+//int vis[10] = { 0 },c = 0;
+//queue<int>que;
+//void dfs(int s)
+//{
+//	cout << " " << s;
+//	vis[s] = 1;
+//	c++;
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (!vis[i] && way[s][i])
+//			dfs(i);
+//	}
+//}
+//
+//
+//int main()
+//{
+//	cin >> n >> e;
+//	for (int i = 0;i < e;i++)
+//	{
+//		int t1, t2;
+//		cin >> t1 >> t2;
+//		way[t1][t2] = way[t2][t1] = 1;
+//	}
+//	while (c < n)
+//	{
+//		cout << "{";
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (!vis[i])
+//			{
+//				dfs(i);
+//				break;
+//			}
+//		}
+//		cout << " }\n";
+//	}
+//	memset(vis, 0, sizeof(vis));
+//	c = 0;
+//	while (c < n)
+//	{
+//		cout << "{";
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (!vis[i])
+//			{
+//				que.push(i);
+//				vis[i] = 1;
+//				while (!que.empty())
+//				{
+//					int t = que.front();
+//					for (int i = 0;i < n;i++)
+//					{
+//						if (!vis[i] && way[i][t])
+//						{
+//							que.push(i);
+//							vis[i] = 1;
+//						}
+//					}
+//					cout << " " << t;
+//					c++;
+//					que.pop();
+//				}
+//				break;
+//			}
+//		}
+//		cout << " }\n";
+//	}
 //	return 0;
 //}
