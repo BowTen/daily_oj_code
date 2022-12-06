@@ -1301,3 +1301,79 @@ using namespace std;
 //	}
 //	return 0;
 //}
+
+
+//int n, m, vis[1001] = { 0 };
+//set<int>way[1001];
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	for (int i = 0;i < m;i++)
+//	{
+//		int t1, t2;
+//		cin >> t1 >> t2;
+//		way[t1].insert(t2);
+//		way[t2].insert(t1);
+//	}
+//	for (int i = 1;i <= n;i++)
+//	{
+//		memset(vis, 0, sizeof(vis));
+//		int c = 0,deep = 0,last = 0;
+//		queue<int>que;
+//		cout << i << ": ";
+//		que.push(i);last++;
+//		while (!que.empty() && deep < 6)
+//		{
+//			int now = que.front();
+//			for (auto p = way[now].begin();p != way[now].end();p++)
+//			{
+//				if (!vis[*p])
+//				{
+//					vis[*p] = 1;
+//					que.push(*p);
+//					c++;
+//				}
+//			}
+//			que.pop();
+//			if (--last == 0)
+//			{
+//				deep++;
+//				last = que.size();
+//			}
+//		}
+//		double f = (double)c*100.0 / (double)n;
+//		printf("%.2lf%%\n",f);
+//	}
+//	return 0;
+//}
+
+
+
+
+int num[1000];
+char a[10000] = { 0 };
+int main()
+{
+	for (int i = 0;1;i++)
+	{
+		a[i] = getchar();
+		if (a[i] != ' ' && a[i] != '-' &&(a[i] > '9' || a[i] < '0' || a[i] == '.'))
+			break;
+	}
+	int j = 0;
+	for (int i = 0;1;i++)
+	{
+		if (a[i] != '-' &&(a[i] > '9' || a[i] < '0' || a[i] == '.'))
+			break;
+		num[j++] = atoi(a+i);
+		while (a[++i] != ' ');
+	}
+	sort(num, num + j);
+	cout << "从标准设备读入数据，直到输入是非整型数据为止\n";
+	for (int i = 0;i < j;i++)
+	{
+		cout << num[i] << " ";
+	}
+	return 0;
+}
