@@ -1351,29 +1351,171 @@ using namespace std;
 
 
 
-int num[1000];
-char a[10000] = { 0 };
+//int num[1000];
+//char a[10000] = { 0 };
+//int main()
+//{
+//	for (int i = 0;1;i++)
+//	{
+//		a[i] = getchar();
+//		if (a[i] != ' ' && a[i] != '-' &&(a[i] > '9' || a[i] < '0' || a[i] == '.'))
+//			break;
+//	}
+//	int j = 0;
+//	for (int i = 0;1;i++)
+//	{
+//		if (a[i] != '-' &&(a[i] > '9' || a[i] < '0' || a[i] == '.'))
+//			break;
+//		num[j++] = atoi(a+i);
+//		while (a[++i] != ' ');
+//	}
+//	sort(num, num + j);
+//	cout << "从标准设备读入数据，直到输入是非整型数据为止\n";
+//	for (int i = 0;i < j;i++)
+//	{
+//		cout << num[i] << " ";
+//	}
+//	return 0;
+//}
+
+
+
+//
+//typedef struct
+//{
+//    int a, b;
+//    double num;
+//}real_m;
+//
+//int main()
+//{
+//    real_m x, y;
+//    scanf("%d/%d %d/%d", &x.a, &x.b, &y.a, &y.b);
+//    x.num = x.a / (double)x.b;
+//    y.num = y.a / (double)y.b;
+//    printf("%d/%d", x.a, x.b);
+//    if (x.num == y.num)
+//        printf(" = ");
+//    else if (x.num > y.num)
+//        printf(" > ");
+//    else
+//        printf(" < ");
+//    printf("%d/%d", y.a, y.b);
+//    return 0;
+//}
+
+
+
+//#include<stdio.h>
+//
+//typedef struct
+//{
+//	char name[11], num[20];
+//	char birt[10];
+//}people;
+//people ar[11];
+//int cmp(const void* e1, const void* e2)
+//{
+//	return atoi(((people*)e1)->birt) - atoi(((people*)e2)->birt);
+//}
+//
+//int main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	for (int i = 0;i < n;i++)
+//	{
+//		scanf("%s %s %s", ar[i].name, &ar[i].birt, ar[i].num);
+//	}
+//	qsort(ar, n, sizeof(ar[0]), cmp);
+//	for (int i = 0;i < n;i++)
+//	{
+//		printf("%s %s %s\n", ar[i].name, ar[i].birt, ar[i].num);
+//	}
+//	return 0;
+//}
+
+
+
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//int main()
+//{
+//    char ch[100] = { 0 };
+//    cin >> ch;
+//    int kg = 0;
+//    for (int i = 0;i < strlen(ch);i++)
+//    {
+//
+//        if (ch[i] >= '0' && ch[i] <= '9')
+//        {
+//            if (ch[i] != '0')
+//                kg = 1;
+//            if (kg)
+//                printf("%c", ch[i]);
+//            if (ch[i] == '0')
+//                kg = 1;
+//
+//        }
+//    }
+//    return 0;
+//}
+
+
+
+//#include<stdio.h>
+//#include<stdlib.h>
+//int main()
+//{
+//    char c[20];
+//    cin >> c;
+//    int jud = 1;
+//    for (int i = 0, j = strlen(c)-1;i <= j;i++, j--)
+//    {
+//        if (c[i] != c[j])
+//        {
+//            jud = 0;
+//            break;
+//        }
+//    }
+//    if (jud)
+//        printf("Yes");
+//    else
+//        printf("No");
+//    return 0;
+//}
+
+
+//#include<stdio.h>
+//#include<string.h>
+//
+//int main()
+//{
+//    char ch[100];
+//    cin >> ch;
+//    for (int i = strlen(ch) - 1;i >= 0;i--)
+//    {
+//        printf("%c", &ch[i]);
+//    }
+//    return 0;
+//}
+
+
+
+#include<stdio.h>
+#include<string.h>
+
 int main()
 {
-	for (int i = 0;1;i++)
-	{
-		a[i] = getchar();
-		if (a[i] != ' ' && a[i] != '-' &&(a[i] > '9' || a[i] < '0' || a[i] == '.'))
-			break;
-	}
-	int j = 0;
-	for (int i = 0;1;i++)
-	{
-		if (a[i] != '-' &&(a[i] > '9' || a[i] < '0' || a[i] == '.'))
-			break;
-		num[j++] = atoi(a+i);
-		while (a[++i] != ' ');
-	}
-	sort(num, num + j);
-	cout << "从标准设备读入数据，直到输入是非整型数据为止\n";
-	for (int i = 0;i < j;i++)
-	{
-		cout << num[i] << " ";
-	}
-	return 0;
+    char t[100] = { 0 }, max[100] = { 0 };
+    scanf("%s", max);
+    while (t[0] != '.')
+    {
+        scanf("%s", t);
+        if (strlen(t) > strlen(max))
+            strcpy(max, t);
+    }
+    printf("%s", max);
+    return 0;
 }
