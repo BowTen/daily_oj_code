@@ -1503,19 +1503,73 @@ using namespace std;
 
 
 
-#include<stdio.h>
-#include<string.h>
+//#include<stdio.h>
+//#include<string.h>
+//
+//int main()
+//{
+//    char t[100] = { 0 }, max[100] = { 0 };
+//    scanf("%s", max);
+//    while (t[0] != '.')
+//    {
+//        scanf("%s", t);
+//        if (strlen(t) > strlen(max))
+//            strcpy(max, t);
+//    }
+//    printf("%s", max);
+//    return 0;
+//}
+
+
+
+int n,maxm = 0,mdoor = 0;
+vector<int>room[10001];
 
 int main()
 {
-    char t[100] = { 0 }, max[100] = { 0 };
-    scanf("%s", max);
-    while (t[0] != '.')
-    {
-        scanf("%s", t);
-        if (strlen(t) > strlen(max))
-            strcpy(max, t);
-    }
-    printf("%s", max);
-    return 0;
+	cin >> n;
+	for (int i = 1;i <= n;i++)
+	{
+		int k;
+		cin >> k;
+		while (k--)
+		{
+			int t;
+			cin >> t;
+			room[i].push_back(t);
+		}
+	}
+	for (int i = 1;i <= n;i++)
+	{
+		int len = 0,last = 0,now = 0,door = 0;
+		queue<int>que;
+		if (!room[i].empty())
+			que.push(i);
+		last++;
+		while (!que.empty())
+		{
+			if(!room[que.front()].empty())
+			for (auto p = room[que.front()].begin();p != room[que.front()].end();p++)
+			{
+				que.push(*p);
+				now++;
+			}
+			door = que.front();
+			que.pop();
+			last--;
+			if (last == 0)
+			{
+				last = now;
+				now = 0;
+				len++;
+			}
+		}
+		if (len > maxm)
+		{
+			maxm = len;
+			mdoor = door;
+		}
+	}
+	cout << mdoor;
+	return 0;
 }
