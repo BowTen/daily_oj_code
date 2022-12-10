@@ -1576,33 +1576,273 @@ using namespace std;
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	cout << "fengqibisheng, yingyueerlai!";
+//	return 0;
+//}
 
 
 
 
 
 
+//typedef struct hero
+//{
+//	int t1, t2;
+//};
+//hero arr[6];
+//int h1, h2, m, have = 0;
+//
+//int main()
+//{
+//	for (int i = 0;i < 6;i++)
+//	{
+//		arr[i].t1 = -1;
+//	}
+//	cin >> h1 >> h2 >> m;
+//	while (m--)
+//	{
+//		int t1, t2, t3, t4;
+//		scanf("%d:%d %d", &t1, &t2, &t3);
+//		if (t3 == 3)
+//		{
+//			cin >> t4;
+//			if (have)
+//			{
+//				if (60 * (t1 - arr[t4].t1) + (t2 - arr[t4].t2) >= 30)
+//				{
+//					arr[t4].t1 = t1;
+//					arr[t4].t2 = t2;
+//					double s = (125.0 + 0.06 * h1) * 0.1;
+//					h1 += (int)s;
+//				}
+//			}
+//		}
+//		else if (t3 == 1)
+//		{
+//			have = 1;
+//			h1 += 800;
+//		}
+//		else if (t3 == 2)
+//			h1 += h2;
+//	}
+//	cout << h1;
+//	return 0;
+//}
 
 
 
 
+//typedef long long ll;
+//set<ll>s,s1;
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	while (n--)
+//	{
+//		ll t;
+//		cin >> t;
+//		s.insert(t);
+//	}
+//	for (auto p = s.begin();p != s.end();p++)
+//	{
+//		if(s.find(*p+9)==s.end())
+//		s1.insert(*p + 9);
+//	}
+//	cout << s1.size();
+//	return 0;
+//}
 
 
 
+//ll n, m, k;
+//typedef struct
+//{
+//	ll a, c;
+//}people;
+//people vec[200002];
+//
+//int cmp(const void* e1, const void* e2)
+//{
+//	return ((people*)e1)->a - ((people*)e2)->a;
+//}
+//
+//int main()
+//{
+//	cin >> n >> m >> k;
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> vec[i].a;
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		ll t;
+//		cin >> t;
+//		vec[i].a -= t*m;
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		ll t;
+//		cin >> t;
+//		vec[i].c = t;
+//	}
+//	qsort(vec,n,sizeof(vec[0]), cmp);
+//	int sum = 0;
+//	for (int i = n - 1;i >= 0;i--)
+//	{
+//		if (vec[i].a > 0)
+//			sum--;
+//		while (k>0&&vec[i].a <= 0)
+//		{
+//			k--;
+//			vec[i].a += vec[i].c;
+//		}
+//		if (vec[i].a > 0)
+//			sum++;
+//	}
+//	cout << sum;
+//	return 0;
+//}
 
 
 
+//int main()
+//{
+//	int n,s = 0;
+//	cin >> n;
+//	while (n--)
+//	{
+//		ll t;
+//		cin >> t;
+//		if (t % 2 == 1)
+//			s++;
+//	}
+//	if (s % 2 == 1)
+//		cout << "Alice";
+//	else
+//		cout << "Bob";
+//
+//	return 0;
+//}
 
 
 
+//int n, m, k;
+//int a[2002] = { 0 };
+//int main()
+//{
+//	cin >> n >> m >> k;
+//	for (int i = 1;i <= 2 * n;i++)
+//		a[i] = i;
+//	for (int s = 1, i = 1;1;i++, s++)
+//	{
+//		if (i > n)
+//			i = 1;
+//		if (s % m == 0)
+//		{
+//			a[i] = a[i] ^ a[i + n];
+//			a[i + n] = a[i] ^ a[i + n];
+//			a[i] = a[i] ^ a[i + n];
+//		}
+//		if (s == k)
+//			break;
+//	}
+//	for (int i = 1;i <= 2 * n;i++)
+//		cout << a[i] << " ";
+//	return 0;
+//}
+
+
+//typedef long long ll;
+//typedef struct
+//{
+//	ll a, c;
+//}p;
+//int n, m, k;
+//p arr[200002] = { 0 };
+//
+//int cmp(const void* e1, const void* e2)
+//{
+//	if (((p*)e1)->a > ((p*)e2)->a) return 1;
+//	else if (((p*)e1)->a < ((p*)e2)->a) return -1;
+//	else if (((p*)e1)->a == ((p*)e2)->a)
+//	{
+//		if (((p*)e1)->c > ((p*)e2)->c)
+//			return 1;
+//		else if (((p*)e1)->c < ((p*)e2)->c)
+//			return -1;
+//		else
+//			return 0;
+//	}
+//}
+//int main()
+//{
+//	cin >> n >> m >> k;
+//	for (ll i = 0;i < n;i++)
+//	{
+//		cin >> arr[i].a;
+//	}
+//	for (ll i = 0;i < n;i++)
+//	{
+//		ll t;
+//		cin >> t;
+//		arr[i].a -= t * m;
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> arr[i].c;
+//	}
+//	qsort(arr, n, sizeof(arr[0]), cmp);
+//	ll sum = 0;
+//	for (ll i = n - 1;i >= 0;i--)
+//	{
+//		while (k > 0 && arr[i].a <= 0)
+//		{
+//			k--;
+//			arr[i].a += arr[i].c;
+//		}
+//		if (arr[i].a > 0)
+//			sum++;
+//	}
+//	cout << sum;
+//	return 0;
+//}
 
 
 
-
-
-
-
-
-
-
-
+//typedef struct
+//{
+//	ll x, y;
+//}node;
+//ll n, k;
+//vector<node>vec;
+//bool cmp(node e1, node e2)
+//{
+//	if (e1.x == e2.x)
+//	{
+//		return e1.y < e2.y;
+//	}
+//	return e1.x < e2.x;
+//}
+//
+//int main()
+//{
+//	cin >> n >> k;
+//	for (int i = 0;i < k;i++)
+//	{
+//		ll x, y;
+//		cin >> x >> y;
+//		vec.push_back({ x,y });
+//	}
+//	sort(vec.begin(), vec.end(), cmp);
+//	for (int i = 0;i < k;i++)
+//	{
+//		if ()
+//	}
+//	return 0;
+//}
