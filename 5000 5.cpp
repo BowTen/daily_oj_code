@@ -1846,3 +1846,41 @@ using namespace std;
 //	}
 //	return 0;
 //}
+
+
+void fun(char* a)
+{
+	if (*a >= 'A' && *a <= 'Z')
+		*a += 'a' - 'A';
+	while (*a++)
+	{
+		if (*a >= 'A' && *a <= 'Z')
+			*a += 'a' - 'A';
+	}
+}
+
+int fun2(char* a, char* b)
+{
+	int s = 0,al = strlen(a),bl = strlen(b);
+	for (int i = 0,j = 0;i <= al;i++)
+	{
+		if (a[i] == b[j])
+		{
+			for (i++, j++;i <= al && j <= bl;i++, j++)
+				if (!b[j]) {
+					s++, j = 0;break;
+				}
+		}
+	}
+	return s;
+}
+
+
+int main()
+{
+	char a[200],b[200];
+	cin.getline(a, 200);
+	cin.getline(b, 200);
+	cout << fun2(a, b);
+	return 0;
+}
