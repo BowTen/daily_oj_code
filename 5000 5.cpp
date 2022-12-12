@@ -1848,39 +1848,76 @@ using namespace std;
 //}
 
 
-void fun(char* a)
-{
-	if (*a >= 'A' && *a <= 'Z')
-		*a += 'a' - 'A';
-	while (*a++)
-	{
-		if (*a >= 'A' && *a <= 'Z')
-			*a += 'a' - 'A';
-	}
-}
+//void fun(char* a)
+//{
+//	if (*a >= 'A' && *a <= 'Z')
+//		*a += 'a' - 'A';
+//	while (*a++)
+//	{
+//		if (*a >= 'A' && *a <= 'Z')
+//			*a += 'a' - 'A';
+//	}
+//}
+//
+//int fun2(char* a, char* b)
+//{
+//	int s = 0,al = strlen(a),bl = strlen(b);
+//	for (int i = 0,j = 0;i <= al;i++)
+//	{
+//		if (a[i] == b[j])
+//		{
+//			for (i++, j++;i <= al && j <= bl;i++, j++)
+//				if (!b[j]) {
+//					s++, j = 0;break;
+//				}
+//		}
+//	}
+//	return s;
+//}
+//
+//
+//int main()
+//{
+//	char a[200],b[200];
+//	cin.getline(a, 200);
+//	cin.getline(b, 200);
+//	cout << fun2(a, b);
+//	return 0;
+//}
 
-int fun2(char* a, char* b)
-{
-	int s = 0,al = strlen(a),bl = strlen(b);
-	for (int i = 0,j = 0;i <= al;i++)
-	{
-		if (a[i] == b[j])
-		{
-			for (i++, j++;i <= al && j <= bl;i++, j++)
-				if (!b[j]) {
-					s++, j = 0;break;
-				}
-		}
-	}
-	return s;
-}
 
+typedef long long ll;
 
 int main()
 {
-	char a[200],b[200];
-	cin.getline(a, 200);
-	cin.getline(b, 200);
-	cout << fun2(a, b);
+	ll t;
+	cin >> t;
+	while (t--)
+	{
+		ll a, b, k, s = 0;
+		cin >> a >> b >> k;
+		s += k / a + k / b;
+
+		//ll t1 = max(a,b), t2 = min(a,b), t3 = t1 % t2;
+		//while (t3=t1 % t2)
+		//{
+		//	t1 = max(t2, t3);
+		//	t2 = min(t2, t3);
+		//}
+
+		//s -= k / t2;
+
+		for (ll t1 = max(a, b), t2 = min(a, b);1;t1+=max(a,b))
+		{
+			if (!(t1 % t2))
+			{
+				s -= k / t1;
+				break;
+			}
+		}
+		cout << s;
+		if (t)
+			cout << endl;
+	}
 	return 0;
 }
