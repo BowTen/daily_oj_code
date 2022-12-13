@@ -1885,39 +1885,26 @@ using namespace std;
 //	return 0;
 //}
 
-
-typedef long long ll;
-
-int main()
-{
-	ll t;
-	cin >> t;
-	while (t--)
-	{
-		ll a, b, k, s = 0;
-		cin >> a >> b >> k;
-		s += k / a + k / b;
-
-		//ll t1 = max(a,b), t2 = min(a,b), t3 = t1 % t2;
-		//while (t3=t1 % t2)
-		//{
-		//	t1 = max(t2, t3);
-		//	t2 = min(t2, t3);
-		//}
-
-		//s -= k / t2;
-
-		for (ll t1 = max(a, b), t2 = min(a, b);1;t1+=max(a,b))
-		{
-			if (!(t1 % t2))
-			{
-				s -= k / t1;
-				break;
-			}
-		}
-		cout << s;
-		if (t)
-			cout << endl;
-	}
-	return 0;
-}
+//typedef long long ll;
+//
+//int main()
+//{
+//	ll t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		ll a, b, k;
+//		cin >> a >> b >> k;
+//		ll t1 = max(a, b), t2 = min(a, b), t3 = t1 % t2;
+//		while (t3 = t1 % t2)
+//		{
+//			t1 = max(t2, t3);
+//			t2 = min(t2, t3);
+//		}
+//		ll s1 = k / a, s2 = k / b;
+//		cout << s1 + s2 - k / ((a * b) / t2);
+//		if (t)
+//			cout << endl;
+//	}
+//	return 0;
+//}
