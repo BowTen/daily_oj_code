@@ -2005,28 +2005,110 @@ using namespace std;
 //}
 
 
-typedef long long ll;
-int t[10] = { 0,10,5,10,5,2,5,10,5,10 };
-int t2[10] = { 0,45,20,45,20,5,20,45,20,45 };
-int main()
-{
-	int q;
-	cin >> q;
-	while (q--)
-	{
-		ll n, m;
-		cin >> n >> m;
-		ll num = n / m;//满足的页数
-		m %= 10;
-		ll sum = t2[m] * (num / t[m]);
-		num %= t[m];
-		for (int i = 0,j = 0;i < num;i++)
-		{
-			j += m;
-			sum += j % 10;
-		}
-		cout << sum << endl;
+// typedef long long ll;
+// int t[10] = { 0,10,5,10,5,2,5,10,5,10 };
+// int t2[10] = { 0,45,20,45,20,5,20,45,20,45 };
+// int main()
+// {
+// 	int q;
+// 	cin >> q;
+// 	while (q--)
+// 	{
+// 		ll n, m;
+// 		cin >> n >> m;
+// 		ll num = n / m;//满足的页数
+// 		m %= 10;
+// 		if(!m)
+// 			cout << 0 << endl;
+// 		else
+// 		{
+// 			ll sum = t2[m] * (num / t[m]);
+// 			num %= t[m];
+// 			for (int i = 0,j = 0;i < num;i++)
+// 			{
+// 				j += m;
+// 				sum += j % 10;
+// 			}
+// 			cout << sum << endl;
+// 		}
 		
-	}
-	return 0;
-}
+// 	}
+// 	cout << "______________________";getchar();getchar();
+// 	return 0;
+// }
+
+
+
+
+// typedef long long ll;
+
+// int main()
+// {
+// 	int t;
+// 	cin >> t;
+// 	while(t--)
+// 	{
+// 		ll n,m;
+// 		cin >> n >> m;
+
+// 	}
+// 	return 0;
+// }
+
+
+//typedef struct ndoe
+//{
+//	int num;
+//	vector<int>vec;
+//}node;
+//node a[200002];
+//
+//bool cmp(node e1,node e2)
+//{
+//	return e1.num < e2.num;
+//}
+//
+//int main()
+//{
+//	int n,k;
+//	cin >> n >> k;
+//	for(int i = 0;i < n;i++)
+//	{
+//		cin >> a[i].num;
+//		int t = a[i].num;
+//		while(t)
+//		{
+//			a[i].vec.push_back(t);
+//			t /= 2;
+//		}
+//		a[i].vec.push_back(t);
+//	}
+//	sort(a,a+n,cmp);
+//	map<int,pair<int,int> >s;
+//	int min = 0x3f3f3f3f;
+//	for (int i = 0;1;i++)
+//	{
+//		for (int j = 0;j < n;j++)
+//		{
+//			if (a[j].vec.size() > i)
+//			{
+//				int flag = a[j].vec[i];
+//				if (s.find(flag) == s.end())
+//					s.insert({ flag,{ 1,i } });
+//				else
+//				{
+//					s[flag].first++;
+//					s[flag].second += i;
+//				}
+//				if (s[flag].first == k && min > s[flag].second)
+//					min = s[flag].second;
+//				if (j == n - 1 && i == a[j].vec.size() - 1)
+//				{
+//					cout << min;
+//					return 0;
+//				}
+//			}
+//		}
+//	}
+//	return 0;
+//}
