@@ -1908,3 +1908,125 @@ using namespace std;
 //	}
 //	return 0;
 //}
+
+
+
+//int main()
+//{
+//	int n,a = 0,b = 0;
+//	cin >> n;
+//	while (n--)
+//	{
+//		long long t;
+//		cin >> t;
+//		if (t % 2 == 0)
+//			a++;
+//		else
+//			b++;
+//	}
+//	cout << min(a , b);
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int n,s = 0;
+//		cin >> n;
+//		stack<int>que;
+//		while (n--)
+//		{
+//			int tmp;
+//			cin >> tmp;
+//			while(!que.empty() && que.top() > tmp)
+//			{
+//				s++;
+//				que.pop();
+//			}
+//			que.push(tmp);
+//		}
+//		cout << s << endl;
+//	}
+//	return 0;
+//}
+
+
+//typedef long long ll;
+//int arr[10] = {}
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		ll n, m;
+//		cin >> n >> m;
+//		2+4+6+8+2+4
+//	}
+//	return 0;
+//}
+
+
+
+//int a[50];
+//int main()
+//{
+//	int n, k;
+//	cin >> n >> k;
+//	for (int i = 0;i < n;i++)
+//		cin >> a[i];
+//	sort(a, a + n);
+//	int min = -1;
+//	for (int i = 0;i <= n-k;i++)
+//	{
+//		int s = 0,c = 1;
+//		for (int j = i + 1;j < n&&c < k;j++)
+//		{
+//			int tmp = a[j];
+//			while (tmp > a[i])
+//			{
+//				tmp /= 2;
+//				s++;
+//			}
+//			if (tmp == a[i])
+//				c++;
+//		}
+//		if (s < min || min == -1)
+//			min = s;
+//	}
+//	cout << min;
+//	return 0;
+//}
+
+
+typedef long long ll;
+int t[10] = { 0,10,5,10,5,2,5,10,5,10 };
+int t2[10] = { 0,45,20,45,20,5,20,45,20,45 };
+int main()
+{
+	int q;
+	cin >> q;
+	while (q--)
+	{
+		ll n, m;
+		cin >> n >> m;
+		ll num = n / m;//满足的页数
+		m %= 10;
+		ll sum = t2[m] * (num / t[m]);
+		num %= t[m];
+		for (int i = 0,j = 0;i < num;i++)
+		{
+			j += m;
+			sum += j % 10;
+		}
+		cout << sum << endl;
+		
+	}
+	return 0;
+}
