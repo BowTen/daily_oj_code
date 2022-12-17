@@ -1985,7 +1985,7 @@ using namespace std;
 //	int min = -1;
 //	for (int i = 0;i <= n-k;i++)
 //	{
-//		int s = 0,c = 1;
+//		int s = 0,c = 1;【
 //		for (int j = i + 1;j < n&&c < k;j++)
 //		{
 //			int tmp = a[j];
@@ -2112,3 +2112,307 @@ using namespace std;
 //	}
 //	return 0;
 //}
+
+
+//char tmpl[] = { 'a','b','c' };
+//deque<char>ch;
+//short times[300005] = { 0 };
+//
+//int main()
+//{
+//	int n;
+//	int num[3];
+//	cin >> n;getchar();
+//	num[0] = num[1] = num[2] = n;
+//	char a, b, c, d;
+//	cin >> a >> b;getchar();
+//	cin >> c >> d;
+//	ch.push_back('c');
+//	while (ch.size() < 3 * n)
+//	{
+//		char last = 0;
+//		for (int i = 0;i < 3;i++)
+//		{
+//			if (num[i]>0 && (last != tmpl[i]||last==0) && (ch.size() == 0 || (ch.back() != a && tmpl[i] != b && ch.back() != c && tmpl[i] != d) || \
+//				(ch.back() != a && tmpl[i] != b && ch.back() != c && tmpl[i] == d) || \
+//				(ch.back() != a && tmpl[i] != b && ch.back() == c && tmpl[i] != d) || \
+//				(ch.back() != a && tmpl[i] == b && ch.back() != c && tmpl[i] != d) || \
+//				(ch.back() != a && tmpl[i] == b && ch.back() != c && tmpl[i] == d) || \
+//				(ch.back() != a && tmpl[i] == b && ch.back() == c && tmpl[i] != d) || \
+//				(ch.back() == a && tmpl[i] != b && ch.back() != c && tmpl[i] != d) || \
+//				(ch.back() == a && tmpl[i] != b && ch.back() != c && tmpl[i] == d) || \
+//				(ch.back() == a && tmpl[i] != b && ch.back() == c && tmpl[i] != d)))
+//			{
+//				ch.push_back(tmpl[i]);
+//				num[i]--;
+//				break;
+//			}
+//			if (i == 2)
+//			{
+//				if (ch.size() == 1)
+//				{
+//					cout << "NO";
+//					return 0;
+//				}
+//				times[ch.size() - 1]++;
+//				last = ch.back();
+//				ch.pop_back();
+//				num[last - 'a']++;
+//				i = 0;
+//			}
+//			if (times[ch.size() - 1] > 2)
+//			{
+//				if (ch.size() == 1)
+//				{
+//					cout << "NO";
+//					return 0;
+//				}
+//				times[ch.size() - 1]++;
+//				ch.pop_back();
+//				last = ch.back();
+//				ch.pop_back();
+//				num[last - 'a']++;
+//				i = 0;
+//			}
+//		}
+//	}
+//	cout << "YES" << endl;
+//	while (ch.size())
+//	{
+//		cout << ch.front();
+//		ch.pop_front();
+//	}
+//	return 0;
+//}
+
+
+
+//int isc,c,v;
+//int main()
+//
+//{
+//	int n;
+//	cin >> n;
+//	while (n--)
+//	{
+//		string str;
+//		cin >> str;
+//		if (str == "CTRL")
+//			isc = 1;
+//		else if (str == "UNCTRL")
+//			isc = 0;
+//		else if (isc && str[0] == 'C')
+//			c = 1;
+//		else if (c == 1 && isc && str[0] == 'V')
+//			v = 1;
+//	}
+//	if (v)
+//		cout << "Yes";
+//	else
+//		cout << "No";
+//	return 0;
+//}
+
+//int tim[121] = { 0 };
+//inline void fun(int x, int y)
+//{
+//	for (x;x <= y;x++)
+//		tim[x]++;
+//}
+//
+//int main()
+//{
+//	int t, k;
+//	cin >> t >> k;
+//	while (t--)
+//	{
+//		int x, y;
+//		cin >> x >> y;
+//		fun(x, y);
+//	}
+//	int sum = 0,f = 0,a,b;
+//	queue<pair<int, int>>que;
+//	for (int i = 0;i <= 120;i++)
+//	{
+//		if (!f&&tim[i] < k)
+//		{
+//			f = 1;
+//			a = i;
+//		}
+//		if (f && (tim[i] >= k||i==120))
+//		{
+//			f = 0;
+//			sum++;
+//			if (tim[i] >= k)
+//				b = i-1;
+//			else
+//				b = i;
+//			que.push({ a,b });
+//		}
+//	}
+//	cout << sum << endl;
+//	while (!que.empty())
+//	{
+//		a = que.front().first;
+//		b = que.front().second;
+//		cout << a << "-" << b << endl;
+//		que.pop();
+//	}
+//	return 0;
+//}
+
+
+
+
+//	int a, b, c,sum = 0;
+//int main()
+//{
+//	int s, t;
+//	cin >> s >> t;
+//	for (a; a + b + c <= s && a * b * c <= t;a++)
+//		sum++;
+//	a = 0;b = 0;c = 0;
+//	for (a = 1;a<=s;a++)
+//		for (b = a;a + b + c <= s && a * b * c <= t;b++)
+//			sum++;
+//	a = 0;b = 0;c = 0;
+//	for (a = 1;a<=s;a++)
+//		for (b = a;b<=s;b++)
+//			for (c = b;a + b + c <= s && a * b * c <= t;c++)
+//				sum++;
+//	cout << sum;
+//	return 0;
+//}
+
+
+//typedef long long ll;
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		ll n, k;cin >> n >> k;
+//		cout << (ll)pow(n, (ll)pow(9, k)) % 10;
+//	}
+//	return 0;
+//}
+
+
+
+//typedef struct ndoe
+//{
+//	int num;
+//	vector<int>vec;
+//}node;
+//node a[200002];
+//
+//bool cmp(node e1,node e2)
+//{
+//	return e1.num < e2.num;
+//}
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	for(int i = 0;i < n;i++)
+//	{
+//		cin >> a[i].num;
+//		int t = a[i].num;
+//		while(1)
+//		{
+//			a[i].vec.push_back(t);
+//			if (t < 3)
+//				break;
+//			t /= 3;
+//		}
+//	}
+//	sort(a,a+n,cmp);
+//	map<int,pair<int,int> >s;
+//	int min = 0x3f3f3f3f;
+//	for (int i = 0;1;i++)
+//	{
+//		for (int j = 0;j < n;j++)
+//		{
+//			if (a[j].vec.size() > i)
+//			{
+//				int flag = a[j].vec[i];
+//				if (s.find(flag) == s.end())
+//					s.insert({ flag,{ 1,i } });
+//				else
+//				{
+//					s[flag].first++;
+//					s[flag].second += i;
+//				}
+//				if (s[flag].first == n && min > s[flag].second)
+//					min = s[flag].second;
+//				if (j == n - 1 && i == a[j].vec.size() - 1)
+//				{
+//					if (min == 0x3f3f3f3f)
+//						cout << "Lose";
+//					else
+//						cout << min;
+//					return 0;
+//				}
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+
+
+
+//typedef long long ll;
+//vector<ll>vec;
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	ll sum = n;
+//	while (n--)
+//	{
+//		ll t;
+//		cin >> t;
+//		vec.push_back(t);
+//	}
+//	sort(vec.begin(), vec.end());
+//	map<double, int>mp;
+//	for (int i = 1;i < vec.size();i++)
+//	{
+//		double q = vec[i] / vec[i - 1];
+//		if (mp.find(q) == mp.end())
+//			mp.insert({ q,1 });
+//		else
+//			mp[q]++;
+//	}
+//	double min = mp.begin()->first;
+//	for (auto p = ++mp.begin();p != mp.end();p++)
+//	{
+//		double tmp = min;
+//		int ci = 0;
+//		for (tmp;tmp < p->first;tmp *= min)
+//			ci++;
+//		sum += ci * p->second;
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+
+int main()
+{
+	int t;
+	cin >> t;
+	if (t < 0)
+		cout << t << "<" << 0;
+	
+	return 0;
+}
