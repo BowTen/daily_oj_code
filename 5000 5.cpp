@@ -2407,12 +2407,177 @@ using namespace std;
 
 
 
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	switch (n%4)
+//	{
+//	case 0 : 
+//	case 3:
+//		cout << 0;
+//		break;
+//	default:
+//		cout << 1;
+//		break;
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n, x, y, s = 0;
+//	cin >> n >> x >> y;
+//	for (int i = 0;i < n;i++)
+//	{
+//		int t;
+//		cin >> t;
+//		if (t <= x)
+//			s++;
+//	}
+//	if (s % 2 == 1)
+//		s++;
+//	if (x > y)
+//		cout << n;
+//	else
+//		cout << s / 2;
+//	return 0;
+//}
+
+//int num[3] = { 0 };
+//int need[3] = { 0 };
+//int main()
+//{
+//	int n,d;
+//	cin >> n;
+//	d = n / 3;
+//	string str;
+//	cin >> str;
+//	for (int i = 0;i < n;i++)
+//		num[str[i] - '0']++;
+//	for (int i = 0;i < 3;i++)
+//		need[i] = d - num[i];
+//	for (int i = n-1;i >= 0;i--)
+//	{
+//		if (need[str[i] - '0'] < 0)
+//		{
+//				if (need[2] > 0)
+//				{
+//					need[str[i] - '0']++;
+//					need[2]--;
+//					str[i] = '2';
+//				}
+//		}
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (need[str[i] - '0'] < 0)
+//		{
+//				if (need[0] > 0)
+//				{
+//					need[str[i] - '0']++;
+//					need[0]--;
+//					str[i] = '0';
+//				}
+//		}
+//	}
+//	if (need[1] > 0)
+//	{
+//		for (int i = 0;i < n;i++)
+//		{
+//			if(str[i]=='2')
+//			if (need[2] < 0)
+//			{
+//				if (need[1] > 0)
+//				{
+//					need[str[i] - '0']++;
+//					need[1]--;
+//					str[i] = '1';
+//				}
+//			}
+//		}
+//		for (int i = n - 1;i >= 0;i--)
+//		{
+//			if(str[i]=='0')
+//			if (need[0] < 0)
+//			{
+//				if (need[1] > 0)
+//				{
+//					need[str[i] - '0']++;
+//					need[1]--;
+//					str[i] = '1';
+//				}
+//			}
+//		}
+//	}
+//	cout << str;
+//	return 0;
+//}
+
+
+//typedef struct
+//{
+//	int sum = 0;
+//	set<int>color;
+//}node;
 int main()
 {
-	int t;
-	cin >> t;
-	if (t < 0)
-		cout << t << "<" << 0;
-	
+	int n, k;
+	cin >> n >> k;
+	map<int, int>mp;
+	map<int, set<int> >flag;
+	vector<int>num;
+	vector<int>col;
+	int maxtimes = 0;
+	for (int i = 0;i < n;i++)
+	{
+		int t;
+		cin >> t;
+		flag[t];
+		num.push_back(t);
+		if (mp.find(t) == mp.end())
+			mp[t] = 0;
+		mp[t]++;
+		if (mp[t] > maxtimes)
+			maxtimes = mp[t];
+	}
+	if (maxtimes > k)
+		cout << "NO";
+	else
+	{
+		//所有颜色先上一遍
+		for (int i = 1;i <= k;i++)
+		{
+			col.push_back(i);
+			flag[num[i - 1]].insert(i);
+		}
+
+		for (int i = k;i < n;i++)
+		{
+			for (int j = 1;j <= k;j++)
+			{
+				if (flag[num[i]].find(j)==flag[num[i]].end())
+				{
+					flag[num[i]].insert(j);
+					col.push_back(j);
+					break;
+				}
+			}
+		}
+
+		if (col.size() == n)
+		{
+			cout << "YES\n";
+			for (int i = 0;i < n;i++)
+			{
+				if (i)
+					cout << " ";
+				cout << col[i];
+			}
+		}
+		else
+			cout << "NO";
+	}
 	return 0;
 }
