@@ -2521,63 +2521,214 @@ using namespace std;
 //	int sum = 0;
 //	set<int>color;
 //}node;
+//int main()
+//{
+//	int n, k;
+//	cin >> n >> k;
+//	map<int, int>mp;
+//	map<int, set<int> >flag;
+//	vector<int>num;
+//	vector<int>col;
+//	int maxtimes = 0;
+//	for (int i = 0;i < n;i++)
+//	{
+//		int t;
+//		cin >> t;
+//		flag[t];
+//		num.push_back(t);
+//		if (mp.find(t) == mp.end())
+//			mp[t] = 0;
+//		mp[t]++;
+//		if (mp[t] > maxtimes)
+//			maxtimes = mp[t];
+//	}
+//	if (maxtimes > k)
+//		cout << "NO";
+//	else
+//	{
+//		//所有颜色先上一遍
+//		for (int i = 1;i <= k;i++)
+//		{
+//			col.push_back(i);
+//			flag[num[i - 1]].insert(i);
+//		}
+//
+//		for (int i = k;i < n;i++)
+//		{
+//			for (int j = 1;j <= k;j++)
+//			{
+//				if (flag[num[i]].find(j)==flag[num[i]].end())
+//				{
+//					flag[num[i]].insert(j);
+//					col.push_back(j);
+//					break;
+//				}
+//			}
+//		}
+//
+//		if (col.size() == n)
+//		{
+//			cout << "YES\n";
+//			for (int i = 0;i < n;i++)
+//			{
+//				if (i)
+//					cout << " ";
+//				cout << col[i];
+//			}
+//		}
+//		else
+//			cout << "NO";
+//	}
+//	return 0;
+//}
+
+
+//typedef struct node
+//{
+//	int a;
+//	struct node* p;
+//}*        NODE;
+//NODE p;
+//
+//int main()
+//{
+//	p = mal);
+//	p->a = 1;
+//	cout << p->a;
+//	return 0;
+//}
+
+//#include<stdio.h>
+//#include<string.h>
+//
+//int main()
+//{
+//	char str[202] = { 0 };
+//	scanf("%s", str);
+//	int len = strlen(str);
+//	for (int i = 0;i < len;i++)
+//	{
+//		if (str[i] == '-' && str[i + 1] > str[i - 1] && \
+//			((str[i - 1] >= '0' && str[i + 1] >= '0' && str[i - 1] <= '9' && str[i + 1] <= '9') || \
+//				(str[i - 1] >= 'a' && str[i + 1] >= 'a' && str[i - 1] <= 'z' && str[i + 1] <= 'z')))
+//		{
+//			for (char ch = str[i - 1] + 1;ch <= str[i + 1];ch++)
+//				printf("%c",ch);
+//			i++;
+//		}
+//		else
+//			printf("%c",str[i]);
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int n, x;
+//		cin >> n >> x;
+//		if (n > 2)
+//		{
+//			int t;
+//			n -= 2;
+//			if (n % x == 0)
+//				t = 1;
+//			else
+//				t = 2;
+//			cout << t + (n / x) << endl;;
+//		}
+//		else
+//			cout << 1 << endl;
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int n, m;
+//		cin >> n >> m;
+//		int jud = 0;
+//		while (n--)
+//		{
+//			int a, b, c, d;
+//			cin >> a >> b >> c >> d;
+//			if (b == c)
+//				jud = 1;
+//		}
+//		if (m % 2 != 0)
+//			jud = 0;
+//		if (jud)
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int s = 0;
+//		long long n;
+//		cin >> n;
+//		double t = round(sqrtl(n));
+//		s += t - 1;
+//		s += ceil(n / t)-1;
+//		cout << s << endl;
+//	}
+//	return 0;
+//}
+
+
+long long num[200002];
 int main()
 {
-	int n, k;
-	cin >> n >> k;
-	map<int, int>mp;
-	map<int, set<int> >flag;
-	vector<int>num;
-	vector<int>col;
-	int maxtimes = 0;
+	int n;
+	cin >> n;
 	for (int i = 0;i < n;i++)
 	{
-		int t;
-		cin >> t;
-		flag[t];
-		num.push_back(t);
-		if (mp.find(t) == mp.end())
-			mp[t] = 0;
-		mp[t]++;
-		if (mp[t] > maxtimes)
-			maxtimes = mp[t];
+		cin >> num[i];
 	}
-	if (maxtimes > k)
-		cout << "NO";
-	else
+	long long sum = 0;
+	int q = -2, p = -1;
+	for (int i = 0;i < n - 1;i++)
 	{
-		//所有颜色先上一遍
-		for (int i = 1;i <= k;i++)
+		long long tmp = num[i];
+		for (int j = i + 1;j < n;j++)
 		{
-			col.push_back(i);
-			flag[num[i - 1]].insert(i);
-		}
-
-		for (int i = k;i < n;i++)
-		{
-			for (int j = 1;j <= k;j++)
+			tmp += num[j];
+			if (!tmp)
 			{
-				if (flag[num[i]].find(j)==flag[num[i]].end())
+					sum++;
+				if (i >= p && p != -1)
 				{
-					flag[num[i]].insert(j);
-					col.push_back(j);
-					break;
+					sum--;
+					q = i;
+					p = j;
 				}
+				break;
 			}
 		}
-
-		if (col.size() == n)
-		{
-			cout << "YES\n";
-			for (int i = 0;i < n;i++)
-			{
-				if (i)
-					cout << " ";
-				cout << col[i];
-			}
-		}
-		else
-			cout << "NO";
 	}
+	cout << sum;
 	return 0;
 }
+
+//1 -1 1
