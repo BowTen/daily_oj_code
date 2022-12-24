@@ -2697,38 +2697,297 @@ using namespace std;
 //}
 
 
-long long num[200002];
-int main()
-{
-	int n;
-	cin >> n;
-	for (int i = 0;i < n;i++)
-	{
-		cin >> num[i];
-	}
-	long long sum = 0;
-	int q = -2, p = -1;
-	for (int i = 0;i < n - 1;i++)
-	{
-		long long tmp = num[i];
-		for (int j = i + 1;j < n;j++)
-		{
-			tmp += num[j];
-			if (!tmp)
-			{
-					sum++;
-				if (i >= p && p != -1)
-				{
-					sum--;
-					q = i;
-					p = j;
-				}
-				break;
-			}
-		}
-	}
-	cout << sum;
-	return 0;
-}
+//long long num[200002];
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> num[i];
+//	}
+//	long long sum = 0;
+//	int q = -2, p = -1;
+//	for (int i = 0;i < n - 1;i++)
+//	{
+//		long long tmp = num[i];
+//		for (int j = i + 1;j < n;j++)
+//		{
+//			tmp += num[j];
+//			if (!tmp)
+//			{
+//					sum++;
+//				if (i >= p && p != -1)
+//				{
+//					sum--;
+//					q = i;
+//					p = j;
+//				}
+//				break;
+//			}
+//		}
+//	}
+//	cout << sum;
+//	return 0;
+//}
 
 //1 -1 1
+
+
+
+
+//typedef long long ll;
+//ll a[200005] = {0};
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	map<ll, ll>mp;
+//	mp[0]++;
+//	int sum = 0;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		cin >> a[i];
+//		a[i] += a[i - 1];
+//		if (mp[a[i]])
+//		{
+//			sum++;
+//			mp.clear();
+//		}
+//		mp[a[i]]++;
+//		mp[a[i - 1]]++;
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+//char str[200005];
+//int main()
+//{
+//	int len;
+//	cin >> len;
+//	cin >> str;
+//	int sum = 0,a=0,b=0;
+//	for (int i = 0;i < len;i++)
+//	{
+//		if (str[i] == 'a')
+//			a++;
+//		else
+//			b++;
+//		if ((i + 1) % 2 == 0)
+//		{
+//			if (a == 2)
+//			{
+//				sum++;
+//				str[i] = 'b';
+//			}
+//			else if (b == 2)
+//			{
+//				sum++;
+//				str[i] = 'a';
+//			}
+//			a = b = 0;
+//		}
+//	}
+//	cout << sum << endl << str;
+//	return 0;
+//}
+
+//
+//multimap<int,int>arr;
+//vector<int>b;
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		int t;
+//		cin >> t;
+//		arr.insert({t,i});
+//	}
+//	long long sum = 0;
+//	int x = 0;
+//	for (auto p = arr.rbegin();p != arr.rend();p++, x++)
+//	{
+//		sum += (p->first * x) + 1;
+//		b.push_back(p->second);
+//	}
+//	cout << sum << endl;
+//	for (int i = 0;i < b.size();i++)
+//		cout << b[i] << " ";
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int x1, x2, y1, y2;
+//	cin >> x1 >> y1 >> x2 >> y2;
+//	int x3, x4, y3, y4;
+//	cin >> x3 >> y3 >> x4 >> y4;
+//	if ((y3 <= y1 && y4 >= y2) || (x3 <= x1 && x4 >= x2))
+//	{
+//		if (y3 <= y1 && y4 >= y2)
+//		{
+//			if (x3 <= x1 && x4 > x1)
+//			{
+//				x1 = min(x4,x2);
+//			}
+//			else if (x3 > x1 &&x3 < x2&& x4 >= x2)
+//			{
+//				x2 = x3;
+//			}
+//		}
+//
+//		if (x3 <= x1 && x4 >= x2)
+//		{
+//			if (y3 <= y1 && y4 > y1)
+//			{
+//				y1 = min(y4,y2);
+//			}
+//			else if (y3 > y1 && y3 < y2 && y4 >= y2)
+//			{
+//				y2 = y3;
+//			}
+//		}
+//	}
+//
+//	cin >> x3 >> y3 >> x4 >> y4;
+//	if ((y3 <= y1 && y4 >= y2) || (x3 <= x1 && x4 >= x2))
+//	{
+//		if (y3 <= y1 && y4 >= y2)
+//		{
+//			if (x3 <= x1 && x4 > x1)
+//			{
+//				x1 = min(x4, x2);
+//			}
+//			else if (x3 > x1 && x3 < x2 && x4 >= x2)
+//			{
+//				x2 = x3;
+//			}
+//		}
+//
+//		if (x3 <= x1 && x4 >= x2)
+//		{
+//			if (y3 <= y1 && y4 > y1)
+//			{
+//				y1 = min(y4, y2);
+//			}
+//			else if (y3 > y1 && y3 < y2 && y4 >= y2)
+//			{
+//				y2 = y3;
+//			}
+//		}
+//	}
+//
+//	if (x1 == x2 || y1 == y2)
+//		cout << "NO";
+//	else
+//		cout << "YES";
+//	return 0;
+//}
+
+
+//typedef long long ll;
+//map<ll, int>mp;
+//map<ll, int>cha;
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//		ll t;
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> t;
+//		mp[t]++;
+//	}
+//	ll max = (--mp.end())->first;
+//	for (auto p = mp.begin();p != mp.end();p++)
+//	{
+//		cha[max - p->first] = p->second;
+//	}
+//	ll flag= -1,flag2 = -1;
+//	for (auto p = cha.begin();p != cha.end();p++)
+//	{
+//		if (p->first != 0)
+//		{
+//			flag = p->first;
+//			if (p != --cha.end())
+//				flag2 = (++p)->first;
+//			break;
+//		}
+//	}
+//	if (flag != -1)
+//	{
+//		if (flag2 != -1)
+//		{
+//			/*int jud = 0;
+//			while (!jud)
+//			{
+//				auto p = cha.begin();
+//				for (p = cha.begin();p != cha.end();p++)
+//				{
+//					if (p->first % flag != 0)
+//						break;
+//				}
+//				if (p == cha.end())
+//					jud = 1;
+//				for (ll t = 2;!jud && t <= flag;t++)
+//				{
+//					if (flag % t == 0)
+//					{
+//						flag /= t;
+//						break;
+//					}
+//				}
+//			}*/
+//			auto p = cha.find(flag2);
+//			while (p != cha.end())
+//			{
+//				flag2 = p->first;
+//				ll c = flag2 % flag;
+//				while (c)
+//				{
+//					flag2 = flag > c ? flag : c;
+//					flag = flag < c ? flag : c;
+//					c = flag2 % flag;
+//				}
+//				p++;
+//			}
+//		}
+//		ll sum = 0;
+//		for (auto p = mp.begin();p != mp.end();p++)
+//		{
+//			sum += p->second * (max - p->first) / flag;
+//		}
+//		cout << sum << " " << flag;
+//	}
+//	else
+//		cout << "0 0";
+//	return 0;
+//}
+
+
+
+//typedef long long ll;
+//int main()
+//{
+//	int q;
+//	cin >> q;
+//	while (q--)
+//	{
+//		ll s;
+//		cin >> s;
+//		double t = (pow((1 + 8 * s), 0.5) - 1.0) / 2.0, t1 = ceil(t), t2 = floor(t);
+//		if (t1 == t)
+//			cout << t << endl;
+//		else
+//		{
+//			ll tmp = t2,st2 = t2 + (t2*t2-t2)/2.0,delt = s-st2;
+//			cout << delt << endl;;
+//		}
+//	}
+//	return 0;
+//}
