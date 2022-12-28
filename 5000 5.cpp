@@ -3050,3 +3050,133 @@ using namespace std;
 //	}
 //	return 0;
 //}
+//int main()
+//{
+//	int a = 1e2;
+//	int x = 3;
+//	cout << (3 <= x < 10 < 2);
+//	return 0;
+// }
+
+
+
+//int main()
+//{
+//	/*FILE* fp = fopen("new文件", "w");
+//	if (fp == NULL)
+//	{
+//		perror("new文件");
+//		return 1;
+//	}
+//
+//	fclose(fp);
+//	fp = NULL;*/
+//
+//
+//
+//
+//	int ret = fgetc(stdin);
+//	fputc(ret, stdout);
+//	printf("ccscasda");
+//	ret = fgetc(stdout);
+//	printf("\n\n%c", ret);
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int a, b, c, d, e, f;
+//		getchar();
+//		cin >> a >> b >> c >> d >> e >> f;
+//		if ((b == d || b == f || d == f) && (a == c || a == e || c == e))
+//			cout << "NO\n";
+//		else
+//			cout << "YES\n";
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int n;
+//		cin >> n;
+//		int jud = 0;
+//		vector<int>vec;
+//		while (n--)
+//		{
+//			int tmp;
+//			cin >> tmp;
+//			vec.push_back(tmp);
+//		}
+//		sort(vec.begin(), vec.end());
+//		if (vec.size() == 1 && vec[0] == 1)
+//			cout << "YES\n";
+//		else if (vec.size() == 1)
+//			cout << "NO\n";
+//		else if (vec[vec.size() - 1] - vec[vec.size() - 2] <= 1)
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//	return 0;
+//}
+
+
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int n;
+//		cin >> n;
+//		vector<int>vec;
+//		int q0 = -1, p0 = -1, f1 = -1, f2 = -1, fs = 0, zs = 0;
+//		for (int i = 1;i <= n;i++)
+//		{
+//			int tmp;
+//			cin >> tmp;
+//			vec.push_back(tmp);
+//			if (tmp == 0)
+//			{
+//				if (q0 == -1)
+//					q0 = i;
+//				else
+//					p0 = i;
+//			}
+//			else if (tmp < 0)
+//			{
+//				fs++;
+//				if (f1 == -1)
+//					f1 = i;
+//				else
+//					f2 = i;
+//			}
+//			else if (tmp > 0)
+//				zs++;
+//		}
+//		if (n == 1 && vec[0] <= 0)
+//			cout << "1 0\n";
+//		else if (n == 1)
+//			cout << "0 0\n";
+//		else
+//		{
+//			int x = 0, y = 0;
+//
+//		}
+//	}
+//	return 0;
+//}
