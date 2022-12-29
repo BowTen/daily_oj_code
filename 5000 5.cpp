@@ -3180,3 +3180,117 @@ using namespace std;
 //	}
 //	return 0;
 //}
+
+
+
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	getchar();
+//	while (t--)
+//	{
+//		char tmp;
+//		int sum = 0;
+//		set<char>s;
+//		while (tmp = getchar())
+//		{
+//			if (tmp == '\n')
+//				break;
+//			if (s.find(tmp) != s.end())
+//			{
+//				sum += s.size() - 1;
+//				s.clear();
+//			}
+//			else
+//				s.insert(tmp);
+//		}
+//		sum += s.size();
+//		cout << sum << endl;
+//	}
+//	return 0;
+//}
+
+
+typedef struct
+{
+	int q, p, j,x,y;
+}node;
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		int n,tmp;
+		cin >> n;
+		vector<int>vec;
+		vector<node>vec2;
+		int q = -1, p = -1;
+		for(int i = 0;i < n;i++)
+		{
+			cin >> tmp;
+			vec.push_back(tmp);
+			if (q == -1 && tmp != 0)
+				q = i;
+			if (q!=-1&&(tmp == 0||i == n-1))
+			{
+				p = i - 1;
+				if (tmp != 0)
+					p++;
+				vec2.push_back({ q,p,1,q,n - 1 - p });
+				q = -1;
+			}
+		}
+		if (vec2.size() == 0)
+			cout << n << " " << 0 << endl;
+		else
+		{
+			int m = 0;
+			for (int i = 0;i < vec2.size();i++)
+			{
+				int j1 = 1;
+				for (int j = vec2[i].q;j <= vec2[i].p;j++)
+				{
+					j1 *= vec[j];
+				}
+				if (j1 > 0)
+					vec2[i].j = j1;
+				else
+				{
+					int j2 = j1, j3 = j1, x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+					for (int j = vec2[i].q;j <= vec2[i].p;j++)
+					{
+						j2 /= vec[j];
+						if (j2 > 0)
+						{
+							x1 = j + 1;
+							y1 = n - 1 - vec2[i].p;
+							break;
+						}
+					}
+					for (int j = vec2[i].p;j >= vec2[i].q;j--)
+					{
+						j3 /= vec[j];
+						if (j3 > 0)
+						{
+							y2 = n - j;
+							x2 = vec2[i].q;
+							break;
+						}
+					}
+					if (j2 > j3)
+						vec2[i].j = j2, vec2[i].x = x1, vec2[i].y = y1;
+					else
+						vec2[i].j = j3, vec2[i].x = x2, vec2[i].y = y2;
+				}
+
+				if (vec2[i].j > vec2[m].j)
+					m = i;
+			}
+
+			cout << vec2[m].x << " " << vec2[m].y << endl;
+		}
+	}
+	return 0;
+}
