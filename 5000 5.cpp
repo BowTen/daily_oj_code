@@ -3212,85 +3212,234 @@ using namespace std;
 //}
 
 
-typedef struct
-{
-	int q, p, j,x,y;
-}node;
-int main()
-{
-	int t;
-	cin >> t;
-	while (t--)
-	{
-		int n,tmp;
-		cin >> n;
-		vector<int>vec;
-		vector<node>vec2;
-		int q = -1, p = -1;
-		for(int i = 0;i < n;i++)
-		{
-			cin >> tmp;
-			vec.push_back(tmp);
-			if (q == -1 && tmp != 0)
-				q = i;
-			if (q!=-1&&(tmp == 0||i == n-1))
-			{
-				p = i - 1;
-				if (tmp != 0)
-					p++;
-				vec2.push_back({ q,p,1,q,n - 1 - p });
-				q = -1;
-			}
-		}
-		if (vec2.size() == 0)
-			cout << n << " " << 0 << endl;
-		else
-		{
-			int m = 0;
-			for (int i = 0;i < vec2.size();i++)
-			{
-				int j1 = 1;
-				for (int j = vec2[i].q;j <= vec2[i].p;j++)
-				{
-					j1 *= vec[j];
-				}
-				if (j1 > 0)
-					vec2[i].j = j1;
-				else
-				{
-					int j2 = j1, j3 = j1, x1 = 0, y1 = 0, x2 = 0, y2 = 0;
-					for (int j = vec2[i].q;j <= vec2[i].p;j++)
-					{
-						j2 /= vec[j];
-						if (j2 > 0)
-						{
-							x1 = j + 1;
-							y1 = n - 1 - vec2[i].p;
-							break;
-						}
-					}
-					for (int j = vec2[i].p;j >= vec2[i].q;j--)
-					{
-						j3 /= vec[j];
-						if (j3 > 0)
-						{
-							y2 = n - j;
-							x2 = vec2[i].q;
-							break;
-						}
-					}
-					if (j2 > j3)
-						vec2[i].j = j2, vec2[i].x = x1, vec2[i].y = y1;
-					else
-						vec2[i].j = j3, vec2[i].x = x2, vec2[i].y = y2;
-				}
+//typedef struct
+//{
+//	int q, p, j,x,y;
+//}node;
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int n,tmp;
+//		cin >> n;
+//		vector<int>vec;
+//		vector<node>vec2;
+//		int q = -1, p = -1;
+//		for(int i = 0;i < n;i++)
+//		{
+//			cin >> tmp;
+//			vec.push_back(tmp);
+//			if (q == -1 && tmp != 0)
+//				q = i;
+//			if (q!=-1&&(tmp == 0||i == n-1))
+//			{
+//				p = i - 1;
+//				if (tmp != 0)
+//					p++;
+//				vec2.push_back({ q,p,1,q,n - 1 - p });
+//				q = -1;
+//			}
+//		}
+//		if (vec2.size() == 0)
+//			cout << n << " " << 0 << endl;
+//		else
+//		{
+//			int m = 0;
+//			for (int i = 0;i < vec2.size();i++)
+//			{
+//				int j1 = 1;
+//				for (int j = vec2[i].q;j <= vec2[i].p;j++)
+//				{
+//					j1 *= vec[j];
+//				}
+//				if (j1 > 0)
+//					vec2[i].j = j1;
+//				else
+//				{
+//					int j2 = j1, j3 = j1, x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+//					for (int j = vec2[i].q;j <= vec2[i].p;j++)
+//					{
+//						j2 /= vec[j];
+//						if (j2 > 0)
+//						{
+//							x1 = j + 1;
+//							y1 = n - 1 - vec2[i].p;
+//							break;
+//						}
+//					}
+//					for (int j = vec2[i].p;j >= vec2[i].q;j--)
+//					{
+//						j3 /= vec[j];
+//						if (j3 > 0)
+//						{
+//							y2 = n - j;
+//							x2 = vec2[i].q;
+//							break;
+//						}
+//					}
+//					if (j2 > j3)
+//						vec2[i].j = j2, vec2[i].x = x1, vec2[i].y = y1;
+//					else
+//						vec2[i].j = j3, vec2[i].x = x2, vec2[i].y = y2;
+//				}
+//
+//				if (vec2[i].j > vec2[m].j)
+//					m = i;
+//			}
+//
+//			cout << vec2[m].x << " " << vec2[m].y << endl;
+//		}
+//	}
+//	return 0;
+//}
 
-				if (vec2[i].j > vec2[m].j)
-					m = i;
-			}
 
-			cout << vec2[m].x << " " << vec2[m].y << endl;
-		}
-	}
-	return 0;
-}
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int n, m;
+//		cin >> n >> m;
+//		if (n > 1)
+//		{
+//			if (n > 2)
+//				cout << 2 * m << endl;
+//			else
+//				cout << m << endl;
+//		}
+//		else
+//			cout << "0\n";
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int n, k;
+//		cin >> n >> k;
+//		vector<int>a;
+//		vector<int>b;
+//		a.resize(n);
+//		b.resize(n);
+//		for (int i = 0;i < n;i++)
+//			cin >> a[i];
+//		for (int i = 0;i < n;i++)
+//			cin >> b[i];
+//		sort(a.begin(), a.end());
+//		sort(b.begin(), b.end());
+//		for (int i = 0, j = n - 1, c = 0;c < k;c++)
+//		{
+//			if (b[j] > a[i])
+//			{
+//				a[i] = b[j];
+//				i++, j--;
+//			}
+//		}
+//		int sum = 0;
+//		for (int i = 0;i < n;i++)
+//		{
+//			sum += a[i];
+//		}
+//		cout << sum << endl;
+//	}
+//	return 0;
+//}
+
+//typedef unsigned long long ll;
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		ll sum = 0;
+//		ll n;
+//		cin >> n;
+//		ll m = (1+n) / 2;
+//		for (ll i = n;i > m;i--)
+//		{
+//			ll l1 = (i - m) * 2 + 1, l2 = l1 - 2;
+//			sum += ((l1 * 2) + (l2 * 2)) * (i - m);
+//		}
+//		cout << sum << endl;
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int sum = 0;
+//	for (int i = 0;i < 2e10;i++)
+//		sum++;
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int n, k, sum = 0;
+//		char tmp;
+//		cin >> n >> k;
+//		queue<pair<int,int>>que;
+//		int f = 0;
+//		getchar();
+//		while (n--)
+//		{
+//			tmp = getchar();
+//			que.push({ tmp - '0',0 });
+//			if (que.size() < k+1)
+//			{
+//				if (que.back().first == 1)
+//				{
+//					if (f)
+//					{
+//						que.back().first = 0;
+//						sum++;
+//					}
+//					else
+//						f = 1;
+//				}
+//			}
+//			else
+//			{
+//				if (que.front().first == 1)
+//				{
+//					if(que.back().first == 1)
+//						que.front().second = que.back().second = 1;
+//					else if(que.front().second == 0)
+//						sum++;
+//				}
+//				if (que.back().first == 1)
+//				{
+//					if(que.f)
+//				}
+//				que.pop();
+//			}
+//		}
+//		
+//		cout << sum << endl;
+//	}
+//	return 0;
+//}
