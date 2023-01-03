@@ -3443,3 +3443,354 @@ using namespace std;
 //	}
 //	return 0;
 //}
+
+
+
+//int main()
+//{
+//	priority_queue<int>q;
+//	q.push(2);
+//	q.push(5);
+//	q.push(3);
+//	q.push(5);
+//	while (!q.empty())
+//	{
+//		cout << q.top() << endl;
+//		q.pop();
+//	}
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef struct
+//{
+//	char name[22];
+//	int sum;
+//	int jud;
+//}stu;
+//
+//int cmp(stu e1, stu e2)
+//{
+//	if (e1.sum == e2.sum)
+//	{
+//		return strcmp(e1.name, e2.name) < 0 ? 1 : 0;
+//	}
+//	return e1.sum > e2.sum;
+//}
+//
+//int main()
+//{
+//	int n, m, g;
+//	while (cin >> n)
+//	{
+//		if (!n)
+//			return 0;
+//		cin >> m >> g;
+//		int sum = 0;
+//		int fs[11] = {0};
+//		for (int i = 1;i <= m;i++)
+//			cin >> fs[i];
+//		vector<stu>s(n);
+//		for (int i = 0;i < n;i++)
+//		{
+//			int cnt;
+//			cin >> s[i].name >> cnt;
+//			for (int j = 0;j < cnt;j++)
+//			{
+//				int t;
+//				cin >> t;
+//				s[i].sum += fs[t];
+//				if (s[i].sum >= g)
+//					s[i].jud = 1;
+//			}
+//			if (!s[i].jud)
+//				s.erase(s.begin() + i), i--, n--;
+//			else
+//				sum++;
+//		}
+//		cout << sum << endl;
+//		sort(s.begin(), s.end(), cmp);
+//		for (int i = 0;i < s.size(); i++)
+//			cout << s[i].name << " " << s[i].sum << endl;
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	cout << (int)strcmp("cs0001", "cs0008") > 0?1:0;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		string mod;
+//		int n;
+//		cin >> n >> mod;
+//		if (mod == "FIFO")
+//		{
+//			queue<int>que;
+//			while (n--)
+//			{
+//				int tmp;
+//				string mov;
+//				cin >> mov;
+//				if (mov == "IN")
+//				{
+//					cin >> tmp;
+//					que.push(tmp);
+//				}
+//				else
+//				{
+//					if (que.empty())
+//						cout << "None\n";
+//					else
+//					{
+//						cout << que.front() << endl;
+//						que.pop();
+//					}
+//				}
+//			}
+//		}
+//		else
+//		{
+//			stack<int>que;
+//			while (n--)
+//			{
+//				int tmp;
+//				string mov;
+//				cin >> mov;
+//				if (mov == "IN")
+//				{
+//					cin >> tmp;
+//					que.push(tmp);
+//				}
+//				else
+//				{
+//					if (que.empty())
+//						cout << "None\n";
+//					else
+//					{
+//						cout << que.top() << endl;
+//						que.pop();
+//					}
+//				}
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	map<string,int>s;
+//	while (n--)
+//	{
+//		string t;
+//		cin >> t;
+//		if (!s[t])
+//		{
+//			cout << "OK\n";
+//			s[t]++;
+//		}
+//		else
+//		{
+//			cout << t << s[t] << endl;
+//			s[t]++;
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int n, cnt = 0;
+//	long long sum = 0;
+//	cin >> n;
+//	multiset<int>s;
+//	while (n--)
+//	{
+//		int t;
+//		cin >> t;
+//		if (t >= 0)
+//			sum += t, cnt++;
+//		else
+//			s.insert(-t);
+//	}
+//	auto p = s.begin();
+//	while (!s.empty())
+//	{
+//		if (sum - *p >= 0)
+//		{
+//			sum -= *p, cnt++;
+//			p++;
+//		}
+//		else
+//			break;
+//		if (p == s.end())
+//			break;
+//	}
+//	cout << cnt;
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int n, cnt = 0, sum = 0;
+//	vector<int>num;
+//	cin >> n;
+//	while (n--)
+//	{
+//		int t;
+//		cin >> t;
+//		if (sum + t >= 0)
+//		{
+//			sum += t;
+//			cnt++;
+//		}
+//	}
+//	cout << cnt;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//struct stu
+//{
+//	int sum;
+//	string id;
+//};
+//int cmp(stu e1, stu e2)
+//{
+//	if (e1.sum == e2.sum)
+//		return e1.id < e2.id;
+//	return e1.sum > e2.sum;
+//}
+//
+//int main()
+//{
+//	int n,m,g,fs[11];
+//	while (cin >> n, n)
+//	{
+//		int ret = 0;
+//		cin >> m >> g;
+//		for (int i = 1;i <= m;i++)
+//			cin >> fs[i];
+//		vector<stu>s(n);
+//		for (int i = 0;i < n;i++)
+//		{
+//			cin >> s[i].id;
+//			int cnt;
+//			cin >> cnt;
+//			while (cnt--)
+//			{
+//				int tmp;
+//				cin >> tmp;
+//				s[i].sum += fs[tmp];
+//			}
+//			if (s[i].sum >= g)
+//				ret++;
+//			else
+//				s.erase(s.begin() + i), i--, n--;
+//		}
+//		sort(s.begin(), s.end(),cmp);
+//		cout << ret << endl;
+//		for (int i = 0;i < n;i++)
+//			cout << s[i].id << " " << s[i].sum << endl;
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	long long s = 0;
+//	int n,cnt = 0;
+//	cin >> n;
+//	cnt = n;
+//	priority_queue<int>que;
+//	while (n--)
+//	{
+//		int t;
+//		cin >> t;
+//		s += t;
+//		if (t < 0)
+//			que.push(-t);
+//		while (s < 0)
+//		{
+//			s += que.top();
+//			que.pop();
+//			cnt--;
+//		}
+//	}
+//	cout << cnt;
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	priority_queue<int>que;
+//	que.push(-3);
+//	que.push(1);
+//	que.push(-8);
+//	que.push(4);
+//	cout << que.top();
+//	que.pop();
+//	cout << endl << que.top();
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	string str;
+	cin >> str;
+	for (int i = 0;i < str.size()-1;i++)
+	{
+		if (str[i] == str[i + 1])
+		{
+			str.erase(str.begin() + i);
+			str.erase(str.begin() + i);
+		}
+	}
+	return 0;
+}
