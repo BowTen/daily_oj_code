@@ -3990,72 +3990,107 @@ using namespace std;
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ll;
+//
+//int main()
+//{
+//	int t,one;
+//	ll n, m,tmp,sum;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		sum = one = 0;
+//		scanf("%llu %llu", &n, &m);
+//		vector<ll>que;
+//		while (m--)
+//		{
+//			scanf("%llu", &tmp);
+//			sum += tmp;
+//			if (tmp == 1)
+//				one++;
+//			else
+//				que.push_back(tmp);
+//		}
+//		if (sum < n)
+//			puts("-1");
+//		else if (sum == n)
+//			puts("0");
+//		else
+//		{
+//			sort(que.begin(), que.end(),greater<ll>());
+//			if (n & 1 && one)
+//				n--, one--;
+//			for (int i = 0;i < que.size();i++)
+//			{
+//				if (que[i] <= n)
+//					n -= que[i], que.erase(que.begin()+i),i--;
+//			}
+//			if (n <= one)
+//				puts("0");
+//			else
+//			{
+//				ll cnt = 0;
+//				if (n & 1)
+//				{
+//					while (que.back() != 1)
+//					{
+//						que.back() >>= 1;
+//						cnt++;
+//					}
+//					printf("%llu\n", cnt);
+//				}
+//				else
+//				{
+//					while (n)
+//					{
+//						que.back() >>= 1;
+//						cnt++;
+//						if (que.back() <= n)
+//							n -= que.back();
+//						if (n <= one)
+//							n = 0;
+//					}
+//					printf("%llu\n", cnt);
+//				}
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
-typedef unsigned long long ll;
+typedef long long ll;
+ll cnt(ll tmp)
+{
+	ll ret = 0;
+	while (tmp>0)
+	{
+		if (tmp & 1)
+			ret++;
+		tmp >>= 1;
+	}
+	return ret;
+}
 
 int main()
 {
-	int t,one;
-	ll n, m,tmp,sum;
-	scanf("%d", &t);
-	while (t--)
+	ll n, p;
+	cin >> n >> p;
+	for (ll i = 1;i <= 64;i++)
 	{
-		sum = one = 0;
-		scanf("%llu %llu", &n, &m);
-		vector<ll>que;
-		while (m--)
+		ll tmp = n - p * i;
+		if (tmp >= i && cnt(tmp) <= i && cnt(tmp))
 		{
-			scanf("%llu", &tmp);
-			sum += tmp;
-			if (tmp == 1)
-				one++;
-			else
-				que.push_back(tmp);
-		}
-		if (sum < n)
-			puts("-1");
-		else if (sum == n)
-			puts("0");
-		else
-		{
-			sort(que.begin(), que.end(),greater<ll>());
-			if (n & 1 && one)
-				n--, one--;
-			for (int i = 0;i < que.size();i++)
-			{
-				if (que[i] <= n)
-					n -= que[i], que.erase(que.begin()+i),i--;
-			}
-			if (n <= one)
-				puts("0");
-			else
-			{
-				ll cnt = 0;
-				if (n & 1)
-				{
-					while (que.back() != 1)
-					{
-						que.back() >>= 1;
-						cnt++;
-					}
-					printf("%llu\n", cnt);
-				}
-				else
-				{
-					while (n)
-					{
-						que.back() >>= 1;
-						cnt++;
-						if (que.back() <= n)
-							n -= que.back();
-						if (n <= one)
-							n = 0;
-					}
-					printf("%llu\n", cnt);
-				}
-			}
+			cout << i;
+			return 0;
 		}
 	}
+	cout << -1;
 	return 0;
 }
