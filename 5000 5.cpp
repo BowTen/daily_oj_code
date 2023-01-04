@@ -3777,19 +3777,284 @@ using namespace std;
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	string str;
+//	cin >> str;
+//	for (int i = 0;i < str.size()-1;i++)
+//	{
+//		if (str[i] == str[i + 1])
+//		{
+//			str.erase(str.begin() + i);
+//			str.erase(str.begin() + i);
+//		}
+//	}
+//	return 0;
+//}
+
+
+//typedef long long ll;
+//ll fast_pow(ll a, ll b, ll c)
+//{
+//	ll ret = 1;
+//	while (b)
+//	{
+//		if (b & 1) ret *= a % c;
+//		a *= a % c;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+//
+//int main()
+//{
+//	ll a, b , c;
+//	cin >> a >> b >> c;
+//	cout << fast_pow(a, b, c);
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int pre[500010] = { 0 };
+//
+//int main()
+//{
+//	int t,n;
+//	scanf("%d", &t);
+//	while (t--)
+//	{
+//		scanf("%d", &n);
+//		map<int, int>num;
+//		num[0]++;
+//		for (int i = 1;i <= n;i++)
+//		{
+//			scanf("%d", &pre[i]);
+//			pre[i] += pre[i - 1];
+//			num[pre[i]]++;
+//		}
+//		int sum = 0;
+//		int i = 0,len = num.size();
+//		int tmp;
+//		for (auto p = num.begin();i < len;p++,i++)
+//		{
+//			tmp = p->first - 7777;
+//			sum += num[tmp]*p->second;
+//		}
+//		cout << sum << endl;
+//	}
+//	return 0;
+//}
+
+
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ll;
+//ll fastpow(double a, ll b, ll c)
+//{
+//	ll ans = 1;
+//	while (b)
+//	{
+//		while (a >= c)
+//			a -= c;
+//		if (b & 1) ans *= a;
+//		a *= a;
+//		b >>= 1;
+//	}
+//	ans %= c;
+//	return ans;
+//}
+//
+//int main()
+//{
+//	ll n, a, b, c, k;
+//	bool mod;
+//	cin >> n;
+//	while (n--)
+//	{
+//		cin >> a >> b >> c >> k;
+//		if (a - b == b - c)
+//			mod = true;
+//		else
+//			mod = false;
+//		if (mod)
+//		{
+//			ll d = b - a;
+//			a %= 200907;
+//			a += (k - 1) * (d % 200907);
+//			a %= 200907;
+//			cout << a << endl;
+//		}
+//		else
+//		{
+//			double q = (double)b / (double)a;
+//			a %= 200907;
+//			cout << (a * fastpow(q, (k - 1), 200907)) % 200907 << endl;
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ll;
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		ll n, m,s = 0,tmp;
+//		map<ll, int>num;
+//		ll one;
+//		cin >> n >> m;
+//		for (int i = 0;i < m;i++)
+//		{
+//			cin >> t;
+//			if (t & 1)
+//				one++;
+//			else
+//				num[t]++;
+//			s += t;
+//		}
+//		if (s < n)
+//			cout << -1 << endl;
+//		else if (s == n)
+//			cout << 0 << endl;
+//		else
+//		{
+//			for (auto p = num.begin();p != num.end();)
+//			{
+//				if (p->first <= n)
+//				{
+//					n -= p->first;
+//					p->second--;
+//					if (!p->second)
+//						num.erase(p);
+//				}
+//				else
+//					break;
+//			}
+//			for(auto p = num.begin();p != num.end)
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int jud = 1;
+//		int n,a = 0;
+//		cin >> n;getchar();
+//		while (n--)
+//		{
+//			char c;
+//			c = getchar();
+//			if (c == '(')
+//				a++;
+//			else if (c == ')')
+//				a--;
+//			if (a < 0)
+//				jud = 0;
+//		}
+//		if (a)
+//			jud = 0;
+//		if (jud)
+//			cout << "Yes\n";
+//		else
+//			cout << "No\n";
+//	}
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
+typedef unsigned long long ll;
 
 int main()
 {
-	string str;
-	cin >> str;
-	for (int i = 0;i < str.size()-1;i++)
+	int t,one;
+	ll n, m,tmp,sum;
+	scanf("%d", &t);
+	while (t--)
 	{
-		if (str[i] == str[i + 1])
+		sum = one = 0;
+		scanf("%llu %llu", &n, &m);
+		vector<ll>que;
+		while (m--)
 		{
-			str.erase(str.begin() + i);
-			str.erase(str.begin() + i);
+			scanf("%llu", &tmp);
+			sum += tmp;
+			if (tmp == 1)
+				one++;
+			else
+				que.push_back(tmp);
+		}
+		if (sum < n)
+			puts("-1");
+		else if (sum == n)
+			puts("0");
+		else
+		{
+			sort(que.begin(), que.end(),greater<ll>());
+			if (n & 1 && one)
+				n--, one--;
+			for (int i = 0;i < que.size();i++)
+			{
+				if (que[i] <= n)
+					n -= que[i], que.erase(que.begin()+i),i--;
+			}
+			if (n <= one)
+				puts("0");
+			else
+			{
+				ll cnt = 0;
+				if (n & 1)
+				{
+					while (que.back() != 1)
+					{
+						que.back() >>= 1;
+						cnt++;
+					}
+					printf("%llu\n", cnt);
+				}
+				else
+				{
+					while (n)
+					{
+						que.back() >>= 1;
+						cnt++;
+						if (que.back() <= n)
+							n -= que.back();
+						if (n <= one)
+							n = 0;
+					}
+					printf("%llu\n", cnt);
+				}
+			}
 		}
 	}
 	return 0;
