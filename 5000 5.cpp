@@ -4063,34 +4063,501 @@ using namespace std;
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-ll cnt(ll tmp)
-{
-	ll ret = 0;
-	while (tmp>0)
-	{
-		if (tmp & 1)
-			ret++;
-		tmp >>= 1;
-	}
-	return ret;
-}
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//ll cnt(ll tmp)
+//{
+//	ll ret = 0;
+//	while (tmp>0)
+//	{
+//		if (tmp & 1)
+//			ret++;
+//		tmp >>= 1;
+//	}
+//	return ret;
+//}
+//
+//int main()
+//{
+//	ll n, p;
+//	cin >> n >> p;
+//	for (ll i = 1;i <= 64;i++)
+//	{
+//		ll tmp = n - p * i;
+//		if (tmp >= i && cnt(tmp) <= i && cnt(tmp))
+//		{
+//			cout << i;
+//			return 0;
+//		}
+//	}
+//	cout << -1;
+//	return 0;
+//}
 
-int main()
-{
-	ll n, p;
-	cin >> n >> p;
-	for (ll i = 1;i <= 64;i++)
-	{
-		ll tmp = n - p * i;
-		if (tmp >= i && cnt(tmp) <= i && cnt(tmp))
-		{
-			cout << i;
-			return 0;
-		}
-	}
-	cout << -1;
-	return 0;
-}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//unsigned int rmq[100010][30] = { 0 };
+//unsigned int num[100001] = { 0 };
+////int lg[]
+//inline int Fun(int a)
+//{
+//	int ret = -1;
+//	while (a)
+//	{
+//		a >>= 1;
+//		ret++;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	int n, m, ma = 0;
+//	cin >> n >> m;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		cin >> num[i];
+//		rmq[i - 1][0] = max(num[i], num[i - 1]);
+//		for (int j = i-2;j > 0;j--)
+//		{
+//			rmq[j][Fun(i - j)] = ;
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//struct store
+//{
+//	double j,f,s;
+//};
+//store sto[1010];
+//int cmp(store e1, store e2)
+//{
+//	return e1.s > e2.s;
+//}
+//int main()
+//{
+//	double n, m;
+//	int n2;
+//	while (scanf("%lf %lf", &m, &n), (m != -1 || n != -1))
+//	{
+//		n2 = n;
+//		for (int i = 0;i < n2;i++)
+//		{
+//			scanf("%lf %lf", &sto[i].j, &sto[i].f);
+//			sto[i].s = sto[i].j / sto[i].f;
+//		}
+//		sort(sto, sto + n2, cmp);
+//		double sum = 0;
+//		for (int i = 0;i < n;i++)
+//		{
+//			double tmp = min(m , sto[i].f)*sto[i].s;
+//			sum += tmp;
+//			m -= tmp / sto[i].s;
+//			if (m <= 0)
+//				break;
+//		}
+//		printf("%.3lf\n", sum);
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int s[10010] = { 0 };
+//int main()
+//{
+//	int n, m;
+//	cin >> n >> m;
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> s[i];
+//	}
+//	sort(s, s + n);
+//	int sum = n;
+//	for (int i = 0,j = n-1;i < n;i++)
+//	{
+//
+//			int delt = m - s[i];
+//			for (j;j > i;j--)
+//			{
+//				if (s[j] <= delt)
+//				{
+//					sum--;
+//					j--;
+//					break;
+//				}
+//			}
+//		
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+
+//int main()
+//{
+//	priority_queue<int,vector<int>,less<int> >que;
+//	que.push(1);
+//	que.push(2);
+//	que.push(-5);
+//	while (!que.empty())
+//	{
+//		cout << que.top() << endl;
+//		que.pop();
+//	}
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//struct tim
+//{
+//	int l,r;
+//	bool operator <(const tim e)
+//	{
+//		return r < e.r;
+//	}
+//};
+//tim ti[1010] = { 0 };
+//int main()
+//{
+//	int  n;
+//	while (cin >> n, n)
+//	{
+//		for(int i = 0;i < n;i++)
+//		{
+//			cin >> ti[i].l >> ti[i].r;
+//		}
+//		sort(ti, ti + n);
+//		int cnt = 0;
+//		priority_queue<int/*,vector<int>,greater<int> */>que;
+//		for (int i = 0;i < n;i++)
+//		{
+//			if (que.empty() || ti[i].l >= que.top())
+//			{
+//				que.push(ti[i].r);
+//				cnt++;
+//			}
+//		}
+//		cout << cnt << endl;
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	priority_queue<int,vector<int>,greater<int>>que;
+//	while (n--)
+//	{
+//		int m;
+//		cin >> m;
+//		que.push(m);
+//	}
+//	long long sum = 0;
+//	while (que.size()!=1)
+//	{
+//		int tmp = que.top();
+//		que.pop();
+//		tmp += que.top();
+//		que.pop();
+//		que.push(tmp);
+//		sum += que.top();
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//struct node
+//{
+//	ll d, v;
+//	bool operator <(const node e)
+//	{
+//		return d < e.d;
+//	}
+//};
+//int main()
+//{
+//	int n;
+//	ll sum = 0;
+//	cin >> n;
+//	map<ll, ll>mp;
+//	priority_queue<node>que;
+//	while (n--)
+//	{
+//		ll a, b;
+//		cin >> a >> b;
+//		if (que.empty())
+//		{
+//			que.push({ a,b });
+//			sum += b;
+//		}
+//		else if (que.top().d > que.size() || b > que.top().d)
+//		{
+//			que.push({ a,b });
+//			sum += b;
+//		}
+//		else
+//	}
+//	//set < ll >flag;
+//	//multimap<ll, ll>mp2;
+//	//for (auto p = mp.begin();p != mp.end();p++)
+//	//{
+//	//	if (flag.find(p->second) == flag.end())
+//	//	{
+//	//		sum -= p->first;
+//	//		flag.insert(p->second);
+//	//		mp2.insert({ p->first,p->second });
+//	//	}
+//	//	else if()
+//	//}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//typedef long long ll;
+//struct node
+//{
+//	ll d, v;
+//	bool operator<(const node e) const
+//	{
+//		return this->v > e.v;
+//	}
+//};
+//int cmp(node e1, node e2)
+//{
+//	return e1.d < e2.d;
+//}
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	vector<node>vec;
+//	for(int i = 0;i < n;i++)
+//	{
+//		ll a, b;
+//		cin >> a >> b;
+//		vec.push_back({ a,b });
+//	}
+//	sort(vec.begin(), vec.end(), cmp);
+//	priority_queue<node> que;
+//	ll sum = 0;
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (vec[i].d > que.size())
+//		{
+//			sum += vec[i].v;
+//			que.push(vec[i]);
+//		}
+//		else if(vec[i].v > que.top().v)
+//		{
+//			sum -= que.top().v;
+//			sum += vec[i].v;
+//			que.pop();
+//			que.push(vec[i]);
+//		}
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int count(int a)
+//{
+//	int ret = 0;
+//	while (a)
+//	{
+//		ret++;
+//		a >>= 1;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		int n,tmp;
+//		long long sum = 0;
+//		cin >> n;
+//		map<int, int>m;
+//		while (n--)
+//		{
+//			cin >> tmp;
+//			sum += m[count(tmp)]++;
+//		}
+//		/*for (auto p = m.begin();p != m.end();p++)
+//			if(p->second>1)sum += p->second * (p->second - 1) / 2;*/
+//		cout << sum << endl;
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//
+//int main()
+//{
+//	priority_queue<ll, vector<ll>, greater<ll>>que;
+//	int n,tmp;
+//	cin >> n;
+//	while (n--)
+//	{
+//		cin >> tmp;
+//		que.push(tmp);
+//	}
+//	ll sum = 0;
+//	while (que.size() != 1)
+//	{
+//		ll now = que.top();
+//		que.pop();
+//		now += que.top();
+//		que.pop();
+//		sum += now;
+//		que.push(now);
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+
+//int main()
+//{
+//	long long sum = 0;
+//	int n,t;
+//	cin >> n;
+//	priority_queue<int, vector<int>, greater<int>>que;
+//	priority_queue<int>buy;
+//	while (n--)
+//	{
+//		cin >> t;
+//		if (que.empty() != 1 && t > que.top())
+//			que.pop(), sum += t;
+//		else
+//			que.push(t), buy.push(t), sum -= t;
+//	}
+//	while (!que.empty())
+//	{
+//		sum += buy.top() - que.top();
+//		buy.pop(), que.pop();
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+
+//int main()
+//{
+//	long long sum = 0;
+//	int n;
+//	cin >> n;
+//	vector<int>vec(n);
+//	for (int i = 0;i < n;i++)
+//		cin >> vec[i];
+//	for (int i = 0;i < n-1;i++)
+//	{
+//		if (i < 0)i = 0;
+//		if (vec[i] < vec[i + 1])
+//		{
+//			int j = i + 1;
+//			while (j + 1 < n && vec[j + 1] > vec[j])j++;
+//			sum += vec[j] - vec[i];
+//			vec.erase(vec.begin() + i);
+//			vec.erase(vec.begin() + j - 1);
+//			i -= 2, n -= 2;
+//			/*if (vec[j - 1] > vec[j])j--;
+//			sum += vec[j] - vec[i];
+//			vec.erase(vec.begin() + i);
+//			vec.erase(vec.begin() + j - 1), n -= 2, i -= 2;*/
+//		}
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//struct node
+//{
+//	int val, day;
+//	bool operator<(const node e)const
+//	{
+//		return val < e.val;
+//	}
+//};
+////int min
+//vector<int>m(300010);
+//int main()
+//{
+//	long long sum = 0;
+//	int n;
+//	cin >> n;
+//	multimap<int, int>mp;
+//	for (int i = 0;i < n;i++)
+//	{
+//		cin >> m[i];
+//		mp.insert({ m[i],i });
+//	}
+//	for (auto p = mp.rbegin();p != mp.rend();p++)
+//	{
+//		int min = 0;
+//		for (int i = 0;i < p->second;i++)
+//		{
+//			if (m[i] < m[min])
+//				min = i;
+//		}
+//		sum += p->first - m[min];
+//		m.erase(m.begin()+min);
+//		m.erase(m.begin() + (p->second - 1));
+//	}
+//	return 0;
+//}
