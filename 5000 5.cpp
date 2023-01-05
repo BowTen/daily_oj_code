@@ -4561,3 +4561,63 @@ using namespace std;
 //	}
 //	return 0;
 //}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+
+//int main()
+//{
+//	long long sum = 0;
+//	int n;
+//	cin >> n;
+//	priority_queue<int, vector<int>, greater<int>>que;
+//	while (n--)
+//	{
+//		int num;
+//		cin >> num;
+//		if (que.empty() != 1 && que.top() < num)
+//		{
+//			sum += num - que.top();
+//			que.pop();
+//			que.push(num);
+//		}
+//		que.push(num);
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+struct wall
+{
+	int l, r;
+};
+
+int main()
+{
+	int n,d;
+	cin >> n >> d;
+	multimap<int, int>mp;
+	while (n--)
+	{
+		int a, b;
+		cin >> a >> b;
+		mp.insert({ b,a });
+	}
+	int cnt = 0,p = 0;
+	for (auto pm = mp.begin();pm != mp.end();pm++)
+	{
+		if (p < pm->second)
+		{
+			cnt++;
+			p = pm->first + d - 1;
+		}
+	}
+	cout << cnt;
+	return 0;
+}
