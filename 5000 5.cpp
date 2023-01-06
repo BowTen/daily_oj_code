@@ -4624,48 +4624,270 @@ using namespace std;
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//int stoe[50010] = { 0 };
+//int L, N, M;
+//bool check(int delt)
+//{
+//	int q = 0, p = 1, cnt = 0;
+//	for (;q < p && p <= N;)
+//	{
+//		if (stoe[p] - stoe[q] < delt)
+//			p++, cnt++;
+//		else
+//			q = p++;
+//	}
+//	if (L - stoe[q] < delt)
+//		return false;
+//	if (cnt <= M) return true;
+//	return false;
+//}
+//
+//int main()
+//{
+//	cin >> L >> N >> M;
+//	int l = 1,r = L;
+//	for (int i = 1;i <= N;i++)
+//	{
+//		cin >> stoe[i];
+//		int d = stoe[i] - stoe[i - 1];
+//		if (d < l || i == 1)
+//			l = d;
+//	}
+//	int ans = l;
+//	while (l <= r)
+//	{
+//		int mid = (l + r) / 2;
+//		if (check(mid))
+//		{
+//			ans = mid;
+//			l = mid+1;
+//		}
+//		else r = mid - 1;
+//	}
+//	cout << ans;
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n;
+//double num[15] = { 0 };
+//double f(double x)
+//{
+//	double ans = 0, tmp = 1;
+//	for (int i = n;i >= 0;i--)
+//	{
+//		ans += tmp*num[i];
+//		tmp *= x;
+//	}
+//	return ans;
+//}
+//int main()
+//{
+//	double r, l;
+//	cin >> n >> l >> r;
+//	for (int i = 0;i <= n;i++)
+//		cin >> num[i];
+//	int cnt = 1000;
+//	while (cnt--)
+//	{
+//		double mid1 = (l + r) / 2,mid2 = mid1+1e-6;
+//		if (f(mid1) < f(mid2)) l = mid2;
+//		else  r = mid1;
+//	}
+//	cout << l;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+////struct quest
+////{
+////	int v, t;
+////	bool operator<(const quest e)const
+////	{
+////		if (t == e.t) return v > e.v;
+////		return t < e.t;
+////	}
+////};
+////vector<quest>que(200010);
+//ll n,c,d;
+//inline bool check(int mid)
+//{
+//	ll gain = 0;
+//	int wind = mid - n + 1;
+//	if (wind <= 0)
+//	{
+//		int cnt = 0;
+//		for (int i = 0;cnt < d;cnt++, i++)
+//		{
+//			if (i > mid) i = 0;
+//			gain += que[i].v;
+//		}
+//	}
+//	else
+//	{
+//		int cnt = 0;
+//		for (int i = 0;cnt < d;cnt++, i++)
+//		{
+//			if (i > wind+n-1) i = 0;
+//			gain += que[i].v;
+//		}
+//	}
+//	/*for (int i = 1;i <= d;i++)
+//	{
+//		if (i - que[0].t > mid)
+//		{
+//			int tmp = que[0].v;
+//			gain += tmp;
+//			que.pop();
+//			que.push({ tmp,i });
+//		}
+//	}*/
+//	if (gain >= c)return true;
+//	return false;
+//}
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		cin >> n >> c >> d;
+//		que.clear();
+//		que.resize(200010);
+//		for(int i = 0;i < n;i++)
+//		{
+//			cin >> que[i].v;
+//			que[i].t = -d;
+//		}
+//		sort(que.begin(), que.end());
+//		if (que[0].v > c)puts("Infinity");
+//		else if (que[0].v * d < c)puts("Impossible");
+//		else
+//		{
+//			int l = 0, r = d - 1,ans = -1,mid;
+//			while (l <= r)
+//			{
+//				mid = (r + l) / 2;
+//				if (check(mid)) ans = mid, l = mid + 1;
+//				else r = mid - 1;
+//			}
+//			if (ans == -1) puts("Impossible");
+//			else	cout << ans << '\n';
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//ll n, c, d;
+//ll pre[200010] = { 0 };
+//ll num[200010] = { 0 };
+//inline bool check(ll mid)
+//{
+//	ll gain = 0;
+//	ll delt = mid + (ll)1;
+//	ll a = d / (delt), b = d - a * (delt);
+//	if (delt > n) delt = n;
+//	gain += pre[delt] * a + pre[b];
+//	if (gain >= c)return true;
+//	return false;
+//}
+//
+//int main()
+//{
+//	ll t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		memset(pre, 0, 200010 * sizeof(pre[0]));
+//		memset(num, 0, 200010 * sizeof(num[0]));
+//		cin >> n >> c >> d;
+//		for (int i = 1;i <= n;i++) cin >> num[i];
+//		sort(num+1,num+1+n,greater<ll>());
+//		for (int i = 1;i <= n;i++) pre[i] = num[i] + pre[i - 1];
+//		
+//		if (num[1] >= c)puts("Infinity");
+//		else if (num[1] * d < c)puts("Impossible");
+//		else
+//		{
+//			ll l = 0, r = d - 1, ans = 0, mid;
+//			while (l <= r)
+//			{
+//				mid = (r + l) / 2;
+//				if (check(mid)) ans = mid, l = mid + 1;
+//				else r = mid - 1;
+//			}
+//			cout << ans << '\n';
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
-int stoe[50010] = { 0 };
-int L, N, M;
-bool check(int delt)
+typedef long long ll;
+ll n, c, d;
+ll num[200010] = { 0 };
+ll pre[200010] = { 0 };
+bool check(ll mid);
+
+void solve()
 {
-	int q = 0, p = 1, cnt = 0;
-	for (;q < p && p <= N;)
+	int t;
+	cin >> t;
+	while (t--)
 	{
-		if (stoe[p] - stoe[q] < delt)
-			p++, cnt++;
+		cin >> n >> c >> d;
+		for (int i = 1;i <= n;i++)
+			cin >> num[i];
+		sort(num + 1, num + 1 + n,greater<ll>());
+		for (int i = 1;i <= n;i++)
+			pre[i] = num[i] + pre[i - 1];
+
+		if (num[1] >= c)puts("Infinity");
+		else if (num[1] * d < c)puts("Impossible");
 		else
-			q = p++;
+		{
+			ll l = 0, r = d - 1, ans = 0, mid = 0;
+			while (l <= r)
+			{
+				mid = (l + r) / 2;
+				if (check(mid)) ans = mid, l = mid + 1;
+				else r = mid - 1;
+			}
+			cout << ans << '\n';
+		}
 	}
-	if (L - stoe[q] < delt)
-		return false;
-	if (cnt <= M) return true;
+}
+
+bool check(ll mid)
+{
+	ll gain = 0,delt = mid +1,a = d / delt,b = d - a * delt;
+	delt = delt > n ? n : delt;
+	gain += a * pre[delt] + pre[b];
+	if (gain >= c)return true;
 	return false;
 }
 
 int main()
 {
-	cin >> L >> N >> M;
-	int l = 1,r = L;
-	for (int i = 1;i <= N;i++)
-	{
-		cin >> stoe[i];
-		int d = stoe[i] - stoe[i - 1];
-		if (d < l || i == 1)
-			l = d;
-	}
-	int ans = l;
-	while (l <= r)
-	{
-		int mid = (l + r) / 2;
-		if (check(mid))
-		{
-			ans = mid;
-			l = mid+1;
-		}
-		else r = mid - 1;
-	}
-	cout << ans;
+	solve();
 	return 0;
 }
