@@ -4591,33 +4591,81 @@ using namespace std;
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//struct wall
+//{
+//	int l, r;
+//};
+//
+//int main()
+//{
+//	int n,d;
+//	cin >> n >> d;
+//	multimap<int, int>mp;
+//	while (n--)
+//	{
+//		int a, b;
+//		cin >> a >> b;
+//		mp.insert({ b,a });
+//	}
+//	int cnt = 0,p = 0;
+//	for (auto pm = mp.begin();pm != mp.end();pm++)
+//	{
+//		if (p < pm->second)
+//		{
+//			cnt++;
+//			p = pm->first + d - 1;
+//		}
+//	}
+//	cout << cnt;
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
-struct wall
+int stoe[50010] = { 0 };
+int L, N, M;
+bool check(int delt)
 {
-	int l, r;
-};
+	int q = 0, p = 1, cnt = 0;
+	for (;q < p && p <= N;)
+	{
+		if (stoe[p] - stoe[q] < delt)
+			p++, cnt++;
+		else
+			q = p++;
+	}
+	if (L - stoe[q] < delt)
+		return false;
+	if (cnt <= M) return true;
+	return false;
+}
 
 int main()
 {
-	int n,d;
-	cin >> n >> d;
-	multimap<int, int>mp;
-	while (n--)
+	cin >> L >> N >> M;
+	int l = 1,r = L;
+	for (int i = 1;i <= N;i++)
 	{
-		int a, b;
-		cin >> a >> b;
-		mp.insert({ b,a });
+		cin >> stoe[i];
+		int d = stoe[i] - stoe[i - 1];
+		if (d < l || i == 1)
+			l = d;
 	}
-	int cnt = 0,p = 0;
-	for (auto pm = mp.begin();pm != mp.end();pm++)
+	int ans = l;
+	while (l <= r)
 	{
-		if (p < pm->second)
+		int mid = (l + r) / 2;
+		if (check(mid))
 		{
-			cnt++;
-			p = pm->first + d - 1;
+			ans = mid;
+			l = mid+1;
 		}
+		else r = mid - 1;
 	}
-	cout << cnt;
+	cout << ans;
 	return 0;
 }
