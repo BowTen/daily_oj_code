@@ -4953,3 +4953,61 @@ using namespace std;
 //	}
 //	return 0;
 //}
+
+
+
+
+//int mp[110][110] = { 0 }, dis[110] = { 0 }, vis[110] = { 0 };
+//void init()
+//{
+//	memset(dis, 0, sizeof(dis));
+//	memset(vis, 0, sizeof(vis));
+//	memset(mp, 0, sizeof(mp));
+//}
+//
+//int main()
+//{
+//	int n, m;
+//	while (cin >> n >> m, n)
+//	{
+//		init();
+//		for (int i = 0, a, b, v;i < n;i++)
+//		{
+//			cin >> a >> b >> v;
+//			mp[a][b] = mp[b][a] = v;
+//		}
+//		int ans = 0, cnt = 1;
+//		dis[1] = 0, vis[1] = 1;
+//		for (int i = 2;i <= m;i++)
+//			if(mp[1][i])
+//				dis[i] = mp[1][i];
+//		while (cnt < m)
+//		{
+//			int mi = 0;
+//			for (int i = 1;i <= m;i++)
+//			{
+//				if (vis[i])continue;
+//				if (dis[i] && (mi == 0 || dis[i] < dis[mi]))
+//					mi = i;
+//			}
+//			if (!mi)
+//				break;
+//			cnt++;
+//			ans += dis[mi];
+//			vis[mi] = 1;
+//			for (int i = 1;i <= m;i++)
+//			{
+//				if (vis[i])continue;
+//				if (!dis[i] || dis[i] > mp[mi][i])
+//					dis[i] = mp[mi][i];
+//			}
+//		}
+//		if (cnt == m)
+//			cout << ans << endl;
+//		else
+//			puts("?");
+//	}
+//	return 0;
+//}
+
+//chemin
