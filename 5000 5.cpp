@@ -4840,54 +4840,116 @@ using namespace std;
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-ll n, c, d;
-ll num[200010] = { 0 };
-ll pre[200010] = { 0 };
-bool check(ll mid);
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//ll n, c, d;
+//ll num[200010] = { 0 };
+//ll pre[200010] = { 0 };
+//bool check(ll mid);
+//
+//void solve()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		cin >> n >> c >> d;
+//		for (int i = 1;i <= n;i++)
+//			cin >> num[i];
+//		sort(num + 1, num + 1 + n,greater<ll>());
+//		for (int i = 1;i <= n;i++)
+//			pre[i] = num[i] + pre[i - 1];
+//
+//		if (num[1] * d < c)puts("Impossible");
+//		else if (num[1] >= c) puts("Infinity");
+//		else
+//		{
+//			ll l = 0, r = d - 1, ans = 0, mid = 0;
+//			while (l <= r)
+//			{
+//				mid = (l + r) / 2;
+//				if (check(mid)) ans = mid, l = mid + 1;
+//				else r = mid - 1;
+//			}
+//			cout << ans << '\n';
+//		}
+//	}
+//}
+//
+//bool check(ll mid)
+//{
+//	ll gain = 0,delt = mid +1,a = d / delt,b = d - a * delt;
+//	delt = delt > n ? n : delt;
+//	b = b > n ? n : b;
+//	gain += a * pre[delt] + pre[b];
+//	return gain >= c;
+//}
+//
+//int main()
+//{
+//	solve();
+//	return 0;
+//}
 
-void solve()
-{
-	int t;
-	cin >> t;
-	while (t--)
-	{
-		cin >> n >> c >> d;
-		for (int i = 1;i <= n;i++)
-			cin >> num[i];
-		sort(num + 1, num + 1 + n,greater<ll>());
-		for (int i = 1;i <= n;i++)
-			pre[i] = num[i] + pre[i - 1];
 
-		if (num[1] >= c)puts("Infinity");
-		else if (num[1] * d < c)puts("Impossible");
-		else
-		{
-			ll l = 0, r = d - 1, ans = 0, mid = 0;
-			while (l <= r)
-			{
-				mid = (l + r) / 2;
-				if (check(mid)) ans = mid, l = mid + 1;
-				else r = mid - 1;
-			}
-			cout << ans << '\n';
-		}
-	}
-}
 
-bool check(ll mid)
-{
-	ll gain = 0,delt = mid +1,a = d / delt,b = d - a * delt;
-	delt = delt > n ? n : delt;
-	gain += a * pre[delt] + pre[b];
-	if (gain >= c)return true;
-	return false;
-}
-
-int main()
-{
-	solve();
-	return 0;
-}
+//struct road
+//{
+//	int a, b, val;
+//	bool operator<(const road e)const
+//	{
+//		return val > e.val;
+//	}
+//};
+//int fa[110] = { 0 };
+//void init(int m)
+//{
+//	for (int i = 0;i <= m;i++)fa[i] = i;
+//}
+//int find(int a)
+//{
+//	return a == fa[a] ? a : fa[a] = find(fa[a]);
+//}
+//void merg(int a, int b)
+//{
+//	int af = find(a);
+//	int bf = find(b);
+//	if (af != bf) fa[af] = bf;
+//}
+//
+//int main()
+//{
+//	int n, m;
+//	while (cin >> n >> m, n)
+//	{
+//			init(m);
+//			int sum = 0, cnt = 0;
+//			priority_queue<road>que;
+//			for (int i = 0;i < n;i++)
+//			{
+//				int a, b, v;
+//				cin >> a >> b >> v;
+//				que.push({ a,b,v });
+//			}
+//			while (cnt < m - 1)
+//			{
+//				if (que.empty())
+//				{
+//					puts("?");
+//					break;
+//				}
+//				int a = que.top().a, b = que.top().b;
+//				if (find(a) != find(b))
+//				{
+//					merg(a, b);
+//					sum += que.top().val;
+//					cnt++;
+//				}
+//				que.pop();
+//			}
+//			if(cnt == m-1)
+//				cout << sum << endl;
+//	}
+//	return 0;
+//}
