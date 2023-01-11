@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
+#define _SILENCE_CXX20_CISO646_REMOVED_WARNING
 //#include<bits/stdc++.h>
-using namespace std;
+//using namespace std;
 
 //int fa[1010];
 //void init(int n)
@@ -676,66 +677,421 @@ using namespace std;
 
 
 
+//
+//#include<iostream>
+//#include<algorithm>
+//#include<queue>
+//using namespace std;
+//vector<int>sub[110];
+//int du[110] = {0},vis[110] = {0};
+//struct node
+//{
+//	int id, ti;
+//};
+//node tim[110] = { 0 };
+//bool cmp(node e1, node e2)
+//{
+//	return e1.ti < e2.ti;
+//}
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		tim[i].id = i;
+//		int t;
+//		while (cin >> t, t)
+//		{
+//			sub[i].push_back(t);
+//			du[t]++;
+//		}
+//	}
+//	queue<int>que;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		if (!du[i])
+//		{
+//			que.push(i);
+//			vis[i] = 1;
+//			tim[i].ti = 0;
+//		}
+//	}
+//	while (que.size())
+//	{
+//		int x = que.front();
+//		que.pop();
+//		for (int i = 0;i < sub[x].size();i++)
+//			du[sub[x][i]]--;
+//		for (int i = 0;i < sub[x].size();i++)
+//		{
+//			int t = sub[x][i];
+//			if (du[t] == 0 && vis[t] == 0)
+//			{
+//				que.push(t);
+//				vis[t] = 1;
+//				tim[t].ti = tim[x].ti + 1;
+//			}
+//		}
+//	}
+//	sort(tim + 1, tim + 1 + n,cmp);
+//	for (int i = 1;i <= n;i++)
+//		cout << tim[i].id << " ";
+//	return 0;
+//}
 
-#include<iostream>
-#include<algorithm>
-#include<queue>
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int pre[10][10][10][10] = { 0 };
+//
+//int main()
+//{
+//	int a[4];
+//	for(a[0] = 0;a[0] <= 9;a[0] ++)
+//		for(a[1] = 0;a[1] <=9;a[1]++)
+//			for(a[2] = 0;a[2] <= 9;a[2]++)
+//				for (a[3] = 0;a[3] <= 9;a[3]++)
+//				{
+//					int t[4] = { 0 }, sum = 0,last = 0,f = 1;
+//					while (f)
+//					{
+//						f = 0;
+//						for (int i = 0;i < 4;i++)
+//						{
+//							if (t[i] < a[i])
+//							{
+//								t[i]++;
+//								f = 1;
+//								if (!last)
+//									sum++;
+//								last = 1;
+//							}
+//							else
+//								last = 0;
+//						}
+//					}
+//					pre[a[0]][a[1]][a[2]][a[3]] = sum;
+//
+//					//sum = last = t[0] = t[1] = t[2] = t[3] = 0; f = 1;
+//					//while (f)
+//					//{
+//					//	f = 0;
+//					//	for (int i = 0;i < 4;i++)
+//					//	{
+//					//		if (t[i] < 10-a[i])
+//					//		{
+//					//			t[i]++;
+//					//			f = 1;
+//					//			if (!last)
+//					//				sum++;
+//					//			last = 1;
+//					//		}
+//					//		else
+//					//			last = 0;
+//					//	}
+//					//}
+//					//if (pre[a[0]][a[1]][a[2]][a[3]] > sum) pre[a[0]][a[1]][a[2]][a[3]] = sum;
+//				}
+//	int t;
+//	cin >> t;
+//	while(t--)
+//	{
+//		char a[5] = { 0 }, b[5] = { 0 };
+//		cin >> a >> b;
+//		int m = 20;
+//		for (int i = 0;i < 4;i++)
+//		{
+//			a[i] = b[i] - a[i];
+//			if (a[i] < 0) a[i] += 10;
+//		}
+//		cout << min(pre[a[0]][a[1]][a[2]][a[3]], pre[10 - a[0]][10 - a[1]][10 - a[2]][10 - a[3]]) << endl;
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	string a, b;
+//	while (cin >> a >> b)
+//	{
+//		int al = a.size(), bl = b.size();
+//		vector< vector<int> >dp(al+1);
+//		dp[0].resize(bl + 1);
+//		for (int i = 1;i <= al; i++)
+//		{
+//			dp[i].resize(bl+1);
+//			for (int j = 1;j <= bl;j++)
+//			{
+//				if (a[i-1] == b[j-1]) dp[i][j] = dp[i - 1][j - 1] + 1;
+//				else dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+//			}
+//		}
+//		cout << dp[al][bl] << endl;
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int dp[1011] = { 0 }, val[1011] = { 0 }, w[1011] = { 0 };
+//void init()
+//{
+//	memset(w, 0, sizeof(w));
+//	memset(dp, 0, sizeof(dp));
+//	memset(val, 0, sizeof(val));
+//}
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		init();
+//		int n, v;
+//		cin >> n >> v;
+//		for (int i = 1;i <= n;i++) cin >> val[i];
+//		for (int j = 1;j <= n;j++) cin >> w[j];
+//		for (int i = 1;i <= n;i++)
+//		{
+//			for (int j = v;j >= 0;j--)
+//			{
+//				if (w[i] <= j) dp[j] = max(dp[j], dp[j - w[i]] + val[i]);
+//			}
+//		}
+//		cout << dp[v] << endl;
+//	}
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int dp[10010], v[510], w[510];
+//void init()
+//{
+//	memset(dp, 0x3f, sizeof(dp));
+//	dp[0] = 0;
+//}
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		init();
+//		int e, f, m, n;
+//		cin >> e >> f;
+//		m = f - e;
+//		cin >> n;
+//		for (int i = 1;i <= n;i++) cin >> v[i] >> w[i];
+//		for(int j = 0;j <= m;j++)
+//			for (int i = 1;i <= n;i++)
+//				if (j >= w[i]) dp[j] = min(dp[j], dp[j - w[i]] + v[i]);
+//		if (dp[m] == 0x3f3f3f3f) cout << "This is impossible.\n";
+//		else cout << "The minimum amount of money in the piggy-bank is " << dp[m] << ".\n";
+//	}
+//	return 0;
+//}
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//struct node
+//{
+//	int w, s, k, dp;
+//};
+//int pre[1010];
+//bool cmp(node e1, node e2)
+//{
+//	return e1.w < e2.w;
+//}
+//
+//int main()
+//{
+//	vector<node>vec;
+//	vec.push_back({ 0,0,0,0 });
+//	for (int a, b, i = 1;cin >> a >> b;i++)
+//		pre[i] = i, vec.push_back({ a,b,i,0 });
+//	sort(vec.begin(), vec.end(),cmp);
+//	int n = -1+vec.size();
+//	int m = 0;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		for (int j = 0;j <= n;j++)
+//		{
+//			if (vec[i].w > vec[j].w && vec[i].s < vec[j].s && vec[i].dp <= vec[j].dp)
+//			{
+//				vec[i].dp = vec[j].dp + 1;
+//				pre[vec[i].k] = vec[j].k;
+//			}
+//		}
+//		if (vec[i].dp > vec[m].dp) m = i;
+//	}
+//	cout << vec[m].dp+1 << '\n';
+//	stack<int>sta;
+//	while (m != pre[m])
+//	{
+//		sta.push(m);
+//		m = pre[m];
+//	}
+//	sta.push(m);
+//	while (sta.size())
+//	{
+//		cout << sta.top() << '\n';
+//		sta.pop();
+//	}
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//vector< pair<int,int> >adj[100010];
+//priority_queue< pair<int, int> ,vector<pair<int,int> >, greater< pair<int,int> > >que;
+//int vis[100010] = { 0 }, dp[100010];
+//int main()
+//{
+//	memset(dp, 0x3f, sizeof(dp));
+//	int n, m, s;
+//	cin >> n >> m >> s;
+//	for (int i = 1, a, b, c;i <= m;i++)
+//	{
+//		cin >> a >> b >> c;
+//		adj[a].push_back({ b,c });
+//	}
+//	que.push({ 0,s });
+//	dp[s] = 0;
+//	while (que.size())
+//	{
+//		int u = que.top().second;que.pop();
+//		if (vis[u]) continue;
+//		vis[u] = 1;
+//		for (auto [v, w] : adj[u])
+//		{
+//			dp[v] = min(dp[v], dp[u] + w);
+//			que.push({ dp[v],v });
+//		}
+//	}
+//	for (int i = 1;i <= n;i++)
+//		cout << dp[i] << ' ';
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, m, M, sum = 0;
+//vector< pair<int, int> >adj[2010];
+//int dp[2010], vis[2010], cnt[2010] = { 0 };
+//void init(int n)
+//{
+//	memset(vis, 0, sizeof(vis));
+//	memset(dp, 0x3f, sizeof(dp));
+//	dp[1] = 0;
+//	for (int i = 1;i <= n;i++)
+//		adj[i].clear();
+//}
+//
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//
+//		cin >> n >> m; M = m;
+//		init(n);
+//		for (int i = 0, a, b, c;i < m;i++)
+//		{
+//			cin >> a >> b >> c;
+//			adj[a].push_back({ b,c });
+//			if (c >= 0)
+//				adj[b].push_back({ a,c }),M++;
+//		}
+//		queue<int>que;
+//		que.push(1);vis[1] = 1,cnt[1] = 0;
+//		while (que.size())
+//		{
+//			int u = que.front();
+//			if (cnt[u] > n)
+//			{
+//				cout << "YES\n";
+//				goto ss;
+//			}
+//			vis[u] = 0;que.pop();
+//			for (auto [v, w] : adj[u])
+//			{
+//				if (dp[v] > dp[u] + w)
+//				{
+//					dp[v] = dp[u] + w;
+//					cnt[v] = cnt[u] + 1;
+//					if (!vis[v])
+//						que.push(v);
+//				}
+//			}
+//		}
+//		cout << "NO\n";
+//	ss:;
+//	}
+//	return 0;
+//}
+
+
+
+
+
+#include<bits/stdc++.h>
 using namespace std;
-vector<int>sub[110];
-int du[110] = {0},vis[110] = {0};
-struct node
-{
-	int id, ti;
-};
-node tim[110] = { 0 };
-bool cmp(node e1, node e2)
-{
-	return e1.ti < e2.ti;
-}
+vector< pair<int, int> >adj[105];
+int dp[105][105] = { 0 };
 
 int main()
 {
-	int n;
-	cin >> n;
+	memset(dp, 0x3f, sizeof(dp));
+	int n, m;
+	cin >> n >> m;
+	for (int i = 0, a, b, c;i < m;i++)
+	{
+		cin >> a >> b >> c;
+		dp[a][b] = dp[b][a] = c;
+	}
+	for (int k = 1;k <= n;k++)
+		for (int u = 1;u <= n;u++)
+			for (int v = 1;v <= n;v++)
+				dp[u][v] = min(dp[u][v], dp[u][k] + dp[k][v]),dp[u][u] = 0;
+	
 	for (int i = 1;i <= n;i++)
 	{
-		tim[i].id = i;
-		int t;
-		while (cin >> t, t)
+		for (int j = 1;j <= n;j++)
 		{
-			sub[i].push_back(t);
-			du[t]++;
+			cout << dp[i][j];
+			if (j == n) puts("");
+			else cout << ' ';
 		}
 	}
-	queue<int>que;
-	for (int i = 1;i <= n;i++)
-	{
-		if (!du[i])
-		{
-			que.push(i);
-			vis[i] = 1;
-			tim[i].ti = 0;
-		}
-	}
-	while (que.size())
-	{
-		int x = que.front();
-		que.pop();
-		for (int i = 0;i < sub[x].size();i++)
-			du[sub[x][i]]--;
-		for (int i = 0;i < sub[x].size();i++)
-		{
-			int t = sub[x][i];
-			if (du[t] == 0 && vis[t] == 0)
-			{
-				que.push(t);
-				vis[t] = 1;
-				tim[t].ti = tim[x].ti + 1;
-			}
-		}
-	}
-	sort(tim + 1, tim + 1 + n,cmp);
-	for (int i = 1;i <= n;i++)
-		cout << tim[i].id << " ";
+
 	return 0;
 }
