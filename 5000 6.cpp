@@ -1063,35 +1063,290 @@
 
 
 
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
+//using namespace std;
+//vector< pair<int, int> >adj[105];
+//int dp[105][105] = { 0 };
+//
+//int main()
+//{
+//	memset(dp, 0x3f, sizeof(dp));
+//	int n, m;
+//	cin >> n >> m;
+//	for (int i = 0, a, b, c;i < m;i++)
+//	{
+//		cin >> a >> b >> c;
+//		dp[a][b] = dp[b][a] = c;
+//	}
+//	for (int k = 1;k <= n;k++)
+//		for (int u = 1;u <= n;u++)
+//			for (int v = 1;v <= n;v++)
+//				dp[u][v] = min(dp[u][v], dp[u][k] + dp[k][v]),dp[u][u] = 0;
+//	
+//	for (int i = 1;i <= n;i++)
+//	{
+//		for (int j = 1;j <= n;j++)
+//		{
+//			cout << dp[i][j];
+//			if (j == n) puts("");
+//			else cout << ' ';
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//struct node
+//{
+//	int x, y;
+//};
+//node adj[1010] = { 0 };
+//double v1, v2, delt, t = 0;
+//int vis[1010] = { 0 };
+//double d[1010] = { 0 };
+//double tim(int u, int v, double t)
+//{
+//	double d = sqrt((adj[u].x - adj[v].x) * (adj[u].x - adj[v].x)\
+//		+ (adj[u].y - adj[v].y) * (adj[u].y - adj[v].y));
+//	if (d > delt + t * v2)
+//	{
+//
+//	}
+//	return 
+//}
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	for (int i = 1;i <= n;i++)
+//		cin >> adj[i].x >> adj[i].y, d[i] = -1;
+//	cin >> adj[n+1].x >> adj[n+1].y >> adj[0].x >> adj[0].y >> v1 >> v2;
+//	n += 2; delt = v2 * 3.0;
+//	d[n - 1] = sqrt((adj[n - 1].x - adj[0].x) * (adj[n - 1].x - adj[0].x)\
+//		+(adj[n - 1].y - adj[0].y) * (adj[n - 1].y - adj[0].y)) / v1;
+//	d[0] = 0;
+//
+//	vis[0] = 1;
+//	for (int i = 0;i < n;i++)
+//	{
+//		int u = 0;
+//		for (int j = 0;j < n;j++)
+//		{
+//			if (!vis[j] && d[j] != -1 && (u == 0 || d[j] < d[u])) u = j;
+//		}
+//		vis[u] = 1;
+//		for (int v = 0;v < n;v++)
+//		{
+//			double tmp = tim(u, v);
+//			if (d[v] == -1 || d[v] < d[u] + tmp)
+//				d[v] = d[u] + tmp;
+//		}
+//	}
+//	cout << 
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, m, s;
+//int ans[500010] = { 0 }, vis[500010] = { 0 }, fa[500010] = { 0 };
+//vector<int>son[500010];
+//vector< pair<int,int> >q[500010];
+//int find(int a)
+//{
+//	return fa[a] == a ? a : fa[a] = find(fa[a]);
+//}
+//void merg(int u, int f)
+//{
+//	u = find(u);
+//	f = find(f);
+//	if (u != f) fa[u] = f;
+//}
+//void dfs(int u,int f)
+//{
+//
+//	vis[u] = 1;
+//	for (auto& [v, k] : q[u])
+//	{
+//		if (ans[k]) continue;
+//		if (vis[v]) ans[k] = find(v);
+//	}
+//	for (auto& v : son[u])
+//	{
+//		if (!vis[v])
+//			dfs(v, u);
+//	}
+//	merg(u, f);
+//	
+//
+//}
+//
+//int main()
+//{
+//	cin >> n >> m >> s;
+//	for (int i = 1;i <= n;i++) fa[i] = i;
+//	for (int i = 0, x, y;i < n - 1;i++)
+//	{
+//		cin >> x >> y;
+//		son[x].push_back(y);
+//		son[y].push_back(x);
+//	}
+//	for (int i = 0, a, b;i < m;i++)
+//	{
+//		cin >> a >> b;
+//		q[a].push_back({ b,i });
+//		q[b].push_back({ a,i });
+//	}
+//
+//	dfs(s,s);
+//
+//	for (int i = 0;i < m;i++)
+//		cout << ans[i] << '\n';
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const long long N = 500010;
+//vector<int>mp[N];
+//int n, m, s, dep[N] = { 0 }, par[N][20] = { 0 };
+//void dfs(int u, int fa)
+//{
+//	dep[u] = dep[fa] + 1;
+//	par[u][0] = fa;
+//	for (int i = 1;i < 20;i++)
+//		par[u][i] = par[par[u][i - 1]][i - 1];
+//	for (auto& v : mp[u])
+//	{
+//		if (v == fa)continue;
+//		dfs(v, u);
+//	}
+//}
+//int getlca(int u, int v)
+//{
+//	if (dep[u] < dep[v]) swap(u, v);
+//	for (int i = 19;i >= 0;i--)
+//	{
+//		if (dep[par[u][i]] >= dep[v])
+//			u = par[u][i];
+//	}
+//	if (u == v) return u;
+//	for (int i = 19;i >= 0;i--)
+//	{
+//		if (par[u][i] != par[v][i])
+//			u = par[u][i], v = par[v][i];
+//	}
+//	return par[u][0];
+//}
+//
+//
+//int main()
+//{
+//	scanf("%d %d %d", &n, &m, &s);
+//	for (int i = 0,a,b;i < n - 1;i++)
+//	{
+//		scanf("%d %d", &a, &b);
+//		mp[a].push_back(b);
+//		mp[b].push_back(a);
+//	}
+//	dfs(s, 0);
+//	for (int i = 0,u,v;i < m;i++)
+//	{
+//		scanf("%d %d", &u, &v);
+//		printf("%d\n", getlca(u, v));
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+#include<iostream>
+#include<vector>
 using namespace std;
-vector< pair<int, int> >adj[105];
-int dp[105][105] = { 0 };
+vector<int>mp[910];
+vector<int>Q[910];
+int n, m, rt, vis[910] = { 0 }, cnt[910] = { 0 }, fa[910] = { 0 };
+int find(int u)
+{
+	return u == fa[u] ? u : fa[u] = find(fa[u]);
+}
+void merg(int u, int f)
+{
+	u = find(u);
+	f = find(f);
+	if (u != f)
+		fa[u] = f;
+}
+void init()
+{
+	memset(vis, 0, sizeof(vis));
+	memset(cnt, 0, sizeof(cnt));
+}
+void dfs(int u, int fa)
+{
+	vis[u] = 1;
+	for (auto& v : Q[u])
+	{
+		if (vis[v])
+			cnt[find(v)]++;
+	}
+	for (auto& v : mp[u])
+	{
+		if (!vis[v])
+			dfs(v, u);
+	}
+	merg(u, fa);
+}
 
 int main()
 {
-	memset(dp, 0x3f, sizeof(dp));
-	int n, m;
-	cin >> n >> m;
-	for (int i = 0, a, b, c;i < m;i++)
+	while (~scanf("%d", &n))
 	{
-		cin >> a >> b >> c;
-		dp[a][b] = dp[b][a] = c;
-	}
-	for (int k = 1;k <= n;k++)
-		for (int u = 1;u <= n;u++)
-			for (int v = 1;v <= n;v++)
-				dp[u][v] = min(dp[u][v], dp[u][k] + dp[k][v]),dp[u][u] = 0;
-	
-	for (int i = 1;i <= n;i++)
-	{
-		for (int j = 1;j <= n;j++)
+		init();
+		for (int i = 0,k,s;i < n;i++)
 		{
-			cout << dp[i][j];
-			if (j == n) puts("");
-			else cout << ' ';
+			scanf("%d:(%d)", &k, &s);
+			mp[k].clear();Q[k].clear();fa[k] = k;
+			for (int j = 0, t;j < s;j++)
+			{
+				scanf("%d", &t);
+				vis[t] = 1;
+				mp[k].push_back(t);
+			}
+		}
+		for (int i = 1;i <= n;i++) if (!vis[i]) rt = i;
+
+		memset(vis, 0, sizeof(vis));
+		scanf("%d", &m);
+		for (int i = 0, u, v;i < m;i++)
+		{
+			scanf(" (%d %d)", &u, &v);
+			Q[u].push_back(v);
+			if(u != v)
+				Q[v].push_back(u);
+		}
+		dfs(rt, 0);
+
+		for (int i = 1;i <= n;i++)
+		{
+			if (cnt[i])
+			{
+				printf("%d:%d\n", i, cnt[i]);
+			}
 		}
 	}
-
 	return 0;
 }
