@@ -1273,80 +1273,295 @@
 
 
 
-#include<iostream>
-#include<vector>
-using namespace std;
-vector<int>mp[910];
-vector<int>Q[910];
-int n, m, rt, vis[910] = { 0 }, cnt[910] = { 0 }, fa[910] = { 0 };
-int find(int u)
-{
-	return u == fa[u] ? u : fa[u] = find(fa[u]);
-}
-void merg(int u, int f)
-{
-	u = find(u);
-	f = find(f);
-	if (u != f)
-		fa[u] = f;
-}
-void init()
-{
-	memset(vis, 0, sizeof(vis));
-	memset(cnt, 0, sizeof(cnt));
-}
-void dfs(int u, int fa)
-{
-	vis[u] = 1;
-	for (auto& v : Q[u])
-	{
-		if (vis[v])
-			cnt[find(v)]++;
-	}
-	for (auto& v : mp[u])
-	{
-		if (!vis[v])
-			dfs(v, u);
-	}
-	merg(u, fa);
-}
+//#include<iostream>
+//#include<vector>
+//using namespace std;
+//vector<int>mp[910];
+//vector<int>Q[910];
+//int n, m, rt, vis[910] = { 0 }, cnt[910] = { 0 }, fa[910] = { 0 };
+//int find(int u)
+//{
+//	return u == fa[u] ? u : fa[u] = find(fa[u]);
+//}
+//void merg(int u, int f)
+//{
+//	u = find(u);
+//	f = find(f);
+//	if (u != f)
+//		fa[u] = f;
+//}
+//void init()
+//{
+//	memset(vis, 0, sizeof(vis));
+//	memset(cnt, 0, sizeof(cnt));
+//}
+//void dfs(int u, int fa)
+//{
+//	vis[u] = 1;
+//	for (int i = 0;i < Q[u].size();i++)
+//	{
+//		if (vis[Q[u][i]])
+//			cnt[find(Q[u][i])]++;
+//	}
+//	for (int i = 0;i < mp[u].size();i++)
+//	{
+//		if (!vis[mp[u][i]])
+//			dfs(mp[u][i], u);
+//	}
+//	merg(u, fa);
+//}
+//
+//int main()
+//{
+//	while (~scanf("%d", &n))
+//	{
+//		init();
+//		for (int i = 0,k,s;i < n;i++)
+//		{
+//			scanf("%d:(%d)", &k, &s);
+//			mp[k].clear();Q[k].clear();fa[k] = k;
+//			for (int j = 0, t;j < s;j++)
+//			{
+//				scanf("%d", &t);
+//				vis[t] = 1;
+//				mp[k].push_back(t);
+//			}
+//		}
+//		for (int i = 1;i <= n;i++) if (!vis[i]) rt = i;
+//
+//		memset(vis, 0, sizeof(vis));
+//		scanf("%d", &m);
+//		for (int i = 0, u, v;i < m;i++)
+//		{
+//			scanf(" (%d %d)", &u, &v);
+//			Q[u].push_back(v);
+//			if(u != v)
+//				Q[v].push_back(u);
+//		}
+//		dfs(rt, 0);
+//
+//		for (int i = 1;i <= n;i++)
+//		{
+//			if (cnt[i])
+//			{
+//				printf("%d:%d\n", i, cnt[i]);
+//			}
+//		}
+//	}
+//	return 0;
+//}
 
-int main()
-{
-	while (~scanf("%d", &n))
-	{
-		init();
-		for (int i = 0,k,s;i < n;i++)
-		{
-			scanf("%d:(%d)", &k, &s);
-			mp[k].clear();Q[k].clear();fa[k] = k;
-			for (int j = 0, t;j < s;j++)
-			{
-				scanf("%d", &t);
-				vis[t] = 1;
-				mp[k].push_back(t);
-			}
-		}
-		for (int i = 1;i <= n;i++) if (!vis[i]) rt = i;
 
-		memset(vis, 0, sizeof(vis));
-		scanf("%d", &m);
-		for (int i = 0, u, v;i < m;i++)
-		{
-			scanf(" (%d %d)", &u, &v);
-			Q[u].push_back(v);
-			if(u != v)
-				Q[v].push_back(u);
-		}
-		dfs(rt, 0);
 
-		for (int i = 1;i <= n;i++)
-		{
-			if (cnt[i])
-			{
-				printf("%d:%d\n", i, cnt[i]);
-			}
-		}
-	}
-	return 0;
-}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1000010;
+//ll a[N] = { 0 }, t[N] = { 0 };
+//int n, q;
+//int lowbit(int x)
+//{
+//	return x & -x;
+//}
+//
+//void add(int i, int val)
+//{
+//	while (i <= n)
+//	{
+//		t[i] += val;
+//		i += lowbit(i);
+//	}
+//}
+//
+//ll getsum(int x)
+//{
+//	ll sum = 0;
+//	while (x)
+//	{
+//		sum += t[x];
+//		x -= lowbit(x);
+//	}
+//	return sum;
+//}
+//
+//int main()
+//{
+//	
+//	cin >> n >> q;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		scanf("%d", &a[i]);
+//		add(i, a[i]);
+//	}
+//	int tmp,a,b;
+//	while (q--)
+//	{
+//		scanf("%d %d %d", &tmp, &a, &b);
+//		if (tmp == 1) add(a, b);
+//		else
+//		{
+//			printf("%d\n", getsum(b) - getsum(a - 1));
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1000010;
+//ll t[N] = { 0 };
+//int n, q, a[2] = { 0 };
+//int lowbit(int x)
+//{
+//	return x & -x;
+//}
+//void add(int i, ll val)
+//{
+//	while (i <= n)
+//	{
+//		t[i] += val;
+//		i += lowbit(i);
+//	}
+//}
+//ll getsum(int x)
+//{
+//	ll sum = 0;
+//	while (x > 0)
+//	{
+//		sum += t[x];
+//		x -= lowbit(x);
+//	}
+//	return sum;
+//}
+//
+//
+//int main()
+//{
+//	std::ios::sync_with_stdio(false);
+//	cin.tie(0);  cout.tie(0);
+//
+//	cin >> n >> q;
+//	for (int i = 1,now = 1,last = 0;i <= n;i++)
+//	{
+//		cin >> a[now];
+//		add(i, a[now] - a[last]);
+//		swap(now, last);
+//	}
+//	int k, b, c, d;
+//	while (q--)
+//	{
+//		cin >> k >> b;
+//		if (k == 1)
+//		{
+//			cin >> c >> d;
+//			add(b, d);
+//			add(c + 1, -d);
+//		}
+//		else
+//			printf("%lld\n", getsum(b));
+//	}
+//	return 0;
+//}
+//
+
+
+
+
+//#include<stdio.h>
+//#include<string.h>
+//char a[100006], b[100006];
+//int main()
+//{
+//	while (~scanf("%s %s", a, b))
+//	{
+//		int len = strlen(b), x;
+//		scanf("%d", &x);
+//		for (int i = 0;i < len;i++)
+//		{
+//			if (i == x)
+//				printf("%s", a);
+//			printf("%c", b[i]);
+//		}
+//		if (x == len)
+//			printf("%s", a);
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1000010;
+//ll t[N] = { 0 }, t2[N] = { 0 };
+//int n, q, a[2] = { 0 }, b[2] = { 0 };
+//int lowbit(int x)
+//{
+//	return x & -x;
+//}
+//void add(int i, ll val)
+//{
+//	ll val2 = val * i;
+//	while (i <= n)
+//	{
+//		t[i] += val;
+//		t2[i] += val2;
+//		i += lowbit(i);
+//	}
+//}
+//ll getsum(int x)
+//{
+//	ll sum = 0, sum2 = 0, i = x;
+//	while (x > 0)
+//	{
+//		sum += t[x];
+//		sum2 += t2[x];
+//		x -= lowbit(x);
+//	}
+//	return (i+1)*sum - sum2;
+//}
+//
+//
+//int main()
+//{
+//	std::ios::sync_with_stdio(false);
+//	cin.tie(0);  cout.tie(0);
+//
+//	cin >> n >> q;
+//	for (int i = 1, now = 1, last = 0;i <= n;i++)
+//	{
+//		cin >> a[now];
+//		b[now] = a[now] - a[last];
+//		add(i, b[now] - b[last]);
+//		swap(now, last);
+//	}
+//	int f, l, r, k, d;
+//	while (q--)
+//	{
+//		cin >> f;
+//		if (f == 1)
+//		{
+//			cin >> l >> r >> k >> d;
+//			add(l,k);
+//			add(l + 1, d-k);
+//			add(r+1, -d-k-((r-l)*d));
+//			add(r + 2, k+(r-l)*d);
+//		}
+//		else
+//		{
+//			cin >> r;
+//			printf("%lld\n", getsum(r));
+//		}
+//	}
+//	return 0;
+//}
