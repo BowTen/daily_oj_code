@@ -1742,3 +1742,327 @@
 //	}
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//struct node
+//{
+//	int l, r, Max;
+//};
+//node seg[N << 2];
+//int m, p, last = 0,len = 0;
+//ll t;
+//char k;
+//void add(int t)
+//{
+//	seg[len].Max = t;
+//	seg[len].l = 
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> m >> p;
+//	while (m--)
+//	{
+//		getchar();
+//		cin >> k >> t;
+//		if (k == 'A')
+//		{
+//			len++;
+//			add((t + last) % p);
+//		}
+//		else if (k == 'Q')
+//		{
+//
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e6 + 5;
+//struct node
+//{
+//	ll l, r;
+//	ll tag, sum;
+//};
+//node seg[N << 2];
+//ll n, q, a[N] = { 0 }, f,qa,qb,x;
+//void up(ll k)
+//{
+//	seg[k].sum = seg[k << 1].sum + seg[k << 1 | 1].sum;
+//}
+//void build(ll id, ll ql, ll qr)
+//{
+//	seg[id].l = ql;
+//	seg[id].r = qr;
+//	if (ql == qr)
+//	{
+//		seg[id].sum = a[ql];
+//		return;
+//	}
+//	ll mid = (ql + qr) >> 1;
+//	build(id << 1, ql, mid);
+//	build(id << 1 | 1, mid + 1, qr);
+//	up(id);
+//}
+//void settag(ll id,ll x)
+//{
+//	seg[id].sum += (seg[id].l - seg[id].r + 1) * x;
+//	seg[id].tag += x;
+//}
+//void down(ll k)
+//{
+//	if (!seg[k].tag) return;
+//	ll tag = seg[k].tag;
+//	seg[k].tag = 0;
+//	settag(k << 1, tag);
+//	settag(k << 1 | 1, tag);
+//}
+//ll query(ll id, ll ql, ll qr)
+//{
+//	ll l = seg[id].l;
+//	ll r = seg[id].r;
+//	if (l >= ql && r <= qr) return seg[id].sum;
+//	ll mid = (l + r) >> 1;
+//	if (seg[id].tag) down(id);
+//	if (qr <= mid) return query(id << 1, ql, qr);
+//	else if (ql > mid) return query(id << 1 | 1, ql, qr);
+//	else return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
+//}
+//void modify(ll id,ll ql,ll qr,ll x)
+//{
+//	ll l = seg[id].l;
+//	ll r = seg[id].r;
+//	if (l >= ql && r <= qr)
+//	{
+//		settag(id,x);
+//		return;
+//	}
+//	ll mid = (l + r) >> 1;
+//	if (seg[id].tag) down(id);
+//	if (qr <= mid) modify(id << 1, ql, qr, x);
+//	else if (ql > mid) modify(id << 1 | 1, ql, qr, x);
+//	else modify(id << 1, ql, qr, x), modify(id << 1 | 1, ql, qr, x);
+//	up(id);
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> q;
+//	for (ll i = 1;i <= n;i++)
+//		cin >> a[i];
+//	build(1, 1, n);
+//	while (q--)
+//	{
+//		cin >> f >> qa >> qb;
+//		if (f == 1)
+//		{
+//			cin >> x;
+//			modify(1,qa,qb,x);
+//		}
+//		else
+//		{
+//			cout << query(1, qa, qb) << '\n';
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int M = 2e5 + 10;
+//struct node
+//{
+//	int l, r, Max;
+//}seg[M << 2];
+//int m, len = 0;
+//ll t, last = 0, p;
+//char f;
+//
+//void up(int k)
+//{
+//	seg[k].Max = max(seg[k << 1].Max, seg[k << 1 | 1].Max);
+//}
+//
+//void build(int id, int ql, int qr)
+//{
+//	seg[id].l = ql;
+//	seg[id].r = qr;
+//	if (qr == ql)
+//	{
+//		seg[id].Max = 0;
+//		return;
+//	}
+//		int mid = (qr + ql) >> 1;
+//		build(id << 1, ql, mid);
+//		build(id << 1 | 1, mid + 1, qr);
+//}
+//
+//void change(int id, int i, int val)
+//{
+//	int l = seg[id].l;
+//	int r = seg[id].r;
+//	if (l == r)
+//	{
+//		seg[id].Max = val;return;
+//	}
+//	int mid = (l + r) >> 1;
+//	if (i <= mid) change(id << 1, i, val);
+//	else change(id << 1 | 1, i, val);
+//	up(id);
+//}
+//
+//int query(int id, int ql,int qr)
+//{
+//	int l = seg[id].l;
+//	int r = seg[id].r;
+//	if (l >= ql && r <= qr) return seg[id].Max;
+//	int mid = (l + r) >> 1;
+//	if (qr <= mid) return query(id << 1, ql,qr);
+//	else if (ql > mid) return query(id << 1 | 1, ql,qr);
+//	else return max(query(id << 1, ql,qr), query(id << 1 | 1, ql,qr));
+//}
+//
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	build(1, 1, M);
+//	cin >> m >> p;
+//	while (m--)
+//	{
+//		cin >> f >> t;
+//		if (f == 'A')
+//		{
+//			len++;
+//			change(1, len, (t + last) % p);
+//		}
+//		else
+//		{
+//			last = query(1, len + 1 - t, len);
+//			cout << last << '\n';
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const int N = 1e6 + 10;
+struct node
+{
+	int l, r;
+	ll sum, tag;
+}seg[N<<2];
+int n, q, a[N] = { 0 };
+
+void up(int id)
+{
+	seg[id].sum = seg[id << 1].sum + seg[id << 1 | 1].sum;
+}
+
+void settag(int id, ll val)
+{
+	int l = seg[id].l;
+	int r = seg[id].r;
+	seg[id].sum += (r - l + 1) * val;
+	seg[id].tag += val;
+}
+
+void down(int id)
+{
+	if (seg[id].tag == 0) return;
+	ll tag = seg[id].tag;
+	seg[id].tag = 0;
+	settag(id << 1, tag);
+	settag(id << 1 | 1, tag);
+}
+
+void build(int id, int ql, int qr)
+{
+	seg[id].l = ql;
+	seg[id].r = qr;
+	if (qr == ql)
+	{
+		seg[id].sum = a[ql];
+		return;
+	}
+	int mid = (qr + ql) >> 1;
+	build(id << 1, ql, mid);
+	build(id << 1 | 1, mid + 1, qr);
+	up(id);
+}
+
+void modify(int id, int ql, int qr, ll val)
+{
+	int l = seg[id].l;
+	int r = seg[id].r;
+	if (l > qr || r < ql) return;
+	if (l >= ql && r <= qr)
+	{
+		settag(id, val);
+		return;
+	}
+	down(id);
+	modify(id << 1, ql, qr, val);
+	modify(id << 1 | 1, ql, qr, val);
+	up(id);
+}
+
+ll query(int id, int ql, int qr)
+{
+	int l = seg[id].l;
+	int r = seg[id].r;
+	if (l >= ql && r <= qr) return seg[id].sum;
+	int mid = (l + r) >> 1;
+	down(id);
+	if (qr <= mid) return query(id << 1, ql, qr);
+	else if (ql > mid) return query(id << 1 | 1, ql, qr);
+	else return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
+}
+
+int main()
+{
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	cin >> n >> q;
+	for (int i = 1;i <= n;i++) cin >> a[i];
+	build(1, 1, n);
+	int f, l, r, x;
+	while (q--)
+	{
+		cin >> f >> l >> r;
+		if (f == 1)
+		{
+			cin >> x;
+			modify(1,l,r,x);
+		}
+		else if(f == 2)
+		{
+			cout << query(1,l,r) << endl;
+		}
+	}
+	return 0;
+}
