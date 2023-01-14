@@ -1498,7 +1498,7 @@
 
 
 
-
+//
 //#include<bits/stdc++.h>
 //using namespace std;
 //typedef long long ll;
@@ -1561,6 +1561,183 @@
 //		{
 //			cin >> r;
 //			printf("%lld\n", getsum(r));
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//struct Info
+//{
+//	int pre, suf, ans;
+//	Info operator+(const Info& e)const
+//	{
+//		Info ret = { 0 };
+//		ret.ans = ans + e.ans;
+//		int merg = min(pre, e.suf);
+//		ret.ans += merg << 1;
+//		ret.pre = pre + e.pre - merg;
+//		ret.suf = suf + e.suf - merg;
+//		return ret;
+//	}
+//};
+//struct node
+//{
+//	int l, r;
+//	Info val;
+//};
+//string s;
+//const int N = 4e6 + 10;
+//int q, a, b;
+//node t[N] = { 0 };
+//void up(int k)
+//{
+//	t[k].val.ans += t[k << 1].val.ans + t[k << 1 | 1].val.ans;
+//	int pre = t[k << 1].val.pre, suf = t[k << 1 | 1].val.suf;
+//	int merg = min(pre, suf);
+//	t[k].val.ans += merg << 1;
+//	t[k].val.pre = pre - merg + t[k<<1|1].val.pre;
+//	t[k].val.suf = suf - merg + t[k<<1].val.suf;
+//}
+//void build(int k, int ql, int qr)
+//{
+//	t[k].l = ql;
+//	t[k].r = qr;
+//	if (ql == qr)
+//	{
+//		if (s[ql] == '(') t[k].val.pre = 1;
+//		else if (s[ql] == ')') t[k].val.suf = 1;
+//	}
+//	else
+//	{
+//		int mid = (ql + qr) >> 1;
+//		build(k << 1, ql, mid);
+//		build(k << 1 | 1, mid + 1, qr);
+//		up(k);
+//	}
+//}
+//Info query(int k,int ql, int qr)
+//{
+//	if (t[k].l >= ql && t[k].r <= qr)
+//		return t[k].val;
+//	int mid = (t[k].l+t[k].r) >> 1;
+//	if (qr <= mid)	return query(k << 1, ql, qr);
+//	else if (ql > mid)	return query(k << 1 | 1, ql, qr);
+//	else return query(k << 1, ql, qr) + query(k << 1 | 1, ql, qr);
+//}
+//
+//int main()
+//{
+//	cin >> s;
+//	s = "?" + s;
+//	build(1,1,s.size());
+//	cin >> q;
+//	while (q--)
+//	{
+//		cin >> a >> b;
+//		cout << query(1, a, b).ans << '\n';
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//struct node
+//{
+//	int l, r, val;
+//};
+//const int N = 1e5 + 10;
+//int t, n, q, a[N], k,don;
+//node seg[N << 2];
+//void init()
+//{
+//	memset(a, 0, sizeof(a));
+//	memset(seg, 0, sizeof(seg));
+//}
+//void up(int k)
+//{
+//	seg[k].val = seg[k << 1].val + seg[k << 1 | 1].val;
+//}
+//void build(int id, int ql, int qr)
+//{
+//	seg[id].l = ql;
+//	seg[id].r = qr;
+//	if (ql == qr)
+//	{
+//		seg[id].val = a[ql];
+//	}
+//	else
+//	{
+//		int mid = (ql + qr) >> 1;
+//		build(id << 1, ql, mid);
+//		build(id << 1 | 1, mid + 1, qr);
+//		up(id);
+//	}
+//}
+//void change(int id, int qi, int qv)
+//{
+//	int l = seg[id].l, r = seg[id].r;
+//	if (l == r)
+//	{
+//		if (!qv)	don = seg[id].val, seg[id].val = 0;
+//		else	seg[id].val += qv;
+//		return;
+//	}
+//	int mid = (l + r) >> 1;
+//	if (qi <= mid) change(id << 1, qi, qv);
+//	else change(id << 1 | 1, qi, qv);
+//	up(id);
+//}
+//int query(int id, int ql, int qr)
+//{
+//	int l = seg[id].l;
+//	int r = seg[id].r;
+//	if (l >= ql && r <= qr) return seg[id].val;
+//	int mid = (l + r) >> 1;
+//	if (qr <= mid) return query(id << 1, ql, qr);
+//	else if (ql > mid) return query(id << 1 | 1, ql, qr);
+//	else return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0);  cout.tie(0);
+//	
+//	cin >> t;
+//	for(int num = 1;num <= t;num++)
+//	{
+//		cout << "Case " << num << ":\n";
+//		init();
+//		cin >> n >> q;
+//		for (int i = 0;i < n;i++)
+//			cin >> a[i];
+//		build(1,0,n-1);
+//		int i, v, j;
+//		while (q--)
+//		{
+//			cin >> k;
+//			if (k == 1)
+//			{
+//				cin >> i;
+//				change(1, i, 0);
+//				cout << don << '\n';
+//			}
+//			else if (k == 2)
+//			{
+//				cin >> i >> v;
+//				change(1, i, v);
+//			}
+//			else
+//			{
+//				cin >> i >> j;
+//				cout << query(1, i, j) << '\n';
+//			}
 //		}
 //	}
 //	return 0;
