@@ -1968,101 +1968,213 @@
 
 
 
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e6 + 10;
+//struct node
+//{
+//	int l, r;
+//	ll sum, tag;
+//}seg[N<<2];
+//int n, q, a[N] = { 0 };
+//
+//void up(int id)
+//{
+//	seg[id].sum = seg[id << 1].sum + seg[id << 1 | 1].sum;
+//}
+//
+//void settag(int id, ll val)
+//{
+//	int l = seg[id].l;
+//	int r = seg[id].r;
+//	seg[id].sum += (r - l + 1) * val;
+//	seg[id].tag += val;
+//}
+//
+//void down(int id)
+//{
+//	if (seg[id].tag == 0) return;
+//	ll tag = seg[id].tag;
+//	seg[id].tag = 0;
+//	settag(id << 1, tag);
+//	settag(id << 1 | 1, tag);
+//}
+//
+//void build(int id, int ql, int qr)
+//{
+//	seg[id].l = ql;
+//	seg[id].r = qr;
+//	if (qr == ql)
+//	{
+//		seg[id].sum = a[ql];
+//		return;
+//	}
+//	int mid = (qr + ql) >> 1;
+//	build(id << 1, ql, mid);
+//	build(id << 1 | 1, mid + 1, qr);
+//	up(id);
+//}
+//
+//void modify(int id, int ql, int qr, ll val)
+//{
+//	int l = seg[id].l;
+//	int r = seg[id].r;
+//	if (l > qr || r < ql) return;
+//	if (l >= ql && r <= qr)
+//	{
+//		settag(id, val);
+//		return;
+//	}
+//	down(id);
+//	modify(id << 1, ql, qr, val);
+//	modify(id << 1 | 1, ql, qr, val);
+//	up(id);
+//}
+//
+//ll query(int id, int ql, int qr)
+//{
+//	int l = seg[id].l;
+//	int r = seg[id].r;
+//	if (l >= ql && r <= qr) return seg[id].sum;
+//	int mid = (l + r) >> 1;
+//	down(id);
+//	if (qr <= mid) return query(id << 1, ql, qr);
+//	else if (ql > mid) return query(id << 1 | 1, ql, qr);
+//	else return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> q;
+//	for (int i = 1;i <= n;i++) cin >> a[i];
+//	build(1, 1, n);
+//	int f, l, r, x;
+//	while (q--)
+//	{
+//		cin >> f >> l >> r;
+//		if (f == 1)
+//		{
+//			cin >> x;
+//			modify(1,l,r,x);
+//		}
+//		else if(f == 2)
+//		{
+//			cout << query(1,l,r) << endl;
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+#include<iostream>
 using namespace std;
 typedef long long ll;
-const int N = 1e6 + 10;
-struct node
-{
-	int l, r;
-	ll sum, tag;
-}seg[N<<2];
-int n, q, a[N] = { 0 };
-
-void up(int id)
-{
-	seg[id].sum = seg[id << 1].sum + seg[id << 1 | 1].sum;
-}
-
-void settag(int id, ll val)
-{
-	int l = seg[id].l;
-	int r = seg[id].r;
-	seg[id].sum += (r - l + 1) * val;
-	seg[id].tag += val;
-}
-
-void down(int id)
-{
-	if (seg[id].tag == 0) return;
-	ll tag = seg[id].tag;
-	seg[id].tag = 0;
-	settag(id << 1, tag);
-	settag(id << 1 | 1, tag);
-}
-
-void build(int id, int ql, int qr)
-{
-	seg[id].l = ql;
-	seg[id].r = qr;
-	if (qr == ql)
-	{
-		seg[id].sum = a[ql];
-		return;
-	}
-	int mid = (qr + ql) >> 1;
-	build(id << 1, ql, mid);
-	build(id << 1 | 1, mid + 1, qr);
-	up(id);
-}
-
-void modify(int id, int ql, int qr, ll val)
-{
-	int l = seg[id].l;
-	int r = seg[id].r;
-	if (l > qr || r < ql) return;
-	if (l >= ql && r <= qr)
-	{
-		settag(id, val);
-		return;
-	}
-	down(id);
-	modify(id << 1, ql, qr, val);
-	modify(id << 1 | 1, ql, qr, val);
-	up(id);
-}
-
-ll query(int id, int ql, int qr)
-{
-	int l = seg[id].l;
-	int r = seg[id].r;
-	if (l >= ql && r <= qr) return seg[id].sum;
-	int mid = (l + r) >> 1;
-	down(id);
-	if (qr <= mid) return query(id << 1, ql, qr);
-	else if (ql > mid) return query(id << 1 | 1, ql, qr);
-	else return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
-}
 
 int main()
 {
-	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-	cin >> n >> q;
-	for (int i = 1;i <= n;i++) cin >> a[i];
-	build(1, 1, n);
-	int f, l, r, x;
-	while (q--)
+	ll x, y, m, n, l,cnt = 0;
+	cin >> x >> y >> m >> n >> l;
+	if (m == n) {
+		cout << "Impossible";
+		return 0;
+	}
+	if (m < n)
 	{
-		cin >> f >> l >> r;
-		if (f == 1)
+		swap(m, n);
+		swap(x, y);
+	}
+	y -= x;
+	x = 0;
+	m -= n;
+	if (y < 0) y += l;
+
+	//if (y % m == 0)
+	//{
+	//	cout << y/m;
+	//	return 0;
+	//}
+
+	ll d,last = -1,q1,q2,p1,p2,f = 0,c1,c2,delt,dq;
+	d = y / m;
+	cnt += d;
+	c1 = cnt;
+	x += d * m;
+	q1 = x;
+
+	d = 1;
+	cnt += d;
+	x += d * m;
+	x %= l;
+	p1 = x;
+
+	if (x > y)
+		x -= l;
+
+	d = (y - x) / m;
+	cnt += d;
+	c2 = cnt;
+	x += d * m;
+	q2 = x;
+
+	dq = q2 - q1;
+
+	if (x == y)
+	{
+		cout << cnt;
+		return 0;
+	}
+
+	if (q1 == q1)
+	{
+		cout << "Impossible";
+		return 0;
+	}
+
+	d = 1;
+	cnt += d;
+	x += d * m;
+	x %= l;
+	p2 = x;
+
+	delt = c2 - c1;
+	if (q2 > q1)
+		f = 1;
+
+	if (p2 < q2)
+		swap(p2, q2);
+
+	if (y > p2)
+	{
+		if (f)
 		{
-			cin >> x;
-			modify(1,l,r,x);
-		}
-		else if(f == 2)
-		{
-			cout << query(1,l,r) << endl;
+			d
 		}
 	}
+
+	/*pair<int, int>d[2];
+	for (int i = 0;i<2 && x != y;i++)
+	{
+		if (x > y)
+		{
+			if (last == x)
+			{
+				cout << "Impossible";
+				return 0;
+			}
+			last = x;
+			x -= l;
+		}
+		if (x < y)
+		{
+			d = max((y - x) / m,(ll)1);
+			cnt += d;
+			x += d * m;
+		}
+	}*/
+	cout << cnt;
 	return 0;
 }
