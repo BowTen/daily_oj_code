@@ -2070,90 +2070,90 @@
 
 
 
-#include<iostream>
-using namespace std;
-typedef long long ll;
-
-int main()
-{
-	ll x, y, m, n, l,cnt = 0;
-	cin >> x >> y >> m >> n >> l;
-	if (m == n) {
-		cout << "Impossible";
-		return 0;
-	}
-	if (m < n)
-	{
-		swap(m, n);
-		swap(x, y);
-	}
-	y -= x;
-	x = 0;
-	m -= n;
-	if (y < 0) y += l;
-
-	//if (y % m == 0)
-	//{
-	//	cout << y/m;
-	//	return 0;
-	//}
-
-	ll d,last = -1,q1,q2,p1,p2,f = 0,c1,c2,delt,dq;
-	d = y / m;
-	cnt += d;
-	c1 = cnt;
-	x += d * m;
-	q1 = x;
-
-	d = 1;
-	cnt += d;
-	x += d * m;
-	x %= l;
-	p1 = x;
-
-	if (x > y)
-		x -= l;
-
-	d = (y - x) / m;
-	cnt += d;
-	c2 = cnt;
-	x += d * m;
-	q2 = x;
-
-	dq = q2 - q1;
-
-	if (x == y)
-	{
-		cout << cnt;
-		return 0;
-	}
-
-	if (q1 == q1)
-	{
-		cout << "Impossible";
-		return 0;
-	}
-
-	d = 1;
-	cnt += d;
-	x += d * m;
-	x %= l;
-	p2 = x;
-
-	delt = c2 - c1;
-	if (q2 > q1)
-		f = 1;
-
-	if (p2 < q2)
-		swap(p2, q2);
-
-	if (y > p2)
-	{
-		if (f)
-		{
-			d
-		}
-	}
+//#include<iostream>
+//using namespace std;
+//typedef long long ll;
+//
+//int main()
+//{
+//	ll x, y, m, n, l,cnt = 0;
+//	cin >> x >> y >> m >> n >> l;
+//	if (m == n) {
+//		cout << "Impossible";
+//		return 0;
+//	}
+//	if (m < n)
+//	{
+//		swap(m, n);
+//		swap(x, y);
+//	}
+//	y -= x;
+//	x = 0;
+//	m -= n;
+//	if (y < 0) y += l;
+//
+//	//if (y % m == 0)
+//	//{
+//	//	cout << y/m;
+//	//	return 0;
+//	//}
+//
+//	ll d,last = -1,q1,q2,p1,p2,f = 0,c1,c2,delt,dq;
+//	d = y / m;
+//	cnt += d;
+//	c1 = cnt;
+//	x += d * m;
+//	q1 = x;
+//
+//	d = 1;
+//	cnt += d;
+//	x += d * m;
+//	x %= l;
+//	p1 = x;
+//
+//	if (x > y)
+//		x -= l;
+//
+//	d = (y - x) / m;
+//	cnt += d;
+//	c2 = cnt;
+//	x += d * m;
+//	q2 = x;
+//
+//	dq = q2 - q1;
+//
+//	if (x == y)
+//	{
+//		cout << cnt;
+//		return 0;
+//	}
+//
+//	if (q1 == q1)
+//	{
+//		cout << "Impossible";
+//		return 0;
+//	}
+//
+//	d = 1;
+//	cnt += d;
+//	x += d * m;
+//	x %= l;
+//	p2 = x;
+//
+//	delt = c2 - c1;
+//	if (q2 > q1)
+//		f = 1;
+//
+//	if (p2 < q2)
+//		swap(p2, q2);
+//
+//	if (y > p2)
+//	{
+//		if (f)
+//		{
+//			d
+//		}
+//	}
 
 	/*pair<int, int>d[2];
 	for (int i = 0;i<2 && x != y;i++)
@@ -2173,8 +2173,344 @@ int main()
 			d = max((y - x) / m,(ll)1);
 			cnt += d;
 			x += d * m;
-		}
+	/*	}
 	}*/
-	cout << cnt;
+//	cout << cnt;
+//	return 0;
+//}*/
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//char mp[2][N] = { 0 };
+//
+//int main()
+//{
+//	int n, q;
+//	cin >> n >> q;
+//	for (int i = 0;i < 2;i++)
+//		for (int j = 1;j <= n;j++)
+//			cin >> mp[i][j];
+//	int u, v, x1, x2, y1, y2, cnt;
+//	while (q--)
+//	{
+//		cin >> u >> v;
+//		x1 = u > n ? 1 : 0;
+//		x2 = v > n ? 1 : 0;
+//		y1 = u > n ? u - n : u;
+//		y2 = v > n ? v - n : v;
+//		cnt = 0;
+//
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int t,n,m;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++)
+//	{
+//		cout << "Case " << i << ":\n";
+//		cin >> n >> m;
+//		deque<int>deq;
+//		string str;
+//		int x;
+//		while (m--)
+//		{
+//			cin >> str;
+//			if (str == "pushLeft")
+//			{
+//				cin >> x;
+//				if (deq.size() < n)
+//				{
+//					deq.push_front(x);
+//					cout << "Pushed in left: " << x << '\n';
+//				}
+//				else
+//					cout << "The queue is full\n";
+//			}
+//			else if (str == "pushRight")
+//			{
+//				cin >> x;
+//				if (deq.size() < n)
+//				{
+//					deq.push_back(x);
+//					cout << "Pushed in right: " << x << '\n';
+//				}
+//				else
+//					cout << "The queue is full\n";
+//			}
+//			else if (str == "popLeft")
+//			{
+//				if (deq.size())
+//				{
+//					cout << "Popped from left: " << deq.front() << '\n';
+//					deq.pop_front();
+//				}
+//				else
+//					cout << "The queue is empty\n";
+//			}
+//			else
+//			{
+//				if (deq.size())
+//				{
+//					cout << "Popped from right: " << deq.back() << '\n';
+//					deq.pop_back();
+//				}
+//				else
+//					cout << "The queue is empty\n";
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//map<string, string>fa;
+//map<string, map<string, int>>way;
+//
+//string find(string s)
+//{
+//	return fa[s] == s ? s : fa[s] = find(fa[s]);
+//}
+//
+//void merg(string s1, string s2)
+//{
+//	s1 = find(s1);
+//	s2 = find(s2);
+//	if (s1 != s2)
+//		fa[s2] = s1;
+//}
+//
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	string s1;
+//	string s2;
+//	int f = 0;
+//	while (n--)
+//	{
+//		cin >> s1 >> s2;
+//		if (!f)
+//		{
+//			if (fa[s1] == "") fa[s1] = s1;
+//			if (fa[s2] == "") fa[s2] = s2;
+//			if (!way[s1][s2])
+//			{
+//				way[s1][s2] = 1;
+//				//cout << fa[s1];
+//				if (find(s1) != find(s2))
+//					merg(s1, s2);
+//				else
+//					f = 1;
+//			}
+//
+//		}
+//	}
+//	if (f)
+//		cout << "No";
+//	else
+//		cout << "Yes";
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e3 + 5;
+//int a[N], b[N];
+//priority_queue<pair<int, int>>que;
+//
+//int main()
+//{
+//	int n, k1, k2;
+//	cin >> n >> k1 >> k2;
+//	for (int i = 1;i <= n;i++) cin >> a[i];
+//	for (int i = 1;i <= n;i++)
+//	{
+//		cin >> b[i];
+//		que.push({ abs(a[i] - b[i]), i });
+//	}
+//	while (k1 > 0)
+//	{
+//		pair<int, int>t = que.top();
+//		if (a[t.second] < b[t.second]) a[t.second]++, t.first--;
+//		else
+//		{
+//			a[t.second]--;
+//			t.first = abs(a[t.second] - b[t.second]);
+//		}
+//		que.pop();
+//		que.push(t);
+//		k1--;
+//	}
+//	while (k2 > 0)
+//	{
+//		pair<int, int>t = que.top();
+//		if (b[t.second] < a[t.second]) b[t.second]++, t.first--;
+//		else
+//		{
+//			b[t.second]--;
+//			t.first = abs(a[t.second] - b[t.second]);
+//		}
+//		que.pop();
+//		que.push(t);
+//		k2--;
+//	}
+//	long long sum = 0,t;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		t = a[i] - b[i];
+//		sum += t * t;
+//	}
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+
+
+//#include<iostream>
+//#include<vector>
+//using namespace std;
+//const int N = 1e3 + 5, M = 1e5 + 5;
+//int n, m, u, v, w, x, f[N], vis[N] = { 0 },f2[N];
+//vector< pair<int,int> >mp[N];
+//struct node
+//{
+//	int u, v, w;
+//};
+//node line[M];
+//
+//void init()
+//{
+//	memset(f, 0x3f, sizeof(f));
+//	f[x] = 0;
+//	memset(f2, 0x3f, sizeof(f));
+//	f2[x] = 0;
+//}
+//
+//void dij()
+//{
+//	for (int i = 0;i < n;i++)
+//	{
+//		int u = 0;
+//		for (int j = 1;j <= n;j++)
+//		{
+//			if (!vis[j] && (u == 0 || f[j] < f[u])) u = j;
+//		}
+//		vis[u] = 1;
+//		for (int i = 0;i < mp[u].size();i++)
+//			f[mp[u][i].first] = min(f[mp[u][i].first], f[u] + mp[u][i].second);
+//	}
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//
+//	cin >> n >> m >> x;
+//	init();
+//	for(int i = 0;i < m;i++)
+//	{
+//		cin >> u >> v >> w;
+//		line[i].u = u, line[i].v = v, line[i].w = w;
+//		mp[u].push_back( make_pair( v,w ) );
+//	}
+//
+//	dij();
+//	for (int i = 1;i <= n;i++) mp[i].clear();
+//	for (int i = 0;i < m;i++)
+//	{
+//		u = line[i].v, v = line[i].u, w = line[i].w;
+//		mp[u].push_back(make_pair(v, w));
+//	}
+//
+//	memset(vis, 0, sizeof(vis));
+//	for (int i = 0;i < n;i++)
+//	{
+//		int u = 0;
+//		for (int j = 1;j <= n;j++)
+//		{
+//			if (!vis[j] && (u == 0 || f2[j] < f2[u])) u = j;
+//		}
+//		vis[u] = 1;
+//		for (int i = 0;i < mp[u].size();i++)
+//			f2[mp[u][i].first] = min(f2[mp[u][i].first], f2[u] + mp[u][i].second);
+//	}
+//
+//	int mi = 1;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		f[i] += f2[i];
+//		if (f[mi] < f[i]) mi = i;
+//	}
+//	cout << f[mi];
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e3 + 6;
+//int num[N], n, gc, cnt = 0;
+// 
+//int gcd(int a,int b)
+//{
+//	return b == 0 ? a : gcd(b, a % b);
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	cin >> num[0];
+//	gc = num[0];
+//	for (int i = 1;i < n;i++)
+//	{
+//		cin >> num[i];
+//		gc = gcd(num[i], gc);
+//	}
+//
+//	for (int i = 0;i < n;i++)
+//	{
+//		while (num[i] > gc)
+//		{
+//			int tmp = num[i] / gc;
+//			if (tmp % 2 == 0) num[i] /= 2, cnt++;
+//			else if (tmp % 3 == 0) num[i] /= 3, cnt++;
+//			else { cout << -1;return 0; }
+//		}
+//	}
+//	cout << cnt;
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+
 	return 0;
 }
