@@ -2505,12 +2505,190 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//
+//int main()
+//{
+//	int n, num = 1;
+//	cin >> n;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		for (int j = 1;j <= n;j++)
+//		{
+//			if()
+//		}
+//	}
+//	return 0;
+//}
 
+
+
+
+//#include<iostream>
+//#include<string>
+//#define mp make_pair
+//#define hashv pair<int,int>
+//using namespace std;
+//const int N = 4e5 + 5;
+//hashv h[N], base = mp(131, 29), pw[N];
+//int m, mod1 = 1e9 + 7, mod2 = 1e9 + 9;
+//
+//hashv operator+ (hashv a, hashv b)
+//{
+//	int c1 = a.first + b.first, c2 = a.second + b.second;
+//	if (c1 >= mod1) c1 -= mod1;
+//	if (c2 >= mod2) c2 -= mod2;
+//	return mp(c1, c2);
+//}
+//
+//hashv operator- (hashv a, hashv b)
+//{
+//	int c1 = a.first - b.first, c2 = a.second - b.second;
+//	if (c1 < 0) c1 += mod1;
+//	if (c2 < 0) c2 += mod2;
+//	return mp(c1, c2);
+//}
+//
+//hashv operator* (hashv a, hashv b)
+//{
+//	return mp(1ll * a.first * b.first % mod1,1ll * a.second * b.second % mod2);
+//}
+//
+//void init()
+//{
+//	memset(h, 0, sizeof(h));
+//	memset(pw, 0, sizeof(pw));
+//	pw[0] = mp(1, 1);
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	string str;
+//	while (cin >> str)
+//	{
+//		init();
+//		m = str.size();
+//		for (int i = 1;i <= m;i++)
+//		{
+//			pw[i] = pw[i - 1] * base;
+//			h[i] = mp(str[i-1], str[i-1]) + h[i - 1] * base;
+//		}
+//		for (int i = 1;i <= m;i++)
+//		{
+//			int l = m - i + 1;
+//			if (h[i] == h[m] - h[l-1] * pw[m-l+1])
+//				cout << i << ' ';
+//		}
+//		cout << '\n';
+//	}
+//	return 0;
+//}
+
+
+
+
+
+//#include<iostream>
+//using namespace std;
+//const int N = 5e4 + 5;
+//struct node
+//{
+//	int to, next;
+//};
+//node edge[N<<1];
+//int n, head[N], maxx[N], sz[N], ans = 0x3f3f3f3f;;
+//void add_edge(int i, int u, int v)
+//{
+//	edge[i].to = v;
+//	edge[i].next = head[u];
+//	head[u] = i;
+//}
+//
+//void dfs(int u, int fa)
+//{
+//	int v;
+//	sz[u] = 1;
+//	for (int i = head[u];i;i = edge[i].next)
+//	{
+//		v = edge[i].to;
+//		if (v == fa)continue;
+//		dfs(v, u);
+//		sz[u] += sz[v];
+//		maxx[u] = max(maxx[u], sz[v]);
+//	}
+//	maxx[u] = max(maxx[u], n - sz[u]);
+//	if (maxx[u] < ans) ans = maxx[u];
+//}
+//
+//int main()
+//{
+//	//ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	scanf("%d", &n);
+//	for (int i = 1, u, v;i < n;i++)
+//	{
+//		scanf("%d %d", &u, &v);
+//		add_edge(i, u, v);
+//		add_edge(i + n, v, u);
+//	}
+//
+//	//for (int i = 1;i <= n;i++)
+//	//{
+//	//	if (!sz[i]) sz[i] = dfs(i);
+//	//}
+//	dfs(1, 0);
+//	for (int i = 1;i <= n;i++)
+//		if (maxx[i] == ans) printf("%d ",i);
+//
+//	return 0;
+//}
+
+
+
+#include<iostream>
+using namespace std;
+const int N = 5e4 + 5;
+int n, m, to[N << 1], ne[N << 1], head[N], len[N << 1], ans = 0, dp[N];
+
+void add(int i, int u, int v, int w)
+{
+	to[i] = v;
+	len[i] = w;
+	ne[i] = head[u];
+	head[u] = i;
+
+	to[i + N] = u;
+	len[i + N] = w;
+	ne[i + N] = head[v];
+	head[v] = i + N;
+}
+
+void dfs(int u, int fa)
+{
+	for (int i = head[u];i;i = ne[i])
+	{
+		int v = to[i];
+		if (v == fa) continue;
+		dfs(v, u);
+		ans = max(ans, dp[u] + dp[v] + len[i]);
+		dp[u] = max(dp[u], dp[v] + len[i]);
+	}
+}
 
 int main()
 {
+	scanf("%d %d", &n, &m);
+	for (int i = 1, u, v, w, c;i <= m;i++)
+	{
+		scanf("%d %d %d %c", &u, &v, &w, &c);
+		add(i, u, v, w);
+	}
+
+	dfs(1, 0);
+
+	printf("%d", ans);
 
 	return 0;
 }
