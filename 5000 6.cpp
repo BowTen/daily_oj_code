@@ -2647,48 +2647,501 @@
 
 
 
-#include<iostream>
+//#include<iostream>
+//using namespace std;
+//const int N = 5e4 + 5;
+//int n, m, to[N << 1], ne[N << 1], head[N], len[N << 1], ans = 0, dp[N];
+//
+//void add(int i, int u, int v, int w)
+//{
+//	to[i] = v;
+//	len[i] = w;
+//	ne[i] = head[u];
+//	head[u] = i;
+//
+//	to[i + N] = u;
+//	len[i + N] = w;
+//	ne[i + N] = head[v];
+//	head[v] = i + N;
+//}
+//
+//void dfs(int u, int fa)
+//{
+//	for (int i = head[u];i;i = ne[i])
+//	{
+//		int v = to[i];
+//		if (v == fa) continue;
+//		dfs(v, u);
+//		ans = max(ans, dp[u] + dp[v] + len[i]);
+//		dp[u] = max(dp[u], dp[v] + len[i]);
+//	}
+//}
+//
+//int main()
+//{
+//	scanf("%d %d", &n, &m);
+//	for (int i = 1, u, v, w, c;i <= m;i++)
+//	{
+//		scanf("%d %d %d %c", &u, &v, &w, &c);
+//		add(i, u, v, w);
+//	}
+//
+//	dfs(1, 0);
+//
+//	printf("%d", ans);
+//
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//vector<pair<int,int> >g[N];
+//int n, q;
+//
+//void init(int n)
+//{
+//	for (int i = 1;i <= n;i++) g[i].clear();
+//}
+//
+//int main()
+//{
+//	int t;
+//	scanf("%d", &t);
+//	for(int c = 1;c <= t;c++)
+//	{
+//		printf("Case %d:\n", c);
+//		scanf("%d", &n);
+//		init(n);
+//		for (int i = 1, u, v, w;i < n;i++)
+//		{
+//			scanf("%d %d %d", &u, &v, &w);
+//			g[u].push_back(make_pair(v, w));
+//			g[v].push_back(make_pair(u, w));
+//		}
+//		scanf("%d", &q);
+//		for(int i = 0,u,v;i < q;i++)
+//		{
+//			scanf("%d %d", &u, &v);
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 5e4 + 5;
+//vector<int>mp[N];
+//int n, k, w[N], dep[N], par[N][20], sz[N], ans = 0;
+//
+//void dfs(int u, int fa)
+//{
+//	dep[u] = dep[fa] + 1;
+//	par[u][0] = fa;
+//	for (int i = 1;i < 20;i++)
+//		par[u][i] = par[par[u][i - 1]][i - 1];
+//	for (auto& v : mp[u])
+//	{
+//		if (v == fa)continue;
+//		dfs(v, u);
+//	}
+//}
+//int getlca(int u, int v)
+//{
+//	if (dep[u] < dep[v]) swap(u, v);
+//	for (int i = 19;i >= 0;i--)
+//	{
+//		if (dep[par[u][i]] >= dep[v])
+//			u = par[u][i];
+//	}
+//	if (u == v) return u;
+//	for (int i = 19;i >= 0;i--)
+//	{
+//		if (par[u][i] != par[v][i])
+//			u = par[u][i], v = par[v][i];
+//	}
+//	return par[u][0];
+//}
+//
+//void dfs_ans(int u, int fa)
+//{
+//	sz[u] = w[u];
+//	for (auto& v : mp[u])
+//	{
+//		if (v == fa)continue;
+//		dfs_ans(v, u);
+//		sz[u] += sz[v];
+//	}
+//	if (sz[u] > ans) ans = sz[u];
+//}
+//
+//int main()
+//{
+//	freopen("maxflow.in", "r", stdin);
+//	freopen("maxflow.out", "w", stdout);
+//	cin >> n >> k;
+//	for (int u,v,i = 1;i < n;i++)
+//	{
+//		cin >> u >> v;
+//		mp[u].push_back(v);
+//		mp[v].push_back(u);
+//	}
+//
+//	dfs(1, 0);
+//
+//	for (int i = 0, u, v, lca;i < k;i++)
+//	{
+//		cin >> u >> v;
+//		lca = getlca(u, v);
+//		w[u]++;
+//		w[v]++;
+//		w[lca]--;
+//		w[par[lca][0]]--;
+//	}
+//
+//	dfs_ans(1, 0);
+//
+//	cout << ans;
+//
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace  std;
+//const int N = 1e5 + 5;
+//int n, k, par[N][20], dep[N], w[N];
+//pair<int, int>edge[N];
+//vector<int>mp[N];
+//
+//void dfs(int u, int fa)
+//{
+//	dep[u] = dep[fa] + 1;
+//	par[u][0] = fa;
+//	for (int i = 1;i < 20;i++)
+//		par[u][i] = par[par[u][i - 1]][i - 1];
+//	for (auto& v : mp[u])
+//	{
+//		if (v == fa)continue;
+//		dfs(v, u);
+//	}
+//}
+//
+//void dfs2(int u, int fa)
+//{
+//	for (auto& v : mp[u])
+//	{
+//		if (v == fa)continue;
+//		dfs2(v, u);
+//		w[u] += w[v];
+//	}
+//}
+//
+//int getlca(int u, int v)
+//{
+//	if (dep[u] < dep[v])swap(u, v);
+//	for (int i = 19;i >= 0;i--)
+//		if (dep[par[u][i]] >= dep[v]) u = par[u][i];
+//	if (u == v) return u;
+//	for (int i = 19;i >= 0;i--)
+//		if (par[u][i] != par[v][i]) u = par[u][i], v = par[v][i];
+//	return par[u][0];
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 1, u, v;i < n;i++)
+//	{
+//		cin >> u >> v;
+//		edge[i] = make_pair(u, v);
+//		mp[u].push_back(v);
+//		mp[v].push_back(u);
+//	}
+//	dfs(1, 0);
+//	cin >> k;
+//	for (int i = 0, u, v;i < k;i++)
+//	{
+//		cin >> u >> v;
+//		w[u]++;
+//		w[v]++;
+//		w[getlca(u, v)] -= 2;
+//	}
+//	dfs2(1, 0);
+//
+//	for (int i = 1,u,v;i < n;i++)
+//	{
+//		u = edge[i].first, v = edge[i].second;
+//		if (dep[u] < dep[v]) swap(u, v);
+//		cout << w[u] << ' ';
+//	}
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e6 + 5;
+//long long tot = 0, n, m, r, w[N], L[N], R[N], t[N];
+//vector<long long>mp[N];
+//
+//ll lowbit(ll x)
+//{
+//	return x & -x;
+//}
+//
+//void dfs_tot(ll u, ll fa)
+//{
+//	L[u] = ++tot;
+//	for (auto& v : mp[u])
+//	{
+//		if (v == fa)continue;
+//		dfs_tot(v, u);
+//	}
+//	R[u] = tot;
+//}
+//
+//void add(ll pos, ll val)
+//{
+//	while (pos <= n)
+//	{
+//		t[pos] += val;
+//		pos += lowbit(pos);
+//	}
+//}
+//
+//ll getsum(ll x)
+//{
+//	ll ans = 0;
+//	while (x >= 1)
+//	{
+//		ans += t[x];
+//		x -= lowbit(x);
+//	}
+//	return ans;
+//}
+//
+//ll query(ll le, ll ri)
+//{
+//	return getsum(ri) - getsum(le);
+//}
+//
+//int main()
+//{
+//	cin >> n >> m >> r;
+//	for (int i = 1;i <= n;i++) cin >> w[i];
+//	for (int i = 1, u, v;i < n;i++)
+//	{
+//		cin >> u >> v;
+//		mp[u].push_back(v);
+//		mp[v].push_back(u);
+//	}
+//
+//	dfs_tot(r, 0);
+//
+//	for (int i = 1;i <= n;i++) add(L[i], w[i]);
+//
+//	for (ll i = 0, f, a, x;i < m;i++)
+//	{
+//		cin >> f >> a;
+//		if (f == 1)
+//		{
+//			cin >> x;
+//			add(L[a],x);
+//		}
+//		else
+//		{
+//			cout << query(L[a]-1, R[a]) << '\n';
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//vector<pair<int, int> >mp[N];
+//int t, n, q, dep[N], par[N][20], Min[N][20], Max[N][20];
+//pair<int, int>ans;
+//
+//void init(int n)
+//{
+//	for (int i = 1;i <= n;i++) mp[i].clear();
+//	Min[1][0] = 0;
+//	Max[1][0] = 0;
+//}
+//
+//void dfs(int u, int fa)
+//{
+//	dep[u] = dep[fa] + 1;
+//	par[u][0] = fa;
+//	for (int i = 19;i >= 0;i--) {
+//		par[u][i] = par[par[u][i - 1]][i - 1];
+//		Min[u][i] = min(Min[u][i - 1], Min[par[u][i - 1]][i - 1]);
+//		Max[u][i] = max(Max[u][i - 1], Max[par[u][i - 1]][i - 1]);
+//	}
+//	for (auto& [v,s] : mp[u]){
+//		if (v == fa)continue;
+//		Min[v][0] = s;
+//		Max[v][0] = s;
+//		dfs(v, u);
+//	}
+//}
+//
+//void getlca(int u, int v)
+//{
+//	ans.first = 0, ans.second = 0;
+//	if (u == v) return;
+//	ans.first = 0x3f3f3f3f;
+//	ans.second = 0;
+//	if (dep[u] < dep[v]) swap(u, v);
+//	for (int i = 19;i >= 0;i--) {
+//		if (dep[par[u][i]] >= dep[v]) {
+//			u = par[u][i];
+//			if (ans.first > Min[u][i]) ans.first = Min[u][i];
+//			if (ans.second < Max[u][i]) ans.second = Max[u][i];
+//		}
+//	}
+//	if (u == v) return;
+//	for (int i = 19;i >= 0;i--) {
+//		if (par[u][i] != par[v][i]) {
+//			u = par[u][i], v = par[v][i];
+//			ans.first = min(ans.first, min(Min[u][i], Min[v][i]));
+//			ans.second = max(ans.second, max(Max[u][i], Max[v][i]));
+//		}
+//	}
+//	ans.first = min(ans.first, min(Min[u][0], Min[v][0]));
+//	ans.second = max(ans.second, max(Max[u][0], Max[v][0]));
+//}
+//
+//
+//int main()
+//{
+//	cin >> t;
+//	for (int i = 1;i <= t;i++)
+//	{
+//		cout << "Case " << i << ":\n";
+//		cin >> n;
+//		init(n);
+//		for (int i = 1, u, v, w;i < n;i++)
+//		{
+//			cin >> u >> v >> w;
+//			mp[u].push_back({ v,w });
+//			mp[v].push_back({ u,w });
+//		}
+//		dfs(1, 0);
+//		cin >> q;
+//		for (int i = 0, x, y;i < q;i++)
+//		{
+//			cin >> x >> y;
+//			getlca(x, y);
+//			cout << ans.first << ' ' << ans.second << '\n';
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
 using namespace std;
-const int N = 5e4 + 5;
-int n, m, to[N << 1], ne[N << 1], head[N], len[N << 1], ans = 0, dp[N];
-
-void add(int i, int u, int v, int w)
+const int N = 1e5 + 5;
+vector<pair<int, int> >mp[N];
+int t, n, q, dep[N], par[N][20], Min[N][20], Max[N][20];
+void init(int n)
 {
-	to[i] = v;
-	len[i] = w;
-	ne[i] = head[u];
-	head[u] = i;
-
-	to[i + N] = u;
-	len[i + N] = w;
-	ne[i + N] = head[v];
-	head[v] = i + N;
+	for (int i = 1;i <= n;i++) mp[i].clear();
+	memset(Min, 0, sizeof(Min));
+	memset(Max, 0, sizeof(Max));
+	memset(dep, 0, sizeof(dep));
+	memset(par, 0, sizeof(par));
 }
 
-void dfs(int u, int fa)
+void dfs(int u, int fa, int val)
 {
-	for (int i = head[u];i;i = ne[i])
-	{
-		int v = to[i];
-		if (v == fa) continue;
-		dfs(v, u);
-		ans = max(ans, dp[u] + dp[v] + len[i]);
-		dp[u] = max(dp[u], dp[v] + len[i]);
+	dep[u] = dep[fa] + 1;
+	par[u][0] = fa;
+	Min[u][0] = val;
+	Max[u][0] = val;
+	for (int i = 1;i < 20;i++) {
+		par[u][i] = par[par[u][i - 1]][i - 1];
+		Min[u][i] = min(Min[u][i - 1], Min[par[u][i - 1]][i - 1]);
+		Max[u][i] = max(Max[u][i - 1], Max[par[u][i - 1]][i - 1]);
+	}
+	for (auto& [v, s] : mp[u]) {
+		if (v == fa)continue;
+		dfs(v, u, s);
 	}
 }
+
+pair<int, int> getlca(int u, int v)
+{
+	if (u == v) return make_pair(0, 0);
+	int mi = 0x3f3f3f3f;
+	int ma = -0x3f3f3f3f;
+	if (dep[u] < dep[v]) swap(u, v);
+	for (int i = 19;i >= 0;i--) {
+		if (dep[par[u][i]] >= dep[v]) {
+			if (mi > Min[u][i]) mi = Min[u][i];
+			if (ma < Max[u][i]) ma = Max[u][i];
+			u = par[u][i];
+		}
+	}
+	if (u == v) return make_pair(mi, ma);
+	for (int i = 19;i >= 0;i--) {
+		if (par[u][i] != par[v][i]) {
+			mi = min(mi, min(Min[u][i], Min[v][i]));
+			ma = max(ma, max(Max[u][i], Max[v][i]));
+			u = par[u][i], v = par[v][i];
+		}
+	}
+	mi = min(mi, min(Min[u][0], Min[v][0]));
+	ma = max(ma, max(Max[u][0], Max[v][0]));
+	return make_pair(mi, ma);
+	//return make_pair(1, 1);
+}
+
 
 int main()
 {
-	scanf("%d %d", &n, &m);
-	for (int i = 1, u, v, w, c;i <= m;i++)
+	cin >> t;
+	for (int i = 1;i <= t;i++)
 	{
-		scanf("%d %d %d %c", &u, &v, &w, &c);
-		add(i, u, v, w);
+		cout << "Case " << i << ":\n";
+		cin >> n;
+		init(n);
+		for (int i = 1, u, v, w;i < n;i++)
+		{
+			cin >> u >> v >> w;
+			mp[u].push_back({ v,w });
+			mp[v].push_back({ u,w });
+		}
+		dfs(1, 0, 0);
+		cin >> q;
+		for (int i = 0, x, y;i < q;i++)
+		{
+			cin >> x >> y;
+			pair<int, int>ans = getlca(x, y);
+			cout << ans.first << ' ' << ans.second << '\n';
+		}
 	}
-
-	dfs(1, 0);
-
-	printf("%d", ans);
-
 	return 0;
 }
