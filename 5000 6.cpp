@@ -3060,88 +3060,212 @@
 //}
 
 
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//vector<pair<int, int> >mp[N];
+//int t, n, q, dep[N], par[N][20], Min[N][20], Max[N][20];
+//void init(int n)
+//{
+//	for (int i = 1;i <= n;i++) mp[i].clear();
+//	memset(Min, 0, sizeof(Min));
+//	memset(Max, 0, sizeof(Max));
+//	memset(dep, 0, sizeof(dep));
+//	memset(par, 0, sizeof(par));
+//}
+//
+//void dfs(int u, int fa, int val)
+//{
+//	dep[u] = dep[fa] + 1;
+//	par[u][0] = fa;
+//	Min[u][0] = val;
+//	Max[u][0] = val;
+//	for (int i = 1;i < 20;i++) {
+//		par[u][i] = par[par[u][i - 1]][i - 1];
+//		Min[u][i] = min(Min[u][i - 1], Min[par[u][i - 1]][i - 1]);
+//		Max[u][i] = max(Max[u][i - 1], Max[par[u][i - 1]][i - 1]);
+//	}
+//	for (auto& [v, s] : mp[u]) {
+//		if (v == fa)continue;
+//		dfs(v, u, s);
+//	}
+//}
+//
+//pair<int, int> getlca(int u, int v)
+//{
+//	if (u == v) return make_pair(0, 0);
+//	int mi = 0x3f3f3f3f;
+//	int ma = -0x3f3f3f3f;
+//	if (dep[u] < dep[v]) swap(u, v);
+//	for (int i = 19;i >= 0;i--) {
+//		if (dep[par[u][i]] >= dep[v]) {
+//			if (mi > Min[u][i]) mi = Min[u][i];
+//			if (ma < Max[u][i]) ma = Max[u][i];
+//			u = par[u][i];
+//		}
+//	}
+//	if (u == v) return make_pair(mi, ma);
+//	for (int i = 19;i >= 0;i--) {
+//		if (par[u][i] != par[v][i]) {
+//			mi = min(mi, min(Min[u][i], Min[v][i]));
+//			ma = max(ma, max(Max[u][i], Max[v][i]));
+//			u = par[u][i], v = par[v][i];
+//		}
+//	}
+//	mi = min(mi, min(Min[u][0], Min[v][0]));
+//	ma = max(ma, max(Max[u][0], Max[v][0]));
+//	return make_pair(mi, ma);
+//	//return make_pair(1, 1);
+//}
+//
+//
+//int main()
+//{
+//	cin >> t;
+//	for (int i = 1;i <= t;i++)
+//	{
+//		cout << "Case " << i << ":\n";
+//		cin >> n;
+//		init(n);
+//		for (int i = 1, u, v, w;i < n;i++)
+//		{
+//			cin >> u >> v >> w;
+//			mp[u].push_back({ v,w });
+//			mp[v].push_back({ u,w });
+//		}
+//		dfs(1, 0, 0);
+//		cin >> q;
+//		for (int i = 0, x, y;i < q;i++)
+//		{
+//			cin >> x >> y;
+//			pair<int, int>ans = getlca(x, y);
+//			cout << ans.first << ' ' << ans.second << '\n';
+//		}
+//	}
+//	return 0;
+//}
 
-#include<bits/stdc++.h>
-using namespace std;
-const int N = 1e5 + 5;
-vector<pair<int, int> >mp[N];
-int t, n, q, dep[N], par[N][20], Min[N][20], Max[N][20];
-void init(int n)
-{
-	for (int i = 1;i <= n;i++) mp[i].clear();
-	memset(Min, 0, sizeof(Min));
-	memset(Max, 0, sizeof(Max));
-	memset(dep, 0, sizeof(dep));
-	memset(par, 0, sizeof(par));
-}
-
-void dfs(int u, int fa, int val)
-{
-	dep[u] = dep[fa] + 1;
-	par[u][0] = fa;
-	Min[u][0] = val;
-	Max[u][0] = val;
-	for (int i = 1;i < 20;i++) {
-		par[u][i] = par[par[u][i - 1]][i - 1];
-		Min[u][i] = min(Min[u][i - 1], Min[par[u][i - 1]][i - 1]);
-		Max[u][i] = max(Max[u][i - 1], Max[par[u][i - 1]][i - 1]);
-	}
-	for (auto& [v, s] : mp[u]) {
-		if (v == fa)continue;
-		dfs(v, u, s);
-	}
-}
-
-pair<int, int> getlca(int u, int v)
-{
-	if (u == v) return make_pair(0, 0);
-	int mi = 0x3f3f3f3f;
-	int ma = -0x3f3f3f3f;
-	if (dep[u] < dep[v]) swap(u, v);
-	for (int i = 19;i >= 0;i--) {
-		if (dep[par[u][i]] >= dep[v]) {
-			if (mi > Min[u][i]) mi = Min[u][i];
-			if (ma < Max[u][i]) ma = Max[u][i];
-			u = par[u][i];
-		}
-	}
-	if (u == v) return make_pair(mi, ma);
-	for (int i = 19;i >= 0;i--) {
-		if (par[u][i] != par[v][i]) {
-			mi = min(mi, min(Min[u][i], Min[v][i]));
-			ma = max(ma, max(Max[u][i], Max[v][i]));
-			u = par[u][i], v = par[v][i];
-		}
-	}
-	mi = min(mi, min(Min[u][0], Min[v][0]));
-	ma = max(ma, max(Max[u][0], Max[v][0]));
-	return make_pair(mi, ma);
-	//return make_pair(1, 1);
-}
 
 
-int main()
-{
-	cin >> t;
-	for (int i = 1;i <= t;i++)
-	{
-		cout << "Case " << i << ":\n";
-		cin >> n;
-		init(n);
-		for (int i = 1, u, v, w;i < n;i++)
-		{
-			cin >> u >> v >> w;
-			mp[u].push_back({ v,w });
-			mp[v].push_back({ u,w });
-		}
-		dfs(1, 0, 0);
-		cin >> q;
-		for (int i = 0, x, y;i < q;i++)
-		{
-			cin >> x >> y;
-			pair<int, int>ans = getlca(x, y);
-			cout << ans.first << ' ' << ans.second << '\n';
-		}
-	}
-	return 0;
-}
+//#include<iostream>
+//#include<stack>
+//using namespace std;
+//typedef long long ll;
+//const int N = 8e4+5;
+//ll h[N];
+//
+//int main()
+//{
+//	ll n, ans = 0;
+//	scanf("%lld", &n);
+//	for (int i = 1;i <= n;i++) 
+//		scanf("%lld", &h[i]);
+//	stack<ll>sta;
+//	for (ll i = n;i >= 1;i--)
+//	{
+//		while (!sta.empty() && h[sta.top()] < h[i])
+//			sta.pop();
+//		if (!sta.empty())
+//			ans += sta.top() - i - 1;
+//		else
+//			ans += n - i;
+//		sta.push(i);
+//	}
+//	printf("%lld\n", ans);
+//
+//	return 0;
+//}
+
+
+
+
+//#include<iostream>
+//#include<stack>
+//using namespace std;
+//typedef long long ll;
+//const int N = 8e4 + 10;
+//ll h[N];
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	for (int i = 1;i <= n;i++) cin >> h[i];
+//
+//	ll ans = 0;
+//	stack<ll>st;
+//	for (int i = n;i >= 1;i--)
+//	{
+//		while (!st.empty() && h[st.top()] < h[i])
+//			st.pop();
+//		int p = st.empty() ? n + 1 : st.top();
+//		ans += p - i - 1;
+//
+//		st.push(i);
+//	}
+//	cout << ans;
+//	return 0;
+//}
+
+
+
+
+
+//#include<iostream>
+//#include<queue>
+//using namespace std;
+//const int N = 1e6 + 5;
+//int a[N], n, k, ma[N];
+//
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> k;
+//	deque<int>m1, m2;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		cin >> a[i];
+//		while (!m1.empty() && a[m1.back()] > a[i]) m1.pop_back();
+//		while (!m2.empty() && a[m2.back()] < a[i]) m2.pop_back();
+//		m1.push_back(i);
+//		m2.push_back(i);
+//		if (i >= k) {
+//			cout << a[m1.front()] << ' ';
+//			ma[i+1-k] = a[m2.front()];
+//		}
+//		if(i + 2 - k > m1.front())
+//			m1.pop_front();
+//		if(i + 2 - k > m2.front())
+//			m2.pop_front();
+//	}
+//	cout << '\n';
+//	for (int i = 1;i <= n-k+1;i++) cout << ma[i] << ' ';
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e3 + 10;
+//ll n, m[N];
+//
+//int main()
+//{
+//	scanf("%lld", &n);
+//	for (int i = 1;i <= n;i++)
+//	{
+//		scanf("%lld", &m[i]);
+//		if (i >= 3 && m[i] > m[i - 1] && m[i - 2] > m[i - 1]) {
+//			if (m[i] > m[i - 2]) m[i - 2] = m[i - 1];
+//			else m[i] = m[i - 1];
+//		}
+//	}
+//	for (int i = 1;i <= n;i++)
+//		printf("%lld ", m[i]);
+//	return 0;
+//}
