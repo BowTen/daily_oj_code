@@ -3269,3 +3269,430 @@
 //		printf("%lld ", m[i]);
 //	return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//string str;
+//
+//void print_2(int p1,int n)
+//{
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (i == p1)
+//		{
+//			printf("%c", str[i] - '0' + str[i+1]);
+//			i++;
+//		}
+//		else
+//			printf("%c", str[i]);
+//	}
+//	printf("\n");
+//}
+//
+//void print_1(int n)
+//{
+//	int p;
+//	for (int i = n - 1;i > 0;i--)
+//	{
+//		if (str[i] - '0' + str[i - 1] - '0' >= 10)
+//		{
+//			p = i - 1;
+//			break;
+//		}
+//	}
+//	for (int i = 0;i < n;i++)
+//	{
+//		if (i == p)
+//		{
+//			printf("%d", str[i] - '0' + str[i+1]-'0');
+//			i++;
+//		}
+//		else
+//			printf("%c", str[i]);
+//	}
+//	printf("\n");
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--)
+//	{
+//		
+//		cin >> str;
+//		int f = 0, n = str.size(), p1 = -1;
+//		for (int i = 0;i < n - 1;i++)
+//		{
+//			if (str[i] - '0' + str[i + 1] - '0' >= 10) {
+//				f = 1;
+//				break;
+//			}
+//			else if (p1 == -1) p1 = i;
+//		}
+//		if (f) print_1(n);
+//		else print_2(p1,n);
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n, num[N], tim[N];
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		cin >> num[i];
+//		if (i > 1 && num[i] < num[i - 1]) tim[i] = 1;
+//	}
+//	int ans = 0;
+//	stack<int>st;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		int M = 0;
+//		if (tim[i] != 1)
+//		{
+//			while (!st.empty() && (num[i] >= num[st.top()] || (tim[st.top()] != 0 && tim[st.top()] <= M)))
+//			{
+//				if (tim[st.top()] > M) M = tim[st.top()];
+//				st.pop();
+//			}
+//			tim[i] = M == 0 ? 0 : M + 1;
+//		}
+//		st.push(i);
+//		if (tim[i] > ans) ans = tim[i];
+//	}
+//	cout << ans;
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, a, b, c, sum, ans;
+//
+//
+//int main()
+//{
+//	cin >> n >> a >> b >> c;
+//	if (a > b) swap(a, b);
+//	n--;
+//	if (c < a)
+//	{
+//		ans = a * min(n,1);
+//		n -= min(n, 1);
+//		ans += n*c;
+//	}
+//	else
+//	{
+//		ans = a * n;
+//	}
+//
+//	cout << ans;
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, a, ans;
+//int num[] = { 0,1,6,28,88,198,328,648 };
+//int rew[] = { 0,8,18,28,58,128,198,388 };
+//int vis[10];
+//
+//void dfs(int i)
+//{
+//	if (i == 8) {
+//		ans = max(a,ans);
+//		return;
+//	}
+//	if (n >= num[i])
+//	{
+//		n -= num[i];
+//		a += rew[i];
+//		dfs(i + 1);
+//		n += num[i];
+//		a -= rew[i];
+//	}
+//	dfs(i + 1);
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	a = ans = n * 10;
+//	dfs(1);
+//	cout << ans;
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//int n, m, num[N], fa[N], tmpl[N];
+//pair<int, int>p[N];
+//vector<int>fam[N];
+//
+//int find(int a)
+//{
+//	return fa[a] == a ? a : fa[a] = find(fa[a]);
+//}
+//
+//void merg(int a, int b)
+//{
+//	int af = find(a);
+//	int bf = find(b);
+//	if (af > bf) swap(af, bf);
+//	fa[bf] = af;
+//	fam[af].push_back(bf);
+//}
+//
+//int cmp(int a, int b)
+//{
+//	return tmpl[a] > tmpl[b];
+//}
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	for (int i = 1;i <= n;i++) {
+//		cin >> num[i];
+//		tmpl[i] = num[i];
+//		fa[i] = i;
+//	}
+//	for (int i = 1;i <= m;i++) {
+//		cin >> p[i].first >> p[i].second;
+//		merg(p[i].first, p[i].second);
+//	}
+//
+//	for (int i = 1;i <= n;i++)
+//	{
+//		if (fam[i].size())
+//		{
+//			fam[i].push_back(i);
+//			vector<int>tmp = fam[i];
+//			sort(tmp.begin(), tmp.end());
+//			sort(fam[i].begin(), fam[i].end(), cmp);
+//			for (int j = 0;j < fam[i].size();j++)
+//				num[tmp[j]] = tmpl[fam[i][j]];
+//		}
+//	}
+//	
+//	for (int i = 1;i <= n;i++) cout << num[i] << ' ';
+//
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//int num[N], ans[N], n, m, fa[N];
+//vector<int>fam[N];
+//
+//int find(int a)
+//{
+//	return a == fa[a] ? a : fa[a] = find(fa[a]);
+//}
+//
+//void merg(int x, int y)
+//{
+//	int xf = find(x);
+//	int yf = find(y);
+//	if (xf > yf) swap(xf, yf);
+//	fa[yf] = xf;
+//}
+//
+//int cmp(int a, int b)
+//{
+//	return num[a] > num[b];
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		cin >> num[i];
+//		fa[i] = i;
+//	}
+//	for (int i = 1, x, y;i <= m;i++)
+//	{
+//		cin >> x >> y;
+//		merg(x, y);
+//	}
+//	for (int i = 1;i <= n;i++)
+//	{
+//		fam[find(i)].push_back(i);
+//	}
+//	for (int i = 1;i <= n;i++)
+//	{
+//		if (fam[i].size())
+//		{
+//			vector<int>tmp = fam[i];
+//			sort(fam[i].begin(), fam[i].end(), cmp);
+//			for (int j = 0;j < fam[i].size();j++)
+//				ans[tmp[j]] = num[fam[i][j]];
+//		}
+//	}
+//	for (int i = 1;i <= n;i++) cout << ans[i] << ' ';
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//#define hashv pair<int,int>
+//#define mp make_pair
+//typedef long long ll;
+//using namespace std;
+//const int N = 5e5 + 5;
+//int n, mid, l, r, mod1 = 1e9 + 7, mod2 = 1e9 + 9, res = 0;
+//hashv h[N], base = mp(131, 31), pw[N], h2[N];
+//char str[N],str2[N];
+//
+//hashv operator+(hashv a, hashv b)
+//{
+//	int c1 = a.first + b.first, c2 = a.second + b.second;
+//	if (c1 >= mod1) c1 -= mod1;
+//	if (c2 >= mod2) c2 -= mod2;
+//	return mp(c1, c2);
+//}
+//
+//hashv operator-(hashv a, hashv b)
+//{
+//	int c1 = a.first - b.first;
+//	int c2 = a.second - b.second;
+//	if (c1 < 0) c1 += mod1;
+//	if (c2 < 0) c2 += mod2;
+//	return mp(c1, c2);
+//}
+//
+//hashv operator*(hashv a, hashv b)
+//{
+//	return mp(1ll * a.first * b.first % mod1, 1ll * a.second * b.second % mod2);
+//}
+//
+//hashv get_h1(int l, int r)
+//{
+//	return h[r] - h[l - 1] * pw[r - l + 1];
+//}
+//
+//hashv get_h2(int l, int r)
+//{
+//	return h2[l] - h2[r + 1] * pw[r - l + 1];
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	scanf("%s", str + 1);
+//	for (int i = 1;i <= n;i++)
+//		if (str[i] == '1') str2[i] = '0';
+//		else str2[i] = '1';
+//	reverse(str2 + 1, str2 + 1 + n);
+//	pw[0] = mp(1, 1);
+//	for (int i = 1;i <= n;i++)
+//	{
+//		h[i] = h[i - 1] * base + mp(str[i], str[i]);
+//		h2[i] = h2[i - 1] * base + mp(str2[i], str2[i]);
+//		pw[i] = pw[i - 1] * base;
+//	}
+//	for (int i = 1;i < n;i++)
+//	{
+//		if (str[i] != str[i + 1])
+//		{
+//			l = 1, r = min(i, n - i);
+//			while (r >= l)
+//			{
+//				mid = (l + r) >> 1;
+//				if (get_h2(i - mid + 1, i) == get_h1(i + 1, i + mid))
+//					l = mid + 1;
+//				else
+//					r = mid - 1;
+//			}
+//			res += r;
+//		}
+//	}
+//	cout << res;
+//	return 0;
+//}
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef unsigned long long ull;
+const int N = 5e5 + 5;
+ull n, h1[N], h2[N], base = 31, mod = 1e9 + 7, p[N], l, r, mid, res = 0;
+string s;
+
+ull get_h1(ull l, ull r)
+{
+	return h1[r] - h1[l - 1] * p[r - l + 1];
+}
+
+ull get_h2(ull l, ull r)
+{
+	return h2[l] - h2[r + 1] * p[r - l + 1];
+}
+
+int main()
+{
+	cin >> n;
+	cin >> s;
+	s = ' ' + s;
+	p[0] = 1;
+	for (int i = 1;i <= n;i++)
+	{
+		p[i] = p[i - 1] * base;
+		h1[i] = h1[i - 1] * base + s[i] - '0';
+		//h2[n + 1 - i] = h2[n + 2 - i] *base + ((s[n + 1 - i] - '0') ^ 1);
+	}
+	for(int )
+	for (ull i = 1;i < n;i++)
+	{
+		if (s[i] != s[i + 1])
+		{
+			l = 1;
+			r = min(i, n - i);
+			while (r >= l)
+			{
+				mid = l + r >> 1;
+				if (get_h2(i - mid + 1, i) == get_h1(i + 1, i + mid))
+					l = mid + 1;
+				else
+					r = mid - 1;
+			}
+			res += r;
+		}
+	}
+	cout << res;
+	return 0;
+}
