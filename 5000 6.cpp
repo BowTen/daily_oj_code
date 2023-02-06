@@ -1,5 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define _SILENCE_CXX20_CISO646_REMOVED_WARNING
+#define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+using namespace std;
 //#include<bits/stdc++.h>
 //using namespace std;
 
@@ -3646,53 +3648,284 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ull;
+//const int N = 5e5 + 5;
+//ull n, h1[N], h2[N], base = 31, mod = 1e9 + 7, p[N], l, r, mid, res = 0;
+//string s;
+//
+//ull get_h1(ull l, ull r)
+//{
+//	return h1[r] - h1[l - 1] * p[r - l + 1];
+//}
+//
+//ull get_h2(ull l, ull r)
+//{
+//	return h2[l] - h2[r + 1] * p[r - l + 1];
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	cin >> s;
+//	s = ' ' + s;
+//	p[0] = 1;
+//	for (int i = 1;i <= n;i++)
+//	{
+//		p[i] = p[i - 1] * base;
+//		h1[i] = h1[i - 1] * base + s[i] - '0';
+//		//h2[n + 1 - i] = h2[n + 2 - i] *base + ((s[n + 1 - i] - '0') ^ 1);
+//	}
+//	for(int )
+//	for (ull i = 1;i < n;i++)
+//	{
+//		if (s[i] != s[i + 1])
+//		{
+//			l = 1;
+//			r = min(i, n - i);
+//			while (r >= l)
+//			{
+//				mid = l + r >> 1;
+//				if (get_h2(i - mid + 1, i) == get_h1(i + 1, i + mid))
+//					l = mid + 1;
+//				else
+//					r = mid - 1;
+//			}
+//			res += r;
+//		}
+//	}
+//	cout << res;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//struct node
+//{
+//	int u, v, w, que;
+//};
+//int n, m, q, ans[N], fa[N];
+//node edge[N << 1];
+//
+//inline int find(int a)
+//{
+//	return a == fa[a] ? a : fa[a] = find(fa[a]);
+//}
+//
+//void merg(int a, int b)
+//{
+//	a = find(a);
+//	b = find(b);
+//	fa[a] = b;
+//}
+//
+//int cmp(node a, node b)
+//{
+//	return a.w < b.w;
+//}
+//
+//void kru()
+//{
+//	int num = 0;
+//	sort(edge + 1, edge + 1 + m + q, cmp);
+//	for (int i = 1,a,b,s;i <= m + q && num <= n - 1;i++)
+//	{
+//		a = edge[i].u, b = edge[i].v, s = edge[i].w;
+//		if (find(a) != find(b))
+//		{
+//			if (edge[i].que)
+//				ans[edge[i].que] = 1;
+//			else
+//			{
+//				merg(a, b);
+//				num++;
+//			}
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m >> q;
+//	for (int i = 1;i <= n;i++)
+//		fa[i] = i;
+//	for (int i = 1;i <= m;i++)
+//		cin >> edge[i].u >> edge[i].v >> edge[i].w;
+//	for(int i = m + 1;i <= m + q;i++)
+//		cin >> edge[i].u >> edge[i].v >> edge[i].w, edge[i].que = i - m;
+//
+//	kru();
+//
+//	for (int i = 1;i <= q;i++)
+//	{
+//		if (ans[i]) puts("Yes");
+//		else puts("No");
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n, num[N], ti[N], ans;
+//stack<int>st;
+//
+//
+//int main()
+//{
+//
+//	cin >> n;
+//	for (int i = 1;i <= n;i++)
+//		cin >> num[i];
+//	for (int M = 0, i = 1;i <= n;i++)
+//	{
+//		M = 0;
+//		while (!st.empty() && num[st.top()] <= num[i])
+//		{
+//			M = max(M, ti[st.top()]);
+//			st.pop();
+//		}
+//		if(!st.empty())
+//			ti[i] = M + 1;
+//		st.push(i);
+//		ans = max(ans, ti[i]);
+//	}
+//	cout << ans;
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int mid, t, n, m, w[N], l, r, vis[N];
+//
+//void init()
+//{
+//	l = 1;
+//	r = 1e9+5;
+//	memset(w, 0, sizeof w);
+//	memset(vis, 0, sizeof vis);
+//}
+//
+//int check(int mid)
+//{
+//	int ac = 0;
+//	for (int i = 0, cnt = 0;i < m;i++)
+//	{
+//		for (int j = 0;j < n;j++)
+//		{
+//			if (w[i * n + j] >= mid)
+//			{
+//				if (!vis[j])
+//					ac++;
+//				else
+//					vis[j] = 1;
+//				cnt++;
+//			}
+//		}
+//		if (ac == n && cnt > 1)
+//			return 1;
+//	}
+//	return 0;
+//}
+//
+//int main()
+//{
+//	cin >> t;
+//	while (t--)
+//	{
+//		init();
+//		cin >> m >> n;
+//		for (int i = 0;i < m;i++)
+//			for (int j = 0;j < n;j++)
+//				cin >> w[i * n + j];
+//
+//		while (l <= r)
+//		{
+//			mid = (l + r) >> 1;
+//			if (check(mid))
+//				l = mid + 1;
+//			else
+//				r = mid - 1;
+//		}
+//		cout << r << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
-typedef unsigned long long ull;
-const int N = 5e5 + 5;
-ull n, h1[N], h2[N], base = 31, mod = 1e9 + 7, p[N], l, r, mid, res = 0;
-string s;
+const int N = 1e5 + 5;
+int t, m, n, w[N], vis[N], l, r, mid;
 
-ull get_h1(ull l, ull r)
+void init()
 {
-	return h1[r] - h1[l - 1] * p[r - l + 1];
+	memset(w, 0, sizeof w);
+	memset(vis, 0, sizeof vis);
+	l = 1;
+	r = 1e9 + 5;
 }
 
-ull get_h2(ull l, ull r)
+bool check(int mid)
 {
-	return h2[l] - h2[r + 1] * p[r - l + 1];
+	for (int i = 0;i < n;i++) vis[i] = 0;
+	int ac = 0, flag = 0;
+	for (int i = 0,cnt = 0;i < m;i++,cnt = 0)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			if (mid <= w[i * n + j])
+			{
+				if (!vis[j])
+					ac++;
+				vis[j] = 1;
+				cnt++;
+			}
+		}
+		if (cnt > 1)
+			flag = 1;
+	}
+	if (ac == n && flag)
+		return true;
+	return false;
 }
 
 int main()
 {
-	cin >> n;
-	cin >> s;
-	s = ' ' + s;
-	p[0] = 1;
-	for (int i = 1;i <= n;i++)
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	cin >> t;
+	while (t--)
 	{
-		p[i] = p[i - 1] * base;
-		h1[i] = h1[i - 1] * base + s[i] - '0';
-		//h2[n + 1 - i] = h2[n + 2 - i] *base + ((s[n + 1 - i] - '0') ^ 1);
-	}
-	for(int )
-	for (ull i = 1;i < n;i++)
-	{
-		if (s[i] != s[i + 1])
+		init();
+		cin >> m >> n;
+		for (int i = 0;i < m;i++)
+			for (int j = 0;j < n;j++)
+				cin >> w[i * n + j];
+
+		while (l <= r)
 		{
-			l = 1;
-			r = min(i, n - i);
-			while (r >= l)
-			{
-				mid = l + r >> 1;
-				if (get_h2(i - mid + 1, i) == get_h1(i + 1, i + mid))
-					l = mid + 1;
-				else
-					r = mid - 1;
-			}
-			res += r;
+			mid = (l + r) >> 1;
+			if (check(mid))
+				l = mid + 1;
+			else
+				r = mid - 1;
 		}
+		cout << r << '\n';
 	}
-	cout << res;
 	return 0;
 }
