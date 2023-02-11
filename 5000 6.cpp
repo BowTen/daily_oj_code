@@ -3868,64 +3868,162 @@ using namespace std;
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int t, m, n, w[N], vis[N], l, r, mid;
+//
+//void init()
+//{
+//	memset(w, 0, sizeof w);
+//	memset(vis, 0, sizeof vis);
+//	l = 1;
+//	r = 1e9 + 5;
+//}
+//
+//bool check(int mid)
+//{
+//	for (int i = 0;i < n;i++) vis[i] = 0;
+//	int ac = 0, flag = 0;
+//	for (int i = 0,cnt = 0;i < m;i++,cnt = 0)
+//	{
+//		for (int j = 0;j < n;j++)
+//		{
+//			if (mid <= w[i * n + j])
+//			{
+//				if (!vis[j])
+//					ac++;
+//				vis[j] = 1;
+//				cnt++;
+//			}
+//		}
+//		if (cnt > 1)
+//			flag = 1;
+//	}
+//	if (ac == n && flag)
+//		return true;
+//	return false;
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> t;
+//	while (t--)
+//	{
+//		init();
+//		cin >> m >> n;
+//		for (int i = 0;i < m;i++)
+//			for (int j = 0;j < n;j++)
+//				cin >> w[i * n + j];
+//
+//		while (l <= r)
+//		{
+//			mid = (l + r) >> 1;
+//			if (check(mid))
+//				l = mid + 1;
+//			else
+//				r = mid - 1;
+//		}
+//		cout << r << '\n';
+//	}
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
+#define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 using namespace std;
-const int N = 1e5 + 5;
-int t, m, n, w[N], vis[N], l, r, mid;
+const int N = 1e6 + 5;
+int n, k, f[N], tree[N], tot = 0, L[N], R[N], t[N], par[N];
+vector<int>mp[N];
 
-void init()
+
+int low_bit(int x)
 {
-	memset(w, 0, sizeof w);
-	memset(vis, 0, sizeof vis);
-	l = 1;
-	r = 1e9 + 5;
+	return x & -x;
 }
 
-bool check(int mid)
+void dfs(int u, int fa)
 {
-	for (int i = 0;i < n;i++) vis[i] = 0;
-	int ac = 0, flag = 0;
-	for (int i = 0,cnt = 0;i < m;i++,cnt = 0)
+	par[u] = fa;
+	L[u] = ++tot;
+	tree[L[u]] = f[u] = f[fa] + 1;
+	for (auto& v : mp[u])
 	{
-		for (int j = 0;j < n;j++)
-		{
-			if (mid <= w[i * n + j])
-			{
-				if (!vis[j])
-					ac++;
-				vis[j] = 1;
-				cnt++;
-			}
-		}
-		if (cnt > 1)
-			flag = 1;
+		if (v == fa) continue;
+		dfs(v, u);
 	}
-	if (ac == n && flag)
-		return true;
-	return false;
+	R[u] = tot;
 }
+
+void add(int pos, int val)
+{
+	while (pos <= n)
+	{
+		t[pos] += val;
+		pos += low_bit(pos);
+	}
+}
+
+int getsum(int x)
+{
+	int ret = 0;
+	while (x >= 1)
+	{
+		ret += t[x];
+		x -= low_bit(x);
+	}
+	return ret;
+}
+
+void up(int i, int a)
+{
+	add(L[i],-1);
+	add(R[i] + 1,1);
+	if (--a)
+		up(par[i], a);
+}
+
 
 int main()
 {
-	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-	cin >> t;
-	while (t--)
-	{
-		init();
-		cin >> m >> n;
-		for (int i = 0;i < m;i++)
-			for (int j = 0;j < n;j++)
-				cin >> w[i * n + j];
+	BowTen
 
-		while (l <= r)
-		{
-			mid = (l + r) >> 1;
-			if (check(mid))
-				l = mid + 1;
-			else
-				r = mid - 1;
-		}
-		cout << r << '\n';
+	cin >> n >> k;
+	for (int i = 1,u,v;i < n;i++)
+	{
+		cin >> u >> v;
+		mp[u].push_back(v);
+		mp[v].push_back(u);
 	}
+
+	f[n+1] = -1;
+	dfs(n, n+1);
+
+	for (int i = 1, last = 0;i <= n;i++)
+	{
+		tree[i] -= last;
+		last = tree[i] + last;
+	}
+
+	for (int i = 1;i <= n;i++)
+		add(i, tree[i]);
+
+	for (int i = n, ac = 0, a;i >= 1 && ac < n-k;i--)
+	{
+		a = getsum(L[i]);
+		if (a > 0 && a <= n - k - ac - 1)
+		{
+			ac += a;
+			up(i, a);
+		}
+	}
+
+	for (int i = 1;i <= n;i++)
+		if (getsum(L[i]) > 0)
+			cout << i << ' ';
+
 	return 0;
 }
