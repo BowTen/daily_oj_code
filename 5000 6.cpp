@@ -2,7 +2,7 @@
 #define _SILENCE_CXX20_CISO646_REMOVED_WARNING
 #define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 using namespace std;
-//#include<bits/stdc++.h>
+#include<bits/stdc++.h>
 //using namespace std;
 
 //int fa[1010];
@@ -3932,98 +3932,143 @@ using namespace std;
 
 
 
-#include<bits/stdc++.h>
-#define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-using namespace std;
-const int N = 1e6 + 5;
-int n, k, f[N], tree[N], tot = 0, L[N], R[N], t[N], par[N];
-vector<int>mp[N];
+//#include<bits/stdc++.h>
+//#define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//using namespace std;
+//const int N = 1e6 + 5;
+//int n, k, f[N], tree[N], tot = 0, L[N], R[N], t[N], par[N];
+//vector<int>mp[N];
+//
+//
+//int low_bit(int x)
+//{
+//	return x & -x;
+//}
+//
+//void dfs(int u, int fa)
+//{
+//	par[u] = fa;
+//	L[u] = ++tot;
+//	tree[L[u]] = f[u] = f[fa] + 1;
+//	for (auto& v : mp[u])
+//	{
+//		if (v == fa) continue;
+//		dfs(v, u);
+//	}
+//	R[u] = tot;
+//}
+//
+//void add(int pos, int val)
+//{
+//	while (pos <= n)
+//	{
+//		t[pos] += val;
+//		pos += low_bit(pos);
+//	}
+//}
+//
+//int getsum(int x)
+//{
+//	int ret = 0;
+//	while (x >= 1)
+//	{
+//		ret += t[x];
+//		x -= low_bit(x);
+//	}
+//	return ret;
+//}
+//
+//void up(int i, int a)
+//{
+//	add(L[i],-1);
+//	add(R[i] + 1,1);
+//	if (--a)
+//		up(par[i], a);
+//}
+//
+//
+//int main()
+//{
+//	BowTen
+//
+//	cin >> n >> k;
+//	for (int i = 1,u,v;i < n;i++)
+//	{
+//		cin >> u >> v;
+//		mp[u].push_back(v);
+//		mp[v].push_back(u);
+//	}
+//
+//	f[n+1] = -1;
+//	dfs(n, n+1);
+//
+//	for (int i = 1, last = 0;i <= n;i++)
+//	{
+//		tree[i] -= last;
+//		last = tree[i] + last;
+//	}
+//
+//	for (int i = 1;i <= n;i++)
+//		add(i, tree[i]);
+//
+//	for (int i = n, ac = 0, a;i >= 1 && ac < n-k;i--)
+//	{
+//		a = getsum(L[i]);
+//		if (a > 0 && a <= n - k - ac - 1)
+//		{
+//			ac += a;
+//			up(i, a);
+//		}
+//	}
+//
+//	for (int i = 1;i <= n;i++)
+//		if (getsum(L[i]) > 0)
+//			cout << i << ' ';
+//
+//	return 0;
+//}
 
 
-int low_bit(int x)
-{
-	return x & -x;
-}
-
-void dfs(int u, int fa)
-{
-	par[u] = fa;
-	L[u] = ++tot;
-	tree[L[u]] = f[u] = f[fa] + 1;
-	for (auto& v : mp[u])
-	{
-		if (v == fa) continue;
-		dfs(v, u);
-	}
-	R[u] = tot;
-}
-
-void add(int pos, int val)
-{
-	while (pos <= n)
-	{
-		t[pos] += val;
-		pos += low_bit(pos);
-	}
-}
-
-int getsum(int x)
-{
-	int ret = 0;
-	while (x >= 1)
-	{
-		ret += t[x];
-		x -= low_bit(x);
-	}
-	return ret;
-}
-
-void up(int i, int a)
-{
-	add(L[i],-1);
-	add(R[i] + 1,1);
-	if (--a)
-		up(par[i], a);
-}
 
 
-int main()
-{
-	BowTen
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//
+//int main()
+//{
+//	FILE* pf = fopen("test.txt", "r+");
+//	if (pf == NULL)
+//	{
+//		perror("");
+//		return 1;
+//	}
+//	fprintf(pf, "holle %d", 2);
+//	return 0;
+//}
 
-	cin >> n >> k;
-	for (int i = 1,u,v;i < n;i++)
-	{
-		cin >> u >> v;
-		mp[u].push_back(v);
-		mp[v].push_back(u);
-	}
 
-	f[n+1] = -1;
-	dfs(n, n+1);
-
-	for (int i = 1, last = 0;i <= n;i++)
-	{
-		tree[i] -= last;
-		last = tree[i] + last;
-	}
-
-	for (int i = 1;i <= n;i++)
-		add(i, tree[i]);
-
-	for (int i = n, ac = 0, a;i >= 1 && ac < n-k;i--)
-	{
-		a = getsum(L[i]);
-		if (a > 0 && a <= n - k - ac - 1)
-		{
-			ac += a;
-			up(i, a);
-		}
-	}
-
-	for (int i = 1;i <= n;i++)
-		if (getsum(L[i]) > 0)
-			cout << i << ' ';
-
-	return 0;
-}
+//#include<stdio.h>
+//#include<string.h>
+//#include<stdlib.h>
+//int main()
+//{
+//	char s[100];
+//	gets(s);
+//	FILE* pf;
+//	pf = fopen("shuchu.txt", "w");
+//	if (pf == NULL)
+//	{
+//		perror("");
+//		return 1;
+//	}
+//	for (int i = 0, n = strlen(s); i < n;i++)
+//	{
+//		if (s[i] == '#')
+//			break;
+//		fputc(s[i], pf);
+//	}
+//
+//	fclose(pf);
+//	return 0;
+//}
