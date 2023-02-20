@@ -4072,3 +4072,122 @@ using namespace std;
 //	fclose(pf);
 //	return 0;
 //}
+
+
+//int main()
+//{
+//	int a = 10;
+//	double b = 3.14;
+//	int* ap = &a;
+//	double* bp = &b;
+//	bp = (double*)ap;
+//	return 0;
+//}
+
+
+
+// int main()
+// {
+// 	cout << "666";
+// 	int a;
+// 	cin >> a;
+// 	return 0;
+// }
+
+//const int N = 6e4+5;
+//int n;
+//double x[N], v[N], mid, l = 0, r = 0, mi = 1;
+//int check(double mid)
+//{
+//	double ret = 0;
+//	for(int i = 0;i < n;i++)
+//	{
+//		ret = max(ret, fabs(x[i] - mid) / v[i]);
+//	}
+//	if (ret > mi) return 0;
+//	mi = ret;
+//	return 1;
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n;
+//	for(int i = 0;i < n;i++) cin >> x[i], r = max(r,x[i]), l = min(l,x[i]);
+//	for(int i = 0;i < n;i++) cin >> v[i], mi = min(mi,v[i]);
+//	mi = (r - l) / mi;
+//
+//	for(int i = 0;i < 500;i++)
+//	{
+//		mid = (l + r) / 2.0;
+//		check((mid + r) / 2.0);
+//		if (check((l + mid) / 2.0))
+//			r = mid;
+//		else
+//			l = mid;
+//	}
+//	printf("%lf", mi);
+//	
+//	//system("pause");
+//	return 0;
+//}
+
+
+
+//const int N = 6e4 + 5;
+//int n;
+//double x[N], v[N], l = 0, r = 0x3f3f3f3f , mid;
+//int check(double mid)
+//{
+//	double maxl = x[0] - mid * v[0], minr = x[0] + mid * v[0];
+//	for (int i = 0;i < n;i++)
+//	{
+//		maxl = max(maxl, x[i] - mid * v[i]);
+//		minr = min(minr, x[i] + mid * v[i]);
+//	}
+//	if (maxl <= minr)
+//		return 1;
+//	return 0;
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 0;i < n;i++) cin >> x[i];
+//	for (int i = 0;i < n;i++) cin >> v[i];
+//	int cnt = 1000;
+//	while (cnt--)
+//	{
+//		mid = (l + r) / 2.0;
+//		if (check(mid))
+//			r = mid;
+//		else
+//			l = mid;
+//	}
+//	printf("%.10lf", l);
+//
+//	return 0;
+//}
+
+
+
+//const int N = 5e3 + 5;
+//char a[N], b[N];
+//int n, m, dp[N][N], ans = 0;
+//
+//int main() {
+//	cin >> n >> m;
+//	scanf("%s%s", a + 1, b + 1);
+//	for (int i = 1;i <= n;i++) {
+//		for (int j = 1;j <= m;j++) {
+//			if (a[i] == b[j])
+//				dp[i][j] = dp[i - 1][j - 1] + 2;
+//			else
+//				dp[i][j] = max({ 0,dp[i - 1][j] - 1, dp[i][j - 1] - 1 });
+//			ans = max(ans, dp[i][j]);
+//		}
+//	}
+//	cout << ans;
+//
+//	return 0;
+//}
