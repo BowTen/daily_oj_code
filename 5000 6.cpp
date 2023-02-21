@@ -4191,3 +4191,68 @@ using namespace std;
 //
 //	return 0;
 //}
+
+
+
+const int N = 2e5 + 5;
+int n, m, q[N], dep[N] = { 0 }, par[N][20];
+vector<int>vec[N];
+
+void pre_dfs(int u, int fa)
+{
+	dep[u] = dep[fa] + 1;
+	par[u][0] = fa;
+	for (int i = 1;i < 20;i++) {
+		par[u][i] = par[par[u][i - 1]][i - 1];
+	}
+	for (auto& v : vec[u]) {
+		if (v == fa) continue;
+		pre_dfs(v, u);
+	}
+}
+
+int getlca(int u, int v)
+{
+	if (dep[u] < dep[v]) swap(u, v);
+	for (int i = 19;i >= 0;i--) {
+		if (dep[par[u][i]] >= dep[v])
+			u = par[u][i];
+	}
+	if (u == v) return u;
+	for (int i = 19;i >= 0;i--) {
+		if (par[u][i] != par[v][i])
+			u = par[u][i], v = par[v][i];
+	}
+	return par[u][0];
+}
+
+int main()
+{
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	cin >> n >> m;
+	for (int i = 1, u, v;i < n;i++) {
+		cin >> u >> v;
+		vec[u].push_back(v);
+		vec[v].push_back(u);
+	}
+
+	pre_dfs(1, 0);
+
+	for (int i = 0, k;i < m;i++) {
+		cin >> k;
+		int ed = 0, f = 1;
+		for (int j = 1;j <= k;j++) {
+			cin >> q[j];
+			ed = dep[q[j]] > dep[ed] ? q[j] : ed;
+		}
+
+		for (int j = 1;j <= k && f;j++) {
+			if (abs(dep[getlca(ed, q[j])] - dep[q[j]]) > 1)
+				f = 0;
+		}
+		if (f) puts("YES");
+		else puts("NO");
+	}
+
+	return 0;
+}
