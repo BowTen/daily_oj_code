@@ -1,8 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define _SILENCE_CXX20_CISO646_REMOVED_WARNING
-#define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-using namespace std;
-#include<bits/stdc++.h>
+//#define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//using namespace std;
+//#include<bits/stdc++.h>
 //using namespace std;
 
 //int fa[1010];
@@ -4194,65 +4194,620 @@ using namespace std;
 
 
 
-const int N = 2e5 + 5;
-int n, m, q[N], dep[N] = { 0 }, par[N][20];
-vector<int>vec[N];
+//const int N = 2e5 + 5;
+//int n, m, q[N], dep[N] = { 0 }, par[N][20];
+//vector<int>vec[N];
+//
+//void pre_dfs(int u, int fa)
+//{
+//	dep[u] = dep[fa] + 1;
+//	par[u][0] = fa;
+//	for (int i = 1;i < 20;i++) {
+//		par[u][i] = par[par[u][i - 1]][i - 1];
+//	}
+//	for (auto& v : vec[u]) {
+//		if (v == fa) continue;
+//		pre_dfs(v, u);
+//	}
+//}
+//
+//int getlca(int u, int v)
+//{
+//	if (dep[u] < dep[v]) swap(u, v);
+//	for (int i = 19;i >= 0;i--) {
+//		if (dep[par[u][i]] >= dep[v])
+//			u = par[u][i];
+//	}
+//	if (u == v) return u;
+//	for (int i = 19;i >= 0;i--) {
+//		if (par[u][i] != par[v][i])
+//			u = par[u][i], v = par[v][i];
+//	}
+//	return par[u][0];
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m;
+//	for (int i = 1, u, v;i < n;i++) {
+//		cin >> u >> v;
+//		vec[u].push_back(v);
+//		vec[v].push_back(u);
+//	}
+//
+//	pre_dfs(1, 0);
+//
+//	for (int i = 0, k;i < m;i++) {
+//		cin >> k;
+//		int ed = 0, f = 1;
+//		for (int j = 1;j <= k;j++) {
+//			cin >> q[j];
+//			ed = dep[q[j]] > dep[ed] ? q[j] : ed;
+//		}
+//
+//		for (int j = 1;j <= k && f;j++) {
+//			if (abs(dep[getlca(ed, q[j])] - dep[q[j]]) > 1)
+//				f = 0;
+//		}
+//		if (f) puts("YES");
+//		else puts("NO");
+//	}
+//
+//	return 0;
+//}
 
-void pre_dfs(int u, int fa)
-{
-	dep[u] = dep[fa] + 1;
-	par[u][0] = fa;
-	for (int i = 1;i < 20;i++) {
-		par[u][i] = par[par[u][i - 1]][i - 1];
-	}
-	for (auto& v : vec[u]) {
-		if (v == fa) continue;
-		pre_dfs(v, u);
-	}
-}
 
-int getlca(int u, int v)
-{
-	if (dep[u] < dep[v]) swap(u, v);
-	for (int i = 19;i >= 0;i--) {
-		if (dep[par[u][i]] >= dep[v])
-			u = par[u][i];
-	}
-	if (u == v) return u;
-	for (int i = 19;i >= 0;i--) {
-		if (par[u][i] != par[v][i])
-			u = par[u][i], v = par[v][i];
-	}
-	return par[u][0];
-}
 
-int main()
-{
-	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-	cin >> n >> m;
-	for (int i = 1, u, v;i < n;i++) {
-		cin >> u >> v;
-		vec[u].push_back(v);
-		vec[v].push_back(u);
-	}
 
-	pre_dfs(1, 0);
+//#include<bits/stdc++.h>
+//#define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//using namespace std;
+//
+//
+//int main()
+//{
+//	//BowTen;
+//
+//	int a, i = 0;
+//	int f = 0;
+//	while (cin >> a)
+//	{
+//		i++;
+//		if (a == 250 && !f)
+//			f = i;
+//	}
+//
+//	cout << f;
+//
+//	return 0;
+//}
 
-	for (int i = 0, k;i < m;i++) {
-		cin >> k;
-		int ed = 0, f = 1;
-		for (int j = 1;j <= k;j++) {
-			cin >> q[j];
-			ed = dep[q[j]] > dep[ed] ? q[j] : ed;
-		}
 
-		for (int j = 1;j <= k && f;j++) {
-			if (abs(dep[getlca(ed, q[j])] - dep[q[j]]) > 1)
-				f = 0;
-		}
-		if (f) puts("YES");
-		else puts("NO");
-	}
 
-	return 0;
-}
+
+//#include<bits/stdc++.h>
+//#define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//using namespace std;
+//
+//
+//int main()
+//{
+//	int y, m, d;
+//	string s;
+//	cin >> s;
+//	y = s[9] - '0' + (s[8] - '0') * 10 + (s[7] - '0') * 100 + (s[6] - '0') * 1000;
+//	d = s[4] - '0' + (s[3] - '0') * 10;
+//	m = s[1] - '0' + (s[0] - '0') * 10;
+//	printf("%04d-%02d-%02d", y, m, d);
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//struct node
+//{
+//	int h, m;
+//};
+//
+//int main()
+//{
+//	char f;
+//	int n, id, sum = 0, cnt = 0;
+//	node tmp;
+//	map<int, node>mp;
+//	cin >> n;
+//	for(int i = 1;i <= n;)
+//	{
+//		scanf("%d %c %d:%d", &id, &f, &tmp.h, &tmp.m);
+//		if (id == 0) {
+//			mp.clear();
+//			i++;
+//			cout << cnt << ' ' << (cnt == 0 ? 0 : sum / cnt) << '\n';
+//			cnt = sum = 0;
+//			continue;
+//		}
+//		if (f == 'S' && mp.find(id) == mp.end())
+//			mp[id].h = tmp.h, mp[id].m = tmp.m;
+//		else if (f == 'E' && mp.find(id) != mp.end()) {
+//			cnt++;
+//			sum += (tmp.h - mp[id].h) * 60 + tmp.m - mp[id].m;
+//			mp.erase(id);
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int k, i = 0;
+//string s;
+//string hand[3] ={"ChuiZi", "Bu", "JianDao" };
+//
+//int main()
+//{
+//	cin >> k;
+//	//hand s;
+//	while (cin >> s, s != "End")
+//	{
+//		if (i == k) {
+//			i = 0;
+//			cout << s << '\n';
+//		}
+//		else {
+//			i++;
+//			for (int i = 0;i < 3;i++)
+//			{
+//				if (s == hand[i])
+//					cout << hand[i == 2 ? 0 : i + 1] << '\n';
+//			}
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	string s;
+//	cin >> s;
+//	cout << "Hello " << s;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ll;
+//
+//
+//int main()
+//{
+//	ll x, s, n, num = 0;
+//	cin >> x;
+//	for (int i = 1;i <= 20; i++)
+//	{
+//		num++;
+//		if (num % x == 0) {
+//			cout << num / x << ' ' << i;
+//			return 0;
+//		}
+//		num *= 10;
+//	}
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	string s;
+//	int n, a, b;
+//	cin >> n;
+//	while (n--)
+//	{
+//		cin >> s >> a >> b;
+//		if (a < 15 || a > 20 || b < 50 || b > 70)
+//			cout << s << '\n';
+//	}
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int ra, rb, ca, cb;
+//vector<vector<int>>a, b, c;
+//
+//int main()
+//{
+//	cin >> ra >> ca;
+//	a.resize(ra + 1);
+//	for (int i = 1;i <= ra;i++) {
+//		a[i].resize(ca + 1);
+//		for (int j = 1;j <= ca;j++) {
+//			cin >> a[i][j];
+//		}
+//	}
+//	cin >> rb >> cb;
+//	b.resize(rb + 1);
+//	for (int i = 1;i <= rb;i++) {
+//		b[i].resize(cb + 1);
+//		for (int j = 1;j <= cb;j++) {
+//			cin >> b[i][j];
+//		}
+//	}
+//
+//	if (ca != rb) {
+//		cout << "Error: " << ca << " != " << rb;
+//		return 0;
+//	}
+//
+//	cout << ra << ' ' << cb << '\n';
+//	c.resize(ra + 1);
+//	for (int i = 1;i <= ra;i++) {
+//		c[i].resize(cb + 1);
+//		for (int j = 1;j <= cb;j++) {
+//			for (int x = 1;x <= ca;x++) {
+//				c[i][j] += a[i][x] * b[x][j];
+//			}
+//			cout << c[i][j] << ' ';
+//		}
+//		cout << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//struct node
+//{
+//	string name;
+//	int sum;
+//	double av;
+//};
+//node arr[103];
+//
+//int n;
+//
+//int cmp(node e1, node e2)
+//{
+//	return e1.sum == e2.sum ? e1.av < e2.av : e1.sum > e2.sum;
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 0, k;i < n;i++) {
+//		map<int,int>mp;
+//		cin >> arr[i].name >> k;
+//		for (int j = 0, t;j < k;j++) {
+//			cin >> t;
+//			if (mp[t] == 0)
+//				arr[i].sum++;
+//			mp[t]++;
+//		}
+//		arr[i].av = (double)k / (double)arr[i].sum;
+//	}
+//
+//	sort(arr, arr + n, cmp);
+//
+//	int cnt = min(n, 3);
+//	for (int i = 0;i < cnt;i++) {
+//		cout << arr[i].name;
+//		if (i != 2)
+//			cout << ' ';
+//	}
+//	for (int i = cnt;i < 3;i++) {
+//		cout << "- ";
+//		if (i != 2)
+//			cout << ' ';
+//	}
+//	return 0;
+//}
+
+
+// 10
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n, beg;
+//struct node
+//{
+//	int ad, dat, ne;
+//};
+//node a[N], b[N], c[N];
+//
+//int main()
+//{
+//	cin >> beg >> n;
+//	for (int i = 0, ad;i < n;i++) {
+//		cin >> ad;
+//		cin >> a[ad].dat >> a[ad].ne;
+//	}
+//
+//	for (int p = beg, i = 1;p != -1;p = a[p].ne, i++) {
+//		b[i].ad = p;
+//		b[i].dat = a[p].dat;
+//		b[i].ne = -1;
+//		b[i - 1].ne = p;
+//	}
+//
+//	//for (int i = 1, q = 1, p = n;i <= n;i++) {
+//	//	c[i].ad = b[p].ad;
+//	//	c[i].dat = b[p].dat;
+//	//	c[i].ne = -1;
+//	//	c[i - 1].ne = c[i].ad;
+//	//	p--;
+//	//	i++;
+//	//	if (i > n)
+//	//		break;
+//	//	c[i].ad = b[q].ad;
+//	//	c[i].dat = b[q].dat;
+//	//	c[i].ne = -1;
+//	//	c[i - 1].ne = c[i].ad;
+//	//	q++;
+//	//}
+//
+//	for (int i = 1, t;i <= n;i++) {
+//		if (i & 1) 
+//			t = n + 1 - ((i + 1) >> 1);
+//		else
+//			t = i >> 1;
+//		c[i].ad = b[t].ad;
+//		c[i].dat = b[t].dat;
+//		c[i].ne = -1;
+//		c[i - 1].ne = c[i].ad;
+//	}
+//
+//	for (int i = 1;i < n;i++) {
+//		printf("%05d %d %05d\n", c[i].ad, c[i].dat, c[i].ne);
+//	}
+//
+//	printf("%05d %d %d", c[n].ad, c[n].dat, c[n].ne);
+//
+//	return 0;
+//}
+
+
+
+//    11
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 505;
+//struct edge
+//{
+//	int u, v;
+//};
+//int v, e, n, k, col[N], vis[N];
+//vector<edge>vec;
+//
+//int main()
+//{
+//	cin >> v >> e >> k;
+//	vec.resize(e);
+//	for (int i = 0;i < e;i++)
+//		cin >> vec[i].u >> vec[i].v;
+//
+//	cin >> n;
+//
+//	for (int i = 0;i < n;i++) {
+//		memset(vis, 0, sizeof(vis));
+//		int sum = 0;
+//		for (int j = 1;j <= v;j++) {
+//			cin >> col[j];
+//			if (!vis[col[j]]) {
+//				sum++;
+//				vis[col[j]] = 1;
+//			}
+//		}
+//		if (sum > k) {
+//			puts("No");
+//			goto ss;
+//		}
+//		for (auto& [u, v] : vec) {
+//			if (col[u] == col[v]) {
+//				puts("No");
+//				goto ss;
+//			}
+//		}
+//		puts("Yes");
+//	ss:;
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 505;
+//int v, e, k, n, col[N], vis[N], ans, cnt;
+//struct node
+//{
+//	int u, v;
+//};
+//vector<node>edge;
+//
+//void init()
+//{
+//	memset(vis, 0, sizeof(vis));
+//	ans = 1;
+//	cnt = 0;
+//}
+//
+//
+//int main()
+//{
+//	cin >> v >> e >> k;
+//	edge.resize(e);
+//	for (int i = 0;i < e;i++)
+//		cin >> edge[i].u >> edge[i].v;
+//
+//	cin >> n;
+//	for (int i = 0;i < n;i++) {
+//		init();
+//		for (int j = 1;j <= v;j++) {
+//			cin >> col[j];
+//			if (vis[col[j]] == 0) {
+//				cnt++;
+//				vis[col[j]] = 1;
+//				if (cnt > k)
+//					ans = 0;
+//			}
+//		}
+//		if(ans)
+//		for (auto& [u, v] : edge) {
+//			if (col[u] == col[v])
+//				ans = 0;
+//		}
+//		if (ans) puts("Yes");
+//		else puts("No");
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e4+5;
+//int n, fa[N] = { 0 }, k, peo = 0, part = 0, q;
+//
+//int find(int x)
+//{
+//	return fa[x] == x ? x : fa[x] = find(fa[x]);
+//}
+//
+//void merg(int x, int y)
+//{
+//	x = find(x);
+//	y = find(y);
+//	if(x != y)
+//	fa[x] = y;
+//}
+//
+//
+//int main()
+//{
+//	cin >> n;
+//	part = n - 1;
+//	while (n--) {
+//		int t;
+//		cin >> k;
+//		cin >> t;
+//		if (fa[t] == 0) peo++, fa[t] = t;
+//		for (int i = 1, f;i < k;i++) {
+//			cin >> f;
+//			if (fa[f] == 0) peo++, fa[f] = fa[t];
+//			else if(find(f) != find(t)) part--,merg(fa[f], fa[t]);
+//		}
+//	}
+//
+//	cout << peo << ' ' << part << '\n';
+//
+//	cin >> q;
+//	for (int i = 0, a, b;i < q;i++) {
+//		cin >> a >> b;
+//		if (find(a) != find(b))
+//			puts("N");
+//		else
+//			puts("Y");
+//	}
+//	return 0;
+//}
+
+
+//#define fl 0x3e3e3e3e
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 105;
+//int n, num[N], rt, m, a, b;
+//int tree[N][2], dep[N], fa[N];
+//string s1, s2;
+//
+//
+//void dfs(int u, int v)
+//{
+//	int p = v > u ? 1 : 0;
+//	if (tree[u][p] == fl)
+//		tree[u][p] = v, dep[v] = dep[u] + 1, fa[v] = u;
+//	else
+//		dfs(tree[u][p], v);
+//}
+//
+//int main()
+//{
+//	s1.resize(80);
+//	s2.resize(80);
+//	memset(tree, 0x3e, sizeof tree);
+//	cin >> n;
+//	cin >> num[0];
+//	rt = num[0];
+//	for (int i = 1;i < n;i++) {
+//		cin >> num[i];
+//		dfs(rt, num[i]);
+//	}
+//
+//	cin >> m;
+//	getchar();
+//	while (m--) {
+//		a = b = 0;
+//		for (int i = 0;s2[i] = getchar(), s2[i] != ' ';i++) a *= 10, a += s2[i] - '0';
+//		getline(cin,s1);
+//		char la = s1[s1.length() - 1];
+//		if (la == 't') {
+//			if (a == rt) puts("Yes");
+//			else puts("No");
+//		}
+//		else if (la >= '0' && la <= '9') {
+//
+//			b = la - '0';
+//			if(s1[7] == 'p') {
+//				if (fa[b] == a) puts("Yes");
+//				else puts("No");
+//			}
+//			else if (s1[7] == 'l') {
+//				if (tree[b][0] == a) puts("Yes");
+//				else puts("No");
+//			}
+//			else if (s1[7] == 'r') {
+//				if (tree[b][1] == a) puts("Yes");
+//				else puts("No");
+//			}
+//		}
+//		else {
+//			for (int i = 4;s1[i] != ' ';i++) b *= 10, b += s1[i] - '0';
+//			if (la == 's') {
+//				if (fa[a] == fa[b]) puts("Yes");
+//				else puts("No");
+//			}
+//			else {
+//				if (dep[a] == dep[b]) puts("Yes");
+//				else puts("No");
+//			}
+//		}
+//	}
+//	
+//
+//	return 0;
+//}
