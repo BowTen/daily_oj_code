@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define _SILENCE_CXX20_CISO646_REMOVED_WARNING
-//#define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define BowTen ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //using namespace std;
 //#include<bits/stdc++.h>
 //using namespace std;
@@ -4809,5 +4809,302 @@
 //	}
 //	
 //
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//
+//	int a = 5, b = 4;
+//	double c = 3, d;
+//	d = a / b;
+//	cout << d << '#';
+//	d = c / b;
+//	cout << d;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//enum sex
+//{
+//	Boy,
+//	Girl,
+//};
+//
+//int main()
+//{
+
+	//cout << hex << 16 << " " << 15;
+	//cout << '\n' << 15 << '\n';
+
+	//cout << oct;
+	//cout << 9;
+
+	//bool a = 0;
+	//cout << boolalpha;
+	//cout << a << '\n';
+	//cout << *noboolalpha;
+	//cout << a << '\n';
+	//cout << "true" << '\n';
+
+	//cout << showpoint;
+	//cout << hex;
+	//cout << showbase;
+	//cout << 15 << '\n';
+	//cout << oct;
+	//cout << 010 << '\n';
+	//cout << dec << '\n';
+	//cout << 49 << '\n';
+
+	//cout << showpoint;
+	//cout << 45 << '\n';
+	//double a = 4;
+	//cout << a << '\n' << *noshowpoint << a << '\n';
+
+	//double a = 4;
+	//printf("%lf\n", a);
+	//cout << showpoint << a << '\n';
+
+	//sex a = Boy;
+	//sex b = Girl;
+	//cout << a << '\n' << b << '\n';
+	//printf("%a", a);
+
+	//cout << showpoint;
+	//int a = 5, b = 2;
+	//double c = static_cast<double>(a) / b;
+	//cout << c;
+
+	//cerr << "error\n";
+	//clog << "log\n";
+
+	//cout << right << setw(5);
+	//int a = 4;
+	//cout << a << '\n';
+	//cout << left << a << '\n';
+	//cout << right;
+	//cout << "12345678\n";
+
+	//cin >> *skipws;
+	//char s[20] = { 0 };
+	////cin >> s;
+	//char a, b, c;
+	//cin >> a >> b >> c;
+	//printf("%c%c%c", a, b, c);
+
+
+	//char s[20];
+	//cin >> noskipws >> s;
+	//cout << s;
+
+//	cout << setfill('/');
+//	cout << setw(8);
+//	cout << 89 << '\n';
+//	cout << setw(8);
+//	cout << 98;
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int a, b;
+//	cin >> a >> b;
+//	if (a > b)
+//		puts("true");
+//	else
+//		puts("false");
+//	if (a < b)
+//		puts("true");
+//	else
+//		puts("false");
+//	if (a == b)
+//		puts("true");
+//	else
+//		puts("false");
+//	if (a != b)
+//		puts("true");
+//	else
+//		puts("false");
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	double a, b, c;
+//	cin >> a >> b >> c;
+//	cout << a + b + c << '\n';
+//	cout << (a + b + c) / 3 << '\n';
+//	cout << min({ a,b,c }) << '\n';
+//	cout << max({ a,b,c }) << '\n';
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	/*int a;
+//	cin >> a;
+//	for (int i = 0, n;i < 4;i++) {
+//		n = 
+//	}*/
+//	char s[5];
+//	cin >> s;
+//	for (int i = 3;i >= 0;i--) {
+//		s[i] -= '0';
+//		s[i] = (s[i] + 9) % 10 + '0';
+//	}
+//	swap(s[0], s[2]);
+//	swap(s[1], s[3]);
+//	cout << atoi(s);
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	cout << boolalpha;
+//	int a;
+//	bool f1 = 0, f2 = 0, f3 = 0;
+//	cin >> a;
+//	if (a % 6 == 0)
+//		f1 = true;
+//	if (a % 2 == 0 || a % 3 == 0)
+//		f2 = true;
+//	if ((a % 2 == 0 && a % 3 != 0) || a % 3 == 0 && a % 2 != 0)
+//		f3 = true;
+//	cout << a << " divisible by 2 and 3? " << f1 << '\n';
+//	cout << a << " divisible by 2 or 3? " << f2 << '\n';
+//	cout << a << " divisible by 2 or 3, but not both? " << f3 << '\n';
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const double PI = 3.1415926535;
+//
+//int main()
+//{
+//	double a;
+//	cin >> a;
+//	double ans = (cos(PI*(5.0/18.0)) + pow(37.5, 0.5)) / (a + 1.0);
+//	cout << setprecision(3) << 0.235333;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//
+//int main()
+//{
+//	double a, b, c, ans;
+//	cin >> a >> b >> c;
+//	b /= 1200.0;
+//	c *= 12.0;
+//	ans = a * pow((1.0 + b), c);
+//	printf("%.2lf", ans);
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	string s,s2;
+//	cin >> s2 >> s;
+//	int a = (s[0] - s2[0]) * 10 + s[1] - s2[1];
+//	int b = (s[2] - s2[2]) * 10 + s[3] - s2[3];
+//	if (b < 0) {
+//		a--;
+//		b += 60;
+//	}
+//	printf("%02d:%02d", a, b);
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int a, b;
+//	cin >> a >> b;
+//	cout << b << " " <<a;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//
+//int main()
+//{
+//	string s;
+//	cin >> s;
+//	cout << s[0] << '\n';
+//	cout << s[1] << '\n';
+//	cout << s[2] ;
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//
+//int main()
+//{
+//	double s;
+//	cin >> s;
+//	cout << (int)(5.0 / s);
+//	return 0;
+//}
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	string  a, b;
+//	int c, d, s;
+//	cin >> a >> b;
+//	c = (a[2] - '0') * 10 + a[3] - '0' + 60 * ((a[0] - '0') * 10 + a[1] - '0');
+//	d = (b[2] - '0') * 10 + b[3] - '0' + 60 * ((b[0] - '0') * 10 + b[1] - '0');
+//	s = d - c;
+//	printf("%02d:%02d", s / 60, s % 60);
 //	return 0;
 //}
