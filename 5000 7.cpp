@@ -494,3 +494,293 @@
 //	}
 //	return 0;
 //}
+
+
+
+//#include<iostream>
+//#include<bits/stdc++.h>
+//using namespace std;
+
+
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		string s;
+//		cin >> s;
+//		s = ' ' + s;
+//		char c;
+//		cin >> c;
+//		int f = 0;
+//		for (int i = 1, len = s.size();i <= len && f == 0;i++) {
+//			if (s[i] == c && i & 1 == 1)
+//				f = 1;
+//		}
+//		if (f)
+//			puts("YES");
+//		else
+//			puts("NO");
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<iostream>
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//ll t, l, r, a, p1, p2;
+//ll fun(ll x) {
+//	return x / a + x % a;
+//}
+//
+//int main()
+//{
+//	cin >> t;
+//	while (t--) {
+//		cin >> l >> r >> a;
+//		p2 = r - r % a;
+//		p2 = max(l, p2);
+//		cout << max(fun(r), max(fun(p2 - 1 >= l ? p2 - 1 : l), fun(p2))) << '\n';
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//struct node {
+//	ll pos, pre;
+//}a[N];
+//ll n, m, min1;
+//
+//int cmp(node e1, node e2) {
+//	return e1.pos < e2.pos;
+//}
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> m;
+//		vector<pair<ll,ll>>pos;
+//		pos.push_back({ 0,-1 });
+//		for (int i = 1;i <= n;i++) {
+//			cin >> a[i].pos;
+//			pos.push_back({ a[i].pos,i });
+//		}
+//		sort(pos.begin(), pos.end());
+//		for (int i = 1, len = pos.size();i < len;i++) {
+//			a[pos[i].second].pre = pos[i].first - pos[i - 1].first;
+//		}
+//		int mi = 1, ma = 1;
+//		sort(a + 1, a + 1 + n, cmp);
+//		for (int i = 1;i <= n;i++) {
+//			if (a[i].pre < a[mi].pre)
+//				mi = i;
+//			if (a[i].pre > a[ma].pre)
+//				ma = i;
+//		}
+//		min1 = a[mi].pre;
+//			
+//		if (mi + 1 <= n)
+//			a[mi + 1].pre += a[mi].pre + 1;
+//
+//			min1 = max(min1, max(m - a[n].pos - 1, (a[ma].pre - 1) / 2));
+//			cout << min1 << '\n';
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//ll siz[3] = { 6,8,10 };
+//ll tim[3] = { 15,20,25 };
+//ll mod[3];
+//
+////6  8  10
+////15 20 250
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		ll n;
+//		cin >> n;
+//		//ll last = 10;
+//		//for (int i = 0;i < 3;i++) {
+//		//	mod[i] = n % siz[i];
+//		//	if(mod[i])
+//		//	for (int j = 0;j < 3;j++) {
+//		//		if (siz[j] >= mod[i]) {
+//		//			mod[i] = siz[j] - mod[i];
+//		//			break;
+//		//		}
+//		//	}
+//		//	if (mod[i] < last)
+//		//		last = mod[i];
+//		//}
+//		//cout << (ll)((n + last) * 2.5) << '\n';
+//		if (n <= 6)
+//			cout << 15 << '\n';
+//		else {
+//			if (n % 2 == 1)
+//				n += 1;
+//			cout << (n * 5ll)/2ll << '\n';
+//
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		int m, n;
+//		cin >> m >> n;
+//		priority_queue<pair<int ,pair<int,int>>>que;
+//		for (int i = 1, x, w;i <= n;i++) {
+//			cin >> x >> w;
+//			if (que.size() < 2*m)
+//				que.push({ w,{x,i} });
+//			else if (w < que.top().first) {
+//				que.pop();
+//				que.push({ w,{x,i} });
+//			}
+//		}
+//		ll sum = 0;
+//		vector < pair<int, int> > pos;
+//		for (int i = 0;i < 2*m;i++) {
+//			sum += que.top().first;
+//			pos.push_back(que.top().second);
+//			que.pop();
+//		}
+//		cout << sum << '\n';
+//		sort(pos.begin(), pos.end());
+//		
+//		for (int p = pos.size() - 1, q = 0;p > q;q++, p--) {
+//			cout << pos[q].second << ' ' << pos[p].second << '\n';
+//		}
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e3 + 5;
+//int s[N], ans[N], pos[N];
+//int n;
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n;
+//		for (int i = 1;i <= n;i++) {
+//			cin >> s[i];
+//			pos[s[i]] = i;
+//		}
+//		for (int i = n, left;i >= 1;i--) {
+//			if (pos[i] == i) {
+//				ans[i] = 0;
+//				continue;
+//			}
+//			if (pos[i] > i) {
+//				left = pos[i] - i;
+//			}
+//			else {
+//				left = pos[i];
+//			}
+//			for (int j = 1;j <= i;j++) {
+//				pos[j] -= left;
+//				if (pos[j] < 1) {
+//					pos[j] += i;
+//				}
+//			}
+//			ans[i] = left;
+//		}
+//		for (int i = 1;i <= n;i++) {
+//			cout << ans[i] << ' ';
+//		}
+//		cout << '\n';
+//	}
+//
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int a;
+//	cin >> a;
+//	return 0;
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int m, a[2][N];
+//
+//int main() 
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> m;
+//		int sum[3] = { 0 };
+//		for (int i = 1; i <= 2; i++) {
+//			for (int j = 1; j <= m; j++) {
+//				cin >> a[i][j];
+//				sum[i] += a[i][j];
+//			}
+//		}
+//		sum[2] = 0;
+//		int ans = 0x3f3f3f3f;
+//		for (int i = 1; i <= m; i++) {
+//			sum[1] -= a[1][i];
+//			sum[2] += a[2][i - 1];
+//			ans = min(ans, max(sum[1], sum[2]));
+//		}
+//		cout << ans;
+//		if (t)
+//			cout << '\n';
+//
+//	}
+//
+//	return 0;
+//}
