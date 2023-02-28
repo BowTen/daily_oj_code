@@ -1268,3 +1268,67 @@
 //	}
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 105;
+//int n, m, mp[N][N], dis[N], vis[N], ans;
+//void init() {
+//	memset(mp, 0, sizeof mp);
+//	memset(vis, 0, sizeof vis);
+//	memset(dis, 0, sizeof dis);
+//	ans = 0;
+//}
+//
+//int prim() {
+//	vis[1] = 1;
+//	dis[1] = 0;
+//	for (int i = 2; i <= n; i++) {
+//		dis[i] = mp[1][i];
+//	}
+//	int cnt = 1;
+//	while (cnt < n) {
+//		int x = 0;
+//		for (int i = 2; i <= n; i++) {
+//			if (vis[i] || !dis[i]) continue;
+//			if (x == 0 || dis[i] < dis[x])
+//				x = i;
+//		}
+//		cnt++;
+//		ans += dis[x];
+//		dis[x] = 0;
+//		vis[x] = 1;
+//		for (int i = 2; i <= n; i++) {
+//			if (vis[i] || !mp[x][i]) continue;
+//			if (dis[i] == mp[x][i])
+//				return 0;
+//			if (dis[i] == 0 || mp[x][i] < dis[i])
+//				dis[i] = mp[x][i];
+//		}
+//	}
+//
+//	return 1;
+//}
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		init();
+//		cin >> n >> m;
+//		for (int i = 0,u,v,w; i < m; i++) {
+//			cin >> u >> v >> w;
+//			mp[u][v] = mp[v][u] = w;
+//		}
+//
+//		if (prim())
+//			cout << ans << '\n';
+//		else
+//			cout << "Not Unique!\n";
+//
+//	}
+//	return 0;
+//}
