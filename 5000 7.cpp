@@ -783,4 +783,488 @@
 //	}
 //
 //	return 0;
+//}79.21 - 29.4 = 49.81 - 8.9 = 40.91
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const double mi = 0.00001;
+//
+//int main()
+//{
+//    double a,b,c,delt;
+//    cin >> a >> b >> c;
+//    delt = b * b - 4 * a * c;
+//    cout << *fixed << setprecision(2);
+//    if(a < mi && b < mi){
+//        if(c < mi)
+//            cout << "Infinitely solution";
+//        else
+//            cout << "No solution";
+//        return 0;
+//    }
+//    //one root
+//    if(a < mi && b > mi){
+//        cout << "x=" << (-c / b);
+//        return 0;
+//    }
+//    //two root
+//    if(a > mi){
+//        if(delt < 0)
+//            cout << "Imaginary root";
+//        else if(delt < mi)
+//            cout << "x1=x2=" << (-b/2*a);
+//        else
+//            cout << "x1=" << ((-b-sqrt(delt))/(2*a)) << ";x2=" << ((-b+sqrt(delt))/(2*a));
+//        return 0;
+//    }
+//    return 0;
+//}
+//
+//
+//
+//
+// #include<bits/stdc++.h>
+// using namespace std;
+// int main() {
+//       float a,b,c;
+//       cin>>a>>b>>c;
+//       if(a==0&&b==0&&c==0)
+//           {
+//           cout<<"Infinitely solution"<<endl;
+//
+//           }else if(a==0&&b==0&&c!=0)
+//           {
+//           cout<<"No solution"<<endl;
+//       }else if((pow(b,2)-4*a*c)<0)
+//       {
+//           cout<<"Imaginary root"<<endl;
+//       }else if(a==0&&b!=0)
+//       {
+//           cout<<"x="<<setprecision(2)<<fixed<<-b/c<<endl;
+//
+//       }else if((pow(b,2)-4*a*c)==0)
+//       {
+//           cout<<"x1=x2="<<setprecision(2)<<fixed<<-b/(2*a)<<endl;
+//       }else
+//       {
+//           cout<<"x1="<<setprecision(2)<<fixed<<(-b+sqrt(pow(b,2)-4*a*c))/(2*a)<<";x2="<<setprecision(2)<<fixed<<(-b-sqrt(pow(b,2)-4*a*c))<<endl;
+//       }
+//
+//
+//     return 0;
+// }
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const double mi = 0.00005;
+//
+//int main()
+//{
+//	double a, b, c;
+//	cin >> a >> b >> c;
+//	//负数
+//	if (a < 0 || b < 0 || c < 0) {
+//		cout << "Don`t make a triangle";
+//		return 0;
+//	}
+//	//能构成
+//	if (abs(a - b) < c && abs(a - c) < b && abs(b - c) < a && a + b > c && b + c > a && a + c > b) {
+//
+//	}
+//	else {
+//		cout << "Don`t make a triangle";
+//		return 0;
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const double prc = 0.0000001;
+//
+//int main()
+//{
+//	double W, H, x1, x2, y1, y2, w, h, w1, h1, mw, mh;
+//	int t;
+//	cin >> t;
+//	cout << fixed;
+//	while (t--) {
+//		cin >> W >> H >> x1 >> y1 >> x2 >> y2 >> w >> h;
+//		w1 = x2 - x1;
+//		h1 = y2 - y1;
+//		double ans = -1;
+//		mw = max(W - x2, x1);
+//		mh = max(H - y2, y1);
+//		if (w1 + w - W > prc && h1 + h - H > prc) {
+//			cout << "-1\n";
+//			continue;
+//		}
+//		int f1 = 0, f2 = 0;
+//
+//		//if(w1 + w - W > prc)
+//		//mw = max(W - x2, x1);
+//		//mh = max(H - y2, y1);
+//		//cout << min(w - mw, h - mh) << '\n';
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const double prc = 0.000001;
+//
+//int main()
+//{
+//	cout << fixed;
+//	double W, H, w, h, x1, x2, y1, y2;
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> W >> H >> x1 >> y1 >> x2 >> y2 >> w >> h;
+//		double w1 = x2 - x1, h1 = y2 - y1;
+//		double a1, a2;
+//		int f1 = 0, f2 = 0;
+//		if (w1 + w <= W) {
+//			f1 = 1;
+//			double mw = max(W - x2, x1);
+//			if (mw >= w)
+//				a1 = 0;
+//			else
+//				a1 = w - mw;
+//		}
+//		if (h1 + h <= H) {
+//			f2 = 1;
+//			double mh = max(H - y2, y1);
+//			if (mh >= h)
+//				a2 = 0;
+//			else
+//				a2 = h - mh;
+//		}
+//		if (f1 && f2)
+//			cout << min(a1, a2) << '\n';
+//		else if (f1)
+//			cout << a1 << '\n';
+//		else if (f2)
+//			cout << a2 << '\n';
+//		else
+//			cout << "-1\n";
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, d, a[N], pos[N], pre[N];
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> d;
+//		memset(pos, 0, sizeof pos);
+//		memset(pre, 0, sizeof pre);
+//		memset(a, 0, sizeof a);
+//		int mi = 0, ma = 0;
+//		for (int i = 1, t, las = 0; i <= n; i++) {
+//			cin >> t;
+//			a[t] = i;
+//			pos[i] = t;
+//			pre[i] = i - 1 - pos[i - 1];
+//			las = t;
+//			if (mi == 0 || pre[i] < pre[mi])
+//				mi = i;
+//			if (ma == 0 || pre[i] > pre[ma])
+//				ma = i;
+//		}
+//		a[pos[mi]] = 0;
+//		int a1 = 0, a2 = 0;
+//		if(pos)
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, d, sed[N], pos[N], pre[N];
+//
+//void init()
+//{
+//	memset(sed, 0, sizeof sed);
+//	memset(pos, 0, sizeof pos);
+//	memset(pre, 0, sizeof pre);
+//}
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		init();
+//		cin >> n >> d;
+//		int mi = 0, ma = 0;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> pos[i];
+//			sed[pos[i]] = i;
+//			pre[i] = pos[i] - pos[i - 1];
+//			if (!mi || pre[i] < pre[mi])
+//				mi = i;
+//			if (!ma || pre[i] > pre[ma])
+//				ma = i;
+//		}
+//		int a1 = -1, a2 = -1;
+//		//放最后
+//		if (sed[d] == 0) {
+//			fun();
+//			sed[pos[mi]] = 0;
+//			sed[d] = mi;
+//			if (mi != n) {
+//				pre[mi + 1] += 1 + pre[mi];
+//			}
+//			pre[mi] = 
+//			for (int i = 1; i <= n; i++) {
+//				if (pre[i] < pre[mi])
+//					mi = i;
+//				if (pre[i] > pre[ma])
+//					ma = i;
+//			}
+//		}
+//		//放最大中间
+//
+//	}
+//	return 0;
+//}
+
+
+
+
+
+//#include<iostream>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, q, l, r;
+//char s[N];
+//char tpl[6][4] = {"abc","acb","bac","bca","cab","cba"};
+//
+//int main()
+//{
+//	scanf("%d %d", &n, &q);
+//	scanf("%s", s);
+//	while (q--) {
+//		scanf("%d %d",&l,&r);
+//		int ans = -1;
+//		for (int i = 0, t = 0; i < 6; i++) {
+//			t = 0;
+//			for (int j = l - 1, f = 0; j < r; j++, f++) {
+//				if (f >= 3)
+//					f = 0;
+//				if (s[j] != tpl[i][f])
+//					t++;
+//			}
+//			if (ans == -1 || t < ans)
+//				ans = t;
+//			if (!ans)
+//				break;
+//		}
+//		printf("%d\n", ans);
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//char s[N], tpl[6][5] = { "abc","acb","bac","bca","cab","cba"};
+//int n, q, l, r, pre[6][N] = { 0 };
+//
+//int main()
+//{
+//	scanf("%d %d", &n, &q);
+//	scanf("%s", s);
+//	for (int i = 0; i < 6; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			pre[i][j] = pre[i][j - 1] + (s[j-1] != tpl[i][(j - 1) % 3]);
+//		}
+//	}
+//	while (q--) {
+//		scanf("%d %d", &l, &r);
+//		int ans = INT_MAX;
+//		for (int i = 0; i < 6; i++) {
+//			ans = min(ans, (pre[i][r] - pre[i][l - 1]));
+//		}
+//		printf("%d\n",ans);
+//	}
+//	return 0;
+//}
+
+
+//#include<iostream>
+//#include<cmath>
+//#include<vector>
+//#include<algorithm>
+//#include<cstring>
+//#include<queue>
+//using namespace std;
+//#define INF 0x3f3f3f3f
+//typedef pair<int, int> PII;
+//#define rep(i, n) for (int i = 1; i <= (n); ++i)
+//#define rrep(i, n) for (int i = m; i >= (1); --i)
+//typedef long long ll;
+//
+//const int N = 200010;
+//int s[6][N];
+//char c[6][3] = { {'a', 'b', 'c'}, {'a', 'c', 'b'}, {'b', 'a', 'c'}, {'b', 'c', 'a'}, {'c', 'b', 'a'}, {'c', 'a', 'b'} };
+//char s0[N];
+//
+//int main() {
+//	int n, m;
+//	scanf("%d %d", &n, &m);
+//	scanf("%s", s0);
+//	for (int i = 0; i < 6; i++) {
+//		for (int j = 1; j <= n; j++) s[i][j] = s[i][j - 1] + (s0[j - 1] != c[i][(j - 1) % 3]);
+//	}
+//	while (m--) {
+//		int l, r;
+//		scanf("%d %d", &l, &r);
+//		int ans = INF;
+//		for (int i = 0; i < 6; i++) {
+//			int sum = s[i][r] - s[i][l - 1];
+//			ans = min(ans, sum);
+//		}
+//		cout << ans << endl;
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, d, pos[N], pre[N];
+//
+//void init()
+//{
+//	memset(pos, 0, sizeof pos);
+//	memset(pre, 0, sizeof pre);
+//}
+//
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		init();
+//		cin >> n >> d;
+//		int mi = 0, fn = 0;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> pos[i];
+//			if (pos[i] == d)
+//				fn = 1;
+//			pre[i] = pos[i] - pos[i - 1] - 1;
+//			if (mi == 0 || pre[i] < pre[mi])
+//				mi = i;
+//		}
+//
+//		int a1 = INT_MAX, ma = 0;
+//		if (fn == 0) {
+//			if (mi == n) {
+//				pre[mi] += d - pos[mi];
+//			}
+//			else {
+//				pre[mi + 1] += 1 + pre[mi];
+//				pre[mi] = d - pos[n] - 1;
+//			}
+//			pos[mi] = n;
+//		}
+//		for (int i = 1; i <= n; i++) {
+//			a1 = min(a1, pre[i]);
+//			if (ma == 0 || pre[i] > pre[ma])
+//				ma = i;
+//		}
+//
+//		pre[ma] = (pre[ma] - 1) / 2;
+//		pre[mi] = pre[ma];
+//		int a2 = INT_MAX;
+//		for (int i = 1; i <= n; i++) {
+//			a2 = min(a2, pre[i]);
+//		}
+//		if (a1 == INT_MAX)
+//			a1 = 0;
+//		cout << max(a1, a2) << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, d;
+//
+//int fun(vector<int> &vec) {
+//	int mn = INT_MAX, mx = 0;
+//	for (int i = 1; i < n; i++) {
+//		mn = min(vec[i] - vec[i - 1] - 1, mn);
+//		mx = max(vec[i] - vec[i - 1] - 1, mx);
+//	}
+//	return min(mn, max(d - vec.back() - 1, (mx - 1) / 2));
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> d;
+//		vector<int>a(n+1);
+//		int mn = d, mn_id = 0;
+//		for (int i = 1; i <= n; ++i) {
+//			cin >> a[i];
+//			if (a[i] - a[i - 1] - 1 < mn) {
+//				mn = a[i] - a[i - 1] - 1;
+//				mn_id = i;
+//			}
+//		}
+//
+//		vector<int>sche;
+//		for (int i = 0; i <= n; i++) {
+//			if (i != mn_id)
+//				sche.push_back(a[i]);
+//		}
+//		int ans = fun(sche);
+//
+//		if (mn_id > 1) {
+//			sche[mn_id - 1] = a[mn_id];
+//		}
+//		cout << max(ans,fun(sche)) << '\n';
+//	}
+//	return 0;
 //}
