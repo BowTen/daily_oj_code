@@ -1332,3 +1332,577 @@
 //	}
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 760;
+//struct node {
+//	int x, y;
+//}city[N];
+//int n, m, far[N], dis[N], dica[N][N], fa[N], vis[N];
+//
+//int find(int x) {
+//	return far[x] == x ? x : far[x] = find(far[x]);
+//}
+//
+//void merg(int a, int b) {
+//	a = find(a);
+//	b = find(b);
+//	far[a] = b;
+//}
+//
+//int mp(int u, int v) {
+//	return dica[u][v] ? dica[u][v] : dica[u][v] = (city[u].x - city[v].x) * (city[u].x - city[v].x) + (city[u].y - city[v].y) * (city[u].y - city[v].y);
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> city[i].x >> city[i].y;
+//		far[i] = i;
+//	}
+//	
+//	cin >> m;
+//	int cnt = 0;
+//	for (int i = 0,u,v; i < m; i++) {
+//		cin >> u >> v;
+//		if (find(u) != find(v)) {
+//			merg(u, v);
+//		}
+//		for (int i = 1, w; i <= n; i++) {
+//			if (find(u) == find(i)) continue;
+//			w = mp(u, i);
+//			if (dis[i] == 0 || dis[i] > w)
+//				dis[i] = w, fa[i] = u;
+//		}
+//		for (int i = 1, w; i <= n; i++) {
+//			if (find(v) == find(i)) continue;
+//			w = mp(v, i);
+//			if (dis[i] == 0 || dis[i] > w)
+//				dis[i] = w, fa[i] = v;
+//		}
+//	}
+//
+//	int n2 = 0, rt;
+//	for (int i = 1; i <= n; i++) {
+//		if (far[i] == i)
+//			n2++, rt = i;
+//	}
+//
+//	vis[rt] = 1;
+//	for (int i = 1; i <= n; i++) {
+//		if (vis[find(rt)]) continue;
+//		int w = mp(rt, i);
+//		if (dis[i] == 0 || dis[i] > w)
+//			dis[i] = w;
+//	}
+//
+//	while (cnt < n2) {
+//		int x = 0;
+//		for (int i = 1; i <= n; i++) {
+//			if (vis[find(i)] || !dis[find(i)]) continue;
+//			if (x == 0 || dis[find(i)] < dis[x])
+//				x = find(i);
+//		}
+//		vis[find(x)] = 1;
+//		cnt++;
+//		cout << x << ' ' << fa[x] << '\n';
+//		for (int i = 1; i <= n; i++) {
+//			if (vis[find(i)]) continue;
+//			int w = mp(find(x), i);
+//			if (!dis[i] || dis[i] > w)
+//				dis[i] = w, fa[i] = x;
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 760;
+//struct node {
+//	int x, y;
+//}city[N];
+//int n, m, far[N], dis[N], dica[N][N], fa[N], vis[N];
+//
+//int find(int x) {
+//	return far[x] == x ? x : far[x] = find(far[x]);
+//}
+//
+//void merg(int a, int b) {
+//	a = find(a);
+//	b = find(b);
+//	far[a] = b;
+//}
+//
+//int mp(int u, int v) {
+//	return dica[u][v] ? dica[u][v] : dica[u][v] = dica[u][v] = (city[u].x - city[v].x) * (city[u].x - city[v].x) + (city[u].y - city[v].y) * (city[u].y - city[v].y);
+//}
+//
+//void prim() {
+//
+//	int cnt = 1;
+//	vis[1] = 1;
+//	far[far[1]] = 1;
+//	for (int i = 2; i <= n; i++) {
+//		dis[i] = mp(1, i);
+//		fa[i] = 1;
+//	}
+//
+//	while (cnt < n) {
+//		int x = 0;
+//		for (int i = 2; i <= n; i++) {
+//			if (vis[find(i)]) {
+//				if (!vis[i])
+//					cnt++;
+//				continue;
+//			}
+//			if (!dis[i]) continue;
+//			if (x == 0 || dis[i] < dis[x])
+//				x = i;
+//		}
+//		vis[far[x]] = vis[x] = 1;
+//		cnt++;
+//		if (x != far[x]) cnt++;
+//		cout << x << ' ' << fa[x] << '\n';
+//
+//	}
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> city[i].x >> city[i].y;
+//		far[i] = i;
+//	}
+//
+//	cin >> m;
+//	int cnt = 0;
+//	for (int i = 0, u, v; i < m; i++) {
+//		cin >> u >> v;
+//		if (find(u) != find(v)) {
+//			merg(u, v);
+//		}
+//	}
+//
+//	prim();
+//
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//char s[2] = { 'a', 'b'};
+//
+//int main()
+//{
+//	int a[2] = {0}, t, sa[2] = {0}, b;
+//	cin >> a[0] >> a[1];
+//	b = (a[0] + a[1]) / 2;
+//	for (int i = 0; i < 3; i++) {
+//		cin >> t;
+//		if (t)
+//			sa[1]++;
+//		else
+//			sa[0]++;
+//	}
+//	for (int i = 0; i < 2; i++) {
+//		if (a[i] > b && sa[i] > 0) {
+//			printf("The winner is %c: %d + %d", s[i], a[i], sa[i]);
+//			return 0;
+//		}
+//		if (a[i] < b && sa[i] == 3) {
+//			printf("The winner is %c: %d + %d", s[i], a[i], sa[i]);
+//			return 0;
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//char s[110][110] = { 0 }, t, s2[110][110] = { 0 };
+//int n;
+//
+//int main()
+//{
+//	cin >> t >> n;
+//	for (int i = 1; i <= n; i++) {
+//		getchar();
+//		for (int j = 1; j <= n; j++) {
+//			s[i][j] = getchar();
+//			s2[n + 1 - i][n + 1 - j] = s[i][j];
+//		}
+//	}
+//
+//	int f = 1;
+//	for (int i = 1; i <= n && f; i++)
+//		for (int j = 1; j <= n && f; j++) {
+//			if (s[i][j] != s2[i][j])
+//				f = 0;
+//		}
+//
+//	if (f)
+//		cout << "bu yong dao le\n";
+//
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			if (s2[i][j] != ' ')
+//				cout << t;
+//			else
+//				cout << ' ';
+//		}
+//		cout << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//ll l, n, sum = 1, num, cnt = 0;
+//
+//void fun(ll n2) {
+//	if(++cnt < l)
+//	fun(n2 / 26);
+//	//cout << n2 % 26 << '\n';
+//	printf("%c", 'a' + n2 % 26);
+//}
+//
+//int main()
+//{
+//	cin >> l >> n;
+//	int t = l;
+//	while (t--)
+//		sum *= 26;
+//	num = sum - n;
+//	fun(num);
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//int n, num[11];
+//
+//int main()
+//{
+//	cin >> n;
+//	vector<int>sc(n + 1);
+//	for (int i = 1; i <= n; i++) {
+//		cin >> sc[i];
+//		for (int j = 1; j <= sc[i]; j++)
+//			num[j]++;
+//	}
+//	for (int i = 0; i < 11; i++)if (num[i] == 1) num[i] = 2;
+//
+//	for (int i = 1; i <= n; i++) {
+//		cout << "#" << i << '\n';
+//		int id = i;
+//		for (int j = 1; j <= sc[i]; j++) {
+//			for (int x = 1; x <= 10; x++) {
+//				cout << id;
+//				if (x < 10)
+//					cout << ' ';
+//				id += num[j];
+//			}
+//			if(i != n || j != sc[i])
+//			cout << '\n';
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e4 + 5;
+//int n;
+//double sum = 0;
+//struct node {
+//	double num;
+//	char name[10];
+//}a[N];
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> a[i].name >> a[i].num;
+//		sum += a[i].num;
+//	}
+//	double av = (sum / n) / 2.0;
+//	int mi = 0;
+//	double mn = DBL_MAX;
+//	for (int i = 1; i <= n; i++) {
+//		if (abs(a[i].num - av) < mn) {
+//			mn = abs(a[i].num - av);
+//			mi = i;
+//		}
+//	}
+//	cout << 
+//	cout << (ll)a[mi].num << ' ' << a[mi].name;
+//	return 0;
+//
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e4 + 5;
+//int n, m, k;
+//pair<int, int>way[N];
+//
+//int main()
+//{
+//	scanf("%d %d", &n, &m);
+//	for (int i = 0, u, v; i < m; i++) {
+//		scanf("%d %d", &u, &v);
+//		way[i] = { u,v };
+//	}
+//	scanf("%d", &k);
+//	int np;
+//	while (k--) {
+//		scanf("%d", &np);
+//
+//	}
+//	return 0;
+//}
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e5 + 5;
+//int n, a[N], vis[N], rt, dep[N], hi = 0;
+//vector<int>mn;
+//vector<int>mp[N];
+//
+//void dfs(int fa) {
+//	for (auto son : mp[fa]) {
+//		dep[son] = dep[fa] + 1;
+//		dfs(son);
+//		hi = max(hi, dep[son]);
+//	}
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> a[i];
+//		if (a[i] == -1)
+//			rt = i;
+//		else
+//			mp[a[i]].push_back(i);
+//	}
+//
+//	dep[rt] = 1;
+//	dfs(rt);
+//
+//	if (hi == 0)
+//		hi = 1;
+//	cout << hi << '\n';
+//
+//
+//	for (int i = 1; i <= n; i++) {
+//		if (dep[i] == hi) {
+//			mn.push_back(i);
+//		}
+//	}
+//
+//	int len = mn.size();
+//	for (int i = 0; i < len; i++)
+//	{
+//		cout << mn[i];
+//		if (i < len - 1)
+//			cout << ' ';
+//	}
+//
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e4 + 5;
+//vector<int>mp[N];
+//int k, n, m, np;
+//
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	for (int i = 0, a, b; i < m; i++) {
+//		cin >> a >> b;
+//		mp[a].push_back(b);
+//		mp[b].push_back(a);
+//	}
+//
+//	cin >> k;
+//	while (k--) {
+//		cin >> np;
+//		set<int>st;
+//		int t;
+//		while (np--) {
+//			cin >> t;
+//			st.insert(t);
+//		}
+//		for (int i = 1; i <= n; i++) {
+//			if (st.find(i) != st.end()) continue;
+//			int len = mp[i].size();
+//			for (int j = 0; j < len; j++) {
+//				if (st.find(mp[i][j]) != st.end()) continue;
+//				cout << "NO\n";
+//				goto ss;
+//			}
+//		}
+//		cout << "YES\n";
+//	ss:;
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e4 + 5;
+//int k, n, g, sum = 0;
+//struct node {
+//	int gra, num;
+//	string id;
+//}stu[N];
+//
+//int cmp(node e1, node e2) {
+//	if (e1.gra == e2.gra)
+//		return e1.id < e2.id;
+//	return e1.gra > e2.gra;
+//}
+//
+//int main()
+//{
+//	cin >> n >> g >> k;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> stu[i].id >> stu[i].gra;
+//		if (stu[i].gra >= g)
+//			sum += 50;
+//		else if (stu[i].gra >= 60)
+//			sum += 20;
+//	}
+//
+//	sort(stu+1, stu +1+ n,cmp);
+//
+//	cout << sum << '\n';
+//	for (int i = 1; i <= n; i++) {
+//		if (stu[i].gra != stu[i - 1].gra)
+//			stu[i].num = i;
+//		else
+//			stu[i].num = stu[i - 1].num;
+//		if (stu[i].num > k)
+//			break;
+//		cout << stu[i].num << ' ' << stu[i].id << ' ' << stu[i].gra << '\n';
+//	}
+//
+//
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e4 + 5;
+//ll n;
+//ll sum = 0;
+//struct node {
+//	ll num;
+//	char name[10];
+//}a[N];
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> a[i].name >> a[i].num;
+//		sum += a[i].num;
+//		a[i].num *= n;
+//	}
+//	sum /= 2;
+//	int mi = 0;
+//	ll mn = LLONG_MAX;
+//	for (int i = 1; i <= n; i++) {
+//		if (abs(a[i].num - sum) < mn) {
+//			mn = abs(a[i].num - sum);
+//			mi = i;
+//		}
+//	}
+//	cout << a[mi].num / n << ' ' << a[mi].name;
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//int n, num[11];
+//
+//int main()
+//{
+//	cin >> n;
+//	vector<int>sc(n + 1);
+//	for (int i = 1; i <= n; i++) {
+//		cin >> sc[i];
+//		for (int j = 1; j <= sc[i]; j++)
+//			num[j]++;
+//	}
+//	for (int i = 0; i < 11; i++)if (num[i] == 1) num[i] = 2;
+//
+//	for (int i = 1; i <= n; i++) {
+//		cout << "#" << i << '\n';
+//		int id = i;
+//		for (int j = 1; j <= sc[i]; j++) {
+//			for (int x = 1; x <= 10; x++) {
+//				cout << id;
+//				if (x < 10)
+//					cout << ' ';
+//				id += num[j];
+//			}
+//			if (i != n || j != sc[i])
+//				cout << '\n';
+//		}
+//	}
+//	return 0;
+//}
