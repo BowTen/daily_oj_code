@@ -1906,3 +1906,274 @@
 //	}
 //	return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 760;
+//int n, m, way[N][N], fa[N];
+//pair<int, int>a[N];
+//struct node{
+//	int u, v, w;
+//}edge[N*N];
+//
+//void init() {
+//	memset(edge, 0x3f, sizeof edge);
+//}
+//
+//int find(int x) {
+//	return x == fa[x] ? x : fa[x] = find(fa[x]);
+//}
+//
+//void merg(int a, int b) {
+//	a = find(a);
+//	b = find(b);
+//	fa[a] = b;
+//}
+//
+//int cmp(node e1, node e2) {
+//	return e1.w < e2.w;
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	init();
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> a[i].first >> a[i].second;
+//		fa[i] = i;
+//	}
+//
+//	int cnt = 1;
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = i + 1; j <= n; j++) {
+//			edge[cnt].w = (a[i].second - a[j].second) * (a[i].second - a[j].second) + (a[i].first - a[j].first) * (a[i].first - a[j].first);
+//			edge[cnt].u = i;
+//			edge[cnt].v = j;
+//			++cnt;
+//		}
+//	}
+//	sort(edge + 1, edge + 1 + cnt, cmp);
+//
+//	cnt = 0;
+//	cin >> m;
+//	for (int i = 0,a,b; i < m; i++) {
+//		cin >> a >> b;
+//		if (find(a) != find(b)) {
+//			++cnt;
+//			merg(a, b);
+//		}
+//	}
+//
+//	for (int i = 1; cnt < n - 1 && i < (n * n) / 2; i++) {
+//		int u = edge[i].u, v = edge[i].v;
+//		if (find(u) != find(v)) {
+//			cnt++;
+//			merg(u, v);
+//			cout << u << ' ' << v << '\n';
+//		}
+//	}
+//
+//
+//
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e5 + 5;
+//const ll mod = 1e9 + 7;
+//int n, a[N], b[N], c[N], fa[N], vis[N];
+//ll sum = 1;
+//
+//
+//int find(int a) {
+//	return a == fa[a] ? fa[a] : fa[a] = find(fa[a]);
+//}
+//
+//void merg(int a, int b) {
+//	a = find(a);
+//	b = find(b);
+//	if (a != b)
+//		fa[a] = b;
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		sum = 1;
+//		cin >> n;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> a[i];
+//			fa[i] = i;
+//			vis[i] = 0;
+//		}
+//		for (int i = 1; i <= n; i++) {
+//			cin >> b[i];
+//			merg(a[i], b[i]);
+//		}
+//		for (int i = 1; i <= n; i++) {
+//			cin >> c[i];
+//			if (c[i] || a[i] == b[i])
+//				vis[find(a[i])] = 1;
+//		}
+//		for (int i = 1; i <= n; i++) {
+//			if (fa[i] == i && !vis[i])
+//				sum *= 2, sum %= mod;
+//		}
+//		cout << sum << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 110;
+//int n, sc[N], tea[12];
+//
+//void init() {
+//	memset(tea, 0, sizeof tea);
+//	memset(sc, 0, sizeof sc);
+//}
+//
+//int main()
+//{
+//	int t;
+//	t = 1;
+//	while (t--) {
+//		init();
+//		cin >> n;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> sc[i];
+//			for (int j = 0; j <= sc[i]; j++)
+//				tea[j]++;
+//		}
+//		for (int i = 0; i <= 10; i++)
+//			if (tea[i] == 1)
+//				tea[i] = 2;
+//
+//		for (int i = 1; i <= n; i++) {
+//			cout << "#" << i << '\n';
+//			int id = i;
+//			for (int j = 1; j <= sc[i]; j++) {
+//				for (int x = 1; x <= 10; x++) {
+//					cout << id;
+//					if (x != 10)
+//						cout << ' ';
+//					id += tea[j];
+//				}
+//				cout << '\n';
+//			}
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 110;
+//int n, sc[N];
+//
+//
+//int main()
+//{
+//	cin >> n;
+//	vector<vector<int>>vec[N];
+//	for (int i = 1; i <= n; i++) {
+//		cin >> sc[i];
+//		vec[i].resize(sc[i]+2);
+//		for (int j = 0; j <= sc[i]; j++)
+//			vec[i][j].resize(12);
+//
+//	}
+//	int id = 1;
+//	for (int i = 1; i <= 10; i++) {//¶Ó
+//		for (int j = 1; j <= 10; j++) {//Î»
+//			for (int x = 1;x <= n; x++) {//Ð£
+//				if (sc[x] < i) continue;
+//				if ((id - 1 == vec[x][i-1][10] || id - 1 == vec[x][i][j - 1]) && id != 1)
+//					++id;
+//				vec[x][i][j] = id++;
+//			}
+//		}
+//	}
+//
+//	for (int i = 1; i <= n; i++) {
+//		cout << "#" << i << '\n';
+//		for (int j = 1; j <= sc[i]; j++) {
+//			for (int x = 1; x <= 10; x++) {
+//				cout << vec[i][j][x];
+//				if (x < 10)
+//					cout << ' ';
+//			}
+//			cout << '\n';
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 110;
+//int n, sc[N], tea[12];
+//
+//void init() {
+//	memset(tea, 0, sizeof tea);
+//	memset(sc, 0, sizeof sc);
+//}
+//
+//int main()
+//{
+//	int t;
+//	t = 1;
+//	while (t--) {
+//		init();
+//		cin >> n;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> sc[i];
+//			for (int j = 0; j <= sc[i]; j++)
+//				tea[j]++;
+//		}
+//		for (int i = 0; i <= 10; i++)
+//			if (tea[i] == 1)
+//				tea[i] = 2;
+//
+//		for (int i = 1; i <= n; i++) {
+//			cout << "#" << i << '\n';
+//			int id = i;
+//			for (int j = 1; j <= sc[i]; j++) {
+//				for (int x = 1; x <= 10; x++) {
+//					cout << id;
+//					if (x != 10)
+//						cout << ' ';
+//					id += tea[j];
+//				}
+//				cout << '\n';
+//			}
+//		}
+//	}
+//
+//	return 0;
+//}
