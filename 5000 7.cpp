@@ -2177,3 +2177,147 @@
 //
 //	return 0;
 //}
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+//int main() {
+//
+//	vector<int>vec;
+//	map<int, int>mp;
+//	for (auto a : mp) {
+//		cout << a.second;
+//	}
+//	return 0;
+//}
+
+//int n, m, a, b;
+//
+//int cmp(pair<int, double>e1, pair<int, double> e2) {
+//	if (abs(e1.second - e2.second) < 0.000001)
+//		return abs(e1.first) < abs(e2.first);
+//	return e1.second > e2.second;
+//}
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	vector<vector<int>>pic(m+1);
+//	for (int i = 1, k; i <= m; i++) {
+//		cin >> k;
+//		pic[i].resize(k);
+//		string s;
+//		getline(cin, s);
+//		for (int j = 0, len = s.size(), p = 0; p < len; p++, j++) {
+//			if (s[p] == ' ') ++p;
+//			int f = 0;
+//			if (s[p] == '-') {
+//				f = 1;
+//				++p;
+//			}
+//			if (s[p] == '0') {
+//				pic[i][j] = n;
+//				if (f)
+//					pic[i][j] *= -1;
+//				continue;
+//			}
+//			while (s[p] != ' ' && p < len) {
+//				pic[i][j] *= 10;
+//				pic[i][j] += s[p] - '0';
+//				++p;
+//			}
+//			if (f)
+//				pic[i][j] *= -1;
+//
+//		}
+//	}
+//
+//	cin >> a >> b;
+//	map<int, double>ma, mb;
+//	for (int i = 1, f1, f2; i <= m; i++) {
+//		f1 = 0;
+//		f2 = 0;
+//		for (int j = 0, len = pic[i].size(); j < len && (!f1 || !f2); j++) {
+//			if (!f1 && pic[i][j] == a) f1 = 1;
+//			else if (!f2 && pic[i][j] == b) f2 = 1;
+//		}
+//		if(f1)
+//			for (auto& t : pic[i]) {
+//				if (a * t < 0)
+//					ma[t] += 1.0 / pic[i].size();
+//			}
+//		if (f2)
+//			for (auto& t : pic[i]) {
+//				if (b * t < 0)
+//					mb[t] += 1.0 / pic[i].size();
+//			}
+//	}
+//	vector<pair<int, double>>va, vb;
+//	for (auto p : ma) {
+//		va.push_back(p);
+//	}
+//	for (auto p : mb) {
+//		vb.push_back(p);
+//	}
+//	sort(va.begin(), va.end(), cmp);
+//	sort(vb.begin(), vb.end(), cmp);
+//	double mxa = va.size()>0 ? va[0].second : 0, mxb = vb.size() > 0 ? vb[0].second : 0;
+//	if (ma[b] >= mxa && mb[a] >= mxb) {
+//		cout << a << ' ' << b;
+//		return 0;
+//	}
+//	for (auto [x, y] : va) {
+//		if (y < mxa)
+//			break;
+//		if (x == n)
+//			x = 0;
+//		cout << a << ' ';
+//		if (a > 0)
+//			cout << '-';
+//		cout << abs(x) << '\n';
+//	}
+//	for (auto [x, y] : vb) {
+//		if (y < mxb)
+//			break;
+//		if (x == n)
+//			x = 0;
+//		cout << b << ' ';
+//		if (b > 0)
+//			cout << '-';
+//		cout << abs(x) << '\n';
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int n, m;
+
+
+//int main()
+//{
+//	/*cin >> n >> m;
+//	vector<vector<int>>pic(m);
+//	for (int k, i = 0; i < m; i++) {
+//		cin >> k;
+//		pic[i].resize(k);
+//		string s;
+//		cin >> s;
+//		for (int i = 0, len = s.size(); i < len; i++) {
+//
+//		}
+//	}*/
+//	printf("%.0f", 1.5);
+//
+//	return 0;
+//}
+
+
+//printf("%.0f + %.0f = %.0f\n%.0f - %.0f = %.0f\n", a, b, a + b, a, b, a - b);
