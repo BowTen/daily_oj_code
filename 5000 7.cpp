@@ -2321,3 +2321,74 @@ int n, m;
 
 
 //printf("%.0f + %.0f = %.0f\n%.0f - %.0f = %.0f\n", a, b, a + b, a, b, a - b);
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//const double perc = 1e-4;
+//
+//int main()
+//{
+//	double a, b, c;
+//	cin >> a >> b >> c;
+//	if (a + b<=c || a + c<=b || b + c<=a || abs(a - b)>=c || abs(a - c)>=b || abs(b - c)>=a)
+//		cout << "Don`t make a triangle";
+//	else if (abs(a - b) <= perc && abs(a - c) <= perc)
+//		cout << "Equilateral truangle";
+//	else if (abs(a - b) <= perc || abs(b - c) <= perc || abs(a - c) <= perc) {
+//		if (a * a + b * b - c * c <= perc || a * a + c * c - b * b <= perc || b * b + c * c - a * a <= perc)
+//			cout << "Isosceles Right triangle";
+//		else
+//			cout << "Isosceles triangle";
+//	}
+//	else if (abs(a * a + b * b - c * c) <= perc || abs(a * a + c * c - b * b) <= perc || abs(b * b + c * c - a * a) <= perc)
+//		cout << "Right triangle";
+//	else
+//		cout << "General triangle";
+//
+//	return 0;
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//    int a;
+//    cin >> a;
+//    switch (a / 10) {
+//    case 10:
+//    case 9:
+//        cout << "A";
+//        break;
+//    case 8:
+//        cout << "B";
+//        break;
+//    case 7:
+//        cout << "C";
+//        break;
+//    case 6:
+//        cout << "D";
+//        break;
+//    default:
+//        cout << "E";
+//        break;
+//    }
+//    return 0;
+//}
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//int main()
+//{
+//	int a, b, s;
+//	cin >> a >> b;
+//	s = 60 * (b/100 - a/100) + (b%100 - a%100);
+//	cout << s / 60 << ':' << s % 60;
+//	return 0;
+//}
