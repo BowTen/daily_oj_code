@@ -2296,9 +2296,9 @@ using namespace std;
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-int n, m;
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, m;
 
 
 //int main()
@@ -2391,4 +2391,330 @@ int n, m;
 //	s = 60 * (b/100 - a/100) + (b%100 - a%100);
 //	cout << s / 60 << ':' << s % 60;
 //	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1010;
+//int n, m, a, b;
+//vector<vector<int>>pic;
+//
+//struct node {
+//	double val;
+//	int id, f;
+//}ma[N], mb[N];
+//
+//void print_pic() {
+//	for (int i = 0; i < m; i++) {
+//		cout << "|  ";
+//		for (int j = 0; j < pic[i].size(); j++) {
+//			cout << pic[i][j] << ' ';
+//		}
+//		cout << '\n';
+//	}
+//}
+//
+//int cmp(node e1, node e2) {
+//	if (e1.val == e2.val)
+//		return e1.id < e2.id;
+//	return e1.val > e2.val;
+//}
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	pic.resize(m);
+//	for (int i = 0, k; i < m; i++) {
+//		cin >> k;
+//		pic[i].resize(k);
+//		string s;
+//		getline(cin, s);
+//		for (int j = 0, p = 0, len = s.length();j < k && p < len;++j, p++) {
+//			if (s[p] == ' ') ++p;
+//			int f = 0;
+//			if (s[p] == '-') f = 1, ++p;
+//			while (p < len && s[p] != ' ') {
+//				pic[i][j] *= 10;
+//				pic[i][j] += (s[p] - '0');
+//				++p;
+//			}
+//			if (pic[i][j] == 0)
+//				pic[i][j] = n;
+//			if (f)
+//				pic[i][j] *= -1;
+//		}
+//	}
+//	//print_pic();
+//
+//	string ab;
+//	getline(cin, ab);
+//	for (int i = 0, len = ab.length(), f = 0; i < len; i++) {
+//		if (ab[i] != '-' && (ab[i] > '9' || ab[i] < '0')) continue;
+//		int fh = 0;
+//		if (ab[i] == '-') fh = 1, ++i;
+//		while (i < len && ab[i] >= '0' && ab[i] <= '9') {
+//			if (f) {
+//				b *= 10;
+//				b += ab[i] - '0';
+//			}
+//			else {
+//				a *= 10;
+//				a += ab[i] - '0';
+//			}
+//			++i;
+//		}
+//		if (!f && !a) a = n;
+//		if (f && !b) b = n;
+//		if (fh) {
+//			if (f) b *= -1;
+//			else a *= -1;
+//		}
+//		f = 1;
+//	}
+//	for (int i = 0; i < m; i++) {
+//		int fa = 0, fb = 0;
+//		for (int j = 0, len = pic[i].size();(!fa || !fb)&&j < len; j++) {
+//			if (pic[i][j] == a)
+//				fa = 1;
+//			else if (pic[i][j] == b)
+//				fb = 1;
+//		}
+//		for (int j = 0, len = pic[i].size(), t; (fa || fb) && j < len; j++) {
+//			t = abs(pic[i][j]) == n ? 0 : abs(pic[i][j]);
+//			if (fa && pic[i][j] * a < 0) {
+//				ma[t].val += 1.0 / (double)len;
+//				ma[t].id = t;
+//				if (pic[i][j] < 0)
+//					ma[t].f = 1;
+//			}
+//			else if (fb && pic[i][j] * b < 0) {
+//				mb[t].val += 1.0 / (double)len;
+//				mb[t].id = t;
+//				if (pic[i][j] < 0)
+//					mb[t].f = 1;
+//			}
+//		}
+//	}
+//	double aa = ma[abs(b)==n?0:abs(b)].val, bb = mb[abs(a) == n ? 0 : abs(a)].val;
+//	sort(ma, ma + n, cmp);
+//	sort(mb, mb + n, cmp);
+//	if (aa >= ma[0].val && bb >= mb[0].val) {
+//		if (a < 0) cout << '-';
+//		if (abs(a) == n) a = 0;
+//		cout << abs(a) << " ";
+//		if (b < 0) cout << '-';
+//		if (abs(b) == n) b = 0;
+//		cout << abs(b);
+//	}
+//	else {
+//		double mxa = ma[0].val;
+//		for (int i = 0; i < n; i++) {
+//			if (ma[i].val < mxa)
+//				break;
+//			if (a < 0) cout << '-';
+//			if (abs(a) == n) a = 0;
+//			cout << abs(a) << " ";
+//			if (ma[i].f)
+//				cout << '-';
+//			cout << ma[i].id << '\n';
+//		}
+//		double mxb = mb[0].val;
+//		for (int i = 0; i < n; i++) {
+//			if (mb[i].val < mxb)
+//				break;
+//			if (b < 0) cout << '-';
+//			if (abs(b) == n) b = 0;
+//			cout << abs(b) << " ";
+//			if (mb[i].f)
+//				cout << '-';
+//			cout << mb[i].id << '\n';
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//string s;
+//int len;
+//
+//
+//int main()
+//{
+//	cin.getline(s, 333);
+//	len = s.lenght();
+//	for (int x = 0; x < len; x++) {
+//
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ll;
+//const int N = 1e6 + 5;
+//int len;
+//ll dp[N][4];
+//
+//
+//int main()
+//{
+//	string s;
+//	cin >> s;
+//	len = s.length();
+//	s = " " + s;
+//	for (int i = 0; i <= len; i++) {
+//		dp[i][0] = 1;
+//		for (int j = 1;j <= 3 && j <= i; j++) {
+//			dp[i][j] = dp[i - 1][j] + dp[i - 1][j - 1];
+//			for (int p = i-1; p >= i - j && p >= 1; p--) {
+//				if (s[i] == s[p]) {
+//					dp[i][j] -= dp[p - 1][j - (i - p)];
+//					break;
+//				}
+//			}
+//		}
+//	}
+//	cout << dp[len][3] + dp[len][2] + dp[len][1] + dp[len][0];
+//
+//	return 0;
+//}
+
+//#include<bits/stdc++.h> 
+//using namespace std;
+//const int N = 1e6 + 10;
+//typedef long long ll;
+//char s[N];
+//ll f[N][4];
+//int main()
+//{
+//	scanf("%s", s + 1);
+//	int n = strlen(s + 1);
+//	for (int i = 0; i <= n; i++)// j=0的情况初始好，避免下面j-1越界
+//		f[i][0] = 1;
+//	for (int i = 1; i <= n; i++)
+//	{
+//		for (int j = 1; j <= 3; j++)
+//		{
+//			f[i][j] = f[i - 1][j] + f[i - 1][j - 1];
+//			for (int k = i - 1; k >= 1 && k >= i - j; k--)
+//			{
+//				if (s[k] == s[i])
+//				{
+//					f[i][j] -= f[k - 1][j - i + k];
+//					break;
+//				}
+//			}
+//		}
+//	}
+//	printf("%lld\n", f[n][0] + f[n][1] + f[n][2] + f[n][3]);
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//
+//int main()
+//{
+//	double a, b;
+//	atan(a);
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 5005;
+//struct node {
+//	ll x, y;
+//}a[N], b[N];
+//int n;
+//
+//int cmp(node e1, node e2) {
+//	return abs(e1.y * e2.x) < abs(e1.x * e2.y);
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 0; i < n; i++)
+//		cin >> a[i].x >> a[i].y;
+//	ll ans = 1e18;
+//	for (int i = 0; i < n; i++) {
+//		int x = 0;
+//		for (int j = 0; j < n; j++) {
+//			if (j == i) continue;
+//			b[x].x = a[j].x - a[i].x;
+//			b[x].y = a[j].y - a[i].y;
+//			++x;
+//		}
+//		sort(b, b + x, cmp);
+//		for (int j = 0; j < x - 1; j++) {
+//			ans = min(ans, abs(b[j].x * b[j + 1].y - b[j].y *b[j + 1].x));
+//		}
+//	}
+//	printf("%.3lf",ans/2.0);
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define ll long long
+//const int N = 5005;
+//int n;
+//struct T
+//{
+//    ll x, y;
+//} p[N], c[N];
+//int main()
+//{
+//    int n;
+//    cin >> n;
+//    for (int i = 0; i < n; i++)
+//    {
+//        cin >> p[i].x >> p[i].y;
+//    }
+//    ll ans = 1e18;
+//    for (int i = 0; i < n; i++)
+//    {
+//        int k = 0;
+//        for (int j = 0; j < n; j++)
+//            if (i != j)
+//                c[k].x = p[j].x - p[i].x, c[k++].y = p[j].y - p[i].y;
+//        //			b[x].x = a[j].x - a[i].x;
+////			        b[x].y = a[j].y - a[i].x;
+//        sort(c, c + k,
+//            [](T a, T b)
+//            {
+//                return abs(b.y * a.x) > abs(b.x * a.y);
+//            });
+//
+//        for (int j = 1; j < k; j++)
+//        {
+//            ans = min(ans, abs(c[j].y * c[j - 1].x - c[j].x * c[j - 1].y));
+//        }
+//
+//    }
+//    printf("%.3f\n", ans / 2.);
+//    return 0;
 //}
