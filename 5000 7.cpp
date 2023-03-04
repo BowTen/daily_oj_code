@@ -3029,79 +3029,115 @@ using namespace std;
 
 
 
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5;
+//int len, sum, lk, rk, we, ls, rs, ppr[N], ppl[N];
+//
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		string s;
+//		cin >> s;
+//		sum = len = s.length();
+//		s = " " + s;
+//		for (int i = 1; i <= len; i++) {
+//			if (s[i] == '(')
+//				++lk;
+//			else if (s[i] == ')')
+//				++rk;
+//			else
+//				++we;
+//		}
+//		ls = (sum / 2) - lk;
+//		rs = (sum / 2) - rk;
+//
+//		if (!ls || !rs) {
+//			cout << "YES\n";
+//			continue;
+//		}
+//
+//		for (int i = len; i > 1; i--) {
+//			ppr[i] = ppr[i + 1];
+//			if (s[i] == ')')
+//				++ppr[i];
+//		}
+//		for (int i = 1; i <= len; i++) {
+//			ppl[i] = ppl[i - 1];
+//			if (s[i] == '(')
+//				++ppl[i];
+//		}
+//
+//		int f = 1;
+//		int divr = 0, divl = 0;
+//		for (int i = 1; i <= len; i++) {
+//			if (s[i] != '?') continue;
+//			int nl = ppl[i] - divl, nr = ppr[i] - divr;
+//			/*if ((ppr[i]-divr == ppl[i] - divl) || (ppr[i]-divr && ppl[i]-divl)) {
+//				f = 0;
+//				break;
+//			}*/
+//			if ((!nl && nr) || (!nr && nl)) {
+//				if (nr)
+//					divr++;
+//				else
+//					divl++;
+//			}
+//			else {
+//				f = 0;
+//				break;
+//			}
+//
+//
+//		}
+//
+//		if (f)
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//
+//
+//	return 0;
+//}
 
-#include<bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-const int N = 2e5;
-int len, sum, lk, rk, we, ls, rs, ppr[N], ppl[N];
 
 
-int main()
-{
-	int t;
-	cin >> t;
-	while (t--) {
-		string s;
-		cin >> s;
-		sum = len = s.length();
-		s = " " + s;
-		for (int i = 1; i <= len; i++) {
-			if (s[i] == '(')
-				++lk;
-			else if (s[i] == ')')
-				++rk;
-			else
-				++we;
-		}
-		ls = (sum / 2) - lk;
-		rs = (sum / 2) - rk;
 
-		if (!ls || !rs) {
-			cout << "YES\n";
-			continue;
-		}
-
-		for (int i = len; i > 1; i--) {
-			ppr[i] = ppr[i + 1];
-			if (s[i] == ')')
-				++ppr[i];
-		}
-		for (int i = 1; i <= len; i++) {
-			ppl[i] = ppl[i - 1];
-			if (s[i] == '(')
-				++ppl[i];
-		}
-
-		int f = 1;
-		int divr = 0, divl = 0;
-		for (int i = 1; i <= len; i++) {
-			if (s[i] != '?') continue;
-			int nl = ppl[i] - divl, nr = ppr[i] - divr;
-			/*if ((ppr[i]-divr == ppl[i] - divl) || (ppr[i]-divr && ppl[i]-divl)) {
-				f = 0;
-				break;
-			}*/
-			if ((!nl && nr) || (!nr && nl)) {
-				if (nr)
-					divr++;
-				else
-					divl++;
-			}
-			else {
-				f = 0;
-				break;
-			}
-
-
-		}
-
-		if (f)
-			cout << "YES\n";
-		else
-			cout << "NO\n";
-	}
-
-
-	return 0;
-}
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, a[N];
+//bool dp[N];
+//
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n;
+//		memset(dp, 0, sizeof dp);
+//		dp[0] = true;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> a[i];
+//			if (a[i] == i - 1 || (i-a[i]-1 >= 0 && dp[i-a[i]-1]))
+//				dp[i] = true;
+//			if (i + a[i] <= n && dp[i - 1])
+//				dp[i + a[i]] = true;
+//		}
+//		if (dp[n])
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//
+//	return 0;
+//}
