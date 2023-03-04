@@ -2718,3 +2718,390 @@ using namespace std;
 //    printf("%.3f\n", ans / 2.);
 //    return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//
+//
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	map<char, int>mp;
+//	mp['L'] = 3;
+//	mp['M'] = 2;
+//	mp['S'] = 1;
+//	while (t--) {
+//		string a, b;
+//		cin >> a >> b;
+//		if (a == b)
+//			cout << "=\n";
+//		else {
+//			int al = a.size(), bl = b.size();
+//			if (a[al - 1] == b[bl - 1]) {
+//				if(a[al-1] == 'L')
+//					cout << (al > bl ? '>' : '<') << '\n';
+//				else
+//					cout << (al < bl ? '>' : '<') << '\n';
+//			}
+//			else {
+//				cout << (mp[a[al - 1]] > mp[b[bl - 1]] ? '>' : '<') << '\n';
+//			}
+//		}
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n;
+//
+//
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n;
+//		if (n % 2 == 0) {
+//			for (int i = n / 2 + 1; i <= n; i++)
+//				cout << i << ' ';
+//			for (int i = 1; i < n / 2 + 1; i++)
+//				cout << i << ' ';
+//		}
+//		else if (n == 3)
+//			cout << "-1";
+//		else {
+//			for (int i = 3; i <= n; i++)
+//				cout << i << ' ';
+//			for (int i = 1; i <= 2; i++) 
+//				cout << i << ' ';
+//		}
+//		cout << '\n';
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int M = 3e5 + 5;
+//int m, p[M];
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> m;
+//		int f = 1;
+//		for (int i = 1, last; i <= m; i++) {
+//			cin >> p[i];
+//			if (i % 2 == 0 && abs(last - p[i]) != 1)
+//				f = 0;
+//			last = p[i];
+//		}
+//		int cnt = 0;
+//		if (!f)
+//			cout << "-1\n";
+//		else {
+//			for (int x = 1; x < m; x *= 2) {
+//				for (int i = 1; i <= m; i += 2 * x) {
+//					if (p[i] > p[i + x]) {
+//						for (int j = i; j <= i + x - 1; j++) {
+//							swap(p[j], p[j + x]);
+//						}
+//						cnt++;
+//					}
+//				}
+//			}
+//
+//			f = 1;
+//			for (int i = 1; i < m && f; i++) {
+//				if (p[i] > p[i + 1])
+//					f = 0;
+//			}
+//			if (f)
+//				cout << cnt << '\n';
+//			else
+//				cout << "-1\n";
+//		}
+//	}
+//
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, a[N], di[N];
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> a[i];
+//			di[i] = 0;
+//			//di[i] = a[i] - a[i - 1];
+//		}
+//		for (int i = 1; i <= n; i++) {
+//			if (a[i] < i)
+//				++di[i - a[i]], --di[i+1];
+//			if (a[i] + i <= n)
+//				++di[i], --di[i + a[i] + 1];
+//		}
+//		int f = 1;
+//		for (int i = 1, sum = 0;f && i <= n; i++) {
+//			sum += di[i];
+//			if (sum == 0)
+//				f = 0;
+//		}
+//		if (f)
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int x, a[4];
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		for (int i = 0; i < 4; i++)a[i] = 0;
+//		cin >> x >> a[1] >> a[2] >> a[3];
+//		while (x) {
+//			int t = x;
+//			x = a[x];
+//			a[t] = 0;
+//		}
+//		int f = 1;
+//		for (int i = 1; i < 4; i++)
+//			if (a[i])
+//				f = 0;
+//		if (f)
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//
+//
+//	return 0;
+//}
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//ll n, m, a[N], s, e, d1[N], d2[N], s1[N], s2[N];
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> a[i];
+//	}
+//	/*for (int i = n; i > 1; i--) {
+//		if (a[i] > a[i - 1]) {
+//			d2[i] = a[i] - a[i - 1];
+//		}
+//	}
+//	for (int i = 1; i < n; i++) {
+//		if (a[i] > a[i + 1]) {
+//			d1[i] = a[i] - a[i + 1];
+//		}
+//		s1[i] += s1[i-1]+d1[i];
+//		s2[i] += s2[i-1]+d2[i];
+//	}
+//	s1[n] += s1[n - 1]+d1[n];
+//	s2[n] += s2[n - 1]+d2[n];*/
+//
+//
+//	for (int i = 1; i < n; i++) {
+//		if (a[i] > a[i + 1]) {
+//			d1[i] = a[i] - a[i + 1];
+//		}
+//	}
+//
+//	for (int i = n; i > 1; i--) {
+//		if (a[i] > a[i - 1]) {
+//			d2[i] = a[i] - a[i - 1];
+//		}
+//	}
+//
+//	for (int i = 1; i <= n; i++) {
+//		s1[i] += s1[i - 1] + d1[i];
+//	}
+//
+//	for (int i = n; i > 1; i--) {
+//		s2[i] += s2[i + 1] + d2[i];
+//	}
+//	while (m--) {
+//		cin >> s >> e;
+//		if (s < e)
+//			cout << s1[e-1] - s1[s-1] << '\n';
+//		else
+//			cout << s2[e+1] - s2[s+1] << '\n';
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2010;
+//ll n, a[N], sum = 0;
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		sum = 0;
+//		cin >> n;
+//		for (int i = 1; i <= n; i++)
+//			cin >> a[i], sum += a[i];
+//		ll ans = n;
+//
+//		for (ll i = n; i >= 1;i--) {
+//			if (sum % i) continue;
+//			ll s = sum / i;
+//			ll len = 0;
+//			ll st = 0;
+//			for (ll i = 1, tl = 0; i <= n; i++) {
+//				st += a[i];
+//				tl++;
+//				if (st == s) {
+//					len = max(len, tl);
+//					tl = st = 0;
+//				}
+//				else if (st > s) {
+//					len = n;
+//					break;
+//				}
+//			}
+//			ans = min(ans, len);
+//		}
+//		cout << ans << '\n';
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const int N = 2e5;
+int len, sum, lk, rk, we, ls, rs, ppr[N], ppl[N];
+
+
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		sum = len = s.length();
+		s = " " + s;
+		for (int i = 1; i <= len; i++) {
+			if (s[i] == '(')
+				++lk;
+			else if (s[i] == ')')
+				++rk;
+			else
+				++we;
+		}
+		ls = (sum / 2) - lk;
+		rs = (sum / 2) - rk;
+
+		if (!ls || !rs) {
+			cout << "YES\n";
+			continue;
+		}
+
+		for (int i = len; i > 1; i--) {
+			ppr[i] = ppr[i + 1];
+			if (s[i] == ')')
+				++ppr[i];
+		}
+		for (int i = 1; i <= len; i++) {
+			ppl[i] = ppl[i - 1];
+			if (s[i] == '(')
+				++ppl[i];
+		}
+
+		int f = 1;
+		int divr = 0, divl = 0;
+		for (int i = 1; i <= len; i++) {
+			if (s[i] != '?') continue;
+			int nl = ppl[i] - divl, nr = ppr[i] - divr;
+			/*if ((ppr[i]-divr == ppl[i] - divl) || (ppr[i]-divr && ppl[i]-divl)) {
+				f = 0;
+				break;
+			}*/
+			if ((!nl && nr) || (!nr && nl)) {
+				if (nr)
+					divr++;
+				else
+					divl++;
+			}
+			else {
+				f = 0;
+				break;
+			}
+
+
+		}
+
+		if (f)
+			cout << "YES\n";
+		else
+			cout << "NO\n";
+	}
+
+
+	return 0;
+}
