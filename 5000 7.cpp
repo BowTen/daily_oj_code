@@ -3141,3 +3141,130 @@ using namespace std;
 //
 //	return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5;
+//int len, sum, ls, rs;
+//
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		string s;
+//		cin >> s;
+//		sum = len = s.length();
+//		ls = rs = sum / 2;
+//		s = " " + s;
+//		for (int i = 1; i <= len; i++) {
+//			if (s[i] == '(')
+//				--ls;
+//			else if (s[i] == ')')
+//				--rs;
+//		}
+//
+//		if (!ls || !rs) {
+//			cout << "YES\n";
+//			continue;
+//		}
+//
+//		int f = 1;
+//		for (int i = 1, t = 0; i <= len; i++) {
+//			if (s[i] == '(')
+//				++t;
+//			else if (s[i] == ')')
+//				--t;
+//			else if (s[i] == '?') {
+//				if (t) {
+//					if (ls > 0) {
+//						f = 0;
+//						break;
+//					}
+//					else {
+//						f = 1;
+//						break;
+//					}
+//				}
+//				else {
+//					++t;
+//					--ls;
+//				}
+//			}
+//		}
+//
+//		if (f)
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int len, ls, rs;
+
+
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		vector<int>pos;
+		cin >> s;
+		len = s.length();
+		ls = rs = len / 2;
+		for (int i = 0; i < len; i++) {
+			if (s[i] == '(')
+				ls--;
+			else if (s[i] == ')')
+				rs--;
+			else
+				pos.push_back(i);
+		}
+
+		if (!ls || !rs) {
+			cout << "YES\n";
+			continue;
+		}
+
+		for (int i = 0, siz = pos.size(); i < siz; i++) {
+			if (i < ls)
+				s[pos[i]] = '(';
+			else
+				s[pos[i]] = ')';
+		}
+
+		auto check = [](const string& s) {
+			int t = 0;
+			for (char c : s) {
+				if (c == '(') ++t;
+				if (c == ')') --t;
+				if (t < 0) return true;
+			}
+			return false;
+		};
+
+		swap(s[pos[ls - 1]], s[pos[ls]]);
+		if (check(s))
+			cout << "YES\n";
+		else
+			cout << "NO\n";
+
+	}
+
+	return 0;
+}
