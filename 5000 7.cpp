@@ -3212,59 +3212,221 @@ using namespace std;
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-int len, ls, rs;
+//#include<bits/stdc++.h>
+//using namespace std;
+//int len, ls, rs;
+//
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		string s;
+//		vector<int>pos;
+//		cin >> s;
+//		len = s.length();
+//		ls = rs = len / 2;
+//		for (int i = 0; i < len; i++) {
+//			if (s[i] == '(')
+//				ls--;
+//			else if (s[i] == ')')
+//				rs--;
+//			else
+//				pos.push_back(i);
+//		}
+//
+//		if (!ls || !rs) {
+//			cout << "YES\n";
+//			continue;
+//		}
+//
+//		for (int i = 0, siz = pos.size(); i < siz; i++) {
+//			if (i < ls)
+//				s[pos[i]] = '(';
+//			else
+//				s[pos[i]] = ')';
+//		}
+//
+//		auto check = [](const string& s) {
+//			int t = 0;
+//			for (char c : s) {
+//				if (c == '(') ++t;
+//				if (c == ')') --t;
+//				if (t < 0) return true;
+//			}
+//			return false;
+//		};
+//
+//		swap(s[pos[ls - 1]], s[pos[ls]]);
+//		if (check(s))
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//
+//	}
+//
+//	return 0;
+//}
 
 
-int main()
-{
-	int t;
-	cin >> t;
-	while (t--) {
-		string s;
-		vector<int>pos;
-		cin >> s;
-		len = s.length();
-		ls = rs = len / 2;
-		for (int i = 0; i < len; i++) {
-			if (s[i] == '(')
-				ls--;
-			else if (s[i] == ')')
-				rs--;
-			else
-				pos.push_back(i);
-		}
 
-		if (!ls || !rs) {
-			cout << "YES\n";
-			continue;
-		}
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, q, l, r, k, op;
+//string s;
+//
+//
+//int main()
+//{
+//	cin >> n >> q;
+//	cin >> s;
+//	while (q--) {
+//		cin >> op >> l >> r;
+//		if (op == 2)
+//			cin >> k;
+//	}
+//	return 0;
+//}
 
-		for (int i = 0, siz = pos.size(); i < siz; i++) {
-			if (i < ls)
-				s[pos[i]] = '(';
-			else
-				s[pos[i]] = ')';
-		}
 
-		auto check = [](const string& s) {
-			int t = 0;
-			for (char c : s) {
-				if (c == '(') ++t;
-				if (c == ')') --t;
-				if (t < 0) return true;
-			}
-			return false;
-		};
 
-		swap(s[pos[ls - 1]], s[pos[ls]]);
-		if (check(s))
-			cout << "YES\n";
-		else
-			cout << "NO\n";
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n;
+//string s;
+//char c[4];
+//
+//int main()
+//{
+//	cin >> n;
+//	cin >> s;
+//	if (n < 17) {
+//		cout << "none";
+//		return 0;
+//	}
+//
+//	int x,y,z;
+//	map<char, int>mp;
+//	for (x = 0; x < n; x++) {
+//		mp[s[x]]++;
+//		if (mp[s[x]] >= 5) {
+//			c[1] = s[x];
+//			if (n - 1 - x < 12) {
+//				cout << "none";
+//				return 0;
+//			}
+//			break;
+//		}
+//	}
+//	mp.clear();
+//
+//	for (y = n-1; y > 0; y--) {
+//		mp[s[y]]++;
+//		if (mp[s[y]] >= 5) {
+//			c[3] = s[y];
+//			if (y - x - 1 < 7)
+//			{
+//				cout << "none";
+//				return 0;
+//			}
+//			break;
+//		}
+//	}
+//	mp.clear();
+//
+//	for (z = x + 1;z < n; z++) {
+//		mp[s[z]]++;
+//		if (mp[s[z]] >= 7) {
+//			c[2] = s[z];
+//			if (n - 1 - z < 5) {
+//				cout << "none";
+//				return 0;
+//			}
+//			break;
+//		}
+//	}
+//	mp.clear();
+//
+//	if (!c[1] || !c[2] || !c[3]) {
+//		cout << "none";
+//		return 0;
+//	}
+//
+//
+//
+//	for (int i = 0; i < 5; i++)
+//		cout << c[1];
+//	for (int i = 0; i < 7; i++)
+//		cout << c[2];
+//	for (int i = 0; i < 5; i++)
+//		cout << c[3];
+//
+//
+//	return 0;
+//}
 
-	}
 
-	return 0;
-}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n;
+//string s;
+//char c[4];
+//
+//int main()
+//{
+//	cin >> n;
+//	cin >> s;
+//	if (n < 17) {
+//		cout << "none";
+//		return 0;
+//	}
+//
+//	map<char, int>mp;
+//	int a, b;
+//	for (a = 0; a < n; a++) {
+//		mp[s[a]]++;
+//		if (mp[s[a]] >= 5) {
+//			c[1] = s[a];
+//			break;
+//		}
+//	}
+//	mp.clear();
+//
+//	for (b = n - 1; b > a; b--) {
+//		mp[s[b]]++;
+//		if (mp[s[b]] >= 5) {
+//			c[3] = s[b];
+//			break;
+//		}
+//	}
+//	mp.clear();
+//
+//	for (++a; a < b; a++) {
+//		mp[s[a]]++;
+//		if (mp[s[a]] >= 7) {
+//			c[2] = s[a];
+//			break;
+//		}
+//	}	
+//	mp.clear();
+//
+//	if (!c[1] || !c[2] || !c[3]) {
+//		cout << "none";
+//		return 0;
+//	}
+//
+//	for (int i = 0; i < 5; i++)
+//		cout << c[1];
+//	for (int i = 0; i < 7; i++)
+//		cout << c[2];
+//	for (int i = 0; i < 5; i++)
+//		cout << c[3];
+//
+//
+//	return 0;
+//}
+
+
+
