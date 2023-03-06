@@ -2181,8 +2181,8 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
+//#include<bits/stdc++.h>
+//using namespace std;
 
 //int main() {
 //
@@ -3430,3 +3430,107 @@ using namespace std;
 
 
 
+
+
+
+////#include<bits/stdc++.h>
+////using namespace std;
+////const int N = 1e5 + 5;
+////string a, b, c;
+////void add(string& c, string& a, string& b) {
+////	int len = max(a.size(), b.size());
+////	int t = 0;
+////	c.resize(len+1);
+////	a.resize(len + 1);
+////	b.resize(len + 1);
+////	for (int i = 0; i < len; i++) {
+////		t += a[i] + b[i] - 2 * '0';
+////		if (!a[i] || !b[i])
+////			t += '0';
+////		c[i] = '0' + t % 10;
+////		t /= 10;
+////	}
+////	if (t)
+////		c[len] = t + '0';
+////	reverse(c.begin(), c.end());
+////}
+////
+////int main()
+////{
+////	cin >> a >> b;
+////	reverse(a.begin(), a.end());
+////	reverse(b.begin(), b.end());
+////	add(c, a, b);
+////	cout << c;
+////	return 0;
+////}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int a[N], b[N], c[N];
+//string s1,s2;
+//
+//void add(int c[], int a[], int b[], int len) {
+//	int t = 0;
+//	for (int i = 1; i <= len; i++) {
+//		t += a[i] + b[i];
+//		c[i] = t % 10;
+//		t /= 10;
+//	}
+//	if (t)
+//		c[len + 1] = t;
+//}
+//
+//int sub(int c[], int a[], int b[], int len) {
+//	int L = 0;
+//	int f = 0;
+//	for (int i = 1; i <= len; i++) {
+//		c[i] = a[i] - b[i];
+//		if (c[i]) L = i;
+//		if (c[i] < 0)
+//			f = 1;
+//		else if(c[i] > 0)
+//			f = 0;
+//	}
+//	if (f) {
+//		for (int i = 1; i <= len; i++) {
+//			if (c[i] > 0) {
+//				c[i] -= 10;
+//				c[i + 1]++;
+//			}
+//		}
+//	}
+//	else {
+//		for (int i = 1; i <= len; i++) {
+//			if (c[i] < 0) {
+//				c[i] += 10;
+//				c[i + 1]--;
+//			}
+//		}
+//	}
+//	if (!c[L]) L--;
+//	return L;
+//}
+//
+//int main()
+//{
+//	cin >> s1 >> s2;
+//	for (int i = 1, len = s1.size(); i <= len; i++) {
+//		a[i] = s1[len - i] - '0';
+//	}
+//	for (int i = 1, len = s2.size(); i <= len; i++) {
+//		b[i] = s2[len - i] - '0';
+//	}
+//	int len = max(s1.size(), s2.size());
+//	//add(c, a, b, len);
+//	int L = sub(c, a, b, len);
+//	cout << c[L];
+//	for (int i = L-1; i >= 1; i--)
+//		cout << abs(c[i]);
+//
+//	return 0;
+//}
