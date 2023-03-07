@@ -3534,3 +3534,58 @@
 //
 //	return 0;
 //}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 5e4 + 5;
+//int n, k, d, x, y, sum, fa[N*3];
+//
+//int find(int x) {
+//	return fa[x] == x ? x : fa[x] = find(fa[x]);
+//}
+//
+//void merg(int a, int b) {
+//	a = find(a);
+//	b = find(b);
+//	fa[a] = b;
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> k;
+//	for (int i = 1; i <= 3*n; i++)
+//		fa[i] = i;
+//	while (k--) {
+//		cin >> d >> x >> y;
+//		if (x > n || y > n || x < 1 || y < 1) {
+//			++sum;
+//			continue;
+//		}
+//		if (d == 1) {
+//			if (find(x) == find(y + n) || find(x + n) == find(y)) {
+//				++sum;
+//				continue;
+//			}
+//			merg(x, y);
+//			merg(x+n, y+n);
+//			merg(x+2*n, y+2*n);
+//		}
+//		else {
+//			if (find(x) == find(y) || find(x + n) == find(y)) {
+//				++sum;
+//				continue;
+//			}
+//			merg(x, y+n);
+//			merg(x + n, y + 2*n);
+//			merg(x + 2 * n, y);
+//		}
+//	}
+//	cout << sum;
+//
+//	return 0;
+//}
