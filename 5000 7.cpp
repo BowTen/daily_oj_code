@@ -4028,3 +4028,138 @@
 //
 //	return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//string s1, s2;
+//
+//int main()
+//{
+//	while (cin >> s1 >> s2) {
+//		int n = s1.size(), n2 = s2.size();
+//		vector<vector<int>>dp(n+1);
+//		dp[0].resize(n2 + 1);
+//		s1 = ' ' + s1;
+//		s2 = ' ' + s2;
+//		for (int i = 1; i <= n; i++) {
+//			dp[i].resize(n2 + 1);
+//			for (int j = 1; j <= n2; j++) {
+//				if (s1[i] == s2[j]) dp[i][j] = dp[i - 1][j - 1] + 1;
+//				else dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+//			}
+//		}
+//		cout << dp[n][n2] << '\n';
+//	}
+//
+//	return 0;
+//}
+//
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 105;
+//int r, c, mp[N][N], dp[N][N], dis[N][N], dir[4][2] = { {1,0},{-1,0}, {0,-1},{0,1} };
+//
+//int DP(int x, int y) {
+//	if (dis[x][y]) return dis[x][y];
+//	
+//	dis[x][y] = 1;
+//	for (int i = 0; i < 4; i++) {
+//		int dx = dir[i][0], dy = dir[i][1];
+//		if (x+dx >= 1 && x+dx <= r && y+dy >= 1 && y+dy <= c && mp[x + dx][y + dy] < mp[x][y])
+//			dis[x][y] = max(dis[x][y], DP(x + dx, y + dy) + 1);
+//	}
+//
+//	return dis[x][y];
+//}
+//
+//
+//int main()
+//{
+//	cin >> r >> c;
+//	for (int i = 1; i <= r; i++)
+//		for (int j = 1; j <= c; j++)
+//			cin >> mp[i][j];
+//
+//	int ans = 0;
+//	for (int i = 1; i <= r; i++)
+//		for (int j = 1; j <= c; j++)
+//			ans = max(ans, DP(i, j));
+//
+//	cout << ans;
+//
+//	return 0;
+//}
+//
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 105;
+//int r, c, mp[N][N], dp[N][N], dis[N][N], dir[4][2] = { {1,0},{0,1},{-1,0},{0,-1} };
+//
+//int DP(int x, int y) {
+//	if (dis[x][y]) return dis[x][y];
+//
+//	dis[x][y] = 1;
+//	for (int i = 0; i < 4; i++) {
+//		int dx = dir[i][0]+x, dy = dir[i][1]+y;
+//		if (dx >= 1 && dx <= r && dy >= 1 && dy <= c && mp[dx][dy] < mp[x][y])
+//			dis[x][y] = max(dis[x][y], DP(dx, dy) + 1);
+//	}
+//
+//	return dis[x][y];
+//}
+//
+//int main()
+//{
+//	cin >> r >> c;
+//	for (int i = 1; i <= r; i++)
+//		for (int j = 1; j <= c; j++)
+//			cin >> mp[i][j];
+//
+//	int ans = 0;
+//	for (int i = 1; i <= r; i++)
+//		for (int j = 1; j <= c; j++)
+//			ans = max(ans, DP(i, j));
+//
+//	cout << ans;
+//
+//	return 0;
+//}
+
+
+#include<bits/stdc++.h>
+using namespace std;
+const int N = 1e5+5;
+int t, n, flo[N], d[N];
+
+int main()
+{
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	cin >> t;
+	while (t--) {
+		cin >> n >> flo[1] >> flo[2];
+		int a = 0;
+		for (int i = 3; i <= n; i++) {
+			cin >> flo[i];
+			d[i-1] = max(flo[i], flo[i - 2]) < flo[i - 1] ? 0 : max(flo[i], flo[i - 2]) + 1 - flo[i - 1];
+			if (i & 1)
+				a += d[i - 1];
+		}
+		if(n % 2 == 0) {
+			int t = a;
+			for (int i = n; i > 3; i-=2) {
+				t += -d[i - 2] + d[i - 1];
+				a = min(t, a);
+			}
+		}
+		cout << a << '\n';
+	}
+
+	return 0;
+}
