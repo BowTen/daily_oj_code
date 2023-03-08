@@ -3643,3 +3643,388 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n;
+//
+//
+//int main()
+//{
+//	int t;
+//	//cin >> t;
+//	t = 1;
+//	while (t--) {
+//		string s;
+//		getline(cin, s);
+//		for (int i = 0, len = s.size(); i < len; i++) {
+//			if (s[i] == '6') {
+//				int cnt = 1;
+//				for (int j = i + 1; j < len; j++) {
+//					if (s[j] == '6')
+//						cnt++;
+//					else
+//						break;
+//				}
+//				if (cnt > 9) {
+//					cout << 27;
+//					i += cnt;
+//				}
+//				else if (cnt > 3) {
+//					cout << 9;
+//					i += cnt;
+//				}
+//			}
+//			cout << s[i];
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n;
+//
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	getchar();
+//	while (t--) {
+//		string s;
+//		getline(cin, s);
+//		int f1 = 0, f2 = 0;
+//		for (int i = 0, len = s.size(); i < len; i++) {
+//			if (s[i] == ',' && s[i - 1] == 'g' && s[i - 2] == 'n' && s[i - 3] == 'o')
+//				f1 = i;
+//			if (s[i] == '.' && s[i - 1] == 'g' && s[i - 2] == 'n' && s[i - 3] == 'o')
+//				f2 = i;
+//		}
+//		if (f1 && f2) {
+//			int f;
+//			for (int cnt = 0, i = s.size(); i > f1; i--) {
+//				if (s[i] == ' ')
+//					cnt++;
+//				if (cnt >= 3) {
+//					f = i;
+//					break;
+//				}
+//			}
+//			for (int i = 0; i <= f; i++)
+//				cout << s[i];
+//			cout << "qiao ben zhong.\n";
+//		}
+//		else {
+//			cout << "Skipped\n";
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n;
+//
+//
+//int main()
+//{
+//	int x, y;
+//	cin >> x >> y;
+//	cout << 5000 - (100 - x)*y - (x*y) / 2 - ((100-x) * (100 - y)) / 2;
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n;
+//
+//
+//int main()
+//{
+//	double x, y;
+//	cin >> x >> y;
+//	double a = x / (y * y);
+//	cout << fixed << setprecision(1);
+//	cout << a;
+//	if (a > 25.0)
+//		cout << "\nPANG";
+//	else
+//		cout << "\nHai Xing";
+//	return 0;
+//}
+//
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n;
+//
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		string s;
+//		cin >> s;
+//		int a = s[0] + s[1] + s[2] - 3 * '0';
+//		int b = s[3] + s[4] + s[5] - 3 * '0';
+//		if (a == b) {
+//			cout << "You are lucky!\n";
+//		}
+//		else
+//			cout << "Wish you good luck.\n";
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n;
+//
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		int a, b, c;
+//		cin >> a >> b >> c;
+//		if (a) {
+//			if (b > 130) cout << "ni li hai! ";
+//			else if (b == 130) cout << "wan mei! ";
+//			else cout << "duo chi yu! ";
+//
+//			if (c > 27) cout << "shao chi rou!\n";
+//			else if (c == 27) cout << "wan mei!\n";
+//			else cout << "duo chi rou!\n";
+//		}
+//		else {
+//			if (b > 129) cout << "ni li hai! ";
+//			else if (b == 129) cout << "wan mei! ";
+//			else cout << "duo chi yu! ";
+//
+//			if (c > 25) cout << "shao chi rou!\n";
+//			else if (c == 25) cout << "wan mei!\n";
+//			else cout << "duo chi rou!\n";
+//		}
+//	}
+//	return 0;
+//}
+//
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n;
+//char s1[] = "can you", s2[] = "could you";
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	getchar();
+//	while (t--) {
+//		string s;
+//		getline(cin, s);
+//		s.resize(s.size());
+//		cout << s << '\n' << "AI: ";
+//		int st, ed = s.size();
+//		for(int i = 0;i < ed;i++)
+//			if (s[i] != ' ') {
+//				st = i;
+//				break;
+//			}
+//		for (int i = ed; i >= st; i--)
+//			if (s[i] != ' ') {
+//				ed = i;
+//				break;
+//			}
+//		for (int i = st; i <= ed; i++) {
+//			if (s[i] == ' ' && (s[i+1] > '9' || s[i+1] < '0') && (s[i + 1] > 'Z' || s[i + 1] < 'A') && (s[i + 1] > 'z' || s[i + 1] < 'a')) {
+//				s.erase(i,1);
+//				--ed;
+//				--i;
+//				continue;
+//			}
+//
+//			if (s[i] != 'I' && s[i] >= 'A' && s[i] <= 'Z')
+//				s[i] -= 'A', s[i] += 'a';
+//			if (s[i] == '?')
+//				s[i] = '!';
+//		}
+//	
+//
+//		for (int i = st; i <= ed; i++) {
+//			
+//			if (s[i] == 'I' && (s[i + 1] < 'a' || s[i + 1] > 'z') && (s[i + 1] > '9' || s[i + 1] < '0') && (i == 0 || s[i - 1] < 'a' || s[i - 1] > 'z') && (i == 0 || s[i - 1] > '9' || s[i - 1] < '0')) {
+//				cout << "you"; 
+//				continue;
+//			}
+//
+//			if (s[i] == 'm' && s[i + 1] == 'e' && (s[i + 2] < 'a' || s[i + 2] > 'z') && (s[i + 2] > '9' || s[i + 2] < '0') && (i == 0 || (s[i - 1] < 'a' || s[i - 1] > 'z')) && (i == 0 || s[i - 1] > '9' || s[i - 1] < '0')) {
+//				cout << "you";
+//				++i;
+//				continue;
+//			}
+//
+//			else if (s[i] == 'c' && s[i+1] == 'a' && (i == 0 || s[i - 1] < 'a' || s[i - 1] > 'z') && (i == 0 || s[i - 1] > '9' || s[i - 1] < '0')) {
+//				int f = 1;
+//				for (int j = 0; j + i <= ed; j++) {
+//					if (s1[j] == 0) {
+//						if ((s[i + j] < 'a' || s[i + j] > 'z') && (s[i + j] > '9' || s[i + j] < '0')) {
+//							cout << "I can";
+//							i += strlen(s1) - 1;
+//						}
+//						else
+//							f = 0;
+//						break;
+//					}
+//					if (s[j + i] != s1[j]) {
+//						f = 0;
+//						break;
+//					}
+//				}
+//				if (f) continue;
+//			}
+//
+//			else if (s[i] == 'c' && s[i+1] == 'o' && (i == 0 || s[i - 1] < 'a' || s[i - 1] > 'z') && (i == 0 || s[i - 1] > '9' || s[i - 1] < '0')) {
+//				int f = 1;
+//				for (int j = 0; j + i <= ed; j++) {
+//					if (s2[j] == 0) {
+//						if ((s[i + j] < 'a' || s[i + j] > 'z') && (s[i + j] > '9' || s[i + j] < '0')) {
+//							cout << "I could";
+//							i += strlen(s2) - 1;
+//						}
+//						else
+//							f = 0;
+//						break;
+//					}
+//					if (s[j + i] != s2[j]) {
+//						f = 0;
+//						break;
+//					}
+//				}
+//				if (f) continue;
+//			}
+//
+//			cout << s[i];
+//		}
+//		cout << '\n';
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n, dep[N], ans, vis[N];
+//vector<vector<int>>vec;
+//
+//void dfs(int u, int fa) {
+//	dep[u] = dep[fa] + 1;
+//	for (auto v : vec[u]) {
+//		if (v == fa)continue;
+//		dfs(v, u);
+//	}
+//	ans = dep[u] > dep[ans] ? u : ans;
+//}
+//
+//int main() {
+//
+//	cin >> n;
+//	vec.resize(n + 1);
+//	for (int i = 1, k; i <= n; i++) {
+//		cin >> k;
+//		vec[i].resize(k);
+//		for (int j = 0; j < k; j++) {
+//			cin >> vec[i][j];
+//			vis[vec[i][j]] = 1;
+//		}
+//	}
+//	int rt;
+//	for(int i = 1;i <=n;i++)
+//		if (!vis[i]) {
+//			rt = i;
+//			break;
+//		}
+//
+//	dfs(rt, 0);
+//
+//	//for(int i = 1;i <= n;i++)
+//		
+//
+//	cout << ans;
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n, m, k;
+//
+//
+//int main() {
+//	cin >> n >> m >> k;
+//	while (k--) {
+//		stack<int>st;
+//		int id = 1, f = 1;
+//		for (int i = 1, t; i <= n; i++) {
+//			cin >> t;
+//			if (!f) continue;
+//			while (!st.empty()) {
+//				if (st.top() == id) {
+//					st.pop();
+//					++id;
+//				}
+//				else
+//					break;
+//			}
+//			if (t == id)
+//				++id;
+//			else {
+//				st.push(t);
+//			}
+//			if (st.size() > m)
+//				f = 0;
+//		}
+//		while (!st.empty()) {
+//			if (st.top() == id) {
+//				st.pop();
+//				++id;
+//			}
+//			else
+//				break;
+//		}
+//		if (f && st.empty())
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//	
+//
+//	return 0;
+//}
