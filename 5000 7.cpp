@@ -3589,3 +3589,57 @@
 //
 //	return 0;
 //}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5 + 5;
+//int n;
+//unordered_map<int, int>fa;
+//unordered_map<int, int>cnt;
+//
+//inline int find(int x) {
+//	return x == fa[x] ? x : fa[x] = find(fa[x]);
+//}
+//
+//inline void merg(int a, int b) {
+//	a = find(a);
+//	b = find(b);
+//	fa[a] = b;
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cnt.clear();
+//		fa.clear();
+//		cin >> n;
+//		vector<int>ar(n);
+//		vector<int>br(n);
+//		for (int i = 0, a, b; i < n;i ++) {
+//			cin >> ar[i] >> br[i];
+//			fa[ar[i]] = ar[i];
+//			fa[br[i]] = br[i];
+//		}
+//		for (int i = 0; i < n; i++) {
+//			merg(ar[i], br[i]);
+//		}
+//		int ans = 0;
+//		for (auto& [a, b] : fa) {
+//			ans = max(ans, ++cnt[find(a)]);
+//		}
+//		cout << ans << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+
