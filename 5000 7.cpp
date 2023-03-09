@@ -4133,33 +4133,158 @@
 //}
 
 
-#include<bits/stdc++.h>
-using namespace std;
-const int N = 1e5+5;
-int t, n, flo[N], d[N];
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e5+5;
+//typedef long long ll;
+//ll t, n, flo[N], d[N];
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> flo[1] >> flo[2];
+//		ll a = 0;
+//		for (int i = 3; i <= n; i++) {
+//			cin >> flo[i];
+//			d[i-1] = max(flo[i], flo[i - 2]) < flo[i - 1] ? 0 : max(flo[i], flo[i - 2]) + 1 - flo[i - 1];
+//			if (i & 1)
+//				a += d[i - 1];
+//		}
+//		if(n % 2 == 0) {
+//			ll t = a;
+//			for (int i = n; i > 3; i-=2) {
+//				t += -d[i - 2] + d[i - 1];
+//				a = min(t, a);
+//			}
+//		}
+//		cout << a << '\n';
+//	}
+//
+//	return 0;
+//}
 
-int main()
-{
-	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-	cin >> t;
-	while (t--) {
-		cin >> n >> flo[1] >> flo[2];
-		int a = 0;
-		for (int i = 3; i <= n; i++) {
-			cin >> flo[i];
-			d[i-1] = max(flo[i], flo[i - 2]) < flo[i - 1] ? 0 : max(flo[i], flo[i - 2]) + 1 - flo[i - 1];
-			if (i & 1)
-				a += d[i - 1];
-		}
-		if(n % 2 == 0) {
-			int t = a;
-			for (int i = n; i > 3; i-=2) {
-				t += -d[i - 2] + d[i - 1];
-				a = min(t, a);
-			}
-		}
-		cout << a << '\n';
-	}
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		int n, ans = 0, fre = 0, on = 0, tw = 0, b;
+//		cin >> n;
+//		while (n--) {
+//			cin >> b;
+//			if (b == 1) {
+//				if (!fre) {
+//					ans++;
+//					on++;
+//				}
+//				else {
+//					fre--;
+//					on++;
+//				}
+//			}
+//			else {
+//				int d = ((on + 1) / 4);//³ÉË«¶ÔÊý
+//				on -= d * 2;
+//				fre += d;
+//			}
+//		}
+//		cout << ans << '\n';
+//	}
+//
+//
+//	return 0;
+//}
 
-	return 0;
-}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, m;
+//unordered_map<string, string>mp;
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n;
+//	string a, b, c, d;
+//	for (int i = 0; i < n; i++) {
+//		cin >> a >> b;
+//		mp[a] = b;
+//	}
+//
+//	cin >> m;
+//	int f1, f2;
+//	while (m--) {
+//		cin >> a >> b >> c >> d;
+//		if (mp[a].size() == 0) {
+//			cout << "NA\n";
+//			continue;
+//		}
+//		else if (mp[a].back() == 'm' || mp[a].back() == 'n') 
+//			f1 = 1;
+//		else 
+//			f1 = 0;
+//		if (mp[c].size() == 0) {
+//			cout << "NA\n";
+//			continue;
+//		}
+//		else if (mp[c].back() == 'm' || mp[c].back() == 'n')
+//			f2= 1;
+//		else
+//			f2 = 0;
+//
+//		if (f1 == f2) {
+//			cout << "Whatever\n";
+//			continue;
+//		}
+//
+//		unordered_map<string, int>zx;
+//		string cur = a;
+//		char las;
+//		for (int i = 1; i <= n; i++) {
+//			if (!mp[cur].size())
+//				break;
+//			zx[cur] = i;
+//			cur = mp[cur];
+//			las = cur.back();
+//			int cnt = 1;
+//			if (las == 'm' || las == 'f') cnt = 1;
+//			else if (las == 'n') cnt = 4;
+//			else cnt = 7;
+//			for (int j = 0; j < cnt; j++)
+//				cur.pop_back();
+//		}
+//
+//		cur = c;
+//		for (int i = 1; i <= n; i++) {
+//			if (!mp[cur].size())
+//				break;
+//			if (zx[cur]) {
+//				if (zx[cur] > 4 && i > 4)
+//					cout << "Yes\n";
+//				else
+//					cout << "No\n";
+//				goto ss;
+//			}
+//			cur = mp[cur];
+//			las = cur.back();
+//			int cnt = 1;
+//			if (las == 'm' || las == 'f') cnt = 1;
+//			else if (las == 'n') cnt = 4;
+//			else cnt = 7;
+//			for (int j = 0; j < cnt; j++)
+//				cur.pop_back();
+//		}
+//		cout << "Yes\n";
+//	ss:;
+//	}
+//
+//	return 0;
+//}
