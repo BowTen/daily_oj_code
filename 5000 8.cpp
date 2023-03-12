@@ -732,3 +732,280 @@
 //	}
 //	return 0;
 //}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n, m, c, t;
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	map<int, pair<int ,int > >mp; 
+//	for (int i = 1; i <= n; i++) {
+//		cin >> c >> t;
+//		if (t > mp[c].second) {
+//			mp[c] = { i,t };
+//		}
+//	}
+//	for (int i = 1; i <= m; i++) {
+//		cout << mp[i].first << ' ';
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e3 + 5;
+//typedef long long ll;
+//struct bug {
+//	ll x, y, h, id;
+//};
+//vector<bug>b;
+//ll n, ans[N], x, y, atk, h, r, sb, f;
+//
+//
+//void die(int x) {
+//	ans[b[x].id] = 1;
+//	b.erase(b.begin() + x);
+//	sb--;
+//}
+//
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> f >> x >> y;
+//		if (f == 1) {
+//			cin >> h;
+//			b.push_back({ x,y,h,i });
+//			sb++;
+//		}
+//		else {
+//			cin >> atk >> r;
+//			if (!sb)
+//				continue;
+//			ll m = -1, mn = 0;
+//			for (int j = 0, si = b.size(); j < si;j++) {
+//				ll dis = (b[j].x - x) * (b[j].x - x) + (b[j].y - y) * (b[j].y - y);
+//				if (dis < mn || m == -1) {
+//					mn = dis;
+//					m = j;
+//				}
+//			}
+//
+//			x = b[m].x;
+//			y = b[m].y;
+//			bool flag = 0;
+//			for (int j = 0, si = b.size(); j < si; j++) {
+//				ll dis = (b[j].x - x) * (b[j].x - x) + (b[j].y - y) * (b[j].y - y);
+//				if (dis <= r*r) {
+//					b[j].h -= 3 * atk;
+//					if (b[j].h <= 0)
+//						die(j), j--, si--;
+//					else
+//						flag = 1;
+//				}
+//			}
+//			if (flag) {
+//				ans[i] = 1;
+//			}
+//		}
+//	}
+//	for (int i = 1; i <= n; i++)
+//		if (ans[i])
+//			cout << "NO\n";
+//		else
+//			cout << "YES\n";
+//	return 0;
+//}
+
+//5
+//2 1 0 1 1
+//2 1 0 1 1
+//2 1 0 1 1
+//1 0 0 4
+//1 0 1 8
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e3 + 5;
+//ll n,x,y,h,ak,f,r,ans[N];
+//struct bug {
+//	ll x, y, h, id;
+//};
+//vector<bug>b;
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> f >> x >> y;
+//		if (f == 1) {
+//			cin >> h;
+//			b.push_back({ x,y,h,i });
+//		}
+//		else {
+//			cin >> ak >> r;
+//			if (!b.size())
+//				continue;
+//
+//			ll m = -1, mn = 0;
+//			for (int j = 0, si = b.size(); j < si; j++) {
+//				ll dis = (b[j].x - x) * (b[j].x - x) + (b[j].y - y) * (b[j].y - y);
+//				if (dis < mn || m == -1)
+//					mn = dis, m = j;
+//			}
+//
+//			x = b[m].x;
+//			y = b[m].y;
+//
+//			int flag = 0;
+//			for (int j = 0, si = b.size(); j < si; j++) {
+//				ll dis = (b[j].x - x) * (b[j].x - x) + (b[j].y - y) * (b[j].y - y);
+//				if (dis <= r * r) {
+//					b[j].h -= ak * 3;
+//					if (b[j].h <= 0) {
+//						ans[b[j].id] = 1;
+//						b.erase(b.begin() + j);
+//						j--;
+//						si--;
+//					}
+//					else
+//						flag = 1;
+//				}
+//			}
+//			if (flag)
+//				ans[i] = 1;
+//		}
+//	}
+//	for (int i = 1; i <= n; i++)
+//		if (ans[i])
+//			cout << "NO\n";
+//		else
+//			cout << "YES\n";
+//
+//	return 0;
+//}
+
+//5
+//2 1 0 1 1
+//2 1 0 1 1
+//1 0 0 3
+//2 1 0 1 1
+//1 0 1 8
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define endl '\n'
+//#define Acode ios::sync_with_stdio(false),cin.tie(0),cout.tie(0)
+//typedef long long ll;
+//const int inf = 0x3f3f3f3f;
+//const int N = 1e6 + 20;
+//ll n, m;
+//ll p[N], d[N];
+//ll dp[N];
+//int main()
+//{
+//	scanf("%lld %lld", &n, &m);
+//	for (int i = 1; i <= n; ++i)
+//		scanf("%lld", p+i);
+//	for (int i = 1; i <= n; ++i)
+//		scanf("%lld", d + i);
+//	for (int i = 1; i <= n; i++)
+//		for (int j = 0; j <= m; j++)
+//			dp[j] = max(dp[j*d[i]]+j*d[i]*p[i], dp[j]);
+//	printf("%lld\n", dp[m]);
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//int n, k, s = 1, a[N], b[N], w[N], sub[N << 1], pre[N << 1], len, val[N<<1];
+//struct node {
+//	int val, id, f;
+//};
+//
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> k;
+//	vector<node>num(n << 1);
+//	for (int i = 1,j = 0; i <= n; i++) {
+//		cin >> a[i] >> b[i] >> w[i];
+//		num[j++] = { a[i],i,1 };
+//		num[j++] = { b[i],i,2 };
+//	}
+//	sort(num.begin(), num.end(), [](node e1, node e2)->int {return e1.val < e2.val; });
+//	int s = 1;
+//	for (int i = 0, si = num.size(); i < si; i++) {
+//		if (i < si - 1 && num[i].val == num[i + 1].val)
+//			num[i].val = s;
+//		else
+//			num[i].val = s++;
+//		if (num[i].f == 1) a[num[i].id] = num[i].val;
+//		else b[num[i].id] = num[i].val;
+//	}
+//	len = s;
+//	for (int i = 1; i <= n; i++) {
+//		sub[a[i]]++;
+//		sub[b[i] + 1]--;
+//		for (int j = a[i]; j <= b[i]; j++)
+//			val[j] ^= w[i];
+//	}
+//	for (int i = 1; i <= len; i++) {
+//		pre[i] += sub[i];
+//	}
+//	int ans = -1;
+//	for (int i = 1; i <= len; i++) {
+//		if (pre[i] >= k && (ans == -1 || val[i] > ans))
+//			ans = val[i];
+//	}
+//
+//	cout << ans;
+//
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//int a,b;
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> a >> b;
+//		if (abs(a) == abs(b))
+//			cout << max(abs(a), abs(b))*2 << '\n';
+//		else
+//			cout << max(abs(a), abs(b))*2 - 1 << '\n';
+//	}
+//
+//
+//	return 0;
+//}
