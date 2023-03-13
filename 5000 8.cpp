@@ -939,9 +939,10 @@
 //#include<bits/stdc++.h>
 //using namespace std;
 //const int N = 1e6 + 5;
-//int n, k, s = 1, a[N], b[N], w[N], sub[N << 1], pre[N << 1], len, val[N<<1];
+//typedef long long ll;
+//ll n, k, s = 1, a[N], b[N], w[N], sub[N << 1], pre[N << 1], len, val[N<<1];
 //struct node {
-//	int val, id, f;
+//	ll val, id, f;
 //};
 //
 //
@@ -956,7 +957,7 @@
 //		num[j++] = { b[i],i,2 };
 //	}
 //	sort(num.begin(), num.end(), [](node e1, node e2)->int {return e1.val < e2.val; });
-//	int s = 1;
+//	ll s = 1;
 //	for (int i = 0, si = num.size(); i < si; i++) {
 //		if (i < si - 1 && num[i].val == num[i + 1].val)
 //			num[i].val = s;
@@ -973,11 +974,11 @@
 //			val[j] ^= w[i];
 //	}
 //	for (int i = 1; i <= len; i++) {
-//		pre[i] += sub[i];
+//		sub[i] += sub[i-1];
 //	}
 //	int ans = -1;
 //	for (int i = 1; i <= len; i++) {
-//		if (pre[i] >= k && (ans == -1 || val[i] > ans))
+//		if (sub[i] >= k && (ans == -1 || val[i] > ans))
 //			ans = val[i];
 //	}
 //
@@ -1009,3 +1010,99 @@
 //
 //	return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//typedef long long ll;
+//ll n, k, s = 1, a[N], b[N], w[N], sub[N << 1], pre[N << 1], len, val[N << 1];
+//struct node {
+//	ll val, id, f;
+//};
+//
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> k;
+//	vector<node>num(n << 1);
+//	for (int i = 1, j = 0; i <= n; i++) {
+//		cin >> a[i] >> b[i] >> w[i];
+//		num[j++] = { a[i],i,1 };
+//		num[j++] = { b[i],i,2 };
+//	}
+//	sort(num.begin(), num.end(), [](node e1, node e2)->int {return e1.val < e2.val; });
+//	ll s = 1;
+//	for (int i = 0, si = num.size(); i < si; i++) {
+//		if (i < si - 1 && num[i].val == num[i + 1].val)
+//			num[i].val = s;
+//		else
+//			num[i].val = s++;
+//		if (num[i].f == 1) val[num[i].val] ^= w[num[i].id], sub[num[i].val]++;
+//		else val[num[i].val + 1] ^= w[num[i].id], sub[num[i].val + 1]--;
+//	}
+//	len = s;
+//	for (int i = 1; i <= len; i++) {
+//		sub[i] += sub[i - 1];
+//		val[i] ^= val[i - 1];
+//	}
+//	int ans = -1;
+//	for (int i = 1; i <= len; i++) {
+//		if (sub[i] >= k && (ans == -1 || val[i] > ans))
+//			ans = val[i];
+//	}
+//
+//	cout << ans;
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//typedef long long ll;
+//ll n, k, s = 1, a[N], b[N], w[N], sub[N << 1], len, val[N << 1];
+//vector<ll>num;
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> k;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> a[i] >> b[i] >> w[i];
+//		num.push_back(a[i]);
+//		num.push_back(b[i]+1);
+//	}
+//	sort(num.begin(), num.end());
+//	num.erase(unique(num.begin(), num.end()), num.end());
+//	for (int i = 1; i <= n; i++) {
+//		ll ai = lower_bound(num.begin(), num.end(), a[i]) - num.begin() + 1;
+//		ll bi = lower_bound(num.begin(), num.end(), b[i]+1) - num.begin() + 1;
+//		sub[ai]++;
+//		sub[bi]--;
+//		val[ai] ^= w[i];
+//		val[bi] ^= w[i];
+//	}
+//	len = num.size();
+//	ll s = 0, v = 0, ans = -1;
+//	for (int i = 1; i <= len; i++) {
+//		sub[i] += sub[i-1];
+//		val[i] ^= val[i-1];
+//		if (sub[i] >= k && (val[i] > ans || ans == -1))
+//			ans = val[i];
+//	}
+//	cout << ans;
+//	
+//	return 0;
+//}
+
+
+//2 2
+//1 1 8
+//1 1 4
