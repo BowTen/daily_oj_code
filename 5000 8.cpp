@@ -1106,3 +1106,386 @@
 //2 2
 //1 1 8
 //1 1 4
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e5 + 5;
+//int T[N], n, q;
+//
+//int lowbit(int x) {
+//	return x & -x;
+//}
+//
+//void add(int i, int val) {
+//	while (i <= n) {
+//		T[i] += val;
+//		i += lowbit(i);
+//	}
+//}
+//
+//ll getsum(int i) {
+//	ll ret = 0;
+//	while (i >= 1) {
+//		ret += T[i];
+//		i -= lowbit(i);
+//	}
+//	return ret;
+//}
+//
+//void init() {
+//	memset(T, 0, sizeof T);
+//}
+//
+//int main()
+//{
+//	int t;
+//	cin >> t;
+//	for (int i = 1; i <= t;i++) {
+//		cout << "Case " << i << ":\n";
+//		init();
+//		cin >> n >> q;
+//		for (int j = 1, val; j <= n; j++) {
+//			cin >> val;
+//			add(j, val);
+//		}
+//		int f, a, b;
+//		while (q--) {
+//			cin >> f;
+//			if (f == 1) {
+//				cin >> a;
+//				a++;
+//				ll sum = getsum(a) - getsum(a - 1);
+//				add(a, -sum);
+//				cout << sum << '\n';
+//			}
+//			else if (f == 2) {
+//				cin >> a >> b;
+//				a++;
+//				add(a, b);
+//			}
+//			else {
+//				cin >> a >> b;
+//				a++;
+//				b++;
+//				cout << getsum(b) - getsum(a - 1) << '\n';
+//			}
+//		}
+//		//for (int j = 1; j <= n; j++)
+//		//	cout << getsum(j) << " ";
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//struct node {
+//	ll sum;
+//	int l, r;
+//};
+//const int N = 1e5 + 5;
+//int n, q, a[N];
+//node T[N << 2];
+//
+//void up(int id) {
+//	T[id].sum = T[id << 1].sum + T[id << 1 | 1].sum;
+//}
+//
+//void build(int id, int ql, int qr) {
+//	T[id].l = ql;
+//	T[id].r = qr;
+//	if (ql == qr) {
+//		T[id].sum = a[ql];
+//		return;
+//	}
+//	int mid = (ql + qr) >> 1;
+//	build(id << 1, ql, mid);
+//	build(id << 1 | 1, mid + 1, qr);
+//	up(id);
+//}
+//
+//void change(int id, int x, int val) {
+//	int l = T[id].l;
+//	int r = T[id].r;
+//	if (l == r) {
+//		T[id].sum += val;
+//		return;
+//	}
+//	int mid = (l+r) >> 1;
+//	if (x <= mid)
+//		change(id << 1, x, val);
+//	else
+//		change(id << 1 | 1, x, val);
+//	up(id);
+//}
+//
+//ll query(int id, int ql, int qr) {
+//	int l = T[id].l;
+//	int r = T[id].r;
+//	if (ql <= l && qr >= r)
+//		return T[id].sum;
+//	int mid = (l + r) >> 1;
+//	if (qr <= mid)
+//		return query(id << 1, ql, qr);
+//	else if (ql > mid)
+//		return query(id << 1 | 1, ql, qr);
+//	else
+//		return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
+//}
+//
+//void init() {
+//	memset(T, 0, sizeof T);
+//	memset(a, 0, sizeof a);
+//}
+//
+//int main()
+//{
+//	int t, cnt = 1;;
+//	cin >> t;
+//	while (t--) {
+//		init();
+//		cout << "Case " << cnt++ << ":\n";
+//		cin >> n >> q;
+//		for (int i = 0; i < n; i++)
+//			cin >> a[i];
+//		build(1, 0, n - 1);
+//
+//		int f, t1, t2;
+//		while (q--) {
+//			cin >> f;
+//			if (f == 1) {
+//				cin >> t1;
+//				ll sm = query(1, t1, t1);
+//				cout << sm << "\n";
+//				change(1, t1, -sm);
+//			}
+//			else if(f == 2) {
+//				cin >> t1 >> t2;
+//				change(1, t1, t2);
+//			}
+//			else {
+//				cin >> t1 >> t2;
+//				cout << query(1, t1, t2) << '\n';
+//			}
+//		}
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 5e4 + 5;
+//int n, q, a[N];
+//struct node {
+//	int max, l, r;
+//};
+//node seg[N << 2];
+//
+//void up(int id) {
+//	seg[id].max = max(seg[id << 1].max, seg[id << 1 | 1].max);
+//}
+//
+//void build(int id, int ql, int  qr) {
+//	seg[id].l = ql;
+//	seg[id].r = qr;
+//	if (ql == qr) {
+//		seg[id].max = a[ql];
+//		return;
+//	}
+//	int mid = (ql + qr) >> 1;
+//	build(id << 1, ql, mid);
+//	build(id << 1 | 1, mid + 1, qr);
+//	up(id);
+//}
+//
+//void change(int id, int x, int val) {
+//	int l = seg[id].l;
+//	int r = seg[id].r;
+//	if (l == r) {
+//		seg[id].max = val;
+//		return;
+//	}
+//	int mid = (l + r) >> 1;
+//	if (x <= mid)
+//		change(id << 1, x, val);
+//	else if (x > mid)
+//		change(id << 1 | 1, x, val);
+//	up(id);
+//}
+//
+//int getmax(int id, int ql, int qr) {
+//	int l = seg[id].l;
+//	int r = seg[id].r;
+//	if (ql <= l && qr >= r)
+//		return seg[id].max;
+//	int mid = (l + r) >> 1;
+//	if (qr <= mid)
+//		return getmax(id << 1, ql, qr);
+//	else if (ql > mid)
+//		return getmax(id << 1 | 1, ql, qr);
+//	else
+//		return max(getmax(id << 1, ql, qr), getmax(id << 1 | 1, ql, qr));
+//}
+//
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 1; i <= n; i++)
+//		cin >> a[i];
+//	build(1, 1, n);
+//
+//	int f, x, y;
+//	cin >> q;
+//	while (q--) {
+//		cin >> f >> x >> y;
+//		if (f) {
+//			cout << getmax(1, x, y) << '\n';
+//		}
+//		else {
+//			change(1, x, y);
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//typedef long long ll;
+//ll n, q, a[N];
+//ll getans(ll x) {
+//	return x * (x + 1) / 2;
+//}
+//struct node {
+//	ll l, r, ans, fi, la, pre, end, isa;
+//	node operator+(const node& e2) {
+//		node ret;
+//		ret.l = l;
+//		ret.r = e2.r;
+//		ret.isa = 0;
+//		ret.fi = fi;
+//		ret.la = e2.la;
+//		ret.pre = pre;
+//		ret.end = e2.end;
+//		ret.ans = ans + e2.ans;
+//		if (la <= e2.fi) {
+//			ret.ans -= getans(end) + getans(e2.pre);
+//			ret.ans += getans(end + e2.pre);
+//			if (isa && e2.isa) {
+//				ret.isa = 1;
+//				ret.pre = ret.end = pre + e2.pre;
+//			}
+//			else if (isa) {
+//				ret.pre = pre + e2.pre;
+//			}
+//			else if (e2.isa) {
+//				ret.end = e2.end + end;
+//			}
+//		}
+//		return ret;
+//	}
+//};
+//node t[N << 2];
+//
+//
+//
+//void up(ll id) {
+//	t[id] = t[id << 1] + t[id << 1 | 1];
+//}
+//
+//void build(ll id, ll ql, ll qr) {
+//	t[id].l = ql;
+//	t[id].r = qr;
+//	if (ql == qr) {
+//		t[id].fi = t[id].la = a[ql];
+//		t[id].ans = t[id].pre = t[id].end = t[id].isa = 1;
+//		return;
+//	}
+//	int mid = (ql + qr) >> 1;
+//	build(id << 1, ql, mid);
+//	build(id << 1 | 1, mid + 1, qr);
+//	up(id);
+//}
+//
+//void change(ll id, ll x, ll val) {
+//	ll l = t[id].l;
+//	ll r = t[id].r;
+//	if (l == r) {
+//		t[id].la = val;
+//		t[id].fi = val;
+//		return;
+//	}
+//	ll mid = (l + r) >> 1;
+//	if (x <= mid)
+//		change(id << 1, x, val);
+//	else if(x > mid)
+//		change(id << 1 | 1, x, val);
+//	up(id);
+//}
+//
+//node query(ll id, ll ql, ll qr) {
+//	ll l = t[id].l;
+//	ll r = t[id].r;
+//	if (ql <= l && r <= qr)
+//		return t[id];
+//	ll mid = l + r >> 1;
+//	if (qr <= mid)
+//		return query(id << 1, ql, qr);
+//	else if (ql > mid)
+//		return query(id << 1 | 1, ql, qr);
+//	else
+//		return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> q;
+//	for (int i = 1; i <= n; i++)
+//		cin >> a[i];
+//	build(1, 1, n);
+//
+//
+//	ll f, x, y;
+//	while (q--) {
+//		cin >> f >> x >> y;
+//		if (f == 1) {
+//			change(1, x, y);
+//		}
+//		else {
+//			cout << query(1, x, y).ans << "\n";
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+
+
+	return 0;
+}
