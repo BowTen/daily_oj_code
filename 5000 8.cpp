@@ -1604,3 +1604,130 @@
 //
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define BowTen ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+//#define mp make_pair
+//typedef long long ll;
+//typedef pair<int, int> hashv;
+//const int mod1 = 1e9 + 7;
+//const int mod2 = 1e9 + 9;
+//const int N = 4e5 + 5;
+//hashv pw[N], h[N];
+//hashv base = mp(131, 29);
+//string s;
+//
+//
+//hashv operator+ (hashv a, hashv b) {
+//	return mp((a.first + b.first) % mod1, (a.second + b.second) % mod2);
+//}
+//hashv operator- (hashv a, hashv b) {
+//	return mp((a.first - b.first) < 0 ? (a.first - b.first) + mod1 : (a.first - b.first), \
+//		     (a.second - b.second) < 0 ? (a.second - b.second)+mod2 : (a.second - b.second));
+//}
+//hashv operator* (hashv a, hashv b) {
+//	return mp((1ll * a.first * b.first) % mod1, (1ll * a.second * b.second) % mod2);
+//}
+//hashv getsub(int l, int r) {
+//	return h[r] - h[l - 1] * pw[r - l + 1];
+//}
+//void init() {
+//	memset(pw, 0, sizeof pw);
+//	memset(h, 0, sizeof h);
+//	pw[0] = mp(1, 1);
+//}
+//
+//int main()
+//{
+//	BowTen;
+//	while (cin >> s) {
+//		init();
+//		int n = s.length();
+//		s = ' ' + s;
+//		for (int i = 1; i <= n; i++) {
+//			pw[i] = pw[i - 1] * base;
+//			h[i] = h[i - 1] * base + mp(s[i], s[i]);
+//		}
+//		for (int i = 1; i <= n; i++) {
+//			if (h[i] == getsub(n-i+1,n))
+//				cout << i << ' ';
+//		}
+//		cout << '\n';
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//
+//
+//int main()
+//{
+//
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cout << 22;
+//	}
+//	return 0;
+//}
+
+
+
+//#include<iostream>
+//using namespace std;
+//#define BowTen ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+//#define mp make_pair
+//typedef long long ll;
+//typedef pair<int, int> hashv;
+//const int N = 5e4 + 5;
+//const int mod1 = 1e9 + 9;
+//const int mod2 = 1e9 + 7;
+//hashv pw[N], h[N], base = mp(33,131);
+//string s;
+//
+//hashv operator+(hashv a, hashv b) {
+//	return mp((a.first + b.first) % mod1, (a.second + b.second) % mod2);
+//}
+//hashv operator-(hashv a, hashv b) {
+//	return mp((a.first - b.first) < 0 ? (a.first - b.first) + mod1 : (a.first - b.first), \
+//		(a.second - b.second) < 0 ? (a.second - b.second) + mod2 : (a.second - b.second));
+//}
+//hashv operator*(hashv a, hashv b) {
+//	return mp((1ll * a.first * b.first) % mod1, (1ll * a.second * b.second) % mod2);
+//}
+//hashv getsub(int l, int r) {
+//	return h[r] - h[l - 1] * pw[r - l + 1];
+//}
+//void init() {
+//	memset(pw, 0, sizeof pw);
+//	memset(h, 0, sizeof h);
+//	pw[0] = mp(1, 1);
+//}
+//
+//
+//int main() {
+//	BowTen;
+//	while (cin >> s) {
+//		init();
+//		int n = s.length();
+//		s = ' ' + s;
+//		for (int i = 1; i <= n; i++) {
+//			pw[i] = pw[i-1] * base;
+//			h[i] = h[i - 1] *base + mp(s[i], s[i]);
+//		}
+//		for (int i = 1; i <= n; i++)
+//			if (h[i] == getsub(n - i + 1, n))
+//				cout << i << ' ';
+//		cout << '\n';
+//	}
+//
+//
+//	return 0;
+//}
