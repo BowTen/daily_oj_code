@@ -1479,13 +1479,128 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-
-
-int main()
-{
-
-
-	return 0;
-}
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e5 + 5;
+//struct node {
+//	ll l, r, lazy, sum, son;
+//};
+//node t[N << 2];
+//ll n, q, a[N], sta[N];
+//
+//void up(int id) {
+//	t[id].sum = t[id << 1].sum + t[id << 1 | 1].sum;
+//	t[id].son = t[id << 1].son + t[id << 1 | 1].son;
+//}
+//
+//void settag(int id, ll val) {
+//	t[id].sum += t[id].son * val;
+//	t[id].lazy += val;
+//}
+//
+//void down(int id) {
+//	settag(id << 1, t[id].lazy);
+//	settag(id << 1 | 1, t[id].lazy);
+//	t[id].lazy = 0;
+//}
+//
+//void build(int id, int ql, int qr) {
+//	t[id].l = ql;
+//	t[id].r = qr;
+//	if (ql == qr) {
+//		t[id].sum = a[ql];
+//		t[id].son = sta[ql];
+//		return;
+//	}
+//	int mid = ql + qr >> 1;
+//	build(id << 1, ql, mid);
+//	build(id << 1 | 1, mid + 1, qr);
+//	up(id);
+//}
+//
+//void changesta(int id, int x, ll s) {
+//	int l = t[id].l;
+//	int r = t[id].r;
+//	if (l == r) {
+//		t[id].son = s;
+//		return;
+//	}
+//	down(id);
+//	int mid = r + l >> 1;
+//	if (x <= mid)
+//		changesta(id << 1, x, s);
+//	else
+//		changesta(id << 1 | 1, x, s);
+//	up(id);
+//}
+//
+//void modify(int id, int ql, int qr, ll val) {
+//	ll l = t[id].l;
+//	ll r = t[id].r;
+//	if (ql <= l && qr >= r) {
+//		settag(id, val);
+//		return;
+//	}
+//	down(id);
+//	int mid = l + r >> 1;
+//	if (qr <= mid)
+//		modify(id << 1, ql, qr, val);
+//	else if (ql > mid)
+//		modify(id << 1 | 1, ql, qr, val);
+//	else {
+//		modify(id << 1, ql, qr, val);
+//		modify(id << 1 | 1, ql, qr, val);
+//	}
+//	up(id);
+//}
+//
+//ll query(int id, int ql, int qr) {
+//	int l = t[id].l;
+//	int r = t[id].r;
+//	if (ql <= l && qr >= r)
+//		return t[id].sum;
+//	down(id);
+//	int mid = l + r >> 1;
+//	if (qr <= mid)
+//		return query(id << 1, ql, qr);
+//	else if (ql > mid)
+//		return query(id << 1 | 1, ql, qr);
+//	else
+//		return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> q;
+//	for (int i = 1; i <= n; i++)
+//		cin >> a[i];
+//	for (int i = 1; i <= n; i++)
+//		cin >> sta[i];
+//
+//	build(1, 1, n);
+//
+//	ll f, l, r, x;
+//	while (q--) {
+//		cin >> f;
+//		if (f == 1) {
+//			cin >> x;
+//			changesta(1, x, 0);
+//		}
+//		else if (f == 2) {
+//			cin >> x;
+//			changesta(1, x, 1);
+//		}
+//		else if (f == 3) {
+//			cin >> l >> r >> x;
+//			modify(1, l, r, x);
+//		}
+//		else {
+//			cin >> l >> r;
+//			cout << query(1, l, r) << '\n';
+//		}
+//	}
+//
+//	return 0;
+//}
