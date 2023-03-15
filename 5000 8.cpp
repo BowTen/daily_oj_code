@@ -1972,3 +1972,485 @@
 //
 //	return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//string s1, s2;
+//int ne[N], n, m;
+//
+//int main() {
+//
+//	cin >> s1 >> s2;
+//	n = s1.length();
+//	m = s2.length();
+//	s1 = ' ' + s1;
+//	s2 = ' ' + s2;
+//	for (int i = 2, j = 0; i <= m; i++) {
+//		while (j && s2[j + 1] != s2[i]) j = ne[j];
+//		if (s2[j + 1] == s2[i]) j++;
+//		ne[i] = j;
+//	}
+//	for (int i = 1, j = 0; i <= n; i++) {
+//		while (j && s1[i] != s2[j + 1]) j = ne[j];
+//		if (s2[j + 1] == s1[i]) j++;
+//		if (j == m) {
+//			cout << i - m + 1 << '\n';
+//			j = ne[j];
+//		}
+//	}
+//	for (int i = 1; i <= m; i++)
+//		cout << ne[i] << ' ';
+//
+// 	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//int a[110], n ,d ;
+//
+//int main() {
+//
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> d;
+//		for (int i = 0; i < n; i++)
+//			cin >> a[i];
+//		sort(a, a + n);
+//		if (a[0] + a[1] <= d || a[n-1] <= d)
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//string s1, s2;
+//
+//int main() {
+//
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> s1 >> s2;
+//		int n1 = s1.length(), n2 = s2.length();
+//		if (gcd(n1,n2) <= 1) {
+//			for (int i = 0; i < n1; i++)
+//				if (s1[i] != s2[0]) {
+//					cout << "-1\n";
+//					goto ss;
+//				}
+//			for (int i = 0; i < n2; i++)
+//				if (s2[i] != s2[0]) {
+//					cout << "-1\n";
+//					goto ss;
+//				}
+//			for (int i = 0; i < n1 * n2; i++)
+//				cout << s1[0];
+//			cout << '\n';
+//		}
+//		else {
+//			int f = 1;
+//			for (int i = 0, j = 0; i <= n1, j <= n2; i++, j++) {
+//				if (i == n1)
+//					if (f)
+//						i = f = 0;
+//					else
+//						break;
+//				if (j == n2)
+//					if (f)
+//						j = f = 0;
+//					else
+//						break;
+//				if (s1[i] != s2[j]) {
+//					cout << "-1\n";
+//					goto ss;
+//				}
+//			}
+//			int cnt = ((n1 * n2) / gcd(n1, n2))/max(n1,n2);
+//			for (int i = 0; i < cnt; i++)
+//				cout << (n1 > n2 ? s1 : s2);
+//			cout << '\n';
+//		}
+//
+//	ss:;
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//int a, b, c;
+//
+//int main() {
+//
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		int n;
+//		cin >> n;
+//		b = (n + 3) / 3;
+//		if ((n + 3) % 3)
+//			b++;
+//		a = (n - b) / 2;
+//			a++;
+//		c = n-a-b;
+//		cout << a << ' ' << b << ' ' << c << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 5e4 + 5;
+//int a[N], b[N];
+//
+//int main() {
+//
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		int n;
+//		cin >> n;
+//		int m1 = 0, m2 = 0, mx;
+//		for (int i = 0; i < n; i++) {
+//			cin >> a[i];
+//			m1 = max(m1, a[i]);
+//		}
+//		for (int i = 0; i < n; i++) {
+//			cin >> b[i];
+//			m2 = max(m2, b[i]);
+//		}
+//		int ans = 1;
+//		mx = m1 - m2;
+//		for (int i = 0; i < n; i++) {
+//			a[i] -= min(mx, a[i]);
+//			if (a[i] != b[i])
+//				ans = 0;
+//		}
+//		if (ans && mx >= 0)
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 1e6 + 5;
+//string s1, s2;
+//
+//int main() {
+//
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> s1 >> s2;
+//		int n1 = s1.length(), n2 = s2.length();
+//		if (gcd(n1, n2) <= 1) {
+//			for (int i = 0; i < n1; i++)
+//				if (s1[i] != s2[0]) {
+//					cout << "-1\n";
+//					goto ss;
+//				}
+//			for (int i = 0; i < n2; i++)
+//				if (s2[i] != s2[0]) {
+//					cout << "-1\n";
+//					goto ss;
+//				}
+//			for (int i = 0; i < n1 * n2; i++)
+//				cout << s1[0];
+//			cout << '\n';
+//		}
+//		else {
+//			int mx = max(n1, n2);
+//			for (int i = 0; i < mx; i++) {
+//				if (s1[i % n1] != s2[i % n2]) {
+//					cout << "-1\n";
+//					goto ss;
+//				}
+//			}
+//			int cnt = ((n1 * n2) / gcd(n1, n2)) / max(n1, n2);
+//			for (int i = 0; i < cnt; i++)
+//				cout << (n1 > n2 ? s1 : s2);
+//			cout << '\n';
+//		}
+//
+//	ss:;
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, a[N], b[N], ans[N], st[N], ed[N];
+//
+//int main() {
+//
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n;
+//		/*int cur = 0, fini = 0, tim;
+//		queue<pair<int,int> >task;
+//		for (int i = 0, tmp; i < n; i++) {
+//			cin >> tmp;
+//			task.push({tmp,i});
+//		}
+//		for (int i = 0; i < n; i++)
+//			cin >> ed[i];
+//
+//		while (!task.empty()) {
+//			while ((!cur && task.front().first >= fini) {
+//				cur = task.front().second
+//			}
+//		}*/
+//
+//		for (int i = 1; i <= n; i++)
+//			cin >> a[i];
+//		for (int i = 1; i <= n; i++)
+//			cin >> ed[i];
+//		int cur = 1, tim = a[1];
+//		st[1] = a[1];
+//		while (cur <= n) {
+//			ans[cur] = ed[cur] - st[cur];
+//			tim = max(ed[cur], a[cur + 1]);
+//			st[++cur] = tim;
+//		}
+//		for (int i = 1; i <= n; i++)
+//			cout << ans[i] << ' ';
+//		cout << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, k;
+//
+//int main() {
+//
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		string s;
+//		cin >> n >> k >> s;
+//		int ans = k;
+//		int p = 0, q = 0, w = 0;
+//		for (p = 0; p <= k - 1; p++) {
+//			if (s[p] == 'W')
+//				w++;
+//		}
+//		ans = min(ans, w);
+//		for (p = k,q = 1; p < n; p++, q++) {
+//			if (s[q - 1] == 'W')
+//				w--;
+//			if (s[p] == 'W')
+//				w++;
+//			ans = min(ans, w);
+//		}
+//		cout << ans << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//int n, k;
+//
+//int main() {
+//
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> k;
+//		ll sum = 0;
+//		for (ll i = 0, t = 0; i < n; i++) {
+//			cin >> t;
+//			sum += t;
+//		}
+//		cout << sum / k << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//int n, k;
+//
+//int main() {
+//
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> k;
+//		int f = 2 * k - n;
+//		for (int i = 1; i < f; i++)
+//			cout << i << ' ';
+//		for (int i = k; i >= f; i--)
+//			cout << i << ' ';
+//		cout << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//int n, k;
+//
+//int main() {
+//
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> k;
+//		vector<int>a(n);
+//		ll sum = 0;
+//		for (int i = 0, tmp; i < n; i++) {
+//			cin >> tmp;
+//			sum += tmp / k;
+//			a[i] = tmp % k;
+//		}
+//		sort(a.begin(), a.end());
+//		for (int q = 0, p = n - 1; p > q; p--, q++) {
+//			while (a[q] + a[p] < k && q < p) q++;
+//			if (q >= p)
+//				break;
+//			sum++;
+//		}
+//		cout << sum << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const int N = 2e5 + 5;
+int n, m;
+string s;
+struct val {
+	int l = 0, r = 0, x = 0;
+	const val operator+(const val& e) {
+		val ret;
+		ret.l = min(l, e.l + x);
+		ret.r = max(r, e.r + x);
+		ret.x = x + e.x;
+		return ret;
+	}
+};
+struct node {
+	int l, r;
+	val v;
+
+};
+node seg[N << 2];
+
+void up(int id) {
+	seg[id].v = seg[id << 1].v + seg[id << 1 | 1].v;
+}
+
+void build(int id, int ql, int qr) {
+	seg[id].l = ql;
+	seg[id].r = qr;
+	if (ql == qr) {
+		seg[id].v.l = seg[id].v.r = 0;
+		if (s[ql] == '-')
+			seg[id].v.l = seg[id].v.x = -1;
+		else
+			seg[id].v.r = seg[id].v.x = 1;
+		return;
+	}
+	int mid = ql + qr >> 1;
+	build(id << 1, ql, mid);
+	build(id << 1 | 1, mid + 1, qr);
+	up(id);
+}
+
+val query(int id, int ql, int qr) {
+	if (ql > qr)
+		return {0,0,0};
+	int l = seg[id].l;
+	int r = seg[id].r;
+	if (ql <= l && qr >= r)
+		return seg[id].v;
+	int mid = l + r >> 1;
+	if (qr <= mid)
+		return query(id << 1, ql, qr);
+	else if (ql > mid)
+		return query(id << 1 | 1, ql, qr);
+	else
+		return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
+}
+
+int main() {
+
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> m >> s;
+		s = ' ' + s;
+		build(1, 1, n);
+		int l, r;
+		while (m--) {
+			cin >> l >> r;
+			val ans = (query(1, 1, l-1) + query(1, r+1, n));
+			cout << ans.r - ans.l + 1 << '\n';
+		}
+	}
+
+	return 0;
+}
