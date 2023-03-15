@@ -1731,3 +1731,244 @@
 //
 //	return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//string s;
+//
+//
+//int main()
+//{
+//	while (cin >> s) {
+//		int n = s.length();
+//		s = ' ' + s;
+//		vector<int>ne(n+1);
+//		for (int i = 2, j = 0; i <= n; i++) {
+//			while (j && s[j + 1] != s[i]) j = ne[j];
+//			if (s[j + 1] == s[i]) j++;
+//			ne[i] = j;
+//		}
+//		sort(ne.begin(), ne.end());
+//		cout << ne[0] << ' ';
+//		for (int i = 1; i <= n; i++) {
+//			if (ne[i] == ne[i - 1]) continue;
+//			cout << ne[i] << ' ';
+//		}
+//		cout << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ull;
+//const int N = 4e5 + 5;
+//const int mod = 1e9 + 9;
+//string s;
+//ull h[N], pw[N], base = 131;
+//
+//ull getson(int l, int r) {
+//	return h[r] - h[l - 1] * pw[r - l + 1];
+//}
+//
+//
+//int main()
+//{
+//	pw[0] = 1;
+//	while (cin >> s) {
+//		int n = s.length();
+//		s = ' ' + s;
+//		for (int i = 1; i <= n; i++) {
+//			pw[i] = (pw[i - 1] * base);
+//			h[i] = (h[i - 1] * base + s[i]);
+//		}
+//		for (int i = 1; i <= n; i++) {
+//			if (h[i] == getson(n - i + 1, n))
+//				cout << i << ' ';
+//		}
+//		cout << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ull;
+//const int N = 1e6 + 5;
+//const int mod = 1e9 + 9;
+//string s1, s2;
+//ull h1, h2[N], pw[N], base = 131;
+//
+//ull getson(int l, int r) {
+//	return h2[r] - h2[l - 1] * pw[r - l + 1];
+//}
+//
+//void init() {
+//	h1 = 0;
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	pw[0] = 1;
+//	while (t--) {
+//		init();
+//		cin >> s1 >> s2;
+//		int n1 = s1.length();
+//		int n2 = s2.length();
+//		s1 = ' ' + s1;
+//		s2 = ' ' + s2;
+//		for (int i = 1; i <= n1; i++)
+//			h1 = h1 * base + s1[i];
+//		for (int i = 1; i <= n2; i++) {
+//			pw[i] = pw[i - 1] * base;
+//			h2[i] = h2[i - 1] * base + s2[i];
+//		}
+//		int ans = 0;
+//		for (int i = n1;i <= n2; i++) {
+//			if (h1 == getson(i - n1 + 1, i))
+//				ans++;
+//		}
+//		cout << ans << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define mp make_pair
+//typedef pair<int, int> hashv;
+//typedef unsigned long long ull;
+//const int N = 1e6 + 5;
+//const int mod1 = 1e9 + 9, mod2 = 1e9+7;
+//string s1, s2;
+//hashv h1, h2[N], pw[N], base = mp(33, 131);
+//
+//hashv operator+(const hashv a, const hashv b) {
+//	return mp((a.first + b.first) % mod1, (a.second + b.second) % mod2);
+//}
+//hashv operator-(const hashv a, const hashv b) {
+//	return mp((a.first - b.first) < 0 ? (a.first - b.first) + mod1 : (a.first - b.first),\
+//		  (a.second - b.second) < 0 ? (a.second - b.second) + mod2 : (a.second - b.second));
+//}
+//hashv operator*(const hashv a, const hashv b) {
+//	return mp((1ull * a.first * b.first) % mod1, (1ull * a.second * b.second) % mod2);
+//}
+//hashv getson(int l, int r) {
+//	return h2[r] - h2[l - 1] * pw[r - l + 1];
+//}
+//
+//void init() {
+//	h1 = mp(0, 0);
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	pw[0] = mp(1, 1);
+//	while (t--) {
+//		init();
+//		cin >> s1 >> s2;
+//		int n1 = s1.length();
+//		int n2 = s2.length();
+//		s1 = ' ' + s1;
+//		s2 = ' ' + s2;
+//		for (int i = 1; i <= n1; i++)
+//			h1 = h1 * base + mp(s1[i], s1[i]);
+//		for (int i = 1; i <= n2; i++) {
+//			pw[i] = pw[i - 1] * base;
+//			h2[i] = h2[i - 1] * base + mp(s2[i], s2[i]);
+//		}
+//		int ans = 0;
+//		for (int i = n1; i <= n2; i++) {
+//			if (h1 == getson(i - n1 + 1, i))
+//				ans++;
+//		}
+//		cout << ans << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<iostream>
+//using namespace std;
+//typedef unsigned long long ull;
+//const int N = 1e6 + 5, N2 = 1e4 + 5;;
+//string s1, s2;
+//int ne[N2];
+//
+//void init() {
+//	memset(ne, 0, sizeof ne);
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		init();
+//		cin >> s1 >> s2;
+//		int n1 = s1.length();
+//		int n2 = s2.length();
+//		s1 = ' ' + s1;
+//		s2 = ' ' + s2;
+//		for (int i = 2, j = 0; i <= n1; i++) {
+//			while (j && s1[j + 1] != s1[i]) j = ne[j];
+//			if (s1[j + 1] == s1[i]) j++;
+//			ne[i] = j;
+//		}
+//		int ans = 0;
+//		for (int i = 1, j = 0; i <= n2; i++) {
+//			while (j && s1[j + 1] != s2[i]) j = ne[j];
+//			if (s1[j + 1] == s2[i]) j++;
+//			if (j == n1) {
+//				ans++;
+//				j = ne[j];
+//			}
+//		}
+//		cout << ans << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//typedef unsigned long long ull;
+//const int N = 1e6 + 5, N2 = 1e4 + 5;;
+//string s1, s2;
+//int ne[N2];
+//
+//void init() {
+//	memset(ne, 0, sizeof ne);
+//}
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	
+//
+//	return 0;
+//}
