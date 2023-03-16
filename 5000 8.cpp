@@ -2375,81 +2375,248 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//int n, m;
+//string s;
+//struct val {
+//	int l = 0, r = 0, x = 0;
+//	const val operator+(const val& e) {
+//		val ret;
+//		ret.l = min(l, e.l + x);
+//		ret.r = max(r, e.r + x);
+//		ret.x = x + e.x;
+//		return ret;
+//	}
+//};
+//struct node {
+//	int l, r;
+//	val v;
+//
+//};
+//node seg[N << 2];
+//
+//void up(int id) {
+//	seg[id].v = seg[id << 1].v + seg[id << 1 | 1].v;
+//}
+//
+//void build(int id, int ql, int qr) {
+//	seg[id].l = ql;
+//	seg[id].r = qr;
+//	if (ql == qr) {
+//		seg[id].v.l = seg[id].v.r = 0;
+//		if (s[ql] == '-')
+//			seg[id].v.l = seg[id].v.x = -1;
+//		else
+//			seg[id].v.r = seg[id].v.x = 1;
+//		return;
+//	}
+//	int mid = ql + qr >> 1;
+//	build(id << 1, ql, mid);
+//	build(id << 1 | 1, mid + 1, qr);
+//	up(id);
+//}
+//
+//val query(int id, int ql, int qr) {
+//	if (ql > qr)
+//		return {0,0,0};
+//	int l = seg[id].l;
+//	int r = seg[id].r;
+//	if (ql <= l && qr >= r)
+//		return seg[id].v;
+//	int mid = l + r >> 1;
+//	if (qr <= mid)
+//		return query(id << 1, ql, qr);
+//	else if (ql > mid)
+//		return query(id << 1 | 1, ql, qr);
+//	else
+//		return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
+//}
+//
+//int main() {
+//
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> m >> s;
+//		s = ' ' + s;
+//		build(1, 1, n);
+//		int l, r;
+//		while (m--) {
+//			cin >> l >> r;
+//			val ans = (query(1, 1, l-1) + query(1, r+1, n));
+//			cout << ans.r - ans.l + 1 << '\n';
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ll;
+//const int N = 210;
+//int n, a[N];
+//string s;
+//
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> s;
+//		vector<bool>vis(n + 1);
+//		vector<vector<char>>ss(1);
+//		for (int i = 1; i <= n; i++)
+//			cin >> a[i];
+//		int siz = 1;
+//		for (int cnt = 0, p = 1; cnt < n;) {
+//			if (!vis[p]) {
+//				vis[p] = true;
+//				ss[siz-1].push_back(s[a[p]-1]);
+//				p = a[p];
+//				cnt++;
+//			}
+//			else {
+//				ss.resize(++siz);
+//				while (vis[++p]);
+//			}
+//		}
+//		vector<ll>ans(siz);
+//		for (int x = 0, si; x < siz; x++) {
+//			si = ss[x].size();
+//			vector<int>ne(si+1);
+//			for (int i = 2, j = 0; i <= si; i++) {
+//				while (j && ss[x][j] != ss[x][i - 1]) j = ne[j];
+//				if (ss[x][j] == ss[x][i - 1]) j++;
+//				ne[i] = j;
+//			}
+//			if (si % (si - ne[si]) == 0)
+//				ans[x] = si - ne[si];
+//			else
+//				ans[x] = si;
+//		}
+//		for (int i = 1; i < siz; i++) {
+//			ans[i] = (ans[i] * ans[i - 1]) / gcd(ans[i], ans[i - 1]);
+//		}
+//		cout << ans[siz - 1] << '\n';
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ll;
+//const int N = 1e5+5;
+//int n, m, a[N], k, d;
+//
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> m;
+//		map<int, int>head;
+//		int cur = INT_MAX;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> a[i];
+//			if (a[i] < cur)
+//				head[i] = a[i], cur = a[i];
+//		}
+//		while (m--) {
+//			cin >> k >> d;
+//			if (head.find(k) != head.end()) {
+//				head[k] -= d;
+//				vector<int>delet;
+//				for (auto p = ++head.find(k), ed = head.end(); p != ed; p++) {
+//					if (p->second >= head[k]) {
+//						delet.push_back(p->first);
+//					}
+//				}
+//				for (auto p : delet)
+//					head.erase(p);
+//			}
+//			else {
+//				a[k] -= d;
+//				head[k] = a[k];
+//				if ((--head.find(k))->second <= a[k]) {
+//					head.erase(k);
+//					cout << head.size() << ' ';
+//					continue;
+//				}
+//				vector<int>delet;
+//				for (auto p = ++head.find(k), ed = head.end(); p != ed; p++) {
+//					if (p->second >= head[k]) {
+//						delet.push_back(p->first);
+//					}
+//				}
+//				for (auto p : delet)
+//					head.erase(p);
+//			}
+//		cout << head.size() << ' ';
+//		}
+//		cout << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-const int N = 2e5 + 5;
-int n, m;
-string s;
-struct val {
-	int l = 0, r = 0, x = 0;
-	const val operator+(const val& e) {
-		val ret;
-		ret.l = min(l, e.l + x);
-		ret.r = max(r, e.r + x);
-		ret.x = x + e.x;
-		return ret;
-	}
-};
-struct node {
-	int l, r;
-	val v;
+typedef unsigned long long ll;
+const int N = 1e5 + 5;
+int n, m, a[N], k, d;
 
-};
-node seg[N << 2];
 
-void up(int id) {
-	seg[id].v = seg[id << 1].v + seg[id << 1 | 1].v;
-}
-
-void build(int id, int ql, int qr) {
-	seg[id].l = ql;
-	seg[id].r = qr;
-	if (ql == qr) {
-		seg[id].v.l = seg[id].v.r = 0;
-		if (s[ql] == '-')
-			seg[id].v.l = seg[id].v.x = -1;
-		else
-			seg[id].v.r = seg[id].v.x = 1;
-		return;
-	}
-	int mid = ql + qr >> 1;
-	build(id << 1, ql, mid);
-	build(id << 1 | 1, mid + 1, qr);
-	up(id);
-}
-
-val query(int id, int ql, int qr) {
-	if (ql > qr)
-		return {0,0,0};
-	int l = seg[id].l;
-	int r = seg[id].r;
-	if (ql <= l && qr >= r)
-		return seg[id].v;
-	int mid = l + r >> 1;
-	if (qr <= mid)
-		return query(id << 1, ql, qr);
-	else if (ql > mid)
-		return query(id << 1 | 1, ql, qr);
-	else
-		return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
-}
-
-int main() {
-
+int main()
+{
 	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 	int t;
 	cin >> t;
 	while (t--) {
-		cin >> n >> m >> s;
-		s = ' ' + s;
-		build(1, 1, n);
-		int l, r;
-		while (m--) {
-			cin >> l >> r;
-			val ans = (query(1, 1, l-1) + query(1, r+1, n));
-			cout << ans.r - ans.l + 1 << '\n';
+		cin >> n >> m;
+		map<int, int>head;
+		int last = INT_MAX;
+		for (int i = 1; i <= n; i++) {
+			cin >> a[i];
+			head[i] = a[i];
+			auto p = head.find(i);
+			if (p != head.begin() && prev(p)->second <= head[i])
+				head.erase(p);
+			else while (next(p) != head.end() && next(p)->second >= head[i])
+				head.erase(next(p));
 		}
+		while (m--) {
+			cin >> k >> d;
+			a[k] -= d;
+			head[k] = a[k];
+			auto p = head.find(k);
+			if (p != head.begin() && prev(p)->second <= head[k])
+				head.erase(p);
+			else while (next(p) != head.end() && next(p)->second >= head[k])
+				head.erase(next(p));
+			cout << head.size() << ' ';
+		}
+		cout << '\n';
+
 	}
 
 	return 0;
