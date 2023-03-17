@@ -2579,44 +2579,284 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ll;
+//const int N = 1e5 + 5;
+//int n, m, a[N], k, d;
+//
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n >> m;
+//		map<int, int>head;
+//		int last = INT_MAX;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> a[i];
+//			head[i] = a[i];
+//			auto p = head.find(i);
+//			if (p != head.begin() && prev(p)->second <= head[i])
+//				head.erase(p);
+//			else while (next(p) != head.end() && next(p)->second >= head[i])
+//				head.erase(next(p));
+//		}
+//		while (m--) {
+//			cin >> k >> d;
+//			a[k] -= d;
+//			head[k] = a[k];
+//			auto p = head.find(k);
+//			if (p != head.begin() && prev(p)->second <= head[k])
+//				head.erase(p);
+//			else while (next(p) != head.end() && next(p)->second >= head[k])
+//				head.erase(next(p));
+//			cout << head.size() << ' ';
+//		}
+//		cout << '\n';
+//
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef unsigned long long ll;
+//const int N = 1e5 + 5;
+//int n, m, a[N], k, d;
+//
+//bool isPrime(int n) {
+//	for (int i = 2; i < n; i++)
+//		if (n % i == 0)
+//			return false;
+//	return true;
+//}
+//
+//template<typename t1, typename t2>
+//
+//int main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	while (cin >> n) {
+//		cout << isPrime(n) << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, dep[N], par[N][20], mn[N][20], mx[N][20], q;
+//vector<vector<pair<int,int>>>mp;
+//
+//void dfs(int u, int fa, int val) {
+//	dep[u] = dep[fa] + 1;
+//	par[u][0] = fa;
+//	mn[u][0] = val;
+//	mx[u][0] = val;
+//	for (int i = 1; i < 20; i++) {
+//		par[u][i] = par[par[u][i - 1]][i - 1];
+//		mn[u][i] = min(mn[u][i - 1], mn[par[u][i - 1]][i - 1]);
+//		mx[u][i] = max(mx[u][i - 1], mx[par[u][i - 1]][i - 1]);
+//	}
+//	for (auto& [v, w] : mp[u]) if (v != fa) {
+//		dfs(v, u, w);
+//	}
+//}
+//
+//pair<int, int> query(int u, int v) {
+//	if (dep[u] < dep[v]) swap(u, v);
+//	int r1 = mn[u][0], r2 = mx[u][0];
+//	for (int i = 19; i >= 0; i--) if (dep[par[u][i]] >= dep[v]) {
+//		r1 = min(r1, mn[u][i]);
+//		r2 = max(r2, mx[u][i]);
+//		u = par[u][i];
+//	}
+//	if (u == v)
+//		return make_pair(r1, r2);
+//	for (int i = 19; i >= 0; i--) if (par[u][i] != par[v][i]) {
+//		r1 = min({ r1, mn[u][i], mn[v][i] });
+//		r2 = max({ r2, mx[u][i], mx[v][i] });
+//		u = par[u][i];
+//		v = par[v][i];
+//	}
+//	r1 = min({ r1, mn[u][0], mn[v][0] });
+//	r2 = max({ r2, mx[u][0], mx[v][0] });
+//	return make_pair(r1, r2);
+//}
+//
+//void init() {
+//	mp.clear();
+//	mp.resize(n+1);
+//	memset(dep, 0, sizeof dep);
+//	memset(par, 0, sizeof par);
+//	memset(mn, 0, sizeof mn);
+//	memset(mx, 0, sizeof mx);
+//}
+//
+//int main()
+//{
+//	int  t;
+//	cin >> t;
+//	for (int x = 1; x <= t;x++) {
+//		cout << "Case " << x << ":\n";
+//		cin >> n;
+//		init();
+//		
+//		for (int i = 1, u, v, w; i < n; i++) {
+//			cin >> u >> v >> w;
+//			mp[u].push_back({ v,w });
+//			mp[v].push_back({ u,w });
+//		}
+//		dfs(1, 0, 0);
+//
+//		cin >> q;
+//		int q1, q2;
+//		while (q--) {
+//			cin >> q1 >> q2;
+//			pair<int, int>ans = query(q1, q2);
+//			cout << ans.first << ' ' << ans.second << '\n';
+//		}
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 5e4 + 5;
+//int n, k, a[N], dep[N], par[N][20], ans;
+//vector<int>mp[N];
+//
+//void dfs(int u, int fa) {
+//	for (auto& v : mp[u]) if (v != fa)
+//		dfs(v, u);
+//	a[fa] += a[u];
+//	ans = max(ans, a[u]);
+//}
+//
+//void pre_dfs(int u, int fa) {
+//	dep[u] = dep[fa] + 1;
+//	par[u][0] = fa;
+//	for (int i = 1; i < 20; i++)
+//		par[u][i] = par[par[u][i - 1]][i - 1];
+//	for (auto& v : mp[u]) if (v != fa)
+//		pre_dfs(v, u);
+//}
+//
+//int getlca(int u, int v) {
+//	if (dep[u] < dep[v]) swap(u, v);
+//	for (int i = 19; i >= 0; i--) if (dep[par[u][i]] >= dep[v])
+//		u = par[u][i];
+//	if (u == v)
+//		return u;
+//	for (int i = 19; i >= 0; i--) if (par[u][i] != par[v][i]) {
+//		u = par[u][i];
+//		v = par[v][i];
+//	}
+//	return par[u][0];
+//}
+//
+//int main()
+//{
+//	cin >> n >> k;
+//	for (int i = 1, u, v; i < n; i++) {
+//		cin >> u >> v;
+//		mp[u].push_back(v);
+//		mp[v].push_back(u);
+//	}
+//
+//	pre_dfs(1, 0);
+//
+//	int s, e, f;
+//	while (k--) {
+//		cin >> s >> e;
+//		a[s]++;
+//		a[e]++;
+//		f = getlca(s, e);
+//		a[f]--;
+//		a[par[f][0]];
+//	}
+//	dfs(1, 0);
+//	cout << ans;
+//
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
-typedef unsigned long long ll;
-const int N = 1e5 + 5;
-int n, m, a[N], k, d;
+typedef long long ll;
+const int N = 1e6 + 5;
+int n, m, r, a[N], tot, L[N], R[N], t[N];
+vector<int>mp[N];
+
+void pre_dfs(int u, int fa) {
+	L[u] = ++tot;
+	for (auto& v : mp[u]) if (v != fa)
+		pre_dfs(v, u);
+	R[u] = tot;
+}
+
+int lowbit(int x) {
+	return x & -x;
+}
+
+void add(int i, int val) {
+	while (i <= n) {
+		t[i] += val;
+		i += lowbit(i);
+	}
+}
+
+ll getsum(int i) {
+	ll ret = 0;
+	while (i > 0) {
+		ret += t[i];
+		i -= lowbit(i);
+	}
+	return ret;
+}
 
 
 int main()
 {
-	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-	int t;
-	cin >> t;
-	while (t--) {
-		cin >> n >> m;
-		map<int, int>head;
-		int last = INT_MAX;
-		for (int i = 1; i <= n; i++) {
-			cin >> a[i];
-			head[i] = a[i];
-			auto p = head.find(i);
-			if (p != head.begin() && prev(p)->second <= head[i])
-				head.erase(p);
-			else while (next(p) != head.end() && next(p)->second >= head[i])
-				head.erase(next(p));
+	cin >> n >> m >> r;
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	for (int i = 1, u, v; i < n; i++) {
+		cin >> u >> v;
+		mp[u].push_back(v);
+		mp[v].push_back(u);
+	}
+	pre_dfs(r, 0);
+	for (int i = 1; i <= n; i++)
+		add(L[i], a[i]);
+	int f, q1, q2;
+	while (m--) {
+		cin >> f;
+		if (f == 1) {
+			cin >> q1 >> q2;
+			add(L[q1], q2);
 		}
-		while (m--) {
-			cin >> k >> d;
-			a[k] -= d;
-			head[k] = a[k];
-			auto p = head.find(k);
-			if (p != head.begin() && prev(p)->second <= head[k])
-				head.erase(p);
-			else while (next(p) != head.end() && next(p)->second >= head[k])
-				head.erase(next(p));
-			cout << head.size() << ' ';
+		else {
+			cin >> q1;
+			cout << getsum(R[q1]) - getsum(L[q1] - 1) << '\n';
 		}
-		cout << '\n';
-
 	}
 
 	return 0;
