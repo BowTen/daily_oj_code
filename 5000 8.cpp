@@ -2798,66 +2798,93 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-const int N = 1e6 + 5;
-int n, m, r, a[N], tot, L[N], R[N], t[N];
-vector<int>mp[N];
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e6 + 5;
+//ll n, m, r, a[N], tot, L[N], R[N], t[N];
+//vector<int>mp[N];
+//
+//void pre_dfs(int u, int fa) {
+//	L[u] = ++tot;
+//	for (auto& v : mp[u]) if (v != fa)
+//		pre_dfs(v, u);
+//	R[u] = tot;
+//}
+//
+//int lowbit(int x) {
+//	return x & -x;
+//}
+//
+//void add(int i, int val) {
+//	while (i <= n) {
+//		t[i] += val;
+//		i += lowbit(i);
+//	}
+//}
+//
+//ll getsum(int i) {
+//	ll ret = 0;
+//	while (i > 0) {
+//		ret += t[i];
+//		i -= lowbit(i);
+//	}
+//	return ret;
+//}
+//
+//
+//int main()
+//{
+//	cin >> n >> m >> r;
+//	for (int i = 1; i <= n; i++)
+//		cin >> a[i];
+//	for (int i = 1, u, v; i < n; i++) {
+//		cin >> u >> v;
+//		mp[u].push_back(v);
+//		mp[v].push_back(u);
+//	}
+//	pre_dfs(r, 0);
+//	for (int i = 1; i <= n; i++)
+//		add(L[i], a[i]);
+//	int f, q1, q2;
+//	while (m--) {
+//		cin >> f;
+//		if (f == 1) {
+//			cin >> q1 >> q2;
+//			add(L[q1], q2);
+//		}
+//		else {
+//			cin >> q1;
+//			cout << getsum(R[q1]) - getsum(L[q1] - 1) << '\n';
+//		}
+//	}
+//
+//	return 0;
+//}
 
-void pre_dfs(int u, int fa) {
-	L[u] = ++tot;
-	for (auto& v : mp[u]) if (v != fa)
-		pre_dfs(v, u);
-	R[u] = tot;
-}
-
-int lowbit(int x) {
-	return x & -x;
-}
-
-void add(int i, int val) {
-	while (i <= n) {
-		t[i] += val;
-		i += lowbit(i);
-	}
-}
-
-ll getsum(int i) {
-	ll ret = 0;
-	while (i > 0) {
-		ret += t[i];
-		i -= lowbit(i);
-	}
-	return ret;
-}
 
 
-int main()
-{
-	cin >> n >> m >> r;
-	for (int i = 1; i <= n; i++)
-		cin >> a[i];
-	for (int i = 1, u, v; i < n; i++) {
-		cin >> u >> v;
-		mp[u].push_back(v);
-		mp[v].push_back(u);
-	}
-	pre_dfs(r, 0);
-	for (int i = 1; i <= n; i++)
-		add(L[i], a[i]);
-	int f, q1, q2;
-	while (m--) {
-		cin >> f;
-		if (f == 1) {
-			cin >> q1 >> q2;
-			add(L[q1], q2);
-		}
-		else {
-			cin >> q1;
-			cout << getsum(R[q1]) - getsum(L[q1] - 1) << '\n';
-		}
-	}
 
-	return 0;
-}
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<string.h>
+//const int N = 110;
+//char num[N][N];
+//int n;
+//
+//int cmp(const void* s1, const void* s2) {
+//	return -strcmp((char*)s1, (char*)s2);
+//}
+//
+//int main() {
+//
+//	scanf("%d",&n);
+//	getchar();
+//	for (int i = 1; i <= n; i++)
+//		scanf("%s", num[i]);
+//	qsort(num + 1, n, sizeof(num[0]), cmp);
+//	for (int i = 1; i <= n; i++)
+//		printf("%s", num[i]);
+//
+//	return 0;
+//}
