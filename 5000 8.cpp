@@ -3095,20 +3095,161 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//int n, k;
+//string s;
+//
+//int main() {
+//	int t;
+//	cin >> t;
+//	int a, b, c;
+//	while (t--) {
+//		cin >> a >> b >> c;
+//		if (a + b == c)
+//			cout << "+\n";
+//		else
+//			cout << "-\n";
+//	}
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//int n;
+//string s;
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int T;
+//	cin >> T;
+//	while (T--) {
+//		cin >> n;
+//		int a = 0, b = 0;
+//		for (int i = 0, t; i < n; i++) {
+//			cin >> t;
+//			if (t % 2)
+//				b += t;
+//			else
+//				a += t;
+//		}
+//		if (a > b)
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//int n;
+//string s;
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int T;
+//	cin >> T;
+//	while (T--) {
+//		cin >> n;
+//		cin >> s;
+//		unordered_map<char, int>mp;
+//		for (int i = 0; i < n; i++)
+//			if (!mp[s[i]])
+//				mp[s[i]] = i & 1;
+//		for (auto [c, v] : mp) {
+//			for (int i = 0; i < n; i++) if (s[i] == c && (i & 1) != v) {
+//				cout << "NO\n";
+//				goto ss;
+//			}
+//		}
+//		cout << "YES\n";
+//	ss:;
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//ll n, q, pre[N];
+//string s;
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int T;
+//	cin >> T;
+//	while (T--) {
+//		cin >> n >> q;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> pre[i];
+//			pre[i] += pre[i - 1];
+//		}
+//		ll l, r, k, sum = pre[n];
+//		while (q--) {
+//			cin >> l >> r >> k;
+//			if ((sum - pre[r] + pre[l - 1] + (r - l + 1) * k) % 2)
+//				cout << "YES\n";
+//			else
+//				cout << "NO\n";
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 const int N = 2e5 + 5;
-int n, k;
+ll n, q, a[N];
 string s;
 
 int main() {
-	int t;
-	cin >> t;
-	while (t--) {
-		cin >> n >> k;
-		cin >> s;
-
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	int T;
+	cin >> T;
+	while (T--) {
+		cin >> n;
+		for (int i = 0; i < n; i++)
+			cin >> a[i];
+		sort(a, a + n, greater());
+		if (a[n - 1] != 1) {
+			cout << "NO\n";
+			goto ss;
+		}
+		for (int i = 0, mx, sum; i < n - 1; i++) {
+			mx = a[i];
+			sum = 0;
+			for (int j = i + 1; j < n; j++) {
+				if (sum + a[j] <= mx)
+					sum += a[j];
+			}
+			if (sum != mx) {
+				cout << "NO\n";
+				goto ss;
+			}
+		}
+		cout << "YES\n";
+	ss:;
 	}
 
 	return 0;
