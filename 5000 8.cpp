@@ -2888,3 +2888,228 @@
 //
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5+5;
+//int n, ne[N], k;
+//string m = " mihoyo";
+//string s;
+//
+//
+//int main()
+//{
+//	cin >> n >> k >> s;
+//	s = ' ' + s;
+//	for (int i = 2, j = 0; i <= 6; i++) {
+//		while (j && m[i] != m[j + 1]) j = ne[j];
+//		if (m[i] == m[j + 1]) j++;
+//		ne[j] = i;
+//	}
+//	int cnt = 0;
+//	vector<int>left;
+//	vector<pair<int, int>>ans;
+//	for (int i = 1, j = 0; i <= n; i++) {
+//		while (j && s[i] != m[j + 1]) j = ne[j];
+//		if (s[i] == m[j + 1]) j++;
+//		if (j == 6) {
+//			left.push_back(i - 6);
+//			cnt++;
+//			j = ne[j];
+//			if (cnt >= k) {
+//				ans.push_back({ left[ans.size()],i - 1});
+//			}
+//		}
+//	}
+//	sort(ans.begin(), ans.end(), [](pair<int, int>e1, pair<int, int>e2)->int {
+//		return e1.second - e1.first < e2.second - e2.first;
+//		});
+//	if (!ans.size())
+//		cout << 0;
+//	else
+//		cout << ans[0].first << ' ' << ans[0].second;
+//
+//
+//
+//	return 0;
+//}0 1 2 2 3 3 4 4 1 9 10 10 9 13 13
+
+
+
+
+//#include<bits/stdc++.h>
+//#define int long long
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, fa[N];
+//vector<vector<int>>mp;
+//
+//void init() {
+//	mp.clear();
+//	mp.resize(n+1);
+//}
+//
+//int dfs(int u, int fa) {
+//	int ret = 1;
+//	if (mp[u].size() >= 3)
+//		ret = 2;
+//	else if (mp[u].size() == 1)
+//		return 1;
+//	int cnt = 0;
+//	for (auto v : mp[u]) if (v != fa) {
+//		int delt = dfs(v, u);
+//		if (cnt && delt >= ret)
+//			ret++;
+//		if (delt >= ret)
+//			ret = delt;
+//		cnt++;
+//	}
+//	return ret;
+//}
+//
+//signed main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n;
+//		init();
+//		int rt;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> fa[i];
+//			if (!fa[i])
+//				rt = i;
+//			mp[i].push_back(fa[i]);
+//			mp[fa[i]].push_back(i);
+//		}
+//		cout << dfs(rt, 0) << '\n';
+//	}
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//const int N = 2e5 + 5;
+//int n, fa[N], ans, ned, s[N];
+//vector<vector<int>>mp;
+//
+//void init() {
+//	memset(s, 0, sizeof s);
+//	mp.clear();
+//	mp.resize(n + 1);
+//	ned = 1;
+//}
+//
+//int dfs(int u, int fa) {
+//	if (u && mp[u].size() == 1)
+//		return 1;
+//	s[u] = 1;
+//	int ret = 1;
+//	for (auto v : mp[u]) if (v != fa) {
+//		int delt = dfs(v, u);
+//		if (s[u] == 0 && delt >= ret)
+//			ret++;
+//		if (delt >= ret) {
+//			ret = delt;
+//			s[u] = 0;
+//		}
+//	}
+//	return ret;
+//}
+//
+//signed main()
+//{
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n;
+//		init();
+//		int rt;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> fa[i];
+//			if (!fa[i])
+//				rt = i;
+//			mp[i].push_back(fa[i]);
+//			mp[fa[i]].push_back(i);
+//		}
+//		cout << dfs(rt, 0) << '\n';
+//	}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5+5;
+//ll n;
+//vector<vector<int>>mp;
+//
+//ll dfs(ll u, ll fa) {
+//	if (mp[u].size() <= 1)
+//		return 1;
+//	map<ll, ll>ump;
+//	for (auto v : mp[u]) if (v != fa) {
+//		ump[dfs(v, u)]++;
+//	}
+//	ll ret = prev(ump.end())->first;
+//	if (ump[ret] > 1)
+//		return ret + 1;
+//	return ret;
+//}
+//
+//
+//void init() {
+//	mp.clear();
+//	mp.resize(n + 1);
+//}
+//
+//int main() {
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> n;
+//		init();
+//		ll rt;
+//		for (ll i = 1, tmp; i <= n; i++) {
+//			cin >> tmp;
+//			if (tmp == 0)
+//				rt = i;
+//			mp[i].push_back(tmp);
+//			mp[tmp].push_back(i);
+//		}
+//		cout << dfs(rt, 0) << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const int N = 2e5 + 5;
+int n, k;
+string s;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> k;
+		cin >> s;
+
+	}
+
+	return 0;
+}
