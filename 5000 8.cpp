@@ -3216,40 +3216,254 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//ll n, q, a[N];
+//string s;
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int T;
+//	cin >> T;
+//	while (T--) {
+//		cin >> n;
+//		for (int i = 1; i <= n; i++)
+//			cin >> a[i];
+//		sort(a + 1, a + n + 1);
+//		if (a[1] != 1) {
+//			cout << "NO\n";
+//			goto ss;
+//		}
+//		for (int i = 1; i <= n; i++) {
+//			a[i] += a[i - 1];
+//		}
+//		for (int i = n; i > 1; i--) {
+//			if (a[i] > 2*a[i - 1]) {
+//				cout << "NO\n";
+//				goto ss;
+//			}
+//		}
+//		cout << "YES\n";
+//	ss:;
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//ll n, q, a[N], pre[N];
+//string s;
+//
+//bool check(int l, int mid) {
+//	cout << "? " << mid - l + 1 << ' ';
+//	for (int i = l; i <= mid; i++)
+//		cout << i << ' ';
+//	cout << '\n';
+//	ll ret;
+//	cin >> ret;
+//	if (ret > pre[mid] - pre[l - 1])
+//		return true;
+//	return false;
+//}
+//
+//int main() {
+//	//ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	fflush(stdout);
+//	int T;
+//	cin >> T;
+//	while (T--) {
+//		cin >> n;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> a[i];
+//			pre[i] = a[i];
+//			pre[i] += pre[i - 1];
+//		}
+//
+//
+//		ll l = 1, r = n, mid;
+//		while (l < r) {
+//			mid = l + r >> 1;
+//			if (check(l, mid))
+//				r = mid;
+//			else
+//				l = mid + 1;
+//		}
+//		cout << "! " << r << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//ll n, m, i1, i2, jj1, j2, vi, vj, cnt;
+//string s;
+//map<pair<int,int>, int>mp;
+//
+//void upv() {
+//	if (s[0] == 'U')
+//		vi = -1;
+//	else
+//		vi = 1;
+//	if (s[1] == 'L')
+//		vj = -1;
+//	else
+//		vj = 1;
+//}
+//
+//void _bou() {
+//	if (i1 == 1)
+//		vi = 1;
+//	else if (i1 == m)
+//		vi = -1;
+//	else if (jj1 == 1)
+//		vj = 1;
+//	else
+//		vj = -1;
+//}
+//
+//bool mov() {
+//	if ((i2 - i1) / vi == (j2 - jj1) / vj && (i2 - i1) * vi >= 0)
+//		return false;
+//	ll ti, tj;
+//	if (vi > 0)
+//		ti = m - i1;
+//	else
+//		ti = i1 - 1;
+//	if (vj > 0)
+//		tj = n - jj1;
+//	else
+//		tj = jj1 - 1;
+//	if (ti == tj) {
+//		if (n == m && i2 != j2) {
+//			cnt = -1;
+//			return false;
+//		}
+//		else {
+//			vi *= -1;
+//			vj *= -1;
+//			return true;
+//		} 
+//	}
+//	ll tt = min(ti, tj);
+//	i1 = tt * vi + i1;
+//	jj1 = tt * vj + jj1;
+//	if (tt == ti)
+//		vi *= -1;
+//	else
+//		vj *= -1;
+//	return true;
+//}
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int T;
+//	cin >> T;
+//	while (T--) {
+//		cin >> m >> n >> i1 >> jj1 >> i2 >> j2 >> s;
+//		mp.clear();
+//		upv();
+//		cnt = 0;
+//		mp[make_pair(i1, jj1)]++;
+//		while (mov()) {
+//			if (mp[make_pair(i1, jj1)]++ > 3) {
+//				cnt = -1;
+//				break;
+//			}
+//			cnt++;
+//		}
+//		cout << cnt << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 const int N = 2e5 + 5;
-ll n, q, a[N];
+ll n, m, ii, jj, i2, j2, vi, vj;
 string s;
+
+void initv() {
+	if (s[0] == 'U')
+		vi = -1;
+	else
+		vi = 1;
+	if (s[1] == 'L')
+		vj = -1;
+	else
+		vj = 1;
+}
+
+void turn() {
+	int ni = ii + vi;
+	if (ni < 1 || ni > n)
+		vi *= -1;
+	else
+		vj *= -1;
+}
+
+bool mov() {
+	if ((i2 - ii) / vi == (j2 - jj) / vj && (i2 - ii) * vi >= 0)
+		return false;
+	int ti, tj, tt;
+	if (vi > 0)
+		ti = n - ii;
+	else
+		ti = ii - 1;
+	if (vj > 0)
+		tj = m - jj;
+	else
+		tj = jj - 1;
+	tt = min(ti, tj);
+	ii += tt * vi;
+	jj += tt * vj;
+	if(ti == tj)
+		vi *= -1, vj *= -1;
+	else
+		turn();
+	return true;
+}
 
 int main() {
 	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 	int T;
 	cin >> T;
 	while (T--) {
-		cin >> n;
-		for (int i = 0; i < n; i++)
-			cin >> a[i];
-		sort(a, a + n, greater());
-		if (a[n - 1] != 1) {
-			cout << "NO\n";
-			goto ss;
-		}
-		for (int i = 0, mx, sum; i < n - 1; i++) {
-			mx = a[i];
-			sum = 0;
-			for (int j = i + 1; j < n; j++) {
-				if (sum + a[j] <= mx)
-					sum += a[j];
+		cin >> n >> m >> ii >> jj >> i2 >> j2 >> s;
+		initv();
+		ll cnt = 0;
+		map<pair<int, int>, int>mp;
+		while (mov()) {
+			if (mp[{ii, jj}]++ > 3) {
+				cnt = -1;
+				break;
 			}
-			if (sum != mx) {
-				cout << "NO\n";
-				goto ss;
-			}
+			cnt++;
 		}
-		cout << "YES\n";
-	ss:;
+
+		cout << cnt << '\n';
+
 	}
 
 	return 0;
