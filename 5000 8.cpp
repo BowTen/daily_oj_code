@@ -3395,76 +3395,116 @@
 
 
 
+//
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e5 + 5;
+//ll n, m, ii, jj, i2, j2, vi, vj;
+//string s;
+//
+//void initv() {
+//	if (s[0] == 'U')
+//		vi = -1;
+//	else
+//		vi = 1;
+//	if (s[1] == 'L')
+//		vj = -1;
+//	else
+//		vj = 1;
+//}
+//
+//void turn() {
+//	int ni = ii + vi;
+//	if (ni < 1 || ni > n)
+//		vi *= -1;
+//	else
+//		vj *= -1;
+//}
+//
+//bool mov() {
+//	if ((i2 - ii) / vi == (j2 - jj) / vj && (i2 - ii) * vi >= 0)
+//		return false;
+//	int ti, tj, tt;
+//	if (vi > 0)
+//		ti = n - ii;
+//	else
+//		ti = ii - 1;
+//	if (vj > 0)
+//		tj = m - jj;
+//	else
+//		tj = jj - 1;
+//	tt = min(ti, tj);
+//	ii += tt * vi;
+//	jj += tt * vj;
+//	if(ti == tj)
+//		vi *= -1, vj *= -1;
+//	else
+//		turn();
+//	return true;
+//}
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	int T;
+//	cin >> T;
+//	while (T--) {
+//		cin >> n >> m >> ii >> jj >> i2 >> j2 >> s;
+//		initv();
+//		ll cnt = 0;
+//		map<pair<int, int>, int>mp;
+//		while (mov()) {
+//			if (mp[{ii, jj}]++ > 3) {
+//				cnt = -1;
+//				break;
+//			}
+//			cnt++;
+//		}
+//
+//		cout << cnt << '\n';
+//
+//	}
+//
+//	return 0;
+//}
+
 
 
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const int N = 2e5 + 5;
-ll n, m, ii, jj, i2, j2, vi, vj;
-string s;
-
-void initv() {
-	if (s[0] == 'U')
-		vi = -1;
-	else
-		vi = 1;
-	if (s[1] == 'L')
-		vj = -1;
-	else
-		vj = 1;
-}
-
-void turn() {
-	int ni = ii + vi;
-	if (ni < 1 || ni > n)
-		vi *= -1;
-	else
-		vj *= -1;
-}
-
-bool mov() {
-	if ((i2 - ii) / vi == (j2 - jj) / vj && (i2 - ii) * vi >= 0)
-		return false;
-	int ti, tj, tt;
-	if (vi > 0)
-		ti = n - ii;
-	else
-		ti = ii - 1;
-	if (vj > 0)
-		tj = m - jj;
-	else
-		tj = jj - 1;
-	tt = min(ti, tj);
-	ii += tt * vi;
-	jj += tt * vj;
-	if(ti == tj)
-		vi *= -1, vj *= -1;
-	else
-		turn();
-	return true;
-}
+const int N = 1e5 + 5;
+ll n, m, s, d[N], vis[N];
+vector<pair<int,int> >mp[N];
 
 int main() {
 	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-	int T;
-	cin >> T;
-	while (T--) {
-		cin >> n >> m >> ii >> jj >> i2 >> j2 >> s;
-		initv();
-		ll cnt = 0;
-		map<pair<int, int>, int>mp;
-		while (mov()) {
-			if (mp[{ii, jj}]++ > 3) {
-				cnt = -1;
-				break;
-			}
-			cnt++;
-		}
-
-		cout << cnt << '\n';
-
+	cin >> n >> m >> s;
+	for (int i = 0, u, v, w; i < m; i++) {
+		cin >> u >> v >> w;
+		mp[u].push_back({ v,w });
 	}
+	queue<int>que;
+	que.push(s);
+	vis[s] = 1;
+	for (int i = 0; i <= n; i++)
+		d[i] = LLONG_MAX;
+	d[s] = 0;
+	while (!que.empty()) {
+		int u = que.front();
+		que.pop();
+		vis[u] = 0;
+		for (auto [v, w] : mp[u]) if(d[v] > d[u] + w) {
+			d[v] = d[u] + w;
+			if (!vis[v]) {
+				que.push(v);
+				vis[v] = 1;
+			}
+		}
+	}
+	for (int i = 1; i <= n; i++)
+		cout << d[i] << ' ';
 
 	return 0;
 }
