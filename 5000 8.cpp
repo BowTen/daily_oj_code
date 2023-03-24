@@ -3471,40 +3471,332 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e5 + 5;
+//ll n, m, s, d[N], vis[N];
+//vector<pair<int,int> >mp[N];
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m >> s;
+//	for (int i = 0, u, v, w; i < m; i++) {
+//		cin >> u >> v >> w;
+//		mp[u].push_back({ v,w });
+//	}
+//	queue<int>que;
+//	que.push(s);
+//	vis[s] = 1;
+//	for (int i = 0; i <= n; i++)
+//		d[i] = LLONG_MAX;
+//	d[s] = 0;
+//	while (!que.empty()) {
+//		int u = que.front();
+//		que.pop();
+//		vis[u] = 0;
+//		for (auto [v, w] : mp[u]) if(d[v] > d[u] + w) {
+//			d[v] = d[u] + w;
+//			if (!vis[v]) {
+//				que.push(v);
+//				vis[v] = 1;
+//			}
+//		}
+//	}
+//	for (int i = 1; i <= n; i++)
+//		cout << d[i] << ' ';
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e5 + 5;
+//int n, m, s, d[N], vis[N];
+//vector<pair<int, int> >mp[N];
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m >> s;
+//	for (int i = 0, u, v, w; i < m; i++) {
+//		cin >> u >> v >> w;
+//		mp[u].push_back({ v,w });
+//	}
+//	priority_queue< pair<int, int>, vector<pair<int,int>>,greater<pair<int,int>> >que;
+//	que.push({0,s});
+//	memset(d, 0x3f, sizeof d);
+//	d[s] = 0;
+//	while (!que.empty()) {
+//		int u = que.top().second;
+//		que.pop();
+//		if (vis[u]) continue;
+//		vis[u] = 1;
+//		for (auto& [v, w] : mp[u]) {
+//			if (d[v] > d[u] + w) {
+//				d[v] = d[u] + w;
+//				que.push({ d[v],v });
+//			}
+//		}
+//	}
+//	for (int i = 1; i <= n; i++)
+//		cout << d[i] << ' ';
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 2e2 + 5;
+//int n, m, s, d[N], vis[N], ac[N], q;
+//vector<pair<int, int> >mp[N];
+//
+//void krustar(int x, int t) {
+//	memset(d, 0x3f, sizeof d);
+//	memset(vis, 0, sizeof vis);
+//	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>> > que;
+//	que.push({ 0,x });
+//	d[x] = 0;
+//	while (que.size()) {
+//		int u = que.top().second;
+//		que.pop();
+//		if (vis[u]) continue;
+//		vis[u] = 1;
+//		for (auto [v, w] : mp[u]) {
+//			if (d[v] > d[u] + w && ac[u] <= t && ac[v] <= t) {
+//				d[v] = d[u] + w;
+//				que.push({ d[v],v });
+//			}
+//		}
+//	}
+//}
+//
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m;
+//	for (int i = 0; i < n; i++)
+//		cin >> ac[i];
+//	for (int i = 0, u, v, w; i < m; i++) {
+//		cin >> u >> v >> w;
+//		mp[u].push_back({ v,w });
+//		mp[v].push_back({ u,w });
+//	}
+//	int x, y, t;
+//	cin >> q;
+//	while (q--) {
+//		cin >> x >> y >> t;
+//		if (ac[x] > t || ac[y] > t) {
+//			cout << "-1\n";
+//			continue;
+//		}
+//		krustar(x, t);
+//		if (d[y] == 0x3f3f3f3f)
+//			cout << "-1\n";
+//		else
+//			cout << d[y] << '\n';
+//	}
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e3 + 5;
+//int n, m, s, d[N], vis[N], q, sum;
+//vector<pair<int, int> >mp1[N];
+//vector<pair<int, int> >mp2[N];
+//
+//void krustar() {
+//	memset(d, 0x3f, sizeof d);
+//	d[1] = 0;
+//	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>que;
+//	que.push({0,1});
+//	while (que.size()) {
+//		int u = que.top().second;
+//		que.pop();
+//		if (vis[u]) continue;
+//		vis[u] = 1;
+//		for (auto [v, w] : mp1[u]) {
+//			if (d[v] > d[u] + w) {
+//				d[v] = d[u] + w;
+//				que.push({ d[v],v });
+//			}
+//		}
+//	}
+//	for (int i = 2; i <= n; i++)
+//		sum += d[i];
+//	memset(d, 0x3f, sizeof d);
+//	memset(vis, 0, sizeof vis);
+//	d[1] = 0;
+//	que.push({ 0,1 });
+//	while (que.size()) {
+//		int u = que.top().second;
+//		que.pop();
+//		if (vis[u]) continue;
+//		vis[u] = 1;
+//		for (auto [v, w] : mp2[u]) {
+//			if (d[v] > d[u] + w) {
+//				d[v] = d[u] + w;
+//				que.push({ d[v],v });
+//			}
+//		}
+//	}
+//	for (int i = 2; i <= n; i++)
+//		sum += d[i];
+//}
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m;
+//	for (int i = 0, u, v, w; i < m; i++) {
+//		cin >> u >> v >> w;
+//		mp1[u].push_back({ v,w });
+//		mp2[v].push_back({ u,w });
+//	}
+//	krustar();
+//	cout << sum;
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e6 + 5;
+//const int mod = 100003;
+//int n, m, s, d[N], vis[N], cnt[N];
+//vector<int>mp[N];
+//
+//void krustar() {
+//	memset(d, 0x3f, sizeof d);
+//	d[1] = 0;
+//	cnt[1] = 1;
+//	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>que;
+//	que.push({ 0,1 });
+//	while (que.size()) {
+//		int u = que.top().second;
+//		que.pop();
+//		if (vis[u]) continue;
+//		vis[u] = 1;
+//		for (auto v : mp[u]) {
+//			if (d[v] == d[u] + 1)
+//				cnt[v] += cnt[u];
+//			else if (d[v] > d[u] + 1) {
+//				d[v] = d[u] + 1;
+//				cnt[v] = cnt[u];
+//				que.push({ d[v],v });
+//			}
+//			cnt[v] %= mod;
+//		}
+//	}
+//}
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m;
+//	for (int i = 0, u, v; i < m; i++) {
+//		cin >> u >> v;
+//		mp[u].push_back(v);
+//		mp[v].push_back(u);
+//	}
+//	krustar();
+//	for (int i = 1; i <= n; i++)
+//		cout << cnt[i] <<'\n';
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e4 + 5;
+//#define int long long
+//int n, m, b, blod[N], vis[N], f[N];
+//vector<pair<int, int> >mp[N];
+//
+//bool check(int mid) {
+//	if (f[1] > mid)
+//		return false;
+//	memset(vis, 0, sizeof vis);
+//	for (int i = 1; i <= n; i++)
+//		blod[i] = -1;
+//	priority_queue<pair<int, int>>que;
+//	que.push({ b,1 });
+//	blod[1] = b;
+//	while (que.size()) {
+//		int u = que.top().second;
+//		que.pop();
+//		if (vis[u]) continue;
+//		vis[u] = 1;
+//		for (auto [v, w] : mp[u]) {
+//			if (w <= blod[u] && f[v] <= mid) {
+//				blod[v] = blod[u] - w;
+//				que.push({blod[v],v});
+//			}
+//		}
+//	}
+//	return blod[n] != -1;
+//}
+//
+//signed main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m >> b;
+//	for (int i = 1; i <= n; i++)
+//		cin >> f[i];
+//	for (int i = 0, u, v, w; i < m; i++) {
+//		cin >> u >> v >> w;
+//		mp[u].push_back({ v,w });
+//		mp[v].push_back({ u,w });
+//	}
+//	if (!check(INT_MAX)) {
+//		cout << "AFK";
+//		return 0;
+//	}
+//	int l = 0, r = INT_MAX;
+//	while (l <= r) {
+//		int mid = (l + r) >> 1;
+//		if (check(mid))
+//			r = mid - 1;
+//		else
+//			l = mid + 1;
+//	}
+//	cout << l;
+//	
+//
+//	return 0;
+//}
+
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const int N = 1e5 + 5;
-ll n, m, s, d[N], vis[N];
-vector<pair<int,int> >mp[N];
+const int N = 1e4 + 5;
+//#define int long long
+int n, m, b, blod[N], vis[N], f[N];
+vector<pair<int, int> >mp[N];
 
-int main() {
+
+signed main() {
 	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-	cin >> n >> m >> s;
-	for (int i = 0, u, v, w; i < m; i++) {
-		cin >> u >> v >> w;
-		mp[u].push_back({ v,w });
-	}
-	queue<int>que;
-	que.push(s);
-	vis[s] = 1;
-	for (int i = 0; i <= n; i++)
-		d[i] = LLONG_MAX;
-	d[s] = 0;
-	while (!que.empty()) {
-		int u = que.front();
-		que.pop();
-		vis[u] = 0;
-		for (auto [v, w] : mp[u]) if(d[v] > d[u] + w) {
-			d[v] = d[u] + w;
-			if (!vis[v]) {
-				que.push(v);
-				vis[v] = 1;
-			}
-		}
-	}
-	for (int i = 1; i <= n; i++)
-		cout << d[i] << ' ';
+	
 
 	return 0;
 }
