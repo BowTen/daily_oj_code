@@ -3720,7 +3720,7 @@
 
 
 
-
+//
 //#include<bits/stdc++.h>
 //using namespace std;
 //typedef long long ll;
@@ -3784,19 +3784,233 @@
 
 
 
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e4 + 5;
+////#define int long long
+//int n, m, b, blod[N], vis[N], f[N], cnt, head[N];
+//vector<pair<int, int> >mp[N];
+//struct node {
+//	int x, to, next;
+//};
+////node edge[10 * N];
+//
+////void add_edge(int u, int v, int w) {
+////	edge[cnt].x = w;
+////	edge[cnt].to = v;
+////	edge[cnt].next = head[u];
+////	head[u] = cnt++;
+////}
+//
+//bool check(int mid) {
+//	if (f[1] > mid || f[n] > mid)
+//		return false;
+//	memset(vis, 0, sizeof vis);
+//	for (int i = 1; i <= n; i++)
+//		blod[i] = -1;
+//	blod[1] = b;
+//	priority_queue<pair<int, int>>que;
+//	que.push({ b,1 });
+//
+//	while (que.size()) {
+//		int u = que.top().second;
+//		que.pop();
+//		if (vis[u]) continue;
+//		vis[u] = 1;
+//		for (auto [v, w] : mp[u]) {
+//			if (f[v] <= mid && w <= blod[u]) {
+//				blod[v] = blod[u] - w;
+//				que.push({ blod[v],v });
+//			}
+//		}
+//	}
+//	return blod[n] != -1;
+//}
+//
+//
+//signed main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m >> b;
+//	for (int i = 1; i <= n; i++)
+//		cin >> f[i], head[i] = -1;
+//	for (int i = 0, u, v, w; i < m; i++) {
+//		cin >> u >> v >> w;
+//		mp[u].push_back({ v,w });
+//		mp[v].push_back({ u,w });
+//	}
+//	int l = 0, r = INT_MAX;
+//	if (!check(r)) {
+//		cout << "AFK";
+//		return 0;
+//	}
+//	while (l <= r) {
+//		int mid = l + r >> 1;
+//		if (check(mid))
+//			r = mid - 1;
+//		else
+//			l = mid + 1;
+//	}
+//	cout << l;
+//
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 1e5 + 5;
+//const int M = 2e5 + 5;
+//// #define int long long
+//int n, m, s, cnt, head[N], d[N], vis[N];
+//struct node {
+//	int x, to, next;
+//};
+//node edge[M];
+//
+//void add_edge(int u, int v, int w) {
+//	edge[++cnt].x = w;
+//	edge[cnt].to = v;
+//	edge[cnt].next = head[u];
+//	head[u] = cnt;
+//}
+//
+//void dij(int s) {
+//	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>que;
+//	que.push({ 0,s });
+//	memset(d, 0x3f, sizeof d);
+//	memset(vis, 0, sizeof vis);
+//	d[s] = 0;
+//	while (que.size()) {
+//		int u = que.top().second;
+//		que.pop();
+//		if (vis[u]) continue;
+//		vis[u] = 1;
+//		for (int v = head[u], w; v; v = edge[v].next) {
+//			w = edge[v].x;
+//			if (d[edge[v].to] > d[u] + w) {
+//				d[edge[v].to] = d[u] + w;
+//				que.push({ d[edge[v].to],edge[v].to });
+//			}
+//		}
+//	}
+//}
+//
+//signed main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m >> s;
+//	for (int i = 0, u, v, w; i < m; i++) {
+//		cin >> u >> v >> w;
+//		add_edge(u, v, w);
+//	}
+//	dij(s);
+//	for (int i = 1; i <= n; i++)
+//		cout << d[i] << ' ';
+//
+//	return 0;
+//}
+
+
+
 
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const int N = 1e4 + 5;
-//#define int long long
-int n, m, b, blod[N], vis[N], f[N];
-vector<pair<int, int> >mp[N];
+const int N = 5005;
+const int M = 2e5 + 5;
+int n, m, cnt, dis[N], head[N], vis[N];
+ll sum;
 
 
-signed main() {
+//int find(int x) {
+//	return fa[x] == x ? x : fa[x] = find(fa[x]);
+//}
+//
+//void merg(int a, int b) {
+//	a = find(a);
+//	b = find(b);
+//	fa[a] = b;
+//}
+
+//struct node{
+//	int w, u, v;
+//	const int operator<(const node e) {
+//		return w < e.w;
+//	}
+//}edge[M];
+//
+//void krustar() {
+//	for (int i = 1; i <= n; i++)
+//		fa[i] = i;
+//	for (int i = 0, u, v, w; i < m; i++) {
+//		cin >> edge[i].u >> edge[i].v >> edge[i].w;
+//	}
+//	sort(edge, edge + m);
+//	for (auto [w, u, v] : edge) {
+//		if (find(u) != find(v)) {
+//			sum += w;
+//			merg(u, v);
+//			cnt++;
+//		}
+//	}
+//	if (cnt < n - 1)
+//		cout << "orz";
+//	else
+//		cout << sum;
+//}
+struct nod {
+	int to, w, next;
+}edge[M*2];
+
+void add_edge(int u, int v, int w) {
+	edge[++cnt].w = w;
+	edge[cnt].to = v;
+	edge[cnt].next = head[u];
+	head[u] = cnt;
+}
+
+void prim() {
+	for (int i = 1; i <= n; i++)
+		dis[i] = -1;
+	dis[0] = INT_MAX;
+	dis[1] = 0;
+	for (int i = 0; i <= n - 1; i++) {
+		int x = 0;
+		for (int j = 1; j <= n; j++) {
+			if (!vis[j] && dis[j] >= 0 && dis[j] < dis[x])
+				x = j;
+		}
+		if (!x) {
+			cout << "orz";
+			return;
+		}
+		vis[x] = 1;
+		sum += dis[x];
+		for (int id = head[x], v, w; id; id = edge[id].next) {
+			v = edge[id].to;
+			w = edge[id].w;
+			if (dis[v] == -1 || w < dis[v])
+				dis[v] = w;
+		}
+	}
+	cout << sum;
+}
+
+
+int main() {
 	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-	
+	cin >> n >> m;
+	for (int i = 0, u, v, w; i < m; i++) {
+		cin >> u >> v >> w;
+		add_edge(u, v, w);
+		add_edge(v, u, w);
+	}
+	//krustar();
+	prim();
 
 	return 0;
 }
