@@ -3916,16 +3916,271 @@
 
 
 
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 5005;
+//const int M = 2e5 + 5;
+//int n, m, cnt, dis[N], head[N], vis[N];
+//ll sum;
+//
+//
+////int find(int x) {
+////	return fa[x] == x ? x : fa[x] = find(fa[x]);
+////}
+////
+////void merg(int a, int b) {
+////	a = find(a);
+////	b = find(b);
+////	fa[a] = b;
+////}
+//
+////struct node{
+////	int w, u, v;
+////	const int operator<(const node e) {
+////		return w < e.w;
+////	}
+////}edge[M];
+////
+////void krustar() {
+////	for (int i = 1; i <= n; i++)
+////		fa[i] = i;
+////	for (int i = 0, u, v, w; i < m; i++) {
+////		cin >> edge[i].u >> edge[i].v >> edge[i].w;
+////	}
+////	sort(edge, edge + m);
+////	for (auto [w, u, v] : edge) {
+////		if (find(u) != find(v)) {
+////			sum += w;
+////			merg(u, v);
+////			cnt++;
+////		}
+////	}
+////	if (cnt < n - 1)
+////		cout << "orz";
+////	else
+////		cout << sum;
+////}
+//struct nod {
+//	int to, w, next;
+//}edge[M*2];
+//
+//void add_edge(int u, int v, int w) {
+//	edge[++cnt].w = w;
+//	edge[cnt].to = v;
+//	edge[cnt].next = head[u];
+//	head[u] = cnt;
+//}
+//
+//void prim() {
+//	for (int i = 1; i <= n; i++)
+//		dis[i] = -1;
+//	dis[0] = INT_MAX;
+//	dis[1] = 0;
+//	for (int i = 0; i <= n - 1; i++) {
+//		int x = 0;
+//		for (int j = 1; j <= n; j++) {
+//			if (!vis[j] && dis[j] >= 0 && dis[j] < dis[x])
+//				x = j;
+//		}
+//		if (!x) {
+//			cout << "orz";
+//			return;
+//		}
+//		vis[x] = 1;
+//		sum += dis[x];
+//		for (int id = head[x], v, w; id; id = edge[id].next) {
+//			v = edge[id].to;
+//			w = edge[id].w;
+//			if (dis[v] == -1 || w < dis[v])
+//				dis[v] = w;
+//		}
+//	}
+//	cout << sum;
+//}
+//
+//
+//int main() {
+//	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+//	cin >> n >> m;
+//	for (int i = 0, u, v, w; i < m; i++) {
+//		cin >> u >> v >> w;
+//		add_edge(u, v, w);
+//		add_edge(v, u, w);
+//	}
+//	//krustar();
+//	prim();
+//
+//	return 0;
+//}
 
-#include<bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-const int N = 5005;
-const int M = 2e5 + 5;
-int n, m, cnt, dis[N], head[N], vis[N];
-ll sum;
 
 
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 5005;
+//const int M = 2e5 + 5;
+//int n, m;
+//
+//
+//
+//int main() {
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		int n;
+//		cin >> n;
+//		string s;
+//		cin >> s;
+//		for (int i = 0; i <= n - 11; i++) {
+//			if (s[i] == '8') {
+//				cout << "YES\n";
+//				goto ss;
+//			}
+//		}
+//		cout << "NO\n";
+//	ss:;
+//	}
+//
+//
+//	return 0;
+//}
+//
+
+//
+//#include<bits/stdc++.h>
+//using namespace std;
+//typedef long long ll;
+//const int N = 5005;
+//const int M = 2e5 + 5;
+//int n, m, a[7], num[7] = {0,4,8,15,16,23,42};
+//
+//
+//
+//int main() {
+//	map<int, int>mp;
+//	for (int i = 1; i < 7; i++)
+//		mp[num[i]]++;
+//
+//	//int t;
+//	//cout << "? 1 1\n";
+//	//fflush(stdout);
+//	//cin >> t;
+//	//a[1] = sqrt(t);
+//	//mp.erase(a[1]);
+//
+//	//cout << "? 2 2\n";
+//	//fflush(stdout);
+//	//cin >> t;
+//	//a[2] = sqrt(t);
+//	//mp.erase(a[2]);
+//
+//	int t1, t2, m1[2], m2[2];
+//
+//	cout << "? 1 2\n";
+//	fflush(stdout);
+//	cin >> t1;
+//	for (auto [k, v] : mp) {
+//		if (t1 % k == 0) {
+//			m1[0] = t1 / k, m1[1] = k;
+//			mp.erase(m1[0]);
+//			mp.erase(m1[1]);
+//			break;
+//		}
+//	}
+//	int i = 0, j = 0;
+//
+//	cout << "? 2 3\n";
+//	fflush(stdout);
+//	cin >> t2;
+//	for (auto [k, v] : mp) {
+//		if (t2 % k == 0) {
+//			m2[0] = t2 / k, m2[1] = k;
+//			for (i = 0; i < 2; i++) {
+//				for (j = 0; j < 2; j++) {
+//					if (m1[i] == m2[j])
+//						goto ss;
+//				}
+//			}
+//		ss:;
+//			mp.erase(m2[j ^ 1]);
+//			break;
+//		}
+//	}
+//
+//	a[1] = m1[i ^ 1];
+//	a[3] = m2[j ^ 1];
+//	a[2] = m1[i];
+//
+//
+//	cout << "? 4 5\n";
+//	fflush(stdout);
+//	cin >> t1;
+//	for (auto [k, v] : mp) {
+//		if (t1 % k == 0) {
+//			m1[0] = t1 / k, m1[1] = k;
+//			mp.erase(m1[0]);
+//			mp.erase(m1[1]);
+//			break;
+//		}
+//	}
+//	//int i = 0, j = 0;
+//
+//	cout << "? 5 6\n";
+//	fflush(stdout);
+//	cin >> t2;
+//	for (auto [k, v] : mp) {
+//		if (t2 % k == 0) {
+//			m2[0] = t2 / k, m2[1] = k;
+//			for (i = 0; i < 2; i++) {
+//				for (j = 0; j < 2; j++) {
+//					if (m1[i] == m2[j])
+//						goto sss;
+//				}
+//			}
+//		sss:;
+//			mp.erase(m2[j ^ 1]);
+//			break;
+//		}
+//	}
+//
+//
+//	a[4] = m1[i ^ 1];
+//	a[6] = m2[j ^ 1];
+//	a[5] = m1[i];
+//
+//	cout << "! ";
+//	for (int i = 1; i <= 6; i++)
+//		cout << a[i] << ' ';
+//	cout << '\n';
+//	fflush(stdout);
+//	/*for (int i = 1; i <= 6; i++) {
+//		for (int j = 1; j <= 6; j++) {
+//			if(i >= j)
+//			cout << num[i] * num[j] << ' ';
+//		}
+//		cout << '\n';
+//	}*/
+//
+//	return 0;
+//}
+
+//64
+//16
+//240
+//672
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 5e5 + 5;
+//int n, m, fa[N], ans[N];
+//
 //int find(int x) {
 //	return fa[x] == x ? x : fa[x] = find(fa[x]);
 //}
@@ -3935,82 +4190,241 @@ ll sum;
 //	b = find(b);
 //	fa[a] = b;
 //}
-
-//struct node{
-//	int w, u, v;
-//	const int operator<(const node e) {
-//		return w < e.w;
-//	}
-//}edge[M];
 //
-//void krustar() {
+//
+//int main() {
+//	cin >> n >> m;
 //	for (int i = 1; i <= n; i++)
 //		fa[i] = i;
-//	for (int i = 0, u, v, w; i < m; i++) {
-//		cin >> edge[i].u >> edge[i].v >> edge[i].w;
-//	}
-//	sort(edge, edge + m);
-//	for (auto [w, u, v] : edge) {
-//		if (find(u) != find(v)) {
-//			sum += w;
-//			merg(u, v);
-//			cnt++;
+//	for (int id, t[2], k, i = 0; i < m; i++) {
+//		cin >> k;
+//		if (!k) continue;
+//		k--;
+//		cin >> t[0];
+//		id = 1;
+//		while (k-- > 0) {
+//			cin >> t[id];
+//			merg(t[id], t[id ^ 1]);
+//			id = id ^ 1;
 //		}
 //	}
-//	if (cnt < n - 1)
-//		cout << "orz";
-//	else
-//		cout << sum;
+//	for (int i = 1; i <= n; i++)
+//		ans[find(i)]++;
+//	for (int i = 1; i <= n; i++) {
+//		cout << ans[fa[i]] << ' ';
+//	}
+//
+//	return 0;
 //}
-struct nod {
-	int to, w, next;
-}edge[M*2];
 
-void add_edge(int u, int v, int w) {
-	edge[++cnt].w = w;
-	edge[cnt].to = v;
-	edge[cnt].next = head[u];
-	head[u] = cnt;
-}
 
-void prim() {
-	for (int i = 1; i <= n; i++)
-		dis[i] = -1;
-	dis[0] = INT_MAX;
-	dis[1] = 0;
-	for (int i = 0; i <= n - 1; i++) {
-		int x = 0;
-		for (int j = 1; j <= n; j++) {
-			if (!vis[j] && dis[j] >= 0 && dis[j] < dis[x])
-				x = j;
-		}
-		if (!x) {
-			cout << "orz";
-			return;
-		}
-		vis[x] = 1;
-		sum += dis[x];
-		for (int id = head[x], v, w; id; id = edge[id].next) {
-			v = edge[id].to;
-			w = edge[id].w;
-			if (dis[v] == -1 || w < dis[v])
-				dis[v] = w;
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, m, a[N];
+//vector<int>L;
+//vector<int>R;
+//string s;
+//
+//int main() {
+//	cin >> n;
+//	cin >> s;
+//	for (int i = 0; i < n; i++) {
+//		if (s[i] == '(')
+//			L.push_back(i);
+//		else
+//			R.push_back(i);
+//	}
+//	int len = L.size();
+//	for (int i = 0, cl = 0; i < len; i++) {
+//		a[L[i]] = a[R[i]] = cl;
+//		cl = cl ^ 1;
+//	}
+//	for (int i = 0; i < n; i++)
+//		cout << a[i];
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//const int N = 2e5 + 5;
+//int n, m, a[N];
+//vector<int>L;
+//vector<int>R;
+//string s;
+//
+//int main() {
+//	cin >> n;
+//	while (n--) {
+//		int s, c;
+//		cin >> c >> s;
+//		if (c >= s) {
+//			cout << s << '\n';
+//			continue;
+//		}
+//		int ans = 0;
+//		m = s % c;
+//		ans += (m) * (((s +c-m) / c) * ((s +c- m) / c));
+//		ans += (c-m) * ((s / c) * (s / c));
+//		cout << ans << '\n';
+//	}
+//
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//const int N = 2e5 + 5;
+//int n;
+//int a, b;
+//
+//signed main() {
+//	int t;
+//	cin >> t;
+//	while (t--) {
+//		cin >> a >> b;
+//		if (a > b)
+//			swap(a, b);
+//		if (!a && !b) {
+//			cout << "YES\n";
+//			continue;
+//		}
+//		if ((a * 2 < b) || a < 0 || b < 0) {
+//			cout << "NO\n";
+//			continue;
+//		}
+//		if ((a + b) % 3 == 0)
+//			cout << "YES\n";
+//		else
+//			cout << "NO\n";
+//	}
+//
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+int num[7] = { 0,4,8,15,16,23,42 }, a[7], t;
+map<int, int>mp;
+map<int, int>mp2;
+
+signed main() {
+	
+	for (int i = 1; i <= 6; i++)
+		mp2[num[i]] = mp[num[i]] = 1;
+
+	int m1[2], m2[2];
+	printf("? 1 2\n");
+	fflush(stdout);
+	scanf("%d", &t);
+	if (!t)
+		return 0;
+	for (auto [k, v] : mp) {
+		if (t% k == 0 && mp2[t / k]) {
+			m1[0] = k;
+			m1[1] = t / k;
+			mp.erase(m1[0]);
+			mp.erase(m1[1]);
+			break;
 		}
 	}
-	cout << sum;
-}
-
-
-int main() {
-	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-	cin >> n >> m;
-	for (int i = 0, u, v, w; i < m; i++) {
-		cin >> u >> v >> w;
-		add_edge(u, v, w);
-		add_edge(v, u, w);
+	printf("? 2 3\n");
+	fflush(stdout);
+	scanf("%d", &t);
+	if (!t)
+		return 0;
+	for (auto [k, v] : mp) {
+		if (t % k == 0 && mp2[t / k]) {
+			m2[0] = k;
+			m2[1] = t / k;
+			mp.erase(m2[0]);
+			mp.erase(m2[1]);
+			break;
+		}
 	}
-	//krustar();
-	prim();
+	int p1, p2;
+	for (int i = 0; i < 2; i++)
+		for(int j = 0;j < 2;j++)
+			if (m1[i] == m2[j]) {
+				p1 = i;
+				p2 = j;
+				goto ss;
+			}
+ss:;
+	a[1] = m1[1 ^ p1];
+	a[2] = m1[p1];
+	a[3] = m2[1 ^ p2];
+
+	printf("? 4 5\n");
+	fflush(stdout);
+	scanf("%d", &t);
+	if (!t)
+		return 0;
+	for (auto [k, v] : mp) {
+		if (t % k == 0 && mp2[t / k]) {
+			m1[0] = k;
+			m1[1] = t / k;
+			mp.erase(m1[0]);
+			mp.erase(m1[1]);
+			break;
+		}
+	}
+	printf("? 5 6\n");
+	fflush(stdout);
+	scanf("%d", &t);
+	if (!t)
+		return 0;
+	for (auto [k, v] : mp) {
+		if (t % k == 0 && mp2[t / k]) {
+			m2[0] = k;
+			m2[1] = t / k;
+			mp.erase(m2[0]);
+			mp.erase(m2[1]);
+			break;
+		}
+	}
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 2; j++)
+			if (m1[i] == m2[j]) {
+				p1 = i;
+				p2 = j;
+				goto sss;
+			}
+sss:;
+	a[4] = m1[1 ^ p1];
+	a[5] = m1[p1];
+	a[6] = m2[1 ^ p2];
+
+	printf("! ");
+	for (int i = 1; i <= 6; i++) {
+		printf("%d",a[i]);
+		if (i != 6)
+			printf(" ");
+		else
+			printf("\n");
+	}
+	
 
 	return 0;
 }
+
+
+
+//32
+//128
+//630
+//966
+
+
+//966
+//630
+//128
+//32
