@@ -5,34 +5,34 @@
     cin.tie(0);                  \
     cout.tie(0);
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 1e6 + 5;
-// int n, q;
-// ll t[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 1e6 + 5;
+//  int n, q;
+//  ll t[N];
 //
-// int lowbit(int x) {
+//  int lowbit(int x) {
 //	return x & -x;
-//}
+// }
 //
-// void add(int i, ll val) {
+//  void add(int i, ll val) {
 //	while (i <= n) {
 //		t[i] += val;
 //		i += lowbit(i);
 //	}
-//}
+// }
 //
-// ll getsum(int i) {
+//  ll getsum(int i) {
 //	ll ret = 0;
 //	while (i >= 1) {
 //		ret += t[i];
 //		i -= lowbit(i);
 //	}
 //	return ret;
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //
@@ -55,7 +55,7 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
 ////#include<bits/stdc++.h>
 ////using namespace std;
@@ -112,10 +112,10 @@
 ////	return 0;
 ////}
 
-//#include<bits/stdc++.h>
-// using namespace std;
+// #include<bits/stdc++.h>
+//  using namespace std;
 //
-// int main()
+//  int main()
 //{
 //	int t;
 //	cin >> t;
@@ -141,20 +141,20 @@
 //
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// int n, x[3],y[3];
-// char s[410][410];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  int n, x[3],y[3];
+//  char s[410][410];
 //
-// void init() {
+//  void init() {
 //	memset(s, 0, sizeof s);
 //	memset(x, 0, sizeof x);
 //	memset(y, 0, sizeof y);
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	int t;
 //	cin >> t;
@@ -208,18 +208,18 @@
 //
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 2e5 + 5;
-// int n, a, b;
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 2e5 + 5;
+//  int n, a, b;
+//  string s;
 //
-// void init() {
-//}
+//  void init() {
+// }
 //
-// int main()
+//  int main()
 //{
 //	int t;
 //	cin >> t;
@@ -297,18 +297,18 @@
 //	ss:;
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n, a, b;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n, a, b;
 //
-// void init() {
-//}
+//  void init() {
+// }
 //
-// int main()
+//  int main()
 //{
 //	int t;
 //	cin >> t;
@@ -348,10 +348,10 @@
 //		cout << '\n';
 //	}
 //	return 0;
-//}
+// }
 
 //
-//#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
 // const int N = 2e5 + 5;
@@ -399,14 +399,14 @@
 //	return 0;
 //}
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n;
 //
 //
-// int main()
+//  int main()
 //{
 //	int t;
 //	cin >> t;
@@ -447,16 +447,16 @@
 //	ss:;
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n, a, b;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n, a, b;
 //
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -525,16 +525,16 @@
 //			cout << "-1\n";
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n, a, b;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n, a, b;
 //
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -578,17 +578,17 @@
 //	ss:;
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n, l, r, s, sm, no;
-// int sum[500];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n, l, r, s, sm, no;
+//  int sum[500];
 //
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -639,17 +639,17 @@
 //			cout << "-1\n";
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// ll n, c, a[N], b[N];
-// ll da[N], mo[N], fas[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  ll n, c, a[N], b[N];
+//  ll da[N], mo[N], fas[N];
 //
 //
-// int main()
+//  int main()
 //{
 //	int t;
 //	scanf("%d", &t);
@@ -682,15 +682,15 @@
 //
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 1e7 + 5;
-// ll c, b[N], ans[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 1e7 + 5;
+//  ll c, b[N], ans[N];
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	for (int i = 1; i < N; i++)
@@ -710,13 +710,13 @@
 //			cout << "-1\n";
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// int n, m, c, t;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  int n, m, c, t;
 //
-// int main()
+//  int main()
 //{
 //	cin >> n >> m;
 //	map<int, pair<int ,int > >mp;
@@ -731,27 +731,27 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 1e3 + 5;
-// typedef long long ll;
-// struct bug {
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 1e3 + 5;
+//  typedef long long ll;
+//  struct bug {
 //	ll x, y, h, id;
-//};
-// vector<bug>b;
-// ll n, ans[N], x, y, atk, h, r, sb, f;
+// };
+//  vector<bug>b;
+//  ll n, ans[N], x, y, atk, h, r, sb, f;
 //
 //
-// void die(int x) {
+//  void die(int x) {
 //	ans[b[x].id] = 1;
 //	b.erase(b.begin() + x);
 //	sb--;
-//}
+// }
 //
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n;
@@ -799,7 +799,7 @@
 //		else
 //			cout << "YES\n";
 //	return 0;
-//}
+// }
 
 // 5
 // 2 1 0 1 1
@@ -808,17 +808,17 @@
 // 1 0 0 4
 // 1 0 1 8
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e3 + 5;
-// ll n,x,y,h,ak,f,r,ans[N];
-// struct bug {
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e3 + 5;
+//  ll n,x,y,h,ak,f,r,ans[N];
+//  struct bug {
 //	ll x, y, h, id;
-//};
-// vector<bug>b;
+// };
+//  vector<bug>b;
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n;
@@ -869,7 +869,7 @@
 //			cout << "YES\n";
 //
 //	return 0;
-//}
+// }
 
 // 5
 // 2 1 0 1 1
@@ -878,17 +878,17 @@
 // 2 1 0 1 1
 // 1 0 1 8
 
-//#include<bits/stdc++.h>
-// using namespace std;
-//#define endl '\n'
-//#define Acode ios::sync_with_stdio(false),cin.tie(0),cout.tie(0)
-// typedef long long ll;
-// const int inf = 0x3f3f3f3f;
-// const int N = 1e6 + 20;
-// ll n, m;
-// ll p[N], d[N];
-// ll dp[N];
-// int main()
+// #include<bits/stdc++.h>
+//  using namespace std;
+// #define endl '\n'
+// #define Acode ios::sync_with_stdio(false),cin.tie(0),cout.tie(0)
+//  typedef long long ll;
+//  const int inf = 0x3f3f3f3f;
+//  const int N = 1e6 + 20;
+//  ll n, m;
+//  ll p[N], d[N];
+//  ll dp[N];
+//  int main()
 //{
 //	scanf("%lld %lld", &n, &m);
 //	for (int i = 1; i <= n; ++i)
@@ -901,19 +901,19 @@
 //	printf("%lld\n", dp[m]);
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 1e6 + 5;
-// typedef long long ll;
-// ll n, k, s = 1, a[N], b[N], w[N], sub[N << 1], pre[N << 1], len, val[N<<1];
-// struct node {
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 1e6 + 5;
+//  typedef long long ll;
+//  ll n, k, s = 1, a[N], b[N], w[N], sub[N << 1], pre[N << 1], len, val[N<<1];
+//  struct node {
 //	ll val, id, f;
-//};
+// };
 //
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n >> k;
@@ -953,14 +953,14 @@
 //
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 1e6 + 5;
-// int a,b;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 1e6 + 5;
+//  int a,b;
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -975,19 +975,19 @@
 //
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 1e6 + 5;
-// typedef long long ll;
-// ll n, k, s = 1, a[N], b[N], w[N], sub[N << 1], pre[N << 1], len, val[N << 1];
-// struct node {
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 1e6 + 5;
+//  typedef long long ll;
+//  ll n, k, s = 1, a[N], b[N], w[N], sub[N << 1], pre[N << 1], len, val[N << 1];
+//  struct node {
 //	ll val, id, f;
-//};
+// };
 //
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n >> k;
@@ -1022,16 +1022,16 @@
 //
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 1e6 + 5;
-// typedef long long ll;
-// ll n, k, s = 1, a[N], b[N], w[N], sub[N << 1], len, val[N << 1];
-// vector<ll>num;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 1e6 + 5;
+//  typedef long long ll;
+//  ll n, k, s = 1, a[N], b[N], w[N], sub[N << 1], len, val[N << 1];
+//  vector<ll>num;
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n >> k;
@@ -1061,43 +1061,43 @@
 //	cout << ans;
 //
 //	return 0;
-//}
+// }
 
 // 2 2
 // 1 1 8
 // 1 1 4
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 1e5 + 5;
-// int T[N], n, q;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 1e5 + 5;
+//  int T[N], n, q;
 //
-// int lowbit(int x) {
+//  int lowbit(int x) {
 //	return x & -x;
-//}
+// }
 //
-// void add(int i, int val) {
+//  void add(int i, int val) {
 //	while (i <= n) {
 //		T[i] += val;
 //		i += lowbit(i);
 //	}
-//}
+// }
 //
-// ll getsum(int i) {
+//  ll getsum(int i) {
 //	ll ret = 0;
 //	while (i >= 1) {
 //		ret += T[i];
 //		i -= lowbit(i);
 //	}
 //	return ret;
-//}
+// }
 //
-// void init() {
+//  void init() {
 //	memset(T, 0, sizeof T);
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	int t;
 //	cin >> t;
@@ -1136,24 +1136,24 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// struct node {
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  struct node {
 //	ll sum;
 //	int l, r;
-//};
-// const int N = 1e5 + 5;
-// int n, q, a[N];
-// node T[N << 2];
+// };
+//  const int N = 1e5 + 5;
+//  int n, q, a[N];
+//  node T[N << 2];
 //
-// void up(int id) {
+//  void up(int id) {
 //	T[id].sum = T[id << 1].sum + T[id << 1 | 1].sum;
-//}
+// }
 //
-// void build(int id, int ql, int qr) {
+//  void build(int id, int ql, int qr) {
 //	T[id].l = ql;
 //	T[id].r = qr;
 //	if (ql == qr) {
@@ -1164,9 +1164,9 @@
 //	build(id << 1, ql, mid);
 //	build(id << 1 | 1, mid + 1, qr);
 //	up(id);
-//}
+// }
 //
-// void change(int id, int x, int val) {
+//  void change(int id, int x, int val) {
 //	int l = T[id].l;
 //	int r = T[id].r;
 //	if (l == r) {
@@ -1179,9 +1179,9 @@
 //	else
 //		change(id << 1 | 1, x, val);
 //	up(id);
-//}
+// }
 //
-// ll query(int id, int ql, int qr) {
+//  ll query(int id, int ql, int qr) {
 //	int l = T[id].l;
 //	int r = T[id].r;
 //	if (ql <= l && qr >= r)
@@ -1193,14 +1193,14 @@
 //		return query(id << 1 | 1, ql, qr);
 //	else
 //		return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
-//}
+// }
 //
-// void init() {
+//  void init() {
 //	memset(T, 0, sizeof T);
 //	memset(a, 0, sizeof a);
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	int t, cnt = 1;;
 //	cin >> t;
@@ -1234,23 +1234,23 @@
 //
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 5e4 + 5;
-// int n, q, a[N];
-// struct node {
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 5e4 + 5;
+//  int n, q, a[N];
+//  struct node {
 //	int max, l, r;
-//};
-// node seg[N << 2];
+// };
+//  node seg[N << 2];
 //
-// void up(int id) {
+//  void up(int id) {
 //	seg[id].max = max(seg[id << 1].max, seg[id << 1 | 1].max);
-//}
+// }
 //
-// void build(int id, int ql, int  qr) {
+//  void build(int id, int ql, int  qr) {
 //	seg[id].l = ql;
 //	seg[id].r = qr;
 //	if (ql == qr) {
@@ -1261,9 +1261,9 @@
 //	build(id << 1, ql, mid);
 //	build(id << 1 | 1, mid + 1, qr);
 //	up(id);
-//}
+// }
 //
-// void change(int id, int x, int val) {
+//  void change(int id, int x, int val) {
 //	int l = seg[id].l;
 //	int r = seg[id].r;
 //	if (l == r) {
@@ -1276,9 +1276,9 @@
 //	else if (x > mid)
 //		change(id << 1 | 1, x, val);
 //	up(id);
-//}
+// }
 //
-// int getmax(int id, int ql, int qr) {
+//  int getmax(int id, int ql, int qr) {
 //	int l = seg[id].l;
 //	int r = seg[id].r;
 //	if (ql <= l && qr >= r)
@@ -1290,10 +1290,10 @@
 //		return getmax(id << 1 | 1, ql, qr);
 //	else
 //		return max(getmax(id << 1, ql, qr), getmax(id << 1 | 1, ql, qr));
-//}
+// }
 //
 //
-// int main()
+//  int main()
 //{
 //	cin >> n;
 //	for (int i = 1; i <= n; i++)
@@ -1312,17 +1312,17 @@
 //		}
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 2e5 + 5;
-// typedef long long ll;
-// ll n, q, a[N];
-// ll getans(ll x) {
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 2e5 + 5;
+//  typedef long long ll;
+//  ll n, q, a[N];
+//  ll getans(ll x) {
 //	return x * (x + 1) / 2;
-//}
-// struct node {
+// }
+//  struct node {
 //	ll l, r, ans, fi, la, pre, end, isa;
 //	node operator+(const node& e2) {
 //		node ret;
@@ -1350,16 +1350,16 @@
 //		}
 //		return ret;
 //	}
-//};
-// node t[N << 2];
+// };
+//  node t[N << 2];
 //
 //
 //
-// void up(ll id) {
+//  void up(ll id) {
 //	t[id] = t[id << 1] + t[id << 1 | 1];
-//}
+// }
 //
-// void build(ll id, ll ql, ll qr) {
+//  void build(ll id, ll ql, ll qr) {
 //	t[id].l = ql;
 //	t[id].r = qr;
 //	if (ql == qr) {
@@ -1371,9 +1371,9 @@
 //	build(id << 1, ql, mid);
 //	build(id << 1 | 1, mid + 1, qr);
 //	up(id);
-//}
+// }
 //
-// void change(ll id, ll x, ll val) {
+//  void change(ll id, ll x, ll val) {
 //	ll l = t[id].l;
 //	ll r = t[id].r;
 //	if (l == r) {
@@ -1387,9 +1387,9 @@
 //	else if(x > mid)
 //		change(id << 1 | 1, x, val);
 //	up(id);
-//}
+// }
 //
-// node query(ll id, ll ql, ll qr) {
+//  node query(ll id, ll ql, ll qr) {
 //	ll l = t[id].l;
 //	ll r = t[id].r;
 //	if (ql <= l && r <= qr)
@@ -1401,9 +1401,9 @@
 //		return query(id << 1 | 1, ql, qr);
 //	else
 //		return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n >> q;
@@ -1423,35 +1423,35 @@
 //		}
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 1e5 + 5;
-// struct node {
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 1e5 + 5;
+//  struct node {
 //	ll l, r, lazy, sum, son;
-//};
-// node t[N << 2];
-// ll n, q, a[N], sta[N];
+// };
+//  node t[N << 2];
+//  ll n, q, a[N], sta[N];
 //
-// void up(int id) {
+//  void up(int id) {
 //	t[id].sum = t[id << 1].sum + t[id << 1 | 1].sum;
 //	t[id].son = t[id << 1].son + t[id << 1 | 1].son;
-//}
+// }
 //
-// void settag(int id, ll val) {
+//  void settag(int id, ll val) {
 //	t[id].sum += t[id].son * val;
 //	t[id].lazy += val;
-//}
+// }
 //
-// void down(int id) {
+//  void down(int id) {
 //	settag(id << 1, t[id].lazy);
 //	settag(id << 1 | 1, t[id].lazy);
 //	t[id].lazy = 0;
-//}
+// }
 //
-// void build(int id, int ql, int qr) {
+//  void build(int id, int ql, int qr) {
 //	t[id].l = ql;
 //	t[id].r = qr;
 //	if (ql == qr) {
@@ -1463,9 +1463,9 @@
 //	build(id << 1, ql, mid);
 //	build(id << 1 | 1, mid + 1, qr);
 //	up(id);
-//}
+// }
 //
-// void changesta(int id, int x, ll s) {
+//  void changesta(int id, int x, ll s) {
 //	int l = t[id].l;
 //	int r = t[id].r;
 //	if (l == r) {
@@ -1479,9 +1479,9 @@
 //	else
 //		changesta(id << 1 | 1, x, s);
 //	up(id);
-//}
+// }
 //
-// void modify(int id, int ql, int qr, ll val) {
+//  void modify(int id, int ql, int qr, ll val) {
 //	ll l = t[id].l;
 //	ll r = t[id].r;
 //	if (ql <= l && qr >= r) {
@@ -1499,9 +1499,9 @@
 //		modify(id << 1 | 1, ql, qr, val);
 //	}
 //	up(id);
-//}
+// }
 //
-// ll query(int id, int ql, int qr) {
+//  ll query(int id, int ql, int qr) {
 //	int l = t[id].l;
 //	int r = t[id].r;
 //	if (ql <= l && qr >= r)
@@ -1514,9 +1514,9 @@
 //		return query(id << 1 | 1, ql, qr);
 //	else
 //		return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n >> q;
@@ -1549,42 +1549,42 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-//#define BowTen ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-//#define mp make_pair
-// typedef long long ll;
-// typedef pair<int, int> hashv;
-// const int mod1 = 1e9 + 7;
-// const int mod2 = 1e9 + 9;
-// const int N = 4e5 + 5;
-// hashv pw[N], h[N];
-// hashv base = mp(131, 29);
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+// #define BowTen ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+// #define mp make_pair
+//  typedef long long ll;
+//  typedef pair<int, int> hashv;
+//  const int mod1 = 1e9 + 7;
+//  const int mod2 = 1e9 + 9;
+//  const int N = 4e5 + 5;
+//  hashv pw[N], h[N];
+//  hashv base = mp(131, 29);
+//  string s;
 //
 //
-// hashv operator+ (hashv a, hashv b) {
+//  hashv operator+ (hashv a, hashv b) {
 //	return mp((a.first + b.first) % mod1, (a.second + b.second) % mod2);
-//}
-// hashv operator- (hashv a, hashv b) {
+// }
+//  hashv operator- (hashv a, hashv b) {
 //	return mp((a.first - b.first) < 0 ? (a.first - b.first) + mod1 : (a.first - b.first), \
 //		     (a.second - b.second) < 0 ? (a.second - b.second)+mod2 : (a.second - b.second));
-//}
-// hashv operator* (hashv a, hashv b) {
+// }
+//  hashv operator* (hashv a, hashv b) {
 //	return mp((1ll * a.first * b.first) % mod1, (1ll * a.second * b.second) % mod2);
-//}
-// hashv getsub(int l, int r) {
+// }
+//  hashv getsub(int l, int r) {
 //	return h[r] - h[l - 1] * pw[r - l + 1];
-//}
-// void init() {
+// }
+//  void init() {
 //	memset(pw, 0, sizeof pw);
 //	memset(h, 0, sizeof h);
 //	pw[0] = mp(1, 1);
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	BowTen;
 //	while (cin >> s) {
@@ -1602,13 +1602,13 @@
 //		cout << '\n';
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
+// #include<bits/stdc++.h>
+//  using namespace std;
 //
 //
-// int main()
+//  int main()
 //{
 //
 //	int t;
@@ -1617,41 +1617,41 @@
 //		cout << 22;
 //	}
 //	return 0;
-//}
+// }
 
-//#include<iostream>
-// using namespace std;
-//#define BowTen ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-//#define mp make_pair
-// typedef long long ll;
-// typedef pair<int, int> hashv;
-// const int N = 5e4 + 5;
-// const int mod1 = 1e9 + 9;
-// const int mod2 = 1e9 + 7;
-// hashv pw[N], h[N], base = mp(33,131);
-// string s;
+// #include<iostream>
+//  using namespace std;
+// #define BowTen ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+// #define mp make_pair
+//  typedef long long ll;
+//  typedef pair<int, int> hashv;
+//  const int N = 5e4 + 5;
+//  const int mod1 = 1e9 + 9;
+//  const int mod2 = 1e9 + 7;
+//  hashv pw[N], h[N], base = mp(33,131);
+//  string s;
 //
-// hashv operator+(hashv a, hashv b) {
+//  hashv operator+(hashv a, hashv b) {
 //	return mp((a.first + b.first) % mod1, (a.second + b.second) % mod2);
-//}
-// hashv operator-(hashv a, hashv b) {
+// }
+//  hashv operator-(hashv a, hashv b) {
 //	return mp((a.first - b.first) < 0 ? (a.first - b.first) + mod1 : (a.first - b.first), \
 //		(a.second - b.second) < 0 ? (a.second - b.second) + mod2 : (a.second - b.second));
-//}
-// hashv operator*(hashv a, hashv b) {
+// }
+//  hashv operator*(hashv a, hashv b) {
 //	return mp((1ll * a.first * b.first) % mod1, (1ll * a.second * b.second) % mod2);
-//}
-// hashv getsub(int l, int r) {
+// }
+//  hashv getsub(int l, int r) {
 //	return h[r] - h[l - 1] * pw[r - l + 1];
-//}
-// void init() {
+// }
+//  void init() {
 //	memset(pw, 0, sizeof pw);
 //	memset(h, 0, sizeof h);
 //	pw[0] = mp(1, 1);
-//}
+// }
 //
 //
-// int main() {
+//  int main() {
 //	BowTen;
 //	while (cin >> s) {
 //		init();
@@ -1669,14 +1669,14 @@
 //
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  string s;
 //
 //
-// int main()
+//  int main()
 //{
 //	while (cin >> s) {
 //		int n = s.length();
@@ -1697,22 +1697,22 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef unsigned long long ull;
-// const int N = 4e5 + 5;
-// const int mod = 1e9 + 9;
-// string s;
-// ull h[N], pw[N], base = 131;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef unsigned long long ull;
+//  const int N = 4e5 + 5;
+//  const int mod = 1e9 + 9;
+//  string s;
+//  ull h[N], pw[N], base = 131;
 //
-// ull getson(int l, int r) {
+//  ull getson(int l, int r) {
 //	return h[r] - h[l - 1] * pw[r - l + 1];
-//}
+// }
 //
 //
-// int main()
+//  int main()
 //{
 //	pw[0] = 1;
 //	while (cin >> s) {
@@ -1730,25 +1730,25 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef unsigned long long ull;
-// const int N = 1e6 + 5;
-// const int mod = 1e9 + 9;
-// string s1, s2;
-// ull h1, h2[N], pw[N], base = 131;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef unsigned long long ull;
+//  const int N = 1e6 + 5;
+//  const int mod = 1e9 + 9;
+//  string s1, s2;
+//  ull h1, h2[N], pw[N], base = 131;
 //
-// ull getson(int l, int r) {
+//  ull getson(int l, int r) {
 //	return h2[r] - h2[l - 1] * pw[r - l + 1];
-//}
+// }
 //
-// void init() {
+//  void init() {
 //	h1 = 0;
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -1776,37 +1776,37 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-//#define mp make_pair
-// typedef pair<int, int> hashv;
-// typedef unsigned long long ull;
-// const int N = 1e6 + 5;
-// const int mod1 = 1e9 + 9, mod2 = 1e9+7;
-// string s1, s2;
-// hashv h1, h2[N], pw[N], base = mp(33, 131);
+// #include<bits/stdc++.h>
+//  using namespace std;
+// #define mp make_pair
+//  typedef pair<int, int> hashv;
+//  typedef unsigned long long ull;
+//  const int N = 1e6 + 5;
+//  const int mod1 = 1e9 + 9, mod2 = 1e9+7;
+//  string s1, s2;
+//  hashv h1, h2[N], pw[N], base = mp(33, 131);
 //
-// hashv operator+(const hashv a, const hashv b) {
+//  hashv operator+(const hashv a, const hashv b) {
 //	return mp((a.first + b.first) % mod1, (a.second + b.second) % mod2);
-//}
-// hashv operator-(const hashv a, const hashv b) {
+// }
+//  hashv operator-(const hashv a, const hashv b) {
 //	return mp((a.first - b.first) < 0 ? (a.first - b.first) + mod1 : (a.first - b.first),\
 //		  (a.second - b.second) < 0 ? (a.second - b.second) + mod2 : (a.second - b.second));
-//}
-// hashv operator*(const hashv a, const hashv b) {
+// }
+//  hashv operator*(const hashv a, const hashv b) {
 //	return mp((1ull * a.first * b.first) % mod1, (1ull * a.second * b.second) % mod2);
-//}
-// hashv getson(int l, int r) {
+// }
+//  hashv getson(int l, int r) {
 //	return h2[r] - h2[l - 1] * pw[r - l + 1];
-//}
+// }
 //
-// void init() {
+//  void init() {
 //	h1 = mp(0, 0);
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -1834,20 +1834,20 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<iostream>
-// using namespace std;
-// typedef unsigned long long ull;
-// const int N = 1e6 + 5, N2 = 1e4 + 5;;
-// string s1, s2;
-// int ne[N2];
+// #include<iostream>
+//  using namespace std;
+//  typedef unsigned long long ull;
+//  const int N = 1e6 + 5, N2 = 1e4 + 5;;
+//  string s1, s2;
+//  int ne[N2];
 //
-// void init() {
+//  void init() {
 //	memset(ne, 0, sizeof ne);
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -1877,20 +1877,20 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<iostream>
-// using namespace std;
-// typedef unsigned long long ull;
-// const int N = 1e6 + 5, N2 = 1e4 + 5;;
-// string s1, s2;
-// int ne[N2];
+// #include<iostream>
+//  using namespace std;
+//  typedef unsigned long long ull;
+//  const int N = 1e6 + 5, N2 = 1e4 + 5;;
+//  string s1, s2;
+//  int ne[N2];
 //
-// void init() {
+//  void init() {
 //	memset(ne, 0, sizeof ne);
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -1898,15 +1898,15 @@
 //
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 1e6 + 5;
-// string s1, s2;
-// int ne[N], n, m;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 1e6 + 5;
+//  string s1, s2;
+//  int ne[N], n, m;
 //
-// int main() {
+//  int main() {
 //
 //	cin >> s1 >> s2;
 //	n = s1.length();
@@ -1929,15 +1929,15 @@
 //	for (int i = 1; i <= m; i++)
 //		cout << ne[i] << ' ';
 //
-// 	return 0;
-//}
+//  	return 0;
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 1e6 + 5;
-// int a[110], n ,d ;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 1e6 + 5;
+//  int a[110], n ,d ;
 //
-// int main() {
+//  int main() {
 //
 //	int t;
 //	cin >> t;
@@ -1953,14 +1953,14 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 1e6 + 5;
-// string s1, s2;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 1e6 + 5;
+//  string s1, s2;
 //
-// int main() {
+//  int main() {
 //
 //	int t;
 //	cin >> t;
@@ -2010,14 +2010,14 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 1e6 + 5;
-// int a, b, c;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 1e6 + 5;
+//  int a, b, c;
 //
-// int main() {
+//  int main() {
 //
 //	int t;
 //	cin >> t;
@@ -2034,10 +2034,10 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
 //
-//#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 // using namespace std;
 // const int N = 5e4 + 5;
 // int a[N], b[N];
@@ -2074,12 +2074,12 @@
 //	return 0;
 //}
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 1e6 + 5;
-// string s1, s2;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 1e6 + 5;
+//  string s1, s2;
 //
-// int main() {
+//  int main() {
 //
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2120,14 +2120,14 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 2e5 + 5;
-// int n, a[N], b[N], ans[N], st[N], ed[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 2e5 + 5;
+//  int n, a[N], b[N], ans[N], st[N], ed[N];
 //
-// int main() {
+//  int main() {
 //
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2166,14 +2166,14 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 2e5 + 5;
-// int n, k;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 2e5 + 5;
+//  int n, k;
 //
-// int main() {
+//  int main() {
 //
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2199,15 +2199,15 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n, k;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n, k;
 //
-// int main() {
+//  int main() {
 //
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2223,10 +2223,10 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
 //
-//#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
 // const int N = 2e5 + 5;
@@ -2250,13 +2250,13 @@
 //	return 0;
 //}
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n, k;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n, k;
 //
-// int main() {
+//  int main() {
 //
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2281,15 +2281,15 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n, m;
-// string s;
-// struct val {
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n, m;
+//  string s;
+//  struct val {
 //	int l = 0, r = 0, x = 0;
 //	const val operator+(const val& e) {
 //		val ret;
@@ -2298,19 +2298,19 @@
 //		ret.x = x + e.x;
 //		return ret;
 //	}
-//};
-// struct node {
+// };
+//  struct node {
 //	int l, r;
 //	val v;
 //
-//};
-// node seg[N << 2];
+// };
+//  node seg[N << 2];
 //
-// void up(int id) {
+//  void up(int id) {
 //	seg[id].v = seg[id << 1].v + seg[id << 1 | 1].v;
-//}
+// }
 //
-// void build(int id, int ql, int qr) {
+//  void build(int id, int ql, int qr) {
 //	seg[id].l = ql;
 //	seg[id].r = qr;
 //	if (ql == qr) {
@@ -2325,9 +2325,9 @@
 //	build(id << 1, ql, mid);
 //	build(id << 1 | 1, mid + 1, qr);
 //	up(id);
-//}
+// }
 //
-// val query(int id, int ql, int qr) {
+//  val query(int id, int ql, int qr) {
 //	if (ql > qr)
 //		return {0,0,0};
 //	int l = seg[id].l;
@@ -2341,9 +2341,9 @@
 //		return query(id << 1 | 1, ql, qr);
 //	else
 //		return query(id << 1, ql, qr) + query(id << 1 | 1, ql, qr);
-//}
+// }
 //
-// int main() {
+//  int main() {
 //
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2361,17 +2361,17 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef unsigned long long ll;
-// const int N = 210;
-// int n, a[N];
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef unsigned long long ll;
+//  const int N = 210;
+//  int n, a[N];
+//  string s;
 //
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2417,16 +2417,16 @@
 //
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef unsigned long long ll;
-// const int N = 1e5+5;
-// int n, m, a[N], k, d;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef unsigned long long ll;
+//  const int N = 1e5+5;
+//  int n, m, a[N], k, d;
 //
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2476,16 +2476,16 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef unsigned long long ll;
-// const int N = 1e5 + 5;
-// int n, m, a[N], k, d;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef unsigned long long ll;
+//  const int N = 1e5 + 5;
+//  int n, m, a[N], k, d;
 //
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2519,24 +2519,24 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef unsigned long long ll;
-// const int N = 1e5 + 5;
-// int n, m, a[N], k, d;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef unsigned long long ll;
+//  const int N = 1e5 + 5;
+//  int n, m, a[N], k, d;
 //
-// bool isPrime(int n) {
+//  bool isPrime(int n) {
 //	for (int i = 2; i < n; i++)
 //		if (n % i == 0)
 //			return false;
 //	return true;
-//}
+// }
 //
-// template<typename t1, typename t2>
+//  template<typename t1, typename t2>
 //
-// int main()
+//  int main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	while (cin >> n) {
@@ -2544,10 +2544,10 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
 //
-//#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 // using namespace std;
 // const int N = 2e5 + 5;
 // int n, dep[N], par[N][20], mn[N][20], mx[N][20], q;
@@ -2627,29 +2627,29 @@
 //	return 0;
 //}
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 5e4 + 5;
-// int n, k, a[N], dep[N], par[N][20], ans;
-// vector<int>mp[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 5e4 + 5;
+//  int n, k, a[N], dep[N], par[N][20], ans;
+//  vector<int>mp[N];
 //
-// void dfs(int u, int fa) {
+//  void dfs(int u, int fa) {
 //	for (auto& v : mp[u]) if (v != fa)
 //		dfs(v, u);
 //	a[fa] += a[u];
 //	ans = max(ans, a[u]);
-//}
+// }
 //
-// void pre_dfs(int u, int fa) {
+//  void pre_dfs(int u, int fa) {
 //	dep[u] = dep[fa] + 1;
 //	par[u][0] = fa;
 //	for (int i = 1; i < 20; i++)
 //		par[u][i] = par[par[u][i - 1]][i - 1];
 //	for (auto& v : mp[u]) if (v != fa)
 //		pre_dfs(v, u);
-//}
+// }
 //
-// int getlca(int u, int v) {
+//  int getlca(int u, int v) {
 //	if (dep[u] < dep[v]) swap(u, v);
 //	for (int i = 19; i >= 0; i--) if (dep[par[u][i]] >= dep[v])
 //		u = par[u][i];
@@ -2660,9 +2660,9 @@
 //		v = par[v][i];
 //	}
 //	return par[u][0];
-//}
+// }
 //
-// int main()
+//  int main()
 //{
 //	cin >> n >> k;
 //	for (int i = 1, u, v; i < n; i++) {
@@ -2686,44 +2686,44 @@
 //	cout << ans;
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 1e6 + 5;
-// ll n, m, r, a[N], tot, L[N], R[N], t[N];
-// vector<int>mp[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 1e6 + 5;
+//  ll n, m, r, a[N], tot, L[N], R[N], t[N];
+//  vector<int>mp[N];
 //
-// void pre_dfs(int u, int fa) {
+//  void pre_dfs(int u, int fa) {
 //	L[u] = ++tot;
 //	for (auto& v : mp[u]) if (v != fa)
 //		pre_dfs(v, u);
 //	R[u] = tot;
-//}
+// }
 //
-// int lowbit(int x) {
+//  int lowbit(int x) {
 //	return x & -x;
-//}
+// }
 //
-// void add(int i, int val) {
+//  void add(int i, int val) {
 //	while (i <= n) {
 //		t[i] += val;
 //		i += lowbit(i);
 //	}
-//}
+// }
 //
-// ll getsum(int i) {
+//  ll getsum(int i) {
 //	ll ret = 0;
 //	while (i > 0) {
 //		ret += t[i];
 //		i -= lowbit(i);
 //	}
 //	return ret;
-//}
+// }
 //
 //
-// int main()
+//  int main()
 //{
 //	cin >> n >> m >> r;
 //	for (int i = 1; i <= n; i++)
@@ -2750,20 +2750,20 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<stdio.h>
-//#include<stdlib.h>
-//#include<string.h>
-// const int N = 110;
-// char num[N][N];
-// int n;
+// #include<stdio.h>
+// #include<stdlib.h>
+// #include<string.h>
+//  const int N = 110;
+//  char num[N][N];
+//  int n;
 //
-// int cmp(const void* s1, const void* s2) {
+//  int cmp(const void* s1, const void* s2) {
 //	return -strcmp((char*)s1, (char*)s2);
-//}
+// }
 //
-// int main() {
+//  int main() {
 //
 //	scanf("%d",&n);
 //	getchar();
@@ -2774,17 +2774,17 @@
 //		printf("%s", num[i]);
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 2e5+5;
-// int n, ne[N], k;
-// string m = " mihoyo";
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 2e5+5;
+//  int n, ne[N], k;
+//  string m = " mihoyo";
+//  string s;
 //
 //
-// int main()
+//  int main()
 //{
 //	cin >> n >> k >> s;
 //	s = ' ' + s;
@@ -2819,21 +2819,21 @@
 //
 //
 //	return 0;
-//}0 1 2 2 3 3 4 4 1 9 10 10 9 13 13
+// }0 1 2 2 3 3 4 4 1 9 10 10 9 13 13
 
-//#include<bits/stdc++.h>
-//#define int long long
-// using namespace std;
-// const int N = 2e5 + 5;
-// int n, fa[N];
-// vector<vector<int>>mp;
+// #include<bits/stdc++.h>
+// #define int long long
+//  using namespace std;
+//  const int N = 2e5 + 5;
+//  int n, fa[N];
+//  vector<vector<int>>mp;
 //
-// void init() {
+//  void init() {
 //	mp.clear();
 //	mp.resize(n+1);
-//}
+// }
 //
-// int dfs(int u, int fa) {
+//  int dfs(int u, int fa) {
 //	int ret = 1;
 //	if (mp[u].size() >= 3)
 //		ret = 2;
@@ -2849,9 +2849,9 @@
 //		cnt++;
 //	}
 //	return ret;
-//}
+// }
 //
-// signed main()
+//  signed main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2870,23 +2870,23 @@
 //		cout << dfs(rt, 0) << '\n';
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-//#define int long long
-// const int N = 2e5 + 5;
-// int n, fa[N], ans, ned, s[N];
-// vector<vector<int>>mp;
+// #include<bits/stdc++.h>
+//  using namespace std;
+// #define int long long
+//  const int N = 2e5 + 5;
+//  int n, fa[N], ans, ned, s[N];
+//  vector<vector<int>>mp;
 //
-// void init() {
+//  void init() {
 //	memset(s, 0, sizeof s);
 //	mp.clear();
 //	mp.resize(n + 1);
 //	ned = 1;
-//}
+// }
 //
-// int dfs(int u, int fa) {
+//  int dfs(int u, int fa) {
 //	if (u && mp[u].size() == 1)
 //		return 1;
 //	s[u] = 1;
@@ -2901,9 +2901,9 @@
 //		}
 //	}
 //	return ret;
-//}
+// }
 //
-// signed main()
+//  signed main()
 //{
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int t;
@@ -2922,16 +2922,16 @@
 //		cout << dfs(rt, 0) << '\n';
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5+5;
-// ll n;
-// vector<vector<int>>mp;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5+5;
+//  ll n;
+//  vector<vector<int>>mp;
 //
-// ll dfs(ll u, ll fa) {
+//  ll dfs(ll u, ll fa) {
 //	if (mp[u].size() <= 1)
 //		return 1;
 //	map<ll, ll>ump;
@@ -2942,15 +2942,15 @@
 //	if (ump[ret] > 1)
 //		return ret + 1;
 //	return ret;
-//}
+// }
 //
 //
-// void init() {
+//  void init() {
 //	mp.clear();
 //	mp.resize(n + 1);
-//}
+// }
 //
-// int main() {
+//  int main() {
 //	int t;
 //	cin >> t;
 //	while (t--) {
@@ -2968,16 +2968,16 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n, k;
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n, k;
+//  string s;
 //
-// int main() {
+//  int main() {
 //	int t;
 //	cin >> t;
 //	int a, b, c;
@@ -2990,16 +2990,16 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n;
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n;
+//  string s;
 //
-// int main() {
+//  int main() {
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int T;
 //	cin >> T;
@@ -3020,16 +3020,16 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// int n;
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  int n;
+//  string s;
 //
-// int main() {
+//  int main() {
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int T;
 //	cin >> T;
@@ -3051,16 +3051,16 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// ll n, q, pre[N];
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  ll n, q, pre[N];
+//  string s;
 //
-// int main() {
+//  int main() {
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int T;
 //	cin >> T;
@@ -3081,16 +3081,16 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// ll n, q, a[N];
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  ll n, q, a[N];
+//  string s;
 //
-// int main() {
+//  int main() {
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	int T;
 //	cin >> T;
@@ -3117,16 +3117,16 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e5 + 5;
-// ll n, q, a[N], pre[N];
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e5 + 5;
+//  ll n, q, a[N], pre[N];
+//  string s;
 //
-// bool check(int l, int mid) {
+//  bool check(int l, int mid) {
 //	cout << "? " << mid - l + 1 << ' ';
 //	for (int i = l; i <= mid; i++)
 //		cout << i << ' ';
@@ -3136,9 +3136,9 @@
 //	if (ret > pre[mid] - pre[l - 1])
 //		return true;
 //	return false;
-//}
+// }
 //
-// int main() {
+//  int main() {
 //	//ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	fflush(stdout);
 //	int T;
@@ -3164,10 +3164,10 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
 //
-//#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
 // const int N = 2e5 + 5;
@@ -3255,7 +3255,7 @@
 
 //
 //
-//#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
 // const int N = 2e5 + 5;
@@ -3327,14 +3327,14 @@
 //	return 0;
 //}
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 1e5 + 5;
-// ll n, m, s, d[N], vis[N];
-// vector<pair<int,int> >mp[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 1e5 + 5;
+//  ll n, m, s, d[N], vis[N];
+//  vector<pair<int,int> >mp[N];
 //
-// int main() {
+//  int main() {
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n >> m >> s;
 //	for (int i = 0, u, v, w; i < m; i++) {
@@ -3363,16 +3363,16 @@
 //		cout << d[i] << ' ';
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 1e5 + 5;
-// int n, m, s, d[N], vis[N];
-// vector<pair<int, int> >mp[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 1e5 + 5;
+//  int n, m, s, d[N], vis[N];
+//  vector<pair<int, int> >mp[N];
 //
-// int main() {
+//  int main() {
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n >> m >> s;
 //	for (int i = 0, u, v, w; i < m; i++) {
@@ -3399,16 +3399,16 @@
 //		cout << d[i] << ' ';
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 2e2 + 5;
-// int n, m, s, d[N], vis[N], ac[N], q;
-// vector<pair<int, int> >mp[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 2e2 + 5;
+//  int n, m, s, d[N], vis[N], ac[N], q;
+//  vector<pair<int, int> >mp[N];
 //
-// void krustar(int x, int t) {
+//  void krustar(int x, int t) {
 //	memset(d, 0x3f, sizeof d);
 //	memset(vis, 0, sizeof vis);
 //	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>> > que;
@@ -3426,10 +3426,10 @@
 //			}
 //		}
 //	}
-//}
+// }
 //
 //
-// int main() {
+//  int main() {
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n >> m;
 //	for (int i = 0; i < n; i++)
@@ -3454,17 +3454,17 @@
 //			cout << d[y] << '\n';
 //	}
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 1e3 + 5;
-// int n, m, s, d[N], vis[N], q, sum;
-// vector<pair<int, int> >mp1[N];
-// vector<pair<int, int> >mp2[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 1e3 + 5;
+//  int n, m, s, d[N], vis[N], q, sum;
+//  vector<pair<int, int> >mp1[N];
+//  vector<pair<int, int> >mp2[N];
 //
-// void krustar() {
+//  void krustar() {
 //	memset(d, 0x3f, sizeof d);
 //	d[1] = 0;
 //	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>que;
@@ -3501,9 +3501,9 @@
 //	}
 //	for (int i = 2; i <= n; i++)
 //		sum += d[i];
-//}
+// }
 //
-// int main() {
+//  int main() {
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n >> m;
 //	for (int i = 0, u, v, w; i < m; i++) {
@@ -3514,17 +3514,17 @@
 //	krustar();
 //	cout << sum;
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 1e6 + 5;
-// const int mod = 100003;
-// int n, m, s, d[N], vis[N], cnt[N];
-// vector<int>mp[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 1e6 + 5;
+//  const int mod = 100003;
+//  int n, m, s, d[N], vis[N], cnt[N];
+//  vector<int>mp[N];
 //
-// void krustar() {
+//  void krustar() {
 //	memset(d, 0x3f, sizeof d);
 //	d[1] = 0;
 //	cnt[1] = 1;
@@ -3546,9 +3546,9 @@
 //			cnt[v] %= mod;
 //		}
 //	}
-//}
+// }
 //
-// int main() {
+//  int main() {
 //	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 //	cin >> n >> m;
 //	for (int i = 0, u, v; i < m; i++) {
@@ -3560,14 +3560,14 @@
 //	for (int i = 1; i <= n; i++)
 //		cout << cnt[i] <<'\n';
 //	return 0;
-//}
+// }
 
 //
-//#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
 // const int N = 1e4 + 5;
-//#define int long long
+// #define int long long
 // int n, m, b, blod[N], vis[N], f[N];
 // vector<pair<int, int> >mp[N];
 //
@@ -3624,7 +3624,7 @@
 //}
 
 //
-//#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
 // const int N = 1e4 + 5;
@@ -3696,11 +3696,11 @@
 //	return 0;
 //}
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 1e5 + 5;
-// const int M = 2e5 + 5;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 1e5 + 5;
+//  const int M = 2e5 + 5;
 //// #define int long long
 // int n, m, s, cnt, head[N], d[N], vis[N];
 // struct node {
@@ -3751,7 +3751,7 @@
 // }
 
 //
-//#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
 // const int N = 5005;
@@ -3849,16 +3849,16 @@
 //	return 0;
 // }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// typedef long long ll;
-// const int N = 5005;
-// const int M = 2e5 + 5;
-// int n, m;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  typedef long long ll;
+//  const int N = 5005;
+//  const int M = 2e5 + 5;
+//  int n, m;
 //
 //
 //
-// int main() {
+//  int main() {
 //	int t;
 //	cin >> t;
 //	while (t--) {
@@ -3878,11 +3878,11 @@
 //
 //
 //	return 0;
-//}
+// }
 //
 
 //
-//#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
 // const int N = 5005;
@@ -4004,23 +4004,23 @@
 // 240
 // 672
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 5e5 + 5;
-// int n, m, fa[N], ans[N];
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 5e5 + 5;
+//  int n, m, fa[N], ans[N];
 //
-// int find(int x) {
+//  int find(int x) {
 //	return fa[x] == x ? x : fa[x] = find(fa[x]);
-//}
+// }
 //
-// void merg(int a, int b) {
+//  void merg(int a, int b) {
 //	a = find(a);
 //	b = find(b);
 //	fa[a] = b;
-//}
+// }
 //
 //
-// int main() {
+//  int main() {
 //	cin >> n >> m;
 //	for (int i = 1; i <= n; i++)
 //		fa[i] = i;
@@ -4043,17 +4043,17 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 2e5 + 5;
-// int n, m, a[N];
-// vector<int>L;
-// vector<int>R;
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 2e5 + 5;
+//  int n, m, a[N];
+//  vector<int>L;
+//  vector<int>R;
+//  string s;
 //
-// int main() {
+//  int main() {
 //	cin >> n;
 //	cin >> s;
 //	for (int i = 0; i < n; i++) {
@@ -4071,17 +4071,17 @@
 //		cout << a[i];
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-// const int N = 2e5 + 5;
-// int n, m, a[N];
-// vector<int>L;
-// vector<int>R;
-// string s;
+// #include<bits/stdc++.h>
+//  using namespace std;
+//  const int N = 2e5 + 5;
+//  int n, m, a[N];
+//  vector<int>L;
+//  vector<int>R;
+//  string s;
 //
-// int main() {
+//  int main() {
 //	cin >> n;
 //	while (n--) {
 //		int s, c;
@@ -4098,16 +4098,16 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-//#define int long long
-// const int N = 2e5 + 5;
-// int n;
-// int a, b;
+// #include<bits/stdc++.h>
+//  using namespace std;
+// #define int long long
+//  const int N = 2e5 + 5;
+//  int n;
+//  int a, b;
 //
-// signed main() {
+//  signed main() {
 //	int t;
 //	cin >> t;
 //	while (t--) {
@@ -4129,16 +4129,16 @@
 //	}
 //
 //	return 0;
-//}
+// }
 
-//#include<bits/stdc++.h>
-// using namespace std;
-//#define int long long
-// int num[7] = { 0,4,8,15,16,23,42 }, a[7], t;
-// map<int, int>mp;
-// map<int, int>mp2;
+// #include<bits/stdc++.h>
+//  using namespace std;
+// #define int long long
+//  int num[7] = { 0,4,8,15,16,23,42 }, a[7], t;
+//  map<int, int>mp;
+//  map<int, int>mp2;
 //
-// signed main() {
+//  signed main() {
 //
 //	for (int i = 1; i <= 6; i++)
 //		mp2[num[i]] = mp[num[i]] = 1;
@@ -4180,7 +4180,7 @@
 //				p2 = j;
 //				goto ss;
 //			}
-// ss:;
+//  ss:;
 //	a[1] = m1[1 ^ p1];
 //	a[2] = m1[p1];
 //	a[3] = m2[1 ^ p2];
@@ -4220,7 +4220,7 @@
 //				p2 = j;
 //				goto sss;
 //			}
-// sss:;
+//  sss:;
 //	a[4] = m1[1 ^ p1];
 //	a[5] = m1[p1];
 //	a[6] = m2[1 ^ p2];
@@ -4236,7 +4236,7 @@
 //
 //
 //	return 0;
-//}
+// }
 
 // 32
 // 128
@@ -4363,5 +4363,459 @@
 //     }
 //     cout << m - l;
 
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e6 + 5;
+// int n, x, a[N], l[N], r[N], ll[N], rr[N], pl, pr;
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     memset(l, 0x3f, sizeof l);
+//     memset(r, 0, sizeof r);
+//     cin >> n >> x;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         l[a[i]] = min(l[a[i]], i);
+//         r[a[i]] = max(r[a[i]], i);
+//     }
+//     // for (int i = 1; i <= x; i++)
+//     //     rr[i] = max(rr[i - 1], r[i]);
+//     // for (int i = x; i >= 1; i--)
+//     //     ll[i] = min(ll[i + 1], l[i]);
+//     pl = 1;
+//     pr = x;
+//     while (pl <= x && r[pl] < l[pl + 1])
+//         pl++;
+//     while (pr >= 1 && l[pr] > r[pr - 1])
+//         pr--;
+//     int ans = 0;
+//     for (int i = 1, j = pr - 1; i <= pl + 1; i++)
+//     {
+//         while (j <= x && (r[i - 1] > l[j + 1] || j < i))
+//             j++;
+//         ans += x - j + 1;
+//     }
+//     cout << ans;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e6 + 5;
+// int n;
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     int a, b, c, d, f = 0, chi = 0;
+//     cin >> a >> b >> c >> d;
+//     if (c >= b || d >= b)
+//         f = 1;
+//     if (c < a || d < a)
+//         chi = 1;
+//     cout << c << '-';
+//     if (c < a)
+//     {
+//         if (f)
+//             cout << "Y ";
+//         else
+//             cout << "N ";
+//     }
+//     else
+//         cout << "Y ";
+//     cout << d << '-';
+//     if (d < a)
+//     {
+//         if (f)
+//             cout << "Y\n";
+//         else
+//             cout << "N\n";
+//     }
+//     else
+//         cout << "Y\n";
+
+//     if (f && chi)
+//     {
+//         printf("qing %d zhao gu hao %d", (c > d ? 1 : 2), (c < d ? 1 : 2));
+//         return 0;
+//     }
+//     if (!chi)
+//     {
+//         cout << "huan ying ru guan";
+//         return 0;
+//     }
+//     if (c < a && d < a)
+//     {
+//         cout << "zhang da zai lai ba";
+//         return 0;
+//     }
+//     if (d > a)
+//     {
+//         cout << "2: huan ying ru guan";
+//     }
+//     else
+//         cout << "1: huan ying ru guan";
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e6 + 5;
+// int n;
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     int a, b, c;
+//     cin >> a >> b;
+//     c = a + b;
+//     long long ans = 1;
+//     for (int i = 1; i <= c; i++)
+//         ans *= i;
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e6 + 5;
+// int n;
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     int a[7], n, ans[7];
+//     int vis[7][7] = {0};
+//     for (int i = 1; i <= 6; i++)
+//         cin >> a[i], vis[i][a[i]] = 1;
+//     cin >> n;
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 1; j <= 6; j++)
+//         {
+//             for (int x = 6; x >= 1; x--)
+//             {
+//                 if (!vis[j][x])
+//                 {
+//                     ans[j] = x;
+//                     vis[j][x] = 1;
+//                     break;
+//                 }
+//             }
+//         }
+//     }
+//     for (int i = 1; i <= 6; i++)
+//         cout << ans[i] << ' ';
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e6 + 5;
+// int n;
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     int a[7], n, ans[7];
+//     int vis[7][7] = {0};
+//     for (int i = 1; i <= 6; i++)
+//         cin >> a[i], vis[i][a[i]] = 1;
+//     cin >> n;
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 1; j <= 6; j++)
+//         {
+//             for (int x = 6; x >= 1; x--)
+//             {
+//                 if (!vis[j][x])
+//                 {
+//                     ans[j] = x;
+//                     vis[j][x] = 1;
+//                     break;
+//                 }
+//             }
+//         }
+//     }
+//     for (int i = 1; i <= 6; i++)
+//         cout << ans[i] << ' ';
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n, k, s;
+// pair<int, int> a[N];
+
+// int cmp(pair<int, int> e1, pair<int, int> e2)
+// {
+//     if (e1.first == e2.first)
+//         return e1.second < e2.second;
+//     return e1.first > e2.first;
+// }
+
+// void pta()
+// {
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout << a[i].first << ' ' << a[i].second << '\n';
+//     }
+// }
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin >> n >> k >> s;
+//     list<pair<int, int>> st;
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> a[i].first >> a[i].second;
+//     }
+//     sort(a, a + n, cmp);
+//     for (int i = 0; i < n; i++)
+//         st.push_back(a[i]);
+//     int ans = 0;
+//     while (k--)
+//     {
+//         int last = -1;
+//         for (auto p = st.begin(); p != st.end(); p++)
+//         {
+//             if (p->first >= 175)
+//             {
+//                 if (p->first != last || p->second >= s)
+//                 {
+//                     last = p->first;
+//                     ans++;
+//                     p = prev(p);
+//                     st.erase(next(p));
+//                 }
+//             }
+//         }
+//     }
+//     cout << ans;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n, k, s;
+// string s1, s2, a1, a2;
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> s1 >> s2;
+//     for (int i = 1; i < s1.length(); i++)
+//     {
+//         if ((s1[i] - '0') % 2 == (s1[i - 1] - '0') % 2)
+//         {
+//             a1 += max(s1[i], s1[i - 1]);
+//         }
+//     }
+//     for (int i = 1; i < s2.length(); i++)
+//     {
+//         if ((s2[i] - '0') % 2 == (s2[i - 1] - '0') % 2)
+//         {
+//             a2 += max(s2[i], s2[i - 1]);
+//         }
+//     }
+//     if (a1 == a2)
+//         cout << a1;
+//     else
+//         cout << a1 << '\n'
+//              << a2;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n, m, q, vis[2][N];
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n >> m >> q;
+//     int cr[2] = {0}, t, c;
+//     while (q--)
+//     {
+//         cin >> t >> c;
+//         if (!vis[t][c])
+//         {
+//             vis[t][c] = 1;
+//             cr[t]++;
+//         }
+//     }
+
+//     cout << m * n - ((cr[0] * m + cr[1] * n) - cr[0] * cr[1]);
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n;
+// struct node
+// {
+//     int a, b, c, e1, e2, e3;
+// };
+// node sc[N];
+
+// int cmp(node e1, node e2)
+// {
+//     if (e1.a == e2.a)
+//     {
+//         if (e1.b == e2.b)
+//             return e1.c < e2.c;
+//         return e1.b < e2.b;
+//     }
+//     return e1.a < e2.a;
+// }
+
+// int main()
+// {
+//     // ios::sync_with_stdio(false);
+//     // cin.tie(0);
+//     // cout.tie(0);
+//     cin >> n;
+//     for (int i = 0; i < n; i++)
+//     {
+//         scanf("%d:%d:%d - %d:%d:%d", &sc[i].a, &sc[i].b, &sc[i].c, &sc[i].e1, &sc[i].e2, &sc[i].e3);
+//         // printf("%02d:%02d:%02d - %02d:%02d:%02d\n", sc[i].a, sc[i].b, sc[i].c, sc[i].e1, sc[i].e2, sc[i].e3);
+//     }
+//     sort(sc, sc + n, cmp);
+//     sc[n] = {23, 59, 59, 23, 59, 59};
+//     // for (int i = 0; i < n; i++)
+//     // {
+//     //     printf("%02d:%02d:%02d - %02d:%02d:%02d\n", sc[i].a, sc[i].b, sc[i].c, sc[i].e1, sc[i].e2, sc[i].e3);
+//     // }
+//     int qa = 0, qb = 0, qc = 0;
+//     for (int i = 0; i <= n; i++)
+//     {
+//         if (qa != sc[i].a || qb != sc[i].b || qc != sc[i].c)
+//         {
+//             printf("%02d:%02d:%02d - %02d:%02d:%02d\n", qa, qb, qc, sc[i].a, sc[i].b, sc[i].c);
+//         }
+//         qa = sc[i].e1, qb = sc[i].e2, qc = sc[i].e3;
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e3 + 5;
+// int n, m, k, cnt, ts[N];
+// vector<vector<int>> ans;
+// stack<int> st;
+
+// int main()
+// {
+//     cin >> n >> m >> k;
+//     for (int i = 0, t; i < n; i++)
+//         cin >> ts[i];
+//     for (int i = 0; i < n;)
+//     {
+//         if (cnt >= ans.size())
+//         {
+//             ans.resize(cnt + 1);
+//             if (!st.empty())
+//             {
+//                 ans[cnt].push_back(st.top());
+//                 st.pop();
+//             }
+//             else
+//             {
+//                 ans[cnt].push_back(ts[i++]);
+//             }
+//             continue;
+//         }
+//         if (ans[cnt].size() >= k)
+//         {
+//             cnt++;
+//             continue;
+//         }
+//         if (!st.empty() && st.top() <= ans[cnt].back())
+//         {
+//             ans[cnt].push_back(st.top());
+//             st.pop();
+//         }
+//         else
+//         {
+//             if (ts[i] <= ans[cnt].back())
+//             {
+//                 ans[cnt].push_back(ts[i++]);
+//             }
+//             else
+//             {
+//                 if (st.size() < m)
+//                     st.push(ts[i++]);
+//                 else
+//                     cnt++;
+//             }
+//         }
+//     }
+//     while (!st.empty())
+//     {
+//         if (cnt >= ans.size())
+//         {
+//             ans.resize(cnt + 1);
+//             ans[cnt].push_back(st.top());
+//             st.pop();
+//             continue;
+//         }
+//         if (ans[cnt].size() >= k)
+//         {
+//             cnt++;
+//             continue;
+//         }
+//         if (st.top() <= ans[cnt].back())
+//         {
+//             ans[cnt].push_back(st.top());
+//             st.pop();
+//         }
+//         else
+//             cnt++;
+//     }
+//     for (int i = 0, len = ans.size(); i < len; i++)
+//     {
+//         for (int j = 0, le = ans[cnt].size(); j < le;j++){
+//             cout << ans[i][j];
+//             if(j != le-1)
+//                 cout << ' ';
+//         }
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e3 + 5;
+// int n, m, k, cnt, ts[N];
+// vector<vector<int>> ans;
+// stack<int> st;
+
+// int main()
+// {
+
+//     srand(time(0));
+//     int t = rand() % 2;
+//     cout << t;
 //     return 0;
 // }
