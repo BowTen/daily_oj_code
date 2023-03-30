@@ -4820,87 +4820,103 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-#define int long long
-using namespace std;
-const int INF = INT_MAX;
-const int N = 1e6 + 5;
-int n, x, r[N], l[N], rr[N], ll[N];
+// #include <bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// const int INF = INT_MAX;
+// const int N = 1e6 + 5;
+// int n, x, r[N], l[N], rr[N], ll[N];
 
-signed main()
-{
-    cin >> n >> x;
-    for (int i = 0; i <= x + 1; ++i)
-    {
-        l[i] = INF;
-        r[i] = -INF;
-        ll[i] = INF;
-        rr[i] = -INF;
-    }
-    for (int i = 1, t; i <= n; i++)
-    {
-        cin >> t;
-        l[t] = min(l[t], i);
-        r[t] = max(r[t], i);
-    }
-    for (int i = 1; i <= x; i++)
-        rr[i] = max(rr[i - 1], r[i]);
-    for (int i = x; i >= 1; i--)
-        ll[i] = min(ll[i + 1], l[i]);
-    int ql = 1, qr = x;
-    while (ql <= x && rr[ql - 1] <= l[ql])
-        ql++;
-    while (qr >= 1 && ll[qr + 1] >= r[qr])
-        qr--;
-    int ans = 0;
-    // cout << ql << ' ' << qr << '\n';
-    // cout << r[0] << '\n';
-    for (int i = 1, j = qr; i <= ql; i++)
-    {
-        while (j <= x && (j < i || rr[i - 1] > ll[j + 1]))
-            j++;
-        // cout << x - j + 1 << ' ';
-        ans += x - j + 1;
-    }
-    cout << ans;
-    return 0;
-}
+// signed main()
+// {
+//     cin >> n >> x;
+//     for (int i = 0; i <= x + 1; ++i)
+//     {
+//         l[i] = INF;
+//         r[i] = -INF;
+//         ll[i] = INF;
+//         rr[i] = -INF;
+//     }
+//     for (int i = 1, t; i <= n; i++)
+//     {
+//         cin >> t;
+//         l[t] = min(l[t], i);
+//         r[t] = max(r[t], i);
+//     }
+//     for (int i = 1; i <= x; i++)
+//         rr[i] = max(rr[i - 1], r[i]);
+//     for (int i = x; i >= 1; i--)
+//         ll[i] = min(ll[i + 1], l[i]);
+//     int ql = 1, qr = x;
+//     while (ql <= x && rr[ql - 1] <= l[ql])
+//         ql++;
+//     while (qr >= 1 && ll[qr + 1] >= r[qr])
+//         qr--;
+//     int ans = 0;
+//     // cout << ql << ' ' << qr << '\n';
+//     // cout << r[0] << '\n';
+//     for (int i = 1, j = qr; i <= ql; i++)
+//     {
+//         while (j <= x && (j < i || rr[i - 1] > ll[j + 1]))
+//             j++;
+//         // cout << x - j + 1 << ' ';
+//         ans += x - j + 1;
+//     }
+//     cout << ans;
+//     return 0;
+// }
 
-#include <bits/stdc++.h>
-using namespace std;
-const int N = 1e6 + 5;
-int n, x, r[N], l[N];
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e6 + 5;
+// int n, x, r[N], l[N];
 
-int main()
-{
-    memset(l, 0x3f, sizeof l);
-    cin >> n >> x;
-    for (int i = 0; i <= x + 1; i++)
-    {
-        l[i] = INT_MAX;
-        r[i] = -INT_MAX;
-    }
-    for (int i = 1, t; i <= n; i++)
-    {
-        cin >> t;
-        l[t] = min(l[t], i);
-        r[t] = max(r[t], i);
-    }
-    int ql = 1, qr = x;
-    while (ql <= x && r[ql - 1] < l[ql])
-        ql++;
-    while (qr >= 1 && l[qr + 1] > r[qr])
-        qr--;
-    int ans = 0;
-    // cout << ql << ' ' << qr << '\n';
-    // cout << r[0] << '\n';
-    for (int i = 1, j = qr; i <= ql && i <= x; i++)
-    {
-        while (j <= x && (j < i || r[i - 1] >= l[j + 1]))
-            j++;
-        // cout << x - j + 1 << ' ';
-        ans += x - j + 1;
-    }
-    cout << ans;
-    return 0;
-}
+// int main()
+// {
+//     memset(l, 0x3f, sizeof l);
+//     cin >> n >> x;
+//     for (int i = 0; i <= x + 1; i++)
+//     {
+//         l[i] = INT_MAX;
+//         r[i] = -INT_MAX;
+//     }
+//     for (int i = 1, t; i <= n; i++)
+//     {
+//         cin >> t;
+//         l[t] = min(l[t], i);
+//         r[t] = max(r[t], i);
+//     }
+//     int ql = 1, qr = x;
+//     while (ql <= x && r[ql - 1] < l[ql])
+//         ql++;
+//     while (qr >= 1 && l[qr + 1] > r[qr])
+//         qr--;
+//     int ans = 0;
+//     // cout << ql << ' ' << qr << '\n';
+//     // cout << r[0] << '\n';
+//     for (int i = 1, j = qr; i <= ql && i <= x; i++)
+//     {
+//         while (j <= x && (j < i || r[i - 1] >= l[j + 1]))
+//             j++;
+//         // cout << x - j + 1 << ' ';
+//         ans += x - j + 1;
+//     }
+//     cout << ans;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     vector<int> a({9, 6});
+//     vector<int> b({2, 3, 4});
+//     // a = a + b;
+//     a.insert(a.end(), b.begin(), b.end());
+//     a = b;
+//     vector<int> c(b);
+//     for (auto p : c)
+//         cout << p << ' ';
+//     return 0;
+// }
