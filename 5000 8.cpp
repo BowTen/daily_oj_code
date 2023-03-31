@@ -4920,3 +4920,129 @@
 //         cout << p << ' ';
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int b = 40;
+// void p()
+// {
+//     static int b = 5;
+//     b++;
+//     cout << b;
+// }
+// int main()
+// {
+//     // int cnt = 1000;
+//     // while (cnt--)
+//     // {
+//     //     int a = (rand() % 41) + 10;
+//     //     if (a > 50 || a < 10)
+//     //         cout << a << '\n';
+//     // }
+//     // double a = 48;
+//     // cout << a;
+//     string s = "0002023";
+//     long long a = stoll(s);
+//     cout << a;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e2 + 5;
+// const int M = 2e5 + 5;
+// int n, m, s, cnt, head[N], dis[N], vis[N], d[N][N];
+// struct node
+// {
+//     int v, w, next;
+// } edge[M];
+// void add(int u, int v, int w)
+// {
+//     edge[++cnt].v = v;
+//     edge[cnt].w = w;
+//     edge[cnt].next = head[u];
+//     head[u] = cnt;
+// }
+
+// void dij()
+// {
+//     memset(dis, 0x3f, sizeof dis);
+//     dis[s] = 0;
+//     dis[0]++;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x = 0;
+//         for (int j = 1; j <= n; j++)
+//         {
+//             if (!vis[j] && dis[j] < dis[x])
+//                 x = j;
+//         }
+//         vis[x] = 1;
+//         // cout << x << ' ';
+//         for (int id = head[x], v, w; id; id = edge[id].next)
+//         {
+//             v = edge[id].v;
+//             w = edge[id].w;
+//             dis[v] = min(dis[v], dis[x] + w);
+//         }
+//     }
+// }
+
+// void dij_pro()
+// {
+//     memset(dis, 0x3f, sizeof dis);
+//     dis[s] = 0;
+//     dis[0]++;
+//     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
+//     q.push({0, s});
+//     while (q.size())
+//     {
+//         int u = q.top().second;
+//         q.pop();
+//         if (vis[u])
+//             continue;
+//         vis[u] = 1;
+//         for (int id = head[u], v, w; id; id = edge[id].next)
+//         {
+//             v = edge[id].v;
+//             w = edge[id].w;
+//             if (dis[u] + w < dis[v])
+//             {
+//                 dis[v] = dis[u] + w;
+//                 q.push({dis[v], v});
+//             }
+//         }
+//     }
+// }
+
+// void floyd()
+// {
+//     for (int k = 1; k <= n; k++)
+//         for (int u = 1; u <= n; u++)
+//             for (int v = 1; v <= n; v++)
+//                 d[u][v] = min(d[u][v], d[u][k] + d[k][v]);
+// }
+
+// int main()
+// {
+//     cin >> n >> m >> s;
+//     for (int i = 0, u, v, w; i < m; i++)
+//     {
+//         cin >> u >> v >> w;
+//         // add(u, v, w);
+//         d[u][v] = d[v][u] = w;
+//     }
+//     // dij();
+//     // dij_pro();
+//     // cout << '\n';
+//     // for (int i = 1; i <= n; i++)
+//     //     cout << dis[i] << ' ';
+//     floyd();
+//     for (int i = 1; i <= n; i++)
+//     {
+//         for (int j = 1; j <= n; j++)
+//             cout << d[i][j] << ' ';
+//         cout << '\n';
+//     }
+//     return 0;
+// }
