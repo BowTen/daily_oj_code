@@ -5049,10 +5049,41 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+const int N = 2e5 + 5;
+int t, n, m, ne[N], k, a[N], b[N];
 
 int main()
 {
-    cout << 696;
-
+    cin >> t;
+    while (t--)
+    {
+        cin >> n >> m >> k;
+        for (int i = 1; i <= n; i++)
+            cin >> a[i];
+        for (int i = 1; i <= m; i++)
+            cin >> b[i];
+        for (int i = 2, j = 0; i <= m; i++)
+        {
+            while (j && b[i] != b[j + 1])
+                j = ne[j];
+            if (b[j + 1] == b[i])
+                j++;
+            ne[i] = j;
+        }
+        int cnt = 0;
+        for (int i = 1, j = 0; i <= n; i++)
+        {
+            while (j && a[i] != b[j + 1])
+                j = ne[j];
+            if (a[i] == b[j + 1])
+                j++;
+            if (j == m)
+            {
+                cnt++;
+                j = ne[j];
+            }
+        }
+        cout << cnt;
+    }
     return 0;
 }
