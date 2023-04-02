@@ -311,3 +311,342 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 4e5 + 5;
+// int n, a, b, c;
+
+// signed main()
+// {
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> a >> b >> c;
+//         if (a * b > c)
+//         {
+//             if (a < c)
+//                 cout << "1 " << b << '\n';
+//             else
+//                 cout << "-1 " << b << '\n';
+//         }
+//         else if (a * b == c)
+//         {
+//             if (a < c)
+//                 cout << "1 -1\n";
+//             else
+//                 cout << "-1 -1\n";
+//         }
+//         else
+//         {
+//             cout << "1 -1\n";
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 4e5 + 5;
+// int n, a, b, c;
+
+// signed main()
+// {
+
+//     int t;
+//     cin >> t;
+//     string s;
+//     while (t--)
+//     {
+//         cin >> s;
+//         a = 0, b = 0;
+//         for (int i = 0; i < s.length(); i++)
+//         {
+//             if (s[i] == '1')
+//                 a++;
+//             else
+//                 b++;
+//         }
+//         c = min(a, b);
+//         if (c % 2)
+//             cout << "DA\n";
+//         else
+//             cout << "NET\n";
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 4e5 + 5;
+// int n, a, b, c;
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     string s;
+//     while (t--)
+//     {
+//         cin >> s;
+//         int res = s.length(), cur = 0;
+//         for (int i = 0, len = s.length(), tmp = 0; i < len; i++)
+//         {
+//             if (s[i] == '+')
+//                 tmp++;
+//             else
+//                 tmp--;
+//             if (cur + tmp < 0)
+//             {
+//                 cur++;
+//                 res += i + 1;
+//             }
+//         }
+//         cout << res << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 4e5 + 5;
+// int n, a, b, c;
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     string s;
+//     while (t--)
+//     {
+//         cin >> a >> b;
+//         if (a == 1)
+//             cout << 0 << '\n';
+//         else if (a < 3)
+//             cout << b << '\n';
+//         else
+//             cout << 2 * b << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int n, a[N], q[N], p[N];
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     string s;
+//     while (t--)
+//     {
+//         cin >> n;
+//         int ans = 0;
+//         for (int i = 0; i < n; i++)
+//         {
+//             cin >> a[i];
+//             if (~i & 1)
+//                 ans += a[i];
+//             else
+//                 q[i] = a[i] - a[i - 1];
+//         }
+//         int t1 = 0, t2 = 0, m1 = 0, m2 = 0;
+//         for (int i = 1; i < n; i += 2)
+//         {
+//             if (i + 1 < n)
+//             {
+//                 p[i] = a[i] - a[i + 1];
+//                 if (t2 + p[i] >= 0)
+//                     t2 += p[i];
+//                 else
+//                     t2 = 0;
+//             }
+//             if (t1 + q[i] >= 0)
+//                 t1 += q[i];
+//             else
+//                 t1 = 0;
+//             m1 = max(m1, t1);
+//             m2 = max(m2, t2);
+//         }
+//         cout << ans + max(m1, m2) << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int n, a[N], b[N], k;
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     string s;
+//     while (t--)
+//     {
+//         cin >> n >> k;
+//         for (int i = 1; i <= n; i++)
+//             cin >> a[i];
+//         for (int i = 1; i <= n; i++)
+//             cin >> b[i];
+//         sort(a + 1, a + 1 + n);
+//         sort(b + 1, b + 1 + n);
+//         for (int i = 1, j = n; i <= k; i++, j--)
+//         {
+//             if (a[i] >= b[j])
+//                 break;
+//             a[i] = b[j];
+//         }
+//         int ans = 0;
+//         for (int i = 1; i <= n; i++)
+//             ans += a[i];
+//         cout << ans << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int n, a[N], b[N], k;
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     string s;
+//     while (t--)
+//     {
+//         cin >> n;
+//         int ans = 0;
+//         for (int i = 2; i < n; i += 2)
+//         {
+//             ans += i * 4 * (i / 2);
+//         }
+//         cout << ans << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define pii pair<int, int>
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int n, a[N], b[N], cnt;
+
+// struct node
+// {
+//     int s, l, r;
+//     bool operator>(node e)const
+//     {
+//         if (s == e.s)
+//             return l < e.l;
+//         return s > e.s;
+//     }
+//     bool operator<(node e)const
+//     {
+//         if (s == e.s)
+//             return l > e.l;
+//         return s < e.s;
+//     }
+// };
+
+// void bfs(int l, int r)
+// {
+//     priority_queue<node, vector<node>, less<node>> q;
+//     q.push({r - l, l, r});
+//     while (q.size() && cnt < n)
+//     {
+//         int s = q.top().s;
+//         int l = q.top().l;
+//         int r = q.top().r;
+//         q.pop();
+//         if (l > r)
+//             continue;
+//         // cout << s << ' ' << l << ' ' << r << '\n';
+//         int mid = l + r >> 1;
+//         a[mid] = ++cnt;
+//         if (mid - 1 - l >= 0)
+//             q.push({mid - 1 - l, l, mid - 1});
+//         if (r - mid - 1 >= 0)
+//             q.push({r - mid - 1, mid + 1, r});
+//     }
+// }
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     string s;
+//     while (t--)
+//     {
+//         cin >> n;
+//         cnt = 0;
+//         bfs(1, n);
+//         for (int i = 1; i <= n; i++)
+//             cout << a[i] << ' ';
+//         cout << '\n';
+//         // cout << "\n______________\n";
+//     }
+
+//     return 0;
+// }
