@@ -651,3 +651,116 @@
 //     return 0;
 // }
 //
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+
+// int main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     string s;
+//     int n, d;
+//     while (t--)
+//     {
+//         cin >> n >> d >> s;
+//         d += '0';
+//         int f = 1;
+//         for (int i = 0, len = s.length(); i < len; i++)
+//         {
+//             if (s[i] < d && f)
+//             {
+//                 cout << d - '0';
+//                 f = 0;
+//             }
+//             cout << s[i];
+//         }
+//         if (f)
+//             cout << d - '0';
+//         cout << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     int n, x1, x2, y1, y2, l1, l2, l, r;
+//     while (t--)
+//     {
+//         cin >> n >> x1 >> y1 >> x2 >> y2;
+//         l = n / 2;
+//         r = l + 1;
+//         if (x1 >= r)
+//             x1 = l - x1 + r;
+//         if (x2 >= r)
+//             x2 = l - x2 + r;
+//         if (y1 >= x1 && y1 <= n + 1 - x1)
+//             l1 = x1;
+//         else if (y1 <= l)
+//             l1 = y1;
+//         else
+//             l1 = n + 1 - y1;
+//         if (y2 >= x2 && y2 <= n + 1 - x2)
+//             l2 = x2;
+//         else if (y2 <= l)
+//             l2 = y2;
+//         else
+//             l2 = n + 1 - y2;
+//         // cout << l1 << ' ' << l2 << '\n';
+//         cout << abs(l1 - l2) << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     int n;
+//     while (t--)
+//     {
+//         cin >> n;
+//         for (int i = 1; i < n; i++)
+//             cin >> a[i];
+//         cout << a[1] << ' ';
+//         for (int i = 2; i < n; i++)
+//         {
+//             cout << min(a[i], min(max(a[i], a[i - 1]), a[i - 1])) << ' ';
+//         }
+//         cout << a[n - 1] << '\n';
+//     }
+
+//     return 0;
+// }
