@@ -764,3 +764,97 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int n;
+//     double m, t;
+//     cin >> n >> m;
+//     while (n--)
+//     {
+//         cin >> t;
+//         if (t < m)
+//         {
+//             printf("On Sale! %.1lf\n", t);
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int n, m, cnt = 0, f = 1;
+//     cin >> n >> m;
+//     string s;
+//     getline(cin, s);
+//     for (int i = 1; i <= n; i++)
+//     {
+//         getline(cin, s);
+//         if (s.find("easy") != s.npos || s.find("qiandao") != s.npos)
+//             continue;
+//         if (cnt >= m && s.find("easy") == s.npos && s.find("qiandao") == s.npos)
+//         {
+//             if (f)
+//             {
+//                 cout << s;
+//                 f = 0;
+//             }
+//             else
+//                 continue;
+//         }
+//         cnt++;
+//     }
+//     if (f)
+//         cout << "Wo AK le";
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int t[24];
+//     for (int i = 0; i < 24;i++)
+//         cin >> t[i];
+//     int a;
+//     while(cin >> a, (a >= 0 && a <= 23)){
+//         cout << t[a] << ' ';
+//         if(t[a] > 50)
+//             cout << "Yes\n";
+//             else
+//             cout << "No\n";
+//     }
+//     return 0;
+// }
