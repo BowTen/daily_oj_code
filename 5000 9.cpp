@@ -858,3 +858,163 @@
 //     }
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int t, n, k;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n >> k;
+//         if (n % 2 == 0)
+//         {
+//             cout << "YES\n";
+//         }
+//         else
+//         {
+//             if (n == 1)
+//             {
+//                 if (k == 1)
+//                     cout << "YES\n";
+//                 else
+//                     cout << "NO\n";
+//                 continue;
+//             }
+//             if (k % 2)
+//             {
+//                 if ((n - k) % 2 == 0)
+//                     cout << "YES\n";
+//                 else
+//                     cout << "NO\n";
+//             }
+//             else
+//                 cout << "NO\n";
+//         }
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int a, b, ans = 0, g, sa, sb;
+//         cin >> a >> b;
+//         if (a == 0 && b == 0)
+//         {
+//             cout << "0\n";
+//             continue;
+//         }
+//         if (!a || !b)
+//         {
+//             if (!a)
+//                 swap(a, b);
+//             sa = sqrt(a);
+//             ans += sa - 1;
+//             ans += a / sa;
+//             ans += (a % sa);
+//             cout << ans << '\n';
+//             continue;
+//         }
+//         if (a > b)
+//             swap(a, b);
+//         if(b % a == 0){
+
+//         }
+//         sa = sqrt(a);
+//         sb = sqrt(b);
+//         if (a >= sb)
+//             sa = sb;
+//         ans += sa - 1;
+//         ans += a / sa;
+//         ans += (a % sa);
+//         // cout << ans << '\n';
+//         ans += sb - sa;
+//         ans += b / sb;
+//         ans += (b % sb) / sa;
+
+//         cout << ans << '\n';
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// pair<int, int> a[N];
+
+// signed main()
+// {
+//     IO;
+//     int t, n, s1, s2, ms;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n >> s1 >> s2;
+//         ms = min(s1, s2);
+//         for (int t, i = 1; i <= n; i++)
+//         {
+//             cin >> t;
+//             a[i] = make_pair(t, i);
+//         }
+//         sort(a + 1, a + n + 1, greater<pair<int, int>>());
+//         // for (int i = 1; i <= n; i++)
+//         //     cout << a[i].first << '\n';
+//         vector<pair<int, int>> tt;
+//         for (int i = 0, ti = s1; i <= n; ti += s1, i++)
+//         {
+//             tt.push_back({ti, 1});
+//         }
+//         for (int i = 0, ti = s2; i <= n; ti += s2, i++)
+//         {
+//             tt.push_back({ti, 2});
+//         }
+//         sort(tt.begin(), tt.end());
+//         // for (auto [fi, se] : tt)
+//         // {
+//         //     cout << fi << ' ' << se << '\n';
+//         // }
+//         vector<int> ans[3];
+//         for (int i = 1; i <= n; i++)
+//             ans[tt[i - 1].second].push_back(a[i].second);
+
+//         cout << ans[1].size() << ' ';
+//         for (int i = 0, len = ans[1].size(); i < len; i++)
+//             cout << ans[1][i] << ' ';
+//         cout << '\n';
+//         cout << ans[2].size() << ' ';
+//         for (int i = 0, len = ans[2].size(); i < len; i++)
+//             cout << ans[2][i] << ' ';
+//         cout << '\n';
+//     }
+//     return 0;
+// }
