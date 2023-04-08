@@ -1018,3 +1018,297 @@
 //     }
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     int n;
+//     string s;
+//     cin >> n >> s;
+//     for (int i = 1; i < s.length(); i++)
+//         if (s[i] == s[i - 1])
+//         {
+//             cout << "NO";
+//             return 0;
+//         }
+//     cout << "YES";
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     char s[10][10];
+//     int x, y;
+//     for (int i = 1; i <= 8; i++)
+//         for (int j = 1; j <= 8; j++)
+//         {
+//             cin >> s[i][j];
+//             if (s[i][j] == '*')
+//             {
+//                 x = i, y = j;
+//             }
+//         }
+//     printf("%c%d", y + 'a' - 1, 9 - x);
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 5;
+// int n, x;
+// int a[N], b[N];
+
+// signed main()
+// {
+//     cin >> n >> x;
+//     set<int> st;
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> a[i];
+//         st.insert(a[i]);
+//         b[i] = a[i] + x;
+//     }
+//     for (int i = 0; i < n; i++)
+//         if (st.find(b[i]) != st.end())
+//         {
+//             cout << "Yes";
+//             return 0;
+//         }
+//     cout << "No";
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 5;
+// int n, a, b;
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         a = b = 0;
+//         cin >> n;
+//         for (int i = 0, tmp; i < n; i++)
+//         {
+//             cin >> tmp;
+//             if (tmp > 0)
+//                 a += tmp;
+//             else
+//                 b -= tmp;
+//         }
+//         cout << abs(a - b) << '\n';
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int n, a, b;
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+//         vector<pair<int, int>> vec;
+//         int l = 1, r = 3 * n;
+//         while (l + 1 < r)
+//         {
+//             vec.push_back({l, r});
+//             l += 3;
+//             r -= 3;
+//         }
+//         cout << vec.size() << '\n';
+//         for (auto [u, v] : vec)
+//             cout << u << ' ' << v << '\n';
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define double long double
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// double n, m, s, ans;
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     // cin >> t;
+//     t = 1;
+//     while (t--)
+//     {
+//         cin >> n >> m;
+//         if (m > n * n || sqrt(m) > n || (double)m > (double)n * (double)n)
+//         {
+//             cout << -1;
+//             return 0;
+//         }
+//         s = (int)sqrt(m);
+//         ans = (s + 1) * (s + 1);
+//         for (double i = s; i <= n; i += 1)
+//             if ((s - 1) * i >= m)
+//             {
+//                 ans = min(ans, (s - 1) * i);
+//                 break;
+//             }
+//         for (int i = s; i <= n; i++)
+//             if (s * i >= m)
+//             {
+//                 ans = min(ans, s * i);
+//                 break;
+//             }
+//         if (ans > n * n)
+//             cout << -1;
+//         else
+//             cout << (int)ceil(ans);
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int unsigned long long
+// #define double long double
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int n, m, s, ans;
+
+// signed main()
+// {
+//     IO;
+//     cin >> n >> m;
+//     if (m > n * n || sqrt(m) > n || (double)m > (double)n * (double)n)
+//     {
+//         cout << -1;
+//         return 0;
+//     }
+//     s = (int)sqrt(m);
+//     ans = (s + 1) * (s + 1);
+//     if (s > 1)
+//         for (int i = s; i <= n; i++)
+//             if ((s - 1) * i >= m)
+//             {
+//                 ans = min(ans, (s - 1) * i);
+//                 break;
+//             }
+//     for (int i = s; i <= n; i++)
+//         if (s * i >= m)
+//         {
+//             ans = min(ans, s * i);
+//             break;
+//         }
+//     cout << ans;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int unsigned long long
+// #define double long double
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int n, a[N], vis[N], cnt[N];
+
+// signed main()
+// {
+//     IO;
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+
+//     int ans = 0;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         if (!vis[i])
+//         {
+//             int cur = i;
+//             while (cnt[cur] < 2)
+//             {
+//                 if (!cnt[cur] && vis[cur])
+//                     break;
+//                 if (cnt[cur]++)
+//                     ans++;
+//                 vis[cur] = 1;
+//                 cur = a[cur];
+//             }
+//             memset(cnt, 0, sizeof cnt);
+//         }
+//     }
+
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int unsigned long long
+// #define double long double
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int n, a[N];
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n >> a[1];
+//         a[1]--;
+//         int ai = 2, bi = 1;
+//         for (int i = 2; i <= n; i++)
+//         {
+//             cin >> a[i];
+//             if (a[i] < a[ai])
+//                 ai = i;
+//         }
+//         for (int i = 1; i <= n; i++)
+//             if (i != ai)
+//             {
+//                 if (a[i] < a[bi])
+//                     bi = i;
+//             }
+//         if (a[bi] < a[ai])
+//             cout << "Bob\n";
+//         else
+//             cout << "Alice\n";
+//     }
+//     return 0;
+// }
