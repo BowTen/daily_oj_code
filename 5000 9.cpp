@@ -1312,3 +1312,92 @@
 //     }
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int MX = sqrt(LLONG_MAX);
+
+// signed main()
+// {
+//     int n, m;
+//     cin >> n >> m;
+//     int s = ceil(sqrt(m * 1.0)), ans = s * s, f = 0;
+//     for (int i = 1, t; i <= s && i <= n; i++)
+//     {
+//         t = (m * 1.0) / (1.0 * i);
+//         if (t * i < m)
+//             t++;
+//         if (t <= n && t * i <= ans)
+//         {
+//             ans = t * i;
+//             f = 1;
+//         }
+//     }
+//     if (!f)
+//         cout << -1;
+//     else
+//         cout << ans;
+
+//     return 0;
+// }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// int n, a[N], fa[N], cnt[N];
+
+// int find(int x)
+// {
+//     return fa[x] == x ? x : fa[x] = find(fa[x]);
+// }
+
+// void merg(int a, int b)
+// {
+//     a = find(a);
+//     b = find(b);
+//     fa[a] = b;
+// }
+
+// signed main()
+// {
+//     IO;
+//     cin >> n;
+//     // n = N - 5;
+//     for (int i = 1; i <= n; i++)
+//         fa[i] = i;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         merg(a[i], i);
+//     }
+//     int ans = 0;
+//     for (int i = 1, p, ct; i <= n; i++)
+//         if (fa[i] == i)
+//         {
+//             p = i;
+//             ct = 0;
+//             while (cnt[p] < 2)
+//             {
+//                 ct++;
+//                 if (cnt[p]++)
+//                     ans++;
+//                 p = a[p];
+//             }
+//             p = i;
+//             while (ct--)
+//             {
+//                 cnt[p] = 0;
+//                 p = a[p];
+//             }
+//         }
+
+//     cout << ans;
+//     return 0;
+// }
