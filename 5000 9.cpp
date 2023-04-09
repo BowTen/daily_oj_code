@@ -1401,3 +1401,381 @@
 //     cout << ans;
 //     return 0;
 // }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+
+// signed main()
+// {
+//     IO;
+//     int n;
+//     cin >> n;
+//     map<string, int> mp;
+//     mp["and"] = 1;
+//     mp["not"] = 1;
+//     mp["the"] = 1;
+//     mp["that"] = 1;
+//     mp["you"] = 1;
+//     int f = 0;
+//     while (n--)
+//     {
+//         string s;
+//         cin >> s;
+//         if (mp[s])
+//             f = 1;
+//     }
+//     if (f)
+//         cout << "Yes";
+//     else
+//         cout << "No";
+//     return 0;
+// }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+
+// struct Node
+// {
+//     int value;
+//     Node *next;
+// };
+
+// Node *createSortList()
+// {
+//     int v;
+//     Node *ret = NULL, *head = (Node *)malloc(sizeof(Node));
+//     head->next = NULL;
+//     while (cin >> v, v)
+//     {
+//         Node *pre = head, *cur = pre->next;
+//         while (cur)
+//         {
+//             if (cur->value <= v)
+//                 break;
+//             cur = cur->next;
+//             pre = pre->next;
+//         }
+//         Node *tmp = (Node *)malloc(sizeof(Node));
+//         tmp->value = v;
+//         tmp->next = cur;
+//         pre->next = tmp;
+//     }
+//     return head->next;
+// }
+
+// signed main()
+// {
+//     IO;
+//     Node *head = NULL;
+//     head = createSortList();
+//     for (Node *p = head; p != NULL; p = p->next)
+//         cout << p->value << '\n';
+//     // cout << 1;
+//     return 0;
+// }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e5 + 5;
+// char mp[30][30];
+
+// signed main()
+// {
+//     IO;
+//     int x, y;
+//     cin >> x >> y;
+//     for (int i = 1; i <= x; i++)
+//         for (int j = 1; j <= y; j++)
+//             cin >> mp[i][j];
+//     for (int i = 1; i <= x; i++)
+//         for (int j = 1; j <= y; j++)
+//             if (mp[i][j] >= '0' && mp[i][j] <= '9')
+//             {
+//                 for (int ii = 1; ii <= x; ii++)
+//                     for (int jj = 1; jj <= y; jj++)
+//                         if (abs(ii - i) + abs(jj - j) <= mp[i][j] - '0' && mp[ii][jj] == '#')
+//                             mp[ii][jj] = '.';
+//                 mp[i][j] = '.';
+//             }
+
+//     for (int i = 1; i <= x; i++)
+//     {
+//         for (int j = 1; j <= y; j++)
+//             cout << mp[i][j];
+//         cout << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 5e5 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int n;
+//     cin >> n;
+//     unordered_map<int, int> mp;
+//     int ans = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> a[i];
+//         ++mp[a[i]];
+//     }
+//     for (auto [s, v] : mp)
+//         ans += v / 2;
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 5e5 + 5;
+// int a[N], num[10] = {1351991234, 784865646, 32131695, 218494738, 425138948, 64823325, 547849465, 861479535, 941596349, 123654987};
+
+// signed main()
+// {
+//     IO;
+//     string s;
+//     cin >> s;
+//     int t = 0;
+//     unordered_map<int, int> mp;
+//     mp[0]++;
+//     for (int i = 0, len = s.length(); i < len; i++)
+//     {
+//         t = t ^ (s[i] + num[s[i] - '0']);
+//         mp[t]++;
+//         // cout << t << ' ';
+//     }
+//     // int ans = ((mp[0] - 1) + (mp[0] - 1) * (mp[0] - 1)) / 2;
+//     int ans = 0;
+//     for (auto [f, s] : mp)
+//     {
+//         ans += ((s - 1) + (s - 1) * (s - 1)) / 2;
+//     }
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 5e5 + 5;
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int n;
+//         cin >> n;
+//         vector<string> vec;
+//         string s;
+//         for (int i = 0; i < 2 * n - 2; i++)
+//         {
+//             cin >> s;
+//             if (s.length() == n - 1)
+//                 vec.push_back(s);
+//         }
+
+//         for (int i = 0; i < n - 1; i++)
+//             if (vec[0][i] != vec[1][n - 2 - i])
+//             {
+//                 cout << "NO\n";
+//                 goto ss;
+//             }
+//         cout << "YES\n";
+//     ss:;
+//     }
+
+//     return 0;
+// }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 1e4 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int n;
+//         cin >> n;
+//         for (int i = 1; i <= n; i++)
+//         {
+//             cin >> a[i];
+//         }
+
+//         for (int i = n; i > 1; i--)
+//         {
+//             if (a[i] % a[i - 1] == 0)
+//                 a[i - 1]++;
+//             if (a[i] % a[i - 1] == 0)
+//             {
+//                 a[i - 1]++;
+//                 if (a[i] % a[i - 1] == 0)
+//                 {
+//                     a[i - 1]++;
+//                     if (a[i] % a[i - 1] == 0)
+//                     {
+//                         a[i - 1]++;
+//                         if (a[i] % a[i - 1] == 0)
+//                         {
+//                             a[i - 1] -= 4;
+//                             a[i]++;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         for (int i = 1; i <= n; i++)
+//             cout << a[i] << ' ';
+
+//         cout << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 1e5 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int n;
+//         cin >> n;
+//         for (int i = 1, l, r, mid; i <= n; i++)
+//         {
+//             cin >> a[i];
+//             l = 1, r = i;
+//             while (l <= r)
+//             {
+//                 mid = l + r >> 1;
+//                 if (mid < 1 || mid > n)
+//                     break;
+//                 if (mid <= a[i + 1 - mid])
+//                     l = mid + 1;
+//                 else
+//                     r = mid - 1;
+//             }
+//             cout << r << ' ';
+//         }
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+// #pragma GCC optimize(3)
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 1e4 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int n;
+//         cin >> n;
+//         for (int i = 1; i <= n; i++)
+//             cin >> a[i];
+
+//         for (int i = 1; i < n; i++)
+//         {
+//             if (a[i] == 1)
+//             {
+//                 a[i]++;
+//                 if (i > 1 && a[i] % a[i - 1] == 0)
+//                 {
+//                     a[i]++;
+//                 }
+//             }
+//             if (a[i + 1] % a[i] == 0)
+//             {
+//                 // if (a[i + 1] % (a[i] + 1))
+//                 //     a[i]++;
+//                 // else
+//                 a[i + 1]++;
+//             }
+//         }
+//         for (int i = 1; i <= n; i++)
+//             cout << a[i] << ' ';
+//         cout << '\n';
+//     }
+//     return 0;
+// }
