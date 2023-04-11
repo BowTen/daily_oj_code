@@ -1779,3 +1779,71 @@
 //     }
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// string s;
+// int len, f = 0;
+
+// struct node
+// {
+//     char v;
+//     node *left, *right;
+// };
+
+// node *pre_create()
+// {
+//     node *ret = (node *)malloc(sizeof(node));
+//     ret->v = s[f++];
+//     if (ret->v == '#')
+//     {
+//         ret->left = ret->right = NULL;
+//     }
+//     else
+//     {
+//         ret->left = pre_create();
+//         ret->right = pre_create();
+//     }
+//     return ret;
+// }
+
+// void mid_dfs(node *head)
+// {
+//     if (head->v == '#')
+//         return;
+
+//     mid_dfs(head->left);
+//     cout << head->v << ' ';
+//     mid_dfs(head->right);
+// }
+
+// int main()
+// {
+//     cin >> s;
+//     len = s.length();
+//     node *head = pre_create();
+
+//     mid_dfs(head);
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     int n, mx, mn, a, b;
+//     cin >> n;
+//     cin >> a >> b;
+//     mx = a / b;
+//     mn = (int)ceil((a + 1) / (b + 1));
+//     while (--n)
+//     {
+//         cin >> a >> b;
+//         mx = min(mx, a / b);
+//         mn = max(mn, (int)ceil((double)(a + 1) / (b + 1)));
+//     }
+//     cout << mn << ' ' << mx;
+//     return 0;
+// }
