@@ -1900,3 +1900,396 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     string s;
+//     cin >> s;
+//     int i = 0, f = 0, even = 0, n = s.length(), num = 0, sum = n;
+//     if (s[0] == '-')
+//         f = 1, i++, sum--;
+//     if ((s.back() - '0') % 2 == 0)
+//         even = 1;
+
+//     for (i; i < n; i++)
+//         if (s[i] == '2')
+//             num++;
+
+//     double ans = ((double)num / sum) * 100.0;
+//     if (f)
+//         ans *= 1.5;
+//     if (even)
+//         ans *= 2.0;
+//     printf("%.2lf%%", ans);
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     int a, b;
+//     scanf("%d:%d", &a, &b);
+//     int aa = a, bb = b;
+//     if (b)
+//         a++;
+//     a -= 12;
+//     if (a <= 0)
+//         printf("Only %02d:%02d.  Too early to Dang.", aa, bb);
+//     else
+//     {
+//         for (int i = 0; i < a; i++)
+//             cout << "Dang";
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 110;
+// int a, b, n, a1[N], a2[N], b1[N], b2[N], as, bs;
+
+// int main()
+// {
+//     cin >> a >> b >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a1[i] >> a2[i] >> b1[i] >> b2[i];
+
+//     for (int i = 1, s; i <= n; i++)
+//     {
+//         s = a1[i] + b1[i];
+//         if ((a2[i] == s && b2[i] == s) || (a2[i] != s && b2[i] != s))
+//             continue;
+
+//         if (a2[i] == s)
+//         {
+//             as++;
+//             if (as > a)
+//             {
+//                 cout << "A\n"
+//                      << bs;
+//                 return 0;
+//             }
+//         }
+//         else
+//         {
+//             bs++;
+//             if (bs > b)
+//             {
+//                 cout << "B\n"
+//                      << as;
+//                 return 0;
+//             }
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 110;
+// int n, k[110], m;
+// unordered_set<string> st[110];
+
+// int main()
+// {
+//     cin >> n;
+//     string s;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> k[i];
+//         for (int j = 0; j < k[i]; j++)
+//         {
+//             cin >> s;
+//             st[i].insert(s);
+//         }
+//     }
+//     cin >> m;
+//     unordered_set<string> q;
+//     queue<string> que;
+//     while (m--)
+//     {
+//         cin >> s;
+//         if (q.find(s) == q.end())
+//         {
+//             q.insert(s);
+//             que.push(s);
+//         }
+//     }
+
+//     int cnt = 0;
+//     while (que.size())
+//     {
+//         string ss = que.front();
+//         que.pop();
+//         for (int i = 1; i <= n; i++)
+//         {
+//             if (k[i] > 1 && st[i].find(ss) != st[i].end())
+//                 goto bk;
+//         }
+//         if(cnt++)
+//             cout << ' ';
+//         cout << ss;
+//     bk:;
+//     }
+
+//     if (!cnt)
+//         cout << "No one is handsome";
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1100;
+// int n, a, b;
+
+// int main()
+// {
+//     cin >> n;
+//     for (int i = 0, t; i < n; i++)
+//     {
+//         cin >> t;
+//         if (t % 2)
+//             a++;
+//         else
+//             b++;
+//     }
+//     cout << a << ' ' << b;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1100;
+// int n, a, b;
+
+// int main()
+// {
+//     cin >> n;
+//     n += 2;
+//     if (n > 7)
+//         n -= 7;
+//     cout << n;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1100;
+// int g[200];
+// char tmp[5] = "GPLT";
+
+// int main()
+// {
+//     string s;
+//     cin >> s;
+//     int n = s.length();
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (s[i] >= 'a' && s[i] <= 'z')
+//             s[i] -= 'a' - 'A';
+//         g[s[i]]++;
+//     }
+
+//     // cout << g['G'] << ' ' << g['P'] << ' ' << g['L'] << ' ' << g['T'];
+
+//     for (int i = 0; i < n * 4; i++)
+//     {
+//         if (g[tmp[i % 4]])
+//         {
+//             printf("%c", tmp[i % 4]);
+//             g[tmp[i % 4]]--;
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e4 + 5;
+
+// struct node
+// {
+//     int id, num;
+//     int val;
+// };
+// node a[N];
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     for (int i = 1, k; i <= n; i++)
+//     {
+//         a[i].id = i;
+//         cin >> k;
+//         int sum = 0, ni, pi;
+//         for (int j = 0; j < k; j++)
+//         {
+//             cin >> ni >> pi;
+//             sum += pi;
+//             a[ni].val += pi;
+//             a[ni].num++;
+//         }
+//         a[i].val -= sum;
+//     }
+
+//     sort(a + 1, a + 1 + n, [](node e1, node e2) -> int
+//          {if(e1.val == e2.val)
+//          {
+//             if(e1.num == e2.num)
+//             {
+//                 return e1.id < e2.id;
+//             }
+//             return e1.num > e2.num;
+//         }
+//         return e1.val > e2.val; });
+
+//     for (int i = 1; i <= n; i++)
+//         printf("%d %.2lf\n", a[i].id, (double)a[i].val / 100.0);
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 110;
+// int n, k, m, fa[N], bad[N][N];
+
+// int find(int x)
+// {
+//     return x == fa[x] ? x : fa[x] = find(fa[x]);
+// }
+
+// void merg(int a, int b)
+// {
+//     a = find(a);
+//     b = find(b);
+//     fa[a] = b;
+// }
+
+// int main()
+// {
+//     cin >> n >> m >> k;
+//     for (int i = 1; i <= n; i++)
+//         fa[i] = i;
+//     for (int i = 0, a, b, c; i < m; i++)
+//     {
+//         cin >> a >> b >> c;
+//         if (c == 1)
+//             merg(a, b);
+//         else
+//             bad[a][b] = bad[b][a] = 1;
+//     }
+
+//     int a, b;
+//     while (k--)
+//     {
+//         cin >> a >> b;
+//         if (find(a) == find(b))
+//         {
+//             if (bad[a][b])
+//                 cout << "OK but...\n";
+//             else
+//                 cout << "No problem\n";
+//         }
+//         else
+//         {
+//             if (bad[a][b])
+//                 cout << "No way\n";
+//             else
+//                 cout << "OK\n";
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 50;
+// int n, pre[N], mid[N];
+
+// struct node
+// {
+//     int val, left, right;
+// };
+// node a[N];
+
+// int creat(int l1, int r1, int l2, int r2)
+// {
+//     if (l1 > r1)
+//         return 0;
+
+//     int ret = l2;
+//     int rt;
+//     for (int i = l1; i <= r1; i++)
+//         if (mid[i] == pre[ret])
+//         {
+//             rt = i;
+//             break;
+//         }
+
+//     a[ret].val = pre[ret];
+//     a[ret].left = creat(l1, rt - 1, l2 + 1, l2 + rt - l1);
+//     a[ret].right = creat(rt + 1, r1, l2 + rt - l1 + 1, r2);
+
+//     return ret;
+// }
+
+// int main()
+// {
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> mid[i];
+//     for (int i = 1; i <= n; i++)
+//         cin >> pre[i];
+
+//     int head = creat(1, n, 1, n);
+
+//     queue<int> que;
+//     que.push(head);
+//     int cnt = 0;
+//     while (que.size())
+//     {
+//         int p = que.front();
+//         que.pop();
+//         if (cnt++)
+//             cout << ' ';
+//         cout << a[p].val;
+//         if (a[p].right)
+//             que.push(a[p].right);
+//         if (a[p].left)
+//             que.push(a[p].left);
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 50;
+
+// int main()
+// {
+//     int a;
+//     srand(time(0));
+//     a = rand() % 101;
+//     if (a > 50)
+//         cout << 1;
+//     else
+//         cout << 0;
+
+//     return 0;
+// }
