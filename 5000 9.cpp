@@ -1847,3 +1847,56 @@
 //     cout << mn << ' ' << mx;
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define pii pair<int, int>
+// int n, s[15], e[15], val[15], vis[15], cur, f;
+
+// void dfs(int id)
+// {
+//     if (cur > s[id] + e[id])
+//         return;
+//     vis[id] = 1;
+//     int delt = max(cur + val[id], s[id] + val[id]) - cur;
+//     cur += delt;
+//     int cnt = 0;
+//     for (int i = 0; i < n; i++)
+//         if (!vis[i])
+//             dfs(i), cnt++;
+
+//     if (!cnt)
+//         f = 1;
+
+//     vis[id] = 0;
+//     cur -= delt;
+// }
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+//         for (int i = 0; i < n; i++)
+//             cin >> s[i] >> e[i] >> val[i], vis[i] = 0;
+
+//         f = 0;
+//         for (int i = 0; i < n && !f; i++)
+//         {
+//             cur = 0;
+//             dfs(i);
+//         }
+
+//         if (f)
+//             cout << "YES\n";
+//         else
+//             cout << "NO\n";
+//     }
+
+//     return 0;
+// }
