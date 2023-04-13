@@ -2293,3 +2293,45 @@
 
 //     return 0;
 // }
+
+// #include <iostream>
+// namespace sp
+// {
+//     int a = 1;
+// }
+
+// namespace sp
+// {
+//     int b = 2;
+// }
+
+// int main()
+// {
+
+//     std::cout << sp::a << '\n';
+
+//     std::cout << sp::b << '\n';
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int n, mx[10];
+
+// int main()
+// {
+
+//     cin >> n;
+//     string s;
+//     int ans = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> s;
+//         mx[s.back() - '0'] = max(mx[s.back() - '0'], mx[s[0] - '0'] + 1);
+//         ans = max(ans, mx[s.back() - '0']);
+//     }
+//     cout << n - ans;
+
+//     return 0;
+// }
