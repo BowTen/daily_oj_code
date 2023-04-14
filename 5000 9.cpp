@@ -2335,3 +2335,589 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int a[1010], n, m;
+// string s;
+
+// void adjust(int i)
+// {
+//     int son = (i - 1) >> 1;
+//     while (son >= 0 && a[son] > a[i])
+//     {
+//         swap(a[son], a[i]);
+//         i = son;
+//         son = (i - 1) >> 1;
+//     }
+// }
+
+// void push(int x, int i)
+// {
+//     a[i] = x;
+//     adjust(i);
+// }
+
+// int read1()
+// {
+//     int i = 0, f = 0, t1 = 0;
+//     if (s[0] == '-')
+//         i = 1, f = 1;
+//     for (int len = s.length(); s[i] != ' '; i++)
+//     {
+//         t1 *= 10;
+//         t1 += s[i] - '0';
+//     }
+//     if (f)
+//         t1 = -t1;
+//     return t1;
+// }
+
+// pair<int, int> read2()
+// {
+//     int i = 0, f1 = 0, f2 = 0, t1 = 0, t2 = 0;
+//     if (s[0] == '-')
+//         i = f1 = 1;
+//     while (s[i] != ' ')
+//     {
+//         t1 *= 10;
+//         t1 += s[i++] - '0';
+//     }
+//     if (f1)
+//         t1 *= -1;
+//     i += 5;
+//     if (s[i] == '-')
+//         i++, f2 = 1;
+//     while (s[i] != ' ')
+//     {
+//         t2 *= 10;
+//         t2 += s[i++] - '0';
+//     }
+//     if (f2)
+//         t2 *= -1;
+//     return {t1, t2};
+// }
+
+// pair<int, int> read3()
+// {
+//     int i = 0, f1 = 0, f2 = 0, t1 = 0, t2 = 0;
+//     if (s[0] == '-')
+//         i = f1 = 1;
+//     while (s[i] != ' ')
+//     {
+//         t1 *= 10;
+//         t1 += s[i++] - '0';
+//     }
+//     if (f1)
+//         t1 *= -1;
+//     i += 18;
+//     if (s[i] == '-')
+//         i++, f2 = 1;
+//     while (i < s.length())
+//     {
+//         t2 *= 10;
+//         t2 += s[i++] - '0';
+//     }
+//     if (f2)
+//         t2 *= -1;
+//     return {t1, t2};
+// }
+
+// pair<int, int> read4()
+// {
+//     int i = 0, f1 = 0, f2 = 0, t1 = 0, t2 = 0;
+//     if (s[0] == '-')
+//         i = f1 = 1;
+//     while (s[i] != ' ')
+//     {
+//         t1 *= 10;
+//         t1 += s[i++] - '0';
+//     }
+//     if (f1)
+//         t1 *= -1;
+//     i += 15;
+//     if (s[i] == '-')
+//         i++, f2 = 1;
+//     while (i < s.length())
+//     {
+//         t2 *= 10;
+//         t2 += s[i++] - '0';
+//     }
+//     if (f2)
+//         t2 *= -1;
+//     return {t1, t2};
+// }
+
+// int kind()
+// {
+//     for (int i = 0; 1; i++)
+//     {
+//         if (s[i] == ' ')
+//         {
+//             if (s[i + 4] == 't')
+//                 return 3;
+//             return 4;
+//         }
+//     }
+// }
+
+// int main()
+// {
+
+//     cin >> n >> m;
+//     for (int i = 0, tmp; i < n; i++)
+//     {
+//         cin >> tmp;
+//         push(tmp, i);
+//     }
+
+//     getchar();
+//     int t1, t2;
+//     while (m--)
+//     {
+//         getline(cin, s);
+//         if (s.back() == 't')
+//         {
+//             t1 = read1();
+//             if (a[0] == t1)
+//                 cout << "T\n";
+//             else
+//                 cout << "F\n";
+//         }
+//         else if (s.back() == 's')
+//         {
+//             pair<int, int> t = read2();
+//             t1 = t.first, t2 = t.second;
+//             for (int i = 0; i < n; i++)
+//             {
+//                 if (a[i] == t1)
+//                 {
+//                     if (i % 2 && i + 1 < n && a[i + 1] == t2)
+//                     {
+//                         cout << "T\n";
+//                         goto ss;
+//                     }
+//                     else if (i % 2 == 0 && i - 1 >= 0 && a[i - 1] == t2)
+//                     {
+//                         cout << "T\n";
+//                         goto ss;
+//                     }
+//                 }
+
+//                 if (a[i] == t2)
+//                 {
+//                     if (i % 2 && i + 1 < n && a[i + 1] == t1)
+//                     {
+//                         cout << "T\n";
+//                         goto ss;
+//                     }
+//                     else if (i % 2 == 0 && i - 1 >= 0 && a[i - 1] == t1)
+//                     {
+//                         cout << "T\n";
+//                         goto ss;
+//                     }
+//                 }
+//             }
+//             cout << "F\n";
+//         ss:;
+//         }
+//         else if (kind() == 3)
+//         {
+//             pair<int, int> t = read3();
+//             t1 = t.first, t2 = t.second;
+//             for (int i = 1; i < n; i++)
+//             {
+//                 if (a[i] == t2 && a[(i - 1) / 2] == t1)
+//                 {
+//                     cout << "T\n";
+//                     goto s3;
+//                 }
+//             }
+//             cout << "F\n";
+//         s3:;
+//         }
+//         else
+//         {
+//             pair<int, int> t = read4();
+//             t1 = t.first, t2 = t.second;
+//             for (int i = 1; i < n; i++)
+//             {
+//                 if (a[i] == t1 && a[(i - 1) / 2] == t2)
+//                 {
+//                     cout << "T\n";
+//                     goto s4;
+//                 }
+//             }
+//             cout << "F\n";
+//         s4:;
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+
+// int sumDigits(int n)
+// {
+//     int ret = 0;
+//     while (n)
+//     {
+//         ret += n % 10;
+//         n /= 10;
+//     }
+//     return ret;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     cout << sumDigits(n);
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int a1[30], a2[30];
+
+// int main()
+// {
+//     unordered_map<int, int> mp;
+//     int n1, n2;
+//     cin >> n1;
+//     for (int i = 1; i <= n1; i++)
+//     {
+//         cin >> a1[i];
+//     }
+//     cin >> n2;
+//     for (int i = 1; i <= n2; i++)
+//     {
+//         cin >> a2[i];
+//     }
+
+//     int cnt = 0;
+//     for (int i = 1; i <= n1; i++)
+//     {
+//         if (mp[a1[i]]++)
+//             continue;
+//         for (int j = 1; j <= n2; j++)
+//             if (a2[j] == a1[i])
+//             {
+//                 goto ss;
+//             }
+//         if (cnt++)
+//             cout << ' ';
+//         cout << a1[i];
+//     ss:;
+//     }
+
+//     for (int i = 1; i <= n2; i++)
+//     {
+//         if (mp[a2[i]]++)
+//             continue;
+//         for (int j = 1; j <= n1; j++)
+//             if (a1[j] == a2[i])
+//             {
+//                 goto ss2;
+//             }
+//         if (cnt++)
+//             cout << ' ';
+//         cout << a2[i];
+//     ss2:;
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int a1[30], a2[30];
+
+// int main()
+// {
+//     string s;
+//     getline(cin, s);
+//     int ans = 1;
+//     for (int i = 0, len = s.length(); i < len;i++)
+//     if(s[i] == ' ')
+//         ans++;
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int di[1010];
+
+// int main()
+// {
+//     string s1, s2;
+//     cin >> s1 >> s2;
+
+//     if (s1.length() == 1)
+//     {
+//         cout << "1 1";
+//         return 0;
+//     }
+
+//     cout << (s1.length() + 1) / 2 << ' ';
+
+//     int len = s1.length();
+//     for (int i = 0, st, ed; i < len; i += 2)
+//     {
+//         st = s1[i] - '0';
+//         ed = s2[i] - '0';
+//         di[st]++;
+//         di[ed]--;
+//     }
+
+//     int ans = di[0];
+//     for (int i = 1; i <= 1000; i++)
+//     {
+//         di[i] = di[i] + di[i - 1];
+//         ans = max(ans, di[i]);
+//         // cout << di[i] << ' ';
+//     }
+
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int a[105][105];
+// pair<int, int> f[4] = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         for (int j = 1; j <= n; j++)
+//             cin >> a[i][j];
+
+//     int ans = 0, cnt = 0;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         for (int j = 1; j <= n; j++)
+//         {
+//             int ok = 1, mn = INT_MAX;
+//             for (int p = 0, x, y; p < 4; p++)
+//             {
+//                 x = i + f[p].first;
+//                 y = j + f[p].second;
+//                 if (x >= 1 && x <= n && y >= 1 && y <= n)
+//                 {
+//                     if (a[x][y] <= a[i][j])
+//                     {
+//                         ok = 0;
+//                         break;
+//                     }
+//                     mn = min(mn, a[x][y]);
+//                 }
+//                 else
+//                 {
+//                     ok = 0;
+//                     break;
+//                 }
+//             }
+//             if (!ok)
+//                 continue;
+//             cnt++;
+//             ans += mn - a[i][j];
+//         }
+//     }
+
+//     cout << cnt << ' ' << ans;
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+// class Position
+// {
+// public:
+//     int x;
+//     int y;
+// };
+
+// class Robot
+// {
+// public:
+//     // initialize at (0, 0)
+//     Robot()
+//     {
+//         currentPos.x = currentPos.y = 0;
+//     }
+//     // initialize at pos
+//     Robot(const Position &pos)
+//     {
+//         currentPos = pos;
+//     }
+//     // dir could be 'N', 'E', 'S', 'W'
+//     // for other characters, the robot don’t move
+//     void Move(char dir)
+//     {
+//         if (dir == 'N')
+//         {
+//             currentPos.y++;
+//         }
+//         else if (dir == 'E')
+//         {
+//             currentPos.x++;
+//         }
+//         else if (dir == 'S')
+//         {
+//             currentPos.y--;
+//         }
+//         else if (dir == 'W')
+//         {
+//             currentPos.x--;
+//         }
+//     }
+//     // return current position
+//     Position GetPosition() const
+//     {
+//         return currentPos;
+//     }
+
+// private:
+//     Position currentPos;
+// };
+
+// int main()
+// {
+//     int x, y;
+//     cin >> x >> y;
+//     Position c;
+//     c.x = x;
+//     c.y = y;
+//     Robot a;
+//     cout << a.GetPosition().x << " " << a.GetPosition().y << endl;
+//     Robot b(c);
+//     cout << b.GetPosition().x << " " << b.GetPosition().y << endl;
+//     b.Move('E');
+//     cout << b.GetPosition().x << " " << b.GetPosition().y << endl;
+//     b.Move('N');
+//     cout << b.GetPosition().x << " " << b.GetPosition().y << endl;
+//     b.Move('W');
+//     cout << b.GetPosition().x << " " << b.GetPosition().y << endl;
+//     b.Move('S');
+//     cout << b.GetPosition().x << " " << b.GetPosition().y << endl;
+//     return 0;
+// }
+
+// #include <iostream>
+// #include <iomanip>
+// using namespace std;
+
+// class Yuebao
+// {
+// private:
+//     static double profitRate;
+
+// public:
+//     double balance;
+
+//     Yuebao()
+//     {
+//         balance = 0;
+//     }
+
+//     Yuebao(double a)
+//     {
+//         balance = a;
+//     }
+
+//     void addProfit()
+//     {
+//         // cout << balance << ' ' << profitRate << '\n';
+//         balance = balance * (1.0 + profitRate);
+//     }
+
+//     void deposit(double amount)
+//     {
+//         balance += amount;
+//     }
+
+//     void withdraw(double amount)
+//     {
+//         balance -= amount;
+//     }
+
+//     double getBalance()
+//     {
+//         return balance;
+//     }
+
+//     static void setProfitRate(double a)
+//     {
+//         profitRate = a;
+//     }
+// };
+
+// int main()
+// {
+//     int n;
+//     while (cin >> n)
+//     {
+//         double profitRate;
+//         cin >> profitRate;
+//         Yuebao::setProfitRate(profitRate); // 设定鱼额宝的利率
+//         Yuebao y(0);                       // 新建鱼额宝账户，余额初始化为0
+//         int operation;                     // 接受输入判断是存还是取
+//         double amount;                     // 接受输入存取金额
+//         for (int i = 0; i < n; ++i)
+//         {
+//             y.addProfit(); // 加入前一天余额产生的利息
+//             // cout << profitRate << '\n';
+//             cin >> operation >> amount;
+//             if (operation == 0)
+//                 y.deposit(amount); // 存入金额
+//             else
+//                 y.withdraw(amount); // 取出金额
+//             // cout << fixed << setprecision(2) << y.getBalance() << endl; // 输出最终账户余额
+//         }
+//         cout << fixed << setprecision(2) << y.getBalance() << endl; // 输出最终账户余额
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class t
+// {
+
+// public:
+//     static double dd;
+//     static void setd(double a)
+//     {
+//         dd = a;
+//     }
+
+//     double getd()
+//     {
+//         return dd;
+//     }
+// };
+
+// double t::dd = 0;
+
+// int main()
+// {
+//     t a;
+//     a.setd(1.9);
+//     cout << a.getd();
+
+//     return 0;
+// }
