@@ -2921,3 +2921,149 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int n, m, a, b;
+// int s[1010][1010];
+// const int mod = 998244353;
+
+// struct node
+// {
+//     int v, x, y;
+// };
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n >> m >> a >> b;
+//     for (int i = 1; i <= n; i++)
+//         for (int j = 1; j <= m; j++)
+//             cin >> s[i][j];
+
+//     long long ans = 0;
+//     deque<node> q1, q2;
+//     for (int i = 1; i + a - 1 <= n; i++)
+//     {
+//         for (int ii = i; ii <= i + a - 1; ii++)
+//             for (int j = 1; j <= b; j++)
+//             {
+//                 while (q1.size() && (q1.back().v < s[ii][j] || q1.back().y > b || q1.back().x < i))
+//                     q1.pop_back();
+//                 while (q2.size() && (q2.back().v > s[ii][j] || q2.back().y > b || q2.back().x < i))
+//                     q2.pop_back();
+//                 while (q1.size() && (q1.front().y > b || q1.front().x < i))
+//                     q1.pop_front();
+//                 while (q2.size() && (q2.front().y > b || q2.front().x < i))
+//                     q2.pop_front();
+//                 q1.push_back({s[ii][j], ii, j});
+//                 q2.push_back({s[ii][j], ii, j});
+//             }
+
+//         for (int j = 1; j + b - 1 <= m; j++)
+//         {
+//             for (int ii = i; ii <= i + a - 1; ii++)
+//             {
+//                 while (q1.size() && (q1.back().v < s[ii][j + b - 1] || q1.back().y > b || q1.back().x < i))
+//                     q1.pop_back();
+//                 while (q2.size() && (q2.back().v > s[ii][j + b - 1] || q2.back().y > b || q2.back().x < i))
+//                     q2.pop_back();
+//                 while (q1.size() && (q1.front().y < j || q1.front().y > j + b - 1 || q1.front().x < i))
+//                     q1.pop_front();
+//                 while (q2.size() && (q2.front().y < j || q2.front().y > j + b - 1 || q2.front().x < i))
+//                     q2.pop_front();
+//                 q1.push_back({s[ii][j + b - 1], ii, j + b - 1});
+//                 q2.push_back({s[ii][j + b - 1], ii, j + b - 1});
+//             }
+//             ans += (q1.front().v * q2.front().v) % mod;
+//             ans %= mod;
+//         }
+//     }
+
+//     cout << ans;
+//     return 0;
+// }
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+int n, m, a, b;
+int s[1010][1010], mnr[1010][1010], mnc[1010][1010], mxr[1010][1010], mxc[1010][1010];
+const int mod = 998244353;
+
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    long long ans = 0;
+    cin >> n >> m >> a >> b;
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++)
+            cin >> s[i][j];
+
+    for (int i = 1; i <= n; i++)
+    {
+        deque<int> q1, q2;
+        for (int j = 1; j < b; j++)
+        {
+            while (q1.size() && s[i][q1.back()] < s[i][j])
+                q1.pop_back();
+            while (q2.size() && s[i][q2.back()] > s[i][j])
+                q2.pop_back();
+            q1.push_back(j);
+            q2.push_back(j);
+        }
+        for (int j = b; j <= m; j++)
+        {
+            while (q1.size() && q1.front() < j - b + 1)
+                q1.pop_front();
+            while (q2.size() && q2.front() < j - b + 1)
+                q2.pop_front();
+            while (q1.size() && s[i][q1.back()] < s[i][j])
+                q1.pop_back();
+            while (q2.size() && s[i][q2.back()] > s[i][j])
+                q2.pop_back();
+            q1.push_back(j);
+            q2.push_back(j);
+            mxr[i][j] = s[i][q1.front()];
+            mnr[i][j] = s[i][q2.front()];
+        }
+    }
+
+    for (int j = b; j <= m; j++)
+    {
+        deque<int> q1, q2;
+        for (int i = 1; i < a; i++)
+        {
+            while (q1.size() && mxr[q1.back()][j] < mxr[i][j])
+                q1.pop_back();
+            while (q2.size() && mnr[q2.back()][j] > mnr[i][j])
+                q2.pop_back();
+            q1.push_back(i);
+            q2.push_back(i);
+        }
+        for (int i = a; i <= n; i++)
+        {
+            while (q1.size() && q1.front() < i - a + 1)
+                q1.pop_front();
+            while (q2.size() && q2.front() < i - a + 1)
+                q2.pop_front();
+            while (q1.size() && mxr[q1.back()][j] < mxr[i][j])
+                q1.pop_back();
+            while (q2.size() && mnr[q2.back()][j] > mnr[i][j])
+                q2.pop_back();
+            q1.push_back(i);
+            q2.push_back(i);
+            mxc[i][j] = mxr[q1.front()][j];
+            mnc[i][j] = mnr[q2.front()][j];
+            ans += (mxc[i][j] * mnc[i][j]) % mod;
+            ans %= mod;
+        }
+    }
+
+    cout << ans;
+    return 0;
+}
