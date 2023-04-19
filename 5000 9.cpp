@@ -3126,3 +3126,31 @@
 //             cout << a[i] << ' ';
 //     return 0;
 // }
+
+#include <bits/stdc++.h>
+using namespace std;
+char s1[10010], s2[10010];
+
+int main()
+{
+    scanf("%s %s", s1, s2);
+    int n1 = strlen(s1), n2 = strlen(s2), ans = 0;
+    for (int i = 0; i < n1; i++)
+    {
+        for (int j = 0, t = 0; j < n2; j++)
+        {
+            if ((s2[j] >= '0' && s2[j] <= '9') || s2[j] != s1[i + t])
+            {
+                t = 0;
+            }
+            else
+            {
+                t++;
+                if (t > ans)
+                    ans = t;
+            }
+        }
+    }
+    printf("%d", ans);
+    return 0;
+}
