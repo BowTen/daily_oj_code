@@ -3127,30 +3127,451 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// char s1[10010], s2[10010];
+
+// int main()
+// {
+//     scanf("%s %s", s1, s2);
+//     int n1 = strlen(s1), n2 = strlen(s2), ans = 0;
+//     for (int i = 0; i < n1; i++)
+//     {
+//         for (int j = 0, t = 0; j < n2; j++)
+//         {·
+//             if ((s2[j] >= '0' && s2[j] <= '9') || s2[j] != s1[i + t])
+//             {
+//                 t = 0;
+//             }
+//             else
+//             {
+//                 t++;
+//                 if (t > ans)
+//                     ans = t;
+//             }
+//         }
+//     }
+//     printf("%d", ans);
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     int n;
+//     char a;
+//     scanf("%d %c", &n, &a);
+//     int n2 = round((double)n / 2.0);
+//     for (int i = 0; i < n2; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//             cout << a;
+//         cout << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     int a, b;
+//     scanf("%d:%d", &a, &b);
+//     int aa = a, bb = b;
+//     if (b)
+//         a++;
+//     a -= 12;
+//     if (a < 0)
+//         printf("Only %02d:%02d.  Too early to Dang.", aa, bb);
+//     else
+//     {
+//         for (int i = 0; i < a; i++)
+//             cout << "Dang";
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int t[] = {1, 0, 'X' + '0', 9, 8, 7, 6, 5, 4, 3, 2};
+// int w[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<string> vec;
+//     while (n--)
+//     {
+//         string s;
+//         cin >> s;
+//         int sum = 0, f = 1;
+//         for (int i = 0, tmp; i < 17; i++)
+//         {
+//             if (s[i] > '9' || s[i] < '0')
+//             {
+//                 f = 0;
+//                 break;
+//             }
+//             tmp = s[i] - '0';
+//             sum += w[i] * tmp;
+//             sum %= 11;
+//         }
+//         if (f)
+//         {
+//             // cout << sum << '\n';
+//             if (t[sum] + '0' != s.back())
+//                 vec.push_back(s);
+//         }
+//         else
+//             vec.push_back(s);
+//     }
+//     if (vec.size())
+//     {
+//         // cout << vec.size() << '\n';
+//         for (int i = 0; i < vec.size(); i++)
+//             cout << vec[i] << '\n';
+//     }
+//     else
+//         cout << "All passed";
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int hp[2], n;
+// int s[2];
+
+// int main()
+// {
+//     cin >> hp[0] >> hp[1] >> n;
+//     int f = 1;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int a, b, c, d, f1 = 1, f2 = 1;
+//         cin >> a >> b >> c >> d;
+//         if (!f)
+//             continue;
+//         int sum = a + c;
+//         if (b == sum)
+//             f1 = 0;
+//         if (d == sum)
+//             f2 = 0;
+//         if (f1 != f2)
+//         {
+//             if (!f1)
+//             {
+//                 s[0]++;
+//                 hp[0]--;
+//                 if (hp[0] < 0)
+//                 {
+//                     f = 0;
+//                     cout << 'A' << '\n'
+//                          << s[1];
+//                 }
+//             }
+//             else
+//             {
+//                 s[1]++;
+//                 hp[1]--;
+//                 if (hp[1] < 0)
+//                 {
+//                     f = 0;
+//                     cout << 'B' << '\n'
+//                          << s[0];
+//                 }
+//             }
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     string s;
+//     cin >> s;
+//     int len = s.length();
+//     int i = 0, f = 0, e = 0, cnt = 0, sum = len;
+//     if (s[0] == '-')
+//     {
+//         f = 1;
+//         i++;
+//         sum--;
+//     }
+//     if ((s.back() - '0') % 2 == 0)
+//     {
+//         e = 1;
+//     }
+
+//     for (i; i < len; i++)
+//     {
+//         if (s[i] == '2')
+//             cnt++;
+//     }
+//     double ans = (double)cnt / sum;
+//     if (f)
+//         ans *= 1.5;
+//     if (e)
+//         ans *= 2.0;
+//     ans *= 100.0;
+//     printf("%.2lf", ans);
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int vis[10];
+// vector<int> arr;
+// int ind[11];
+
+// int main()
+// {
+//     string s;
+//     cin >> s;
+//     for (int i = 0; i < s.length(); i++)
+//     {
+//         if (!vis[s[i] - '0'])
+//         {
+//             vis[s[i] - '0'] = 1;
+//             arr.push_back(s[i] - '0');
+//         }
+//     }
+//     sort(arr.begin(), arr.end(), greater<int>());
+//     int siz = arr.size();
+//     for (int i = 0; i < s.length(); i++)
+//     {
+//         for (int j = 0; j < siz; j++)
+//         {
+//             if (arr[j] == s[i] - '0')
+//             {
+//                 ind[i] = j;
+//                 break;
+//             }
+//         }
+//     }
+
+//     printf("int[] arr = new int[]{");
+//     int cnt = 0;
+//     for (auto p : arr)
+//     {
+//         if (cnt++)
+//             cout << ',';
+//         cout << p;
+//     }
+//     printf("};\n");
+//     printf("int[] index = new int[]{");
+//     cnt = 0;
+//     for (auto p : ind)
+//     {
+//         if (cnt++)
+//             cout << ',';
+//         cout << p;
+//     }
+//     printf("};");
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int vis[300];
+
+// int main()
+// {
+//     string s1, s2;
+//     getline(cin, s1);
+//     getline(cin, s2);
+//     for (int i = 0; i < s2.length(); i++)
+//     {
+//         vis[s2[i]] = 1;
+//     }
+//     for (int i = 0; i < s1.length(); i++)
+//         if (!vis[s1[i]])
+//             cout << s1[i];
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e4 + 5;
+// int fa[N], vis[N], sum;
+
+// int find(int x)
+// {
+//     return x == fa[x] ? x : fa[x] = find(fa[x]);
+// }
+
+// void merg(int a, int b)
+// {
+//     a = find(a);
+//     b = find(b);
+//     fa[a] = b;
+// }
+
+// int main()
+// {
+
+//     for (int i = 0; i < N; i++)
+//         fa[i] = i;
+//     int n;
+//     cin >> n;
+//     for (int k, i = 0, t, last; i < n; i++)
+//     {
+//         cin >> k >> last;
+//         if (!vis[last])
+//         {
+//             vis[last] = 1;
+//             sum++;
+//         }
+//         while (--k)
+//         {
+//             cin >> t;
+//             merg(t, last);
+//             last = t;
+//             if (!vis[t])
+//             {
+//                 vis[t] = 1;
+//                 sum++;
+//             }
+//         }
+//     }
+
+//     int cnt = 0;
+//     for (int i = 0; i < N; i++)
+//     {
+//         if (vis[i] && fa[i] == i)
+//             cnt++;
+//     }
+//     cout << sum << ' ' << cnt << '\n';
+//     int q, a, b;
+//     cin >> q;
+//     while (q--)
+//     {
+//         cin >> a >> b;
+//         if (fa[a] == fa[b])
+//             cout << "Y\n";
+//         else
+//             cout << "N\n";
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n;
+
+// struct node
+// {
+//     string ad, ne;
+//     int data;
+// };
+
+// node a1[N], a2[N];
+
+// int main()
+// {
+//     string head;
+//     cin >> head >> n;
+//     unordered_map<string, node> mp;
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> a1[i].ad >> a1[i].data >> a1[i].ne;
+//         mp[a1[i].ad] = a1[i];
+//     }
+//     string cur = head;
+//     for (int i = 0; cur != "-1"; i++)
+//     {
+//         a2[i] = mp[cur];
+//         cur = mp[cur].ne;
+//     }
+
+//     for (int q = 0, p = n - 1; p >= q; p--, q++)
+//     {
+//         cout << a2[p].ad << ' ' << a2[p].data << ' ';
+//         if (p == q)
+//         {
+//             cout << -1;
+//             break;
+//         }
+//         cout << a2[q].ad << '\n'
+//              << a2[q].ad << ' ' << a2[q].data << ' ';
+//         if (q + 1 == p)
+//         {
+//             cout << -1;
+//             break;
+//         }
+//         cout << a2[p - 1].ad << '\n';
+//     }
+
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
-char s1[10010], s2[10010];
+
+struct node
+{
+    string name;
+    int sum, mx;
+};
+vector<node> vec;
 
 int main()
 {
-    scanf("%s %s", s1, s2);
-    int n1 = strlen(s1), n2 = strlen(s2), ans = 0;
-    for (int i = 0; i < n1; i++)
+    int n;
+    cin >> n;
+    for (int i = 0, k, t; i < n; i++)
     {
-        for (int j = 0, t = 0; j < n2; j++)
+        string s;
+        cin >> s >> k;
+        unordered_map<int, int> mp;
+        int mx = 0;
+        while (k--)
         {
-            if ((s2[j] >= '0' && s2[j] <= '9') || s2[j] != s1[i + t])
-            {
-                t = 0;
-            }
-            else
-            {
-                t++;
-                if (t > ans)
-                    ans = t;
-            }
+            cin >> t;
+            mx = max(mx, ++mp[t]);
+        }
+        node tmp;
+        tmp.name = s;
+        tmp.sum = mp.size();
+        tmp.mx = mx;
+        vec.push_back(tmp);
+    }
+    sort(vec.begin(), vec.end(), [](node e1, node e2) -> int
+         { if(e1.sum == e2.sum)
+            return e1.mx < e2.mx;
+            return e1.sum > e2.sum; });
+
+    int cnt = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        if (i >= vec.size())
+        {
+            if (cnt++)
+                cout << ' ';
+            cout << '-';
+        }
+        else
+        {
+            if (cnt++)
+                cout << ' ';
+            cout << vec[i].name;
         }
     }
-    printf("%d", ans);
+
     return 0;
 }
