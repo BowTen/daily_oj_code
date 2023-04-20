@@ -3520,57 +3520,110 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// struct node
+// {
+//     string name;
+//     int sum, mx;
+// };
+// vector<node> vec;
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     for (int i = 0, k, t; i < n; i++)
+//     {
+//         string s;
+//         cin >> s >> k;
+//         unordered_map<int, int> mp;
+//         int mx = 0;
+//         while (k--)
+//         {
+//             cin >> t;
+//             mx = max(mx, ++mp[t]);
+//         }
+//         node tmp;
+//         tmp.name = s;
+//         tmp.sum = mp.size();
+//         tmp.mx = mx;
+//         vec.push_back(tmp);
+//     }
+//     sort(vec.begin(), vec.end(), [](node e1, node e2) -> int
+//          { if(e1.sum == e2.sum)
+//             return e1.mx < e2.mx;
+//             return e1.sum > e2.sum; });
+
+//     int cnt = 0;
+//     for (int i = 0; i < 3; i++)
+//     {
+//         if (i >= vec.size())
+//         {
+//             if (cnt++)
+//                 cout << ' ';
+//             cout << '-';
+//         }
+//         else
+//         {
+//             if (cnt++)
+//                 cout << ' ';
+//             cout << vec[i].name;
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// void f()
+// {
+//     cout << 1;
+// }
+
+// void f(int a = 0)
+// {
+//     cout << a;
+// }
+
+// int main()
+// {
+//     // f();
+//     cout << 1;
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
-
-struct node
-{
-    string name;
-    int sum, mx;
-};
-vector<node> vec;
+int a[55];
 
 int main()
 {
-    int n;
-    cin >> n;
-    for (int i = 0, k, t; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        string s;
-        cin >> s >> k;
-        unordered_map<int, int> mp;
-        int mx = 0;
-        while (k--)
-        {
-            cin >> t;
-            mx = max(mx, ++mp[t]);
-        }
-        node tmp;
-        tmp.name = s;
-        tmp.sum = mp.size();
-        tmp.mx = mx;
-        vec.push_back(tmp);
-    }
-    sort(vec.begin(), vec.end(), [](node e1, node e2) -> int
-         { if(e1.sum == e2.sum)
-            return e1.mx < e2.mx;
-            return e1.sum > e2.sum; });
+        int n;
+        cin >> n;
+        for (int i = 0; i < n; i++)
+            cin >> a[i];
 
-    int cnt = 0;
-    for (int i = 0; i < 3; i++)
-    {
-        if (i >= vec.size())
+        int ans = 0;
+        for (int i = 0; i < n; i++)
         {
-            if (cnt++)
-                cout << ' ';
-            cout << '-';
+            for (int j = 0; j < n; j++)
+            {
+                for (int k = 0; k < n; k++)
+                {
+                    if (a[i] + a[j] == a[k])
+                        ans++;
+                }
+            }
         }
-        else
-        {
-            if (cnt++)
-                cout << ' ';
-            cout << vec[i].name;
-        }
+        cout << ans << '\n';
     }
 
     return 0;
