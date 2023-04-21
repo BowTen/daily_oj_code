@@ -3596,35 +3596,78 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
-int a[55];
+// #include <bits/stdc++.h>
+// using namespace std;
+// int a[55];
 
-int main()
-{
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        int n;
-        cin >> n;
-        for (int i = 0; i < n; i++)
-            cin >> a[i];
+// int main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int n;
+//         cin >> n;
+//         for (int i = 0; i < n; i++)
+//             cin >> a[i];
 
-        int ans = 0;
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                for (int k = 0; k < n; k++)
-                {
-                    if (a[i] + a[j] == a[k])
-                        ans++;
-                }
-            }
-        }
-        cout << ans << '\n';
-    }
+//         int ans = 0;
+//         for (int i = 0; i < n; i++)
+//         {
+//             for (int j = 0; j < n; j++)
+//             {
+//                 for (int k = 0; k < n; k++)
+//                 {
+//                     if (a[i] + a[j] == a[k])
+//                         ans++;
+//                 }
+//             }
+//         }
+//         cout << ans << '\n';
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int a[1010];
+
+// int main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int n;
+//         cin >> n;
+//         map<int, int> tp;
+//         for (int i = 1; i <= n; i++)
+//         {
+//             cin >> a[i];
+//             tp[a[i]]++;
+//         }
+
+//         map<int, map<int, int>> ans;
+//         for (int i = 1, t; i <= n; i++)
+//         {
+//             cin >> t;
+//             ans[t][a[i]]++;
+//         }
+
+//         for (auto x : ans)
+//         {
+//             cout << x.first << "={";
+//             int cnt = 0;
+//             for (auto y : tp)
+//             {
+//                 if (cnt++)
+//                     cout << ',';
+//                 cout << y.first << '=' << x.second[y.first];
+//             }
+//             cout << "}\n";
+//         }
+//     }
+
+//     return 0;
+// }
