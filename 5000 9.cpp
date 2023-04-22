@@ -3671,3 +3671,49 @@
 
 //     return 0;
 // }
+
+#include <bits/stdc++.h>
+using namespace std;
+
+string ad(string a, string b)
+{
+    if (a.length() < b.length())
+        swap(a, b);
+    reverse(a.begin(), a.end());
+    reverse(b.begin(), b.end());
+    for (int i = 0, len = a.size(), bl = b.length(); i < bl; i++)
+    {
+        a[i] += b[i] - '0';
+        if (a[i] > '9')
+        {
+            if (i + 1 >= len)
+                a = a + "0";
+            a[i + 1]++;
+            a[i] -= 10;
+        }
+    }
+    for (int i = b.length(), len = a.length(); i < len; i++)
+    {
+        if (a[i] > '9')
+        {
+            if (i + 1 >= len)
+                a = a + "0";
+            a[i + 1]++;
+            a[i] -= 10;
+        }
+        else
+            break;
+    }
+    reverse(a.begin(), a.end());
+    return a;
+}
+
+int main()
+{
+
+    string a, b;
+    cin >> a >> b;
+    cout << ad(a, b);
+
+    return 0;
+}
