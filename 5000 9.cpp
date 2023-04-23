@@ -3672,48 +3672,87 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-string ad(string a, string b)
-{
-    if (a.length() < b.length())
-        swap(a, b);
-    reverse(a.begin(), a.end());
-    reverse(b.begin(), b.end());
-    for (int i = 0, len = a.size(), bl = b.length(); i < bl; i++)
-    {
-        a[i] += b[i] - '0';
-        if (a[i] > '9')
-        {
-            if (i + 1 >= len)
-                a = a + "0";
-            a[i + 1]++;
-            a[i] -= 10;
-        }
-    }
-    for (int i = b.length(), len = a.length(); i < len; i++)
-    {
-        if (a[i] > '9')
-        {
-            if (i + 1 >= len)
-                a = a + "0";
-            a[i + 1]++;
-            a[i] -= 10;
-        }
-        else
-            break;
-    }
-    reverse(a.begin(), a.end());
-    return a;
-}
+// string ad(string a, string b)
+// {
+//     if (a.length() < b.length())
+//         swap(a, b);
+//     reverse(a.begin(), a.end());
+//     reverse(b.begin(), b.end());
+//     for (int i = 0, len = a.size(), bl = b.length(); i < bl; i++)
+//     {
+//         a[i] += b[i] - '0';
+//         if (a[i] > '9')
+//         {
+//             if (i + 1 >= len)
+//                 a = a + "0";
+//             a[i + 1]++;
+//             a[i] -= 10;
+//         }
+//     }
+//     for (int i = b.length(), len = a.length(); i < len; i++)
+//     {
+//         if (a[i] > '9')
+//         {
+//             if (i + 1 >= len)
+//                 a = a + "0";
+//             a[i + 1]++;
+//             a[i] -= 10;
+//         }
+//         else
+//             break;
+//     }
+//     reverse(a.begin(), a.end());
+//     return a;
+// }
 
-int main()
-{
+// string bina(string a)
+// {
+//     string b;
+//     while (a.size())
+//     {
+//         if ((a.back() - '0') % 2)
+//             b = b + "1";
+//         else
+//             b = b + "0";
+//         a.back() = (a.back() - '0') / 2 + '0';
+//         for (int i = a.length() - 2; i >= 0; i--)
+//         {
+//             if ((a[i] - '0') % 2)
+//                 a[i + 1] += 5;
+//             a[i] = (a[i] - '0') / 2 + '0';
+//         }
+//         if (a.front() == '0')
+//             a.erase(a.begin());
+//     }
+//     reverse(b.begin(), b.end());
+//     return b;
+// }
 
-    string a, b;
-    cin >> a >> b;
-    cout << ad(a, b);
+// string dec(string a)
+// {
+//     while (a.front() == '0')
+//         a.erase(a.begin());
+//     string pw = "1", ret;
+//     for (int i = a.length() - 1; i >= 0; i--)
+//     {
+//         if (a[i] == '1')
+//             ret = ad(ret, pw);
+//         pw = ad(pw, pw);
+//     }
+//     return ret;
+// }
 
-    return 0;
-}
+// int main()
+// {
+
+//     string a;
+//     cin >> a;
+//     string b = bina(a);
+//     reverse(b.begin(), b.end());
+//     cout << dec(b);
+
+//     return 0;
+// }
