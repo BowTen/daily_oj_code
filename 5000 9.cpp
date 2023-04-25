@@ -3756,3 +3756,69 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// struct node
+// {
+//     int v;
+//     string clo;
+// };
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<node> vec(n);
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> vec[i].v >> vec[i].clo;
+//     }
+
+//     sort(vec.begin(), vec.end(), [](node e1, node e2) -> int
+//          { return e1.v > e2.v; });
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout << vec[i].clo << '\n';
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+
+//     string s;
+//     while (getline(cin, s))
+//     {
+//         queue<char> ch[300];
+//         int len = s.length();
+//         for (int i = 0; i < len; i++)
+//         {
+//             if (s[i] >= 'a' && s[i] <= 'z')
+//                 ch[s[i]].push(s[i]);
+//             else if (s[i] >= 'A' && s[i] <= 'Z')
+//                 ch[s[i] - 'A' + 'a'].push(s[i]);
+//         }
+//         int p = 'a';
+//         for (int i = 0; i < len; i++)
+//         {
+//             if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
+//             {
+//                 while (!ch[p].size())
+//                     p++;
+//                 cout << ch[p].front();
+//                 ch[p].pop();
+//             }
+//             else
+//                 cout << s[i];
+//         }
+//         cout << '\n';
+//     }
+
+//     return 0;
+// }
