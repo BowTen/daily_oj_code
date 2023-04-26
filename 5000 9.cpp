@@ -3822,3 +3822,369 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// using namespace std;
+
+// int main()
+// {
+//     IO;
+//     string s;
+//     cin >> s;
+//     int n = s.length(), ans = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (s[i] == 'h' && i + 3 < n && s[i + 1] == 'z' && s[i + 2] == 'n' && s[i + 3] == 'u')
+//         {
+//             ans++;
+//             i += 3;
+//         }
+//     }
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// using namespace std;
+
+// int v[300];
+
+// int cmp(string e1, string e2)
+// {
+//     int n1 = e1.length(), n2 = e2.length();
+//     int n = min(n1, n2);
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (e1[i] == e2[i])
+//             continue;
+//         if (v[e1[i]] < v[e2[i]])
+//             return 1;
+//         else
+//             return 0;
+//     }
+//     if (n1 < n2)
+//         return 1;
+//     return 0;
+// }
+
+// int main()
+// {
+//     IO;
+//     for (int i = 0; i < 26; i++)
+//     {
+//         char t;
+//         cin >> t;
+//         v[t] = i;
+//     }
+//     int n;
+//     cin >> n;
+//     vector<string> vec(n);
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> vec[i];
+//     }
+
+//     sort(vec.begin(), vec.end(), cmp);
+//     int k;
+//     cin >> k;
+//     cout << vec[k - 1];
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// #define int long long
+// using namespace std;
+// const int N = 5e5 + 5;
+// int n, q, a[N], t, d[N];
+
+// signed main()
+// {
+//     IO;
+//     cin >> n >> a[1];
+//     for (int i = 2; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         d[i - 1] = a[i] - a[i - 1];
+//     }
+//     cin >> q;
+//     while (q--)
+//     {
+//         cin >> t;
+//         int tmp = lower_bound(d + 1, d + n, t) - d;
+//         cout << a[tmp] + t - a[1] + (n - tmp) * t << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// #define int long long
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n, a[N], d[N], k;
+
+// signed main()
+// {
+//     IO;
+//     cin >> n >> k;
+//     unordered_map<int, int> mp;
+//     mp[0] = 1;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         d[i] = (a[i] + d[i - 1]) % k;
+//         mp[d[i]]++;
+//     }
+//     int ans = 0;
+//     for (auto [f, v] : mp)
+//         if (v > 1)
+//         {
+//             ans += v * (v - 1) / 2;
+//         }
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// #define int long long
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n, q, son[N], fa[N], as[N], tmp[N];
+
+// vector<int> m[N];
+
+// void dfs(int u, int f)
+// {
+//     fa[u] = f;
+//     son[u] = 1;
+//     for (auto &v : m[u])
+//         if (v != f)
+//         {
+//             dfs(v, u);
+//             son[u] += son[v];
+//         }
+// }
+
+// signed main()
+// {
+//     IO;
+//     cin >> n;
+//     for (int i = 1, u, v; i < n; i++)
+//     {
+//         cin >> u >> v;
+//         m[u].push_back(v);
+//         m[v].push_back(u);
+//     }
+//     dfs(1, 0);
+//     cin >> q;
+//     while (q--)
+//     {
+//         int u, n2 = n - 1, ans = 0, len = 0;
+//         cin >> u;
+//         if (as[u])
+//         {
+//             cout << as[u] << '\n';
+//             continue;
+//         }
+//         for (auto &v : m[u])
+//             if (v != fa[u])
+//             {
+//                 tmp[len++] = son[v];
+//                 n2 -= son[v];
+//                 ans += son[v];
+//             }
+//         tmp[len++] = n2;
+//         ans += n2;
+//         int sum = 0;
+//         for (int i = 0; i < len; i++)
+//         {
+//             ans += sum * tmp[i];
+//             sum += tmp[i];
+//         }
+//         as[u] = ans;
+//         cout << ans << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// #define int long long
+// using namespace std;
+// const int N = 1e6 + 5;
+// int n, p, s, a[N], k, d[N];
+
+// signed main()
+// {
+//     IO;
+//     cin >> n >> p >> s >> a[1];
+//     for (int i = 2; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         d[i - 1] = a[i] - a[i - 1];
+//     }
+//     cin >> k;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// // #define int long long
+// using namespace std;
+
+// const int N = 52;
+// int n, x1, x2, y_1, y2, v[N][N][N][N], vis[N][N][N][N];
+// char a[N][N];
+
+// struct node
+// {
+//     int x1, y1, x2, y2;
+
+//     void print()
+//     {
+//         cout << x1 << ' ' << y1 << ' ' << x2 << ' ' << y2 << '\n';
+//     }
+
+//     node operator+(const node e) const
+//     {
+//         node ret = *this;
+//         ret.x1 += e.x1;
+//         ret.y1 += e.y1;
+//         ret.x2 += e.x2;
+//         ret.y2 += e.y2;
+//         if (ret.y1 > n || ret.y1 < 1 || ret.x1 > n || ret.x1 < 1 || a[ret.x1][ret.y1] == '*')
+//             ret.x1 -= e.x1, ret.y1 -= e.y1;
+//         if (ret.y2 > n || ret.y2 < 1 || ret.x2 > n || ret.x2 < 1 || a[ret.x2][ret.y2] == '*')
+//             ret.x2 -= e.x2, ret.y2 -= e.y2;
+//         return ret;
+//     }
+// };
+// node dir[4] = {{1, 0, 1, 0}, {0, 1, 0, 1}, {-1, 0, -1, 0}, {0, -1, 0, -1}};
+
+// bool meet(node e)
+// {
+//     if (e.x1 == e.x2 && e.y1 == e.y2)
+//         return true;
+//     return false;
+// }
+
+// signed main()
+// {
+//     IO;
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         for (int j = 1; j <= n; j++)
+//         {
+//             cin >> a[i][j];
+//             if (a[i][j] == 'a')
+//                 x1 = i, y_1 = j;
+//             if (a[i][j] == 'b')
+//                 x2 = i, y2 = j;
+//         }
+
+//     // cout << x1 << ' ' << y_1 << ' ' << x2 << ' ' << y2 << '\n';
+//     queue<node> que;
+//     que.push({x1, y_1, x2, y2});
+//     vis[x1][y_1][x2][y2] = 1;
+//     node cur;
+//     while (1)
+//     {
+//         if (que.empty())
+//         {
+//             cout << "no solution";
+//             return 0;
+//         }
+//         cur = que.front();
+//         // cur.print();
+//         que.pop();
+
+//         node ne;
+//         for (int i = 0; i < 4; i++)
+//         {
+//             ne = cur + dir[i];
+//             if (vis[ne.x1][ne.y1][ne.x2][ne.y2])
+//                 continue;
+//             vis[ne.x1][ne.y1][ne.x2][ne.y2] = 1;
+//             v[ne.x1][ne.y1][ne.x2][ne.y2] = v[cur.x1][cur.y1][cur.x2][cur.y2] + 1;
+//             if (meet(ne))
+//             {
+//                 cout << v[ne.x1][ne.y1][ne.x2][ne.y2];
+//                 return 0;
+//             }
+
+//             que.push(ne);
+//         }
+//     }
+
+//     return 0;
+// }
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e6 + 5;
+int n, p, s, k, a[N], dp[N][6];
+
+int main()
+{
+    cin >> n >> p >> s;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+    }
+    cin >> k;
+    int fr = 1, bk = 1;
+    for (int i = 1; i <= p; i++)
+    {
+        while (a[fr] < i)
+            fr++;
+        while (a[fr] - a[bk] > s)
+            bk++;
+        dp[i][0] = i;
+        for (int j = 1; j <= k; j++)
+        {
+            if (a[fr] == i)
+                dp[i][j] = min(dp[i - 1][j] + 1, dp[a[bk]][j - 1]);
+            else
+                dp[i][j] = dp[i - 1][j] + 1;
+        }
+    }
+
+    int ans = INT_MAX;
+    for (int i = 0; i <= k; i++)
+        ans = min(dp[p][i], ans);
+
+    cout << ans;
+
+    return 0;
+}
