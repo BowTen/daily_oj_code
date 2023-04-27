@@ -4150,41 +4150,188 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
-const int N = 1e6 + 5;
-int n, p, s, k, a[N], dp[N][6];
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 5;
+// int n, p, s, k, a[N], dp[N][6];
 
-int main()
-{
-    cin >> n >> p >> s;
-    for (int i = 1; i <= n; i++)
-    {
-        cin >> a[i];
-    }
-    cin >> k;
-    int fr = 1, bk = 1;
-    for (int i = 1; i <= p; i++)
-    {
-        while (a[fr] < i)
-            fr++;
-        while (a[fr] - a[bk] > s)
-            bk++;
-        dp[i][0] = i;
-        for (int j = 1; j <= k; j++)
-        {
-            if (a[fr] == i)
-                dp[i][j] = min(dp[i - 1][j] + 1, dp[a[bk]][j - 1]);
-            else
-                dp[i][j] = dp[i - 1][j] + 1;
-        }
-    }
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n >> p >> s;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     cin >> k;
+//     int bk[6] = {1, 1, 1, 1, 1, 1};
+//     for (int f = 1; f <= n; f++)
+//     {
+//         for (int j = 1; j <= k; j++)
+//         {
+//             while (bk[j] < n && a[f] - a[bk[j]] > j * s)
+//                 bk[j]++;
+//         }
+//         dp[a[f]][0] = a[f];
+//         for (int j = 1; j <= k; j++)
+//             dp[a[f]][j] = min(dp[a[f - 1]][j] + a[f] - a[f - 1], dp[a[bk[j]]][0]);
+//     }
 
-    int ans = INT_MAX;
-    for (int i = 0; i <= k; i++)
-        ans = min(dp[p][i], ans);
+//     int ans = dp[p][k];
 
-    cout << ans;
+//     if (a[n] < p)
+//         ans = (p - a[n]) + dp[a[n]][k];
 
-    return 0;
-}
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 5;
+// int n, p, s, a[N], k;
+// unordered_map<int, int[6]> dp;
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n >> p >> s;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     cin >> k;
+//     int bk[6] = {1, 1, 1, 1, 1, 1};
+//     for (int i = 1; i <= n; i++)
+//     {
+//         for (int j = 1; j <= k; j++)
+//             while (bk[j] < n && a[i] - a[bk[j]] > j * s)
+//                 bk[j]++;
+//         dp[a[i]][0] = a[i];
+//         for (int j = 1; j <= k; j++)
+//         {
+//             dp[a[i]][j] = dp[a[i - 1]][j] + a[i] - a[i - 1];
+//             for (int x = 1; x <= j; x++)
+//                 dp[a[i]][j] = min(dp[a[i]][j], dp[a[bk[x]]][j - x]);
+//         }
+//     }
+
+//     cout << (p - a[n]) + dp[a[n]][k];
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// char s[N];
+
+// int main()
+// {
+
+//     int q, t, len = 0;
+//     char a, b, last = 'a';
+//     cin >> q;
+//     vector<int> vec[300];
+//     while (q--)
+//     {
+//         cin >> t;
+//         if (t == 1)
+//         {
+//             cin >> a;
+//             vec[a].push_back(len++);
+//         }
+//         else if (t == 2)
+//         {
+//             if (!len)
+//                 continue;
+//             for (char i = 'a'; i <= 'z'; i++)
+//                 if (vec[i].size() && vec[i].back() == len)
+//                 {
+//                     last = i;
+//                     break;
+//                 }
+//             len--;
+//             vec[last].pop_back();
+//         }
+//         else
+//         {
+//             cin >> a >> b;
+//             vec[b].insert(vec[b].end(), vec[a].begin(), vec[a].end());
+//             vec[a].clear();
+//         }
+//     }
+//     if (len)
+//     {
+//         for (char i = 'a'; i <= 'z'; i++)
+//         {
+//             for (auto p : vec[i])
+//                 s[p] = i;
+//         }
+
+//         for (int i = 0; i < len; i++)
+//             cout << s[i];
+//     }
+//     else
+//         cout << "The final string is empty";
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// char s[N];
+// int q, t, len = 0, last;
+// char x, y;
+// list<int> ls[300];
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> q;
+//     while (q--)
+//     {
+//         cin >> t;
+//         if (t == 1)
+//         {
+//             cin >> x;
+//             ls[x].push_back(len++);
+//         }
+//         else if (t == 2)
+//         {
+//             if (len <= 0)
+//                 continue;
+//             len--;
+//             for (char i = 'a'; i <= 'z'; i++)
+//                 if (!ls[i].empty() && ls[i].back() == len)
+//                     last = i;
+//             ls[last].pop_back();
+//         }
+//         else
+//         {
+//             cin >> x >> y;
+//             if (x == y)
+//                 continue;
+//             ls[y].merge(ls[x]);
+//             ls[x].clear();
+//         }
+//     }
+//     if (len)
+//     {
+//         for (char i = 'a'; i <= 'z'; i++)
+//             if (ls[i].size())
+//                 for (auto p : ls[i])
+//                     s[p] = i;
+//         for (int i = 0; i < len; i++)
+//             cout << s[i];
+//     }
+//     else
+//         cout << "The final string is empty";
+
+//     return 0;
+// }
