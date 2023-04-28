@@ -2764,7 +2764,7 @@
 //         currentPos = pos;
 //     }
 //     // dir could be 'N', 'E', 'S', 'W'
-//     // for other characters, the robot donâ€™t move
+//     // for other characters, the robot don¡¯t move
 //     void Move(char dir)
 //     {
 //         if (dir == 'N')
@@ -2872,22 +2872,22 @@
 //     {
 //         double profitRate;
 //         cin >> profitRate;
-//         Yuebao::setProfitRate(profitRate); // è®¾å®šé±¼é¢å®çš„åˆ©ç‡
-//         Yuebao y(0);                       // æ–°å»ºé±¼é¢å®è´¦æˆ·ï¼Œä½™é¢åˆå§‹åŒ–ä¸º0
-//         int operation;                     // æ¥å—è¾“å…¥åˆ¤æ–­æ˜¯å­˜è¿˜æ˜¯å–
-//         double amount;                     // æ¥å—è¾“å…¥å­˜å–é‡‘é¢
+//         Yuebao::setProfitRate(profitRate); // Éè¶¨Óã¶î±¦µÄÀûÂÊ
+//         Yuebao y(0);                       // ĞÂ½¨Óã¶î±¦ÕË»§£¬Óà¶î³õÊ¼»¯Îª0
+//         int operation;                     // ½ÓÊÜÊäÈëÅĞ¶ÏÊÇ´æ»¹ÊÇÈ¡
+//         double amount;                     // ½ÓÊÜÊäÈë´æÈ¡½ğ¶î
 //         for (int i = 0; i < n; ++i)
 //         {
-//             y.addProfit(); // åŠ å…¥å‰ä¸€å¤©ä½™é¢äº§ç”Ÿçš„åˆ©æ¯
+//             y.addProfit(); // ¼ÓÈëÇ°Ò»ÌìÓà¶î²úÉúµÄÀûÏ¢
 //             // cout << profitRate << '\n';
 //             cin >> operation >> amount;
 //             if (operation == 0)
-//                 y.deposit(amount); // å­˜å…¥é‡‘é¢
+//                 y.deposit(amount); // ´æÈë½ğ¶î
 //             else
-//                 y.withdraw(amount); // å–å‡ºé‡‘é¢
-//             // cout << fixed << setprecision(2) << y.getBalance() << endl; // è¾“å‡ºæœ€ç»ˆè´¦æˆ·ä½™é¢
+//                 y.withdraw(amount); // È¡³ö½ğ¶î
+//             // cout << fixed << setprecision(2) << y.getBalance() << endl; // Êä³ö×îÖÕÕË»§Óà¶î
 //         }
-//         cout << fixed << setprecision(2) << y.getBalance() << endl; // è¾“å‡ºæœ€ç»ˆè´¦æˆ·ä½™é¢
+//         cout << fixed << setprecision(2) << y.getBalance() << endl; // Êä³ö×îÖÕÕË»§Óà¶î
 //     }
 //     return 0;
 // }
@@ -3093,7 +3093,7 @@
 
 // int main()
 // {
-//     cout << "4/16 GPLTæ¨¡æ‹Ÿèµ›";
+//     cout << "4/16 GPLTÄ£ÄâÈü";
 
 //     return 0;
 // }
@@ -3103,7 +3103,7 @@
 
 // int main()
 // {
-//     cout << "ä»Šå¤©å­¦ä¹ MySQL";
+//     cout << "½ñÌìÑ§Ï°MySQL";
 
 //     return 0;
 // }
@@ -3138,7 +3138,7 @@
 //     for (int i = 0; i < n1; i++)
 //     {
 //         for (int j = 0, t = 0; j < n2; j++)
-//         {Â·
+//         {¡¤
 //             if ((s2[j] >= '0' && s2[j] <= '9') || s2[j] != s1[i + t])
 //             {
 //                 t = 0;
@@ -4336,21 +4336,147 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     while (n--)
+//     {
+//         int s;
+//         cin >> s;
+//         if (s % 2)
+//             cout << "0 0\n";
+//         else
+//             cout << (s / 4) + (s % 4) / 2 << ' ' << (s / 2) << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     string s;
+//     while (cin >> s, s != "ENDOFINPUT")
+//     {
+//         // cout << s;
+//         string mi;
+//         getchar();
+//         getline(cin, mi);
+//         for (int i = 0, len = mi.length(); i < len; i++)
+//         {
+//             if (mi[i] >= 'A' && mi[i] <= 'Z')
+//             {
+//                 mi[i] -= 5;
+//                 if (mi[i] < 'A')
+//                     mi[i] += 26;
+//             }
+//         }
+//         cout << mi << '\n';
+//         cin >> mi;
+//     }
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
+short mp[20][20], n;
+
+bool muen()
+{
+    system("cls");
+    cout << "*********************\n";
+    cout << "**--´«µİ±Õ°ü¼ÆËãÆ÷--**\n";
+    cout << "*********************\n";
+    cout << "*********************\n";
+    cout << "**---- 1.¼ÆËã ----***\n";
+    cout << "**---- 0.ÍË³ö ----***\n";
+    cout << "*********************\n";
+    cout << "*********************\n";
+
+    int r;
+    cin >> r;
+    return r;
+}
+
+bool cal()
+{
+    int cnt = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            if (mp[i][j])
+                continue;
+            for (int x = 1; x <= n; x++)
+            {
+                if (mp[i][x] && mp[x][j])
+                {
+                    mp[i][j] = 1;
+                    cnt++;
+                    break;
+                }
+            }
+        }
+    }
+    return cnt;
+}
+
+void read()
+{
+    cout << "  ";
+    for (int i = 1; i <= n; i++)
+        cout << ' ' << i;
+    cout << "\n\n";
+    for (int i = 1; i <= n; i++)
+    {
+        cout << i << "  ";
+        for (int j = 1; j <= n; j++)
+            cin >> mp[i][j];
+    }
+}
+
+void outp()
+{
+    cout << "\n´«µİ±Õ°ü¾ØÕó£º\n";
+    cout << "  ";
+    for (int i = 1; i <= n; i++)
+        cout << ' ' << i;
+    cout << "\n\n";
+    for (int i = 1; i <= n; i++)
+    {
+        cout << i << "  ";
+        for (int j = 1; j <= n; j++)
+        {
+            if (mp[i][j])
+                cout << 1 << ' ';
+            else
+                cout << "0 ";
+        }
+        cout << '\n';
+    }
+    cout << '\n';
+}
 
 int main()
 {
-    int n;
-    cin >> n;
-    while (n--)
+    while (muen())
     {
-        int s;
-        cin >> s;
-        if (s % 2)
-            cout << "0 0\n";
-        else
-            cout << (s / 4) + (s % 4) / 2 << ' ' << (s / 2) << '\n';
+        system("cls");
+        cout << "¾ØÕó´óĞ¡ > ";
+        cin >> n;
+        read();
+        while (cal())
+            ;
+        outp();
+        cout << "Enter ¼ÌĞø > ";
+        getchar();
+        getchar();
     }
 
     return 0;
