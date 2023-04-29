@@ -2764,7 +2764,7 @@
 //         currentPos = pos;
 //     }
 //     // dir could be 'N', 'E', 'S', 'W'
-//     // for other characters, the robot don’t move
+//     // for other characters, the robot don??t move
 //     void Move(char dir)
 //     {
 //         if (dir == 'N')
@@ -2872,22 +2872,22 @@
 //     {
 //         double profitRate;
 //         cin >> profitRate;
-//         Yuebao::setProfitRate(profitRate); // 设定鱼额宝的利率
-//         Yuebao y(0);                       // 新建鱼额宝账户，余额初始化为0
-//         int operation;                     // 接受输入判断是存还是取
-//         double amount;                     // 接受输入存取金额
+//         Yuebao::setProfitRate(profitRate); // ?趨?????????
+//         Yuebao y(0);                       // ???????????????????0
+//         int operation;                     // ?????????锟斤拷???锟斤拷???
+//         double amount;                     // ?????????????
 //         for (int i = 0; i < n; ++i)
 //         {
-//             y.addProfit(); // 加入前一天余额产生的利息
+//             y.addProfit(); // ???????????????????
 //             // cout << profitRate << '\n';
 //             cin >> operation >> amount;
 //             if (operation == 0)
-//                 y.deposit(amount); // 存入金额
+//                 y.deposit(amount); // ??????
 //             else
-//                 y.withdraw(amount); // 取出金额
-//             // cout << fixed << setprecision(2) << y.getBalance() << endl; // 输出最终账户余额
+//                 y.withdraw(amount); // ??????
+//             // cout << fixed << setprecision(2) << y.getBalance() << endl; // ?????????????
 //         }
-//         cout << fixed << setprecision(2) << y.getBalance() << endl; // 输出最终账户余额
+//         cout << fixed << setprecision(2) << y.getBalance() << endl; // ?????????????
 //     }
 //     return 0;
 // }
@@ -3093,7 +3093,7 @@
 
 // int main()
 // {
-//     cout << "4/16 GPLT模拟赛";
+//     cout << "4/16 GPLT?????";
 
 //     return 0;
 // }
@@ -3103,7 +3103,7 @@
 
 // int main()
 // {
-//     cout << "今天学习MySQL";
+//     cout << "??????MySQL";
 
 //     return 0;
 // }
@@ -3138,7 +3138,7 @@
 //     for (int i = 0; i < n1; i++)
 //     {
 //         for (int j = 0, t = 0; j < n2; j++)
-//         {·
+//         {??
 //             if ((s2[j] >= '0' && s2[j] <= '9') || s2[j] != s1[i + t])
 //             {
 //                 t = 0;
@@ -4383,101 +4383,129 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// short mp[20][20], n;
+
+// bool muen()
+// {
+//     system("cls");
+//     cout << "***********************************\n";
+//     cout << "**--Transfer closure calculator--**\n";
+//     cout << "***********************************\n";
+//     cout << "***********************************\n";
+//     cout << "*******---- 1.calculate ----*******\n";
+//     cout << "*******---- 0.  exit    ----*******\n";
+//     cout << "***********************************\n";
+//     cout << "***********************************\n";
+
+//     int r;
+//     cin >> r;
+//     return r;
+// }
+
+// bool cal()
+// {
+//     int cnt = 0;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         for (int j = 1; j <= n; j++)
+//         {
+//             if (mp[i][j])
+//                 continue;
+//             for (int x = 1; x <= n; x++)
+//             {
+//                 if (mp[i][x] && mp[x][j])
+//                 {
+//                     mp[i][j] = 1;
+//                     cnt++;
+//                     break;
+//                 }
+//             }
+//         }
+//     }
+//     return cnt;
+// }
+
+// void read()
+// {
+//     cout << "  ";
+//     for (int i = 1; i <= n; i++)
+//         cout << ' ' << i;
+//     cout << "\n\n";
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cout << i << "  ";
+//         for (int j = 1; j <= n; j++)
+//             cin >> mp[i][j];
+//     }
+// }
+
+// void outp()
+// {
+//     cout << "\nclosure matrix\n";
+//     cout << "  ";
+//     for (int i = 1; i <= n; i++)
+//         cout << ' ' << i;
+//     cout << "\n\n";
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cout << i << "  ";
+//         for (int j = 1; j <= n; j++)
+//         {
+//             if (mp[i][j])
+//                 cout << 1 << ' ';
+//             else
+//                 cout << "0 ";
+//         }
+//         cout << '\n';
+//     }
+//     cout << '\n';
+// }
+
+// int main()
+// {
+//     while (muen())
+//     {
+//         system("cls");
+//         cout << "matrix size > ";
+//         cin >> n;
+//         read();
+//         while (cal())
+//             ;
+//         outp();
+//         cout << "Enter continue > ";
+//         getchar();
+//         getchar();
+//     }
+
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
-short mp[20][20], n;
+const int N = 505;
+int a[N][N];
 
-bool muen()
+signed main()
 {
-    system("cls");
-    cout << "*********************\n";
-    cout << "**--传递闭包计算器--**\n";
-    cout << "*********************\n";
-    cout << "*********************\n";
-    cout << "**---- 1.计算 ----***\n";
-    cout << "**---- 0.退出 ----***\n";
-    cout << "*********************\n";
-    cout << "*********************\n";
-
-    int r;
-    cin >> r;
-    return r;
-}
-
-bool cal()
-{
-    int cnt = 0;
+    int n;
+    cin >> n;
+    int ans = 0;
     for (int i = 1; i <= n; i++)
-    {
         for (int j = 1; j <= n; j++)
-        {
-            if (mp[i][j])
-                continue;
-            for (int x = 1; x <= n; x++)
+            cin >> a[i][j];
+
+    for (int k = n; k >= 2; k--)
+        for (int i = 1; i <= n; i++)
+            for (int j = i + 1; j <= n; j++)
             {
-                if (mp[i][x] && mp[x][j])
-                {
-                    mp[i][j] = 1;
-                    cnt++;
-                    break;
-                }
+                a[i][j] = a[j][i] = min(a[i][j], a[i][k] + a[k][j]);
+                if (i >= k && j >= k)
+                    ans += 2 * a[i][j];
             }
-        }
-    }
-    return cnt;
-}
 
-void read()
-{
-    cout << "  ";
-    for (int i = 1; i <= n; i++)
-        cout << ' ' << i;
-    cout << "\n\n";
-    for (int i = 1; i <= n; i++)
-    {
-        cout << i << "  ";
-        for (int j = 1; j <= n; j++)
-            cin >> mp[i][j];
-    }
-}
-
-void outp()
-{
-    cout << "\n传递闭包矩阵：\n";
-    cout << "  ";
-    for (int i = 1; i <= n; i++)
-        cout << ' ' << i;
-    cout << "\n\n";
-    for (int i = 1; i <= n; i++)
-    {
-        cout << i << "  ";
-        for (int j = 1; j <= n; j++)
-        {
-            if (mp[i][j])
-                cout << 1 << ' ';
-            else
-                cout << "0 ";
-        }
-        cout << '\n';
-    }
-    cout << '\n';
-}
-
-int main()
-{
-    while (muen())
-    {
-        system("cls");
-        cout << "矩阵大小 > ";
-        cin >> n;
-        read();
-        while (cal())
-            ;
-        outp();
-        cout << "Enter 继续 > ";
-        getchar();
-        getchar();
-    }
+    cout << ans;
 
     return 0;
 }
