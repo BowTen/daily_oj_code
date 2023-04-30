@@ -4482,30 +4482,30 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
-const int N = 505;
-int a[N][N];
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 505;
+// int a[N][N];
 
-signed main()
-{
-    int n;
-    cin >> n;
-    int ans = 0;
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= n; j++)
-            cin >> a[i][j];
+// signed main()
+// {
+//     int n;
+//     cin >> n;
+//     int ans = 0;
+//     for (int i = 1; i <= n; i++)
+//         for (int j = 1; j <= n; j++)
+//             cin >> a[i][j];
 
-    for (int k = n; k >= 2; k--)
-        for (int i = 1; i <= n; i++)
-            for (int j = i + 1; j <= n; j++)
-            {
-                a[i][j] = a[j][i] = min(a[i][j], a[i][k] + a[k][j]);
-                if (i >= k && j >= k)
-                    ans += 2 * a[i][j];
-            }
+//     for (int k = n; k >= 2; k--)
+//         for (int i = 1; i <= n; i++)
+//             for (int j = i + 1; j <= n; j++)
+//             {
+//                 a[i][j] = a[j][i] = min(a[i][j], a[i][k] + a[k][j]);
+//                 if (i >= k && j >= k)
+//                     ans += 2 * a[i][j];
+//             }
 
-    cout << ans;
+//     cout << ans;
 
-    return 0;
-}
+//     return 0;
+// }
