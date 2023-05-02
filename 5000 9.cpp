@@ -4485,7 +4485,7 @@
 // #include <bits/stdc++.h>
 // using namespace std;
 // const int N = 505;
-// int a[N][N];
+// int a[N][N];t5556
 
 // signed main()
 // {
@@ -4509,3 +4509,296 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int mp[7][7], ax, ay, bx, by;
+// int dir[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+// struct pos
+// {
+//     int x, y, s;
+// };
+
+// int main()
+// {
+
+//     for (int i = 0; i < 6; i++)
+//         for (int j = 0; j < 6; j++)
+//             cin >> mp[i][j];
+//     cin >> ax >> ay >> bx >> by;
+//     priority_queue<pair<int, pos>, vector<pair<int, pos>>, greater<pair<int, pos>>> que;
+//     que.push({0, {ax, ay, 0}});
+//     while (que.size())
+//     {
+//         int v = que.top().first;
+//         pos p = que.top().second;
+//         que.pop();
+//         if (p.x == bx && p.y == by)
+//         {
+//             cout << v;
+//             return 0;
+//         }
+//     }
+
+//     return 0;
+// }
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Date
+{
+public:
+    int GetMonthDay(int year, int month)
+    {
+        if (month == 2)
+        {
+            if ((_year % 4 == 0 && _year % 100) || _year % 400 == 0)
+                return 29;
+            return 28;
+        }
+        else if (month == 4 || month == 6 || month == 9 || month == 11)
+            return 30;
+        return 31;
+    }
+
+    Date(int year = 1900, int month = 1, int day = 1)
+    {
+        _year = year;
+        _month = month;
+        _day = day;
+    }
+
+    Date &operator+=(int day)
+    {
+        _day += day;
+        int mxd = GetMonthDay(_year, _month);
+        while (_day > mxd)
+        {
+            _month++;
+            if (_month > 12)
+            {
+                _month -= 12;
+                _year++;
+            }
+            _day -= mxd;
+            mxd = GetMonthDay(_year, _month);
+        }
+        return *this;
+    }
+
+    Date operator+(int day)
+    {
+        Date ret(*this);
+        ret += day;
+        return ret;
+    }
+
+    // 日期-天数
+
+    Date operator-(int day)
+    {
+        Date ret(*this);
+        ret -= day;
+        return ret;
+    }
+
+    // 日期-=天数
+
+    Date &operator-=(int day)
+    {
+        int mxd;
+        while (day > 0)
+        {
+            if (day >= _day)
+            {
+                day -= _day;
+                _month--;
+                if (_month == 0)
+                {
+                    _year--;
+                    _month = 12;
+                }
+                _day = GetMonthDay(_year, _month);
+            }
+            else
+            {
+                _day -= day;
+                day = 0;
+            }
+        }
+        return *this;
+    }
+
+    // 前置++
+
+    Date &operator++()
+    {
+        *this += 1;
+        return *this;
+    }
+
+    // 后置++
+
+    Date operator++(int)
+    {
+        Date ret(*this);
+        *this += 1;
+        return ret;
+    }
+
+    // 后置--
+
+    Date operator--(int)
+    {
+        Date ret(*this);
+        *this -= 1;
+        return ret;
+    }
+
+    // 前置--
+
+    Date &operator--()
+    {
+        *this -= 1;
+        return *this;
+    }
+
+    // >运算符重载
+
+    bool operator>(const Date &d)
+    {
+        if (_year == d._year)
+        {
+            if (_month == d._month)
+            {
+                return _day > d._day;
+            }
+            return _month > d._month;
+        }
+        return _year > d._year;
+    }
+
+    // ==运算符重载
+
+    bool operator==(const Date &d)
+    {
+        return _year == d._year && _month == d._month && _day == d._day;
+    }
+
+    // >=运算符重载
+
+    bool operator>=(const Date &d)
+    {
+        return *this > d || *this == d;
+    }
+
+    // <运算符重载
+
+    bool operator<(const Date &d)
+    {
+        if (_year == d._year)
+        {
+            if (_month == d._month)
+            {
+                return _day < d._day;
+            }
+            return _month < d._month;
+        }
+        return _year < d._year;
+    }
+
+    // <=运算符重载
+
+    bool operator<=(const Date &d)
+    {
+        return *this < d || *this == d;
+    }
+
+    // !=运算符重载
+
+    bool operator!=(const Date &d)
+    {
+        return !(*this == d);
+    }
+
+    // 日期-日期 返回天数
+
+    int operator-(Date d)
+    {
+        Date a(*this);
+        int f = 0;
+        if (a < d)
+        {
+            f = 1;
+            swap(a, d);
+        }
+        int ret = 0;
+        int mxd = GetMonthDay(d._year, d._month);
+        while (d < a)
+        {
+            ret += mxd;
+            d += mxd;
+            mxd = GetMonthDay(d._year, d._month);
+        }
+        if (d > a)
+        {
+            if (d._day > a._day)
+            {
+                ret -= d._day - a._day;
+            }
+            else
+            {
+                ret -= d._day;
+                d -= d._day;
+                ret -= d._day - a._day;
+            }
+        }
+        if (f)
+            return -ret;
+        return ret;
+    }
+
+    friend ostream &operator<<(ostream &os, const Date &d);
+
+    void print()
+    {
+        cout << _year << '-' << _month << '-' << _day;
+    }
+
+    int _year;
+
+    int _month;
+
+    int _day;
+};
+
+ostream &operator<<(ostream &os, const Date &d)
+{
+    os << d._year << '-' << d._month << '-' << d._day;
+    return os;
+}
+
+string s1, s2;
+Date d1, d2;
+
+void init()
+{
+    d1._day = s1[7] - '0' + (s1[6] - '0') * 10;
+    d1._month = s1[5] - '0' + (s1[4] - '0') * 10;
+    d1._year = s1[3] - '0' + (s1[2] - '0') * 10 + (s1[1] - '0') * 100 + (s1[0] - '0') * 1000;
+    d2._day = s2[7] - '0' + (s2[6] - '0') * 10;
+    d2._month = s2[5] - '0' + (s2[4] - '0') * 10;
+    d2._year = s2[3] - '0' + (s2[2] - '0') * 10 + (s2[1] - '0') * 100 + (s2[0] - '0') * 1000;
+}
+
+int main()
+{
+    while (cin >> s1 >> s2)
+    {
+        init();
+        cout << abs(d1 - d2) + 1 << '\n';
+    }
+
+    return 0;
+}
