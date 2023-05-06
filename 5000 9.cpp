@@ -4853,3 +4853,440 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// #define int long long
+// const int N = 1e5 + 5;
+
+// signed main()
+// {
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while (t--)
+//     {
+
+//         int n, ans = 0;
+//         cin >> n;
+//         if (n < 10)
+//         {
+//             cout << n;
+//             return 0;
+//         }
+
+//         string sn;
+//         int n1 = n, len = 0;
+//         while (n1)
+//         {
+//             sn.push_back((n1 % 10) + '0');
+//             n1 /= 10;
+//             len++;
+//         }
+//         reverse(sn.begin(), sn.end());
+
+//         for (int j = 1; j <= 9; j++)
+//         {
+//             for (int ii = 1; ii < len; ii++)
+//             {
+//                 ans += pow(10, max((int)0, ii - 2));
+//             }
+//             if (j < sn[0] - '0')
+//             {
+//                 ans += pow(10, max((int)0, len - 2));
+//             }
+//             else if (j == sn[0] - '0')
+//             {
+//                 int tmp = 0;
+//                 for (int x = 1; x < len - 1; x++)
+//                 {
+//                     tmp *= 10;
+//                     tmp += sn[x] - '0';
+//                 }
+//                 if (!tmp)
+//                     tmp = 1;
+//                 if (j > sn.back() - '0')
+//                     tmp--;
+//                 ans += tmp;
+//             }
+//             else
+//                 continue;
+//         }
+//         // cout << ans << '\n';
+
+//         for (int i = 2; i < len; i++)
+//         {
+//             ans += 9;
+//             for (int ii = 2; ii < len; ii++)
+//             {
+//                 ans += 81 * pow(10, ii - 2) * pow(10, max((int)0, i - 2));
+//             }
+
+//             for (int q = 1; q <= 9; q++)
+//             {
+//                 for (int p = 1; p <= 9; p++)
+//                 {
+//                     if (p > sn[0] - '0')
+//                         break;
+//                     else if (p == sn[0] - '0')
+//                     {
+//                         int tmp = 0;
+//                         for (int x = 1; x < len - 1; x++)
+//                         {
+//                             tmp *= 10;
+//                             tmp += sn[x] - '0';
+//                         }
+//                         if (!tmp)
+//                             tmp = 1;
+//                         if (q > sn.back() - '0')
+//                             tmp--;
+//                         ans += tmp * pow(10, max((int)0, i - 2));
+//                     }
+//                     else
+//                         ans += pow(10, max((int)0, len - 2)) * pow(10, max((int)0, i - 2));
+//                 }
+//             }
+//         }
+
+//         for (int q = 1; q <= 9; q++)
+//         {
+//             if (q > sn[0] - '0')
+//                 break;
+//             for (int p = 1; p <= 9; p++)
+//             {
+//                 int aj = 0;
+//                 if (q < sn[0] - '0')
+//                     aj = pow(10, len - 2);
+//                 else
+//                 {
+//                     int tmp = 0;
+//                     for (int x = 1; x < len - 1; x++)
+//                     {
+//                         tmp *= 10;
+//                         tmp += sn[x] - '0';
+//                     }
+//                     if (!tmp)
+//                         tmp = 1;
+//                     if (p > sn.back() - '0')
+//                         tmp--;
+//                     aj = tmp;
+//                 }
+
+//                 if (p == q)
+//                     ans++;
+
+//                 for (int i = 2; i < len; i++)
+//                 {
+//                     ans += aj * pow(10, i - 2);
+//                 }
+
+//                 if (p > sn[0] - '0')
+//                     break;
+//                 else if (p == sn[0] - '0')
+//                 {
+//                     int tmp = 0;
+//                     for (int x = 1; x < len - 1; x++)
+//                     {
+//                         tmp *= 10;
+//                         tmp += sn[x] - '0';
+//                     }
+//                     if (!tmp)
+//                         tmp = 1;
+//                     if (q > sn.back() - '0')
+//                         tmp--;
+//                     ans += tmp * aj;
+//                 }
+//                 else
+//                     ans += pow(10, len - 2) * aj;
+//             }
+//         }
+//         cout << ans;
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// #define int long long
+// const int N = 1e5 + 5;
+
+// signed main()
+// {
+//     IO;
+
+//     int n, ans = 0;
+//     cin >> n;
+//     if (n < 10)
+//     {
+//         cout << n;
+//         return 0;
+//     }
+
+//     string sn;
+//     int n1 = n, len = 0;
+//     while (n1)
+//     {
+//         sn.push_back((n1 % 10) + '0');
+//         n1 /= 10;
+//         len++;
+//     }
+//     reverse(sn.begin(), sn.end());
+
+//     for (int q = 1; q <= 9; q++)
+//     {
+//         for (int p = 1; p <= 9; p++)
+//         {
+//             int l1 = 2;
+//             if (p == q)
+//                 l1 = 1;
+//             for (; l1 <= len; l1++)
+//             {
+//                 int l2 = 2;
+//                 if (p == q)
+//                     l2 = 1;
+//                 for (; l2 <= len; l2++)
+//                 {
+//                     int a = 0, b = 0;
+//                     if (l1 < len)
+//                         a = pow(10, max((int)0, l1 - 2));
+//                     else
+//                     {
+//                         if (q < sn[0] - '0')
+//                             a = pow(10, max((int)0, l1 - 2));
+//                         else if (q == sn[0] - '0')
+//                         {
+//                             for (int i = 1; i < len - 1; i++)
+//                             {
+//                                 a *= 10;
+//                                 a += sn[i] - '0';
+//                             }
+//                             // if (!a)
+//                             a++;
+//                             if (p > sn.back() - '0')
+//                                 a--;
+//                         }
+//                     }
+
+//                     if (l2 < len)
+//                         b = pow(10, max((int)0, l2 - 2));
+//                     else
+//                     {
+//                         if (p < sn[0] - '0')
+//                             b = pow(10, max((int)0, l2 - 2));
+//                         else if (p == sn[0] - '0')
+//                         {
+//                             for (int i = 1; i < len - 1; i++)
+//                             {
+//                                 b *= 10;
+//                                 b += sn[i] - '0';
+//                             }
+//                             // if (!b)
+//                             b++;
+//                             if (q > sn.back() - '0')
+//                                 b--;
+//                         }
+//                     }
+//                     // if (p == q)
+//                     //     ans += a + b;
+//                     ans += a * b;
+//                     // printf("q %d, p %d, l1 %d, l2 %d ans %d\n", q, p, l1, l2, ans);
+//                 }
+//             }
+//         }
+//     }
+
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// #define int long long
+// const int N = 110;
+// int a[N], b[N], c[N];
+
+// signed main()
+// {
+//     IO;
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int n, sa = 0, sb = 0;
+//         cin >> n;
+//         for (int i = 1; i <= n; i++)
+//             cin >> a[i], sa += a[i];
+//         for (int j = 1; j <= n; j++)
+//             cin >> b[j], sb += b[j];
+
+//         if (sa != sb)
+//         {
+//             cout << "-1\n";
+//             continue;
+//         }
+
+//         unordered_map<int, int> zs, fs;
+//         int cnt = 0;
+//         for (int i = 1; i <= n; i++)
+//         {
+//             c[i] = a[i] - b[i];
+//             if (c[i] > 0)
+//                 zs[i] = c[i], cnt += c[i];
+//             else if (c[i] < 0)
+//                 fs[i] = c[i];
+//         }
+
+//         cout << cnt << '\n';
+//         auto p1 = zs.begin();
+//         auto p2 = fs.begin();
+//         while (cnt--)
+//         {
+//             cout << p1->first << ' ' << p2->first << '\n';
+//             if (--(p1->second) == 0)
+//                 p1++;
+//             if (++(p2->second) == 0)
+//                 p2++;
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// #define int long long
+// const int N = 1e4 + 5;
+// const int mod = 1e9 + 7;
+// int a[N], b[N];
+
+// signed main()
+// {
+//     IO;
+
+//     int n;
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+
+//     int mx = a[1], g = a[1];
+//     for (int i = 2; i <= n; i++)
+//     {
+//         g = gcd(a[i], mx);
+//         mx = (a[i] * mx) / g;
+//         mx %= mod;
+//     }
+
+//     int ans = 0;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         ans += mx / a[i];
+//         ans %= mod;
+//     }
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n, m;
+// char a[N] = {0};
+
+// int main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         string s;
+//         cin >> n >> m;
+//         memset(a, 0, m);
+//         for (int i = 0; i < n; i++)
+//         {
+//             cin >> s;
+//             for (int j = 0; j < m; j++)
+//             {
+//                 a[j] ^= s[j];
+//             }
+//         }
+//         for (int i = 1; i < n; i++)
+//         {
+//             cin >> s;
+//             for (int j = 0; j < m; j++)
+//             {
+//                 a[j] ^= s[j];
+//             }
+//         }
+//         a[m] = 0;
+//         cout << a << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// int a[N], od[N], ev[N];
+
+// int main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int n;
+//         cin >> n;
+//         memset(od, 0, sizeof od);
+//         memset(ev, 0, sizeof ev);
+//         for (int i = 0; i < n; i++)
+//         {
+//             cin >> a[i];
+//             if (i & 1)
+//                 od[a[i]]++;
+//             else
+//                 ev[a[i]]++;
+//         }
+//         sort(a, a + n);
+//         for (int i = 0; i < n; i++)
+//         {
+//             if (i & 1)
+//                 od[a[i]]--;
+//             else
+//                 ev[a[i]]--;
+//         }
+//         int f = 1;
+//         for (int i = 0; i < N; i++)
+//             if (od[i] || ev[i])
+//             {
+//                 f = 0;
+//                 break;
+//             }
+//         if (f)
+//             cout << "YES\n";
+//         else
+//             cout << "NO\n";
+//     }
+
+//     return 0;
+// }
