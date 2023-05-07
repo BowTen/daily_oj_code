@@ -5290,3 +5290,86 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e6 + 5;
+// int dp[N][2];
+// int mod = 998244353;
+
+// signed main()
+// {
+//     int n;
+//     cin >> n;
+//     dp[2][1] = 1;
+//     dp[0][0] = 1;
+//     for (int i = 2; i <= n; i++)
+//     {
+//         dp[i][1] = (dp[i - 2][1] + dp[i - 2][0]) % mod;
+//         dp[i][0] = (dp[i - 1][1] * 2) % mod;
+//     }
+//     cout << dp[n][1];
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// // #define double long double
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 2e6 + 5;
+// int n;
+// double m;
+// double s[N][2], l = 0, r = 0, d[N];
+
+// bool check(double mid)
+// {
+//     double t, ans = 0;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         if (mid > s[i][1])
+//             ans += 1.0;
+//         else if (mid < s[i][0])
+//             continue;
+//         else
+//             ans += (mid - s[i][0]) / d[i];
+//     }
+//     if (ans < m)
+//         return false;
+//     return true;
+// }
+
+// signed main()
+// {
+//     IO;
+//     cin >> n >> m;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> s[i][0] >> s[i][1];
+//         d[i] = s[i][1] - s[i][0];
+//         r = max(r, s[i][1]);
+//     }
+
+//     int cnt = 1000;
+//     double mid;
+//     while (cnt--)
+//     {
+//         mid = (l + r) / 2.0;
+//         if (check(mid))
+//             r = mid;
+//         else
+//             l = mid;
+//     }
+//     printf("%lf", l);
+
+//     return 0;
+// }
