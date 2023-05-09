@@ -5373,3 +5373,270 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 1e6 + 5;
+// int a[N];
+
+// signed main()
+// {
+//     IO;
+//     int n;
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+
+//     for (int i = n - 1; i >= 1; i--)
+//     {
+//         a[i] = abs(a[i] - a[i + 1]);
+//     }
+
+//     printf("%lf", (double)a[1]);
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 1e5 + 5;
+// int a[N], n, m;
+// pair<int, int> pi[N];
+
+// signed main()
+// {
+//     IO;
+//     cin >> n >> m;
+//     for (int i = 0; i < m; i++)
+//         cin >> pi[i].first >> pi[i].second;
+//     sort(pi, pi + m);
+//     int cnt = 1;
+//     for (int i = 0; i < m; i++)
+//     {
+//         if (pi[i].first + 1 == pi[i].second)
+//             continue;
+//         if (a[pi[i].first])
+//         {
+//             a[pi[i].second] = a[pi[i].first];
+//         }
+//         else
+//         {
+//             a[pi[i].first] = a[pi[i].second] = cnt++;
+//         }
+//     }
+//     for (int i = 1; i <= n; i++)
+//         if (a[i])
+//             cout << a[i] << ' ';
+//         else
+//             cout << cnt << ' ';
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n, m;
+// int a[N];
+// pair<int, int> line[N];
+
+// int main()
+// {
+
+//     cin >> n >> m;
+//     for (int i = 0, t1, t2; i < m; i++)
+//     {
+//         cin >> t1 >> t2;
+//         line[t1].second = t2;
+//         line[t2].first = t1;
+//     }
+//     stack<int> st;
+//     for (int i = n; i >= 1; i--)
+//         st.push(i);
+//     for (int i = 1; i <= n; i++)
+//     {
+//         if (line[i].first)
+//             a[i] = a[line[i].first];
+//         else
+//         {
+//             a[i] = st.top();
+//             st.pop();
+//         }
+//         if (!line[i].second)
+//             st.push(a[i]);
+//     }
+
+//     for (int i = 1; i <= n; i++)
+//         cout << a[i] << ' ';
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e6 + 5;
+// int n, a[N], b[N], ans[N * 2], pre[N], pb[N], l[N], r[N];
+
+// int lowbit(int x)
+// {
+//     return x & -x;
+// }
+
+// int getsum(int x)
+// {
+//     int ret = 0;
+//     while (x)
+//     {
+//         ret += ans[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void add(int x, int v)
+// {
+//     while (x <= 2 * n)
+//     {
+//         ans[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+
+// int main()
+// {
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         pre[i] = pre[i - 1] + a[i];
+//     }
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> b[i];
+//         pb[i] = pb[i - 1] + b[i];
+//         if (pb[i] && !l[pb[i]])
+//             l[pb[i]] = i;
+//         if (b[i])
+//             r[pb[i - 1]] = i - 1;
+//     }
+//     r[pb[n]] = n;
+
+//     // add(1, 1);
+//     // add(3, 1);
+//     for (int i = 0; i <= n; i++)
+//     {
+//         // add(i + l[pre[i]], 1);
+//         ans[i + l[pre[i]]]++;
+//         ans[i + r[pre[i]] + 1]--;
+//         // cout << r[pre[i]] << '\n';
+//     }
+//     for (int i = 1; i <= 2 * n; i++)
+//         ans[i] = ans[i] + ans[i - 1];
+//     cout << "1 ";
+//     for (int i = 1; i <= 2 * n; i++)
+//         cout << ans[i] << ' ';
+//     // cout << getsum(i) - getsum(i - 1) << ' ';
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 5;
+// int n, a, b, ans[N * 2], pre[N], pb[N], l[N], r[N];
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a;
+//         pre[i] = pre[i - 1] + a;
+//     }
+//     for (int i = 1; i <= 2 * n; i++)
+//         l[i] = r[i] = -1;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> b;
+//         pb[i] = pb[i - 1] + b;
+//         if (pb[i] && l[pb[i]] == -1)
+//             l[pb[i]] = i;
+//         if (b)
+//             r[pb[i - 1]] = i - 1;
+//     }
+//     r[pb[n]] = n;
+
+//     for (int i = 0; i <= n; i++)
+//     {
+//         if (l[pre[i]] == -1 || r[pre[i]] == -1)
+//             continue;
+//         ans[i + l[pre[i]]]++;
+//         ans[i + r[pre[i]] + 1]--;
+//     }
+//     for (int i = 1; i <= 2 * n; i++)
+//         ans[i] = ans[i] + ans[i - 1];
+//     for (int i = 0; i <= 2 * n; i++)
+//         cout << ans[i] << ' ';
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e6 + 5;
+// int n, a[N], b[N], pa[N], pb[N], l[N], r[N], ans[N * 2], n2;
+
+// int main()
+// {
+//     cin >> n;
+//     n2 = n * 2;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         pa[i] = pa[i - 1] + a[i];
+//     }
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> b[i];
+//         pb[i] = pb[i - 1] + b[i];
+//     }
+//     for (int i = 0; i <= n; i++)
+//         l[i] = r[i] = -1;
+//     for (int i = 0; i <= n; i++)
+//     {
+//         if (l[pb[i]] == -1)
+//             l[pb[i]] = i;
+//         if (i > 0 && pb[i] != pb[i - 1])
+//             r[pb[i - 1]] = i - 1;
+//     }
+//     r[pb[n]] = n;
+
+//     for (int i = 0; i <= n; i++)
+//     {
+//         if (l[pa[i]] == -1)
+//             continue;
+//         ans[i + l[pa[i]]]++;
+//         ans[i + r[pa[i]] + 1]--;
+//     }
+
+//     cout << "1 ";
+//     for (int i = 1; i <= n2; i++)
+//     {
+//         cout << (ans[i] += ans[i - 1]) << ' ';
+//     }
+
+//     return 0;
+// }
