@@ -259,72 +259,266 @@
 //     return 0;2
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO                       \
+//     ios::sync_with_stdio(false); \
+//     cin.tie(0);                  \
+//     cout.tie(0);
+// const int N = 1e5 + 5;
+// int n, q, k, d[N], die[N], ad;
+
+// int lowbit(int x)
+// {
+//     return x & -x;
+// }
+
+// int getsum(int x)
+// {
+//     x++;
+//     int ret = 0;
+//     while (x)
+//     {
+//         ret += d[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void add(int x, int v)
+// {
+//     x++;
+//     while (x <= n + 1)
+//     {
+//         d[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+
+// signed main()
+// {
+//     IO;
+//     cin >> n >> q;
+//     vector<int> a(n);
+//     for (int i = 0; i < n; i++)
+//         a[i] = i + 1;
+//     int cur = 0, t;
+//     while (q--)
+//     {
+//         cin >> k;
+//         int ne = (cur + k - 1);
+//         int rou = (ne - cur) / n;
+//         int mor = ad * rou;
+//         if ((ne % n) < cur)
+//             mor += getsum(ne % n);
+//         else
+//             mor += getsum(ne % n) - getsum(cur);
+//         k = mor;
+//         cur = ne % n;
+//         while (k)
+//         {
+//             ne = (cur + k);
+//             rou = (ne - cur) / n;
+//             mor = ad * rou;
+//             if ((ne % n) < cur)
+//                 mor += getsum(ne % n);
+//             else
+//                 mor += getsum(ne % n) - getsum(cur);
+//             k = mor;
+//             cur = ne % n;
+//         }
+//         cout << a[cur] << '\n';
+//         ad++;
+//         add(cur++, 1);
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n, m, a[N];
+// struct node
+// {
+//     int l, r, right, tag;
+// };
+// node d[N << 2];
+
+// void settag(int id, int v)
+// {
+//     d[id].tag = max(d[id].tag, v);
+//     if (d[id].l == d[id].r)
+//     {
+//         d[id].right = max(d[id].right, d[id].tag);
+//         d[id].tag = 0;
+//     }
+// }
+
+// void down(int id)
+// {
+//     if (!d[id].tag)
+//         return;
+//     settag(id << 1, d[id].tag);
+//     settag(id << 1 | 1, d[id].tag);
+// }
+
+// void build(int id, int ql, int qr)
+// {
+//     d[id].l = ql;
+//     d[id].r = qr;
+//     if (ql == qr)
+//         return;
+//     int mid = ql + qr >> 1;
+//     build(id << 1, ql, mid);
+//     build(id << 1 | 1, mid + 1, qr);
+// }
+
+// void modify(int id, int ql, int qr, int v)
+// {
+//     int l = d[id].l;
+//     int r = d[id].r;
+//     if (l > qr || r < ql)
+//         return;
+//     if (l >= ql && r <= qr)
+//         settag(id, v);
+//     else
+//     {
+//         down(id);
+//         int mid = ql + qr >> 1;
+//         if (r <= mid)
+//             modify(id << 1, ql, qr, v);
+//         else if (l > mid)
+//             modify(id << 1 | 1, ql, qr, v);
+//         else
+//         {
+//             modify(id << 1, ql, qr, v);
+//             modify(id << 1 | 1, ql, qr, v);
+//         }
+//     }
+// }
+
+// int getr(int id, int x)
+// {
+//     int l = d[id].l;
+//     int r = d[id].r;
+//     if (l == r && l == x)
+//         return d[id].right;
+//     int mid = l + r >> 1;
+//     down(id);
+//     if (x <= mid)
+//         return getr(id << 1, x);
+//     return getr(id << 1 | 1, x);
+// }
+
+// int main()
+// {
+
+//     cin >> n >> m;
+//     build(1, 1, n);
+//     while (m--)
+//     {
+//         int t, l, r, k;
+//         cin >> t;
+//         if (t == 1)
+//         {
+//             cin >> l >> r >> t;
+//             modify(1, l, r, r);
+//         }
+//         else
+//         {
+//             cin >> k;
+//             for (int i = 1; i <= k; i++)
+//                 cin >> a[i];
+//             int mx = getr(1, a[1]);
+//             int ans = 1;
+//             for (int i = 1; i <= k; i++)
+//             {
+//                 if (a[i] <= mx)
+//                     continue;
+//                 mx = getr(1, a[i]);
+//                 if (mx < a[i])
+//                 {
+//                     cout << "-1\n";
+//                     goto ss;
+//                 }
+//                 ans++;
+//             }
+//             cout << ans << '\n';
+//         }
+
+//     ss:;
+//     }
+
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
-#define IO                       \
-    ios::sync_with_stdio(false); \
-    cin.tie(0);                  \
-    cout.tie(0);
 const int N = 1e5 + 5;
-int n, q, k, d[N], die[N], ad;
+int n, m, rgt[N], a[N];
 
 int lowbit(int x)
 {
     return x & -x;
 }
 
-int getsum(int x)
-{
-    int ret = 0;
-    while (x)
-    {
-        ret += d[x];
-        x -= lowbit(x);
-    }
-    return ret;
-}
-
-void add(int x, int v)
+void change(int x, int v)
 {
     while (x <= n)
     {
-        d[x] += v;
+        rgt[x] = max(rgt[x], v);
         x += lowbit(x);
     }
 }
 
-signed main()
+int query(int r)
 {
-    IO;
-    cin >> n >> q;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
-        a[i] = i + 1;
-    int cur = 0, t;
-    // add(1, 2);
-    // add(3, 3);
-    // cout << getsum(1) << ' ';
-    // cout << getsum(3);
-    while (q--)
+    int ret = 0;
+    while (r)
     {
-        cin >> k;
-        while (k)
+        ret = max(rgt[r], ret);
+        r -= lowbit(r);
+    }
+    return ret;
+}
+
+int main()
+{
+
+    cin >> n >> m;
+    while (m--)
+    {
+        int t, l, r, w, k;
+        cin >> t;
+        if (t == 1)
         {
-            int ne = (cur + k - 1);
-            int rou = (ne - cur) / k;
-            int mor = ad * rou;
-            if ((ne % n) < cur)
-                mor += getsum(ne % n);
-            else
-                mor += getsum(ne % n) - getsum(cur);
-            k = mor;
-            cur = ne % n;
-            cout << k << ' ';
+            cin >> l >> r >> w;
+            change(l, r);
         }
-        cout << a[cur] << '\n';
-        ad++;
-        add(cur, 1);
+        else
+        {
+            cin >> k;
+            for (int i = 1; i <= k; i++)
+                cin >> a[i];
+            int mx = query(a[1]);
+            int ans = 1;
+            for (int i = 1; i <= k; i++)
+            {
+                if (mx >= a[i])
+                    continue;
+                mx = query(a[i]);
+                if (mx < a[i])
+                {
+                    cout << "-1\n";
+                    goto ss;
+                }
+                ans++;
+            }
+            cout << ans << '\n';
+        }
+    ss:;
     }
 
     return 0;
