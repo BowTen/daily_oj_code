@@ -454,71 +454,178 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// int n, m, rgt[N], a[N];
+
+// int lowbit(int x)
+// {
+//     return x & -x;
+// }
+
+// void change(int x, int v)
+// {
+//     while (x <= n)
+//     {
+//         rgt[x] = max(rgt[x], v);
+//         x += lowbit(x);
+//     }
+// }
+
+// int query(int r)
+// {
+//     int ret = 0;
+//     while (r)
+//     {
+//         ret = max(rgt[r], ret);
+//         r -= lowbit(r);
+//     }
+//     return ret;
+// }
+
+// int main()
+// {
+
+//     cin >> n >> m;
+//     while (m--)
+//     {
+//         int t, l, r, w, k;
+//         cin >> t;
+//         if (t == 1)
+//         {
+//             cin >> l >> r >> w;
+//             change(l, r);
+//         }
+//         else
+//         {
+//             cin >> k;
+//             for (int i = 1; i <= k; i++)
+//                 cin >> a[i];
+//             int mx = query(a[1]);
+//             int ans = 1;
+//             for (int i = 1; i <= k; i++)
+//             {
+//                 if (mx >= a[i])
+//                     continue;
+//                 mx = query(a[i]);
+//                 if (mx < a[i])
+//                 {
+//                     cout << "-1\n";
+//                     goto ss;
+//                 }
+//                 ans++;
+//             }
+//             cout << ans << '\n';
+//         }
+//     ss:;
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class ot
+// {
+// private:
+//     static int st;
+
+// public:
+//     int a = 1;
+//     class inn
+//     {
+//     public:
+//         int b = 2;
+//         void ptst()
+//         {
+//             cout << st;
+//         }
+//     };
+// };
+
+// int ot::st = 6;
+
+// int main()
+// {
+//     ot::inn().ptst();
+
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
-const int N = 1e5 + 5;
-int n, m, rgt[N], a[N];
+const int N = 5e5 + 5;
+int n, q, d[N], k, liv, al[N];
 
 int lowbit(int x)
 {
     return x & -x;
 }
 
-void change(int x, int v)
+void add(int x, int v)
 {
     while (x <= n)
     {
-        rgt[x] = max(rgt[x], v);
+        d[x] += v;
         x += lowbit(x);
     }
 }
 
-int query(int r)
+int getsum(int x)
 {
     int ret = 0;
-    while (r)
+    while (x)
     {
-        ret = max(rgt[r], ret);
-        r -= lowbit(r);
+        ret += d[x];
+        x -= lowbit(x);
     }
     return ret;
 }
 
 int main()
 {
-
-    cin >> n >> m;
-    while (m--)
+    cin >> n >> q;
+    liv = n;
+    for (int i = 1; i <= n; i++)
+        add(i, 1), al[i] = 1;
+    int cur = 1;
+    while (q--)
     {
-        int t, l, r, w, k;
-        cin >> t;
-        if (t == 1)
+        cin >> k;
+        k %= liv;
+        if (!k)
+            k = liv;
+        int l = 1, r = n, mid, s, q, p, ne;
+        while (1)
         {
-            cin >> l >> r >> w;
-            change(l, r);
-        }
-        else
-        {
-            cin >> k;
-            for (int i = 1; i <= k; i++)
-                cin >> a[i];
-            int mx = query(a[1]);
-            int ans = 1;
-            for (int i = 1; i <= k; i++)
+            mid = l + r >> 1;
+            ne = (cur + mid) % n ? (cur + mid) % n : 1;
+            if (cur + mid <= n)
             {
-                if (mx >= a[i])
-                    continue;
-                mx = query(a[i]);
-                if (mx < a[i])
-                {
-                    cout << "-1\n";
-                    goto ss;
-                }
-                ans++;
+                p = cur + mid;
+                q = 0;
             }
-            cout << ans << '\n';
+            else
+            {
+                p = n;
+                q = cur + mid - n;
+            }
+            s = getsum(p) - getsum(cur - 1) + getsum(q);
+            if (s == k && al[ne])
+                break;
+            else if (s < k)
+                l = mid + 1;
+            else
+                r = mid - 1;
         }
-    ss:;
+        cout << ne << '\n';
+        add(ne, -1);
+        al[ne] = 0;
+        cur = ne;
+
+        liv--;
     }
 
     return 0;
