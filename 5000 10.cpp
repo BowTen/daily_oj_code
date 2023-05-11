@@ -554,79 +554,63 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
-const int N = 5e5 + 5;
-int n, q, d[N], k, liv, al[N];
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 5e5 + 10;
+// int n, q, d[N], k, liv;
 
-int lowbit(int x)
-{
-    return x & -x;
-}
+// int lowbit(int x)
+// {
+//     return x & -x;
+// }
 
-void add(int x, int v)
-{
-    while (x <= n)
-    {
-        d[x] += v;
-        x += lowbit(x);
-    }
-}
+// void add(int x, int v)
+// {
+//     while (x <= n)
+//     {
+//         d[x] += v;
+//         x += lowbit(x);
+//     }
+// }
 
-int getsum(int x)
-{
-    int ret = 0;
-    while (x)
-    {
-        ret += d[x];
-        x -= lowbit(x);
-    }
-    return ret;
-}
+// int getsum(int x)
+// {
+//     int ret = 0;
+//     while (x)
+//     {
+//         ret += d[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
 
-int main()
-{
-    cin >> n >> q;
-    liv = n;
-    for (int i = 1; i <= n; i++)
-        add(i, 1), al[i] = 1;
-    int cur = 1;
-    while (q--)
-    {
-        cin >> k;
-        k %= liv;
-        if (!k)
-            k = liv;
-        int l = 1, r = n, mid, s, q, p, ne;
-        while (1)
-        {
-            mid = l + r >> 1;
-            ne = (cur + mid) % n ? (cur + mid) % n : 1;
-            if (cur + mid <= n)
-            {
-                p = cur + mid;
-                q = 0;
-            }
-            else
-            {
-                p = n;
-                q = cur + mid - n;
-            }
-            s = getsum(p) - getsum(cur - 1) + getsum(q);
-            if (s == k && al[ne])
-                break;
-            else if (s < k)
-                l = mid + 1;
-            else
-                r = mid - 1;
-        }
-        cout << ne << '\n';
-        add(ne, -1);
-        al[ne] = 0;
-        cur = ne;
+// int main()
+// {
+//     cin >> n >> q;
+//     liv = n;
+//     for (int i = 1; i <= n; i++)
+//         add(i, 1);
+//     int id = 1;
+//     while (q--)
+//     {
+//         cin >> k;
+//         id = (id + k - 1) % liv;
+//         if (!id)
+//             id = liv;
+//         int l = 1, r = n, mid;
+//         while (l <= r)
+//         {
+//             mid = l + r >> 1;
+//             if (getsum(mid) < id)
+//                 l = mid + 1;
+//             else
+//                 r = mid - 1;
+//         }
+//         cout << l << '\n';
+//         add(l, -1);
 
-        liv--;
-    }
+//         liv--;
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
