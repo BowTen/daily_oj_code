@@ -614,3 +614,74 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define IOS ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define int long long
+// typedef long long ll;
+// typedef unsigned long long ull;
+// const ll N = 5e6 + 7;
+// constexpr ll mod = 1e9 + 7;
+// const ll inf = 0x3f3f3f3f;
+// const ll INF = 0x3f3f3f3f3f3f3f3f;
+// ll qkpow(ll a, ll p)
+// {
+//     ll t = 1, tt = a;
+//     while (p)
+//     {
+//         if (p & 1)
+//             t = t * tt;
+//         tt = tt * tt;
+//         p >>= 1;
+//     }
+//     return t;
+// }
+
+// signed main()
+// {
+//     IOS;
+//     int n, num = 0, sum0 = 0, sum = 0, bi = 1;
+//     cin >> n;
+//     while (n > 0)
+//     {
+//         if (n % 2 == 1)
+//         {
+//             sum0 += sum + 1 + num * 0.5 * qkpow(2, num);
+//             sum += bi;
+//         }
+//         bi *= 2;
+//         num++;
+//         n /= 2;
+//     }
+//     cout << sum0;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define int long long
+// const int N = 1e5 + 5;
+// int n, a;
+
+// signed main()
+// {
+//     IO;
+//     a = 0;
+//     cin >> n;
+//     a = n / 2;
+//     if (n & 1)
+//         a++;
+//     int pw = 4;
+//     while (pw / 2 <= n)
+//     {
+//         a += ((n + 1) / pw) * (pw / 2) + max(((n + 1) % pw) - (pw / 2), (int)0);
+//         pw *= 2;
+//     }
+
+//     cout << a;
+
+//     return 0;
+// }
