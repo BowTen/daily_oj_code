@@ -685,3 +685,83 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 5;
+// int n, a[N], b[N];
+
+// signed main()
+// {
+//     cin >> n;
+
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+
+//     int ans = 0;
+//     for (int j = 2; j < n; j++)
+//     {
+//         for (int i = 1; i <= n; i++)
+//             b[i] = a[i];
+//         sort(b + 1, b + j);
+//         sort(b + 1 + j, b + n);
+//         for (int i = 1; i < j; i++)
+//         {
+//             int l = j + 1, r = n, mid;
+//             while (l <= r)
+//             {
+//                 mid = l + r >> 1;
+//                 if (b[mid] + b[i] > b[j])
+//                     r = mid - 1;
+//                 else
+//                     l = mid + 1;
+//             }
+//             ans += r - j;
+//         }
+//     }
+
+//     cout << ans;
+
+//     return 0;
+// }
+
+#include <bits/stdc++.h>
+using namespace std;
+const int P = 100000007;
+int n;
+#define int long long
+int fast(int a, int b)
+{
+    int res = 1;
+    while (b > 0)
+    {
+        if (b & 1)
+            res = 1ll * res * a % P;
+        a = 1ll * a * a % P;
+        b >>= 1;
+    }
+    return res;
+}
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    cin >> n;
+    int pw = 1;
+    for (int i = 1; i < n; i++)
+        pw *= 2, pw %= P;
+    int ans = 0;
+    for (int i = 1, tmp; i <= n; i++)
+    {
+        cin >> tmp;
+        ans += (tmp * pw) % P;
+    }
+    // cout << (ans * ((int)pow(n, P - 2) % P)) % P;
+    cout << ans;
+
+    return 0;
+}
