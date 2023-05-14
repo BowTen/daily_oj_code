@@ -728,27 +728,30 @@
 // }
 
 #include <bits/stdc++.h>
+#define int long long
+#define IO                       \
+    ios::sync_with_stdio(false); \
+    cin.tie(0);                  \
+    cout.tie(0);
 using namespace std;
 const int P = 100000007;
 int n;
-#define int long long
-int fast(int a, int b)
+
+int qpow(int a, int k, int p)
 {
-    int res = 1;
-    while (b > 0)
+    int ret = 1;
+    while (k)
     {
-        if (b & 1)
-            res = 1ll * res * a % P;
-        a = 1ll * a * a % P;
-        b >>= 1;
+        if (k & 1)
+            ret = (ret * a) % p;
+        a = (a * a) % p;
+        k >>= 1;
     }
-    return res;
+    return ret;
 }
+
 signed main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    cout.tie(0);
 
     cin >> n;
     int pw = 1;
@@ -759,9 +762,10 @@ signed main()
     {
         cin >> tmp;
         ans += (tmp * pw) % P;
+        ans %= P;
     }
-    // cout << (ans * ((int)pow(n, P - 2) % P)) % P;
-    cout << ans;
+
+    cout << (ans * qpow(n, P - 2, P)) % P;
 
     return 0;
 }
