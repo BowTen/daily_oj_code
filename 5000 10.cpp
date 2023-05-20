@@ -1911,3 +1911,46 @@
 //     }
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int mod = 998244353;
+// int n;
+
+// int qpow(int a, int q, int p)
+// {
+//     int ret = 1;
+//     while (q)
+//     {
+//         if (1 & q)
+//             ret = ret * a % p;
+//         a = a * a % p;
+//         q >>= 1;
+//     }
+//     return ret;
+// }
+
+// signed main()
+// {
+//     IO;
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+//         int ans = 0;
+//         int pw = qpow(2, n - 1, mod);
+//         int px = 1;
+//         for (int i = 1; i <= n; i++)
+//         {
+//             ans = (ans + pw * px) % mod;
+//             pw /= 2;
+//             px = px * 2 % mod;
+//         }
+//         cout << ans << '\n';
+//     }
+
+//     return 0;
+// }
