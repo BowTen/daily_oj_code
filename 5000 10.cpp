@@ -1977,88 +1977,101 @@
 //     return 0;
 // }
 
-#include <iostream>
+// #include <iostream>
+// using namespace std;
+
+// int days[] = {0, 31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+// int isrn(int x)
+// {
+//     return ((x % 4 == 0 && x % 100) || x % 400 == 0);
+// }
+
+// int main()
+// {
+//     string a, b;
+//     while (cin >> a >> b)
+//     { // 注意 while 处理多个 case
+//         if (a > b)
+//             swap(a, b);
+//         int y1, y2, m1, m2, d1, d2;
+//         y1 = (a[0] - '0') * 1000 + (a[1] - '0') * 100 + (a[2] - '0') * 10 + a[3] - '0';
+//         y2 = (b[0] - '0') * 1000 + (b[1] - '0') * 100 + (b[2] - '0') * 10 + b[3] - '0';
+//         m1 = (a[4] - '0') * 10 + a[5] - '0';
+//         m2 = (b[4] - '0') * 10 + b[5] - '0';
+//         d1 = (a[6] - '0') * 10 + a[7] - '0';
+//         d2 = (b[6] - '0') * 10 + b[7] - '0';
+
+//         int ans = 0;
+//         for (; y1 < y2 - 1; y1++)
+//         {
+//             if (isrn(y1))
+//                 ans += 366;
+//             else
+//                 ans += 365;
+//         }
+
+//         if (y1 < y2)
+//         {
+//             for (; m1 < 12; m1++)
+//             {
+//                 if (m1 == 2)
+//                     if (isrn(y1))
+//                         ans += 29;
+//                     else
+//                         ans += 28;
+//                 else
+//                     ans += days[m1];
+//             }
+//             m1 = 1;
+//             ans += 32 - d1;
+//             d1 = 1;
+//             y1++;
+//         }
+
+//         cout << ans << '\n';
+//         cout << y1 << ' ' << m1 << ' ' << d1 << '\n';
+//         for (; m1 < m2 - 1; m1++)
+//         {
+//             if (m1 == 2)
+//                 if (isrn(y1))
+//                     ans += 29;
+//                 else
+//                     ans += 28;
+//             else
+//                 ans += days[m1];
+//         }
+//         cout << ans << '\n';
+//         cout << y1 << ' ' << m1 << ' ' << d1 << '\n';
+
+//         if (m1 < m2)
+//         {
+//             if (m1 == 2)
+//                 if (isrn(y1))
+//                     ans += 30 - d1;
+//                 else
+//                     ans += 29 - d1;
+//             else
+//                 ans += days[m1] + 1 - d1;
+//             d1 = 1;
+//             m1++;
+//         }
+
+//         ans += d2 - d1 + 1;
+
+//         cout << ans << '\n';
+//     }
+// }
+
+#include <bits/stdc++.h>
 using namespace std;
+#define int long long;
 
-int days[] = {0, 31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-int isrn(int x)
+signed main()
 {
-    return ((x % 4 == 0 && x % 100) || x % 400 == 0);
-}
 
-int main()
-{
-    string a, b;
-    while (cin >> a >> b)
-    { // 注意 while 处理多个 case
-        if (a > b)
-            swap(a, b);
-        int y1, y2, m1, m2, d1, d2;
-        y1 = (a[0] - '0') * 1000 + (a[1] - '0') * 100 + (a[2] - '0') * 10 + a[3] - '0';
-        y2 = (b[0] - '0') * 1000 + (b[1] - '0') * 100 + (b[2] - '0') * 10 + b[3] - '0';
-        m1 = (a[4] - '0') * 10 + a[5] - '0';
-        m2 = (b[4] - '0') * 10 + b[5] - '0';
-        d1 = (a[6] - '0') * 10 + a[7] - '0';
-        d2 = (b[6] - '0') * 10 + b[7] - '0';
+    unsigned a = 1;
+    cout << a - 1;
 
-        int ans = 0;
-        for (; y1 < y2 - 1; y1++)
-        {
-            if (isrn(y1))
-                ans += 366;
-            else
-                ans += 365;
-        }
-
-        if (y1 < y2)
-        {
-            for (; m1 < 12; m1++)
-            {
-                if (m1 == 2)
-                    if (isrn(y1))
-                        ans += 29;
-                    else
-                        ans += 28;
-                else
-                    ans += days[m1];
-            }
-            m1 = 1;
-            ans += 32 - d1;
-            d1 = 1;
-            y1++;
-        }
-
-        cout << ans << '\n';
-        cout << y1 << ' ' << m1 << ' ' << d1 << '\n';
-        for (; m1 < m2 - 1; m1++)
-        {
-            if (m1 == 2)
-                if (isrn(y1))
-                    ans += 29;
-                else
-                    ans += 28;
-            else
-                ans += days[m1];
-        }
-        cout << ans << '\n';
-        cout << y1 << ' ' << m1 << ' ' << d1 << '\n';
-
-        if (m1 < m2)
-        {
-            if (m1 == 2)
-                if (isrn(y1))
-                    ans += 30 - d1;
-                else
-                    ans += 29 - d1;
-            else
-                ans += days[m1] + 1 - d1;
-            d1 = 1;
-            m1++;
-        }
-
-        ans += d2 - d1 + 1;
-
-        cout << ans << '\n';
-    }
+    return 0;
 }
