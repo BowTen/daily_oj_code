@@ -2063,15 +2063,170 @@
 //     }
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+
+// class A {
+// public:
+//     virtual void fun() {
+//         cout << "Afun()\n";
+//     }
+
+//     int _a;
+// };
+
+// class B : public A {
+// public:
+//     //int fun(int a) {
+//     //    cout << "Bfun()\n";
+//     //    return a;
+//     //}
+
+//     void fun() {
+//         cout << "redefine Afun()\n";
+//     }
+// };
+
+// signed main()
+// {
+//     B b;
+//     A& p = b;
+
+//     //b.fun();
+//     //b.fun(1ll);
+//     //b.A::fun();
+
+//     p.A::fun();
+//     p.fun();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class Vehicle
+// {
+// private:
+//     int numberOfDoors;     // 车门数
+//     int numberOfCylinders; // 气缸数
+//     string color;          // 汽车颜色
+//     double fueLevel;       // 油位（燃油数量）
+//     int transmissionType;  // 变速箱类型
+//     string className;      // 汽车类别
+
+// public:
+//     Vehicle(int nd, int nc, string col, double ful, int tran)
+//     {
+//         numberOfDoors = nd;
+//         numberOfCylinders = nc;
+//         color = col;
+//         fueLevel = ful;
+//         transmissionType = tran;
+//     }
+
+//     int getNumberOfDoors()
+//     {
+//         return numberOfDoors;
+//     }
+
+//     int getNumberOfCylinders()
+//     {
+//         return numberOfCylinders;
+//     }
+
+//     string getColor()
+//     {
+//         return color;
+//     }
+
+//     double getFuelLevel()
+//     {
+//         return fueLevel;
+//     }
+
+//     int getTransmissionType()
+//     {
+//         return transmissionType;
+//     }
+
+//     string getClassNme()
+//     {
+//         return className;
+//     }
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+
+//     fstream fs;
+//     fs.open("D:\\tttttttt\\example.txt", ios::out | ios::trunc | ios::in | ios::binary);
+//     if (!fs.is_open())
+//     {
+//         cout << "创建文件失败\n";
+//         exit(EXIT_FAILURE);
+//     }
+//     for (int i = 1, t; i <= 5; i++)
+//     {
+//         cin >> t;
+//         fs << t;
+//         if (i == 5)
+//             fs << '\n';
+//         else
+//             fs << ' ';
+//     }
+
+//     for (int i = 1, t; i <= 5; i++)
+//     {
+//         cin >> t;
+//         fs << t;
+//         if (i != 5)
+//             fs << ' ';
+//     }
+//     fs << '\0';
+
+//     char s[30];
+//     fs.seekg(0);
+
+//     fs.read(s, sizeof(s));
+//     cout << s;
+
+//     // for (int i = 0; i < 30; i++)
+//     //     cout << s[i];
+
+//     fs.close();
+
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long;
 
-signed main()
+int main()
 {
 
-    unsigned a = 1;
-    cout << a - 1;
+    ifstream ifs("D:\\ttt\\plaintext.txt");
+    if (!ifs.is_open())
+    {
+        cout << "读取文件失败\n";
+        exit(EXIT_FAILURE);
+    }
+    ofstream ofs("D:\\ttt\\ciphertext.txt");
+    if (!ifs.is_open())
+    {
+        cout << "写入文件失败\n";
+        exit(EXIT_FAILURE);
+    }
 
+    char c;
+    while (ifs.get(c))
+        ofs.put(c + 2);
+
+    ofs.close();
+    ifs.close();
     return 0;
 }
