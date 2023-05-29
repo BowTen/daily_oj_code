@@ -2203,30 +2203,176 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+
+//     ifstream ifs("D:\\ttt\\plaintext.txt");
+//     if (!ifs.is_open())
+//     {
+//         cout << "读取文件失败\n";
+//         exit(EXIT_FAILURE);
+//     }
+//     ofstream ofs("D:\\ttt\\ciphertext.txt");
+//     if (!ifs.is_open())
+//     {
+//         cout << "写入文件失败\n";
+//         exit(EXIT_FAILURE);
+//     }
+
+//     char c;
+//     while (ifs.get(c))
+//         ofs.put(c + 2);
+
+//     ofs.close();
+//     ifs.close();
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
+string a, b;
+
+string add(string a, string b);
+string div(string a, string b);
+
+string add(string a, string b)
+{
+
+    int f = 0;
+    if (a[0] == '-' && b[0] == '-')
+    {
+        f = 1;
+        a = string(a.rbegin(), a.rend() - 1);
+        b = string(b.rbegin(), b.rend() - 1);
+    }
+    else
+    {
+        if (a[0] == '-')
+        {
+            return div(b, string(a.begin() + 1, a.end()));
+        }
+        else if (b[0] == '-')
+        {
+            return div(a, string(b.begin() + 1, b.end()));
+        }
+        else
+        {
+            reverse(a.begin(), a.end());
+            reverse(b.begin(), b.end());
+        }
+    }
+
+    if (b.size() > a.size())
+        swap(a, b);
+
+    for (int i = 0, len = b.size(); i < len; i++)
+    {
+        a[i] += b[i] - '0';
+        if (a[i] > '9')
+        {
+            a[i] -= 10;
+            if (i + 1 < a.size())
+                a[i + 1]++;
+            else
+                a.push_back('1');
+        }
+    }
+    if (a.back() > '9')
+    {
+        a.back()--;
+        a.push_back('1');
+    }
+
+    if (f)
+        a.push_back('-');
+    reverse(a.begin(), a.end());
+    return a;
+}
+
+string div(string a, string b)
+{
+    int f = 0;
+    if (a[0] == '-' && b[0] == '-')
+    {
+        a = string(a.begin() + 1, a.end());
+        b = string(b.begin() + 1, b.end());
+        swap(a, b);
+    }
+    else
+    {
+        if (a[0] == '-')
+        {
+            return add(a, "-" + b);
+        }
+        else if (b[0] == '-')
+            return add(a, string(b.begin() + 1, b.end()));
+    }
+
+    if (a.size() < b.size() || (a.size() == b.size() && b > a))
+    {
+        f = 1;
+        swap(a, b);
+    }
+
+    reverse(a.begin(), a.end());
+    reverse(b.begin(), b.end());
+
+    for (int i = 0, len = b.size(); i < len; i++)
+    {
+        a[i] -= b[i] - '0';
+        if (a[i] < '0')
+        {
+            a[i] += 10;
+            a[i + 1]--;
+        }
+    }
+
+    for (int i = a.size() - 1; i >= 1; i--)
+    {
+        if (a[i] > '0')
+            break;
+        a.pop_back();
+    }
+
+    if (f)
+        a.push_back('-');
+    reverse(a.begin(), a.end());
+    return a;
+}
+
+vector<int> multi(string &A, string &B) // 高精度乘法
+{
+    vector<int> res(A.size() + B.size(), 0);
+    for (int i = 0; i < A.size(); i++)
+        for (int j = 0; j < B.size(); j++)
+            res[i + j] += (A[i] - '0') * (B[j] - '0');
+    for (int i = 0, t = 0; i < res.size(); i++)
+    {
+        t += res[i];
+        res[i] = t % 10;
+        t /= 10;
+    }
+    while (res.size() > 1 && res.back() == 0)
+        res.pop_back();
+    string ret(res.size(), '0');
+    for (int i = 0, len = res.size(); i < len; i++)
+        ret[i] += res[i];
+    return res;
+}
 
 int main()
 {
 
-    ifstream ifs("D:\\ttt\\plaintext.txt");
-    if (!ifs.is_open())
-    {
-        cout << "读取文件失败\n";
-        exit(EXIT_FAILURE);
-    }
-    ofstream ofs("D:\\ttt\\ciphertext.txt");
-    if (!ifs.is_open())
-    {
-        cout << "写入文件失败\n";
-        exit(EXIT_FAILURE);
-    }
+    cin >> a >> b;
+    // cout << add(a, b) << '\n';
+    // cout << div(a, b) << '\n';
+    // cout << multi(a, b) << '\n';
+    vector<int> ans = multi(a, b);
+    for (auto p : ans)
+        cout << p;
 
-    char c;
-    while (ifs.get(c))
-        ofs.put(c + 2);
-
-    ofs.close();
-    ifs.close();
     return 0;
 }
