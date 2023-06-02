@@ -2434,62 +2434,170 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class person
+// {
+// public:
+//     string name;
+//     int age;
+//     person(string name = "person", int age = 18) : name(name), age(age) { ; }
+
+//     virtual void print()
+//     {
+//         cout << name << ' ' << age << " | " << pv << '\n';
+//     }
+
+// private:
+//     string pv = "person pv";
+// };
+
+// class boy : public person
+// {
+// public:
+//     string name;
+//     int age;
+//     boy(string na = "boy", int ag = 8) : name(na), age(ag) {}
+
+//     virtual void print()
+//     {
+//         cout << name << ' ' << age << '\n';
+//     }
+// };
+
+// class baby : public boy
+// {
+// public:
+//     string name;
+//     int age;
+//     baby(string na = "baby", int ag = 1) : name(na), age(ag) {}
+
+//     virtual void print()
+//     {
+//         cout << name << ' ' << age << '\n';
+//     }
+// };
+
+// int main()
+// {
+
+//     baby b;
+//     baby *cp = &b;
+//     boy *bp = &b;
+//     person *ap = &b;
+
+//     cp->print();
+//     bp->boy::print();
+//     ap->person::print();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// void FileWrite(string fileName, string writeData)
+// {
+//     fileName = "D:\\fileTest\\" + fileName;
+//     // ofstream ofs(fileName);
+//     ofstream ofs;
+//     ofs.open(fileName, ios::app);
+//     if (!ofs.is_open())
+//     {
+//         cout << "文件写入失败\n";
+//         exit(EXIT_FAILURE);
+//     }
+//     ofs << writeData << '\n';
+//     ofs.close();
+// }
+
+// void FilePrint(string fileName)
+// {
+//     fileName = "D:\\fileTest\\" + fileName;
+//     ifstream ifs;
+//     ifs.open(fileName);
+//     // cout << ifs.tellg();
+//     // ifs.seekg(0);
+//     cout << ifs.fail();
+//     if (!ifs.is_open())
+//     {
+//         cout << "文件打印失败\n";
+//         exit(EXIT_FAILURE);
+//     }
+//     string tmp;
+//     while (ifs >> tmp)
+//         cout << tmp << '\n';
+//     ifs.close();
+// }
+
+// int main()
+// {
+
+//     // FileWrite("test.txt", "哎呦~");
+//     // FileWrite("test.txt", "你干嘛！");
+//     // FileWrite("test.txt", "哈哈呦~");
+
+//     // FilePrint("test.txt");
+
+//     int m = 0, n = 0;
+//     ofstream ofs("test.txt");
+//     if (!ofs.is_open())
+//     {
+//         cout << "写入文件失败\n";
+//         exit(EXIT_FAILURE);
+//     }
+//     for (int i = 0; i < 5; i++)
+//         ofs << i;
+//     ofs.close();
+//     ifstream ifs("test.txt");
+//     if (!ifs.is_open())
+//     {
+//         cout << "读入文件失败\n";
+//         exit(EXIT_FAILURE);
+//     }
+//     ifs >> m >> n;
+//     ifs.close();
+//     cout << m << ' ' << n;
+
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
-
-class person
-{
-public:
-    string name;
-    int age;
-    person(string name = "person", int age = 18) : name(name), age(age) { ; }
-
-    virtual void print()
-    {
-        cout << name << ' ' << age << " | " << pv << '\n';
-    }
-
-private:
-    string pv = "person pv";
-};
-
-class boy : public person
-{
-public:
-    string name;
-    int age;
-    boy(string na = "boy", int ag = 8) : name(na), age(ag) {}
-
-    virtual void print()
-    {
-        cout << name << ' ' << age << '\n';
-    }
-};
-
-class baby : public boy
-{
-public:
-    string name;
-    int age;
-    baby(string na = "baby", int ag = 1) : name(na), age(ag) {}
-
-    virtual void print()
-    {
-        cout << name << ' ' << age << '\n';
-    }
-};
 
 int main()
 {
 
-    baby b;
-    baby *cp = &b;
-    boy *bp = &b;
-    person *ap = &b;
+    ofstream ofs("D:\\fileTest\\test.txt");
+    if (!ofs.is_open())
+    {
+        cout << "写入文件失败\n";
+        exit(EXIT_FAILURE);
+    }
+    ofs << "123456789";
+    ofs.close();
 
-    cp->print();
-    bp->boy::print();
-    ap->person::print();
+    ifstream ifs("D:\\fileTest\\test.txt");
+    if (!ifs.is_open())
+    {
+        cout << "读入文件失败\n";
+        exit(EXIT_FAILURE);
+    }
+    char c;
+    while (ifs >> c)
+    {
+        cout << '\n'
+             << ifs.tellg() << "->";
+        cout << c;
+        // ifs.ignore();
+        // ifs.seekg(1, ios::cur);
+        // ifs.seekg(-1, ios::cur);
+        // cout << ' ' << ifs.tellg() << '\n';
+        // ifs.seekg(-1, ios::cur);
+    }
 
-    return 0;
+    ios_base::seekdir
+
+        return 0;
 }
