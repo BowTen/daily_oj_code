@@ -2563,41 +2563,71 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+
+//     ofstream ofs("D:\\fileTest\\test.txt");
+//     if (!ofs.is_open())
+//     {
+//         cout << "写入文件失败\n";
+//         exit(EXIT_FAILURE);
+//     }
+//     ofs << "123456789";
+//     ofs.close();
+
+//     ifstream ifs("D:\\fileTest\\test.txt");
+//     if (!ifs.is_open())
+//     {
+//         cout << "读入文件失败\n";
+//         exit(EXIT_FAILURE);
+//     }
+//     char c;
+//     while (ifs >> c)
+//     {
+//         cout << '\n'
+//              << ifs.tellg() << "->";
+//         cout << c;
+//         // ifs.ignore();
+//         // ifs.seekg(1, ios::cur);
+//         // ifs.seekg(-1, ios::cur);
+//         // cout << ' ' << ifs.tellg() << '\n';
+//         // ifs.seekg(-1, ios::cur);
+//     }
+
+//     ios_base::seekdir
+
+//         return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
+
+class A
+{
+public:
+    virtual void fun()
+    {
+        cout << "useful Things\n";
+    }
+};
+
+class B : private A
+{
+public:
+    void fun()
+    {
+        A::fun();
+        cout << "Bfun()\n";
+    }
+};
 
 int main()
 {
 
-    ofstream ofs("D:\\fileTest\\test.txt");
-    if (!ofs.is_open())
-    {
-        cout << "写入文件失败\n";
-        exit(EXIT_FAILURE);
-    }
-    ofs << "123456789";
-    ofs.close();
+    // B b;
 
-    ifstream ifs("D:\\fileTest\\test.txt");
-    if (!ifs.is_open())
-    {
-        cout << "读入文件失败\n";
-        exit(EXIT_FAILURE);
-    }
-    char c;
-    while (ifs >> c)
-    {
-        cout << '\n'
-             << ifs.tellg() << "->";
-        cout << c;
-        // ifs.ignore();
-        // ifs.seekg(1, ios::cur);
-        // ifs.seekg(-1, ios::cur);
-        // cout << ' ' << ifs.tellg() << '\n';
-        // ifs.seekg(-1, ios::cur);
-    }
-
-    ios_base::seekdir
-
-        return 0;
+    return 0;
 }
