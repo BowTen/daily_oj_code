@@ -2760,3 +2760,146 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class aa
+// {
+// protected:
+//     int t = 45;
+//     void fun(int)
+//     {
+//         cout << "aafun\n";
+//     }
+// };
+
+// class bb : protected aa
+// {
+// public:
+//     void fun()
+//     {
+//         cout << t;
+//     }
+// };
+
+// class cc : protected bb
+// {
+// public:
+//     void func()
+//     {
+//         cout << t;
+//     }
+// };
+
+// int main()
+// {
+
+//     bb b;
+//     b.fun();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 5;
+// int n, k, a[110], d[110];
+
+// signed main()
+// {
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n >> k;
+//         for (int i = 1; i <= n; i++)
+//             d[i] = ceil((double)i / (double)k), a[i] = 0;
+
+//         int q = 0, p = 0, ans = 0;
+//         for (int i = 1, j = n; i < n; i++, j--)
+//         {
+//             if (a[i])
+//                 p++, q++;
+//             if (q < d[i])
+//             {
+//                 q++;
+//                 p++;
+//                 ans++;
+//                 a[i] = 1;
+//                 if (j > i)
+//                     a[j] = 1, ans++;
+//             }
+//         }
+//         cout << ans << '\n';
+
+//         // int ans = ceil(double((n + 1) / 2) / k) * 2;
+//         // int ans = d[(n + 1) / 2] * 2;
+//         // if (n & 1 && d[(n + 1) / 2] > d[n / 2])
+//         //     ans--;
+//         // cout << d[n] << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 5;
+// int n, a[N], b[N];
+
+// signed main()
+// {
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+//         map<int, vector<int>> mp;
+//         for (int i = 1; i <= n; i++)
+//         {
+//             cin >> a[i] >> b[i];
+//             mp[a[i]].push_back(b[i]);
+//         }
+//         for (auto &[k, v] : mp)
+//         {
+//             sort(v.begin(), v.end(), greater<int>());
+//             // cout << k << " | ";
+//             // for (auto p : v)
+//             //     cout << p << ' ';
+//             // cout << '\n';
+//         }
+
+//         // for (auto [k, v] : mp)
+//         // {
+//         //     cout << k << " | ";
+//         //     for (auto p : v)
+//         //         cout << p << ' ';
+//         //     cout << '\n';
+//         // }
+
+//         auto p = mp.begin();
+//         int p2 = 0;
+//         int ans = 0;
+//         for (int i = 0; i <= n; i++)
+//         {
+//             while (p != mp.end() && (i >= p->first || p2 >= p->second.size()))
+//                 p++, i -= p2, p2 = 0;
+//             if (p == mp.end())
+//                 break;
+//             if (p2 < p->second.size())
+//             {
+//                 // cout << '[' << p->first << ' ' << p2 << ' ' << p->second[p2] << ']' << '\n';
+//                 ans += p->second[p2++];
+//             }
+//         }
+//         cout << ans << '\n';
+//         // cout << "___________\n";
+//     }
+
+//     return 0;
+// }
