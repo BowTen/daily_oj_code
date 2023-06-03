@@ -2602,32 +2602,161 @@
 //         return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-class A
-{
-public:
-    virtual void fun()
-    {
-        cout << "useful Things\n";
-    }
-};
+// class A
+// {
+// public:
+//     virtual void fun()
+//     {
+//         cout << "useful Things\n";
+//     }
+// };
 
-class B : private A
-{
-public:
-    void fun()
-    {
-        A::fun();
-        cout << "Bfun()\n";
-    }
-};
+// class B : private A
+// {
+// public:
+//     void fun()
+//     {
+//         A::fun();
+//         cout << "Bfun()\n";
+//     }
+// };
 
-int main()
-{
+// class A
+// {
 
-    // B b;
+// private:
+//     friend class B;
+//     static int a;
+// };
 
-    return 0;
-}
+// int A::a = 888;
+
+// class B
+// {
+// public:
+//     void print()
+//     {
+//         cout << A::a;
+//     }
+// };
+
+// int main()
+// {
+//     B b;
+//     b.print();
+//     // B b;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class A
+// {
+// public:
+//     int t;
+// };
+
+// class B
+// {
+// public:
+//     int t;
+// };
+
+// class C : virtual public A, virtual public B
+// {
+
+// public:
+//     C()
+//     {
+//         B::t = 24;
+//     }
+// };
+
+// int main()
+// {
+
+//     C c;
+//     cout << c.A::t;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// using ll = long long;
+
+// class A
+// {
+
+// public:
+//     using tp = int;
+//     typedef double db;
+//     tp a;
+//     void fun()
+//     {
+//     }
+// };
+
+// int main()
+// {
+//     ll a = 123;
+//     cout << a;
+
+//     return 0;
+// }
+
+// class LinkedList
+// {
+// private:
+//     class node
+//     {
+//     public:
+//         int val;
+//         node *next;
+//         node(int v = 0, node *ne = nullptr) : val(v), next(ne) {}
+//     };
+//     node head;
+
+// public:
+//     LinkedList() : head() {}
+
+//     void add(int x)
+//     {
+//         // cout << 1;
+//         node *cur = &head;
+//         while (cur->next != nullptr && cur->next->val > x)
+//             cur = cur->next;
+//         node *ins = new node(x, cur->next);
+//         cur->next = ins;
+//     }
+
+//     void print()
+//     {
+//         node *cur = &head;
+//         while (cur->next != nullptr)
+//         {
+//             cur = cur->next;
+//             cout << cur->val << ' ';
+//         }
+//     }
+// };
+
+// int main()
+// {
+
+//     LinkedList ls;
+//     ls.add(2);
+//     ls.add(3);
+//     ls.add(1);
+//     ls.add(4);
+
+//     ls.print();
+
+//     return 0;
+// }
