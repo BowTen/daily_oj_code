@@ -2903,3 +2903,405 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class pla
+// {
+// public:
+//     virtual void up() = 0;
+//     virtual void down() = 0;
+//     virtual void left() = 0;
+//     virtual void right() = 0;
+// };
+
+// class dog : public pla
+// {
+// public:
+//     void up()
+//     {
+//         cout << "向上移动\n";
+//     }
+//     void down()
+//     {
+//         cout << "向下移动\n";
+//     }
+//     void left()
+//     {
+//         cout << "向左移动\n";
+//     }
+//     void right()
+//     {
+//         cout << "向右移动\n";
+//     }
+// };
+
+// int main()
+// {
+//     dog d;
+//     pla &p = d;
+
+//     p.up();
+//     p.down();
+//     p.left();
+//     p.right();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+
+//     string a("hello world");
+//     cout << "size:" << a.size() << ' ' << "capa:" << a.capacity() << '\n';
+//     a.reserve(111);
+//     cout << "size:" << a.size() << ' ' << "capa:" << a.capacity() << '\n';
+//     a.resize(2);
+//     cout << "size:" << a.size() << ' ' << "capa:" << a.capacity() << '\n';
+//     a.reserve(50);
+//     cout << "size:" << a.size() << ' ' << "capa:" << a.capacity() << '\n';
+//     cout << a;
+//     return 0;
+// }
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class person
+// {
+// public:
+//     string name;
+//     int age;
+//     int height;
+//     int weight;
+//     person() = default;
+//     person(string name = "name", int age = 1, int height = 1, int weight = 1) : name(name), age(age), height(height), weight(weight) {}
+// };
+
+// class student : public person
+// {
+// public:
+//     using person::person;
+//     void print()
+//     {
+//         cout << name << ' ' << age << "岁 " << height << "cm " << weight << "kg\n";
+//     }
+// };
+
+// int main()
+// {
+
+//     student s1;
+//     s1.print();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+
+//     int t;
+//     // cin >> t;
+//     string n;
+//     getline(cin, n);
+//     for (int i = 0; i < n.size(); i++)
+//     {
+//         t *= 10;
+//         t += n[i] - '0';
+//     }
+//     // cout << t << '\n';
+
+//     map<string, string> mp;
+//     mp["C++"] = "Course";
+//     mp["Hangzhou Normal"] = "University";
+//     mp["Nice to meet you"] = "Nice to meet you too";
+//     // getchar();
+//     while (t--)
+//     {
+//         string s;
+//         getline(cin, s);
+//         if (s == "C++")
+//             cout << "Course\n";
+//         else if (s == "Hangzhou Normal")
+//             cout << "University\n";
+//         else
+//             cout << "Nice to meet you too\n";
+//         // cout << mp[s];
+//         // // if (t)
+//         // cout << '\n';
+
+//         // cout << s << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+
+// int main()
+// {
+
+//     int t;
+//     scanf("%d", &t);
+//     getchar();
+//     while (t--)
+//     {
+//         char s[100];
+//         gets(s);
+//         // cout << s << '\n';
+//         if (s[0] == 'C')
+//             cout << "Course\n";
+//         if (s[0] == 'H')
+//             cout << "University\n";
+//         if (s[0] == 'N')
+//             cout << "Nice to meet you too\n";
+//     }
+
+//     return 0;
+//}
+
+// #include<stdio.h>
+// #include<stdlib.h>
+
+// typedef struct stu {
+// 	char clas[5];
+// }data;
+
+// typedef struct node {
+// 	data a[1];
+// }node;
+
+// void test1() {
+// 	node* s = (node*)malloc(sizeof(node));
+// 	scanf_s("%s", s->a->clas);
+// 	printf("%s\n", s->a->clas);
+// }
+
+// int main() {
+
+// 	test1();
+
+// 	return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+
+// int cnt = 1;
+// class dlist;
+// class node
+// {
+// public:
+//     node(int v = 0, node *pre = nullptr, node *ne = nullptr) : val(v), pre(pre), ne(ne) {}
+//     int val;
+//     node *pre;
+//     node *ne;
+// };
+// node *ad[N];
+
+// class dlist
+// {
+// public:
+//     node head;
+//     node tail;
+//     int size = 0;
+
+// public:
+//     dlist() : head(0, nullptr, &tail), tail(0, &head, nullptr) {}
+
+//     void push_left(int v)
+//     {
+//         node *t = new node(v, &head, head.ne);
+//         ad[cnt++] = t;
+//         head.ne->pre = t;
+//         head.ne = t;
+//     }
+
+//     void push_right(int v)
+//     {
+//         node *t = new node(v, tail.pre, &tail);
+//         ad[cnt++] = t;
+//         tail.pre->ne = t;
+//         tail.pre = t;
+//     }
+
+//     void remove(int x)
+//     {
+//         node *t = ad[x];
+//         t->pre->ne = t->ne;
+//         t->ne->pre = t->pre;
+//         delete t;
+//     }
+
+//     void push_left_at(int x, int v)
+//     {
+//         node *t = new node(v, ad[x]->pre, ad[x]);
+//         ad[cnt++] = t;
+//         ad[x]->pre->ne = t;
+//         ad[x]->pre = t;
+//     }
+
+//     void push_right_at(int x, int v)
+//     {
+//         node *t = new node(v, ad[x], ad[x]->ne);
+//         ad[cnt++] = t;
+//         ad[x]->ne->pre = t;
+//         ad[x]->ne = t;
+//     }
+
+//     void print()
+//     {
+//         node *cur = head.ne;
+//         while (cur->ne)
+//         {
+//             cout << cur->val << ' ';
+//             cur = cur->ne;
+//         }
+//         cout << '\n';
+//     }
+// };
+
+// dlist dl;
+
+// void test()
+// {
+//     string s;
+//     int a, b;
+//     cin >> s >> a;
+//     if (s[0] == 'L')
+//     {
+//         dl.push_left(a);
+//     }
+//     else if (s[0] == 'R')
+//     {
+//         dl.push_right(a);
+//     }
+//     else if (s[0] == 'D')
+//     {
+//         dl.remove(a);
+//     }
+//     else
+//     {
+//         cin >> b;
+//         if (s[1] == 'L')
+//         {
+//             dl.push_left_at(a, b);
+//         }
+//         else
+//         {
+//             dl.push_right_at(a, b);
+//         }
+//     }
+// }
+
+// int main()
+// {
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         test();
+//     dl.print();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+
+// int ls[N], L[N], R[N], cnt;
+
+// void push(int x, int v, int k)
+// {
+//     ls[++cnt] = v;
+//     if (k)
+//     { // right
+//         R[cnt] = R[x];
+//         L[cnt] = x;
+//         R[L[cnt]] = cnt;
+//         L[R[cnt]] = cnt;
+//     }
+//     else
+//     { // left
+//         R[cnt] = x;
+//         L[cnt] = L[x];
+//         R[L[cnt]] = cnt;
+//         L[R[cnt]] = cnt;
+//     }
+// }
+
+// void remove(int x)
+// {
+//     R[L[x]] = R[x];
+//     L[R[x]] = L[x];
+// }
+
+// void test()
+// {
+//     string s;
+//     int a, b;
+//     cin >> s >> a;
+//     if (s[0] == 'L')
+//     {
+//         push(0, a, 1);
+//     }
+//     else if (s[0] == 'R')
+//     {
+//         push(N - 1, a, 0);
+//     }
+//     else if (s[0] == 'D')
+//     {
+//         remove(a);
+//     }
+//     else
+//     {
+//         cin >> b;
+//         if (s[1] == 'L')
+//         {
+//             push(a, b, 0);
+//         }
+//         else
+//         {
+//             push(a, b, 1);
+//         }
+//     }
+// }
+
+// void init()
+// {
+//     L[0] = -1;
+//     R[N - 1] = -1;
+//     R[0] = N - 1;
+//     L[N - 1] = 0;
+// }
+
+// void print()
+// {
+//     int cur = R[0];
+//     while (cur != N - 1)
+//     {
+//         cout << ls[cur] << ' ';
+//         cur = R[cur];
+//     }
+//     cout << '\n';
+// }
+
+// int main()
+// {
+
+//     init();
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         test();
+//     print();
+//     return 0;
+// }
