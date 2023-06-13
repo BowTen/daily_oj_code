@@ -3305,3 +3305,96 @@
 //     print();
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// stack<int> num;
+// stack<char> op;
+// unordered_map<char, int> wei;
+
+// void calcu()
+// {
+//     char p = op.top();
+//     int b = num.top();
+//     num.pop();
+//     int a = num.top();
+//     num.pop();
+//     op.pop();
+//     if (p == '+')
+//     {
+//         // cout <<a << '+' <<b << '\n';
+//         a += b;
+//     }
+//     else if (p == '-')
+//     {
+//         // cout <<a << '-' <<b << '\n';
+//         a -= b;
+//     }
+//     else if (p == '*')
+//     {
+//         // cout <<a << '*' <<b << '\n';
+//         a *= b;
+//     }
+//     else
+//     {
+//         // cout <<a << '/' <<b << '\n';
+//         a /= b;
+//     }
+//     num.push(a);
+// }
+
+// int main()
+// {
+//     wei['+'] = wei['-'] = 1;
+//     wei['*'] = wei['/'] = 2;
+
+//     string s;
+//     cin >> s;
+
+//     for (int i = 0; i < s.size(); i++)
+//     {
+//         if (isdigit(s[i]))
+//         {
+//             int t = 0, j = i;
+//             for (; j < s.size() && isdigit(s[j]); j++)
+//             {
+//                 t *= 10;
+//                 t += s[j] - '0';
+//             }
+//             i = j - 1;
+//             // cout << "push " << t << '\n';
+//             num.push(t);
+//         }
+//         else
+//         {
+//             if (op.empty() || s[i] == '(')
+//             {
+//                 op.push(s[i]);
+//             }
+//             else
+//             {
+//                 if (s[i] == ')')
+//                 {
+//                     while (op.top() != '(')
+//                         calcu();
+//                     op.pop();
+//                 }
+//                 else if (wei[s[i]] > wei[op.top()])
+//                     op.push(s[i]);
+//                 else
+//                 {
+//                     while (!op.empty() && wei[op.top()] >= wei[s[i]])
+//                         calcu();
+//                     op.push(s[i]);
+//                 }
+//             }
+//         }
+//     }
+//     while (op.size())
+//         calcu();
+
+//     cout << num.top();
+
+//     return 0;
+// }
