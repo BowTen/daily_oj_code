@@ -3398,3 +3398,74 @@
 
 //     return 0;
 // }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 1e6 + 5;
+// int n, k, a[N], que[N], head, tail;
+
+// int main() {
+
+//     cin >> n >> k;
+//     for (int i = 1; i <= n; i++) cin >> a[i];
+
+//     head = tail = 0;
+
+//     for (int i = 1; i <= n; i++) {
+//         if ((head % (k + 1)) != (tail % (k + 1)) && que[(head % (k + 1))] <= i - k) {head++; }
+//         while ((head % (k + 1)) != (tail % (k + 1)) && a[que[((tail - 1) % (k + 1))]] > a[i])
+//          tail--;
+//         que[(tail % (k + 1))] = i;
+//         tail++;
+//         if (i >= k)
+//             cout << a[que[(head % (k + 1))]] << ' ';
+//     }
+
+//     head = tail = 0;
+//     cout << '\n';
+
+//     for (int i = 1; i <= n; i++) {
+//         if ((head % (k + 1)) != (tail % (k + 1)) && que[(head % (k + 1))] <= i - k) head++;
+//         while ((head % (k + 1)) != (tail % (k + 1)) && a[que[((tail-1) % (k + 1))]] < a[i]) tail--;
+//         que[(tail % (k + 1))] = i;
+//         tail++;
+//         if (i >= k)
+//             cout << a[que[(head % (k + 1))]] << ' ';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// const int M = 1e6 + 5;
+// char s[M], p[N];
+// int ne[N], n, m;
+
+// int main()
+// {
+
+//     cin >> n >> p + 1 >> m >> s + 1;
+
+//     for (int i = 2, j = 0; i <= n; i++)
+//     {
+//         while (j && p[i] != p[j + 1])
+//             j = ne[j];
+//         if (p[i] == p[j + 1])
+//             j++;
+//         ne[i] = j;
+//     }
+
+//     for (int i = 1, j = 0; i <= m; i++)
+//     {
+//         while (j && s[i] != p[j + 1])
+//             j = ne[j];
+//         if (s[i] == p[j + 1])
+//             j++;
+//         if (j == n)
+//             cout << i - n << ' ';
+//     }
+
+//     return 0;
+// }
