@@ -3521,3 +3521,148 @@
 //     }
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+
+// int son[N * 31][2], idx, n, a[N];
+
+// void insert(int x)
+// {
+//     int p = 1, num[32] = {0};
+//     while (x)
+//     {
+//         if (x & 1)
+//             num[p] = 1;
+//         x /= 2;
+//         p++;
+//     }
+//     p = 0;
+//     for (int i = 31; i >= 1; i--)
+//     {
+//         if (!son[p][num[i]])
+//             son[p][num[i]] = ++idx;
+//         p = son[p][num[i]];
+//     }
+// }
+
+// int find(int x)
+// {
+//     int p = 1, num[32] = {0};
+//     while (x)
+//     {
+//         if (x & 1)
+//             num[p] = 1;
+//         x /= 2;
+//         p++;
+//     }
+//     p = 0;
+//     int ret = 0;
+//     for (int i = 31; i >= 1; i--)
+//     {
+//         ret *= 2;
+//         int ne = num[i] ^ 1;
+//         if (son[p][ne])
+//         {
+//             p = son[p][ne];
+//             ret++;
+//         }
+//         else
+//         {
+//             p = son[p][num[i]];
+//         }
+//     }
+
+//     return ret;
+// }
+
+// int main()
+// {
+
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         insert(a[i]);
+//     }
+
+//     int ans = 0;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         ans = max(ans, find(a[i]));
+//     }
+
+//     cout << ans << '\n';
+
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+// const int N = 5e4 + 5;
+// int n, m, fa[N], a, b, c, d[N];
+
+// int find(int x)
+// {
+//     if (x != fa[x])
+//     {
+//         int t = find(fa[x]);
+//         d[x] += d[fa[x]];
+//         fa[x] = t;
+//     }
+//     return fa[x];
+// }
+
+// int main()
+// {
+
+//     ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+
+//     cin >> n >> m;
+//     for (int i = 1; i <= n; i++)
+//         fa[i] = i;
+//     int ans = 0;
+//     while (m--)
+//     {
+//         cin >> c >> a >> b;
+//         if (a > n || b > n)
+//         {
+//             ans++;
+//             continue;
+//         }
+//         if (c == 1)
+//         {
+//             int af = find(a);
+//             int bf = find(b);
+//             if (af == bf)
+//             {
+//                 if ((d[a] - d[b]) % 3)
+//                     ans++;
+//             }
+//             else
+//             {
+//                 fa[af] = bf;
+//                 d[af] -= (d[a] - d[b]) % 3;
+//             }
+//         }
+//         else
+//         {
+//             int af = find(a);
+//             int bf = find(b);
+//             if (af == bf)
+//             {
+//                 if ((d[a] - d[b] - 1) % 3)
+//                     ans++;
+//             }
+//             else
+//             {
+//                 fa[af] = bf;
+//                 d[af] -= (d[a] - d[b] - 1) % 3;
+//             }
+//         }
+//     }
+//     cout << ans << '\n';
+
+//     return 0;
+// }
