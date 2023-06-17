@@ -3469,3 +3469,55 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+
+// int son[N][26], cnt[N], idx;
+
+// void insert(const char s[])
+// {
+//     int p = 0;
+//     for (int i = 0; s[i]; i++)
+//     {
+//         int ne = s[i] - 'a';
+//         if (!son[p][ne])
+//             son[p][ne] = ++idx;
+//         p = son[p][ne];
+//     }
+//     cnt[p]++;
+// }
+
+// int query(const char s[])
+// {
+//     int p = 0;
+//     for (int i = 0; s[i]; i++)
+//     {
+//         int ne = s[i] - 'a';
+//         if (!son[p][ne])
+//             return 0;
+//         p = son[p][ne];
+//     }
+//     return cnt[p];
+// }
+
+// int main()
+// {
+//     int t;
+//     cin >> t;
+//     string a, b;
+//     while (t--)
+//     {
+//         cin >> a >> b;
+//         if (a[0] == 'I')
+//         {
+//             insert(b.c_str());
+//         }
+//         else
+//         {
+//             cout << query(b.c_str()) << '\n';
+//         }
+//     }
+//     return 0;
+// }
