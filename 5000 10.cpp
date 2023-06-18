@@ -3666,3 +3666,258 @@
 
 //     return 0;
 // }
+
+// #include<iostream>
+// using namespace std;
+// const int N = 1e5 + 5;
+
+// int n, m, d[N], siz;
+
+// void down(int x) {
+//     int child = (x << 1) + 1;
+//     while (child < siz) {
+//         if (d[child] <= d[x]) child++;
+//         if (child < siz && d[child] > d[x]) swap(d[child], d[x]);
+//         else break;
+//         x = child;
+//         child = (x << 1) + 1;
+//     }
+// }
+
+// void heap_sort() {
+//     siz = n;
+//     for (int i = (n - 2) >> 1; i >= 0; i--) //向下调整建大根堆
+//         down(i);
+
+//     while (--siz) {
+//         swap(d[siz], d[0]);
+//         down(0);
+//     }
+// }
+
+// int main() {
+
+//     cin >> n >> m;
+//     for (int i = 0; i < n; i++) {
+//         cin >> d[i];
+//     }
+
+//     heap_sort();
+
+//     for (int i = 0; i < m; i++)
+//         cout << d[i] << ' ';
+//     cout << '\n';
+
+//     return 0;
+// }
+
+// 模拟堆，push,pop,remove,change
+//  #include <iostream>
+//  using namespace std;
+//  const int N = 1e5 + 5;
+//  int a[N], siz, cnt = 1, num[N], p[N];
+
+// void __swap(int i1, int i2)
+// {
+//     swap(a[i1], a[i2]);
+//     swap(num[p[i1]], num[p[i2]]);
+//     swap(p[i1], p[i2]);
+// }
+
+// void up(int x)
+// {
+//     int fa;
+//     while (x)
+//     {
+//         fa = (x - 1) >> 1;
+//         if (a[x] < a[fa])
+//             __swap(x, fa);
+//         else
+//             break;
+//         x = fa;
+//     }
+// }
+
+// void down(int x)
+// {
+//     int son = (x << 1) + 1;
+//     while (son < siz)
+//     {
+//         if (son + 1 < siz && a[son] > a[son + 1])
+//             son++;
+//         if (a[x] > a[son])
+//             __swap(x, son);
+//         else
+//             break;
+//         x = son;
+//         son = (x << 1) + 1;
+//     }
+// }
+
+// void push(int x)
+// {
+//     a[siz] = x;
+//     p[siz] = cnt;
+//     num[cnt++] = siz;
+//     up(siz++);
+// }
+
+// void pop()
+// {
+//     __swap(0, --siz);
+//     down(0);
+// }
+
+// void remove(int k)
+// {
+//     int x = num[k];
+//     __swap(x, --siz);
+//     down(x);
+//     up(x);
+// }
+
+// void change(int k, int v)
+// {
+//     int x = num[k];
+//     a[x] = v;
+//     up(x);
+//     down(x);
+// }
+
+// int main()
+// {
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         string s;
+//         cin >> s;
+//         if (s[0] == 'I')
+//         {
+//             int x;
+//             cin >> x;
+//             push(x);
+//         }
+//         else if (s[0] == 'P')
+//         {
+//             cout << a[0] << '\n';
+//         }
+//         else if (s == "DM")
+//         {
+//             pop();
+//         }
+//         else if (s[0] == 'D')
+//         {
+//             int k;
+//             cin >> k;
+//             remove(k);
+//         }
+//         else
+//         {
+//             int k, x;
+//             cin >> k >> x;
+//             change(k, x);
+//         }
+//     }
+
+//     return 0;
+// }
+
+// 拉链法哈希表
+//  #include <iostream>
+//  using namespace std;
+//  const int N = 100003;
+
+// int h[N], n, a[N], ne[N], x, idx = 1;
+
+// void insert(int x)
+// {
+//     int k = (x % N + N) % N;
+//     a[idx] = x;
+//     ne[idx] = h[k];
+//     h[k] = idx++;
+// }
+
+// bool find(int x)
+// {
+//     int k = (x % N + N) % N;
+//     int cur = h[k];
+//     while (cur)
+//     {
+//         if (a[cur] == x)
+//             return true;
+//         cur = ne[cur];
+//     }
+//     return false;
+// }
+
+// int main()
+// {
+
+//     cin >> n;
+//     while (n--)
+//     {
+//         char s[2];
+//         cin >> s >> x;
+//         if (s[0] == 'I')
+//         {
+//             insert(x);
+//         }
+//         else
+//         {
+//             if (find(x))
+//                 cout << "Yes\n";
+//             else
+//                 cout << "No\n";
+//         }
+//     }
+
+//     return 0;
+// }
+
+// 开放寻址法哈希表
+//  #include <iostream>
+//  #include <cstring>
+//  using namespace std;
+//  const int N = 200003;
+//  const int nul = 0x3f3f3f3f;
+
+// int h[N], n, x;
+
+// int find(int x)
+// {
+//     int k = (x % N + N) % N;
+//     while (h[k] != nul && h[k] != x)
+//     {
+//         k++;
+//     }
+//     return k;
+// }
+
+// int main()
+// {
+
+//     memset(h, 0x3f, sizeof(h));
+//     cin >> n;
+//     while (n--)
+//     {
+//         char s[2];
+//         cin >> s >> x;
+//         if (s[0] == 'I')
+//         {
+//             int k = find(x);
+//             if (h[k] == nul)
+//                 h[k] = x;
+//         }
+//         else
+//         {
+//             if (h[find(x)] == x)
+//                 cout << "Yes\n";
+//             else
+//                 cout << "No\n";
+//         }
+//     }
+
+//     return 0;
+// }
