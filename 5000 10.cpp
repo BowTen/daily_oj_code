@@ -3923,19 +3923,19 @@
 // }
 //
 
+// test
 
-//test
-
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
+int main()
+{
 
-int main(){
+    cout << "test\n";
 
-  cout << "test\n";
-
-  return 0;
+    return 0;
 }
 
-//test
+// test
+
+// vsocde
