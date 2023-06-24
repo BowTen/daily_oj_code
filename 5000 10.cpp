@@ -3925,17 +3925,121 @@
 
 // test
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-int main()
-{
+// int main()
+// {
 
-    cout << "test\n";
+//     cout << "test\n";
 
-    return 0;
-}
+//     return 0;
+// }
 
 // test
 
 // vsocde
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 55;
+// int n, m, a[N], b[N];
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int s1 = 0, s2 = 0;
+//         cin >> n >> m;
+//         for (int i = 1; i <= n; i++)
+//             cin >> a[i], s1 += a[i];
+//         for (int i = 1; i <= m; i++)
+//             cin >> b[i], s2 += b[i];
+
+//         if (s1 > s2)
+//             cout << "Tsondu\n";
+//         else if (s1 == s2)
+//             cout << "Draw\n";
+//         else
+//             cout << "Tenzing\n";
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 5;
+// int n, m, a[N], b[N], c[N], x;
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int ans = 0;
+//         cin >> n >> x;
+//         for (int i = 1; i <= n; i++)
+//             cin >> a[i];
+//         for (int i = 1; i <= n; i++)
+//             cin >> b[i];
+//         for (int i = 1; i <= n; i++)
+//             cin >> c[i];
+
+//         for (int i = 1; i <= n; i++)
+//         {
+//             if ((x | a[i]) != x)
+//                 break;
+//             // cout << a[i] << ' ';
+//             ans |= a[i];
+//         }
+//         // cout << "\n____________\n";
+//         for (int i = 1; i <= n; i++)
+//         {
+//             if ((x | b[i]) != x)
+//                 break;
+//             // cout << b[i] << ' ';
+//             ans |= b[i];
+//         }
+//         // cout << "\n____________\n";
+//         for (int i = 1; i <= n; i++)
+//         {
+//             if ((x | c[i]) != x)
+//                 break;
+//             // cout << c[i] << ' ';
+//             ans |= c[i];
+//         }
+//         // cout << "\n____________\n";
+
+//         if (ans == x)
+//             cout << "Yes\n";
+//         else
+//             cout << "No\n";
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 5;
+// int n, m, a[N];
+
+// signed main()
+// {
+//     srand(time(0));
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         a[i] = 1 + (rand() % n);
+//         cout << a[i] << ' ';
+//     }
+
+//     return 0;
+// }
