@@ -4043,3 +4043,40 @@
 
 //     return 0;
 // }
+
+// #include <iostream>
+// #include <cstring>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 5;
+// int n, a[N], dp[N], lastp[N];
+
+// signed main()
+// {
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+//         memset(lastp, 0, sizeof(lastp));
+//         memset(dp, 0, sizeof(dp));
+//         for (int i = 1; i <= n; i++)
+//             cin >> a[i];
+//         for (int i = 1; i <= n; i++)
+//         {
+//             dp[i] = dp[i - 1] + 1;
+//             if (lastp[a[i]])
+//             {
+//                 dp[i] = min(dp[i], dp[lastp[a[i]] - 1]);
+//                 if (dp[lastp[a[i]] - 1] > dp[i - 1])
+//                     lastp[a[i]] = i;
+//             }
+//             else
+//                 lastp[a[i]] = i;
+//         }
+//         cout << n - dp[n] << '\n';
+//     }
+
+//     return 0;
+// }
