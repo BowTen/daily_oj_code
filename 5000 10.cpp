@@ -4080,3 +4080,169 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 5;
+// int n, m, k, x;
+
+// signed main()
+// {
+
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n >> k >> x;
+//         if (x != 1)
+//         {
+//             cout << "YES\n";
+//             cout << n << '\n';
+//             while (n--)
+//                 cout << "1 ";
+//             cout << '\n';
+//         }
+//         else // 禁1
+//         {
+//             if (k == 1)
+//             {
+//                 cout << "NO\n";
+//             }
+//             else
+//             {
+//                 if (n == 1)
+//                 {
+//                     cout << "NO\n";
+//                 }
+//                 else
+//                 {
+
+//                     if (n & 1)
+//                     {
+//                         if (k >= 3)
+//                         {
+//                             cout << "YES\n"
+//                                  << n / 2 << '\n';
+//                             cout << 3 << ' ';
+//                             n -= 3;
+//                             while (n)
+//                             {
+//                                 cout << 2 << ' ';
+//                                 n -= 2;
+//                             }
+//                             cout << "\n";
+//                         }
+//                         else
+//                         {
+//                             cout << "NO\n";
+//                         }
+//                     }
+//                     else
+//                     {
+//                         cout << "YES\n"
+//                              << n / 2 << '\n';
+//                         while (n)
+//                         {
+//                             cout << "2 ";
+//                             n -= 2;
+//                         }
+//                         cout << "\n";
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 5;
+// int xa, ya, xb, yb, xc, yc;
+
+// signed main()
+// {
+
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> xa >> ya >> xb >> yb >> xc >> yc;
+//         xb -= xa;
+//         yb -= ya;
+//         xc -= xa;
+//         yc -= ya;
+//         int ans = 1;
+//         if (xb * xc > 0)
+//         {
+//             // cout << "*1 ";
+//             // ans = max(ans, min(abs(xb), abs(xc)) + 1);
+//             ans += min(abs(xb), abs(xc));
+//         }
+//         if (yb * yc > 0)
+//         {
+//             // cout << "*2 ";
+//             // ans = max(ans, min(abs(yb), abs(yc)) + 1);
+//             ans += min(abs(yb), abs(yc));
+//         }
+//         cout << ans << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 3e5 + 5;
+// int n, a[N], lim[N], m[N], f[N];
+
+// signed main()
+// {
+
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+
+//         for (int i = 1; i <= n; i++)
+//             cin >> a[i], lim[i] = m[i] = f[i] = 0;
+//         for (int i = 1; i <= n; i++)
+//             if (a[i] > 0)
+//             {
+//                 lim[i] = lim[i - 1];
+//                 f[i] = f[i - 1];
+//                 m[i] = m[i - 1] + a[i];
+//             }
+//             else
+//             {
+//                 int ori = m[i - 1] + a[i] < lim[i - 1] ? lim[i - 1] : m[i - 1] + a[i];
+//                 int chg = m[i - 1] + f[i - 1];
+//                 if (chg > ori)
+//                 {
+//                     m[i] = chg;
+//                     lim[i] = chg;
+//                     f[i] = a[i];
+//                 }
+//                 else
+//                 {
+//                     m[i] = ori;
+//                     lim[i] = lim[i - 1];
+//                     // cout << "* " << i << ' ' << f[i] << ' ';
+//                     f[i] = f[i - 1] + a[i];
+//                     // cout << f[i] << '\n';
+//                 }
+//             }
+//         // for (int i = 1; i <= n; i++)
+//         // {
+//         //     cout << lim[i] << ' ' << f[i] << ' ' << m[i] << '\n';
+//         // }
+//         cout << lim[n] << '\n';
+//     }
+
+//     return 0;
+// }
