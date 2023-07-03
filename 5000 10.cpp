@@ -4246,3 +4246,137 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 3e5 + 5;
+// int m, ans, len, ffr[10][N];
+// string s, l, r;
+
+// void dfs(int p, int it)
+// {
+//     while (l[p] <= r[p] && ans)
+//     {
+//         if (ffr[l[p] - '0'][it])
+//         {
+//             if (p + 1 < m)
+//                 dfs(p + 1, ffr[l[p] - '0'][it] + 1);
+//         }
+//         else
+//             ans = 0;
+//         l[p]++;
+//     }
+// }
+
+// int main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         ans = 1;
+
+//         cin >> s >> m >> l >> r;
+//         len = s.length();
+//         s = ' ' + s;
+//         int lt[10] = {0};
+//         for (int i = 1; i <= len; i++)
+//         {
+//             int k = s[i] - '0';
+//             for (int j = lt[k]; j <= i; j++)
+//                 ffr[k][j] = i;
+//             lt[k] = i + 1;
+//         }
+//         for (int i = 0; i < 10; i++)
+//         {
+//             for (int j = lt[i]; j <= len; j++)
+//                 ffr[i][j] = 0;
+//         }
+//         dfs(0, 1);
+//         if (ans)
+//             cout << "NO\n";
+//         else
+//             cout << "YES\n";
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 3e5 + 5;
+// int m, ffr[10][N], len;
+// string s, l, r;
+
+// int main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> s >> m >> l >> r;
+//         len = s.size();
+//         s = ' ' + s;
+//         for (int i = 0; i < 10; i++)
+//             ffr[i][len + 1] = 0;
+//         for (int i = len; i >= 1; i--)
+//         {
+//             for (int j = 0; j < 10; j++)
+//                 ffr[j][i] = ffr[j][i + 1];
+//             ffr[s[i] - '0'][i] = i;
+//         }
+//         int it = 1, ans = 1;
+//         for (int i = 0; i < m && ans; i++)
+//         {
+//             int mx = 0;
+//             for (int ll = l[i] - '0', rr = r[i] - '0'; ll <= rr; ll++)
+//             {
+//                 if (ffr[ll][it])
+//                     mx = max(mx, ffr[ll][it]);
+//                 else
+//                 {
+//                     ans = 0;
+//                     break;
+//                 }
+//             }
+//             it = mx + 1;
+//         }
+//         if (ans)
+//             cout << "NO\n";
+//         else
+//             cout << "YES\n";
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 3e5 + 5;
+// int n, a[N], sum[N];
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+//         int mx = 0, delt = 0, ans;
+//         for (int i = 1; i <= n; i++)
+//         {
+//             cin >> a[i];
+//             sum[i] = sum[i - 1] + a[i];
+//             mx = max(mx, sum[i]);
+//             if (mx - sum[i] > delt)
+//             {
+//                 delt = mx - sum[i];
+//                 ans = mx;
+//             }
+//         }
+//         cout << ans << '\n';
+//     }
+
+//     return 0;
+// }
