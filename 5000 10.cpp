@@ -4380,3 +4380,497 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// const int N = 650000;
+// int n, a[N], s, t, d[N], vis[N], psize = 0;
+// vector<pair<int, int>> vec[N];
+// int pre[N];
+// bool isprim[N];
+// int prim[30000];
+
+// void precal()
+// {
+//     for (int i = 2; i < N; i++)
+//         isprim[i] = true;
+//     for (int i = 2; i < N; i++)
+//     {
+//         if (isprim[i])
+//             prim[++psize] = i;
+//         for (int j = 1; j <= psize && i * prim[j] < N; j++)
+//         {
+//             isprim[i * prim[j]] = false;
+//             if (i % prim[j] == 0)
+//                 break;
+//         }
+//     }
+// }
+
+// int main()
+// {
+//     ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//     // precal();
+//     memset(d, 0x3f, sizeof(d));
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         int tmp = a[i];
+//         for (int j = 2; j <= tmp / j; ++j)
+//         {
+//             if (tmp % j == 0)
+//             {
+//                 vec[n + j].push_back({i, 1});
+//                 vec[i].push_back({n + j, 0});
+//                 while (tmp % j == 0)
+//                     tmp /= j;
+//             }
+//         }
+//         if (tmp > 1)
+//         {
+//             vec[n + tmp].push_back({i, 1});
+//             vec[i].push_back({n + tmp, 0});
+//         }
+//     }
+//     cin >> s >> t;
+
+//     d[s] = 0;
+//     d[0]++;
+//     priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> q;
+//     q.push({0, {s, s}});
+//     while (q.size())
+//     {
+//         int u = q.top().second.second;
+//         pre[u] = q.top().second.first;
+//         q.pop();
+//         if (vis[u])
+//             continue;
+//         vis[u] = 1;
+//         if (u == t)
+//             break;
+//         for (auto [v, w] : vec[u])
+//             if (d[u] + w < d[v])
+//             {
+//                 d[v] = d[u] + w;
+//                 q.push({d[v], {u, v}});
+//             }
+//     }
+
+//     if (d[t] == 0x3f3f3f3f)
+//         cout << -1;
+//     else
+//     {
+//         cout << d[t] + 1 << '\n';
+//         stack<int> st;
+//         int cur = t;
+//         while (cur != pre[cur])
+//         {
+//             if (cur <= n)
+//                 st.push(cur);
+//             cur = pre[cur];
+//         }
+//         st.push(cur);
+//         while (st.size())
+//         {
+//             cout << st.top() << ' ';
+//             st.pop();
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 5e5 + 5;
+// int n, m, a[N];
+// struct node
+// {
+//     pair<int, int> pi;
+//     int v;
+// };
+// node nd[N];
+
+// int tree[N << 2];
+
+// void up(int id)
+// {
+//     tree[id] = a[tree[id << 1]] < a[tree[id << 1 | 1]] ? tree[id << 1] : tree[id << 1 | 1];
+// }
+
+// void build(int id, int l, int r)
+// {
+//     if (l == r)
+//     {
+//         tree[id] = l;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(id << 1, l, mid);
+//     build(id << 1 | 1, mid + 1, r);
+//     up(id);
+// }
+
+// int getmin(int id, int l, int r, int ql, int qr)
+// {
+//     if (l >= ql && r <= qr)
+//         return tree[id];
+//     int mid = l + r >> 1;
+//     if (qr <= mid)
+//         return getmin(id << 1, l, mid, ql, qr);
+//     else if (ql > mid)
+//         return getmin(id << 1 | 1, mid + 1, r, ql, qr);
+//     else
+//     {
+//         int m1 = getmin(id << 1, l, mid, ql, qr);
+//         int m2 = getmin(id << 1 | 1, mid + 1, r, ql, qr);
+//         return a[m1] < a[m2] ? m1 : m2;
+//     }
+// }
+
+// int tr[N];
+
+// int lowbit(int x)
+// {
+//     return x & -x;
+// }
+
+// void add(int x, int v)
+// {
+//     while (x <= n)
+//     {
+//         tr[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+
+// int getsum(int x)
+// {
+//     int ret = 0;
+//     while (x)
+//     {
+//         ret += tr[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// int main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int ans = 0;
+//         cin >> n;
+//         for (int i = 1; i <= n; i++)
+//             cin >> a[i], tr[i] = 0;
+//         build(1, 1, n);
+//         cin >> m;
+//         for (int i = 1; i <= m; i++)
+//             cin >> nd[i].pi.first >> nd[i].pi.second, nd[i].v = 0;
+//         sort(nd + 1, nd + 1 + m, [](node e1, node e2) -> int
+//              { return e1.pi.second - e1.pi.first < e2.pi.second - e2.pi.first; });
+//         for (int i = 1; i <= m; i++)
+//         {
+//             if (getsum(nd[i].pi.second) - getsum(nd[i].pi.first - 1) == 0)
+//             {
+//                 int p = getmin(1, 1, n, nd[i].pi.first, nd[i].pi.second);
+//                 nd[i].v = a[p];
+//                 // ans += a[p];
+//                 add(p, 1);
+//             }
+//         }
+//         sort(nd + 1, nd + 1 + m, [](node e1, node e2) -> int
+//              { if(e1.pi.first == e2.pi.first)
+//                 return e1.pi.second < e2.pi.second;
+//                 return e1.pi.first < e2.pi.first; });
+//         for (int i = 1; i < m; i++)
+//         {
+//             if (nd[i].pi.second >= nd[i + 1].pi.first)
+//             {
+//                 int p = getmin(1, 1, n, nd[i + 1].pi.first, min(nd[i].pi.second, nd[i + 1].pi.second));
+//                 // nd[i + 1].pi.first = nd[i].pi.first;
+//                 nd[i + 1].pi.second = min(nd[i].pi.second, nd[i + 1].pi.second);
+//                 nd[i + 1].v += nd[i].v;
+//                 nd[i].v = 0;
+//                 nd[i + 1].v = min(nd[i + 1].v, a[p]);
+//             }
+//         }
+//         for (int i = 1; i <= m; i++)
+//             ans += nd[i].v;
+//         cout << ans << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e4 + 5;
+// int n, dep[N], par[N][20], dis[N][20];
+// vector<pair<int, int>> vec[N];
+
+// void dfs(int u, int fa)
+// {
+//     dep[u] = dep[fa] + 1;
+//     par[u][0] = fa;
+//     for (int i = 1; i < 20; i++)
+//     {
+//         par[u][i] = par[par[u][i - 1]][i - 1];
+//         dis[u][i] = dis[u][i - 1] + dis[par[u][i - 1]][i - 1];
+//     }
+//     for (auto [v, w] : vec[u])
+//         if (v != fa)
+//         {
+//             dis[v][0] = w;
+//             dfs(v, u);
+//         }
+// }
+
+// int getdis(int u, int v)
+// {
+//     int ret = 0;
+//     if (dep[u] < dep[v])
+//         swap(u, v);
+//     for (int i = 19; i >= 0; i--)
+//         if (dep[par[u][i]] >= dep[v])
+//         {
+//             ret += dis[u][i];
+//             u = par[u][i];
+//         }
+//     if (u == v)
+//         return ret;
+//     for (int i = 19; i >= 0; i--)
+//         if (par[u][i] != par[v][i])
+//         {
+//             ret += dis[u][i] + dis[v][i];
+//             u = par[u][i];
+//             v = par[v][i];
+//         }
+//     ret += dis[u][0] + dis[v][0];
+//     return ret;
+// }
+
+// int lca(int u, int v)
+// {
+//     if (dep[u] < dep[v])
+//         swap(u, v);
+//     for (int i = 19; i >= 0; i--)
+//         if (dep[par[u][i]] >= dep[v])
+//             u = par[u][i];
+//     if (u == v)
+//         return u;
+//     for (int i = 19; i >= 0; i--)
+//         if (par[u][i] != par[v][i])
+//         {
+//             u = par[u][i];
+//             v = par[v][i];
+//         }
+//     return par[u][0];
+// }
+
+// int getkth(int u, int v, int k)
+// {
+//     int ca = lca(u, v);
+//     if (ca == u || ca == v)
+//     {
+//         if (u == ca)
+//         {
+//             int len = dep[v] - dep[u] + 1;
+//             k = len - k + 1;
+//             swap(u, v);
+//         }
+//     }
+//     else
+//     {
+//         if (k > dep[u])
+//         {
+//             k -= dep[u];
+//             k = dep[v] - k;
+//             swap(u, v);
+//         }
+//     }
+//     k--;
+//     int jp = 0;
+//     while (k)
+//     {
+//         if (1 & k)
+//             u = par[u][jp];
+//         jp++;
+//         k /= 2;
+//     }
+//     return u;
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     int t;
+//     cin >> t;
+//     int a, b, c;
+//     while (t--)
+//     {
+//         cin >> n;
+//         for (int i = 0; i <= n; i++)
+//         {
+//             vec[i].clear();
+//             dep[i] = 0;
+//             for (int j = 0; j < 20; j++)
+//                 par[i][j] = dis[i][j] = 0;
+//         }
+//         for (int i = 1; i < n; i++)
+//         {
+//             cin >> a >> b >> c;
+//             vec[a].push_back({b, c});
+//             vec[b].push_back({a, c});
+//         }
+//         dfs(1, 0);
+//         string k;
+//         while (cin >> k, k != "DONE")
+//         {
+//             if (k[0] == 'D')
+//             {
+//                 cin >> a >> b;
+//                 cout << getdis(a, b) << '\n';
+//             }
+//             else
+//             {
+//                 cin >> a >> b >> c;
+//                 cout << getkth(a, b, c) << '\n';
+//             }
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e4 + 5;
+// int n, dis, kth, dep[N], par[N][20], tohead[N];
+// vector<pair<int, int>> vec[N];
+
+// void dfs(int u, int fa)
+// {
+//     dep[u] = dep[fa] + 1;
+//     par[u][0] = fa;
+//     for (int i = 1; i < 20; ++i)
+//     {
+//         par[u][i] = par[par[u][i - 1]][i - 1];
+//     }
+//     for (auto [v, w] : vec[u])
+//     {
+//         if (v == fa)
+//             continue;
+//         tohead[v] = tohead[u] + w;
+//         dfs(v, u);
+//     }
+// }
+
+// int lca(int u, int v)
+// {
+//     if (dep[u] < dep[v])
+//         swap(u, v);
+//     for (int i = 19; i >= 0; --i)
+//     {
+//         if (dep[par[u][i]] >= dep[v])
+//             u = par[u][i];
+//     }
+//     if (u == v)
+//         return u;
+//     for (int i = 19; i >= 0; --i)
+//     {
+//         if (par[u][i] != par[v][i])
+//         {
+//             u = par[u][i], v = par[v][i];
+//         }
+//     }
+//     return par[u][0];
+// }
+// int getkth(int u, int v, int k)
+// {
+//     int ca = lca(u, v);
+//     // if (ca == u || ca == v)
+//     // {
+//     //     if (u == ca)
+//     //     {
+//     //         int len = dep[v] - dep[u] + 1;
+//     //         k = len - k + 1;
+//     //         swap(u, v);
+//     //     }
+//     // }
+//     // else
+//     // {
+//     //     if (k > dep[u])
+//     //     {
+//     //         k -= dep[u];
+//     //         k = dep[v] - k;
+//     //         swap(u, v);
+//     //     }
+//     // }
+//     int h1 = dep[u] - dep[ca] + 1;
+//     int h2 = dep[v] - dep[ca] + 1;
+//     if (k > h1)
+//     {
+//         k -= h1;
+//         k = h2 - k;
+//         swap(v, u);
+//     }
+//     k--;
+//     int jp = 0;
+//     while (k)
+//     {
+//         if (1 & k)
+//             u = par[u][jp];
+//         jp++;
+//         k /= 2;
+//     }
+//     return u;
+// }
+
+// void solve()
+// {
+//     cin >> n;
+//     int a, b, c;
+//     for (int i = 0; i <= n; i++)
+//         vec[i].clear();
+//     for (int i = 1; i < n; i++)
+//     {
+//         cin >> a >> b >> c;
+//         vec[a].push_back({b, c});
+//         vec[b].push_back({a, c});
+//     }
+//     dfs(1, 0);
+//     string s;
+//     while (cin >> s, s != "DONE")
+//     {
+//         if (s[0] == 'D')
+//         {
+//             cin >> a >> b;
+//             int ca = lca(a, b);
+//             cout << (tohead[a] + tohead[b] - 2 * tohead[ca]) << '\n';
+//         }
+//         else
+//         {
+//             cin >> a >> b >> c;
+//             cout << getkth(a, b, c) << '\n';
+//         }
+//     }
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
