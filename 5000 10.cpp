@@ -4874,3 +4874,690 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 5;
+// int n, m, a, b, h, lm, ls, rs, rm;
+
+// bool check(int mid)
+// {
+//     rs = m - mid;
+//     rm = ((ls + rs) / b) * (h - b);
+//     int mx = rm + lm;
+//     if (mid <= mx)
+//         return true;
+//     return false;
+// }
+
+// void precal()
+// {
+//     ls = n % b;
+//     lm = (n / b) * (h - a);
+// }
+
+// void solve()
+// {
+//     cin >> a >> b >> n >> m >> h;
+//     precal();
+//     int l = 0, r = m, mid;
+//     while (l <= r)
+//     {
+//         mid = l + r >> 1;
+//         if (check(mid))
+//             l = mid + 1;
+//         else
+//             r = mid - 1;
+//     }
+//     cout << n + m - l + 1 << '\n';
+// }
+
+// signed main()
+// {
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// const int maxB = 320;
+// int B;
+// int n, m, x, y, k, a[N], op, l[maxB], r[maxB], block[maxB], bid[N], preAns, ans[N];
+
+// struct Query
+// {
+//     int ql, qr, ID;
+//     int operator<(const Query &e) const
+//     {
+//         if (bid[ql] == bid[e.ql])
+//             if (bid[ql] & 1)
+//                 return qr < e.qr;
+//             else
+//                 return qr > e.qr;
+//         return bid[ql] < bid[e.ql];
+//     }
+// };
+// Query q[N];
+
+// void build()
+// {
+//     for (int i = 1; i <= n; i++)
+//         bid[i] = i / B + 1;
+// }
+
+// void add(int v)
+// {
+//     preAns += v;
+// }
+
+// void del(int v)
+// {
+//     preAns -= v;
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     B = n / sqrt(m) + 1;
+//     build();
+
+//     for (int i = 1; i <= m; i++)
+//         cin >> q[i].ql >> q[i].qr, q[i].ID = i;
+
+//     sort(q + 1, q + 1 + m);
+
+//     for (int i = 1, l = 1, r = 0; i <= m; i++)
+//     {
+//         while (l < q[i].ql)
+//             del(a[l++]);
+//         while (r < q[i].qr)
+//             add(a[++r]);
+//         while (l > q[i].ql)
+//             add(a[--l]);
+//         while (r > q[i].qr)
+//             del(a[r--]);
+//         ans[q[i].ID] = preAns;
+//     }
+
+//     for (int i = 1; i <= m; i++)
+//         cout << ans[i] << '\n';
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 5;
+// const int maxB = 320;
+// int B;
+// int n, m, x, y, k, a[N], op, l[maxB], r[maxB], block[maxB], tag[maxB], bid[N], bsize;
+
+// void build()
+// {
+//     for (int i = 1; i <= n; i++)
+//     {
+//         bid[i] = i / B + 1;
+//         block[bid[i]] += a[i];
+//     }
+//     bsize = n / B + 1;
+//     l[1] = 1;
+//     for (int i = 2; i <= bsize; i++)
+//     {
+//         l[i] = (i - 1) * B;
+//         r[i - 1] = l[i] - 1;
+//     }
+//     r[bsize] = n;
+// }
+
+// void settag(int id, int v)
+// {
+//     tag[id] += (r[id] - l[id] + 1) * v;
+// }
+
+// void br_modify(int ql, int qr, int v)
+// {
+//     int id = bid[ql];
+//     while (ql <= qr)
+//     {
+//         a[ql++] += v;
+//         block[id] += v;
+//     }
+// }
+
+// void modify(int ql, int qr, int v)
+// {
+//     if (bid[ql] == bid[ql - 1])
+//     {
+//         int ml = ql;
+//         int mr = min(r[bid[ql]], qr);
+//         br_modify(ml, mr, v);
+//         if (qr == mr)
+//             return;
+//         ql = mr + 1;
+//     }
+//     if (bid[qr + 1] == bid[qr])
+//     {
+//         int ml = l[bid[qr]];
+//         int mr = qr;
+//         br_modify(ml, mr, v);
+//         qr = ml - 1;
+//     }
+//     while (ql < qr)
+//     {
+//         settag(bid[ql], v);
+//         ql = r[bid[ql]] + 1;
+//     }
+// }
+
+// int br_query(int ql, int qr)
+// {
+//     int ret = 0, id = bid[ql];
+//     int s = r[id] - l[id] + 1;
+//     ret += (tag[id] / s) * (qr - ql + 1);
+//     while (ql <= qr)
+//     {
+//         ret += a[ql++];
+//     }
+//     return ret;
+// }
+
+// int query(int ql, int qr)
+// {
+//     int ret = 0;
+//     if (bid[ql] == bid[ql - 1])
+//     {
+//         int ml = ql;
+//         int mr = min(r[bid[ql]], qr);
+//         ret += br_query(ml, mr);
+//         if (qr == mr)
+//             return ret;
+//         ql = mr + 1;
+//     }
+//     if (bid[qr + 1] == bid[qr])
+//     {
+//         int ml = l[bid[qr]];
+//         int mr = qr;
+//         ret += br_query(ml, mr);
+//         qr = ml - 1;
+//     }
+//     while (ql < qr)
+//     {
+//         ret += tag[bid[ql]] + block[bid[ql]];
+//         ql = r[bid[ql]] + 1;
+//     }
+//     return ret;
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     B = sqrt(n) + 1;
+//     build();
+
+//     while (m--)
+//     {
+//         cin >> op >> x >> y;
+//         if (op == 1)
+//         {
+//             cin >> k;
+//             modify(x, y, k);
+//         }
+//         else
+//         {
+//             cout << query(x, y) << '\n';
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 5e4 + 5;
+// const int maxB = 250;
+// int B;
+// int n, m, x, y, k, a[N], cp[N], op, l[N], r[N], tag[N], id[N];
+
+// void build()
+// {
+//     for (int i = 1; i <= n; i++)
+//         id[i] = (i - 1) / B + 1;
+//     for (int i = 1; i <= id[n]; i++)
+//     {
+//         l[i] = (i - 1) * B + 1, r[i] = min(n, i * B);
+//         sort(a + l[i], a + r[i] + 1);
+//     }
+// }
+
+// void bf_modify(int ql, int qr, int x)
+// {
+//     for (int i = ql; i <= qr; i++)
+//         cp[i] += x;
+//     for (int i = l[id[ql]]; i <= r[id[ql]]; i++)
+//         a[i] = cp[i];
+//     sort(a + l[id[ql]], a + r[id[ql]] + 1);
+// }
+
+// int bf_query(int ql, int qr, int v)
+// {
+//     int ans = lower_bound(a + ql, a + qr + 1, v) - (a + ql);
+//     return ans;
+// }
+
+// void modify(int ql, int qr, int x)
+// {
+//     int lid = id[ql], rid = id[qr];
+//     if (lid == rid)
+//     {
+//         bf_modify(ql, qr, x);
+//         return;
+//     }
+//     bf_modify(ql, r[lid], x);
+//     for (int i = lid + 1; i <= rid - 1; i++)
+//         tag[i] += x;
+//     bf_modify(l[rid], qr, x);
+// }
+
+// int query(int ql, int qr, int v)
+// {
+//     int lid = id[ql], rid = id[qr], ans = 0;
+//     if (lid == rid)
+//     {
+//         return bf_query(ql, qr, v);
+//     }
+//     ans += bf_query(ql, r[lid], v);
+//     for (int i = lid + 1; i <= rid - 1; i++)
+//         ans += bf_query(l[i], r[i], v);
+//     ans += bf_query(l[rid], qr, v);
+//     return ans;
+// }
+
+// signed main()
+// {
+
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i], cp[i] = a[i];
+//     B = sqrt(n);
+//     build();
+
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> op >> x >> y >> k;
+//         if (op == 0)
+//         {
+//             modify(x, y, k);
+//         }
+//         else
+//         {
+//             cout << query(x, y, k * k) << '\n';
+//             // cout << x << ' ' << y << ":\n";
+//             // query(x, y, k * k);
+//             // cout << '\n';
+//         }
+//     }
+//     // for (int i = 1; i <= n; i++)
+//     //     cout << a[i] << ' ';
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// const int N = 1e5 + 5;
+// const int maxB = 320;
+// int B;
+// int n, m, k, a[N], bid[N], preAns, ans[N], num[N];
+
+// struct Query
+// {
+//     int ql, qr, ID;
+//     int operator<(const Query &e) const
+//     {
+//         if (bid[ql] == bid[e.ql])
+//             if (bid[ql] & 1)
+//                 return qr < e.qr;
+//             else
+//                 return qr > e.qr;
+//         return bid[ql] < bid[e.ql];
+//     }
+// };
+// Query q[N];
+
+// void build()
+// {
+//     for (int i = 1; i <= n; i++)
+//         bid[i] = (i - 1) / B + 1;
+// }
+
+// void add(int v)
+// {
+//     num[v]++;
+// }
+
+// void del(int v)
+// {
+//     num[v]--;
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n >> m >> k;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     B = n / sqrt(m) + 1;
+//     build();
+
+//     for (int i = 1; i <= m; i++)
+//         cin >> q[i].ql >> q[i].qr, q[i].ID = i;
+
+//     sort(q + 1, q + 1 + m);
+
+//     for (int i = 1, l = 1, r = 0; i <= m; i++)
+//     {
+//         while (l < q[i].ql)
+//             del(a[l++]);
+//         while (r < q[i].qr)
+//             add(a[++r]);
+//         while (l > q[i].ql)
+//             add(a[--l]);
+//         while (r > q[i].qr)
+//             del(a[r--]);
+//         int tmp = 0;
+//         for (int j = 1; j <= k; j++)
+//             ans[q[i].ID] += (num[j] * num[j]);
+//     }
+
+//     for (int i = 1; i <= m; i++)
+//         cout << ans[i] << '\n';
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// const int N = 3e4 + 5;
+// const int maxB = 320;
+// int B;
+// int n, m, a[N], bid[N], preAns, ans[200005], mp[1000005];
+
+// struct Query
+// {
+//     int ql, qr, ID;
+//     int operator<(const Query &e) const
+//     {
+//         if (bid[ql] == bid[e.ql])
+//             if (bid[ql] & 1)
+//                 return qr < e.qr;
+//             else
+//                 return qr > e.qr;
+//         return bid[ql] < bid[e.ql];
+//     }
+// };
+// Query q[200005];
+
+// void build()
+// {
+//     for (int i = 1; i <= n; i++)
+//         bid[i] = (i - 1) / B + 1;
+// }
+
+// void add(int v)
+// {
+//     if (!mp[v])
+//         preAns++;
+//     mp[v]++;
+// }
+
+// void del(int v)
+// {
+//     mp[v]--;
+//     if (!mp[v])
+//         preAns--;
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+
+//     cin >> m;
+//     B = n / sqrt(m) + 1;
+//     build();
+//     for (int i = 1; i <= m; i++)
+//         cin >> q[i].ql >> q[i].qr, q[i].ID = i;
+
+//     sort(q + 1, q + 1 + m);
+
+//     for (int i = 1, l = 1, r = 0; i <= m; i++)
+//     {
+//         while (l < q[i].ql)
+//             del(a[l++]);
+//         while (r < q[i].qr)
+//             add(a[++r]);
+//         while (l > q[i].ql)
+//             add(a[--l]);
+//         while (r > q[i].qr)
+//             del(a[r--]);
+//         ans[q[i].ID] = preAns;
+//     }
+
+//     for (int i = 1; i <= m; i++)
+//         cout << ans[i] << '\n';
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 5;
+// const int maxB = 250;
+// int B;
+// int n, x, y, k, a[N], cp[N], op, l[N], r[N], tag[N], id[N], bsize;
+
+// void build()
+// {
+//     for (int i = 1; i <= n; i++)
+//         id[i] = (i - 1) / B + 1;
+//     for (int i = 1; i <= id[n]; i++)
+//     {
+//         l[i] = (i - 1) * B + 1, r[i] = min(n, i * B);
+//         sort(a + l[i], a + r[i] + 1);
+//     }
+// }
+
+// void bf_modify(int ql, int qr, int x)
+// {
+//     for (int i = ql; i <= qr; i++)
+//         cp[i] += x;
+//     for (int i = l[id[ql]]; i <= r[id[ql]]; i++)
+//         a[i] = cp[i];
+//     sort(a + l[id[ql]], a + r[id[ql]] + 1);
+// }
+
+// int bf_query(int ql, int qr, int v)
+// {
+//     int ret = -1;
+//     for (int i = ql; i <= qr; i++)
+//         if (cp[i] + tag[id[i]] < v)
+//             ret = max(ret, cp[i] + tag[id[i]]);
+//     return ret;
+// }
+
+// void modify(int ql, int qr, int x)
+// {
+//     int lid = id[ql], rid = id[qr];
+//     if (lid == rid)
+//     {
+//         bf_modify(ql, qr, x);
+//         return;
+//     }
+//     bf_modify(ql, r[lid], x);
+//     for (int i = lid + 1; i <= rid - 1; i++)
+//         tag[i] += x;
+//     bf_modify(l[rid], qr, x);
+// }
+
+// int query(int ql, int qr, int v)
+// {
+//     int lid = id[ql], rid = id[qr], ans = -1;
+//     if (lid == rid)
+//     {
+//         return bf_query(ql, qr, v);
+//     }
+//     ans = bf_query(ql, r[lid], v);
+//     for (int i = lid + 1; i <= rid - 1; i++)
+//     {
+//         int *pt = lower_bound(a + l[i], a + r[i] + 1, v - tag[i]) - 1;
+//         if (pt >= a + l[i])
+//             ans = max((*pt + tag[i]), ans);
+//     }
+//     ans = max(ans, bf_query(l[rid], qr, v));
+//     return ans;
+// }
+
+// signed main()
+// {
+
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i], cp[i] = a[i];
+//     B = sqrt(n) + 1;
+//     build();
+
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> op >> x >> y >> k;
+//         if (op == 0)
+//         {
+//             modify(x, y, k);
+//         }
+//         else
+//         {
+//             cout << query(x, y, k) << '\n';
+//         }
+//     }
+//     return 0;
+// }
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+const int N = 4e4 + 5;
+const int maxB = 250;
+int n, m, a[N], L, R, x, B, id[N], l[maxB], r[maxB], mx[maxB][maxB];
+unordered_map<int, vector<int>> vec;
+// vector<int> idx[N];
+
+void build()
+{
+    for (int i = 1; i <= n; i++)
+        id[i] = (i - 1) / B + 1;
+    for (int i = 1; i <= id[n]; i++)
+        l[i] = (i - 1) * B + 1, r[i] = min(n, i * B);
+
+    for (int i = 1; i <= id[n]; i++)
+    {
+        int mxn = 0;
+        unordered_map<int, int> num;
+        for (int j = l[i]; j <= n; j++)
+        {
+            int e = a[j];
+            ++num[e];
+            if (num[e] > num[mxn] || (num[e] == num[mxn] && e < mxn))
+                mxn = e;
+            if (r[id[j]] == j)
+            {
+                mx[i][id[j]] = mxn;
+                // cout << i << " " << id[j] << ':' << mxn << '\n';
+            }
+        }
+    }
+}
+
+int getsum(int ql, int qr, int v)
+{
+    // auto st = lower_bound(idx[pos2[v]].begin(), idx[pos2[v]].end(), qr);
+    // auto ed = lower_bound(idx[pos2[v]].begin(), idx[pos2[v]].end(), ql);
+    auto st = lower_bound(vec[v].begin(), vec[v].end(), ql);
+    auto ed = lower_bound(vec[v].begin(), vec[v].end(), qr);
+    int ret = ed - st + 1;
+    if (ed == vec[v].end() || qr < *ed)
+        ret--;
+    return ret;
+}
+
+int query(int ql, int qr)
+{
+    int ans = 0, mxs = 0;
+    for (int i = ql; i <= r[id[ql]]; i++)
+    {
+        int tmp = getsum(ql, qr, a[i]);
+        if (tmp > mxs || (tmp == mxs && a[i] < ans))
+        {
+            mxs = tmp;
+            ans = a[i];
+        }
+    }
+    ql = r[id[ql]] + 1;
+    for (int i = l[id[qr]]; i <= qr; i++)
+    {
+        int tmp = getsum(ql, qr, a[i]);
+        if (tmp > mxs || (tmp == mxs && a[i] < ans))
+        {
+            mxs = tmp;
+            ans = a[i];
+        }
+    }
+    qr = l[id[qr]] - 1;
+    if (ql <= qr)
+    {
+        int as = mx[id[ql]][id[qr]], ms = getsum(ql, qr, as);
+        if (ms > mxs || (ms == mxs && as < ans))
+            ans = as;
+    }
+    return ans;
+}
+
+signed main()
+{
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+        int e = a[i];
+        // if (!pos2[e])
+        //     pos2[e] = ++cnt;
+        vec[e].push_back(i);
+    }
+    B = sqrt(n);
+    build();
+
+    while (m--)
+    {
+        cin >> L >> R;
+        L = (L + x - 1) % n + 1;
+        R = (R + x - 1) % n + 1;
+        if (L > R)
+            swap(L, R);
+        cout << query(L, R) << '\n';
+    }
+    return 0;
+}
