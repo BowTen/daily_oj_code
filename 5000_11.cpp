@@ -814,90 +814,497 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 5;
+// const int M = 1e6 + 5;
+// int n, m, a[N], ls[N * 25], rs[N * 25], rt[N * 25], tot, sum[N * 25], pw[N], s[N * 25];
+// vector<int> idx;
+
+// int getidx(int x)
+// {
+//     return lower_bound(idx.begin(), idx.end(), x) - idx.begin() + 1;
+// }
+
+// void newLine(int &cur, int pre, int l, int r, int v)
+// {
+//     cur = ++tot;
+//     ls[cur] = ls[pre], rs[cur] = rs[pre], sum[cur] = sum[pre] + 1, s[cur] = s[pre] + idx[v - 1];
+//     if (l == r)
+//         return;
+//     int mid = l + r >> 1;
+//     if (v <= mid)
+//         newLine(ls[cur], ls[pre], l, mid, v);
+//     else
+//         newLine(rs[cur], rs[pre], mid + 1, r, v);
+// }
+
+// int query(int cur, int pre, int l, int r, int k)
+// {
+//     // cout << l << ' ' << r << ' ' << k << '\n';
+//     if (l == r)
+//         return idx[l - 1] * k;
+//     int mid = l + r >> 1;
+//     int sr = sum[rs[cur]] - sum[rs[pre]];
+//     if (k > sr)
+//         return query(ls[cur], ls[pre], l, mid, k - sr) + s[rs[cur]] - s[rs[pre]];
+//     else if (k == sr)
+//         return s[rs[cur]] - s[rs[pre]];
+//     else
+//         return query(rs[cur], rs[pre], mid + 1, r, k);
+// }
+
+// void init()
+// {
+//     tot = 0;
+//     idx.clear();
+//     idx.reserve(n + 10);
+// }
+
+// void solve()
+// {
+//     init();
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i], idx.push_back(a[i]);
+//     sort(idx.begin(), idx.end());
+//     idx.erase(unique(idx.begin(), idx.end()), idx.end());
+//     for (int i = 1; i <= n; i++)
+//     {
+//         a[i] = getidx(a[i]);
+//         newLine(rt[i], rt[i - 1], 1, n, a[i]);
+//     }
+//     cin >> m;
+//     for (int i = 1; i <= m; i++)
+//     {
+//         int l, r, k;
+//         cin >> l >> r >> k;
+//         // cout << query(rt[r], rt[l - 1], 1, n, k) - 1 << '\n';
+//         cout << query(rt[r], rt[l - 1], 1, n, k) + pw[r - l + 1] << '\n';
+//     }
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     for (int i = 1; i < N; i++)
+//     {
+//         pw[i] = pw[i - 1] + i * i;
+//     }
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 2e5 + 5;
+// int a[N], n;
+
+// int main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+//         int ans = 0;
+//         unordered_map<int, int> mp;
+//         for (int i = 1; i <= n; i++)
+//         {
+//             cin >> a[i];
+//             if (++mp[a[i]] <= 2)
+//                 ans++;
+//         }
+//         cout << ((ans + 1) >> 1) << '\n';
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 5;
+// int n, m, a[N], ls[N * 50], rs[N * 50], rt[N * 50], tot, sum[N * 50];
+// vector<int> idx;
+
+// void newLine(int &cur, int pre, int l, int r, int v)
+// {
+//     cur = ++tot;
+//     ls[cur] = ls[pre], rs[cur] = rs[pre], sum[cur] = sum[pre] + 1;
+//     if (l == r)
+//         return;
+//     int mid = l + r >> 1;
+//     if (v <= mid)
+//         newLine(ls[cur], ls[pre], l, mid, v);
+//     else
+//         newLine(rs[cur], rs[pre], mid + 1, r, v);
+// }
+
+// int query(int cur, int pre, int l, int r, int k)
+// {
+//     if (l == r)
+//         return l;
+//     int mid = l + r >> 1;
+//     int sl = sum[ls[cur]] - sum[ls[pre]];
+//     if (k <= sl)
+//         return query(ls[cur], ls[pre], l, mid, k);
+//     else
+//         return query(rs[cur], rs[pre], mid + 1, r, k - sl);
+// }
+
+// int getidx(int x)
+// {
+//     return lower_bound(idx.begin(), idx.end(), x) - idx.begin() + 1;
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     idx.reserve(n + 10);
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     for (int i = 1; i <= n; i++)
+//     {
+//         // a[i] = getidx(a[i]);
+//         newLine(rt[i], rt[i - 1], 1, n, a[i]);
+//     }
+//     for (int i = 1; i <= m; i++)
+//     {
+//         int l, r, k;
+//         cin >> l >> r >> k;
+//         cout << query(rt[r], rt[l - 1], 1, n, k) << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 5010;
+// const int M = N * 15;
+// int n, a[N], tot, tr[M], ls[M], rs[M], sum[M];
+
+// void newLine(int &cur, int pre, int l, int r, int v)
+// {
+//     cur = ++tot;
+//     ls[cur] = ls[pre], rs[cur] = rs[pre], sum[cur] = sum[pre] + 1;
+//     if (l == r)
+//         return;
+//     int mid = l + r >> 1;
+//     if (v <= mid)
+//         newLine(ls[cur], ls[pre], l, mid, v);
+//     else
+//         newLine(rs[cur], rs[pre], mid + 1, r, v);
+// }
+
+// int query(int cur, int pre, int l, int r, int v)
+// {
+//     // cout << l << ' ' << r << '\n';
+//     if (v < l)
+//         return 0;
+//     if (r <= v)
+//         return sum[cur] - sum[pre];
+//     int mid = l + r >> 1;
+//     if (v <= mid)
+//         return query(ls[cur], ls[pre], l, mid, v);
+//     else
+//         return query(rs[cur], rs[pre], mid + 1, r, v) + sum[ls[cur]] - sum[ls[pre]];
+// }
+
+// void init()
+// {
+//     tot = 0;
+// }
+
+// void solve()
+// {
+//     init();
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i], newLine(tr[i], tr[i - 1], 1, n, a[i]);
+//     int ans = 0;
+//     for (int i = 2; i < n - 1; i++)
+//     {
+//         for (int j = i + 1; j < n; j++)
+//         {
+//             ans += query(tr[i - 1], tr[0], 1, n, a[j] - 1) * query(tr[n], tr[j], 1, n, a[i] - 1);
+//         }
+//     }
+//     cout << ans << '\n';
+// }
+
+// signed main()
+// {
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 5;
+// const int M = N * 20;
+// const int mxn = 1e9 + 5;
+// int n, m, a[N], tr[M], ls[M], rs[M], sum[M], tot;
+
+// void newLine(int &cur, int pre, int l, int r, int v)
+// {
+//     cur = ++tot;
+//     ls[cur] = ls[pre], rs[cur] = rs[pre], sum[cur] = sum[pre] + 1;
+//     if (l == r)
+//         return;
+//     int mid = l + r >> 1;
+//     if (v <= mid)
+//         newLine(ls[cur], ls[pre], l, mid, v);
+//     else
+//         newLine(rs[cur], rs[pre], mid + 1, r, v);
+// }
+
+// int query(int cur, int pre, int l, int r, int k)
+// {
+//     if (l == r)
+//         return l;
+//     int mid = l + r >> 1;
+//     int sl = sum[ls[cur]] - sum[ls[pre]];
+//     if (k > sl)
+//         return query(rs[cur], rs[pre], mid + 1, r, k - sl);
+//     else
+//         return query(ls[cur], ls[pre], l, mid, k);
+// }
+
+// signed main()
+// {
+
+//     cin >> n >> m;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i], newLine(tr[i], tr[i - 1], -mxn, mxn, a[i]);
+//     while (m--)
+//     {
+//         int l, r, k;
+//         cin >> l >> r >> k;
+//         cout << query(tr[r], tr[l - 1], -mxn, mxn, k) << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// const int N = 5010;
+// const int M = N * 15;
+// int n, a[N], letc[N][N], letb[N][N];
+
+// void init()
+// {
+//     for (int i = 0; i <= n + 1; i++)
+//         for (int j = 0; j <= n + 1; j++)
+//             letc[i][j] = letb[i][j] = 0;
+// }
+
+// void solve()
+// {
+//     cin >> n;
+//     init();
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     for (int i = 3; i < n; i++)
+//     {
+//         // letc[i][0] = 0;
+//         int cnt = 0;
+//         for (int j = 1; j < i - 1; j++)
+//         {
+//             // letc[i][j] = letc[i][j - 1];
+//             if (a[j] < a[i])
+//                 cnt++;
+//             letc[i][j] = cnt;
+//         }
+//     }
+//     for (int i = n - 2; i > 1; i--)
+//     {
+//         // letb[i][n + 1] = 0;
+//         int cnt = 0;
+//         for (int j = n; j > i + 1; j--)
+//         {
+//             // letb[i][j] = letb[i][j + 1];
+//             if (a[j] < a[i])
+//                 cnt++;
+//             letb[i][j] = cnt;
+//         }
+//     }
+//     long long ans = 0;
+//     for (int i = 2; i < n - 1; i++)
+//     {
+//         for (int j = i + 1; j < n; j++)
+//         {
+//             ans += letb[i][j + 1] * letc[j][i - 1];
+//         }
+//     }
+//     cout << ans << '\n';
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 3e5 + 5;
+// int n, m, mnl, dep[N], f;
+// vector<int> G[N];
+
+// void dfs(int u, int fa)
+// {
+//     dep[u] = dep[fa] + 1;
+//     if (G[u].size() == 1)
+//     {
+//         if (mnl > dep[u] || mnl == -1)
+//             mnl = dep[u], f = 0;
+//         return;
+//     }
+//     if (G[u].size() == 2 && u != 1)
+//     {
+//         dep[u]++;
+//         if (mnl >= dep[u] || mnl == -1)
+//             mnl = dep[u], f = 1;
+//         return;
+//     }
+//     for (auto v : G[u])
+//         if (v != fa)
+//         {
+//             dfs(v, u);
+//         }
+// }
+
+// void solve()
+// {
+//     mnl = -1;
+//     f = 0;
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         G[i].clear();
+//     for (int i = 1; i < n; i++)
+//     {
+//         int u, v;
+//         cin >> u >> v;
+//         G[u].push_back(v);
+//         G[v].push_back(u);
+//     }
+//     if (G[1].size() == 1)
+//     {
+//         cout << n - 2 << '\n';
+//         return;
+//     }
+//     dfs(1, 0);
+//     int ans = n - max((mnl * 2 - 1), 2ll);
+//     if (f)
+//         ans++;
+//     cout << ans << '\n';
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 5;
+// int n, m, a[N], s, x, siz, a1, a2, a3;
+
+// void init()
+// {
+//     s = x = siz = 0;
+// }
+
+// void solve()
+// {
+//     cin >> n;
+//     init();
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i], s += a[i], x ^= a[i];
+
+//     a1 = (1ll << 50) + (s & 1);
+//     s += a1;
+//     x ^= a1;
+//     a2 = a3 = ((2 * x) - s) / 2;
+//     s += a2;
+//     x ^= a2;
+//     s += a2;
+//     x ^= a2;
+//     cout << "3\n"
+//          << a1 << ' ' << a2 << ' ' << a2 << '\n';
+
+//     // if (s == 2 * x)
+//         // cout << "YES\n";
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int N = 1e5 + 5;
-const int M = 1e6 + 5;
-int n, m, a[N], ls[N * 25], rs[N * 25], rt[N * 25], tot, sum[N * 25], pw[N], s[N * 25];
-vector<int> idx;
-
-int getidx(int x)
-{
-    return lower_bound(idx.begin(), idx.end(), x) - idx.begin() + 1;
-}
-
-void newLine(int &cur, int pre, int l, int r, int v)
-{
-    cur = ++tot;
-    ls[cur] = ls[pre], rs[cur] = rs[pre], sum[cur] = sum[pre] + 1, s[cur] = s[pre] + idx[v - 1];
-    if (l == r)
-        return;
-    int mid = l + r >> 1;
-    if (v <= mid)
-        newLine(ls[cur], ls[pre], l, mid, v);
-    else
-        newLine(rs[cur], rs[pre], mid + 1, r, v);
-}
-
-int query(int cur, int pre, int l, int r, int k)
-{
-    // cout << l << ' ' << r << ' ' << k << '\n';
-    if (l == r)
-        return idx[l - 1] * k;
-    int mid = l + r >> 1;
-    int sr = sum[rs[cur]] - sum[rs[pre]];
-    if (k > sr)
-        return query(ls[cur], ls[pre], l, mid, k - sr) + s[rs[cur]] - s[rs[pre]];
-    else if (k == sr)
-        return s[rs[cur]] - s[rs[pre]];
-    else
-        return query(rs[cur], rs[pre], mid + 1, r, k);
-}
-
-void init()
-{
-    tot = 0;
-    idx.clear();
-    idx.reserve(n + 10);
-}
+const int N = 2e5 + 5;
+const int mod = 1e9 + 7;
+int n, a[N];
 
 void solve()
 {
-    init();
     cin >> n;
+    int xo = 0, cnt = 0;
     for (int i = 1; i <= n; i++)
-        cin >> a[i], idx.push_back(a[i]);
-    sort(idx.begin(), idx.end());
-    idx.erase(unique(idx.begin(), idx.end()), idx.end());
+        cin >> a[i], xo ^= a[i];
     for (int i = 1; i <= n; i++)
-    {
-        a[i] = getidx(a[i]);
-        newLine(rt[i], rt[i - 1], 1, n, a[i]);
-    }
-    cin >> m;
-    for (int i = 1; i <= m; i++)
-    {
-        int l, r, k;
-        cin >> l >> r >> k;
-        // cout << query(rt[r], rt[l - 1], 1, n, k) - 1 << '\n';
-        cout << query(rt[r], rt[l - 1], 1, n, k) + pw[r - l + 1] << '\n';
-    }
+        if (a[i] == xo)
+            cnt++;
+    int ans = cnt * (cnt - 1) % mod;
+    int tmp = cnt - 2;
+    for (int i = cnt - 3; i; i--)
+        tmp = tmp * i % mod;
+    ans = ans + tmp % mod;
+    cout << ans << '\n';
 }
 
 signed main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    cout.tie(0);
-    for (int i = 1; i < N; i++)
-    {
-        pw[i] = pw[i - 1] + i * i;
-    }
     int t;
     cin >> t;
     while (t--)
         solve();
-
     return 0;
 }
