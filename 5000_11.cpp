@@ -1276,35 +1276,164 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
-const int N = 2e5 + 5;
-const int mod = 1e9 + 7;
-int n, a[N];
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 5;
+// const int mod = 1e9 + 7;
+// int n, a[N];
 
-void solve()
-{
-    cin >> n;
-    int xo = 0, cnt = 0;
-    for (int i = 1; i <= n; i++)
-        cin >> a[i], xo ^= a[i];
-    for (int i = 1; i <= n; i++)
-        if (a[i] == xo)
-            cnt++;
-    int ans = cnt * (cnt - 1) % mod;
-    int tmp = cnt - 2;
-    for (int i = cnt - 3; i; i--)
-        tmp = tmp * i % mod;
-    ans = ans + tmp % mod;
-    cout << ans << '\n';
-}
+// void solve()
+// {
+//     int xo = 0, cnt = 0;
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     xo = a[1];
+//     for (int i = 1; i <= n; i++)
+//         xo &= a[i];
+//     for (int i = 1; i <= n; i++)
+//         if (a[i] == xo)
+//             cnt++;
+//     int ans = cnt * (cnt - 1) % mod;
+//     for (int i = n - 2; i > 0; i--)
+//         ans = (ans * i) % mod;
+//     cout << ans << '\n';
+// }
 
-signed main()
-{
-    int t;
-    cin >> t;
-    while (t--)
-        solve();
-    return 0;
-}
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e9;
+// int n, a, b;
+
+// void solve()
+// {
+//     cin >> n >> a >> b;
+//     if (b == 1)
+//     {
+//         cout << "Yes\n";
+//         return;
+//     }
+//     if (a == 1)
+//     {
+//         if ((n - 1) % b == 0)
+//             cout << "Yes\n";
+//         else
+//             cout << "No\n";
+//         return;
+//     }
+
+//     int pw = 1;
+//     for (pw; pw <= n; pw *= a)
+//         if ((n - pw) % b == 0)
+//         {
+//             cout << "Yes\n";
+//             return;
+//         }
+//     cout << "No\n";
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 5e5 + 10;
+// int n, m, d, a[N], p[N], pos[N];
+
+// void solve()
+// {
+//     cin >> n >> m >> d;
+//     for (int i = 1; i <= n; i++)
+//         cin >> p[i], pos[p[i]] = i;
+//     for (int i = 1; i <= m; i++)
+//         cin >> a[i];
+//     int ans = 1e9;
+//     if (d + 1 >= n)
+//         for (int i = 1; i < m; i++)
+//         {
+//             ans = min(ans, max(0ll, pos[a[i + 1]] - pos[a[i]]));
+//         }
+//     else
+//         for (int i = 1; i < m; i++)
+//         {
+//             ans = min(ans, max(0ll, min(pos[a[i + 1]] - pos[a[i]], 1 + pos[a[i]] + d - pos[a[i + 1]])));
+//         }
+//     cout << ans << '\n';
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// int n, q, x, y, ad, di;
+// string s;
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n >> s >> q;
+//     for (auto c : s)
+//         if (c == '+')
+//             ad++;
+//         else
+//             di++;
+//     if (ad > di)
+//         swap(ad, di);
+//     while (q--)
+//     {
+//         cin >> x >> y;
+//         if (x < y)
+//             swap(x, y);
+//         if (ad == di)
+//             cout << "YES\n";
+//         else if (x == y)
+//             cout << "NO\n";
+//         else
+//         {
+//             int s1 = ad * x;
+//             int s2 = di * x;
+//             int det = s2 - s1;
+//             if (det % (x - y) == 0 && det / (x - y) <= di)
+//                 cout << "YES\n";
+//             else
+//                 cout << "NO\n";
+//         }
+//     }
+//     return 0;
+// }
