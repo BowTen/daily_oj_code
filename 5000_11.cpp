@@ -1546,115 +1546,198 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+// struct info
+// {
+//     int ans;
+//     int len;
+//     int pre_len;
+//     int suf_len;
+//     int front;
+//     int back;
+// };
+// struct node
+// {
+//     info val;
+// } tr[N << 2];
+
+// info operator+(const info &a, const info &b)
+// {
+//     info c;
+//     c.ans = a.ans + b.ans;
+//     c.len = a.len + b.len;
+//     c.front = a.front;
+//     c.back = b.back;
+//     c.pre_len = a.pre_len;
+//     c.suf_len = b.suf_len;
+//     if (a.back <= b.front)
+//     {
+//         c.ans -= (a.suf_len * (a.suf_len + 1)) / 2 + (b.pre_len * (b.pre_len + 1)) / 2;
+//         int tmp = a.suf_len + b.pre_len;
+//         c.ans += tmp * (tmp + 1) / 2;
+//         if (a.len == a.pre_len)
+//             c.pre_len = a.len + b.pre_len;
+//         if (b.len == b.pre_len)
+//             c.suf_len = a.suf_len + b.suf_len;
+//     }
+//     return c;
+// }
+
+// void up(int id)
+// {
+//     tr[id].val = tr[lson].val + tr[rson].val;
+// }
+
+// void build(int id, int l, int r)
+// {
+//     if (l == r)
+//     {
+//         tr[id].val.ans = tr[id].val.len = tr[id].val.pre_len = tr[id].val.suf_len = 1;
+//         tr[id].val.back = tr[id].val.front = a[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// void change(int id, int l, int r, int x, int v)
+// {
+//     if (l == r)
+//     {
+//         a[l] = v;
+//         tr[id].val.front = tr[id].val.back = v;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if (x <= mid)
+//         change(lson, l, mid, x, v);
+//     else
+//         change(rson, mid + 1, r, x, v);
+//     up(id);
+// }
+
+// info query(int id, int l, int r, int ql, int qr)
+// {
+//     if (ql <= l && r <= qr)
+//         return tr[id].val;
+//     int mid = l + r >> 1;
+//     if (qr <= mid)
+//         return query(lson, l, mid, ql, qr);
+//     else if (ql > mid)
+//         return query(rson, mid + 1, r, ql, qr);
+//     else
+//         return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     build(1, 1, n);
+//     while (m--)
+//     {
+//         int op, l, r;
+//         cin >> op >> l >> r;
+//         if (op == 1)
+//         {
+//             change(1, 1, n, l, r);
+//         }
+//         else
+//         {
+//             cout << query(1, 1, n, l, r).ans << '\n';
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 21;
+// const int M = 410;
+// int n, m, a[N][N];
+
+// bool check(int x)
+// {
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//             if (a[i][j] && (x & (1 << i)) && (x & (1 << j)))
+//                 return 0;
+//     }
+//     return 1;
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1; i <= m; i++)
+//     {
+//         int u, v;
+//         cin >> u >> v;
+//         u--, v--;
+//         a[u][v] = a[v][u] = 1;
+//     }
+//     int ans = 0;
+//     for (int i = 0; i < (1 << n); i++)
+//     {
+//         if (check(i))
+//             ans++;
+//     }
+//     cout << ans << '\n';
+
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
-#define lson id << 1
-#define rson id << 1 | 1
-const int N = 2e5 + 10;
-int n, m, a[N];
+const int N = 500;
+int n, a[N * 2], dp[N << 1][N << 1], sum[N * 2], mx[N << 1][N << 1];
 
-struct info
+int main()
 {
-    int ans;
-    int len;
-    int pre_len;
-    int suf_len;
-    int front;
-    int back;
-};
-struct node
-{
-    info val;
-} tr[N << 2];
-
-info operator+(const info &a, const info &b)
-{
-    info c;
-    c.ans = a.ans + b.ans;
-    c.len = a.len + b.len;
-    c.front = a.front;
-    c.back = b.back;
-    c.pre_len = a.pre_len;
-    c.suf_len = b.suf_len;
-    if (a.back <= b.front)
-    {
-        c.ans -= (a.suf_len * (a.suf_len + 1)) / 2 + (b.pre_len * (b.pre_len + 1)) / 2;
-        int tmp = a.suf_len + b.pre_len;
-        c.ans += tmp * (tmp + 1) / 2;
-        if (a.len == a.pre_len)
-            c.pre_len = a.len + b.pre_len;
-        if (b.len == b.pre_len)
-            c.suf_len = a.suf_len + b.suf_len;
-    }
-    return c;
-}
-
-void up(int id)
-{
-    tr[id].val = tr[lson].val + tr[rson].val;
-}
-
-void build(int id, int l, int r)
-{
-    if (l == r)
-    {
-        tr[id].val.ans = tr[id].val.len = tr[id].val.pre_len = tr[id].val.suf_len = 1;
-        tr[id].val.back = tr[id].val.front;
-    }
-    int mid = l + r >> 1;
-    build(lson, l, mid);
-    build(rson, mid + 1, r);
-    up(id);
-}
-
-void change(int id, int l, int r, int x, int v)
-{
-    if (l == r)
-    {
-        a[l] = v;
-        tr[id].val.front = tr[id].val.back = v;
-        return;
-    }
-    int mid = l + r >> 1;
-    if (x <= mid)
-        change(lson, l, mid, x, v);
-    else
-        change(rson, mid + 1, r, x, v);
-}
-
-info query(int id, int l, int r, int ql, int qr)
-{
-    if (ql <= l && r <= qr)
-        return tr[id].val;
-    int mid = l + r >> 1;
-    if (qr <= mid)
-        return query(lson, l, mid, ql, qr);
-    else if (ql > mid)
-        return query(rson, mid + 1, r, ql, qr);
-    else
-        return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
-}
-
-signed main()
-{
-    cin >> n >> m;
+    cin >> n;
     for (int i = 1; i <= n; i++)
-        cin >> a[i];
-    build(1, 1, n);
-    while (m--)
+        cin >> a[i], a[n + i] = a[i];
+    for (int i = 1; i <= 2 * n; i++)
+        sum[i] = sum[i - 1] + a[i];
+
+    for (int len = 1; len <= n; len++)
     {
-        int op, l, r;
-        cin >> op >> l >> r;
-        if (op == 1)
+        for (int l = 1; l <= 2 * n; l++)
         {
-            change(1, 1, n, l, r);
-        }
-        else
-        {
-            cout << query(1, 1, n, l, r).ans << '\n';
+            int r = min(2 * n, l + len - 1);
+            for (int k = l; k < r; k++)
+            {
+                if (dp[l][r])
+                    dp[l][r] = min(dp[l][k] + dp[k + 1][r] + sum[r] - sum[l - 1], dp[l][r]);
+                else
+                    dp[l][r] = dp[l][k] + dp[k + 1][r] + sum[r] - sum[l - 1];
+
+                if (mx[l][r])
+                    mx[l][r] = max(mx[l][k] + mx[k + 1][r] + sum[r] - sum[l - 1], mx[l][r]);
+                else
+                    mx[l][r] = mx[l][k] + mx[k + 1][r] + sum[r] - sum[l - 1];
+            }
         }
     }
+
+    for (int i = 1; i <= n; i++)
+        dp[1][n] = min(dp[1][n], dp[i][i + n - 1]), mx[1][n] = max(mx[1][n], mx[i][i + n - 1]);
+
+    cout << dp[1][n] << '\n'
+         << mx[1][n];
 
     return 0;
 }
