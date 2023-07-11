@@ -1700,44 +1700,418 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
-const int N = 500;
-int n, a[N * 2], dp[N << 1][N << 1], sum[N * 2], mx[N << 1][N << 1];
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 500;
+// int n, a[N * 2], dp[N << 1][N << 1], sum[N * 2], mx[N << 1][N << 1];
 
-int main()
-{
-    cin >> n;
-    for (int i = 1; i <= n; i++)
-        cin >> a[i], a[n + i] = a[i];
-    for (int i = 1; i <= 2 * n; i++)
-        sum[i] = sum[i - 1] + a[i];
+// int main()
+// {
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i], a[n + i] = a[i];
+//     for (int i = 1; i <= 2 * n; i++)
+//         sum[i] = sum[i - 1] + a[i];
 
-    for (int len = 1; len <= n; len++)
-    {
-        for (int l = 1; l <= 2 * n; l++)
-        {
-            int r = min(2 * n, l + len - 1);
-            for (int k = l; k < r; k++)
-            {
-                if (dp[l][r])
-                    dp[l][r] = min(dp[l][k] + dp[k + 1][r] + sum[r] - sum[l - 1], dp[l][r]);
-                else
-                    dp[l][r] = dp[l][k] + dp[k + 1][r] + sum[r] - sum[l - 1];
+//     for (int len = 1; len <= n; len++)
+//     {
+//         for (int l = 1; l <= 2 * n; l++)
+//         {
+//             int r = min(2 * n, l + len - 1);
+//             for (int k = l; k < r; k++)
+//             {
+//                 if (dp[l][r])
+//                     dp[l][r] = min(dp[l][k] + dp[k + 1][r] + sum[r] - sum[l - 1], dp[l][r]);
+//                 else
+//                     dp[l][r] = dp[l][k] + dp[k + 1][r] + sum[r] - sum[l - 1];
 
-                if (mx[l][r])
-                    mx[l][r] = max(mx[l][k] + mx[k + 1][r] + sum[r] - sum[l - 1], mx[l][r]);
-                else
-                    mx[l][r] = mx[l][k] + mx[k + 1][r] + sum[r] - sum[l - 1];
-            }
-        }
-    }
+//                 if (mx[l][r])
+//                     mx[l][r] = max(mx[l][k] + mx[k + 1][r] + sum[r] - sum[l - 1], mx[l][r]);
+//                 else
+//                     mx[l][r] = mx[l][k] + mx[k + 1][r] + sum[r] - sum[l - 1];
+//             }
+//         }
+//     }
 
-    for (int i = 1; i <= n; i++)
-        dp[1][n] = min(dp[1][n], dp[i][i + n - 1]), mx[1][n] = max(mx[1][n], mx[i][i + n - 1]);
+//     for (int i = 1; i <= n; i++)
+//         dp[1][n] = min(dp[1][n], dp[i][i + n - 1]), mx[1][n] = max(mx[1][n], mx[i][i + n - 1]);
 
-    cout << dp[1][n] << '\n'
-         << mx[1][n];
+//     cout << dp[1][n] << '\n'
+//          << mx[1][n];
 
-    return 0;
-}
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 22;
+// int n, a[N], b[N], k[N], dp[1 << N], ans;
+
+// int getcnt(int i)
+// {
+//     int ret = 0;
+//     while (i)
+//     {
+//         ret++;
+//         i &= (i - 1);
+//     }
+//     return ret;
+// }
+
+// signed main()
+// {
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         int s, x;
+//         cin >> a[i] >> b[i] >> s;
+//         while (s--)
+//         {
+//             cin >> x;
+//             k[i] |= (1 << (x - 1));
+//         }
+//     }
+
+//     for (int i = 0; i < (1 << n); i++)
+//         dp[i] = -INT_MAX;
+//     dp[0] = 0;
+
+//     for (int i = 1; i < (1 << n); i++)
+//     {
+//         int cnt = getcnt(i);
+//         for (int j = 1; j <= n; j++)
+//             if (i & (1 << (j - 1)))
+//             {
+//                 int pre = i ^ (1 << (j - 1));
+//                 if (dp[pre] == -INT_MAX)
+//                     continue;
+//                 if ((pre & k[j]) == k[j])
+//                 {
+//                     dp[i] = max(dp[i], dp[pre] + cnt * a[j] + b[j]);
+//                     ans = max(dp[i], ans);
+//                 }
+//             }
+//     }
+
+//     cout << ans << '\n';
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 10;
+// int n, k, dp[N][1 << N][N * N];
+// vector<array<int, 2>> line;
+
+// int getcnt(int x)
+// {
+//     int ret = 0;
+//     while (x)
+//     {
+//         ret++;
+//         x &= (x - 1);
+//     }
+//     return ret;
+// }
+
+// bool okLine(int n)
+// {
+//     return (!(n & (n << 1)));
+// }
+
+// bool isOk(int a, int b)
+// {
+//     return (!(a & b)) && (!((a << 1) & b)) && (!(a & (b << 1)));
+// }
+
+// signed main()
+// {
+//     cin >> n >> k;
+//     line.reserve(1 << N);
+//     for (int i = 0; i < (1 << n); i++)
+//     {
+//         int cnt = getcnt(i);
+//         if (okLine(i) && cnt <= k)
+//             line.push_back({i, cnt});
+//     }
+
+//     for (auto [l, s] : line)
+//         dp[1][l][s] = 1;
+
+//     for (int i = 2; i <= n; i++)
+//         for (auto [l, s] : line)
+//             for (auto [lpre, spre] : line)
+//                 if (spre + s <= k && isOk(l, lpre))
+//                     for (int j = 0; j + s + spre <= k; j++)
+//                         dp[i][l][s + spre + j] += dp[i - 1][lpre][spre + j];
+
+//     int ans = 0;
+//     for (auto [l, s] : line)
+//         ans += dp[n][l][k];
+//     cout << ans << '\n';
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int inf = 0x3f3f3f3f;
+// const int N = 38;
+// int n, m, w[N], mult[N], c[N], dis[N][N], dp[N][(1 << (N / 2))], nc, par[N], ans[N];
+// vector<int> idx;
+
+// void dfs(int u, int fa, int i)
+// {
+//     par[u] = fa;
+//     if (mult[idx[c[u]]])
+//     {
+//         if (i & (1 << c[u]))
+//         {
+//             dp[u][i] = max(dp[fa][i], dp[u][i]);
+//             ans[u] = max(dp[u][i], ans[u]);
+//         }
+//         else
+//         {
+//             dp[u][i + (1 << c[u])] = max(dp[u][i + (1 << c[u])], dp[fa][i] + w[idx[c[u]]]);
+//             ans[u] = max(dp[u][i + (1 << c[u])], ans[u]);
+//         }
+//     }
+//     else
+//     {
+//         dp[u][i + (1 << c[u])] = max(dp[u][i + (1 << c[u])], dp[fa][i] + w[idx[c[u]]]);
+//         ans[u] = max(dp[u][i + (1 << c[u])], ans[u]);
+//     }
+// }
+
+// signed main()
+// {
+//     memset(dis, 0x3f, sizeof(dis));
+//     cin >> n >> m;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         dis[i][i] = 0;
+//         cin >> c[i];
+//         idx.push_back(c[i]);
+//     }
+//     for (int i = 1; i <= n; i++)
+//         cin >> w[i];
+
+//     sort(idx.begin(), idx.end());
+//     for (int i = 1; i < n; i++)
+//         if (idx[i] == idx[i + 1])
+//             mult[idx[i]] = 1;
+//     idx.erase(unique(idx.begin(), idx.end()), idx.end());
+//     nc = idx.size();
+
+//     for (int i = 1; i <= n; i++)
+//         c[i] = lower_bound(idx.begin(), idx.end(), c[i]) - idx.begin();
+
+//     for (int i = 1, u, v; i <= m; i++)
+//     {
+//         cin >> u >> v;
+//         dis[u][v] = dis[v][u] = 1;
+//     }
+
+//     for (int i = 1; i <= n; i++)
+//         for (int j = 1; i <= n; j++)
+//             for (int k = 1; k <= n; k++)
+//                 if (dis[i][j] && dis[i][k] && dis[k][j])
+//                     dis[i][j] = 0;
+
+//     dfs(1, 0, 0);
+
+//     for (int i = 1; i <= n; i++)
+//         cout << ans[i] << '\n';
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// double ans, m, n;
+
+// signed main()
+// {
+//     cin >> m >> n;
+//     for (double i = 1; i <= m; i++)
+//         ans += i * ((pow(i / m, n) - pow((i - 1) / m, n)));
+//     printf("%lf", ans);
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 38;
+// int n, m, c[N], w[N], dp[N][1 << (N >> 1)], cnt[N], d[N][N], cid[N], ans[N];
+// vector<int> idx;
+// vector<int> vec[N];
+
+// void dfs(int u, int fa, int i)
+// {
+//     if (cnt[c[u]] > 1)
+//     {
+//         if (i & (1 << cid[u]))
+//         {
+//             dp[u][i] = max(dp[u][i], dp[fa][i]);
+//         }
+//         else
+//         {
+//             dp[u][i + (1 << cid[u])] = max(dp[u][i + (1 << cid[u])], dp[fa][i] + w[c[u]]);
+//             i = i + (1 << cid[u]);
+//         }
+//     }
+//     else
+//     {
+//         dp[u][i] = max(dp[u][i], dp[fa][i] + w[c[u]]);
+//     }
+//     ans[u] = max(ans[u], dp[u][i]);
+//     for (auto v : vec[u])
+//         if (v > u)
+//             dfs(v, u, i);
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> c[i];
+//         cnt[c[i]]++;
+//     }
+//     for (int i = 1; i <= n; i++)
+//         cin >> w[i];
+
+//     for (int i = 1; i <= n; i++)
+//         if (cnt[c[i]] > 1)
+//             idx.push_back(c[i]);
+
+//     sort(idx.begin(), idx.end());
+//     idx.erase(idx.begin(), idx.end());
+
+//     for (int i = 1; i <= n; i++)
+//         if (cnt[c[i]] > 1)
+//             cid[i] = lower_bound(idx.begin(), idx.end(), c[i]) - idx.begin();
+
+//     for (int i = 1, u, v; i <= m; i++)
+//     {
+//         cin >> u >> v;
+//         d[u][v] = 1;
+//     }
+
+//     for (int i = 1; i <= n; i++)
+//         for (int j = i + 1; j <= n; j++)
+//             for (int k = j + 1; k <= n; k++)
+//                 if (d[i][k] && d[i][j] && d[j][k])
+//                     d[i][k] = 0;
+
+//     for (int i = 1; i <= n; i++)
+//         for (int j = i + 1; j <= n; j++)
+//             if (d[i][j])
+//                 vec[i].push_back(j);
+
+//     dfs(1, 0, 0);
+
+//     for (int i = 1; i <= n; i++)
+//         cout << ans[i] << '\n';
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e4 + 10;
+// int n, a[N], cnt, cut;
+// vector<int> t[N];
+// unordered_map<int, int> pos;
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n;
+//     for (int i = 1, k; i <= n; i++)
+//     {
+//         cin >> k;
+//         t[i].resize(k + 1);
+//         for (int j = 1; j <= k; j++)
+//             cin >> t[i][j], a[++cnt] = t[i][j];
+//     }
+//     sort(a + 1, a + 1 + cnt);
+//     for (int i = 1; i <= cnt; i++)
+//         pos[a[i]] = i;
+
+//     for (int i = 1; i <= n; i++)
+//     {
+//         for (int j = 1, siz = t[i].size(); j < siz - 1; j++)
+//             if (t[i][j] > t[i][j + 1] || pos[t[i][j]] + 1 != pos[t[i][j + 1]])
+//                 cut++;
+//     }
+
+//     cout << cut << ' ' << cut + n - 1;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, m[N], k[N], mxt, mxm[30];
+// double mx;
+// double val[N];
+// vector<int> idx;
+// unordered_map<int, int> mp;
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cout.tie(0);
+//     cin.tie(0);
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> m[i] >> k[i];
+//         idx.push_back(m[i]);
+//     }
+//     sort(idx.begin(), idx.end());
+//     idx.erase(unique(idx.begin(), idx.end()), idx.end());
+
+//     for (int t = 1; t <= 20; t++)
+//     {
+//         memset(val, 0, sizeof(val));
+//         for (int i = 1; i <= n; i++)
+//             val[m[i]] += min(1.0, (double)k[i] / (double)t);
+//         vector<pair<double, int>> vec;
+//         for (int i = 1; i < N; i++)
+//             vec.push_back({val[i], i});
+
+//         sort(vec.begin(), vec.end(), [](pair<double, int> e1, pair<double, int> e2) -> int
+//              { return e1.first > e2.first; });
+//         double tmp = 0;
+//         for (int i = 0; i < t; i++)
+//             tmp += vec[i].first;
+
+//         if (mx < tmp)
+//         {
+//             mx = tmp;
+//             mxt = t;
+//             for (int i = 0; i < t; i++)
+//                 mxm[i] = vec[i].second;
+//         }
+//     }
+
+//     cout << mxt << '\n';
+//     for (int i = 0; i < mxt; i++)
+//         cout << mxm[i] << ' ';
+
+//     return 0;
+// }
