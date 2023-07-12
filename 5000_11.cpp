@@ -2115,3 +2115,318 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n;
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cout.tie(0);
+//     cin.tie(0);
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         int a, b;
+//         cin >> a >> b;
+//         if (a > 1)
+//             cout << "1\n";
+//         else // a = 1
+//         {
+//             if (b == 2)
+//                 cout << "3\n";
+//             else
+//                 cout << "2\n";
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int a[N];
+
+// bool isprime[N];
+// int prime[N]; // 现在已经筛出的素数列表
+// int n;        // 上限，即筛出<=n的素数
+// int cnt;
+
+// void euler()
+// {
+//     memset(isprime, true, sizeof(isprime)); // 先全部标记为素数
+//     isprime[1] = false;                     // 1不是素数
+//     for (int i = 2; i <= n; ++i)            // i从2循环到n（外层循环）
+//     {
+//         if (isprime[i])
+//             prime[++cnt] = i;
+//         // 如果i没有被前面的数筛掉，则i是素数
+//         for (int j = 1; j <= cnt && i * prime[j] <= n; ++j)
+
+//         {
+//             isprime[i * prime[j]] = false;
+//             // 倍数标记为合数，也就是i用prime[j]把i * prime[j]筛掉了
+//             if (i % prime[j] == 0)
+//                 break;
+//         }
+//     }
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cout.tie(0);
+//     cin.tie(0);
+//     n = N;
+//     euler();
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+//         int q = 1, p = n;
+//         for (int i = 1; i <= n; i++)
+//             if (isprime[i])
+//             {
+//                 if (i & 1)
+//                     a[p--] = i;
+//                 else
+//                     a[q++] = i;
+//             }
+//         for (int i = n; i >= 1; i--)
+//             if (!isprime[i])
+//                 if (i & 1)
+//                     a[p--] = i;
+//                 else
+//                     a[q++] = i;
+
+//         for (int i = 1; i <= n; i++)
+//             cout << a[i] << ' ';
+//         cout << '\n';
+//     }
+//     // n = 20;
+//     // euler();
+//     // for (int i = 1; i <= 20; i++)
+//     //     if (isprime[i])
+//     //         cout << i << ' ';
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int a[N], n, dp[N], last[2];
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cout.tie(0);
+//     cin.tie(0);
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+//         for (int i = 1; i <= n; i++)
+//             cin >> a[i], dp[i] = a[i];
+//         int ans = a[1];
+//         dp[0] = -INT_MAX;
+//         last[0] = last[1] = 0;
+//         last[1] = max(last[1], a[1]);
+//         for (int i = 2; i <= n; i++)
+//         {
+//             dp[i] = max(dp[i], last[i & 1] + a[i]);
+//             last[i & 1] = max(last[i & 1], dp[i]);
+//             ans = max(ans, dp[i]);
+//         }
+//         // for (int i = 1; i <= n; i++)
+//         //     cout << dp[i] << ' ';
+//         cout << ans << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// int n, k;
+
+// void solve()
+// {
+//     cin >> n;
+//     k = n;
+//     for (int i = 2; i < n; i++)
+//         if (n % i)
+//         {
+//             k = i;
+//             break;
+//         }
+//     int c = 0;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cout << (char)('a' + c++);
+//         c %= k;
+//     }
+//     cout << '\n';
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int a[N], n;
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cout.tie(0);
+//     cin.tie(0);
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         cin >> n;
+//         int mx = -INT_MAX;
+//         for (int i = 1; i <= n; i++)
+//             cin >> a[i], mx = max(mx, a[i]);
+//         if (mx <= 0)
+//         {
+//             cout << mx << '\n';
+//             continue;
+//         }
+//         int ans[2] = {0};
+//         for (int i = 1; i <= n; i++)
+//             ans[i & 1] += max(0ll, a[i]);
+
+//         cout << max(ans[0], ans[1]) << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int a[N], n;
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cout.tie(0);
+//     cin.tie(0);
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         string s;
+//         cin >> n >> s;
+//         s = ' ' + s;
+//         int len = 1;
+//         cout << "1 ";
+//         for (int i = 2; i < n; i++)
+//         {
+//             if (s[i] == s[i - 1])
+//                 len++;
+//             else
+//                 len = 1;
+//             cout << i - len + 1 << ' ';
+//         }
+//         cout << '\n';
+//     }
+
+//     return 0;
+// }
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+const int N = 2e5 + 10;
+int n, m;
+vector<int> vec[N];
+
+void solve()
+{
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++)
+    {
+        vec[i].resize(m + 1);
+        for (int j = 1; j <= m; j++)
+            cin >> vec[i][j];
+    }
+
+    int ql = 1, qr = 1;
+    for (int i = 1; i <= n && ql == qr; i++)
+    {
+        for (int j = 1; j < m && ql == qr; j++)
+        {
+            if (vec[i][j] > vec[i][j + 1])
+            {
+                int r = m;
+                for (int k = j + 2; k <= m; k++)
+                    if (vec[i][k] > vec[i][j + 1])
+                    {
+                        r = k - 1;
+                        break;
+                    }
+                swap(vec[i][j], vec[i][r]);
+                if (!is_sorted(vec[i].begin() + 1, vec[i].end()))
+                {
+                    cout << "-1\n";
+                    return;
+                }
+                ql = j;
+                qr = r;
+                swap(vec[i][ql], vec[i][qr]);
+            }
+        }
+    }
+    if (ql == qr)
+    {
+        cout << ql << ' ' << qr << '\n';
+        return;
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        swap(vec[i][ql], vec[i][qr]);
+        if (!is_sorted(vec[i].begin() + 1, vec[i].end()))
+        {
+            cout << "-1\n";
+            return;
+        }
+    }
+    cout << ql << ' ' << qr << '\n';
+}
+
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cout.tie(0);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
+
+    return 0;
+}
