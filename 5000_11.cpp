@@ -2654,3 +2654,230 @@
 //         solve();
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+// void solve()
+// {
+//     cin >> n >> m;
+//     int ans = 0;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     priority_queue<int, vector<int>, less<int>> q;
+//     int sum = 0;
+//     // if (m > 1)
+//     for (int i = m; i >= 2; i--)
+//     {
+//         sum += a[i];
+//         // if (a[i] > 0)
+//         q.push(a[i]);
+//         if (sum > 0)
+//         {
+//             ans++;
+//             sum -= 2 * q.top();
+//             q.pop();
+//         }
+//     }
+//     priority_queue<int, vector<int>, greater<int>> p;
+//     sum = 0;
+//     for (int i = m + 1; i <= n; i++)
+//     {
+//         sum += a[i];
+//         // if (a[i] < 0)
+//         p.push(a[i]);
+//         if (sum < 0)
+//         {
+//             ans++;
+//             sum -= p.top() * 2;
+//             p.pop();
+//         }
+//     }
+//     cout << ans << '\n';
+// }
+
+// signed main()
+// {
+//     int t = 0;
+//     cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 5;
+// int n;
+
+// void solve()
+// {
+//     cin >> n;
+//     vector<int> a(n + 1);
+//     vector<int> last(n + 1, -INT_MAX);
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     vector<int> dp(a);
+
+//     for (int i = 1; i <= n; i++)
+//     {
+//         dp[i] = max(dp[i - 1], last[a[i]] + i + 1);
+//         last[a[i]] = max(last[a[i]], dp[i - 1] - i);
+//     }
+
+//     cout << dp[n] << '\n';
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 5;
+// int n;
+
+// void solve()
+// {
+//     cin >> n;
+//     vector<int> a(n + 1);
+//     vector<int> last(n + 1, -INT_MAX);
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     vector<int> dp(a);
+
+//     for (int i = 1; i <= n; i++)
+//     {
+//         dp[i] = max(dp[i - 1], last[a[i]] + i + 1);
+//         last[a[i]] = max(last[a[i]], dp[i - 1] - i);
+//     }
+
+//     cout << dp[n] << '\n';
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define all(a) a.begin(), a.end()
+// #define int long long
+// const int N = 5e5 + 10;
+// int n, tr[N << 2];
+
+// void up(int id)
+// {
+//     tr[id] = max(tr[id << 1], tr[id << 1 | 1]);
+// }
+
+// void change(int id, int l, int r, int x, int v)
+// {
+//     if (l == r)
+//     {
+//         tr[id] = max(tr[id], v);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if (x <= mid)
+//         change(id << 1, l, mid, x, v);
+//     else
+//         change(id << 1 | 1, mid + 1, r, x, v);
+//     up(id);
+// }
+
+// int query(int id, int l, int r, int ql, int qr)
+// {
+//     if (ql > qr)
+//         return -INT_MAX;
+//     if (ql <= l && r <= qr)
+//         return tr[id];
+//     int mid = l + r >> 1;
+//     if (qr <= mid)
+//         return query(id << 1, l, mid, ql, qr);
+//     else if (ql > mid)
+//         return query(id << 1 | 1, mid + 1, r, ql, qr);
+//     else
+//         return max(query(id << 1, l, mid, ql, qr), query(id << 1 | 1, mid + 1, r, ql, qr));
+// }
+
+// void build(int id, int l, int r)
+// {
+//     if (l == r)
+//     {
+//         tr[id] = -INT_MAX;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(id << 1, l, mid);
+//     build(id << 1 | 1, mid + 1, r);
+//     up(id);
+// }
+
+// void init()
+// {
+//     build(1, 1, n);
+// }
+
+// void solve()
+// {
+//     cin >> n;
+//     // init();
+//     vector<int> a(n + 1);
+//     vector<int> pre(n + 1);
+//     vector<int> vs;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         pre[i] = pre[i - 1] + a[i];
+//         vs.push_back(pre[i]);
+//     }
+//     vs.push_back(0);
+
+//     sort(all(vs));
+//     vs.erase(unique(all(vs)), vs.end());
+//     int siz = vs.size();
+//     build(1, 1, siz);
+//     vector<int> pre_idx(pre);
+//     for (int i = 1; i <= n; i++)
+//         pre_idx[i] = lower_bound(all(vs), pre[i]) - vs.begin() + 1;
+
+//     vector<int> f(n + 1);
+//     change(1, 1, siz, lower_bound(all(vs), 0) - vs.begin() + 1, 0);
+//     for (int i = 1; i <= n; i++)
+//     {
+//         int tmp = query(1, 1, siz, 1, pre_idx[i] - 1);
+//         // cout << tmp << '\n';
+//         f[i] = max(f[i - 1] - 1, i + tmp);
+//         if (a[i] == 0)
+//             f[i] = max(f[i], f[i - 1]);
+//         change(1, 1, siz, pre_idx[i], f[i] - i);
+//     }
+
+//     cout << f[n] << "\n";
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
