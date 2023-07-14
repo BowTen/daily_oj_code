@@ -3210,3 +3210,121 @@
 
 //     return 0;
 // }
+
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+// #define int long long
+// const int N = 1010;
+// int sg[N];
+// vector<int> op;
+
+// void getsg()
+// {
+//     op.push_back(1);
+//     for (int i = 2; i < N; i *= 2)
+//         op.push_back(i);
+
+//     for (int i = 1; i < N; i++)
+//     {
+//         vector<bool> ne(N, false);
+//         for (auto p : op)
+//         {
+//             if (p > i)
+//                 break;
+//             ne[sg[i - p]] = true;
+//         }
+//         for (int j = 0; j < N; j++)
+//             if (!ne[j])
+//             {
+//                 sg[i] = j;
+//                 break;
+//             }
+//     }
+// }
+
+// signed main()
+// {
+//     getsg();
+//     int n;
+//     while (cin >> n)
+//         // for (int i = 0; i <= n; i++)
+//         // cout << i << ' ' << sg[i] << '\n';
+//         cout << (sg[n] ? "Kiki\n" : "Cici\n");
+//     return 0;
+// }
+
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+// #define int long long
+// const int N = 3e5 + 10;
+// int n, p, a[N], sg[N];
+
+// void getsg()
+// {
+//     vector<int> op;
+//     if (p == 1)
+//         op.push_back(1);
+//     else
+//         for (int i = 1; i <= 110; i *= p)
+//         {
+//             op.push_back(i);
+//             // cout << i << " ";
+//         }
+//     for (int i = 1; i <= 100; i++)
+//     {
+//         vector<bool> st(n + 1, false);
+
+//         for (auto pp : op)
+//             if (pp <= i)
+//                 st[sg[i - pp]] = true;
+//             else
+//                 break;
+//         for (int j = 0; j <= n; j++)
+//             if (!st[j])
+//             {
+//                 sg[i] = j;
+//                 break;
+//             }
+//     }
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//     cin >> n >> p;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     if (p & 1)
+//     {
+//         int xo = 0;
+//         for (int i = 1; i <= n; i++)
+//             if (a[i] & 1)
+//                 xo ^= 1;
+//         cout << (xo ? "GOOD" : "BAD");
+//     }
+//     else
+//     {
+
+//         int xo = 0;
+//         for (int i = 1; i <= n; i++)
+//         {
+//             int mod = a[i] % (p + 1);
+//             if (mod == p)
+//                 xo ^= 2;
+//             else if (mod & 1)
+//                 xo ^= 1;
+//         }
+//         cout << (xo ? "GOOD" : "BAD");
+//     }
+
+//     // getsg();
+//     // int xo = 0;
+//     // for (int i = 0; i <= n; i++)
+//     //     cout << i << ' ' << sg[i] << '\n';
+//     // xo ^= sg[i];
+//     // cout << (xo ? "GOOD" : "BAD");
+
+//     return 0;
+// }
