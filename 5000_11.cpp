@@ -2881,3 +2881,332 @@
 //         solve();
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define all(a) a.begin(), a.end()
+// #define int long long
+// const int N = 5e5 + 10;
+// int n, tr[N];
+
+// int lowbit(int x)
+// {
+//     return x & -x;
+// }
+
+// void change(int x, int v)
+// {
+//     while (x < N)
+//     {
+//         if (v > tr[x])
+//             tr[x] = v;
+//         else
+//             return;
+//         x += lowbit(x);
+//     }
+// }
+
+// int query(int x)
+// {
+//     int ret = -INT_MAX;
+//     while (x)
+//     {
+//         ret = max(ret, tr[x]);
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void solve()
+// {
+//     cin >> n;
+//     // init();
+//     vector<int> a(n + 1);
+//     vector<int> pre(n + 1);
+//     vector<int> vs;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         pre[i] = pre[i - 1] + a[i];
+//         vs.push_back(pre[i]);
+//     }
+//     vs.push_back(0);
+
+//     sort(all(vs));
+//     vs.erase(unique(all(vs)), vs.end());
+//     int siz = vs.size();
+//     for (int i = 0; i <= siz; i++)
+//         tr[i] = -INT_MAX;
+//     vector<int> pre_idx(pre);
+//     for (int i = 1; i <= n; i++)
+//         pre_idx[i] = lower_bound(all(vs), pre[i]) - vs.begin() + 1;
+
+//     vector<int> f(n + 1);
+//     change(lower_bound(all(vs), 0) - vs.begin() + 1, 0);
+//     for (int i = 1; i <= n; i++)
+//     {
+//         int tmp = query(pre_idx[i] - 1);
+//         f[i] = max(f[i - 1] - 1, i + tmp);
+//         if (a[i] == 0)
+//             f[i] = max(f[i], f[i - 1]);
+//         change(pre_idx[i], f[i] - i);
+//     }
+
+//     cout << f[n] << "\n";
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 3e5 + 10;
+// int n;
+
+// int getans(vector<int> a, int mx)
+// {
+//     int ans = 0, sum = 0, cnt = 0;
+//     for (auto &e : a)
+//     {
+//         e = mx - e;
+//         if (e & 1)
+//         {
+//             e--;
+//             cnt++;
+//         }
+//         sum += e;
+//     }
+//     if (sum <= (cnt - 1) * 2)
+//     {
+//         return (cnt * 2) - 1;
+//     }
+//     sum -= cnt * 2;
+//     ans += cnt * 2;
+//     ans += (sum / 3) * 2;
+//     if (sum % 3 == 0)
+//     {
+//     }
+//     else if (sum % 3 == 1)
+//     {
+//         ans++;
+//     }
+//     else
+//     {
+//         ans += 2;
+//     }
+//     return ans;
+// }
+
+// void solve()
+// {
+//     cin >> n;
+//     int cnt = 0, sum = 0, ans = 0, mx = 0;
+//     vector<int> a(n);
+//     for (auto &e : a)
+//     {
+//         cin >> e;
+//         mx = max(e, mx);
+//     }
+//     ans = min(getans(a, mx + 1), getans(a, mx));
+
+//     cout << ans << '\n';
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+
+// signed main()
+// {
+//     int n;
+//     while (cin >> n)
+//     {
+//         if (n % 3)
+//             cout << "Kiki\n";
+//         else
+//             cout << "Cici\n";
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define all(a) a.begin() + 1, a.end()
+// const int N = 2e5 + 10;
+
+// void solve()
+// {
+//     int n;
+//     cin >> n;
+//     vector<array<int, 2>> a(n + 1);
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i][0], a[i][1] = i;
+
+//     sort(all(a));
+
+//     vector<array<int, 2>> ans;
+
+//     int l = 1;
+//     while (1)
+//     {
+//         if (!a[n - 1][0])
+//             break;
+//         while (a[l][0] == 0)
+//             l++;
+//         a[l][0]--;
+//         a[n][0]--;
+//         ans.push_back({a[l][1], a[n][1]});
+//         if (a[n][0] < a[n - 1][0])
+//         {
+//             int ql = l, qr = n - 1;
+//             while (ql <= qr)
+//             {
+//                 int mid = ql + qr >> 1;
+//                 if (a[mid][0] < a[n - 1][0])
+//                     ql = mid + 1;
+//                 else
+//                     qr = mid - 1;
+//             }
+//             if (a[qr][0] != a[n - 1][0])
+//                 qr++;
+//             swap(a[n], a[qr]);
+//         }
+//     }
+
+//     cout << ans.size() << '\n';
+//     for (auto e : ans)
+//         cout << e[0] << ' ' << e[1] << '\n';
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// void solve()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> w(n);
+//     vector<int> b(n);
+//     for (auto &e : w)
+//         cin >> e;
+//     int sum = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> b[i];
+//         b[i] -= w[i] + 1;
+//         sum ^= b[i];
+//     }
+
+//     if (sum)
+//         cout << "white wins\n";
+//     else
+//         cout << "black wins\n";
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     for (int i = 1; i <= t; i++)
+//     {
+//         cout << "Case " << i << ": ";
+//         solve();
+//     }
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+// int a[110];
+
+// signed main()
+// {
+//     int n;
+//     while (scanf("%d", &n), n)
+//     {
+//         int xo = 0;
+//         for (int i = 0; i < n; i++)
+//             scanf("%d", &a[i]), xo ^= a[i];
+//         int ans = 0;
+//         for (int i = 0; i < n; i++)
+//             if ((a[i] ^ xo) < a[i])
+//                 ans++;
+//         printf("%d\n", ans);
+//     }
+//     return 0;
+// }
+
+// #include <iostream>
+// #include <cmath>
+// using namespace std;
+
+// signed main()
+// {
+//     int x, y;
+//     double k = (sqrt(5.0) + 1) / 2;
+//     while (scanf("%d %d", &x, &y), x && y)
+//     {
+//         if (x == (int)(k * (y - x)))
+//         {
+//             printf("0\n");
+//         }
+//         else
+//         {
+//             printf("1\n");
+//             int a = k * (y - x);
+//             int b = a + (y - x);
+//             if (x - a == y - b)
+//                 printf("%d %d\n", a, b);
+//             a = x;
+//             b = a * (k + 1.0) / k;
+//             if (b < y && a == (int)(k * (b - a)))
+//             {
+//                 printf("%d %d\n", a, b);
+//                 continue;
+//             }
+//             b = x;
+//             a = (b * k) / (k + 1.0);
+//             if (a < x && a == (int)(k * (b - a)))
+//             {
+//                 printf("%d %d\n", a, b);
+//                 continue;
+//             }
+
+//             b = y;
+//             a = (b * k) / (k + 1.0);
+//             if (a < x && a == (int)(k * (b - a)))
+//             {
+//                 printf("%d %d\n", a, b);
+//                 continue;
+//             }
+//         }
+//     }
+
+//     return 0;
+// }
