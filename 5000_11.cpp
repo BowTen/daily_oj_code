@@ -3328,3 +3328,170 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// signed main()
+// {
+//     long long  L, R;
+//     long long ans1 = 0, ans2 = 0;
+//     // scanf("%d", &n);
+//     long long  x, y;
+//     cin >> x >> y;
+//     x--;
+//     for (L = 1; L <= y; L = R + 1)
+//     {
+//         R = y / (y / L);
+//         ans2 += (y / L) * ((L + R) * (R - L + 1) / 2);
+//         // cout << L << '~' << R << ':' << y / L << '\n';
+//     }
+//     for (L = 1; L <= x; L = R + 1)
+//     {
+//         R = x / (x / L);
+//         ans1 += (x / L) * ((L + R) * (R - L + 1) / 2);
+//         // cout << L << '~' << R << ':' << y / L << '\n';
+//     }
+//     printf("%lld\n", ans2 - ans1);
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// int n, k;
+
+// signed main()
+// {
+//     cin >> n >> k;
+// int L = 1, R, mn = min(n, k), ans = 0, len, S;
+// for (L = 1; L <= mn; L = R + 1)
+// {
+//     // if (L > k)
+//     //     R = n;
+//     // else
+//     R = min(mn, k / (k / L));
+//     len = R - L + 1;
+//     S = k / L;
+//     ans += k * len - len * S * (L + R) / 2;
+// }
+//     if (n > k)
+//         ans += (n - k) * k;
+//     cout << ans;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// int n, m;
+
+// void solve()
+// {
+//     cin >> n >> m;
+//     if (m <= n)
+//     {
+//         cout << n - m << '\n';
+//         return;
+//     }
+
+//     int L = 1, R, ans = INT_MAX, len, S;
+//     for (L = 1; L <= n; L = R + 1)
+//     {
+//         R = min(n, m / (m / L));
+//         len = R - L + 1;
+//         S = m / L;
+//         ans = min({ans, (n - R) + ((m % R) ? (S + 1) * R - m : 0), (n - L) + (L - (m % L))});
+//     }
+//     cout << ans << '\n';
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <iostream>
+// // #include <algorithm>
+// using namespace std;
+// #define int long long
+// const int N = 2e5;
+// int n, k, a[N], ans = 0;
+
+// int gcd(int a, int b)
+// {
+//     return b ? gcd(b, a % b) : a;
+// }
+
+// int lcm(int a, int b)
+// {
+//     return a * b / gcd(a, b);
+// }
+
+// signed main()
+// {
+//     scanf("%lld %lld", &n, &k);
+//     for (int i = 1; i <= n; i++)
+//         scanf("%lld", &a[i]);
+
+//     for (int i = 1, mx = (1 << k); i < mx; i++)
+//     {
+//         int cnt = 0;
+//         int t = 1;
+//         for (int j = 1; j <= k; j++)
+//             if (i & (1 << (j - 1)))
+//             {
+//                 cnt++;
+//                 t = lcm(t, a[j]);
+//             }
+//         t = n / t;
+//         if (1 & cnt)
+//             ans += t;
+//         else
+//             ans -= t;
+//     }
+//     printf("%lld", n - ans);
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 20;
+// int n, k, a[N];
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n >> k;
+//     for (int i = 1; i <= k; i++)
+//         cin >> a[i];
+
+//     int ans = 0;
+//     for (int i = 1; i < (1 << k); i++)
+//     {
+//         int cnt = 0;
+//         int t = 1;
+//         for (int j = 1; j <= k; j++)
+//             if (i & (1 << (j - 1)))
+//             {
+//                 cnt++;
+//                 t = (t * a[j]) / __gcd(t, a[j]);
+
+//             }
+//         t = n / t;
+//         if (cnt & 1)
+//             ans += t;
+//         else
+//             ans -= t;
+//     }
+//     cout << n - ans;
+
+//     return 0;
+// }
