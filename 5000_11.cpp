@@ -3805,3 +3805,101 @@
 //     }
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, m, k;
+
+// void solve()
+// {
+//     int x, y;
+//     cin >> n >> m >> k >> x >> y;
+//     int f = 0;
+//     for (int i = 1, u, v; i <= k; i++)
+//     {
+//         cin >> u >> v;
+//         if ((abs(u - x) + abs(v - y)) % 2 == 0)
+//             f = 1;
+//         // cout << (abs(u - x) + abs(v - y)) << '\n';
+//     }
+//     if (f)
+//         cout << "NO\n";
+//     else
+//         cout << "YES\n";
+// }
+
+// signed main()
+// {
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int k, n, c[N], mx[N], last[N], sd[N];
+
+// void pt()
+// {
+//     for (int i = 1; i <= k; i++)
+//         cout << mx[i] << ' ';
+//     cout << '\n';
+//     for (int i = 1; i <= k; i++)
+//         cout << sd[i] << ' ';
+//     cout << '\n';
+// }
+
+// void solve()
+// {
+//     cin >> n >> k;
+//     for (int i = 1; i <= n; i++)
+//         cin >> c[i];
+
+//     int ans = INT_MAX;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         if (i - last[c[i]] - 1 > mx[c[i]])
+//         {
+//             sd[c[i]] = mx[c[i]];
+//             mx[c[i]] = i - last[c[i]] - 1;
+//         }
+//         else
+//             sd[c[i]] = max(sd[c[i]], i - last[c[i]] - 1);
+//         last[c[i]] = i;
+//     }
+//     for (int i = 1; i <= k; i++)
+//         if (n - last[i] > mx[i])
+//         {
+//             sd[i] = mx[i];
+//             mx[i] = n - last[i];
+//         }
+//         else
+//             sd[i] = max(sd[i], n - last[i]);
+//     // pt();
+//     for (int i = 1; i <= k; i++)
+//         mx[i] = max(sd[i], mx[i] / 2);
+
+//     for (int i = 1; i <= k; i++)
+//         ans = min(ans, mx[i]);
+
+//     cout << ans << '\n';
+//     for (int i = 1; i <= k; i++)
+//         mx[i] = last[i] = sd[i] = 0;
+// }
+
+// signed main()
+// {
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
