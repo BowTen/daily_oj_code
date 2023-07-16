@@ -3495,3 +3495,313 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 22;
+// int m, n, k, sum, C[404][404];
+// const int mod = 1000007;
+
+// void init()
+// {
+//     for (int i = 1; i <= 400; i++)
+//     {
+//         C[i][0] = C[i][i] = 1;
+//         for (int j = 1; j < i; j++)
+//             C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % mod;
+//     }
+// }
+
+// void solve()
+// {
+//     cin >> m >> n >> k;
+//     sum = m * n;
+//     int all = C[sum][k];
+// }
+
+// signed main()
+// {
+//     init();
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 110;
+// int n, p, q, D[N];
+
+// void solve()
+// {
+//     cin >> n >> p >> q;
+//     int mn = INT_MAX;
+//     for (int i = 1; i <= n; i++)
+//         cin >> D[i], mn = min(mn, D[i]);
+//     if (mn + q < p)
+//         cout << mn + q;
+//     else
+//         cout << p;
+// }
+
+// signed main()
+// {
+
+//     int t = 1;
+//     // cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// const int N = 110;
+// int n, m;
+
+// struct node
+// {
+//     int pric;
+//     int siz;
+//     bool func[N];
+// } p[N];
+
+// void solve()
+// {
+//     cin >> n >> m;
+//     for (int i = 1, c; i <= n; i++)
+//     {
+//         cin >> p[i].pric >> p[i].siz;
+//         for (int j = 0, tmp; j < p[i].siz; j++)
+//             cin >> tmp, p[i].func[tmp] = 1;
+//     }
+//     sort(p + 1, p + 1 + n, [](node e1, node e2) -> int
+//          { return e1.pric < e2.pric; });
+
+//     for (int i = 1; i <= n; i++)
+//     {
+//         for (int j = i + 1; j <= n; j++)
+//         {
+//             bool isok = true;
+//             if (p[i].pric == p[j].pric) // 价格相同
+//             {
+//                 bool mor = false;
+//                 for (int f = 1; f <= m; f++)
+//                 {
+//                     if (p[j].func[f] && (!p[i].func[f]))
+//                     {
+//                         isok = false;
+//                         break;
+//                     }
+//                     if (p[i].func[f])
+//                         if (!p[j].func[f])
+//                             mor = true;
+//                 }
+//                 // cout << p[i].func[1] << ' ' << p[i].func[2] << ' ' << p[j].func[1] << ' ' << p[j].func[2];
+//                 if (isok)
+//                     isok = mor;
+//             }
+//             else // 价格不同
+//             {
+//                 for (int f = 1; f <= m; f++)
+//                 {
+//                     if (p[j].func[f] && (!p[i].func[f]))
+//                     {
+//                         isok = false;
+//                         break;
+//                     }
+//                 }
+//             }
+//             if (isok)
+//             {
+//                 cout << "Yes";
+//                 return;
+//             }
+//         }
+//     }
+//     cout << "No";
+// }
+
+// signed main()
+// {
+
+//     int t = 1;
+//     // cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// const int N = 2e5;
+// int n, m;
+// unordered_map<string, bool> mp;
+
+// void solve()
+// {
+//     cin >> n;
+//     string s;
+//     int cnt = 0;
+//     while (n--)
+//     {
+//         cin >> s;
+//         if (mp[s])
+//             continue;
+//         reverse(s.begin(), s.end());
+//         if (mp[s])
+//             continue;
+//         mp[s] = true;
+//         ++cnt;
+//     }
+//     cout << cnt;
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     int t = 1;
+//     // cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// const int N = 12;
+// int n, m, t, no[N][N], ans, te[N][N];
+
+// void dfs(int team, int all)
+// {
+//     if()
+// }
+
+// void solve()
+// {
+//     cin >> n >> t >> m;
+//     while (m--)
+//     {
+//         int a, b;
+//         cin >> a >> b;
+//         no[a][b] = 1;
+//         no[b][a] = 1;
+//     }
+//     dfs(1, 0);
+//     cout << ans;
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// int n;
+// string s;
+
+// void solve()
+// {
+//     cin >> n >> s;
+//     int ans = 0;
+//     int last = 0;
+//     if (s[0] == '1')
+//         ans++, last = 1;
+//     for (int i = 1; i < n; i++)
+//     {
+//         if (s[i] == '0')
+//         {
+//             ans += i;
+//             last = i;
+//         }
+//         else
+//         {
+//             int tmp = ans;
+//             ans++;
+//             ans += i - last;
+//             // if (s[i - 1] == '0')
+//             //     ans++;
+//             last = ans - tmp;
+//         }
+//         // cout << ans << ' ';
+//     }
+//     cout << ans;
+// }
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 22;
+// int m, n, k, sum, C[404][404];
+// const int mod = 1000007;
+
+// void init()
+// {
+//     for (int i = 1; i <= 400; i++)
+//     {
+//         C[i][0] = C[i][i] = 1;
+//         for (int j = 1; j < i; j++)
+//             C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % mod;
+//     }
+// }
+
+// void solve()
+// {
+//     cin >> m >> n >> k;
+//     sum = m * n;
+//     int all = C[sum][k];
+//     all = (all - 2 * C[(m - 1) * n][k] - 2 * C[(n - 1) * m][k] + 4 * mod) % mod;
+//     all = (all + C[(m - 2) * n][k] + C[(n - 2) * m][k] + C[(n - 1) * (m - 1)][k] * 4 + 6 * mod) % mod;
+//     all = (all - 2 * C[(m - 1) * (n - 2)][k] - C[(m - 2) * (n - 1)][k] * 2 + 4 * mod) % mod;
+//     all = (all + C[(n - 2) * (m - 2)][k] + mod) % mod;
+//     // all = (all - 2 * C[sum - m][k] - 2 * C[sum - n][k]) % mod;
+//     // all = (all + C[sum - 2 * n][k] + C[sum - 2 * m][k] + C[sum - m - n + 1][k] * 4) % mod;
+//     // all = (all - 2 * C[sum - 2 * n - m + 2][k] - C[sum - 2 * m - n + 2][k] * 2) % mod;
+//     // all = (all + C[(n - 2) * (m - 2)][k]) % mod;
+//     cout << all << '\n';
+// }
+
+// signed main()
+// {
+//     init();
+//     int t;
+//     cin >> t;
+//     for (int i = 1; i <= t; i++)
+//     {
+//         cout << "Case " << i << ": ";
+//         solve();
+//     }
+//     return 0;
+// }
