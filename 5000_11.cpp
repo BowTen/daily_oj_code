@@ -3903,3 +3903,1163 @@
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 5e5 + 5;
+// const int M = 5e6 + 5;
+// int n, m;
+// int idx = 0, sccnt, top;
+// vector<pair<int, int>> e;
+// int dfn[N], low[N], scc[N], sta[N];
+// int etot;
+// struct edge
+// {
+//     int y, nxt;
+// } g[M];
+// int head[N];
+
+// void add(int x, int y)
+// {
+//     ++etot;
+//     g[etot].y = y;
+//     g[etot].nxt = head[x];
+//     head[x] = etot;
+// }
+
+// void tarjan(int x)
+// {
+//     dfn[x] = low[x] = ++idx;
+//     sta[++top] = x;
+//     for (int i = head[x]; i; i = g[i].nxt)
+//     {
+//         int y = g[i].y;
+//         if (!dfn[y])
+//         {
+//             tarjan(y);
+//             low[x] = min(low[x], low[y]);
+//         }
+//         else if (!scc[y])
+//             low[x] = min(low[x], low[y]);
+//     }
+//     if (dfn[x] == low[x])
+//     {
+//         sccnt++;
+//         while (sta[top] != x)
+//         {
+//             scc[sta[top]] = sccnt;
+//             top--;
+//         }
+//         scc[sta[top]] = sccnt;
+//         top--;
+//     }
+// }
+
+// set<pair<int, int>> qc;
+
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n >> m;
+//     for (int i = 1; i <= m; i++)
+//     {
+//         int x, y;
+//         cin >> x >> y;
+//         e.push_back({x, y});
+//         add(x, y);
+//     }
+//     for (int i = 1; i <= n; i++)
+//         if (!dfn[i])
+//             tarjan(i);
+//     for (int i = 1; i <= n; i++)
+//     {
+//         g[i].y = 0;
+//         g[i].nxt = 0;
+//     }
+//     for (int i = 0; i <= etot + 2; i++)
+//         head[i] = 0;
+//     etot = 0;
+//     for (int i = 0; i < e.size(); i++)
+//     {
+//         int x = e[i].first, y = e[i].second;
+//         x = scc[x];
+//         y = scc[y];
+//         if (x == y || x == 0 || y == 0)
+//             continue;
+//         if (qc.count({x, y}) == 0)
+//         {
+//             add(x, y);
+//             qc.insert({x, y});
+//         }
+//     }
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e4 + 10;
+// const int M = 1e5 + 10;
+// int n, m, a[N], tot, dfn[N], low[N], idx, scc[N], cnt, st[N], top, val[N], vis[N];
+// struct node
+// {
+//     int to, ne;
+// } edge[M];
+// int head[N];
+// void add(int u, int v)
+// {
+//     ++tot;
+//     edge[tot].to = v;
+//     edge[tot].ne = head[u];
+//     head[u] = tot;
+// }
+// list<array<int, 2>> G;
+
+// void tarjan(int u)
+// {
+//     dfn[u] = low[u] = ++idx;
+//     st[++top] = u;
+//     for (int i = head[u]; i; i = edge[i].ne)
+//     {
+//         int v = edge[i].to;
+//         if (!dfn[v])
+//         {
+//             tarjan(v);
+//             low[u] = min(low[u], low[v]);
+//         }
+//         else if (!scc[v])
+//         {
+//             low[u] = min(low[v], low[u]);
+//         }
+//     }
+//     if (low[u] == dfn[u])
+//     {
+//         cnt++;
+//         while (st[top] != u)
+//         {
+//             scc[st[top]] = cnt;
+//             val[cnt] += a[st[top]];
+//             top--;
+//         }
+//         scc[st[top]] = cnt;
+//         val[cnt] += a[st[top]];
+//         top--;
+//     }
+// }
+
+// set<array<int, 2>> new_edge;
+// void clear_edge()
+// {
+//     for (int i = 1; i <= n; i++)
+//         head[i] = 0;
+//     tot = 0;
+// }
+
+// void dfs(int u)
+// {
+//     vis[u] = 1;
+//     int mx = 0;
+//     for (int i = head[u]; i; i = edge[i].ne)
+//     {
+//         if (!vis[edge[i].to])
+//             dfs(edge[i].to);
+//         mx = max(mx, val[edge[i].to]);
+//     }
+//     val[u] += mx;
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+
+//     for (int i = 1, u, v; i <= m; i++)
+//     {
+//         cin >> u >> v;
+//         add(u, v);
+//         G.push_back({u, v});
+//     }
+
+//     for (int i = 1; i <= n; i++)
+//         if (!dfn[i])
+//             tarjan(i);
+
+//     clear_edge();
+//     for (int i = 0, siz = G.size(); i < siz; i++)
+//     {
+//     }
+//     for (auto [u, v] : G)
+//     {
+//         u = scc[u];
+//         v = scc[v];
+//         if (u == v || !u || !v)
+//             continue;
+//         if (new_edge.count({u, v}) == 0)
+//         {
+//             add(u, v);
+//             new_edge.insert({u, v});
+//         }
+//     }
+
+//     int ans = 0;
+//     for (int i = 1; i <= cnt; i++)
+//         if (!vis[i])
+//         {
+//             dfs(i);
+//             ans = max(ans, val[i]);
+//         }
+
+//     cout << ans;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 210;
+// const int M = 2010;
+// int n, m;
+
+// // 链式前向星
+// struct node
+// {
+//     int to, ne;
+// } edge[M];
+// int head[N], tot;
+// void add(int u, int v)
+// {
+//     tot++;
+//     edge[tot].to = v;
+//     edge[tot].ne = head[u];
+//     head[u] = tot;
+// }
+
+// // tarjan
+// int scc[N], dfn[N], low[N], idx, cnt, st[N], top;
+// void tarjan(int u)
+// {
+//     low[u] = dfn[u] = ++idx;
+//     st[++top] = u;
+//     for (int i = head[u]; i; i = edge[i].ne)
+//     {
+//         int v = edge[i].to;
+//         if (!dfn[v])
+//         {
+//             tarjan(v);
+//             low[u] = min(low[u], low[v]);
+//         }
+//         else if (!scc[v])
+//             low[u] = min(low[u], low[v]);
+//     }
+//     if (low[u] == dfn[u])
+//     {
+//         cnt++;
+//         while (st[top] != u)
+//         {
+//             scc[st[top]] = cnt;
+//             top--;
+//         }
+//         scc[st[top]] = cnt;
+//         top--;
+//     }
+// }
+
+// int vis[N];
+
+// // void tarjan(int u)
+// // {
+// //     dfn[u] = low[u] = ++idx;
+// //     vis[u] = 1;
+// //     st[++top] = u;
+// //     for (int i = head[u]; i; i = edge[i].ne)
+// //     {
+// //         int to = edge[i].to;
+// //         if (!dfn[to])
+// //             tarjan(to), low[u] = min(low[u], low[to]);
+// //         else if (vis[to])
+// //             low[u] = min(low[u], dfn[to]);
+// //     }
+// //     if (dfn[u] == low[u])
+// //     {
+// //         int pre = st[top--];
+// //         scc[pre] = ++cnt;
+// //         vis[pre] = 0;
+// //         while (pre != u)
+// //         {
+// //             pre = st[top--];
+// //             scc[pre] = cnt;
+// //             vis[pre] = 0;
+// //         }
+// //     }
+// // }
+
+// void init()
+// {
+//     for (int i = 1; i <= 2 * n; i++)
+//         scc[i] = dfn[i] = low[i] = head[i] = 0;
+//     // memset(scc, 0, sizeof(scc));
+//     // memset(dfn, 0, sizeof(dfn));
+//     // memset(low, 0, sizeof(low));
+//     // memset(head, 0, sizeof(head));
+//     tot = 0;
+//     top = 0;
+//     idx = 0;
+//     cnt = 0;
+// }
+
+// int Turn(const string &s)
+// {
+//     int ans = 0;
+//     for (int i = 1; i < s.length(); i++)
+//         ans *= 10, ans += s[i] - '0';
+//     if (s[0] == 'h')
+//         return ans;
+//     return ans + n;
+// }
+
+// int No(const string &s)
+// {
+//     int ans = 0;
+//     for (int i = 1; i < s.length(); i++)
+//         ans *= 10, ans += s[i] - '0';
+//     if (s[0] == 'h')
+//         return ans + n;
+//     return ans;
+// }
+
+// void solve()
+// {
+//     init();
+//     cin >> n >> m;
+//     string s1;
+//     string s2;
+//     // getchar();
+//     for (int i = 1, a, b, c, d; i <= m; i++)
+//     {
+//         // getline(cin, s);
+//         // cin >> s;
+//         // cout << s << ' ';
+//         cin >> s1 >> s2;
+//         add(Turn(s1), No(s2));
+//         add(Turn(s2), No(s1));
+//         // a = (s1[0] == 'm' ? 0 : 1);
+//         // b = 0;
+//         // for (int j = 1; j < s1.size(); j++)
+//         // {
+//         //     b *= 10, b += s1[j] - '0';
+//         // }
+//         // cin >> s;
+//         // cout << s << '\n';
+//         // c = (s2[0] == 'm' ? 0 : 1);
+//         // d = 0;
+//         // for (int j = 1; j < s2.size(); j++)
+//         // {
+//         //     d *= 10, d += s2[j] - '0';
+//         // }
+//         // cout << a << b << ' ' << c << d << '\n';
+//         // cout << s1 << ' ' << s2 << '\n';
+//         // add(d + (c ? n : 0), b + ((!a) ? n : 0));
+//         // add(b + (a ? n : 0), d + ((!c) ? n : 0));
+//         // add(b + ((!a) ? n : 0), d + (c ? n : 0));
+//         // add(d + ((!c) ? n : 0), b + (a ? n : 0));
+//     }
+
+//     for (int i = 1; i <= n * 2; i++)
+//         if (!dfn[i])
+//             tarjan(i);
+
+//     for (int i = 1; i <= n; i++)
+//         if (scc[i] == scc[i + n])
+//         {
+//             cout << "BAD\n";
+//             return;
+//         }
+//     cout << "GOOD\n";
+// }
+
+// signed main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--)
+//         solve();
+//     return 0;
+// }
+
+// #include <iostream>
+// #include <cstdio>
+// #include <cmath>
+// #include <cstdlib>
+// #include <cstring>
+// #include <algorithm>
+// #define maxn 100100
+// #define rr register
+// #define INF 0x3f3f3f3f
+// // #define int long long
+// #define debug cout << "lkp ak ioi" << endl
+
+// using namespace std;
+
+// string s1, s2;
+// bool vis[maxn], flag;
+// int k, n, m, top, tot, t, cnt;
+// int low[maxn], head[maxn], dfn[maxn], num[maxn], zhan[maxn];
+// struct edge
+// {
+//     int fr, to, nxt;
+// } e[maxn << 1];
+
+// inline int read()
+// {
+//     int s = 0, w = 1;
+//     char ch = getchar();
+//     while (ch < '0' || ch > '9')
+//     {
+//         if (ch == '-')
+//             w = -1;
+//         ch = getchar();
+//     }
+//     while (ch >= '0' && ch <= '9')
+//         s = (s << 1) + (s << 3) + ch - '0', ch = getchar();
+//     return s * w;
+// }
+
+// void add(int fr, int to)
+// {
+//     e[++tot].to = to;
+//     e[tot].fr = fr;
+//     e[tot].nxt = head[fr];
+//     head[fr] = tot;
+// }
+
+// int Turn(string s)
+// {
+//     int ans = 0;
+//     for (int i = 1; i < s.length(); i++)
+//         ans *= 10, ans += s[i] - '0';
+//     if (s[0] == 'h')
+//         return ans;
+//     return ans + n;
+// }
+
+// int No(string s)
+// {
+//     int ans = 0;
+//     for (int i = 1; i < s.length(); i++)
+//         ans *= 10, ans += s[i] - '0';
+//     if (s[0] == 'h')
+//         return ans + n;
+//     return ans;
+// }
+
+// void clear()
+// {
+//     tot = top = t = cnt = flag = 0;
+//     memset(dfn, 0, sizeof dfn);
+//     memset(low, 0, sizeof low);
+//     memset(num, 0, sizeof num);
+//     memset(vis, 0, sizeof vis);
+//     memset(head, 0, sizeof head);
+// }
+
+// void tarjan(int u)
+// {
+//     dfn[u] = low[u] = ++cnt;
+//     vis[u] = 1;
+//     zhan[++top] = u;
+//     for (int i = head[u]; i; i = e[i].nxt)
+//     {
+//         int to = e[i].to;
+//         if (!dfn[to])
+//             tarjan(to), low[u] = min(low[u], low[to]);
+//         else if (vis[to])
+//             low[u] = min(low[u], dfn[to]);
+//     }
+//     if (dfn[u] == low[u])
+//     {
+//         int pre = zhan[top--];
+//         num[pre] = ++t;
+//         vis[pre] = 0;
+//         while (pre != u)
+//         {
+//             pre = zhan[top--];
+//             num[pre] = t;
+//             vis[pre] = 0;
+//         }
+//     }
+// }
+
+// int main()
+// {
+//     k = read();
+//     while (k--)
+//     {
+//         clear();
+//         n = read();
+//         m = read();
+//         for (int i = 1; i <= m; i++)
+//         {
+//             cin >> s1 >> s2;
+//             add(Turn(s1), No(s2));
+//             add(Turn(s2), No(s1));
+//         }
+//         for (int i = 1; i <= n * 2; i++)
+//             if (!dfn[i])
+//                 tarjan(i);
+//         for (int i = 1; i <= n; i++)
+//             if (num[i] == num[i + n])
+//             {
+//                 printf("BAD\n");
+//                 flag = 1;
+//                 break;
+//             }
+//         if (!flag)
+//             printf("GOOD\n");
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+// const int M = 1e5 + 10;
+// int n, m;
+
+// // 链式前向星
+// // struct node
+// // {
+// //     int ne, to;
+// // } edge[M];
+// // int head[N], tot;
+// // void add(int u, int v)
+// // {
+// //     tot++;
+// //     edge[tot].to = v;
+// //     edge[tot].ne = head[u];
+// //     head[u] = tot;
+// // }
+// vector<int> g[N];
+
+// int ans = 0;
+
+// // tarjan
+// int dfn[N], low[N], idx;
+// void tarjan(int u, int fa)
+// {
+//     dfn[u] = low[u] = ++idx;
+//     // for (int i = head[u]; i; i = edge[i].ne)
+//     // {
+//     //     int v = edge[i].to;
+//     for (auto v : g[u])
+//     {
+//         if (!dfn[v])
+//         {
+//             tarjan(v, u);
+//             low[u] = min(low[u], low[v]);
+//             if (low[v] > dfn[u])
+//                 ans++;
+//         }
+//         else if (v != fa)
+//             low[u] = min(dfn[v], low[u]);
+//     }
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1, x, y; i <= m; i++)
+//     {
+//         cin >> x >> y;
+//         g[x].push_back(y);
+//         g[y].push_back(x);
+//     }
+
+//     for (int i = 1; i <= n; i++)
+//         if (!dfn[i])
+//             tarjan(i, 0);
+
+//     cout << ans;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+
+// int ans, n, m;
+// vector<int> g[N];
+// int dfn[N], idx, low[N];
+
+// void dfs(int u, int fa)
+// {
+//     low[u] = dfn[u] = ++idx;
+//     for (auto v : g[u])
+//     {
+//         if (!dfn[v])
+//         {
+//             dfs(v, u);
+//             low[u] = min(low[u], low[v]);
+//             if (low[v] > dfn[u])
+//                 ans++;
+//         }
+//         else if (v != fa)
+//             low[u] = min(low[u], dfn[v]);
+//     }
+// }
+
+// // tarjan
+// // int dfn[N], low[N], idx;
+// void tarjan(int u, int fa)
+// {
+//     dfn[u] = low[u] = ++idx;
+//     for (auto v : g[u])
+//     {
+//         if (!dfn[v])
+//         {
+//             tarjan(v, u);
+//             low[u] = min(low[u], low[v]);
+//             if (low[v] > dfn[u])
+//                 ans++;
+//         }
+//         else if (v != fa)
+//             low[u] = min(low[v], low[u]);
+//     }
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1, x, y; i <= m; i++)
+//     {
+//         cin >> x >> y;
+//         g[x].push_back(y);
+//         g[y].push_back(x);
+//     }
+
+//     for (int i = 1; i <= n; i++)
+//         if (!dfn[i])
+//             tarjan(i, 0);
+
+//     cout << ans;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e4 + 10;
+// const int M = 1e5 + 10;
+// int n, m, isans[N];
+// vector<int> g[N];
+
+// int rt;
+// int dfn[N], idx, low[N];
+// void dfs(int u, int fa)
+// {
+//     dfn[u] = low[u] = ++idx;
+//     int child = 0;
+//     for (auto v : g[u])
+//         if (!dfn[v])
+//         {
+//             child++;
+//             dfs(v, u);
+//             low[u] = min(low[u], low[v]);
+//             if (low[v] >= dfn[u] && u != rt)
+//                 isans[u] = 1;
+//         }
+//         else if (dfn[u] > dfn[v] && v != fa)
+//             low[u] = min(low[u], dfn[v]);
+//     if (u == rt && child >= 2)
+//         isans[rt] = 1;
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1, x, y; i <= m; i++)
+//     {
+//         cin >> x >> y;
+//         g[x].push_back(y);
+//     }
+
+//     for (int i = 1; i <= n; i++)
+//         if (!dfn[i])
+//             rt = i, dfs(i, 0);
+
+//     int cnt = 0;
+//     for (int i = 1; i <= n; i++)
+//         if (isans[i])
+//             cnt++;
+//     cout << cnt;
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e4 + 5;
+// const int M = 5e4 + 5;
+// int n, m;
+// vector<int> g[N];
+
+// // tarjan
+// int dfn[N], scc[N], low[N], cnt, idx, st[N], top;
+// void tarjan(int u)
+// {
+//     dfn[u] = low[u] = ++idx;
+//     st[++top] = u;
+//     for (auto v : g[u])
+//     {
+//         if (!dfn[v])
+//         {
+//             tarjan(v);
+//             low[u] = min(low[v], low[u]);
+//         }
+//         else if (!scc[v])
+//             low[u] = min(low[v], low[u]);
+//     }
+//     if (low[u] == dfn[u])
+//     {
+//         ++cnt;
+//         while (st[top] != u)
+//         {
+//             scc[st[top]] = cnt;
+//             top--;
+//         }
+//         scc[st[top]] = cnt;
+//         top--;
+//     }
+// }
+
+// list<array<int, 2>> edges;
+// set<array<int, 2>> new_edges;
+// int d[N];
+
+// signed main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1, x, y; i <= m; i++)
+//     {
+//         cin >> x >> y;
+//         edges.push_back({x, y});
+//         g[x].push_back(y);
+//     }
+
+//     for (int i = 1; i <= n; i++)
+//         if (!dfn[i])
+//             tarjan(i);
+
+//     for (int i = 1; i <= n; i++)
+//         g[i].clear();
+//     for (auto [x, y] : edges)
+//     {
+//         x = scc[x];
+//         y = scc[y];
+//         if (y == x || !x || !y)
+//             continue;
+//         if (new_edges.count({x, y}) == 0)
+//         {
+//             g[x].push_back(y);
+//             d[y]++;
+//             new_edges.insert({x, y});
+//         }
+//     }
+
+//     int sum = 0;
+//     for (int i = 1; i <= cnt; i++)
+//         if (!d[i])
+//             sum++;
+//     if (sum == 1)
+//         cout << 1;
+//     else
+//         cout << 0;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e4 + 10;
+// const int M = 5e4 + 10;
+// int n, m, tot, dfn[N], low[N], idx, scc[N], cnt, st[N], top, vis[N], sum[N];
+// struct node
+// {
+//     int to, ne;
+// } edge[M];
+// int head[N];
+// void add(int u, int v)
+// {
+//     ++tot;
+//     edge[tot].to = v;
+//     edge[tot].ne = head[u];
+//     head[u] = tot;
+// }
+// list<array<int, 2>> G;
+
+// void tarjan(int u)
+// {
+//     dfn[u] = low[u] = ++idx;
+//     st[++top] = u;
+//     for (int i = head[u]; i; i = edge[i].ne)
+//     {
+//         int v = edge[i].to;
+//         if (!dfn[v])
+//         {
+//             tarjan(v);
+//             low[u] = min(low[u], low[v]);
+//         }
+//         else if (!scc[v])
+//         {
+//             low[u] = min(low[v], low[u]);
+//         }
+//     }
+//     if (low[u] == dfn[u])
+//     {
+//         cnt++;
+//         while (st[top] != u)
+//         {
+//             sum[cnt]++;
+//             scc[st[top]] = cnt;
+//             top--;
+//         }
+//         sum[cnt]++;
+//         scc[st[top]] = cnt;
+//         top--;
+//     }
+// }
+
+// set<array<int, 2>> new_edge;
+// void clear_edge()
+// {
+//     for (int i = 1; i <= n; i++)
+//         head[i] = 0;
+//     tot = 0;
+// }
+
+// int d[N];
+
+// signed main()
+// {
+//     cin >> n >> m;
+
+//     for (int i = 1, u, v; i <= m; i++)
+//     {
+//         cin >> u >> v;
+//         add(u, v);
+//         G.push_back({u, v});
+//     }
+
+//     for (int i = 1; i <= n; i++)
+//         if (!dfn[i])
+//             tarjan(i);
+
+//     clear_edge();
+//     for (auto [u, v] : G)
+//     {
+//         u = scc[u];
+//         v = scc[v];
+//         if (u == v || !u || !v)
+//             continue;
+//         if (new_edge.count({u, v}) == 0)
+//         {
+//             add(u, v);
+//             d[u]++;
+//             new_edge.insert({u, v});
+//         }
+//     }
+
+//     int ans = 0, t;
+//     for (int i = 1; i <= cnt; i++)
+//         if (!d[i])
+//             t = i, ans++;
+//     if (ans == 1)
+//         cout << sum[t];
+//     else
+//         cout << 0;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// const int N = 5e5 + 5;
+// int n, m, s, p, park[N], a[N];
+// // vector<int> g[N];
+
+// // 链式前向星
+// struct node
+// {
+//     int to, ne;
+// } edge[N];
+// int head[N], tot;
+// void add(int u, int v)
+// {
+//     ++tot;
+//     edge[tot].to = v;
+//     edge[tot].ne = head[u];
+//     head[u] = tot;
+// }
+
+// // tarjan
+// int dfn[N], st[N], low[N], scc[N], idx, cnt, top, val[N];
+// void tarjan(int u)
+// {
+//     low[u] = dfn[u] = ++idx;
+//     st[++top] = u;
+//     // for (int i = 0, v; i < g[u].size(); i++)
+//     // {
+//     //     v = g[u][i];
+//     //     if (!dfn[v])
+//     //     {
+//     //         tarjan(v);
+//     //         low[u] = min(low[u], low[v]);
+//     //     }
+//     //     else if (!scc[v])
+//     //         low[u] = min(low[u], low[v]);
+//     // }
+//     for (int i = head[u]; i; i = edge[i].ne)
+//     {
+//         int v = edge[i].to;
+//         if (!dfn[v])
+//         {
+//             tarjan(v);
+//             low[u] = min(low[u], low[v]);
+//         }
+//         else if (!scc[v])
+//         {
+//             low[u] = min(low[v], low[u]);
+//         }
+//     }
+//     if (low[u] == dfn[u])
+//     {
+//         cnt++;
+//         while (st[top] != u)
+//         {
+//             if (park[st[top]])
+//                 park[cnt] = 1;
+//             val[cnt] += a[st[top]];
+//             scc[st[top]] = cnt;
+//             top--;
+//         }
+//         if (park[st[top]])
+//             park[cnt] = 1;
+//         val[cnt] += a[st[top]];
+//         scc[st[top]] = cnt;
+//         top--;
+//     }
+// }
+
+// void dfs(int u)
+// {
+//     int mx = 0;
+//     // for (int i = 0, v; i < g[u].size(); i++)
+//     // {
+//     //     v = g[u][i];
+//     //     dfs(v);
+//     //     if (park[v])
+//     //         park[u] = 1;
+//     //     mx = max(val[v], mx);
+//     // }
+//     for (int i = head[u], v; i; i = edge[i].ne)
+//     {
+//         v = edge[i].to;
+//         dfs(v);
+//         if (park[v])
+//             park[u] = 1;
+//         mx = max(val[v], mx);
+//     }
+//     val[u] += mx;
+//     if (!park[u])
+//         val[u] = 0;
+// }
+
+// vector<array<int, 2>> gs;
+// set<array<int, 2>> g_set;
+
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> n >> m;
+//     for (int i = 1, x, y; i <= m; i++)
+//     {
+//         cin >> x >> y;
+//         // g[x].push_back(y);
+//         add(x, y);
+//         gs.push_back({x, y});
+//     }
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     cin >> s >> p;
+//     for (int i = 1, pk; i <= p; i++)
+//     {
+//         cin >> pk;
+//         park[pk] = 1;
+//     }
+
+//     // for (int i = 1; i <= n; i++)
+//     //     if (!dfn[i])
+//     tarjan(s);
+
+//     // for (int i = 1; i <= n; i++)
+//     //     g[i].clear();
+//     for (int i = 1; i <= n; i++)
+//         head[i] = 0;
+//     tot = 0;
+
+//     for (int i = 0, x, y; i < gs.size(); i++)
+//     {
+//         x = gs[i][0];
+//         y = gs[i][1];
+//         x = scc[x];
+//         y = scc[y];
+//         if (x == y || !x || !y)
+//             continue;
+//         if (g_set.count({x, y}) == 0)
+//         {
+//             // g[x].push_back(y);
+//             add(x, y);
+//             g_set.insert({x, y});
+//         }
+//     }
+
+//     s = scc[s];
+//     dfs(s);
+//     cout << val[s];
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 5e5 + 10;
+// const int M = 5e5 + 10;
+// int n, m, a[N], tot, dfn[N], low[N], idx, scc[N], cnt, st[N], top, val[N], vis[N], s, p, park[N], sp[N];
+// struct node
+// {
+//     int to, ne;
+// } edge[M];
+// int head[N];
+// void add(int u, int v)
+// {
+//     ++tot;
+//     edge[tot].to = v;
+//     edge[tot].ne = head[u];
+//     head[u] = tot;
+// }
+// vector<array<int, 2>> G;
+
+// void tarjan(int u)
+// {
+//     dfn[u] = low[u] = ++idx;
+//     st[++top] = u;
+//     for (int i = head[u]; i; i = edge[i].ne)
+//     {
+//         int v = edge[i].to;
+//         if (!dfn[v])
+//         {
+//             tarjan(v);
+//             low[u] = min(low[u], low[v]);
+//         }
+//         else if (!scc[v])
+//         {
+//             low[u] = min(low[v], low[u]);
+//         }
+//     }
+//     if (low[u] == dfn[u])
+//     {
+//         cnt++;
+//         while (st[top] != u)
+//         {
+//             if (park[st[top]])
+//                 sp[cnt] = 1;
+//             scc[st[top]] = cnt;
+//             val[cnt] += a[st[top]];
+//             top--;
+//         }
+//         if (park[st[top]])
+//             sp[cnt] = 1;
+//         scc[st[top]] = cnt;
+//         val[cnt] += a[st[top]];
+//         top--;
+//     }
+// }
+
+// set<array<int, 2>> new_edge;
+// void clear_edge()
+// {
+//     for (int i = 1; i <= n; i++)
+//         head[i] = 0;
+//     tot = 0;
+// }
+
+// void dfs(int u)
+// {
+//     vis[u] = 1;
+//     int mx = 0;
+//     for (int i = head[u]; i; i = edge[i].ne)
+//     {
+//         if (!vis[edge[i].to])
+//             dfs(edge[i].to);
+//         if (sp[edge[i].to])
+//             sp[u] = 1;
+//         mx = max(mx, val[edge[i].to]);
+//     }
+//     val[u] += mx;
+//     if (sp[u] == 0)
+//         val[u] = 0;
+// }
+
+// signed main()
+// {
+//     cin >> n >> m;
+
+//     for (int i = 1, u, v; i <= m; i++)
+//     {
+//         cin >> u >> v;
+//         add(u, v);
+//         G.push_back({u, v});
+//     }
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+//     cin >> s >> p;
+//     for (int i = 1, t; i <= p; i++)
+//     {
+//         cin >> t;
+//         park[t] = 1;
+//     }
+
+//     tarjan(s);
+
+//     clear_edge();
+
+//     for (int i = 0, u, v; i < G.size(); i++)
+//     {
+//         u = G[i][0];
+//         v = G[i][1];
+//         u = scc[u];
+//         v = scc[v];
+//         if (u == v || !u || !v)
+//             continue;
+//         if (new_edge.count({u, v}) == 0)
+//         {
+//             add(u, v);
+//             new_edge.insert({u, v});
+//         }
+//     }
+
+//     s = scc[s];
+//     dfs(s);
+//     cout << val[s];
+//     return 0;
+// }
