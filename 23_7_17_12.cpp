@@ -395,3 +395,328 @@
 //     }
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// const int mod = 1e9 + 7;
+// int n, q;
+// string s;
+
+// //快速幂
+// int qpow(int a, int k, int p){
+//     int ret = 1;
+//     while(k){
+//         if(k & 1) ret = a * ret % p;
+//         a = a * a % p;
+//         k >>= 1;
+//     }
+//     return ret;
+// }
+
+// //阶乘、逆元
+// int fac[N], inv[N];
+// void get_inv(){
+//     inv[0] = fac[0] = 1;
+//     for(int i = 1;i < N;i++){
+//         fac[i] = fac[i-1] * i % mod;
+//         inv[i] = inv[i-1] * qpow(i, mod - 2, mod) % mod;
+//     }
+// }
+
+
+// //树状数组
+// int tr[27][N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int c, int x, int v){
+//     if(!x) return;
+//     c = c - 'a' + 1;
+//     while(x <= n){
+//         tr[c][x] += v;
+//         x += lowbit(x);
+//     }
+// }
+// int getans(int l, int r){
+//     int len = r - l + 1;
+//     int cnt[27] = {0};
+//     for(int i = 1;i <= 26;i++){
+//         int x = r;
+//         while(x > 0){
+//             cnt[i] += tr[i][x];
+//             x -= lowbit(x);
+//         }
+//     }
+//     for(int i = 1;i <= 26;i++){
+//         int x = l-1;
+//         while(x > 0){
+//             cnt[i] -= tr[i][x];
+//             x -= lowbit(x);
+//         }
+//     }
+//     int f = 0;
+//     for(int i = 1;i <= 26;i++){
+//         if(cnt[i] & 1) f ++;
+//         cnt[i] /= 2;
+//     }
+//     if(f != (len & 1)) return 0;
+//     len /= 2;
+//     int ret = fac[len];
+//     for(int i = 1;i <= 26;i++)if(cnt[i]){
+//         ret = ret * inv[cnt[i]] % mod;
+//     }
+//     return ret;
+
+// }
+
+// signed main(){
+
+//     get_inv();
+
+//     cin >> n >> q >> s;
+//     s = ' ' + s;
+//     for(int i = 1;i <= n;i++)
+//         add(s[i], i, 1);
+
+//     while(q--){
+//         int op, l, r, x;
+//         char y;
+//         cin >> op;
+//         if(op == 1){
+//             cin >> x >> y;
+//             x++;
+//             add(s[x], x, -1);
+//             s[x] = y;
+//             add(s[x], x, 1);
+//         }else{
+//             cin >> l >> r;
+//             l ++;
+//             r ++;
+//             cout << getans(l, r) << '\n';
+//         }
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 5;
+// int n,m, a[N], b[N];
+
+// int get_pos(int x, int y){
+//     int z = abs(x-y);
+//     int mn = y, cnt = 0, ret = 1;
+//     while(z){
+//         x = y;
+//         y = z;
+//         z = abs(x-y);
+//         ret++;
+//         if(mn == z) cnt++;
+//         else if(z < mn) mn = z, cnt = 0;
+//         if(cnt >= 3){
+//             int tmp = y / (2*mn);
+//             y -= tmp*2*mn;
+//             x -= tmp*2*mn;
+//             cnt = 0;
+//         }
+//     }
+//     return ret % 3;
+// }
+
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i];
+
+
+//     int fis_pos;
+//     int i = 1;
+//     for(i = 1;i <= n;i++){
+//         if(a[i] || b[i]){
+//             fis_pos = get_pos(a[i], b[i]);
+//             break;
+//         }
+//     }
+
+//     for(;i <= n;i++){
+//         if((a[i] || b[i]) && get_pos(a[i], b[i]) != fis_pos){
+//             cout << "NO\n";
+//             return;
+//         }
+//     }
+
+//     cout << "YES\n";
+// }
+
+// signed main(){
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int s, k, mod;
+// int b[5] = {0,2,4,8,6,};
+// int preb[5] = {0,2,6,14,20,};
+
+// int get_res(int x){
+//     if(!x) return k*s;
+//     if(x >= k || x < 0) return 0;
+
+//     int xx = x, ss = s;
+//     while(xx > 0 && ss % 10 != 2){
+//         ss += ss%10;
+//         xx--;
+//     }
+    
+//     return (k-x) * (ss + preb[4] * (xx/4) + preb[xx%4]);
+// }
+
+// void solve(){
+//     cin >> s >> k;
+//     mod = s % 10;
+
+//     if(!mod){//特判 0,5
+//         cout << s*k << '\n';
+//         return;
+//     }else if(mod == 5){
+//         cout << max((s+5)*(k-1), s*k) << '\n';
+//         return;
+//     }
+
+//     int ans = 0;
+//     if(k > 40){
+//         int x = ((20*k-4*s) / 160)*4;
+//         ans = max(get_res(0), get_res(k-1));
+//         for(int i = x - 5;i <= x + 5;i++) ans = max(ans, get_res(i));
+//         for(int i = 0;i <= 5;i++) ans = max(ans, get_res(i));
+
+//     }else{
+//         for(int i = 0;i < k;i++) ans = max(ans, get_res(i));
+//     }
+//     cout << ans << '\n';
+
+// }
+
+// signed main(){
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     int t;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define all(a) a.begin(), a.end()
+#define lson id << 1
+#define rson id << 1 | 1
+const int N = 3e5 + 10;
+const int BLOW = 0;
+const int TOP = 1;
+const int sz = 3e5 + 5;
+int n;
+vector<array<int, 5>>evt;
+
+//线段树
+struct info{
+    int mx;
+};
+struct node{
+    int tag;
+    info val;   
+}tr[N << 2];
+void settag(int id, int v){
+    tr[id].tag += v;
+    tr[id].val.mx += v;
+}
+void up(int id){
+    tr[id].val.mx = max(tr[lson].val.mx, tr[rson].val.mx);
+}
+void down(int id){
+    settag(lson, tr[id].tag);
+    settag(rson, tr[id].tag);
+    tr[id].tag = 0;
+}
+void modify(int id, int l, int r, int ql, int qr, int v){
+    if(ql <= l && r <= qr){
+        settag(id, v);
+        return;
+    }
+    down(id);
+    int mid = l + r >> 1;
+    if(qr <= mid)
+        modify(lson, l, mid, ql, qr, v);
+    else if(ql > mid)
+        modify(rson, mid+1, r, ql, qr, v);
+    else{
+        modify(lson, l, mid, ql, qr, v);
+        modify(rson, mid+1, r, ql, qr, v);
+    } 
+    up(id);
+}
+
+int get_mx_x(int id, int l, int r, int mx){
+    if(l == r) return l;
+    down(id);
+    int mid = l + r >> 1;
+    int lv = tr[lson].val.mx;
+    if(lv == mx) return get_mx_x(lson, l, mid, mx);
+    return get_mx_x(rson, mid + 1, r, mx);
+}
+
+
+signed main(){
+
+    cin >> n;
+    evt.reserve(n*2);
+    for(int i = 1, l, v, r;i <= n;i++){
+        cin >> l >> v >> r;
+        evt.push_back({v, BLOW, l, v, i});
+        evt.push_back({r, TOP, l, v, i});
+    }
+    sort(all(evt));
+
+    int mx = 0, py, px;
+    for(auto [y, op, l, r, id] : evt) if (op == BLOW){
+        modify(1, 1, sz, l, r, 1);
+        if(tr[1].val.mx > mx){
+            mx = tr[1].val.mx;
+            px = get_mx_x(1, 1, sz, mx);
+            py = y;
+        }
+    }else{
+        modify(1, 1, sz, l, r, -1);
+    }
+
+    vector<int>ans;
+    for(auto [y, op, l, r, id] : evt) if (op && l <= px && px <= r && r <= py && py <= y) ans.push_back(id);
+
+    cout << ans.size() << '\n';
+    for(auto e : ans) cout << e << ' ';
+
+    return 0;
+}
