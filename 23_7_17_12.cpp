@@ -628,95 +628,703 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 3e5 + 10;
+// const int BLOW = 0;
+// const int TOP = 1;
+// const int sz = 3e5 + 5;
+// int n;
+// vector<array<int, 5>>evt;
+
+// //线段树
+// struct info{
+//     int mx;
+// };
+// struct node{
+//     int tag;
+//     info val;   
+// }tr[N << 2];
+// void settag(int id, int v){
+//     tr[id].tag += v;
+//     tr[id].val.mx += v;
+// }
+// void up(int id){
+//     tr[id].val.mx = max(tr[lson].val.mx, tr[rson].val.mx);
+// }
+// void down(int id){
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+// void modify(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr){
+//         settag(id, v);
+//         return;
+//     }
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid)
+//         modify(lson, l, mid, ql, qr, v);
+//     else if(ql > mid)
+//         modify(rson, mid+1, r, ql, qr, v);
+//     else{
+//         modify(lson, l, mid, ql, qr, v);
+//         modify(rson, mid+1, r, ql, qr, v);
+//     } 
+//     up(id);
+// }
+
+// int get_mx_x(int id, int l, int r, int mx){
+//     if(l == r) return l;
+//     down(id);
+//     int mid = l + r >> 1;
+//     int lv = tr[lson].val.mx;
+//     if(lv == mx) return get_mx_x(lson, l, mid, mx);
+//     return get_mx_x(rson, mid + 1, r, mx);
+// }
+
+
+// signed main(){
+
+//     cin >> n;
+//     evt.reserve(n*2);
+//     for(int i = 1, l, v, r;i <= n;i++){
+//         cin >> l >> v >> r;
+//         evt.push_back({v, BLOW, l, v, i});
+//         evt.push_back({r, TOP, l, v, i});
+//     }
+//     sort(all(evt));
+
+//     int mx = 0, py, px;
+//     for(auto [y, op, l, r, id] : evt) if (op == BLOW){
+//         modify(1, 1, sz, l, r, 1);
+//         if(tr[1].val.mx > mx){
+//             mx = tr[1].val.mx;
+//             px = get_mx_x(1, 1, sz, mx);
+//             py = y;
+//         }
+//     }else{
+//         modify(1, 1, sz, l, r, -1);
+//     }
+
+//     vector<int>ans;
+//     for(auto [y, op, l, r, id] : evt) if (op && l <= px && px <= r && r <= py && py <= y) ans.push_back(id);
+
+//     cout << ans.size() << '\n';
+//     for(auto e : ans) cout << e << ' ';
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// int x, y, a, b;
+
+// int dfs(int x, int y){
+//     if(x == y) return 2;
+//     int ret = 0;
+//     int fm = x + y;
+//     if(fm & 1)return -1;
+//     x *= 2;
+//     y *= 2;
+//     if(x >= fm) ret++, x -= fm;
+//     if(y >= fm) ret++, y -= fm;
+//     int ne = dfs(x/2, y/2);
+//     if(ne == -1) return -1;
+//     return ne + ret;
+// }
+
+// void solve(){
+//     cin >> x >> y >> a >> b;
+//     cout << dfs(x,y) << '\n';
+// }
+
+
+// signed main(){
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int mod = 1e9 + 7;
+// const int N = 1e5 + 10;
+// string s;
+
+// //阶乘快速幂
+// int fac[N];
+// int inv[N];
+// int qpow(int a, int q, int p){
+//     int ret = 1;
+//     while(q){
+//         if(q & 1) ret = ret * a % p;
+//         a = a * a % p;
+//         q >>= 1;
+//     }
+//     return ret;
+// }
+// void init(){
+//     fac[0] = inv[0] = 1;
+//     for(int i = 1;i < N;i++){
+//         fac[i] = fac[i-1] * i % mod;
+//         inv[i] = qpow(fac[i], mod - 2, mod) % mod;
+//     }
+// }
+
+// //组合数
+// int C(int a, int b){
+//     return ((fac[b] * inv[a])%mod) * inv[b-a] % mod;
+// }
+
+
+// void solve(){
+//     cin >> s;
+//     s = ' ' + s;
+//     vector<int>line;
+//     int last = 0;
+//     for(int i = 1, len = s.length();i < len;i++){
+//         if(s[i] == 'm' || s[i] == 'w'){
+//             cout << "0\n";
+//             return;
+//         }
+//         if(s[i] == 'u' || s[i] == 'n'){
+//             if(s[i] == s[i-1]){
+//                 last++;
+//             }else{
+//                 if(last >= 2) line.push_back(last);
+//                 last = 1;
+//             }
+//         }
+//     }
+//     if(last >= 2) line.push_back(last);
+
+
+//     // for(auto s : line) cout << s << ' ';
+//     // cout << line.size();
+//     // cout << s;
+
+//     for(auto &s : line){
+//         int cnt = s / 2;
+//         int len = cnt + (s&1);
+//         int tmp = 1;
+//         for(int i = 1;i <= cnt;i++){
+//             tmp = (tmp + C(i, len)) % mod;
+//             cout << i << ' ' << len << ' ' << tmp << '\n';
+//         }
+//         s = tmp;
+//     }
+//     int ans = 1;
+//     for(auto s : line) ans = ans * s % mod;
+//     cout << ans << '\n';
+// }
+
+
+// signed main(){
+//     init();
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+//     // cout << C(6,8);
+//     // cout << fac[3] << ' ' << fac[4];
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1010;
+// int n,k,m,t;
+
+
+// signed main(){
+
+//     cin >> n >> k >> m >> t;
+//     while(t--){
+//         int op, x;
+//         cin >> op >> x;
+//         if(!op){
+//             if(k <= x){
+//                 n = x;
+//             }else{
+//                 n = n - x;
+//                 k = k - x;
+//             }
+//         }else{
+//             n++;
+//             if(x <= k) k++;
+
+//         }
+//         cout << n << ' ' << k << '\n';
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1 
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n,q,a[N];
+
+// //线段树
+// struct node{
+//     int tag;
+//     int sum;
+// }tr[102][N<<2];
+// void up(int id){
+//     for(int i = 1; i <= 100;i++)
+//         tr[i][id].sum = tr[i][lson].sum + tr[i][rson].sum;
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[a[l]][id].sum = 1;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+// void modify(int num, int s, int id, int l, int r, int ql, int qr, int v){
+//     if(l == r){
+//         tr[num].sum
+//     }
+// }
+
+
+// signed main(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         add(a[i], i, 1);
+//         add(a[i], i+1, -1);
+//     }
+//     cin >> q;
+//     while(q--){
+//         int l, r, x, y;
+//         cin >> l >> r >> x >> y;
+//         add(x, l, -1);
+//         add(x, r+1, 1);
+//         add(x, l, -1);
+//         add(x, r+1, 1);
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1 
+// #define rson id << 1 | 1
+// const int N = 55;
+// int n, x[N], y[N], sum, xx[N], yy[N];
+
+// signed main(){
+//     cin >> n;
+//     sum = 4*n + 1;
+//     int mi = 1, ma = 1;
+//     for(int i = 1;i <= sum;i++){
+//         cin >> x[i] >> y[i];
+//         // if(x[i] < x[mi] && y[i] < y[mi]) mi = i;
+//         // if(x[i] > x[ma] && y[i] > y[ma]) ma = i;
+
+//         xx[x[i]]++;
+//         yy[y[i]]++;
+//     }
+
+//     int mx = 0, my = 0;
+//     for(int i = 0;i <= 50;i++){
+//         if(xx[i] >= xx[mx]) mx = i;
+//         if(yy[i] >= xx[my]) my = i;
+//     }
+
+//     int sx[2], f1 = 0;
+//     // for(int i = 0;i <= 50;i++) if(xx[i] == xx[mx]){sx[f1++] = i;break;}
+//     for(int i = 0;i <= 50;i++) if(xx[i] >= 2){sx[f1++] = i;break;}
+//     for(int i = 50;i > sx[0];i--) if(xx[i] >= 2){sx[f1++] = i;break;}
+//     if(f1 == 1){
+//         xx[mx]--;
+//         f1 = 0;
+//         for(int i = 0;i <= 50;i++) if(xx[i] == xx[mx]) sx[f1++] = i;
+//     }
+
+//     int sy[2], f2 = 0;
+//     for(int i = 0;i <= 50;i++) if(yy[i] >= 2) {sy[f2++] = i; break;}
+//     for(int i = 50;i > sy[0];i--) if(yy[i] >= 2) {sy[f2++] = i; break;}
+//     if(f2 == 1){
+//         yy[my]--;
+//         f2 = 0;
+//         for(int i = 0;i <= 50;i++) if(yy[i] == yy[my]) sy[f2++] = i;
+//     }
+
+//     // cout << sx[0] << ' ' << sx[1] << '\n';
+//     // cout << sy[0] << ' ' << sy[1];
+//     // cout << xx[mx];
+//     // for(int i = 0; i< 3;i++)cout << xx[i]<<' ';
+
+//     for(int i = 1;i <= sum;i++) 
+//         // if(!(x[i]==sx[0]||x[i]==sx[1]||y[i]==sy[0]||y[i]==sy[1]))
+//         if(((x[i]==sx[0]||x[i]==sx[1])&&y[i]>=sy[0]&&y[i]<=sy[1])||((y[i]==sy[0]||y[i]==sy[1])&&x[i]>=sx[0]&&x[i]<=sx[1]))
+//         ;
+//         else
+//     cout << x[i] << ' ' << y[i] << '\n';
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1 
+// #define rson id << 1 | 1
+// const int N = 1010;
+// int n, m, mp[N][N];
+// bool vis[N*N];
+
+// bool isp[N];
+// int p[N];
+// int tot;
+// void init(){
+//     memset(isp, true, sizeof(isp));
+//     isp[1] = 0;
+//     for(int i = 2;i < N;i++){
+//         if(isp[i]) p[++tot] = i;
+//         for(int j = 1;j <= tot && p[j] * i < N;j++){
+//             isp[p[j] * i] = false;
+//             if(i % p[j] == 0) break;
+//         }
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     memset(vis, 0, sizeof(vis));
+//     if((n&1)==0&&(m&1)==0){
+//         int tmp = 2;
+//         for(int i = n/2; i >= 1;i--)
+//             for(int j = 1;j <= m;j++)
+//                 mp[i][j] = tmp, tmp += 2;
+
+//         tmp = 1;
+//         for(int i = (n/2)+1; i <= n;i++)
+//             for(int j = 1;j <= m;j++)
+//                 mp[i][j] = tmp, tmp += 2;
+
+
+
+//     }else if(n&1){
+//         int mid = (n/2)+1;
+//         for(int i = 1; i <= m;i++) mp[mid][i] = i, vis[i] = true; //中间行1-m
+
+//         int cnt = m;
+//         if(cnt%2==0) cnt ++;
+//         while(isp[cnt-2]) cnt += 2;
+//         for(int i = 2; i <= m;i+=2) mp[mid-1][i] = cnt, vis[cnt] = true, cnt += 2; //上面放奇数
+//         cnt = m;
+//         if(cnt%2==0) cnt ++;
+//         for(int i = 1; i <= m;i+=2){
+//             while(vis[cnt]) cnt+=2;
+//             mp[mid-1][i] = cnt, vis[cnt] = true, cnt += 2;
+//         }
+//         for(int i = 1;i < mid-1;i++)
+//             for(int j = 1;j <= m;j++)
+//                 mp[i][j] = cnt, vis[cnt] = true, cnt += 2;
+
+
+//         cnt = m;
+//         if(cnt & 1) cnt ++;
+//         while(isp[cnt-1]) cnt += 2;
+//         for(int i = 1; i <= m;i+=2) mp[mid+1][i] = cnt, vis[cnt] = true, cnt += 2; //下面偶数
+//         cnt = m;
+//         if(cnt & 1) cnt ++;
+//         while(isp[cnt-1]) cnt += 2;
+//         for(int i = 1; i <= m;i+=2){
+//             while(vis[cnt]) cnt+=2;
+//             mp[mid+1][i] = cnt, vis[cnt] = true, cnt += 2;
+//         }
+//         for(int i = mid+2;i <= n;i++)
+//             for(int j = 1;j <= m;j++)
+//                 mp[i][j] = cnt, vis[cnt] = true, cnt += 2;
+
+//     }else{
+//         int mid = (m/2)+1;
+//         for(int i = 1; i <= n;i++) mp[i][mid] = i, vis[i] = true; //中间行1-m
+
+//         int cnt = n;
+//         if(cnt & 1) cnt += 2;
+//         while(isp[cnt-2]) cnt += 2;
+//         for(int i = 2; i <= n;i+=2) mp[i][mid-1] = cnt, vis[cnt] = true, cnt += 2; //左面放奇数
+//         cnt = n;
+//         if(cnt & 1) cnt += 2;
+//         for(int i = 1; i <= n;i+=2){
+//             while(vis[cnt]) cnt+=2;
+//             mp[i][mid-1] = cnt, vis[cnt] = true, cnt += 2;
+//         }
+//         for(int i = 1;i <= n;i++)
+//             for(int j = 1;j < mid-1;j++){
+//                 while(vis[cnt]) cnt+=2;
+//                 mp[i][j] = cnt, vis[cnt] = true, cnt += 2;
+//             }
+
+
+//         cnt = n;
+//         if((cnt & 1)==0) cnt += 2;
+//         for(int i = 1; i <= n;i+=2) mp[i][mid+1] = cnt, vis[cnt] = true, cnt += 2; //下面偶数
+//         cnt = n;
+//         if((cnt & 1)==0) cnt += 2;
+//         for(int i = 1; i <= n;i+=2){
+//             while(vis[cnt]) cnt+=2;
+//             mp[i][mid+1] = cnt, vis[cnt] = true, cnt += 2;
+//         }
+//         for(int i = 1;i <= n;i++)
+//             for(int j = mid+2;j <= m;j++)
+//                 mp[i][j] = cnt, vis[cnt] = true, cnt += 2;
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++)
+//         cout << mp[i][j] << ' ';
+//         cout << '\n';
+//     }
+//     cout << '\n';
+// }
+
+
+// signed main(){
+//     init();
+//     int t;
+//     cin >> t;
+//     while(t--)solve();
+
+//     // for(int i = 1;i <= 10;i++)cout << p[i] << ' ';
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 1010;
+// int n,m, mp[N][N];
+
+// void solve(){
+//     cin >> n >> m;
+//     int cnt = 1;
+
+//     if(n%2==0){
+//         for(int i = 1;i <= m;i++)
+//             for(int j = 1;j <= n;j++)
+//                 mp[j][i] = cnt++;
+//     }else if(m % 2 == 0)
+//         for(int i = 1;i <= n;i++)
+//             for(int j = 1;j <= m;j++)
+//                 mp[i][j] = cnt++;
+//     else{
+//         for(int i = 1;i <= n;i+=2)
+//             for(int j = 1;j <= m;j++)
+//                 mp[i][j] = cnt++;
+//         for(int i = 2;i <= n;i+=2)
+//             for(int j = 1;j <= m;j++)
+//                 mp[i][j] = cnt++;
+//     }
+
+//     for(int i = 1; i <= n;i ++){
+//     for(int j = 1;j <= m;j++)
+//     cout << mp[i][j] << ' ' ;
+//     cout << '\n';
+//     }
+
+//     cout << '\n';
+
+// }
+
+
+// int main(){
+
+//     int t;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// int cnt = 0;
+
+// double dfs(double a, double b){
+//     if(++cnt == 30) return 1;
+//     return sqrt(a*a + b * dfs(a,b+a));
+// }
+
+// int main(){
+//     double a,b;
+//     cin >> a >> b;
+
+//     cout << a + b;
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// int a[4] = {0,3,5,7};
+
+// int main(){
+//     int n;
+//     cin >> n;
+//     if(n <= 3) cout << a[n];
+//     else{
+//         n--;
+//         if(n % 3 == 0){
+//             cout << 4 * (n/3+1);
+//         }else{
+//             n -= n/3;
+//             n += 2;
+//             cout << n*2-1;
+//         }
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// int dp[N];
+
+// signed main(){
+
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     dp[0] = 1;
+//     for(int i = 1, len = s.length(); i < len;i++){
+//         if(s[i] == 'w' || s[i] == 'm'){
+//             cout << 0;
+//             return 0;
+//         }
+//         if((s[i] == 'u' || s[i] == 'n') && s[i] == s[i-1])
+//             dp[i] = (dp[i-1] + dp[i-2]) % mod;
+//         else 
+//             dp[i] = dp[i-1];
+
+//     }
+
+//         cout << dp[s.length()-1];
+
+//     return 0;
+// }
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
-#define int long long
-#define all(a) a.begin(), a.end()
 #define lson id << 1
 #define rson id << 1 | 1
-const int N = 3e5 + 10;
-const int BLOW = 0;
-const int TOP = 1;
-const int sz = 3e5 + 5;
-int n;
-vector<array<int, 5>>evt;
+const int N = 2e5 + 10;
+int n, q, a[N];
+
 
 //线段树
-struct info{
-    int mx;
-};
 struct node{
-    int tag;
-    info val;   
-}tr[N << 2];
-void settag(int id, int v){
-    tr[id].tag += v;
-    tr[id].val.mx += v;
-}
-void up(int id){
-    tr[id].val.mx = max(tr[lson].val.mx, tr[rson].val.mx);
-}
+    int num[101];
+}tr[N<<2];
 void down(int id){
-    settag(lson, tr[id].tag);
-    settag(rson, tr[id].tag);
-    tr[id].tag = 0;
+    for(int i = 1;i <= 100;i++)if(tr[id].num[i]){
+        tr[lson].num[i] = tr[id].num[i];
+        tr[rson].num[i] = tr[id].num[i];
+    }
 }
-void modify(int id, int l, int r, int ql, int qr, int v){
+void modify(int id, int l, int r, int ql, int qr, int x, int y){
     if(ql <= l && r <= qr){
-        settag(id, v);
+        if(tr[id].num[y] == x) tr[id].num[y] = y;
+        tr[id].num[x] = y;
+        while(x != tr[id].num[x]) x = tr[id].num[x] = tr[id].num[tr[id].num[x]];
         return;
     }
     down(id);
     int mid = l + r >> 1;
     if(qr <= mid)
-        modify(lson, l, mid, ql, qr, v);
+        modify(lson, l, mid, ql, qr, x, y);
     else if(ql > mid)
-        modify(rson, mid+1, r, ql, qr, v);
+        modify(rson, mid + 1, r, ql, qr, x, y);
     else{
-        modify(lson, l, mid, ql, qr, v);
-        modify(rson, mid+1, r, ql, qr, v);
-    } 
-    up(id);
+        modify(lson, l, mid, ql, qr, x, y);
+        modify(rson, mid + 1, r, ql, qr, x, y);
+    }
 }
-
-int get_mx_x(int id, int l, int r, int mx){
-    if(l == r) return l;
+void calcu(int id, int l, int r){
+    if(l == r){
+        int t = a[l];
+        if(!tr[id].num[t]) return;
+        while(t != tr[id].num[t]) t = tr[l].num[t];
+        a[l] = t;
+        return;
+    }
     down(id);
     int mid = l + r >> 1;
-    int lv = tr[lson].val.mx;
-    if(lv == mx) return get_mx_x(lson, l, mid, mx);
-    return get_mx_x(rson, mid + 1, r, mx);
+    calcu(lson, l, mid);
+    calcu(rson, mid + 1, r);
+}
+
+void init(){
+    for(int i = 1;i < N;i++)
+        for(int j = 1;j <= 100;j++)
+            tr[i].num[j] = j;
 }
 
 
 signed main(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    init();
 
     cin >> n;
-    evt.reserve(n*2);
-    for(int i = 1, l, v, r;i <= n;i++){
-        cin >> l >> v >> r;
-        evt.push_back({v, BLOW, l, v, i});
-        evt.push_back({r, TOP, l, v, i});
+    for(int i = 1;i <= n;i++ ) cin >> a[i];
+    cin >> q;
+    int l,r,x,y;
+    while(q--){
+        cin >> l >> r >> x >> y;
+        modify(1,1,n,l,r,x,y);
     }
-    sort(all(evt));
+    calcu(1, 1, n);
 
-    int mx = 0, py, px;
-    for(auto [y, op, l, r, id] : evt) if (op == BLOW){
-        modify(1, 1, sz, l, r, 1);
-        if(tr[1].val.mx > mx){
-            mx = tr[1].val.mx;
-            px = get_mx_x(1, 1, sz, mx);
-            py = y;
-        }
-    }else{
-        modify(1, 1, sz, l, r, -1);
-    }
-
-    vector<int>ans;
-    for(auto [y, op, l, r, id] : evt) if (op && l <= px && px <= r && r <= py && py <= y) ans.push_back(id);
-
-    cout << ans.size() << '\n';
-    for(auto e : ans) cout << e << ' ';
+    for(int i = 1;i <= n;i++) cout << a[i] << ' ';
 
     return 0;
 }
