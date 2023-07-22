@@ -396,8 +396,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -426,7 +424,6 @@
 //         inv[i] = inv[i-1] * qpow(i, mod - 2, mod) % mod;
 //     }
 // }
-
 
 // //树状数组
 // int tr[27][N];
@@ -503,8 +500,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -531,12 +526,10 @@
 //     return ret % 3;
 // }
 
-
 // void solve(){
 //     cin >> n;
 //     for(int i = 1;i <= n;i++) cin >> a[i];
 //     for(int i = 1;i <= n;i++) cin >> b[i];
-
 
 //     int fis_pos;
 //     int i = 1;
@@ -564,9 +557,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -584,7 +574,7 @@
 //         ss += ss%10;
 //         xx--;
 //     }
-    
+
 //     return (k-x) * (ss + preb[4] * (xx/4) + preb[xx%4]);
 // }
 
@@ -625,9 +615,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -647,7 +634,7 @@
 // };
 // struct node{
 //     int tag;
-//     info val;   
+//     info val;
 // }tr[N << 2];
 // void settag(int id, int v){
 //     tr[id].tag += v;
@@ -675,7 +662,7 @@
 //     else{
 //         modify(lson, l, mid, ql, qr, v);
 //         modify(rson, mid+1, r, ql, qr, v);
-//     } 
+//     }
 //     up(id);
 // }
 
@@ -687,7 +674,6 @@
 //     if(lv == mx) return get_mx_x(lson, l, mid, mx);
 //     return get_mx_x(rson, mid + 1, r, mx);
 // }
-
 
 // signed main(){
 
@@ -721,8 +707,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -747,15 +731,12 @@
 //     cout << dfs(x,y) << '\n';
 // }
 
-
 // signed main(){
 //     int t = 1;
 //     cin >> t;
 //     while(t--) solve();
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -789,7 +770,6 @@
 //     return ((fac[b] * inv[a])%mod) * inv[b-a] % mod;
 // }
 
-
 // void solve(){
 //     cin >> s;
 //     s = ' ' + s;
@@ -811,7 +791,6 @@
 //     }
 //     if(last >= 2) line.push_back(last);
 
-
 //     // for(auto s : line) cout << s << ' ';
 //     // cout << line.size();
 //     // cout << s;
@@ -831,7 +810,6 @@
 //     cout << ans << '\n';
 // }
 
-
 // signed main(){
 //     init();
 //     int t = 1;
@@ -842,14 +820,11 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 1010;
 // int n,k,m,t;
-
 
 // signed main(){
 
@@ -875,12 +850,10 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
-// #define lson id << 1 
+// #define lson id << 1
 // #define rson id << 1 | 1
 // const int N = 2e5 + 10;
 // int n,q,a[N];
@@ -910,7 +883,6 @@
 //     }
 // }
 
-
 // signed main(){
 //     cin >> n;
 //     for(int i = 1;i <= n;i++) {
@@ -931,12 +903,10 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
-// #define lson id << 1 
+// #define lson id << 1
 // #define rson id << 1 | 1
 // const int N = 55;
 // int n, x[N], y[N], sum, xx[N], yy[N];
@@ -984,7 +954,7 @@
 //     // cout << xx[mx];
 //     // for(int i = 0; i< 3;i++)cout << xx[i]<<' ';
 
-//     for(int i = 1;i <= sum;i++) 
+//     for(int i = 1;i <= sum;i++)
 //         // if(!(x[i]==sx[0]||x[i]==sx[1]||y[i]==sy[0]||y[i]==sy[1]))
 //         if(((x[i]==sx[0]||x[i]==sx[1])&&y[i]>=sy[0]&&y[i]<=sy[1])||((y[i]==sy[0]||y[i]==sy[1])&&x[i]>=sx[0]&&x[i]<=sx[1]))
 //         ;
@@ -994,12 +964,10 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
-// #define lson id << 1 
+// #define lson id << 1
 // #define rson id << 1 | 1
 // const int N = 1010;
 // int n, m, mp[N][N];
@@ -1034,8 +1002,6 @@
 //             for(int j = 1;j <= m;j++)
 //                 mp[i][j] = tmp, tmp += 2;
 
-
-
 //     }else if(n&1){
 //         int mid = (n/2)+1;
 //         for(int i = 1; i <= m;i++) mp[mid][i] = i, vis[i] = true; //中间行1-m
@@ -1053,7 +1019,6 @@
 //         for(int i = 1;i < mid-1;i++)
 //             for(int j = 1;j <= m;j++)
 //                 mp[i][j] = cnt, vis[cnt] = true, cnt += 2;
-
 
 //         cnt = m;
 //         if(cnt & 1) cnt ++;
@@ -1090,7 +1055,6 @@
 //                 mp[i][j] = cnt, vis[cnt] = true, cnt += 2;
 //             }
 
-
 //         cnt = n;
 //         if((cnt & 1)==0) cnt += 2;
 //         for(int i = 1; i <= n;i+=2) mp[i][mid+1] = cnt, vis[cnt] = true, cnt += 2; //下面偶数
@@ -1113,7 +1077,6 @@
 //     cout << '\n';
 // }
 
-
 // signed main(){
 //     init();
 //     int t;
@@ -1124,8 +1087,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1163,7 +1124,6 @@
 
 // }
 
-
 // int main(){
 
 //     int t;
@@ -1172,8 +1132,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1191,8 +1149,6 @@
 //     cout << a + b;
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1216,8 +1172,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -1238,7 +1192,7 @@
 //         }
 //         if((s[i] == 'u' || s[i] == 'n') && s[i] == s[i-1])
 //             dp[i] = (dp[i-1] + dp[i-2]) % mod;
-//         else 
+//         else
 //             dp[i] = dp[i-1];
 
 //     }
@@ -1248,15 +1202,12 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define lson id << 1
 // #define rson id << 1 | 1
 // const int N = 2e5 + 10;
 // int n, q, a[N];
-
 
 // //线段树
 // struct node{
@@ -1316,7 +1267,6 @@
 //     calcu(rson, mid + 1, r);
 // }
 
-
 // signed main(){
 //     ios::sync_with_stdio(false);
 //     cin.tie(0);
@@ -1337,15 +1287,12 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 1010;
 // const int mod = 1e9 + 7;
 // int n,x,pos, a[N];
-
 
 // int C[N][N], fac[N], inv[N];
 // int qpow(int a, int q, int p){
@@ -1394,21 +1341,17 @@
 //         return 0;
 //     }
 
-
 //     // cout << (((C[n-x][gret] * fac[gret] % mod) * (C[x-1][les]) * fac[les] % mod) % mod) * fac[n-gret-les-1] % mod << '\n';
 //     cout << ( ((A(n-x,gret)%mod) * (A(x-1,les)%mod)%mod) * fac[n-gret-les-1]) % mod;
 
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 2e5 + 10;
 // int n, ans = 0, odd, eve;
-
 
 // vector<int>G[N];
 // int sz[N];
@@ -1439,10 +1382,9 @@
 //     return 0;
 // }
 
-
 // #include<bits/stdc++.h>
 // using namespace std;
-// #define int long long 
+// #define int long long
 // const int mod = 1e9 + 7;
 // int n;
 // char c[] = {'b','i','t'};
@@ -1464,9 +1406,6 @@
 //     dfs(0);
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1490,9 +1429,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1521,8 +1457,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // // #define int long long
@@ -1550,9 +1484,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -1570,7 +1501,7 @@
 //     for(int i = 1;i <= n;i++){
 //         if(a[i] - a[i-1] > k){
 //             // ans += min(n-i+1, i-l);
-//             // l = 
+//             // l =
 //             if(n-i+1 <= i-l){
 //                 ans += n-i+1;
 //                 break;
@@ -1578,7 +1509,7 @@
 //             ans += i-l;
 //             l = i;
 //             // break;
-//         } 
+//         }
 //         // cout << a[i] << ' ';
 //     }
 //     cout << ans << '\n';
@@ -1592,9 +1523,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1829,6 +1757,438 @@
 //     int t = 1;
 //     cin >> t;
 //     while(t--)solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 2e5 + 10;
+// int n, a[N];
+
+// void solve(){
+//     cin >> n;
+//     unordered_map<int,int>mp;
+//     for(int i = 1;i <= n;i++) cin >> a[i], mp[a[i]]++;
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         int tmp = 0;
+//         int sq = sqrt(i);
+//         for(int j = 1;j < sqrt(i);j++) if(i % j == 0)
+//             tmp += mp[j] + mp[i / j];
+//         if(sq*sq == i)
+//             tmp += mp[sq];
+
+//         ans = max(ans, tmp);
+//     }
+
+//     cout << ans << '\n';
+// }
+
+// int main(){
+
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n >> m;
+//     vector<vector<pair<int,int>>>G(n+1);
+//     for(int i = 1;i <= m;i++){
+//         int a,b,d;
+//         cin >> a >> b >> d;
+//         G[a].push_back({b, d});
+//         G[b].push_back({a, -d});
+//     }
+
+//     vector<bool>vis(n+1);
+//     vector<int>f(n+1);
+//     for(int i = 1;i <= n;i++) if(!vis[i]){
+//         vis[i] = true;
+//         queue<int>q;
+//         q.push(i);
+//         while(q.size()){
+//             int u = q.front();
+//             q.pop();
+//             for(auto [v, d] : G[u]) if(!vis[v]){
+//                 q.push(v);
+//                 vis[v] = true;
+//                 f[v] = f[u] + d;
+//             }else if(f[v] != f[u] + d) {
+//                 cout << "NO\n";
+//                 return;
+//             }
+//         }
+//     }
+
+//     cout << "YES\n";
+// }
+
+// signed main(){
+
+//     int t;
+//     cin >> t;
+//     while(t-) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e6 + 10;
+// int n, m;
+// int a[N];
+// bool check(int x)
+// {
+//     for(int i=1;i<=n;i++)
+//     {
+//         x=x+a[i];
+//         if(x<0) return false;
+//     }
+//     return true;
+// }
+
+// void solve(){
+//     cin>>n;
+//     for(int i=1;i<=n;i++) cin>>a[i];
+//     int l=0,r=1e17;
+//     while(l<=r)
+//     {
+//         int mid=l+r>>1;
+//         if(check(mid)) r=mid-1;
+//         else l=mid+1;
+//     }
+//     cout<<l<<endl;
+// }
+
+// signed main(){
+
+//     int t;
+//     //cin >> t;
+//     t=1;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e6 + 10;
+
+// int n;
+// queue<pair<int,int>> q;
+
+// void solve(){
+//     cin >> n;
+//     int now = 0;
+//     for (int i=1;i<=n;++i)
+//     {
+//         int t,d;
+//         cin >> t >> d;
+//         if (i == 1)
+//         {
+//             now = t + d;
+//             continue;
+//         }
+//         q.push({t, d});
+//     }
+//     // int now =
+//     while (q.size())
+//     {
+//         if (now < q.front().first)
+//         {
+//             now = q.front().first;
+//             now += q.front().second;
+//             // q.pop();
+//         }
+//         else
+//         {
+//             now += q.front().second;
+//         }
+//         q.pop();
+//     }
+//     cout << now << endl;
+// }
+
+// signed main(){
+
+//     int t;
+//     //cin >> t;
+//     t=1;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e6 + 10;
+
+// void solve(){
+//     int a[6];
+//     for(int i = 1;i <= 4;i++) cin >> a[i];
+//     sort(a+1, a+5);
+//     if(a[1] == a[2] && a[2] == a[3] && a[3] == a[4]){
+//         cout << "YES\n";
+//         return;
+//     }
+//     if(a[1] == a[2] && a[3] == a[4] && a[2] != a[3]){
+//         cout << "YES\n";
+//         return;
+//     }
+//     if(a[1] + a[4] == a[2] + a[3]){
+//         cout << "YES\n";
+//         return;
+//     }
+
+//     cout << "NO\n";
+// }
+
+// signed main(){
+
+//     int t;
+//     //cin >> t;
+//     t=1;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n,m;
+// vector<pair<int, char>>g[N];
+// int vis[N];
+
+// pair<int,char>fa[N];
+
+// string dfs(int v){
+//     if(v == 0) return "";
+//     return dfs(fa[v].first) + fa[v].second;
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     while(m--){
+//         int a,b;
+//         char c;
+//         cin >> a >> b >> c;
+//         g[a].push_back({b, c});
+//         g[b].push_back({a, c});
+//     }
+
+//     queue<pair<int,int>>q; //顶点、深度
+//     q.push({1,1});
+//     fa[1] = {0,0};
+//     int ed = 0;            //是否到终点
+//     int mns = 0;           //最短路劲长
+//     vector<int>ansfa;
+//     while(q.size()){
+//         int u = q.front().first;
+//         int dep = q.front().second;
+//         q.pop();
+//         if(vis[u] || dep >= mns) continue;
+//         vis[u] = 1;
+//         for(auto [v, c] : g[u]){
+//             fa[v] = {u, c};
+//             if(v == n){
+//                 if(!ed) mns = dep+1;
+//                 ansfa.push_back(u);
+//                 ed = 1;
+//             }
+//             else
+//                 q.push({v, dep+1});
+//         }
+//     }
+
+//     vector<string>ss;
+//     for(auto v : ansfa){
+//         ss.push_back(dfs(v));
+//     }
+
+//     string ret = ss.front();
+//     for(auto s : ss) ret = min(ret, s);
+//     ret = ret +
+
+//     cout << ret;
+// }
+
+// signed main(){
+
+//     int t;
+//     //cin >> t;
+//     t=1;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define Acode ios::sync_with_stdio(false),cin.tie(0),cout.tie(0)
+// const int N = 2e5 + 10;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     // vector<int>arr[N];
+//     unordered_map<int, vector<int>>arr;
+//     for(int i = 1;i <= n;i++){
+//         int a, c;
+//         cin >> a >> c;
+//         arr[c].push_back(a);
+//     }
+
+//     for(auto &[k,ar] : arr) if(ar.size()) if(!is_sorted(ar.begin(), ar.end())){
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     // for(int i = 1;i < N;i++) if(!is_sorted(arr[i].begin(), arr[i].end())){
+//     //     cout << "NO\n";
+//     //     return;
+//     // }
+
+//     cout << "YES\n";
+// }
+
+// signed main(){
+// Acode;
+//     int t;
+//     //cin >> t;
+//     t=1;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define Acode ios::sync_with_stdio(false),cin.tie(0),cout.tie(0)
+// const int N = 2e5 + 10;
+// int n, t, a[N];
+
+// void solve()
+// {
+//     int n;
+//     int w;
+//     cin>>n>>w;
+//     for(int i=1;i<=n;i++)  cin>>a[i];
+//     int ans=0;
+//     for(int i=1;i<=n;i++)
+//     {
+//         int temp=a[i]+w;
+//         int l=1,r=n;
+//         while(l<=r)
+//         {
+//             int mid=l+r>>1;
+//             if(a[mid]<=temp)
+//             {
+//                 l=mid+1;
+//             }
+//             else r=mid-1;
+//         }
+//         ans=max(ans,r-i+1);
+//     }
+//     cout<<ans<<endl;
+// }
+
+// signed main(){
+// Acode;
+//     int t;
+//     //cin >> t;
+//     t=1;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define Acode ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 2e5 + 10;
+// int a[N];
+
+// void solve()
+// {
+//     int n, t;
+//     cin >> n >> t;
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i];
+
+//     int zer = lower_bound(a + 1, a + 1 + n, 0) - a;
+//     if (a[zer] > 0 || zer > n)
+//         zer--; // 从小于等于0开始
+
+//     int ans = 0;
+//     for (int i = zer; i >= 1; i--)
+//     {
+//         int til = t, as = 0;
+//         // if (a[zer] == 0)
+//         // as = 1;
+
+//         if (abs(a[i]) > til) // 体力不够退出
+//             break;
+
+//         til -= abs(a[i]) * 2;
+
+//         as += zer - i + 1;
+//         // cout << as << ' ' << til << '\n';
+
+//         if (til > 0)
+//         {
+//             // if(a[zer] <= )
+//             int *pos = lower_bound(a + zer + 1, a + n + 1, til);
+//             // cout << (pos - (a + zer)) << '\n';
+
+//             // cout << *(a + zer + 1) << '\n';
+//             // cout << (pos - (a + zer + 1)) << '\n';
+//             as += pos - (a + zer + 1);
+//             if (*pos == til)
+//                 as++;
+//         }
+
+//         ans = max(as, ans);
+//     }
+
+//     int as = 0;
+//     int *pos = lower_bound(a + 1, a + n + 1, t);
+//     as += pos - (a + zer + 1);
+//     if (*pos == t)
+//         as++;
+//     ans = max(as, ans);
+
+//     // cout << zer;
+
+//     cout << ans << '\n';
+// }
+
+// signed main()
+// {
+//     Acode;
+//     int t;
+//     // cin >> t;
+//     t = 1;
+//     while (t--)
+//         solve();
 
 //     return 0;
 // }
