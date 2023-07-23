@@ -2380,3 +2380,175 @@
 
 //     return 0;
 // }
+
+
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n);
+//     for(auto &e : a) cin >> e;
+
+//     if(!is_sorted(a.begin(), a.end())){
+//         cout << "0\n";
+//         return;
+//     }
+
+//     int mn = LLONG_MAX;
+//     for(int i = 1;i < n;i++){
+//         mn = min(mn, a[i] - a[i-1]);
+//     }
+
+//     cout << (mn + 2) / 2 << '\n';
+// }
+
+// signed main(){
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// // #define int long double
+// const int N = 2e5 + 10;
+// int n, k;
+
+// int ferbo(int n){
+// 	return (sqrt(5)/5)*(pow((1+sqrt(5))/2,n)-pow((1-sqrt(5))/2,n));
+// }
+
+// void solve(){
+//     cin >> n >> k;
+//     if(k >= 50){
+//         cout << "0\n";
+//         return;
+//     }
+//     int f1 = ferbo(k - 2);
+//     int f2 = ferbo(k - 1);
+
+
+//     int dx = n / (f1 + f2);
+
+//     int ans = 0;
+//     for(int i = 0;i <= dx;i++){
+//         if((n - f1*i) % f2 == 0) ans++;
+//     }
+
+//     cout << ans << '\n';
+
+//     // if(dx == 0 && f2 == n){
+//     //     cout << "1\n";
+//     //     return;
+//     // }
+
+
+//     // if((f1&1) && (f2&1))
+//     //     cout << (dx + 1) / 4 << '\n';
+//     // else
+//     //     cout << (dx + 1) / 2 << '\n';
+
+//     // cout << f1 << ' '  << f2 << '\n';
+// }
+
+// signed main(){
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+
+//     // for(int i = 1;i <= 20;i++) cout << ferbo(i) << '\n';
+
+//     // for(int i = 25;i <= 50;i++)cout << i << ' ' <<ferbo(i) << '\n';
+
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, k, a[N];
+
+// list<int>lis;
+
+// void solve(){
+//     cin >> n >> k;
+//     // cin >> n;
+//     // k = kk;
+//     // list<int>ls(lis);
+//     // // for(int i = 1;i <= 10000;i++) ls.push_back(i);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+
+
+
+//     // while(k--){
+//     //     // vector<list<long long>::iterator>eras;
+//     //     // for(int i = 1;i <= n;i++) {
+//     //     //     auto head = ls.begin();
+//     //     //     for(int j = 1;j < a[i];j++) head++;
+//     //     //     eras.push_back(head);
+//     //     // }
+//     //     // for(auto p : eras) ls.erase(p);
+
+//     //     auto head = ls.begin();
+//     //     int cur = 1;
+//     //     int cnt = 1;
+//     //     while(cur <= n){
+//     //         if(cnt == a[cur]) {
+//     //             ls.erase(head);
+//     //             cur++;
+//     //         }
+//     //         head++;
+//     //         cnt++;
+//     //     }
+//     // }
+
+//     // cout << ls.front() << '\n';
+
+// }
+
+// signed main(){
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     // for(int i = 1;i <= 200010;i++) lis.push_back(i);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+//     // for(int i = 1;i <= t;i++)solve(i);
+
+
+//     return 0;
+// }
+
+
+
