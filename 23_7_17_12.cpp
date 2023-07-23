@@ -2192,3 +2192,191 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+
+// int main(){
+//     int n;
+//     string s;
+//     cin >> n >> s;
+//     s = ' ' + s;
+//     int a = 0,b = 0, c = 0; 
+//     for(int i = 1;i <= n;i++){
+//         if(s[i] == 'A')a++;
+//         else if(s[i] == 'B')b++;
+//         else c++;
+//         if(a&&b&&c){
+//             cout << a + b + c;
+//             break;
+//         }
+//     }
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// int n, d;
+// int day[110];
+
+// int main(){
+    
+//     cin >> n >> d;
+//     for(int i = 1;i <= n;i++){
+//         string s;
+//         cin >> s;
+//         for(int i = 0;i < s.length();i++)if(s[i] == 'x')day[i+1] = 1;
+//     }
+
+//     int len = 0;
+//     if(day[1] == 0)len++;
+//     int ans =0;
+//     for(int i = 2;i <= d;i++){
+//         if(day[i]==0) len++;
+//         else{
+//             ans = max(ans, len);
+//             len = 0;
+//         }
+//     }
+//             ans = max(ans, len);
+//     cout << ans;
+// // for(int i = 1;i <= d;i++) cout << day[i] << ' ';
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// int n, d;
+// const int N = 2e5 + 10;
+// int to[N];
+// int vis[N];
+
+// int ans = 0;
+
+// void dfs(int u){
+//     if(++vis[u]==2) {
+//         ans = u;
+//         return;
+//     }
+//     dfs(to[u]);
+    
+// }
+
+// int main(){
+    
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> to[i];
+
+//     for(int i = 1;i <= n;i++) if(!vis[i] && !ans) dfs(i);
+
+//     int cur = to[ans];
+//     int cnt = 1;
+//     while(cur != ans){
+//         cnt++;
+//         cur = to[cur];
+//     }
+
+//     cout << cnt << '\n';
+//     cur = to[ans];
+//     cout << ans << ' ';
+//     while(cur != ans){
+//         cout << cur << ' ';
+//         cur = to[cur];
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// int n, m, t;
+// const int N = 3010;
+// int dp[N][N];
+// int mp[N][N];
+// int hole[N][N];
+
+// signed main(){
+    
+//     cin >> n >> m >> t;
+//     for(int i = 1;i <= t;i++){
+//         int a,b;
+//         cin >> a >> b;
+//         mp[a][b] = 1;
+//     }
+
+//     for(int i = 0;i <= n;i++) hole[i][0] = 1;
+//     for(int i = 0;i <= m;i++) hole[0][i] = 1;
+
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1];
+//             if(mp[i][j]){
+//                 hole[i][j] = 1;
+//             }else{
+//                 int mn = min({hole[i-1][j], hole[i][j-1], hole[i-1][j-1]});
+//                 dp[i][j] += mn;
+//                 hole[i][j] = mn + 1;
+//             }
+//         }
+//     }
+
+//     cout << dp[n][m];
+    
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, k, a[N], v[N];
+
+// void solve(){
+//     cin >> n;
+//     int x,y;
+//     unordered_map<int,int>X;
+//     unordered_map<int,int>Y;
+//     unordered_map<int,int>D;
+//     unordered_map<int,int>P;
+//     for(int i = 1;i <= n;i++){
+//         cin >> x >> y;
+//         X[x]++;
+//         Y[y]++;
+//         D[y-x]++;
+//         P[x+y]++;
+//         // cout << x << ' ' << y << '\n';
+//     }
+//     int ans = 0;
+//     for(auto [k,v] : X) ans += v*(v-1);
+//     for(auto [k,v] : Y) ans += v*(v-1);
+//     for(auto [k,v] : D) ans += v*(v-1);
+//     for(auto [k,v] : P) ans += v*(v-1);
+
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
