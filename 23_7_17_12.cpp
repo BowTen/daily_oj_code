@@ -1556,8 +1556,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -1593,9 +1591,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -1630,9 +1625,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -1666,10 +1658,6 @@
 
 //     return 0;
 // }
-
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1709,10 +1697,6 @@
 
 //     return 0;
 // }
-
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2193,17 +2177,15 @@
 //     return 0;
 // }
 
-
 // #include<bits/stdc++.h>
 // using namespace std;
-
 
 // int main(){
 //     int n;
 //     string s;
 //     cin >> n >> s;
 //     s = ' ' + s;
-//     int a = 0,b = 0, c = 0; 
+//     int a = 0,b = 0, c = 0;
 //     for(int i = 1;i <= n;i++){
 //         if(s[i] == 'A')a++;
 //         else if(s[i] == 'B')b++;
@@ -2216,16 +2198,13 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // int n, d;
 // int day[110];
 
 // int main(){
-    
+
 //     cin >> n >> d;
 //     for(int i = 1;i <= n;i++){
 //         string s;
@@ -2249,8 +2228,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // int n, d;
@@ -2266,11 +2243,11 @@
 //         return;
 //     }
 //     dfs(to[u]);
-    
+
 // }
 
 // int main(){
-    
+
 //     cin >> n;
 //     for(int i = 1;i <= n;i++) cin >> to[i];
 
@@ -2294,8 +2271,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2306,7 +2281,7 @@
 // int hole[N][N];
 
 // signed main(){
-    
+
 //     cin >> n >> m >> t;
 //     for(int i = 1;i <= t;i++){
 //         int a,b;
@@ -2316,7 +2291,6 @@
 
 //     for(int i = 0;i <= n;i++) hole[i][0] = 1;
 //     for(int i = 0;i <= m;i++) hole[0][i] = 1;
-
 
 //     for(int i = 1;i <= n;i++){
 //         for(int j = 1;j <= m;j++){
@@ -2332,13 +2306,9 @@
 //     }
 
 //     cout << dp[n][m];
-    
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2381,12 +2351,6 @@
 //     return 0;
 // }
 
-
-
-
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2423,9 +2387,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2446,7 +2407,6 @@
 //     int f1 = ferbo(k - 2);
 //     int f2 = ferbo(k - 1);
 
-
 //     int dx = n / (f1 + f2);
 
 //     int ans = 0;
@@ -2460,7 +2420,6 @@
 //     //     cout << "1\n";
 //     //     return;
 //     // }
-
 
 //     // if((f1&1) && (f2&1))
 //     //     cout << (dx + 1) / 4 << '\n';
@@ -2483,12 +2442,8 @@
 
 //     // for(int i = 25;i <= 50;i++)cout << i << ' ' <<ferbo(i) << '\n';
 
-
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2505,8 +2460,6 @@
 //     // list<int>ls(lis);
 //     // // for(int i = 1;i <= 10000;i++) ls.push_back(i);
 //     for(int i = 1;i <= n;i++) cin >> a[i];
-
-
 
 //     // while(k--){
 //     //     // vector<list<long long>::iterator>eras;
@@ -2546,9 +2499,112 @@
 //     while(t--)solve();
 //     // for(int i = 1;i <= t;i++)solve(i);
 
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, k, a[N];
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+
+//     if(a[1] != 1){
+//         cout << 1 << '\n';
+//         return;
+//     }
+
+//     int ans = 1;
+//     int cur = 1;
+//     while(k--){
+//         ans += cur;
+//         while(cur + 1 <= n && ans >= a[cur + 1]){
+//             cur++;
+//             ans++;
+//         }
+//     }
+
+//     cout << ans << '\n';
+
+// }
+
+// signed main(){
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
 
 //     return 0;
 // }
 
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+// #define int long double
+const int N = 2e5 + 10;
+int n, k;
 
+int ferbo(int n)
+{
+    return (sqrt(5) / 5) * (pow((1 + sqrt(5)) / 2, n) - pow((1 - sqrt(5)) / 2, n));
+}
 
+void solve()
+{
+    cin >> n >> k;
+    if (k >= 50)
+    {
+        cout << "0\n";
+        return;
+    }
+    int f1 = ferbo(k - 2);
+    int f2 = ferbo(k - 1);
+
+    int dx = n / (f1 + f2);
+
+    int ans = 0;
+    for (int i = 0; i <= dx; i++)
+    {
+        if ((n - f1 * i) % f2 == 0)
+            ans++;
+    }
+
+    cout << ans << '\n';
+
+    // if(dx == 0 && f2 == n){
+    //     cout << "1\n";
+    //     return;
+    // }
+
+    // if((f1&1) && (f2&1))
+    //     cout << (dx + 1) / 4 << '\n';
+    // else
+    //     cout << (dx + 1) / 2 << '\n';
+
+    // cout << f1 << ' '  << f2 << '\n';
+}
+
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    // int t = 1;
+    // cin >> t;
+    // while (t--)
+    //     solve();
+
+    // for(int i = 1;i <= 20;i++) cout << ferbo(i) << '\n';
+
+    for (int i = 25; i <= 50; i++)
+        cout << i << ' ' << ferbo(i) << '\n';
+
+    return 0;
+}
