@@ -2543,68 +2543,311 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+// const int M = 1e6 + 10;
+// int n, m, a[N], sum = 1;
+// vector<int>clo[M];
+
+
+// int main(){
+
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         clo[a[i]].push_back(i);
+//     }
+
+//     for(int i = 1;i < n;i++)
+//         if(a[i] != a[i+1]) sum++;
+
+//     int op, x, y;
+//     while(m--){
+//         cin >> op;
+//         if(op == 1){
+//             cin >> x >> y;
+//             if(x == y || x == 0) continue;
+//             if(x > y) swap(x, y);
+//             for(int i = 0, len = clo[x].size(); i < len;i++){
+                
+//             }
+//         }else{
+
+//         }
+//     }
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+// const int M = 1e6 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     int a, b;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a >> b;
+//         if(b < a) ans++;
+
+//     }
+
+//     cout << ans << '\n';
+// }
+
+
+// signed main(){
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+// const int M = 1e6 + 10;
+// int n, m;
+
+// void solve(){
+//     char s[3][3];
+//     for(int i = 0;i < 3;i++){
+//         for(int j = 0;j < 3;j++)
+//         cin >> s[i][j];
+//     }
+
+
+//     if(s[0][0] != '.' &&s[0][0] == s[0][1] && s[0][1] == s[0][2]){
+//     if(s[0][0] == '.')
+//     cout << "DRAW\n";
+//     else
+//         cout << s[0][0] << '\n';
+//         return;
+//     }
+//     if(s[1][0] != '.' &&s[1][0] == s[1][1] && s[1][1] == s[1][2]){
+//     if(s[1][1] == '.')
+//     cout << "DRAW\n";
+//     else
+//         cout << s[1][0] << '\n';
+//         return;
+//     }
+//     if(s[2][0] != '.' &&s[2][0] == s[2][1] && s[2][1] == s[2][2]){
+//     if(s[2][0] == '.')
+//     cout << "DRAW\n";
+//     else
+//         cout << s[2][0] << '\n';
+//         return;
+//     }
+//     if(s[0][0] != '.' &&s[2][0] == s[1][0] && s[1][0] == s[0][0]){
+//     if(s[0][0] == '.')
+//     cout << "DRAW\n";
+//     else
+//         cout << s[2][0] << '\n';
+//         return;
+//     }
+//     if(s[0][1] != '.' &&s[2][1] == s[1][1] && s[1][1] == s[0][1]){
+//     if(s[1][1] == '.')
+//     cout << "DRAW\n";
+//     else
+//         cout << s[2][1] << '\n';
+//         return;
+//     }
+//     if(s[0][2] != '.' &&s[2][2] == s[1][2] && s[1][2] == s[0][2]){
+//     if(s[2][2] == '.')
+//     cout << "DRAW\n";
+//     else
+//         cout << s[2][2] << '\n';
+//         return;
+//     }
+//     if(s[0][0] != '.' &&s[2][2] == s[1][1] && s[1][1] == s[0][0]){
+//     if(s[2][2] == '.')
+//     cout << "DRAW\n";
+//     else
+//         cout << s[2][2] << '\n';
+//         return;
+//     }
+//     if(s[2][0] != '.' &&s[0][2] == s[1][1] && s[1][1] == s[2][0]){
+//     if(s[1][1] == '.')
+//     cout << "DRAW\n";
+//     else
+//         cout << s[1][1] << '\n';
+//         return;
+//     }
+//     cout << "DRAW\n";
+
+// }
+
+
+// signed main(){
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// const int M = 1e6 + 10;
+// int n, m, h;
+
+// struct node{
+//     int ac, pt, id;
+// }a[N];
+
+// void solve(){
+//     cin >> n >> m >> h;
+//     for(int i = 1;i <= n;i++){
+//         a[i].id = i;
+//         int cnt = 0, sum = 0, pt = 0;
+//         vector<int>ti(m+1);
+//         for(int j = 1, t;j <= m;j++)
+//             cin >> ti[j];
+//         sort(ti.begin() + 1, ti.end());
+//         for(int j = 1;j <= m;j++){
+//             if(sum + ti[j] > h) break;
+//             pt += sum + ti[j];
+//             sum += ti[j];
+//             cnt++;
+//         }
+//         a[i].ac = cnt;
+//         a[i].pt = pt;
+//     }
+
+//     sort(a+1, a+1+n, [](node e1, node e2)->int {if(e1.ac == e2.ac) if(e1.pt == e2.pt) return e1.id < e2.id; else return e1.pt < e2.pt; return e1.ac > e2.ac;} );
+
+//     // int pos = 0;
+//     // for(int i = 1;i <= m;i++) if(a[i].id == 1) {
+//     //     pos = i;
+//     //     break;
+//     // }
+//     // int ans = 1;
+//     // for(int i = 1;i <= n;i++) 
+//     //     if(a[i].id == 1){
+//     //         break;
+//     //     }else if(a[i].ac > )ans++;
+//     // cout << ans << '\n';
+
+//     for(int i = 1;i <= n;i++){
+//         if(a[i].id == 1){
+//             cout << i << "\n";
+//             return;
+//         }
+//     }
+// }
+
+
+// signed main(){
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, m, h, d;
+
+// void solve(){
+//     cin >> n >> d >> h;
+//     double k = (d / 2.0) / h;
+//     double ans = (double)n * d * h / 2.0;
+//     int y, last = 0;
+
+//     for(int i = 1;i <= n;i++){
+//         cin >> y;
+//         if(y < last){
+//             ans -= (last - y) * (k * (last - y));
+//             // cout << (last - y) * ((d/2.0) - k * (last - y)) << '\n';
+//             // cout << (d/2.0) << '-' << k * (last - y) << '=' << ((d/2.0) - k * (last - y)) << '\n';
+//             // cout << k << '\n';
+//         }
+//         last = y + h;
+//     }
+
+//     printf("%lf\n", ans);
+// }
+
+
+// signed main(){
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+#include<bits/stdc++.h>
 using namespace std;
 #define int long long
-// #define int long double
-const int N = 2e5 + 10;
-int n, k;
+const int N = 1e6 + 10;
+int n, m, a[N];
 
-int ferbo(int n)
-{
-    return (sqrt(5) / 5) * (pow((1 + sqrt(5)) / 2, n) - pow((1 - sqrt(5)) / 2, n));
-}
+vector<int>pos[N];
 
-void solve()
-{
-    cin >> n >> k;
-    if (k >= 50)
-    {
-        cout << "0\n";
-        return;
-    }
-    int f1 = ferbo(k - 2);
-    int f2 = ferbo(k - 1);
+signed main(){
 
-    int dx = n / (f1 + f2);
-
-    int ans = 0;
-    for (int i = 0; i <= dx; i++)
-    {
-        if ((n - f1 * i) % f2 == 0)
-            ans++;
+    cin >> n >> m;
+    for(int i = 1;i <= n;i++){
+        cin >> a[i];
+        pos[a[i]].push_back(i);
     }
 
-    cout << ans << '\n';
+    int sum = 1;
+    for(int i = 1;i < n;i++) 
+        if(a[i] != a[i+1]) sum++;
 
-    // if(dx == 0 && f2 == n){
-    //     cout << "1\n";
-    //     return;
-    // }
+    while(m--){
+        int op, x, y;
+        cin >> op;
+        if(op == 1){
+            cin >> x >> y;
+            if(x == y || pos[x].size() == 0) continue;
+            if(pos[x].size() > pos[y].size()) swap(pos[x], pos[y]);
 
-    // if((f1&1) && (f2&1))
-    //     cout << (dx + 1) / 4 << '\n';
-    // else
-    //     cout << (dx + 1) / 2 << '\n';
+            for(auto p : pos[x]) {
+                sum -= (a[p] != a[p-1]) + (a[p] != a[p+1]);
+                a[p] = a[pos[y][0]];
+                sum += (a[p] != a[p-1]) + (a[p] != a[p+1]);
 
-    // cout << f1 << ' '  << f2 << '\n';
-}
+                pos[y].push_back(p);
+            }
+            pos[x].clear();
+        }else{
+            cout << sum << '\n';
+        }
 
-signed main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    cout.tie(0);
-
-    // int t = 1;
-    // cin >> t;
-    // while (t--)
-    //     solve();
-
-    // for(int i = 1;i <= 20;i++) cout << ferbo(i) << '\n';
-
-    for (int i = 25; i <= 50; i++)
-        cout << i << ' ' << ferbo(i) << '\n';
+    }
 
     return 0;
 }
