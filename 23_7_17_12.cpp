@@ -2807,47 +2807,104 @@
 // }
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-const int N = 1e6 + 10;
-int n, m, a[N];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// int n, m, a[N];
 
-vector<int>pos[N];
+// vector<int>pos[N];
 
-signed main(){
+// signed main(){
 
-    cin >> n >> m;
-    for(int i = 1;i <= n;i++){
-        cin >> a[i];
-        pos[a[i]].push_back(i);
-    }
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         pos[a[i]].push_back(i);
+//     }
 
-    int sum = 1;
-    for(int i = 1;i < n;i++) 
-        if(a[i] != a[i+1]) sum++;
+//     int sum = 1;
+//     for(int i = 1;i < n;i++) 
+//         if(a[i] != a[i+1]) sum++;
 
-    while(m--){
-        int op, x, y;
-        cin >> op;
-        if(op == 1){
-            cin >> x >> y;
-            if(x == y || pos[x].size() == 0) continue;
-            if(pos[x].size() > pos[y].size()) swap(pos[x], pos[y]);
+//     while(m--){
+//         int op, x, y;
+//         cin >> op;
+//         if(op == 1){
+//             cin >> x >> y;
+//             if(x == y || pos[x].size() == 0) continue;
+//             if(pos[x].size() > pos[y].size()) swap(pos[x], pos[y]);
 
-            for(auto p : pos[x]) {
-                sum -= (a[p] != a[p-1]) + (a[p] != a[p+1]);
-                a[p] = a[pos[y][0]];
-                sum += (a[p] != a[p-1]) + (a[p] != a[p+1]);
+//             for(auto p : pos[x]) {
+//                 sum -= (a[p] != a[p-1]) + (a[p] != a[p+1]);
+//                 a[p] = a[pos[y][0]];
+//                 sum += (a[p] != a[p-1]) + (a[p] != a[p+1]);
 
-                pos[y].push_back(p);
-            }
-            pos[x].clear();
-        }else{
-            cout << sum << '\n';
-        }
+//                 pos[y].push_back(p);
+//             }
+//             pos[x].clear();
+//         }else{
+//             cout << sum << '\n';
+//         }
 
-    }
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 3e5 + 10;
+// int n, b[N], dp[N][2];  //1取，0不取
+// vector<int>vec[N];
+
+// void dfs(int u, int fa){
+//     for(auto v : vec[u]) if(v != fa){
+//         dfs(v, u);
+//     }
+
+//     vector<array<int, 2>>dp2;
+//     for(auto v : vec[u]) if(v != fa){
+//         dp[u][0] += dp[v][1];   //始为 0出度状态
+//         dp[u][1] += dp[v][1];
+//         dp2.push_back({dp[v][0], dp[v][1]});
+//     }
+
+//     sort(dp2.begin(), dp2.end(), [](array<int,2>e1, array<int,2>e2)->int {return e1[0] - e1[1] > e2[0] - e2[1];});
+
+//     int d0 = dp[u][0];
+//     int d1  =dp[u][1];
+//     for(int i = 1, len = dp2.size();i <= len;i++){     //枚举出度
+//         d0 += dp2[i-1][0] - dp2[i-1][1] + b[i] - b[i-1];
+//         d1 += dp2[i-1][0] - dp2[i-1][1] + b[i+1] - b[i];
+//         dp[u][0] = max(dp[u][0], d0);
+//         dp[u][1] = max(dp[u][1], d1);
+//     }
+// }
+
+
+// signed main(){
+
+//     cin >> n;
+//     for(int i = 0;i < n;i++) cin >> b[i];
+//     for(int i = 1;i <= n;i++){
+//         dp[i][0] = b[0];
+//         dp[i][1] = b[1];
+//     }
+//     for(int i = 1;i < n;i++){
+//         int u, v;
+//         cin >> u >> v;
+//         vec[u].push_back(v);
+//         vec[v].push_back(u);
+//     }
+
+
+//     dfs(1, 0);
+
+//     cout << dp[1][0];
+
+//     return 0;
+// }
