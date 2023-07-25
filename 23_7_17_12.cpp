@@ -2908,3 +2908,341 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, a[N], m, k, H;
+
+// void solve(){
+//     cin >> n >> m >> k >> H;
+//     m--;
+//     int ans = 0;
+//     // memset(a, 0, sizeof(a));
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         int d = abs(a[i] - H);
+//         if(d % k == 0 && d / k <= m && H != a[i]) {
+//             ans++;
+//             // cout << a[i] << '\n';
+//         }
+//     }
+//     cout << ans << '\n';
+// }
+
+
+// signed main(){
+
+//     int t;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++) {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, a[N], m, k, H;
+
+// void solve(){
+//     cin >> n ;
+//     vector<int>eve;
+//     vector<int>ep;
+//     vector<int>odd;
+//     vector<int>op;
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         if(a[i]&1)odd.push_back(a[i]), op.push_back(i);
+//         else eve.push_back(a[i]), ep.push_back(i);
+//     }
+//     sort(eve.begin(), eve.end());
+//     sort(odd.begin(), odd.end());
+//     for(int i = 0;i < op.size();i++) a[op[i]] = odd[i];
+//     for(int i = 0;i < ep.size();i++) a[ep[i]] = eve[i];
+
+
+//     if(is_sorted(a + 1, a + 1 + n)) cout << "YES\n";
+//     else cout << "NO\n";
+// }
+
+
+// signed main(){
+
+//     int t;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++) {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, a[N], m, k, H;
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++ ) cin >> a[i];
+
+//     int ls = a[n];
+//     int p = 0;
+//     int cnt = 0;
+//     for(int i = n;i >= 1;i--){
+//         if(a[i] == ls) cnt++;
+//         if(cnt == k){
+//             p = i;
+//             break;
+//         }
+//     }
+
+//     if(!p){
+//         cout << "NO\n";
+//         return;
+//     }
+//     if(a[1] == ls){
+//         cout << "YES\n";
+//         return;
+//     }
+
+//     ls = a[1];
+//     cnt = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] == ls) cnt++;
+//         if(cnt == k){
+//             if(i < p)
+//                 cout << "YES\n";
+//             else 
+//                 cout << "NO\n";
+//             return;
+//         }
+//     }
+
+//     cout << "NO\n";
+
+// }
+
+
+// signed main(){
+
+//     int t;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++) {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, a[N], pre[N];
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i < n;i++ ) cin >> a[i];
+
+//     if(a[n-1] < pre[n]){
+//         a[n] = pre[n];
+//         map<int,int>mp;
+//         for(int i = 1;i <= n;i++){
+//             mp[a[i]-a[i-1]]++;
+//         }
+//         for(int i = 1;i <= n;i++){
+//             if(mp[i] != 1){
+//                 cout << "NO\n";
+//                 return;
+//             }
+//         }
+//         cout << "YES\n";
+//         return;
+//     }else if(a[n-1] > pre[n]){
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     map<int,int>mp;
+//     int cnt = 0, p = 0;
+//     for(int i = 1;i < n;i++){
+//         if(a[i] - a[i-1] > n) p = a[i] - a[i-1];
+//         if(mp[a[i]-a[i-1]]++) cnt++, p = a[i] - a[i-1];
+//     }
+
+//     if(cnt > 1 || p == 1 || p == 2) {
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     vector<int>nd;
+//     for(int i = 1;i <= n;i++){
+//         if(!mp[i]){
+//             nd.push_back(i);
+//         }
+//     }    
+//     if(nd.size() != 2 || nd[0] + nd[1] != p) {
+//         // cout << nd.size() << '\n';
+//         // cout << nd[0] << ' ' << nd[1] << '\n';
+//         cout << "NO\n";
+//         return;
+//     }
+
+
+
+//     cout << "YES\n";
+// }
+
+
+// signed main(){
+
+//     for(int i = 1;i < N;i++){
+//         pre[i] = pre[i-1] + i;
+//     }
+//     // for(int i = 1;i < N;i++){
+//     //     if(pre[i] < pre[i-1]) {
+//     //         cout << "!\n";
+//     //         break;
+//     //     }
+//     // }
+
+//     int t;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++) {
+//         solve();
+//     }
+
+//     // for(int i = 10000;i <= 10010;i++)cout << pre[i] << '\n';
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, a[N], k, c[N], p[N];
+
+// vector<int>mix[N];
+
+// int ans[N];
+
+// void dfs(int x){
+//     if(mix[x].size() == 0){
+//         ans[x] = c[x];
+//         return;
+//     }
+//     int tmp = 0;
+//     for(auto nd : mix[x]){
+//         if(ans[nd] == -1) dfs(nd);
+//         tmp += ans[nd];
+//     }
+//     ans[x] = min(tmp, c[x]);
+// }
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) ans[i] = -1, mix[i].clear();
+
+//     for(int i = 1;i <= n;i++) {
+//         cin >> c[i];
+//         if(!c[i])
+//             ans[i] = 0;
+//     }
+
+//     for(int i = 1;i <= k;i++) cin >> p[i], ans[p[i]] = 0;
+
+//     for(int i = 1;i <= n;i++){
+//         int m;
+//         cin >> m;
+//         if(!m && ans[i] == -1) ans[i] = c[i];
+//         mix[i].reserve(m);
+//         int nd;
+//         while(m--){
+//             cin >> nd;
+//             mix[i].push_back(nd);
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++) if(ans[i] == -1){
+//         dfs(i);
+//     }
+
+//     for(int i = 1;i <= n;i++) cout << ans[i] << ' ';
+//     cout << '\n';
+// }
+
+
+// signed main(){
+
+//     int t;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++) {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, k;
+// array<int, 2>a[N];
+
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) cin >> a[i][0], a[i][1] = i;
+//     sort(a + 1, a + 1 + n);
+//     for(int i = 2;i <= n;i++){
+//         if(a[i][0] == a[i-1][0]){
+//             cout << a[i-1][1] << ' ' << a[i][1] << ' ' << (1 << k) - 1 << '\n';
+//             return;
+//         }
+//     }
+
+//     cout << a[1][1] << ' ' << a[2][1] << ' ';
+//     int x = a[1][0], y = a[2][0];
+//     int m = max(x, y);
+//     int ans = (1 << k) - 1;
+//     for(int i = 1;(1 << (i-1)) <= m;i++){
+//         if((1<<(i-1))&x == (1<<(i-1))&y){
+//             if((1<<(i-1))&x) ans -= (1<<(i-1));
+//         }
+//     }
+//     cout << ans << '\n';
+// }
+
+
+// signed main(){
+
+//     int t;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++) {
+//         solve();
+//     }
+
+//     return 0;
+// }
