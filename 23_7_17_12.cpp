@@ -3246,3 +3246,258 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 5e5 + 10;
+// int n, m, s;
+// vector<int>vec[N];
+
+// //树剖
+// int par[N], dep[N], top[N], son[N], siz[N];
+// void pre_dfs(int u, int fa){
+//     par[u] = fa;
+//     dep[u] = dep[fa] + 1;
+//     siz[u] = 1;
+//     for(auto v : vec[u]) if(v != fa){
+//         pre_dfs(v, u);
+//         siz[u] += siz[v];
+//         if(siz[v] > siz[son[u]])
+//             son[u] = v;
+//     }
+// }
+// void dfs(int u, int tp){
+//     top[u] = tp;
+//     if(son[u]) dfs(son[u], tp);
+//     else return;
+
+//     for(auto v : vec[u]) if(v != par[u] && v != son[u])
+//         dfs(v, v);
+// }
+// int lca(int a, int b){
+//     while(top[a] != top[b]){
+//         if(dep[top[a]] > dep[top[b]])
+//             a = par[top[a]];
+//         else
+//             b = par[top[b]];
+//     }
+//     return dep[a] < dep[b] ? a : b;
+// }
+
+
+// //倍增lca
+// // int par[N][20], dep[N];
+// // void dfs(int u, int fa){
+// //     dep[u] = dep[fa] + 1;
+// //     par[u][0] = fa;
+// //     for(int i = 1;i < 20;i++)
+// //         par[u][i] = par[par[u][i-1]][i-1];
+
+// //     for(auto v : vec[u]) if(v != fa)
+// //         dfs(v, u);
+// // }
+
+// // int lca(int u, int v){
+// //     if(dep[u] < dep[v])
+// //         swap(u, v);
+
+// //     for(int i = 19;i >= 0;i--)
+// //         if(dep[par[u][i]] >= dep[v])
+// //             u = par[u][i];
+
+// //     if(u == v) return v;
+
+// //     for(int i = 19;i >= 0;i--)
+// //         if(par[u][i] != par[v][i]){
+// //             u = par[u][i];
+// //             v = par[v][i];
+// //         }
+
+// //     return par[u][0];
+// // }
+
+
+// int main(){
+    
+//     cin >> n >> m >> s;
+//     for(int i = 1;i < n;i++){
+//         int u, v;
+//         cin >> u >> v;
+//         vec[u].push_back(v);
+//         vec[v].push_back(u);
+//     }
+
+//     pre_dfs(s, 0);
+//     dfs(s, s);
+
+//     // dfs(s, 0);
+
+//     int a, b;
+//     while(m--){
+//         cin >> a >> b;
+//         cout << lca(a, b) << '\n';
+//     }
+
+//     // cout << 8;
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// int n, m, p, r, a[N];
+// vector<int>g[N];
+// int tr_data[N], id[N], tot;
+// int dep[N], par[N], top[N], siz[N], son[N];
+
+
+// //线段树
+// struct node{
+//     int sum, tag, len;
+// }tr[N << 2];
+// void settag(int id, int v){
+//     tr[id].sum += v * tr[id].len;
+//     tr[id].tag += v;
+// }
+// void up(int id){
+//     tr[id].sum = tr[lson].sum + tr[rson].sum;
+// }
+// void down(int id){
+//     if(!tr[id].tag) return;
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+// void build(int id, int l ,int r){
+//     if(l == r){
+//         tr[id].len = 1;
+//         tr[id].sum = tr_data[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+//     tr[id].len = tr[lson].len + tr[rson].len;
+// }
+// void add(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr){
+//         settag(id, v);
+//         return;
+//     }
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) add(lson, l, mid, ql, qr, v);
+//     else if(ql > mid) add(rson, mid + 1, r, ql, qr, v);
+//     else add(lson, l, mid, ql, qr, v), add(rson, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
+// int query(int id, int l, int r, int ql ,int qr){
+//     if(ql <= l && r <= qr){
+//         // cout << l << ' ' << r << '\n';
+//         // cout << id << '\n';
+//         return tr[id].sum % p;
+//     }
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr) % p;
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr) % p;
+//     else return (query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr)) % p;
+// }
+
+
+// //树链剖分
+// void dfs(int u, int fa){
+//     dep[u] = dep[fa] + 1;
+//     par[u] = fa;
+//     siz[u] = 1;
+//     for(auto v : g[u]) if(v != fa) {
+//         dfs(v, u);
+//         siz[u] += siz[v];
+//         if(siz[son[u]] < siz[v])
+//             son[u] = v;
+//     }
+// }
+// void dfs2(int u, int tp){
+//     top[u] = tp;
+//     id[u] = ++ tot;
+//     tr_data[tot] = a[u];
+//     if(son[u]) dfs2(son[u], tp);
+//     else return;
+
+//     for(auto v : g[u]) if(v != par[u] && v != son[u])
+//         dfs2(v, v);
+// }
+
+
+// //操作函数
+// void line_add(int u, int v, int val){
+//     val %= p;
+//     while(top[u] != top[v]){
+//         if(dep[top[u]] < dep[top[v]]) swap(u, v);
+//         add(1, 1, n, id[top[u]], id[u], val);
+//         u = par[top[u]];
+//     }
+//     if(dep[u] < dep[v]) swap(u, v);
+//     add(1, 1, n, id[v], id[u], val);
+// }
+// int line_query(int u, int v){
+//     int ret = 0;
+//     while(top[u] != top[v]){
+//         if(dep[top[u]] < dep[top[v]]) swap(u, v);
+//         ret += query(1, 1, n, id[top[u]], id[u]);
+//         u = par[top[u]];
+//     }
+//     if(dep[u] < dep[v]) swap(u, v);
+//     ret += query(1, 1, n, id[v], id[u]);
+//     return ret;
+// }
+// void tr_add(int x, int val){
+//     val %= p;
+//     add(1, 1, n, id[x], id[x] + siz[x] - 1, val);
+// }
+// int tr_query(int x){
+//     return query(1, 1, n, id[x], id[x] + siz[x] - 1);
+// }
+
+
+// signed main(){
+//     cin >> n >> m >> r >> p;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i < n;i++){
+//         int u, v;
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     dfs(r, 0);
+//     dfs2(r, r);
+//     build(1, 1, n);
+
+//     int op, x, y ,z;
+//     while(m --){
+//         cin >> op >> x;
+//         if(op == 1){//路径加
+//             cin >> y >> z;
+//             line_add(x, y, z);
+//         }else if(op == 2){//路径查
+//             cin >> y;
+//             cout << line_query(x, y) % p << '\n';
+//         }else if(op == 3){//子树加
+//             cin >> z;
+//             tr_add(x, z);
+//         }else{//子树查
+//             cout << tr_query(x) % p << '\n';
+//         }
+//     }
+
+//     return 0;
+// }
