@@ -3670,3 +3670,236 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     int a, b, c;
+//     cin >> a >> b >> c;
+//     b += c;
+//     if(b >= a - 1)
+//     cout << 2*a - 1 << '\n';
+//     else 
+//         cout << b * 2 + 1 << '\n';
+// }
+
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++){
+//         solve();
+//     }
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 3e5 + 10;
+// int n, m, k;
+
+// // typedef array<int, 2> ar2;
+// struct ar2{
+//     int a, b;
+//     int operator< (const ar2 e2) const{
+//     if(a == e2.a) return b > e2.b;
+//     return a < e2.a;
+// }
+// }a[N];
+
+// // int operator> (ar2 e1, ar2 e2){
+// //     if(e1.a == e2.a) return e1.b < e2.b;
+// //     return e1.a > e2.a;
+// // }
+
+// void solve(){
+//     cin >> n >> k;
+//     // vector<ar2>q;
+//     // list<int>ls;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i].a;
+//         a[i].b = i;
+//         // q.push_back({a[i], i});
+//         // a[i].a %= k;
+//     }
+//     sort(a + 1, a + 1 + n);
+//     // for(int i = 1;i <= n;i++) cout << a[i].a << ' ' ;
+//     // cout << '\n';
+//     // for(int i = 1;i <= n;i++) cout << a[i].b << ' ' ;
+//     // cout << '\n';
+//     // list<int>ans;
+//     int pos = 0;
+//     for(int i = n;i >= 1;i--){
+//         if(a[i].a <= k){
+//             pos = i;
+//             break;
+//         }
+//     }
+//     int pp = (a[pos].a / k) * k;
+//     for(int i = n;i > pos;i--){
+//         a[i].a = a[i].a % k + pp;
+//         if(a[i].a > k) a[i].a -= k;
+//     }
+//     sort(a + 1, a + 1 + n);
+//     for(int i = n;i >= 1;i--) cout << a[i].b << ' ';
+//     cout << '\n';
+
+
+//     // while(q.size()){
+        
+//     // }
+//     // for(auto aa : ls)
+//     // cout << aa << ' ';
+//     // cout << '\n';
+//     // for(auto [a,b] : q)cout << a << ' ' << b << '\n';
+//     // q.push({2, 1});
+//     // q.push({2, 0});
+//     // q.push({3, 3});
+//     // while(q.size()){
+//     //     cout << q.top().a << ' ' << q.top().b << '\n';
+//     //     q.pop();
+//     // }
+// }
+
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++){
+//         solve();
+//     }
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 3e5 + 10;
+// int n, m, k;
+
+// array<int, 2> a[N];
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i][0];
+//         a[i][0] %= k;
+//         if(a[i][0] == 0) a[i][0] = k;
+//         a[i][1] = i;
+//     }
+
+//     sort(a+1, a+1 + n, [](array<int,2>e1, array<int,2>e2)->int {if(e1[0]==e2[0])return e1[1]<e2[1]; return e1[0] > e2[0];});
+//     for(int i = 1;i <= n;i++) cout << a[i][1] << ' ';
+//     cout << '\n';
+
+// }
+
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++){
+//         solve();
+//     }
+//     return 0;
+// }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+const int N = 2e5 + 10;
+int n, m, k;
+int pre[N];
+
+void solve(){
+    cin >> n >> m;
+    string s;
+    cin >> s;
+    s = ' ' + s;
+    vector<int>last(n+1);
+    int lp = 0;
+    for(int i = 1;i <= n;i++){
+        pre[i] = pre[i-1] + (s[i] == '1' ? 1 : 0);
+        if(s[i] == '0' && lp){
+            for(int j = lp;j < i;j++) last[j] = i - 1;
+            lp = 0;
+        }
+        if(s[i] == '1' && !lp) lp = i;
+    }
+    if(lp)
+        for(int j = lp;j <= n;j++) last[j] = n;
+
+
+
+    set<pair<int,int>>st;
+    int l, r, d;
+    int f = 0;
+    while(m--){
+        cin >> l >> r;
+        d = pre[r] - pre[l-1];
+        if(d == r - l + 1 || d == 0 || d == pre[r] - pre[r - d]){ 
+            f = 1;
+            continue;
+        }
+        // pos[r - d + 1] = 1;
+        int tmp = last[r+1] ? last[r+1] : r;
+        if(r + 1 > n) tmp = n;
+        st.insert({r-d+1, tmp});
+    }
+
+    int ans = st.size();
+    // for(int i = 1;i <= n;i++) ans += pos[i];
+
+    if(f) ans++;
+
+    // for(int i = 1;i <= n;i++) cout << last[i] << ' ';
+
+
+    // for(int i = 1;i <= n;i++) cout << pos[i] << ' ';
+    cout << ans << "\n";
+
+    // for(auto [j,k] : st) cout << j << ' ' << k  << '\n';
+
+    // cout << s ;
+    // cout << '\n';
+}
+
+
+signed main(){
+
+    IO;
+
+    int t = 1;
+    cin >> t;
+    for(int i = 1;i <= t;i++){
+        solve();
+    }
+    return 0;
+}
