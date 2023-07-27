@@ -3501,3 +3501,172 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+// int n, m, k, c[N];
+// vector<int>g[N];
+// int ans[N];
+
+// //dsu on tree
+// int l[N], r[N], tot, id[N], siz[N], son[N], dep[N];
+// int sum[N], cnt;
+// map<int, list<int>>points;
+// map<int, list<int>>sub;
+// void add(int x){
+//     sum[c[x]]++;
+//     if(sum[c[x]] == 1)
+//         cnt++;
+// }
+// void del(int x){
+//     sum[c[x]]--;
+//     if(sum[c[x]] == 0)
+//         cnt--;
+// }
+// void dfs(int u, int fa){ 
+//     siz[u] = 1;
+//     dep[u] = dep[fa] + 1;
+//     points[dep[u]].push_back(u);
+//     id[++tot] = u;
+//     l[u] = tot;
+//     for(auto v : g[u]) if(v != fa){
+//         dfs(v, u);
+//         siz[u] += siz[v];
+//         if(siz[son[u]] < siz[v])
+//             son[u] = v;
+//     }
+//     int dp = dep[u] + k + 1;
+//     while(points[dp].size()){
+//         sub[u].push_back(points[dp].back());
+//         points[dp].pop_back();
+//     }
+//     r[u] = tot;
+// }
+// void dfs2(int u, int fa, bool kp){
+//     for(auto v : g[u]) if(v != fa && v != son[u])   //先处理轻儿子
+//         dfs2(v, u, false);
+//     if(son[u]) dfs2(son[u], u, true);
+//     for(auto v : g[u]) if(v != fa && v != son[u]){  //添加轻儿子子树的所有点
+//         for(int i = l[v];i <= r[v];i++)
+//             add(id[i]);     //添加到重儿子的集合
+//     }
+//     add(u);    //添加到重儿子的集合
+//     for(auto sb : sub[u]) del(sb);  //减去k+1层
+//     ans[u] = cnt;
+//     if(!kp)
+//         for(int i = l[u];i <= r[u];i++)
+//             del(id[i]);
+// }
+
+
+// signed main(){
+
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) cin >> c[i];
+
+//     for(int i = 1;i < n;i++){
+//         int u, v;
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     dfs(1, 0);
+//     dfs2(1, 0, true);
+
+//     cin >> m;
+//     int x;
+//     while(m--){
+//         cin >> x;
+//         cout << ans[x] << '\n';
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 10;
+// int n, k, c[N], m, ans[N];
+// vector<int>g[N];
+
+// //dsu on tree
+// int dep[N], siz[N], son[N], id[N], l[N], r[N], tot;
+// int sum[N], cnt;
+// map<int, list<int>>pon_dep;
+// map<int, list<int>>sbp;
+// void add(int x){
+//     sum[c[x]]++;
+//     if(sum[c[x]] == 1) cnt++;
+// }
+// void del(int x){
+//     sum[c[x]]--;
+//     if(sum[c[x]] == 0) cnt--;
+// }
+// void dfs(int u, int fa){
+//     dep[u] = dep[fa] + 1;
+//     pon_dep[dep[u]].push_back(u);
+//     siz[u] = 1;
+//     id[++tot] = u;
+//     l[u] = tot;
+//     for(auto v : g[u]) if(v != fa){
+//         dfs(v, u);
+//         siz[u] += siz[v];
+//         if(siz[son[u]] < siz[v])
+//             son[u] = v;
+//     }
+//     int sdp = dep[u] + k + 1;
+//     while(pon_dep[sdp].size()){
+//         sbp[u].push_back(pon_dep[sdp].back());
+//         pon_dep[sdp].pop_back();
+//     }
+//     r[u] = tot;
+// }
+// void dfs2(int u, int fa, bool kp){
+//     for(auto v : g[u]) if(v != fa && v != son[u])
+//         dfs2(v, u, false);
+//     if(son[u]) dfs2(son[u], u, true);
+//     for(auto v : g[u]) if(v != fa && v != son[u])
+//         for(int i = l[v];i <= r[v];i++) if(dep[id[i]] - dep[u] <= k + 1)
+//             add(id[i]);  
+//     add(u);
+//     for(auto v : sbp[u])
+//         del(v);
+//     ans[u] = cnt;
+//     if(!kp)
+//         for(int i = l[u];i <= r[u];i++) if(dep[id[i]] - dep[u] <= k)
+//             del(id[i]);
+// }
+
+
+// int main(){
+
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) cin >> c[i];
+
+//     int u, v;
+//     for(int i = 1;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     dfs(1, 0);
+//     dfs2(1, 0, true);
+
+//     cin >> m;
+//     int x;
+//     while(m--){
+//         cin >> x;
+//         cout << ans[x] << '\n';
+//     }
+
+
+//     return 0;
+// }
