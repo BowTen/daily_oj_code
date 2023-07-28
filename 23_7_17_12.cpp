@@ -3830,76 +3830,250 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-const int N = 2e5 + 10;
-int n, m, k;
-int pre[N];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, k;
+// int pre[N];
 
-void solve(){
-    cin >> n >> m;
-    string s;
-    cin >> s;
-    s = ' ' + s;
-    vector<int>last(n+1);
-    int lp = 0;
-    for(int i = 1;i <= n;i++){
-        pre[i] = pre[i-1] + (s[i] == '1' ? 1 : 0);
-        if(s[i] == '0' && lp){
-            for(int j = lp;j < i;j++) last[j] = i - 1;
-            lp = 0;
-        }
-        if(s[i] == '1' && !lp) lp = i;
-    }
-    if(lp)
-        for(int j = lp;j <= n;j++) last[j] = n;
-
-
-
-    set<pair<int,int>>st;
-    int l, r, d;
-    int f = 0;
-    while(m--){
-        cin >> l >> r;
-        d = pre[r] - pre[l-1];
-        if(d == r - l + 1 || d == 0 || d == pre[r] - pre[r - d]){ 
-            f = 1;
-            continue;
-        }
-        // pos[r - d + 1] = 1;
-        int tmp = last[r+1] ? last[r+1] : r;
-        if(r + 1 > n) tmp = n;
-        st.insert({r-d+1, tmp});
-    }
-
-    int ans = st.size();
-    // for(int i = 1;i <= n;i++) ans += pos[i];
-
-    if(f) ans++;
-
-    // for(int i = 1;i <= n;i++) cout << last[i] << ' ';
+// void solve(){
+//     cin >> n >> m;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     vector<int>last(n+1);
+//     int lp = 0;
+//     for(int i = 1;i <= n;i++){
+//         pre[i] = pre[i-1] + (s[i] == '1' ? 1 : 0);
+//         if(s[i] == '0' && lp){
+//             for(int j = lp;j < i;j++) last[j] = i - 1;
+//             lp = 0;
+//         }
+//         if(s[i] == '1' && !lp) lp = i;
+//     }
+//     if(lp)
+//         for(int j = lp;j <= n;j++) last[j] = n;
 
 
-    // for(int i = 1;i <= n;i++) cout << pos[i] << ' ';
-    cout << ans << "\n";
 
-    // for(auto [j,k] : st) cout << j << ' ' << k  << '\n';
+//     set<pair<int,int>>st;
+//     int l, r, d;
+//     int f = 0;
+//     while(m--){
+//         cin >> l >> r;
+//         d = pre[r] - pre[l-1];
+//         if(d == r - l + 1 || d == 0 || d == pre[r] - pre[r - d]){ 
+//             f = 1;
+//             continue;
+//         }
+//         // pos[r - d + 1] = 1;
+//         int tmp = last[r+1] ? last[r+1] : r;
+//         if(r + 1 > n) tmp = n;
+//         st.insert({r-d+1, tmp});
+//     }
 
-    // cout << s ;
-    // cout << '\n';
-}
+//     int ans = st.size();
+//     // for(int i = 1;i <= n;i++) ans += pos[i];
+
+//     if(f) ans++;
+
+//     // for(int i = 1;i <= n;i++) cout << last[i] << ' ';
 
 
-signed main(){
+//     // for(int i = 1;i <= n;i++) cout << pos[i] << ' ';
+//     cout << ans << "\n";
 
-    IO;
+//     // for(auto [j,k] : st) cout << j << ' ' << k  << '\n';
 
-    int t = 1;
-    cin >> t;
-    for(int i = 1;i <= t;i++){
-        solve();
-    }
-    return 0;
-}
+//     // cout << s ;
+//     // cout << '\n';
+// }
+
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++){
+//         solve();
+//     }
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f;
+// int n, a[N], dp[N][2];
+
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+
+//     int left[N];    //左边第一个零的位置
+//     int lp = 1; 
+//     for(int i = 1;i <= n;i++){
+//         if(a[i]) left[i] = lp;
+//         else lp = i;
+//     }
+
+//     memset(dp, inf, sizeof(dp));
+//     dp[0][0] = 0;
+
+//     for(int i = 1;i <= n;i++){
+//         if(a[i]){
+//             if(dp[i-1][1] != inf) 
+//                 dp[i][1] = dp[i-1][1];
+//             dp[i][0] = 1 + min(dp[left[i]-1][0], dp[left[i]-1][1]);
+//             dp[i][1] = min(dp[i][1],1 + dp[i-1][0]);
+//             if(a[i] == 2 || i == 1)
+//                 dp[i][1] = min(dp[i][1],dp[i][0]);
+//         }else{
+//             if(dp[i-1][1] != inf) dp[i][0] = dp[i-1][1];
+//             else dp[i][0] = 1 + dp[i-1][0];
+//         }
+//     }
+
+//     cout << min(dp[n][0], dp[n][1]) << '\n';
+// }
+
+
+// int main(){
+//     int t = 1;
+//     // cin >> t;
+//     while(t--)solve();    
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, k;
+// int pre[N];
+
+// void solve(){
+//     cin >> n >> m;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     vector<int>last(n+1);
+//     int lp = 0;
+//     //预处理每个1后面连续的1最右端位置
+//     for(int i = 1;i <= n;i++){
+//         pre[i] = pre[i-1] + (s[i] == '1' ? 1 : 0);
+//         if(s[i] == '0' && lp){
+//             for(int j = lp;j < i;j++) last[j] = i - 1;
+//             lp = 0;
+//         }
+//         if(s[i] == '1' && !lp) lp = i;
+//     }
+//     if(lp)
+//         for(int j = lp;j <= n;j++) last[j] = n;
+
+//     set<pair<int,int>>st;
+//     int l, r, d;
+//     int f = 0;
+//     while(m--){
+//         cin >> l >> r;
+//         d = pre[r] - pre[l-1];
+//         if(d == r - l + 1 || d == 0 || d == pre[r] - pre[r - d]){ //与原数组相同情况
+//             f = 1;
+//             continue;
+//         }
+//         int tmp = last[r+1] ? last[r+1] : r;
+//         if(r + 1 > n) tmp = n;
+//         st.insert({r-d+1, tmp});
+//     }
+
+//     int ans = st.size();
+
+//     if(f) ans++;
+
+//     cout << ans << "\n";
+// }
+
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     for(int i = 1;i <= t;i++){
+//         solve();
+//     }
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define all(a) a.begin(), a.end()
+// const int N = 8010;
+// int n;
+// int x[2][N], y[2][N], c[N];
+// bool mp[N][N];
+// int sum[N], cnt;
+// int R[N][N];
+
+// void add(int x){
+//     if(!sum[c[x]]){
+//         sum[c[x]] = 1;
+//         cnt++;
+//     }
+// }
+
+// int main(){
+
+//     cin >> n;
+//     vector<int>idx;
+//     vector<int>idy;
+//     for(int i = 1;i <= n;i++){
+//         cin >> x[0][i] >> y[0][i] >> x[1][i] >> y[1][i] >> c[i];
+//         idx.push_back(x[0][i]);
+//         idx.push_back(x[1][i]);
+//         idy.push_back(y[0][i]);
+//         idy.push_back(y[1][i]);
+//     }
+//     sort(all(idx));
+//     sort(all(idy));
+//     idx.erase(unique(all(idx)),idx.end());
+//     idy.erase(unique(all(idy)),idy.end());
+
+//     for(int i = 1;i <= n;i++){
+//         x[0][i] = lower_bound(all(idx), x[0][i]) - idx.begin() + 1;
+//         x[1][i] = lower_bound(all(idx), x[1][i]) - idx.begin() + 1;
+//         y[0][i] = lower_bound(all(idy), y[0][i]) - idy.begin() + 1;
+//         y[1][i] = lower_bound(all(idy), y[1][i]) - idy.begin() + 1;
+//     }
+
+//     for(int t = n;t >= 1;t--){
+//         for(int i = y[0][t]; i >= y[1][t]; i--){
+//             for(int j = x[0][t]; j <= x[1][t];j++){
+//                 if(mp[i][j]) j = R[i][j];
+//                 else{
+//                     mp[i][j] = true;
+//                     add(t);
+//                 }
+//                 R[i][j] = max(R[i][j], x[1][t]);
+//             }
+//         }
+//     }
+
+//     // cout << cnt;
+//     for(int i = 1;i <= n;i++){
+//         cout << x[0][i] << ' ' << y[0][i] << ' ' << x[1][i] << ' ' << y[1][i] << '\n';
+//     }
+
+//     return 0;
+// }
