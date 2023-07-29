@@ -4058,21 +4058,654 @@
 //     }
 
 //     for(int t = n;t >= 1;t--){
-//         for(int i = y[0][t]; i >= y[1][t]; i--){
-//             for(int j = x[0][t]; j <= x[1][t];j++){
+//         for(int i = y[0][t]; i > y[1][t]; i--){
+//             for(int j = x[0][t]; j < x[1][t];j++){
 //                 if(mp[i][j]) j = R[i][j];
 //                 else{
+//                     // cout << i << ' ' << j << ' ' << c[t] << '\n';
 //                     mp[i][j] = true;
 //                     add(t);
 //                 }
-//                 R[i][j] = max(R[i][j], x[1][t]);
+//                 R[i][j] = max(R[i][j], x[1][t] - 1);
 //             }
 //         }
 //     }
 
-//     // cout << cnt;
+//     cout << cnt;
+//     // for(int i = 1;i <= n;i++){
+//     //     cout << x[0][i] << ' ' << y[0][i] << ' ' << x[1][i] << ' ' << y[1][i] << '\n';
+//     // }
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 1010;
+// int n, m;
+// string mp[N];
+// string a;
+// vector<int>p;
+// bool way[N][110];
+// bool ans;
+
+// bool vis[N][110];
+// int op[4][2] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+// void dfs(int R, int C){
+//     if(ans) return;
+//     int nr, nc;
+//     for(int i = 0;i < 4;i++){
+//         nr = (R + op[i][0]) % m;
+//         nc = (C + op[i][1]) % m;
+//         if(nr >= 0 && nc >= 0 && way[nr][nc] && !vis[nr][nc]){
+//             vis[nr][nc] = true;
+//             dfs(nr, nc);
+//             // vis[nr][nc] = false;
+//         }
+//     }
+//     if(R == n - 1) ans = true;
+// }
+
+// int main(){
+
+//     cin >> n >> m;
+//     cin >> a;
+//     for(int i = 0;i < m;i++) if(a[i] == '1')
+//         p.push_back(i);
+//     for(int i = 0;i < n;i++){
+//         cin >> mp[i];
+//         for(int d = 0;d < m;d++){
+//             bool f = true;
+//             for(auto x : p)
+//                 if(mp[i][(x + d) % m] == '1'){
+//                     f = false;
+//                     break;
+//                 }
+//             if(f) way[i][d] = true;
+//         }
+//     }
+
+//     for(int i = 0;i < m;i++) if(!ans && way[0][i])
+//         dfs(0, i);
+
+//     if(!ans){
+//         reverse(a.begin(), a.end());
+//         p.clear();
+//         memset(way, 0, sizeof(way));
+//         memset(vis, 0, sizeof(vis));
+//         for(int i = 0;i < m;i++) if(a[i] == '1')
+//             p.push_back(i);
+//         for(int i = 0;i < n;i++){
+//             for(int d = 0;d < m;d++){
+//                 bool f = true;
+//                 for(auto x : p)
+//                     if(mp[i][(x + d) % m] == '1'){
+//                         f = false;
+//                         break;
+//                     }
+//                 if(f) way[i][d] = true;
+//             }
+//         }
+//         for(int i = 0;i < m;i++) if(!ans && way[0][i])
+//             dfs(0, i);
+//     }
+
+//     cout << (ans ? "Y" : "N");
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 1010;
+// int n, m;
+// string mp[N];
+// string a;
+// vector<int>p;
+// int op[4][2] = {{1, 0}, {0, 1}, {-1, 0},{0, -1}};
+
+// bool way[N][110];
+// bool vis[N][110];
+// bool ans = false;
+
+
+// int main(){
+
+//     cin >> n >> m;
+//     cin >> a;
+//     for(int i = 0;i < m;i++) if(a[i] == '1')
+//         p.push_back(i);
+//     for(int i = 0;i < n;i++){
+//         cin >> mp[i];
+//         for(int d = 0;d < m;d++){
+//             bool f = true;
+//             for(auto pos : p){
+//                 if(mp[i][(pos+d) % m] == '1'){
+//                     f = false;
+//                     break;
+//                 }
+//             }
+//             if(f) way[i][d] = true;
+//         }
+//     }
+
+//     queue<array<int, 2>>que;
+//     for(int i = 0;i < m;i++) if(way[0][i]) que.push({0, i});
+//     while(!ans && que.size()){
+//         int r = que.front()[0], c = que.front()[1];
+//         que.pop();
+//         if(r >= n - 1) {
+//             ans = 1;
+//             break;
+//         }
+//         if(vis[r][c]) continue;
+//         vis[r][c] = 1;
+//         for(int i = 0; i < 4;i++){
+//             int rn = (r + op[i][0]) % m, cn = (c + op[i][1]) % m;
+//             if(rn >= 0 && cn >= 0 && !vis[rn][cn] && way[rn][cn])
+//                 que.push({rn, cn});
+//         }
+//     }
+
+//     if(!ans){
+//         reverse(a.begin(), a.end());
+//         p.clear();
+//         memset(way, 0, sizeof(way));
+//         memset(vis, 0, sizeof(vis));
+//         for(int i = 0;i < m;i++) if(a[i] == '1')
+//             p.push_back(i);
+//         for(int i = 0;i < n;i++){
+//             for(int d = 0;d < m;d++){
+//                 bool f = true;
+//                 for(auto pos : p){
+//                     if(mp[i][(pos+d) % m] == '1'){
+//                         f = false;
+//                         break;
+//                     }
+//                 }
+//                 if(f) way[i][d] = true;
+//             }
+//         }
+
+//         queue<array<int, 2>>que;
+//         for(int i = 0;i < m;i++) if(way[0][i]) que.push({0, i});
+//         while(!ans && que.size()){
+//             int r = que.front()[0], c = que.front()[1];
+//             que.pop();
+//             if(r >= n - 1) {
+//                 ans = 1;
+//                 break;
+//             }
+//             if(vis[r][c]) continue;
+//             vis[r][c] = 1;
+//             for(int i = 0; i < 4;i++){
+//                 int rn = (r + op[i][0]) % m, cn = (c + op[i][1]) % m;
+//                 if(rn >= 0 && cn >= 0 && !vis[rn][cn] && way[rn][cn])
+//                     que.push({rn, cn});
+//             }
+//         }
+
+//     }
+
+//     cout << (ans ? "Y" : "N");
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 1010;
+// int n, m;
+// string mp[1010];
+// string a;
+// bool way[N][110];
+// bool vis[N][110];
+// int op[4][2] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+// int main(){
+
+//     cin >> n >> m;
+//     cin >> a;
+//     a = ' ' + a;
 //     for(int i = 1;i <= n;i++){
-//         cout << x[0][i] << ' ' << y[0][i] << ' ' << x[1][i] << ' ' << y[1][i] << '\n';
+//         cin >> mp[i];
+//         mp[i] = ' ' + mp[i];
+//         for(int d = 1;d <= m;d++){
+//             bool flag = true;
+//             for(int j = 1;j <= m;j++)
+//                 if(a[j] == '1' && mp[i][((j+d-1) > m ? j+d-1-m : j+d-1)] == '1'){
+//                     flag = false;
+//                     break;
+//                 }
+//             if(flag) way[i][d] = true;
+//         }
+//     }
+
+
+//     queue<array<int, 2>>que;
+//     for(int i = 1;i <= m;i++) if(way[1][i]){
+//         que.push({1, i});
+//     }
+//     bool ans = false;
+//     while(que.size() && !ans){
+//         auto [R, C] = que.front();
+//         que.pop();
+//         if(R == n){
+//             ans = true;
+//             break;
+//         }
+//         if(vis[R][C]) continue;
+//         vis[R][C] = true;
+
+//         int nr, nc;
+//         for(int i = 0;i < 4;i++){
+//             nr = R+op[i][0];
+//             nc = (C+op[i][1] > m ? C+op[i][1]-m : C+op[i][1]);
+//             if(way[nr][nc] && !vis[nr][nc])
+//                 que.push({nr, nc});
+//         }
+//     }
+    
+//     if(!ans){
+//         memset(way, false, sizeof(way));
+//         memset(vis, false, sizeof(vis));
+//         reverse(a.begin() + 1, a.end());
+//         for(int i = 1;i <= n;i++){
+//             for(int d = 1;d <= m;d++){
+//                 bool flag = true;
+//                 for(int j = 1;j <= m;j++)
+//                     if(a[j] == '1' && mp[i][((j+d-1) > m ? j+d-1-m : j+d-1)] == '1'){
+//                         flag = false;
+//                         break;
+//                     }
+//                 if(flag) way[i][d] = true;
+//             }
+//         }
+
+//         for(int i = 1;i <=m;i++) if(way[1][i])
+//             que.push({1, i});
+//         while(que.size() && !ans){
+//             auto [R, C] = que.front();
+//             que.pop();
+//             if(R == n){
+//                 ans = true;
+//                 break;
+//             }
+//             if(vis[R][C]) continue;
+//             vis[R][C] = true;
+
+//             int nr, nc;
+//             for(int i = 0;i < 4;i++){
+//                 nr = R+op[i][0];
+//                 nc = (C+op[i][1] > m ? C+op[i][1]-m : C+op[i][1]);
+//                 if(way[nr][nc] && !vis[nr][nc])
+//                     que.push({nr, nc});
+//             }
+//         }
+//     }
+
+//     cout << (ans ? "Y" : "N");
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 1010;
+// #define int long long
+// int n, m;
+// string a, mp[N];
+// bool way[N][110];
+// bool vis[N][110];
+// int op[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
+// bool ans = false;
+
+// void dfs(int R, int C){
+//     if(R == n-1){
+//         ans = true;
+//         return;
+//     }
+//     if(ans) return;
+//     vis[R][C] = 1;
+
+//     int nr, nc;
+//     for(int i = 0;i < 4;i++){
+//         nr = R + op[i][0];
+//         nc = (C + op[i][1] + m) % m;
+//         if(nr >= 0 && nr < n && nc >= 0 && nc < m && way[nr][nc] && !vis[nr][nc])
+//             dfs(nr, nc);
+//     }
+// }
+
+
+// signed main(){
+
+//     cin >> n >> m;
+//     cin >> a;
+//     for(int i = 0;i < n;i++) {
+//         cin >> mp[i];
+//         for(int d = 0;d < m;d++){
+//             bool flag = true;
+//             for(int j = 0;j < m;j++){
+//                 if(a[j] == '1' && mp[i][(j+d) % m] == '1'){
+//                     flag = false;
+//                     break;
+//                 }
+//             }
+//             if(flag) way[i][d] = true;
+//         }
+//     }
+
+//     for(int i = 0;i < m;i++) if(way[0][i] && !vis[0][i])
+//         dfs(0, i);
+
+//     if(!ans){
+//         memset(way, 0, sizeof(way));
+//         memset(vis, 0, sizeof(vis));
+//         reverse(a.begin(), a.end());
+//         for(int i = 0;i < n;i++) {
+//             for(int d = 0;d < m;d++){
+//                 bool flag = true;
+//                 for(int j = 0;j < m;j++){
+//                     if(a[j] == '1' && mp[i][(j+d) % m] == '1'){
+//                         flag = false;
+//                         break;
+//                     }
+//                 }
+//                 if(flag) way[i][d] = true;
+//             }
+//         }
+        
+//         for(int i = 0;i < m;i++) if(way[0][i])
+//             dfs(0, i);
+//     }
+
+//     cout << (ans ? "Y" : "N");
+//     return 0;
+// }
+
+
+
+// #include <iostream>
+// #include <queue>
+// using namespace std;
+
+// const int N = 1007;
+// char mp[N][N];
+// int row, col;
+// int flag[N][N];
+// int vis[N][N];
+// char tag[N];
+// int bg = -1;
+// int dx[4] = {0, 0, 1, -1};
+// int dy[4] = {1, -1, 0, 0};
+
+// bool check(int r, int c)
+// {
+//     for (int i = 0; i < col; i++)
+//     {
+//         if (tag[(bg + i) % col] == '0')
+//             continue;
+//         if (mp[r][(c + i) % col] == '1')
+//             return false;
+//     }
+//     return true;
+// }
+
+// bool bfs()
+// {
+//     for (int i = 1; i <= row; i++)
+//     {
+//         for (int j = 0; j < col; j++)
+//         {
+//             if (check(i, j))
+//                 flag[i][j] = 1;
+//             else
+//                 flag[i][j] = 0;
+//             vis[i][j] = 0;
+//             // if (flag[i][j])
+//             //     cout << i << ' ' << j + 1 << endl;
+//         }
+//     }
+//     queue<pair<int, int>> q;
+//     bool getans = false;
+//     for (int i = 0; i < col; i++)
+//     {
+//         if (flag[1][i])
+//         {
+//             vis[1][i] = 1;
+//             q.push({1, i});
+//         }
+//     }
+//     while (q.size())
+//     {
+//         int x = q.front().first, y = q.front().second;
+//         q.pop();
+//         if (x == row)
+//         {
+//             getans = true;
+//             break;
+//         }
+//         for (int i = 0; i < 4; i++)
+//         {
+//             int xx = x + dx[i];
+//             int yy = (y + dy[i] + col) % col;
+//             if (xx <= 0 || xx > row)
+//                 continue;
+//             if (vis[xx][yy])
+//                 continue;
+//             if (flag[xx][yy] == 0)
+//                 continue;
+//             vis[xx][yy] = 1;
+//             q.push({xx, yy});
+//         }
+//     }
+//     return getans;
+// }
+
+// int main()
+// {
+//     std::ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     cin >> row >> col;
+//     for (int i = 0; i < col; i++)
+//     {
+//         cin >> tag[i];
+//         // cout << tag[i];
+//         if (tag[i] == '1' && bg == -1)
+//             bg = i;
+//     }
+//     // cout << endl;
+//     // cout << bg << endl;
+//     for (int i = 1; i <= row; i++)
+//     {
+//         for (int j = 0; j < col; j++)
+//         {
+//             cin >> mp[i][j];
+//         }
+//     }
+//     if (bg == -1)
+//     {
+//         cout << "Y";
+//         return 0;
+//     }
+//     if (bfs())
+//         cout << "Y";
+//     else
+//     {
+//         for (int i = 0; i < col - i - 1; i++)
+//         {
+//             // cout << i << ' ' << col - i << endl;
+//             swap(tag[i], tag[col - i - 1]);
+//         }
+//         for (int i = 0; i < col; i++)
+//         {
+//             // cout << tag[i];
+//             if (tag[i] == '1')
+//             {
+//                 bg = i;
+//                 break;
+//             }
+//         }
+//         // cout << endl;
+//         if (bfs())
+//             cout << "Y";
+//         else
+//             cout << "N" << endl;
+//     }
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+
+
+// int main(){
+
+//     cout << (-1 % 3);
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     string a, b;
+//     cin >> a >> b;
+//     a = ' ' + a;
+//     b = ' ' + b;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++) if(a[i] == b[i]) ans++;
+//     cout << ans << ' ';
+
+//     int delt = 0;
+//     int l = 1, r = 1;
+//     int q, p;
+//     int ori, cur;
+//     for(int i = 1;i <= n;i++){
+//         p = q = i;
+//         ori = cur = 0;
+//         while(q >= 1 && p <= n){
+//             ori += (a[p] == b[p]) + (a[q] == b[q]);
+//             cur += (a[p] == b[q]) + (a[q] == b[p]);
+//             if(cur - ori > delt || (cur - ori == delt && (p - q < r - l || (p - q == r - l && q < l)))) {
+//                 delt = cur - ori;
+//                 l = q, r = p;
+//             }
+//             q--;
+//             p++;
+//         }
+//     }
+
+//     for(int i = 1;i < n;i++){
+//         q = i;
+//         p = i + 1;
+//         ori = cur = 0;
+//         while(q >= 1 && p <= n){
+//             ori += (a[p] == b[p]) + (a[q] == b[q]);
+//             cur += (a[p] == b[q]) + (a[q] == b[p]);
+//             if(cur - ori > delt || (cur - ori == delt && (p - q < r - l || (p - q == r - l && q < l)))){
+//                 delt = cur - ori;
+//                 l = q, r = p;
+//             }
+//             q--;
+//             p++;
+//         }
+//     }
+
+//     cout << ans + delt << ' ' << l << ' ' << r << '\n';
+// }
+
+
+// int main(){
+
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define fori(bg, ed) for(int i = bg;i <= ed;i++)
+// #define forj(bg, ed) for(int j = bg;j <= ed;j++)
+// const int N = 1010;
+// int n;
+// array<int, 2>g[N];
+// vector<int>rg[N];
+// bool vis[N][4];
+
+// int main(){
+
+//     cin >> n;
+//     fori(1, n){
+//         cin >> g[i][0] >> g[i][1];
+//         rg[g[i][0]].push_back(i);
+//         rg[g[i][1]].push_back(i);
+//     }
+
+//     fori(1, n){
+//         memset(vis, 0, sizeof(vis));
+//         queue<int>que;
+
+//         que.push(i);
+//         while(que.size()){
+//             int u = que.front();
+//             que.pop();
+//             if(vis[u][1]) continue;
+//             vis[u][1] = 1;
+//             for(auto v : rg[u]) if(!vis[v][1] && !((u==g[i][0]&&v==i)||(u==g[i][1]&&v==i)))
+//                 que.push(v);
+//         }
+
+//         que.push(g[i][0]);
+//         while(que.size()){
+//             int u = que.front();
+//             que.pop();
+//             if(vis[u][2]) continue;
+//             vis[u][2] = 1;
+//             for(auto v : rg[u]) if(!vis[v][2] && !((u==g[i][0]&&v==i)||(u==g[i][1]&&v==i)))
+//                 que.push(v);
+//         }
+
+//         que.push(g[i][1]);
+//         while(que.size()){
+//             int u = que.front();
+//             que.pop();
+//             if(vis[u][3]) continue;
+//             vis[u][3] = 1;
+//             for(auto v : rg[u]) if(!vis[v][3] && !((u==g[i][0]&&v==i)||(u==g[i][1]&&v==i)))
+//                 que.push(v);
+//         }
+
+//         bool ans = false;
+//         forj(1, n){
+//             if(vis[j][1] && vis[j][2] && vis[j][3]){
+//                 ans = true;
+//                 break;
+//             }
+//         }
+//         cout << (ans ? "Y" : "N");
 //     }
 
 //     return 0;
