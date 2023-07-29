@@ -4710,3 +4710,170 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define fori(bg, ed) for(int i = bg;i <= ed;i++)
+// #define forj(bg, ed) for(int j = bg;j <= ed;j++)
+// const int N = 1e5 + 10;
+// int n;
+// string ss[] = {"ACE","BDF","CEG","DFA","EGB","FAC","GBD"};
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     for(auto sp : ss){
+//         if(s == sp){
+//             cout << "Yes\n";
+//             return;
+//         }
+//     }
+//     cout << "No\n";
+// }
+
+
+// int main(){
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define fori(bg, ed) for(int i = bg;i <= ed;i++)
+// #define forj(bg, ed) for(int j = bg;j <= ed;j++)
+// const int N = 1e5 + 10;
+// int n, m;
+// string mp[105];
+
+// bool isblack(int i, int j){
+//     for(int x = i; x <= i + 2;x++){
+//         for(int y = j;y <= j + 2;y++){
+//             if(mp[x][y] != '#' && mp[x][y] != '?'){
+//                     return false;
+//             }
+//         }  
+//     }
+//     return true;
+// }
+
+// bool rwi(int i, int j){
+//     for(int x = j;x <= j + 3;x++)
+//         if(mp[i][x] != '.') return false;
+//     return true;
+// }
+
+// bool cwi(int i, int j){
+//     for(int y = i;y <= i + 3;y++)
+//         if(mp[y][j] != '.') return false;
+//     return true;
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++){
+//         cin >> mp[i];
+//         mp[i] = ' ' + mp[i];
+//     }
+
+//     for(int i = 1;i + 8 <= n;i++){
+//         bool f1 = 0;
+//         for(int j = 1;j + 8 <= m;j++){
+//             if(isblack(i,j)&&isblack(i+6,j+6)&&cwi(i,j+3)&&cwi(i+5,j+5)&&rwi(i+3,j)&&rwi(i+5,j+5)){
+//                 cout << i << ' ' << j << '\n';
+//                 j += 3;
+//                 f1 = 1;
+//             }    
+//         }
+//         // if(f1) i += 3;
+//     }
+// }
+
+
+// int main(){
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define fori(bg, ed) for(int i = bg;i <= ed;i++)
+// #define forj(bg, ed) for(int j = bg;j <= ed;j++)
+// const int N = 2e5 + 10;
+// int n, m, a[N], b[N];
+
+// bool check(int x){
+//     int sel = 0, buy = 0;
+//     fori(1, n)if(x >= a[i]) sel++;
+//     fori(1, m) if(x <= b[i]) buy++;
+//     return sel >= buy;
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     fori(1, n) cin >> a[i];
+//     fori(1, m) cin >> b[i];
+
+//     sort(a+1, a+1+n);
+//     sort(b+1, b+1+m);
+
+//     int l = 1, r = 1e9;
+//     while(l <= r){
+//         int mid = l + r >> 1;
+//         if(check(mid)) r = mid - 1;
+//         else l = mid + 1;
+//     }
+//     cout << l << '\n';
+// }
+
+
+// int main(){
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define fori(bg, ed) for(int i = bg;i <= ed;i++)
+// #define forj(bg, ed) for(int j = bg;j <= ed;j++)
+// const int N = 3010;
+// const int mod = 998244353;
+// int n, dp[N];
+// string s;
+
+// void solve(){
+//     cin >> s;
+//     s = ' ' + s;
+
+// }
+
+
+// int main(){
+
+//     int t = 1;
+//     while(t--) solve();
+
+//     return 0;
+// }
