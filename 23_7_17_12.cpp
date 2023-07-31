@@ -2543,7 +2543,6 @@
 //     return 0;
 // }
 
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2551,7 +2550,6 @@
 // const int M = 1e6 + 10;
 // int n, m, a[N], sum = 1;
 // vector<int>clo[M];
-
 
 // int main(){
 
@@ -2572,7 +2570,7 @@
 //             if(x == y || x == 0) continue;
 //             if(x > y) swap(x, y);
 //             for(int i = 0, len = clo[x].size(); i < len;i++){
-                
+
 //             }
 //         }else{
 
@@ -2581,9 +2579,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2605,7 +2600,6 @@
 //     cout << ans << '\n';
 // }
 
-
 // signed main(){
 
 //     int t = 1;
@@ -2614,9 +2608,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2631,7 +2622,6 @@
 //         for(int j = 0;j < 3;j++)
 //         cin >> s[i][j];
 //     }
-
 
 //     if(s[0][0] != '.' &&s[0][0] == s[0][1] && s[0][1] == s[0][2]){
 //     if(s[0][0] == '.')
@@ -2693,7 +2683,6 @@
 
 // }
 
-
 // signed main(){
 
 //     int t = 1;
@@ -2702,9 +2691,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2744,7 +2730,7 @@
 //     //     break;
 //     // }
 //     // int ans = 1;
-//     // for(int i = 1;i <= n;i++) 
+//     // for(int i = 1;i <= n;i++)
 //     //     if(a[i].id == 1){
 //     //         break;
 //     //     }else if(a[i].ac > )ans++;
@@ -2758,7 +2744,6 @@
 //     }
 // }
 
-
 // signed main(){
 
 //     int t = 1;
@@ -2767,8 +2752,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2796,7 +2779,6 @@
 //     printf("%lf\n", ans);
 // }
 
-
 // signed main(){
 
 //     int t = 1;
@@ -2805,7 +2787,6 @@
 
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2824,7 +2805,7 @@
 //     }
 
 //     int sum = 1;
-//     for(int i = 1;i < n;i++) 
+//     for(int i = 1;i < n;i++)
 //         if(a[i] != a[i+1]) sum++;
 
 //     while(m--){
@@ -2851,8 +2832,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2885,7 +2864,6 @@
 //     }
 // }
 
-
 // signed main(){
 
 //     cin >> n;
@@ -2901,15 +2879,12 @@
 //         vec[v].push_back(u);
 //     }
 
-
 //     dfs(1, 0);
 
 //     cout << dp[1][0];
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2933,7 +2908,6 @@
 //     cout << ans << '\n';
 // }
 
-
 // signed main(){
 
 //     int t;
@@ -2944,8 +2918,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2969,11 +2941,9 @@
 //     for(int i = 0;i < op.size();i++) a[op[i]] = odd[i];
 //     for(int i = 0;i < ep.size();i++) a[ep[i]] = eve[i];
 
-
 //     if(is_sorted(a + 1, a + 1 + n)) cout << "YES\n";
 //     else cout << "NO\n";
 // }
-
 
 // signed main(){
 
@@ -2985,8 +2955,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3025,7 +2993,7 @@
 //         if(cnt == k){
 //             if(i < p)
 //                 cout << "YES\n";
-//             else 
+//             else
 //                 cout << "NO\n";
 //             return;
 //         }
@@ -3034,7 +3002,6 @@
 //     cout << "NO\n";
 
 // }
-
 
 // signed main(){
 
@@ -3046,9 +3013,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3096,7 +3060,7 @@
 //         if(!mp[i]){
 //             nd.push_back(i);
 //         }
-//     }    
+//     }
 //     if(nd.size() != 2 || nd[0] + nd[1] != p) {
 //         // cout << nd.size() << '\n';
 //         // cout << nd[0] << ' ' << nd[1] << '\n';
@@ -3104,11 +3068,8 @@
 //         return;
 //     }
 
-
-
 //     cout << "YES\n";
 // }
-
 
 // signed main(){
 
@@ -3131,9 +3092,6 @@
 //     // for(int i = 10000;i <= 10010;i++)cout << pre[i] << '\n';
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3190,7 +3148,6 @@
 //     cout << '\n';
 // }
 
-
 // signed main(){
 
 //     int t;
@@ -3202,15 +3159,12 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 2e5 + 10;
 // int n, k;
 // array<int, 2>a[N];
-
 
 // void solve(){
 //     cin >> n >> k;
@@ -3235,7 +3189,6 @@
 //     cout << ans << '\n';
 // }
 
-
 // signed main(){
 
 //     int t;
@@ -3246,8 +3199,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3286,7 +3237,6 @@
 //     return dep[a] < dep[b] ? a : b;
 // }
 
-
 // //倍增lca
 // // int par[N][20], dep[N];
 // // void dfs(int u, int fa){
@@ -3318,9 +3268,8 @@
 // //     return par[u][0];
 // // }
 
-
 // int main(){
-    
+
 //     cin >> n >> m >> s;
 //     for(int i = 1;i < n;i++){
 //         int u, v;
@@ -3345,7 +3294,6 @@
 //     return 0;
 // }
 
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -3356,7 +3304,6 @@
 // vector<int>g[N];
 // int tr_data[N], id[N], tot;
 // int dep[N], par[N], top[N], siz[N], son[N];
-
 
 // //线段树
 // struct node{
@@ -3412,7 +3359,6 @@
 //     else return (query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr)) % p;
 // }
 
-
 // //树链剖分
 // void dfs(int u, int fa){
 //     dep[u] = dep[fa] + 1;
@@ -3435,7 +3381,6 @@
 //     for(auto v : g[u]) if(v != par[u] && v != son[u])
 //         dfs2(v, v);
 // }
-
 
 // //操作函数
 // void line_add(int u, int v, int val){
@@ -3466,7 +3411,6 @@
 // int tr_query(int x){
 //     return query(1, 1, n, id[x], id[x] + siz[x] - 1);
 // }
-
 
 // signed main(){
 //     cin >> n >> m >> r >> p;
@@ -3502,8 +3446,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -3527,7 +3469,7 @@
 //     if(sum[c[x]] == 0)
 //         cnt--;
 // }
-// void dfs(int u, int fa){ 
+// void dfs(int u, int fa){
 //     siz[u] = 1;
 //     dep[u] = dep[fa] + 1;
 //     points[dep[u]].push_back(u);
@@ -3562,7 +3504,6 @@
 //             del(id[i]);
 // }
 
-
 // signed main(){
 
 //     cin >> n >> k;
@@ -3587,8 +3528,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3634,7 +3573,7 @@
 //     if(son[u]) dfs2(son[u], u, true);
 //     for(auto v : g[u]) if(v != fa && v != son[u])
 //         for(int i = l[v];i <= r[v];i++) if(dep[id[i]] - dep[u] <= k + 1)
-//             add(id[i]);  
+//             add(id[i]);
 //     add(u);
 //     for(auto v : sbp[u])
 //         del(v);
@@ -3643,7 +3582,6 @@
 //         for(int i = l[u];i <= r[u];i++) if(dep[id[i]] - dep[u] <= k)
 //             del(id[i]);
 // }
-
 
 // int main(){
 
@@ -3667,10 +3605,8 @@
 //         cout << ans[x] << '\n';
 //     }
 
-
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3685,10 +3621,9 @@
 //     b += c;
 //     if(b >= a - 1)
 //     cout << 2*a - 1 << '\n';
-//     else 
+//     else
 //         cout << b * 2 + 1 << '\n';
 // }
-
 
 // signed main(){
 
@@ -3701,8 +3636,6 @@
 //     }
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3757,9 +3690,8 @@
 //     for(int i = n;i >= 1;i--) cout << a[i].b << ' ';
 //     cout << '\n';
 
-
 //     // while(q.size()){
-        
+
 //     // }
 //     // for(auto aa : ls)
 //     // cout << aa << ' ';
@@ -3774,7 +3706,6 @@
 //     // }
 // }
 
-
 // signed main(){
 
 //     IO;
@@ -3786,9 +3717,6 @@
 //     }
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3814,7 +3742,6 @@
 
 // }
 
-
 // signed main(){
 
 //     IO;
@@ -3826,9 +3753,6 @@
 //     }
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3856,15 +3780,13 @@
 //     if(lp)
 //         for(int j = lp;j <= n;j++) last[j] = n;
 
-
-
 //     set<pair<int,int>>st;
 //     int l, r, d;
 //     int f = 0;
 //     while(m--){
 //         cin >> l >> r;
 //         d = pre[r] - pre[l-1];
-//         if(d == r - l + 1 || d == 0 || d == pre[r] - pre[r - d]){ 
+//         if(d == r - l + 1 || d == 0 || d == pre[r] - pre[r - d]){
 //             f = 1;
 //             continue;
 //         }
@@ -3881,7 +3803,6 @@
 
 //     // for(int i = 1;i <= n;i++) cout << last[i] << ' ';
 
-
 //     // for(int i = 1;i <= n;i++) cout << pos[i] << ' ';
 //     cout << ans << "\n";
 
@@ -3890,7 +3811,6 @@
 //     // cout << s ;
 //     // cout << '\n';
 // }
-
 
 // signed main(){
 
@@ -3904,21 +3824,18 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // const int N = 2e5 + 10;
 // const int inf = 0x3f3f3f3f;
 // int n, a[N], dp[N][2];
 
-
 // void solve(){
 //     cin >> n;
 //     for(int i = 1;i <= n;i++) cin >> a[i];
 
 //     int left[N];    //左边第一个零的位置
-//     int lp = 1; 
+//     int lp = 1;
 //     for(int i = 1;i <= n;i++){
 //         if(a[i]) left[i] = lp;
 //         else lp = i;
@@ -3929,7 +3846,7 @@
 
 //     for(int i = 1;i <= n;i++){
 //         if(a[i]){
-//             if(dp[i-1][1] != inf) 
+//             if(dp[i-1][1] != inf)
 //                 dp[i][1] = dp[i-1][1];
 //             dp[i][0] = 1 + min(dp[left[i]-1][0], dp[left[i]-1][1]);
 //             dp[i][1] = min(dp[i][1],1 + dp[i-1][0]);
@@ -3944,14 +3861,12 @@
 //     cout << min(dp[n][0], dp[n][1]) << '\n';
 // }
 
-
 // int main(){
 //     int t = 1;
 //     // cin >> t;
-//     while(t--)solve();    
+//     while(t--)solve();
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -4002,7 +3917,6 @@
 //     cout << ans << "\n";
 // }
 
-
 // signed main(){
 
 //     IO;
@@ -4014,7 +3928,6 @@
 //     }
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -4078,7 +3991,6 @@
 
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -4157,8 +4069,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // const int N = 1010;
@@ -4171,7 +4081,6 @@
 // bool way[N][110];
 // bool vis[N][110];
 // bool ans = false;
-
 
 // int main(){
 
@@ -4256,7 +4165,6 @@
 //     return 0;
 // }
 
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // const int N = 1010;
@@ -4286,7 +4194,6 @@
 //         }
 //     }
 
-
 //     queue<array<int, 2>>que;
 //     for(int i = 1;i <= m;i++) if(way[1][i]){
 //         que.push({1, i});
@@ -4310,7 +4217,7 @@
 //                 que.push({nr, nc});
 //         }
 //     }
-    
+
 //     if(!ans){
 //         memset(way, false, sizeof(way));
 //         memset(vis, false, sizeof(vis));
@@ -4354,9 +4261,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // const int N = 1010;
@@ -4385,7 +4289,6 @@
 //             dfs(nr, nc);
 //     }
 // }
-
 
 // signed main(){
 
@@ -4424,7 +4327,7 @@
 //                 if(flag) way[i][d] = true;
 //             }
 //         }
-        
+
 //         for(int i = 0;i < m;i++) if(way[0][i])
 //             dfs(0, i);
 //     }
@@ -4432,8 +4335,6 @@
 //     cout << (ans ? "Y" : "N");
 //     return 0;
 // }
-
-
 
 // #include <iostream>
 // #include <queue>
@@ -4565,12 +4466,8 @@
 //     }
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
-
-
 
 // int main(){
 
@@ -4578,8 +4475,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -4633,7 +4528,6 @@
 //     cout << ans + delt << ' ' << l << ' ' << r << '\n';
 // }
 
-
 // int main(){
 
 //     int t;
@@ -4642,8 +4536,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -4711,9 +4603,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define fori(bg, ed) for(int i = bg;i <= ed;i++)
@@ -4734,7 +4623,6 @@
 //     cout << "No\n";
 // }
 
-
 // int main(){
 
 //     int t = 1;
@@ -4743,9 +4631,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -4761,7 +4646,7 @@
 //             if(mp[x][y] != '#' && mp[x][y] != '?'){
 //                     return false;
 //             }
-//         }  
+//         }
 //     }
 //     return true;
 // }
@@ -4792,12 +4677,11 @@
 //                 cout << i << ' ' << j << '\n';
 //                 j += 3;
 //                 f1 = 1;
-//             }    
+//             }
 //         }
 //         // if(f1) i += 3;
 //     }
 // }
-
 
 // int main(){
 
@@ -4807,9 +4691,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -4842,7 +4723,6 @@
 //     cout << l << '\n';
 // }
 
-
 // int main(){
 
 //     int t = 1;
@@ -4851,8 +4731,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -4869,7 +4747,6 @@
 
 // }
 
-
 // int main(){
 
 //     int t = 1;
@@ -4877,3 +4754,92 @@
 
 //     return 0;
 // }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 2e5 + 10;
+// int d, n, ne[N];
+
+// int main(){
+
+//     string s;
+//     cin >> s >> d;
+//     n = s.size();
+//     s = ' ' + s;
+//     int ans = 0;
+//     int pos = 1;
+
+//     bool flag = true;
+//     while(flag){
+//         // cout << s << '\n';
+//         flag = false;
+//         for(int i = 2, j = 0;i <= n;i++){
+//             while(j && s[j+1] != s[i]) j = ne[j];
+//             if(s[j+1] == s[i]) j++;
+//             ne[i] = j;
+
+//             if(i - ne[i] > d || ne[i] < ne[i-1]){
+//                 flag = true;
+//                 // for(int j = 1;j <= i;j++) {
+//                 //     cout << ne[j] << '\n';
+//                 //     ne[j] = 0;
+//                 // }
+//                 // cout << "!\n";
+//                 s.erase(s.begin()+1, s.begin()+i);
+//                 n -= i-1;
+//                 break;
+//             }
+//         }
+//         ans ++;
+//     }
+
+//     cout << ans << '\n';
+//     return 0;
+// }
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e3 + 10;
+int n, m, k, u, d, l, r, x, y;
+
+int sum[N][N];
+bool vis[N][N];
+
+void add(){
+    
+}
+
+void solve(){
+    cin >> n >> m >> k;
+    string s;
+    cin >> s;
+    for(auto c : s) 
+        if(c == 'U') u++;
+        else if(c == 'D') d++;
+        else if(c == 'L') l++;
+        else if(c == 'R') r++;
+    d = u = min(u, d);
+    l = r = min(l ,r);
+    x = 1 + l;
+    y = 1 + d;
+
+    add();
+    for(auto c : s)
+        if(c == 'U') {
+
+        }
+        else if(c == 'D') d++;
+        else if(c == 'L') l++;
+        else if(c == 'R') r++;
+        
+}
+
+int main()
+{
+
+    int t;
+    cin >> t;
+    while(t--)solve();
+
+    return 0;
+}
