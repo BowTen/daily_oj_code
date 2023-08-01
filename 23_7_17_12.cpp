@@ -4797,49 +4797,282 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
-const int N = 1e3 + 10;
-int n, m, k, u, d, l, r, x, y;
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int N = 1e3 + 10;
+// int n, m, k, u, d, l, r, x, y, x2, y2;
 
-int sum[N][N];
-bool vis[N][N];
+// int sum[N][N];
+// bool vis[N][N];
 
-void add(){
-    
-}
+// void add(){
+//     if(vis[x][y]) return;
+//     sum[x][y]++;
+//     sum[x][y2+1]--;
+//     sum[x2+1][y]--;
+//     sum[x2+1][y2+1]++;
+//     vis[x][y] = true;
+// }
 
-void solve(){
-    cin >> n >> m >> k;
-    string s;
-    cin >> s;
-    for(auto c : s) 
-        if(c == 'U') u++;
-        else if(c == 'D') d++;
-        else if(c == 'L') l++;
-        else if(c == 'R') r++;
-    d = u = min(u, d);
-    l = r = min(l ,r);
-    x = 1 + l;
-    y = 1 + d;
+// void solve(){
+//     cin >> n >> m >> k;
+//     l = d = x = y = 1;
+//     r = x2 = m;
+//     u = y2 = n;
+//     string s;
+//     cin >> s;
+//     // cout << s << '\n';
+//     for(auto c : s) 
+//         if(c == 'U') {
+//             u--;
+//             // d = max(1, d - 1);
+//             d--;
+//             if(u == 0){
+//                 if(!k)
+//                 cout << n * m << '\n';
+//                 else cout << "0\n";
+//                 return;
+//             }
+//             y2 = max(0, min(y2, u));
+//         }
+//         else if(c == 'D') {
+//             d++;
+//             // u = min(n, u + 1);
+//             u++;
+//             if(d == n + 1){
+//                 if(!k)
+//                 cout << n * m << '\n';
+//                 else cout << "0\n";
+//                 return;
+//             }
+//             y = min(n, max(y, d));
+//         }
+//         else if(c == 'L') {
+//             l++;
+//             // r = min(m, r + 1);
+//             r++;
+//             if(l == m + 1){
+//                 if(!k)
+//                 cout << n * m << '\n';
+//                 else cout << "0\n";
+//                 return;
+//             }
+//             x = min(m, max(x, l));
+//         }
+//         else if(c == 'R') {
+//             r--;
+//             // l = max(1, l - 1);
+//             l--;
+//             if(r == 0){
+//                 if(!k)
+//                 cout << n * m << '\n';
+//                 else cout << "0\n";
+//                 return;
+//             }
+//             x2 = max(0, min(x2, r));
+//         }
 
-    add();
-    for(auto c : s)
-        if(c == 'U') {
+//     // cout << x << ' ' << y << ' ' << x2 << ' ' << y2 << '\n';
 
-        }
-        else if(c == 'D') d++;
-        else if(c == 'L') l++;
-        else if(c == 'R') r++;
-        
-}
+//     add();
+//     for(auto c : s){
+//         if(c == 'U') y++, y2++;
+//         else if(c == 'D') y--, y2--;
+//         else if(c == 'L') x--, x2--;
+//         else if(c == 'R') x++, x2++;
+//         add();
+//     }
 
-int main()
-{
+//     int cnt = (x2-x+1)*(y2-y+1)-k; 
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++)
+//         for(int j = 1;j <= m;j++){
+//             sum[i][j] += sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1];
+//             if(sum[i][j] == cnt) ans++;
+//         }
+//     cout << ans << '\n';
+//     // for(int i = 1;i <= n;i++)
+//     //     for(int j = 1;j <= m;j++) 
+//     //         sum[i][j] = vis[i][j] = 0;
+//     memset(sum, 0, sizeof(sum));
+//     memset(vis, 0, sizeof(vis));
+// }
 
-    int t;
-    cin >> t;
-    while(t--)solve();
+// int main()
+// {
 
-    return 0;
-}
+//     int t;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 1e3 + 10;
+// int k, n, m, sum[N][N];
+// int x, y, x2, y2, u, d, l, r;
+// bool vis[N][N];
+
+// void init(){
+//     for(int i = 1;i <= n;i++) 
+//         for(int j = 1;j <= m;j++)
+//             vis[i][j] = sum[i][j] = 0;
+//     x = y = u = l = 1;
+//     x2 = r = m;
+//     y2 = d = n;
+// }
+
+// void add(){
+//     if(vis[x][y]) return;
+//     sum[x][y]++;
+//     sum[x][y2+1]--;
+//     sum[x2+1][y]--;
+//     sum[x2+1][y2+1]++;
+//     vis[x][y] = true;
+// }
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     init();
+//     string s;
+//     cin >> s;
+//     for(auto c : s){
+//         if(c == 'U'){
+//             u++;
+//             d++;
+//             y = max(y, u);
+//         }
+//         else if(c == 'D'){
+//             u--;
+//             d--;
+//             y2 = min(y2, d);
+//         }
+//         else if(c == 'L'){
+//             l++;
+//             r++;
+//             x = max(x, l);
+//         }
+//         else if(c == 'R'){
+//             l--;
+//             r--;
+//             x2 = min(x2, r);
+//         }
+//     }
+
+//     if(!(x <= x2 && y <= y2 && x <= m && y <= n && x2 >= 1 && y2 >= 1)){
+//         if(k == 0)
+//             cout << n * m << '\n';
+//         else
+//             cout << "0\n";
+//         return;
+//     }
+
+//     add();
+//     for(auto c : s){
+//         if(c == 'U') y--, y2--;
+//         else if(c == 'D') y++, y2++;
+//         else if(c == 'L') x--, x2--;
+//         else if(c == 'R') x++, x2++;
+//         add();
+//     }
+
+//     int ans = 0;
+//     int cnt = (x2 - x + 1) * (y2 - y + 1) - k;
+//     for(int i = 1;i <= n;i++)
+//         for(int j = 1;j <= m;j++){
+//             sum[i][j] += sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1];
+//             if(sum[i][j] == cnt)
+//                 ans ++;
+//         }
+
+//     cout << ans << '\n';
+// }
+
+
+// int main(){
+
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 2010;
+// int a[N], n, c[N], fa[N], rt;
+// vector<int>g[N];
+
+
+// //树状数组
+// int tr[N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x, int v){
+//     while(x <= n){
+//         tr[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+// int getsum(int x){
+//     int ret = 0;
+//     while(x){
+//         ret += tr[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+// int getnum(int x){  //找第x小的数字
+//     int l = x, r = n;
+//     while(l <= r){
+//         int mid = l + r >> 1;
+//         if(getsum(mid) < x) l = mid + 1;
+//         else r = mid - 1;
+//     }
+//     add(l, -1);
+//     return l;
+// }
+
+// bool flag = true;
+// int siz[N];
+// void dfs(int u, int f){
+//     siz[u] = 1;
+//     a[u] = getnum(c[u]+1);
+//     for(auto v : g[u]) if(v != f)
+//         dfs(v, u), siz[u] += siz[v];
+//     if(siz[u] - 1 < c[u])
+//         flag = false;
+// }
+
+// int main(){
+
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) add(i, 1);
+//     for(int i = 1;i <= n;i++){
+//         cin >> fa[i] >> c[i];
+//         g[fa[i]].push_back(i);
+//         if(fa[i] == 0) rt = i;
+//     }
+
+//     dfs(rt, 0);
+
+//     for(int i = 1;i <= n;i++) if(a[i] > n || !flag){
+//         cout << "NO\n";
+//         return 0;
+//     }
+
+//     cout << "YES\n";
+//     for(int i = 1;i <= n;i++) cout << a[i] << ' ';
+
+//     // cout << getnum(1);
+
+//     return 0;
+// }
