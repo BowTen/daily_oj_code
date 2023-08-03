@@ -809,3 +809,310 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 1e5 + 10;
+// const int inf = 1e9;
+// int n, k, fa[N], c[N], tot = 1, siz[N], l[N], r[N];
+
+// void dfs(int u, int f, int s){
+//     fa[u] = f;
+//     if(s == 2){
+//         c[u] = siz[u] = 1;
+//         c[++tot] = 1;
+//         fa[tot] = u;
+//         return;
+//     }else if(s == 1){
+//         c[u] = siz[u] = 1;
+//         return;
+//     }
+
+//     bool odd = false;
+//     if(s & 1){
+//         odd = true;
+//         s--;
+//     }else{
+//         c[u] = inf;
+//     }
+    
+//     l[u] = ++tot;
+//     dfs(tot, u, 2);
+//     r[u] = ++tot;
+//     dfs(tot, u, s / 2);
+
+//     siz[u] = siz[l[u]] + siz[r[u]];
+//     if(odd) c[u] = siz[u];
+// }
+
+// int main(){
+
+//     cin >> k;
+
+//     if(k == 1){
+//         cout << "2\n1\n2 1";
+//         return 0;
+//     }
+
+//     if(k < 1e5){
+//         cout << k << '\n';
+//         for(int i = 1;i < k;i++) cout << i << ' ';
+//         cout << '\n';
+//         for(int i = 1;i <= k;i++) cout << 1 << ' ';
+//         return 0;
+//     }
+
+//     dfs(1, 0, k);
+
+//     cout << tot << '\n';
+//     for(int i = 2;i <= tot;i++) cout << fa[i] << ' ';
+//     cout << '\n';
+//     for(int i = 1;i <= tot;i++) cout << c[i] << ' ';
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+// int n, a[N], dp[N], t[N], no_son[N];
+// vector<int>g[N];
+
+
+// void dfs(int u, int f){
+//     int mx = 0;
+//     int mxns = 0;
+//     int tmp = a[u]; 
+//     for(auto v : g[u]) if(v != f){
+//         dfs(v, u);
+//         tmp += dp[v] - a[v];
+//         mx = max(mx, a[v]);
+//         if(mxns == 0 || no_son[v] - dp[v] + a[v] > no_son[mxns] - dp[mxns] + a[mxns])
+//             mxns = v;
+//     }
+//     int mxns3 = 0;
+//     for(auto v : g[u]) if(v != f && v != mxns){
+//         if(mxns3 == 0 || no_son[v] - dp[v] + a[v] > no_son[mxns3] - dp[mxns3] + a[mxns3])
+//             mxns3 = v;
+//     }
+
+//     no_son[u] = tmp;
+//     dp[u] = tmp + mx;
+//     if(mxns){
+//         tmp += no_son[mxns] - dp[mxns] + a[mxns];
+//         for(auto v : g[u]) if(v != f && v != mxns && t[v] == 3){
+//             dp[u] = max(dp[u], tmp + a[v]);
+//         }
+//         tmp -= no_son[mxns] - dp[mxns] + a[mxns];
+//     }
+//     if(mxns3){
+//         tmp += no_son[mxns3] - dp[mxns3] + a[mxns3];
+//         for(auto v : g[u]) if(v != f && v != mxns3 && t[v] == 3){
+//             dp[u] = max(dp[u], tmp + a[v]);
+//         }
+//     }
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) g[i].clear();
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) cin >> t[i];
+//     for(int i = 1;i < n;i++) {
+//         int u, v;
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     dfs(1, 0);
+
+//     cout << dp[1] << '\n';
+// }
+
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 2e6 + 100;
+// int n, k, a[N];
+// int delt[N], num[N], ans[N];
+
+// int main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         a[i] += 1e6+5;
+//         ans[a[i]]++;
+//     }
+
+//     if(k)
+//         for(int i = 1;i <= n;i++){
+//             num[a[i]] = max(0, num[a[i]] - 1);
+//             if(a[i]+k <= 2e6+10 && a[i] + k >= 0){
+//                 num[a[i]+k]++;
+//                 delt[a[i]+k] = max(delt[a[i] + k], num[a[i] + k]);
+//             }
+//         }
+
+//     int mx = 0;
+//     for(int i = 1;i <= n;i++){
+//         mx = max(mx, delt[a[i]] + ans[a[i]]);
+//     }
+
+//     cout << mx;
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// vector<int>fac;
+
+
+// void solve(){
+//     int a, b;
+//     cin >> a >> b;
+//     if(a > b) swap(a, b);
+//     int d = b - a;
+
+//     for(int i = 2;;i++){
+
+//     }
+
+// }
+
+
+// int main(){
+
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+#define Acode ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+#define int long long
+const int N = 1e6 + 7;
+int a, b, ans;
+
+unordered_map<int, bool>vis;
+vector<int> vec;
+void dfs(int a, int b, int s)
+{
+    if(vis[a*1358486+b]) {
+        if(a == 1)
+            ans = min(ans, s);
+        return;
+    }
+    vis[a*1358486+b] = true;
+    // cout << a << ' ' << b << ' ' << s << '\n';
+    // if (a > b) swap(a, b);
+    if (s >= ans) return;
+    if (a == 1) {
+        ans = min(s, ans);
+        return;
+    }
+
+    int d = b - a;
+    if (d == 1){
+        s += a - 1;
+        ans = min(ans, s);
+        return;
+    }else{
+        for (auto fac : vec) if(d % fac == 0){
+            int aa, bb, ss;
+            if (a % fac == 0){
+                aa = a, bb = b, ss = s;
+                dfs(aa / fac, bb / fac, ss + 1);
+            }
+            else{
+                int ad = (a / fac + 1) * fac - a;
+                aa = a + ad, bb = b + ad, ss = s + ad;
+                if (aa / fac < a)
+                    dfs(aa / fac, bb / fac, ss + 1);
+                if (a > fac)
+                {
+                    int sb = a % fac;
+                    aa = a - sb, bb = b - sb, ss = s + sb;
+                    dfs(aa / fac, bb / fac, ss + 1);
+                }
+            }
+        }
+    }
+}
+
+void solve()
+{
+    vec.clear();
+    vis.clear();
+    cin >> a >> b;
+    if (a > b) swap(a, b);
+    ans = a - 1;
+    if (b - a == 1){
+        cout << ans << '\n';
+        return;
+    }
+
+    int t = b - a;
+    for (int i = 2; i <= t / i; ++i){
+        while (t % i == 0){
+            t /= i;
+            vec.push_back(i);
+        }
+    }
+    if (t > 1) vec.push_back(t);
+    vec.erase(unique(vec.begin(), vec.end()), vec.end());
+
+
+    dfs(a, b, 0);
+
+    cout << ans << '\n';
+}
+
+signed main()
+{
+    Acode;
+    int T = 1;
+    cin >> T;
+    while (T--)
+    {
+        solve();
+    }
+    return 0;
+}
