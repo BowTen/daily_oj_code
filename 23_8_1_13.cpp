@@ -1023,96 +1023,168 @@
 
 
 
-#include <bits/stdc++.h>
-using namespace std;
-#define endl '\n'
-#define Acode ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
-#define int long long
-const int N = 1e6 + 7;
-int a, b, ans;
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define Acode ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// #define int long long
+// const int N = 1e6 + 7;
+// int a, b, ans;
 
-unordered_map<int, bool>vis;
-vector<int> vec;
-void dfs(int a, int b, int s)
-{
-    if(vis[a*1358486+b]) {
-        if(a == 1)
-            ans = min(ans, s);
-        return;
-    }
-    vis[a*1358486+b] = true;
-    // cout << a << ' ' << b << ' ' << s << '\n';
-    // if (a > b) swap(a, b);
-    if (s >= ans) return;
-    if (a == 1) {
-        ans = min(s, ans);
-        return;
-    }
+// unordered_map<int, bool>vis;
+// vector<int> vec;
+// void dfs(int a, int b, int s)
+// {
+//     if(vis[a*1358486+b]) {
+//         if(a == 1)
+//             ans = min(ans, s);
+//         return;
+//     }
+//     vis[a*1358486+b] = true;
+//     // cout << a << ' ' << b << ' ' << s << '\n';
+//     // if (a > b) swap(a, b);
+//     if (s >= ans) return;
+//     if (a == 1) {
+//         ans = min(s, ans);
+//         return;
+//     }
 
-    int d = b - a;
-    if (d == 1){
-        s += a - 1;
-        ans = min(ans, s);
-        return;
-    }else{
-        for (auto fac : vec) if(d % fac == 0){
-            int aa, bb, ss;
-            if (a % fac == 0){
-                aa = a, bb = b, ss = s;
-                dfs(aa / fac, bb / fac, ss + 1);
-            }
-            else{
-                int ad = (a / fac + 1) * fac - a;
-                aa = a + ad, bb = b + ad, ss = s + ad;
-                if (aa / fac < a)
-                    dfs(aa / fac, bb / fac, ss + 1);
-                if (a > fac)
-                {
-                    int sb = a % fac;
-                    aa = a - sb, bb = b - sb, ss = s + sb;
-                    dfs(aa / fac, bb / fac, ss + 1);
-                }
-            }
-        }
-    }
-}
+//     int d = b - a;
+//     if (d == 1){
+//         s += a - 1;
+//         ans = min(ans, s);
+//         return;
+//     }else{
+//         for (auto fac : vec) if(d % fac == 0){
+//             int aa, bb, ss;
+//             if (a % fac == 0){
+//                 aa = a, bb = b, ss = s;
+//                 dfs(aa / fac, bb / fac, ss + 1);
+//             }
+//             else{
+//                 int ad = (a / fac + 1) * fac - a;
+//                 aa = a + ad, bb = b + ad, ss = s + ad;
+//                 if (aa / fac < a)
+//                     dfs(aa / fac, bb / fac, ss + 1);
+//                 if (a > fac)
+//                 {
+//                     int sb = a % fac;
+//                     aa = a - sb, bb = b - sb, ss = s + sb;
+//                     dfs(aa / fac, bb / fac, ss + 1);
+//                 }
+//             }
+//         }
+//     }
+// }
 
-void solve()
-{
-    vec.clear();
-    vis.clear();
-    cin >> a >> b;
-    if (a > b) swap(a, b);
-    ans = a - 1;
-    if (b - a == 1){
-        cout << ans << '\n';
-        return;
-    }
+// void solve()
+// {
+//     vec.clear();
+//     vis.clear();
+//     cin >> a >> b;
+//     if (a > b) swap(a, b);
+//     ans = a - 1;
+//     if (b - a == 1){
+//         cout << ans << '\n';
+//         return;
+//     }
 
-    int t = b - a;
-    for (int i = 2; i <= t / i; ++i){
-        while (t % i == 0){
-            t /= i;
-            vec.push_back(i);
-        }
-    }
-    if (t > 1) vec.push_back(t);
-    vec.erase(unique(vec.begin(), vec.end()), vec.end());
+//     int t = b - a;
+//     for (int i = 2; i <= t / i; ++i){
+//         while (t % i == 0){
+//             t /= i;
+//             vec.push_back(i);
+//         }
+//     }
+//     if (t > 1) vec.push_back(t);
+//     vec.erase(unique(vec.begin(), vec.end()), vec.end());
 
 
-    dfs(a, b, 0);
+//     dfs(a, b, 0);
 
-    cout << ans << '\n';
-}
+//     cout << ans << '\n';
+// }
 
-signed main()
-{
-    Acode;
-    int T = 1;
-    cin >> T;
-    while (T--)
-    {
-        solve();
-    }
-    return 0;
-}
+// signed main()
+// {
+//     Acode;
+//     int T = 1;
+//     cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// vector<int>fac;
+// unordered_map<int,int>mp;
+
+// void init(){
+//     fac.clear();
+//     mp.clear();
+// }
+
+// int H(int a, int b){
+//     return a * 10000007 + b;
+// }
+
+// int dfs(int a, int b){
+//     if(a == 0) return INT_MAX;
+//     int hs = H(a, b);
+//     if(mp[hs]) return mp[hs];
+
+//     int ret = a - 1;
+//     int d = b - a;
+//     if(a == 1) return 0;
+//     if(d == 1) return mp[hs] = ret;
+//     for(auto f : fac) if(d % f == 0){
+//         if(a % f == 0)
+//             ret = min(ret, dfs(a / f, b / f) + 1);
+//         else{
+//             int mod = a % f;
+//             ret = min({ret, mod + 1 + dfs(a / f, b / f), f - mod + 1 + dfs(a / f + 1, b / f + 1)});
+//         }
+//     }
+
+//     return mp[hs] = ret;
+// }
+
+// void solve(){
+//     init();
+
+//     int a, b;
+//     cin >> a >> b;
+//     if(a > b) swap(a, b);
+//     int d = b - a;
+//     for(int i = 2;i <= d / i;i++){
+//         if(d % i == 0){
+//             fac.push_back(i);
+//             while(d % i == 0) d /= i;
+//         }
+//     }
+//     if(d > 1) fac.push_back(d);
+
+//     cout << dfs(a, b) << '\n';
+// }
+
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
