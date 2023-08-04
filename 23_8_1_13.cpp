@@ -1188,3 +1188,175 @@
 //     return 0;
 // }
 
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e4 + 10;
+// int n, m, p;
+// double q; //失败概率
+
+// void init(){
+//     q = 1.0 - (p / 10000.0);
+// }
+
+// double E(int k){
+//     return (k * n + m) / (1.0 - pow(q, k));
+// }
+
+// void solve(){
+//     cin >> n >> m >> p;
+//     init();
+//     if(p == 10000){
+//         printf("%llf\n", (double)(n+m));
+//         return;
+//     }
+
+//     int l = 2, r = 1e15;
+//     while(l <= r){
+//         int mid = l + r >> 1;
+//         double me = E(mid);
+//         double ne = E(mid + 1);
+//         if(ne > me) r = mid - 1;
+//         else l = mid + 1;
+//     }
+//     printf("%llf\n", min({E(l),E(l-1),E(l-2),E(l+1),E(l+2),E(1)}));
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e4 + 10;
+// int n, m, p;
+
+// void solve(){
+//     cout << "20 20\n";
+//     // cout << "11011111011111011111\n";
+//     // cout << "01100101100101100101\n";
+//     // cout << "10110110110110110110\n";
+//     // cout << "10011011011011011011\n";
+//     // cout << "11101101101101101101\n";
+//     // cout << "10110110110110110111\n";
+//     // cout << "11011011011011011001\n";
+//     // cout << "01101101101101101100\n";
+//     // cout << "10110110110110110110\n";
+//     // cout << "10011011011011011011\n";
+//     // cout << "11101101101101101101\n";
+//     // cout << "10110110110110110111\n";
+//     // cout << "11011011011011011001\n";
+//     // cout << "01101101101101101100\n";
+//     // cout << "10110110110110110111\n";
+//     // cout << "10011011011011011001\n";
+//     // cout << "11101101101101101101\n";
+//     // cout << "10110110110110110111\n";
+//     // cout << "11011010011010011001\n";
+//     // cout << "01101111101111101111\n";
+//     string mp[] = {
+//         "888888-88888-88888-8",
+//         "8--8--88-8--88-8---8",
+//         "8-88-88-88-88-88-888",
+//         "-88-88-88-88-88-88-8",
+//         "88-88-88-88-88-88-88",
+//         "8-88-88-88-88-88-88-",
+//         "888-88-88-88-88-88-8",
+//         "-8-88-88-88-88-88--8",
+//         "--88-88-88-88-88-888",
+//         "-88-88-88-88-88-88-8",
+//         "88-88-88-88-88-88-88",
+//         "8-88-88-88-88-88-88-",
+//         "888-88-88-88-88-88-8",
+//         "-8-88-88-88-88-88--8",
+//         "--88-88-88-88-88-888",
+//         "-88-88-88-88-88-88-8",
+//         "88-88-88-88-88-88-88",
+//         "8-88-88-88-88-88-88-",
+//         "8-8--8-88--8-88--8-8",
+//         "888-8888-88888-88888",
+//     };
+
+//     for(int i = 0;i < 20;i++){
+//         for(int j = 0;j < 20;j++)
+//             cout << (char)(mp[i][j] == '8' ? '1' : '0');
+//         cout << '\n';
+//     }
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e3 + 10;
+// int n, a[N], fa[N], son[N];
+// vector<int>g[N];
+// int dp[N][N][2];
+
+// void dfs(int u, int f){
+//     dp[u][0][0] = a[u];
+//     for(auto v : g[u]){
+//         dfs(v, u);
+//         son[u] += a[v];
+//         dp[u][0][0] += dp[v][0][0];
+//     }
+//     dp[u][0][0] += son[u];
+//     for(int i = 1;i <= n;i++){
+//         dp[u][i][1] += 
+//     }
+// }
+
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 2;i <= n;i++) {
+//         cin >> fa[i];
+//         g[fa[i]].push_back(i);
+//     }
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+
+//     dfs(1, 0);
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
