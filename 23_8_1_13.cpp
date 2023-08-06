@@ -2000,3 +2000,51 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 5010;
+// int n, dp[N], siz[N];
+// vector<int>g[N];
+
+// void dfs(int u, int fa){
+//     siz[u] = 1;
+//     bitset<N>bt;
+//     bt.set(0);
+//     for(auto v : g[u]) if(v != fa){
+//         dfs(v, u);
+//         siz[u] += siz[v];
+//         dp[u] += dp[v];
+//         bt |= (bt << siz[v]);
+//     }
+//     int tmp = 0;
+//     for(int s = 1;s <= n / 2;s++){
+//         if(bt[s])
+//             tmp = max(tmp, s * (siz[u] - 1 - s));
+//     }
+//     dp[u] += tmp;
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     cin >> n;
+//     for(int i = 2;i <= n;i++){
+//         int p;
+//         cin >> p;
+//         g[i].push_back(p);
+//         g[p].push_back(i);
+//     }
+
+//     dfs(1, 0);
+
+//     cout << dp[1] << '\n';
+
+//     return 0;
+// }
+
