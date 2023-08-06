@@ -2048,3 +2048,108 @@
 //     return 0;
 // }
 
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// int n, ret;
+
+// void ask(int l, int r){
+//     if(l >= r){
+//         ret = 0;
+//         return;
+//     }
+//     cout << "? " << l << ' ' << r << '\n';
+//     fflush(stdout);
+//     cin >> ret;
+// }
+
+// void solve(){
+//     cin >> n;
+//     queue<int>q;
+//     for(int i = 1;i <= n;i++) q.push(i);
+//     while(q.size() > 1){
+//         int l = q.front();
+//         q.pop();
+//         int r = q.front();
+//         q.pop();
+
+//         if(l > r){
+//             q.push(l);
+//             l = r;
+//             r = q.front();
+//             q.pop();
+//         }
+
+//         ask(l, r);
+//         if(ret == -1) return;
+//         int s1 = ret;
+//         ask(l, r - 1);
+//         int s2 = ret;
+
+//         if(s1 == s2){    //右端点大
+//             q.push(r);
+//         }else{
+//             q.push(l);
+//         }
+//     }
+//     cout << "! " << q.front() << '\n';
+// }
+
+// int main(){
+
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1010;
+// int n, k;
+// int a[N];
+
+// bool check(int i, int x){
+//     int cnt = x, ne = a[i] + x - 1;
+//     for(int j = i + 1;j <= n;j++, ne--){
+//         if(a[j] >= ne) break;
+//         if(j == n) return false;
+//         cnt += ne - a[j];
+//     }
+//     return cnt <= k;
+// }
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++ ) cin >> a[i];
+
+//     int ans = a[n];
+//     for(int i = 1;i < n;i++){
+//         int l = 1, r = k;
+//         while(l <= r){
+//             int mid = l + r >> 1;
+//             if(check(i, mid)) l = mid + 1;
+//             else r = mid - 1;
+//         }
+//         ans = max(ans, a[i] + l - 1);
+//     }
+
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
