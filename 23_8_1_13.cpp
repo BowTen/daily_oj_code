@@ -2153,3 +2153,411 @@
 
 //     return 0;
 // }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 5e5 + 10;
+// int n, m, R[N], x[N];
+
+// void solve()
+// {
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//         cin >> x[i];
+//     int sum = 0;
+//     unordered_map<int,int> mp;
+//     for (int i = 1; i <= n; i++)
+//         cin >> R[i], sum += R[i] * R[i], mp[R[i]]++;
+//     if(n == 1){cout << R[1]; return;}
+    
+//     int tmp = 0;
+//     int a = n, b = 0, c = -sum;
+//     for(int i = 2;i <= n;i++){
+//         tmp = x[i] - x[i-1] - tmp;
+//         c += tmp * tmp;
+//         b += ((i % 2 == 0) ? -1 : 1) * 2 * tmp;
+//         // cout << tmp << '\n';
+//     }
+
+//     // cout << a << ' ' << b << ' ' << c << '\n';
+
+//     int r1 = 0, r2 = 0;
+//     for(int i = 1;i <= n;i++) {
+//         if(a * R[i] * R[i] + b * R[i] + c == 0){
+//             r1 = R[i];
+//             break;
+//         }
+//     }
+//     for(int i = r2 - 2;i <= r2 + 2;i++) if(R[i] != r1){
+//         if(a * R[i] * R[i] + b * R[i] + c == 0){
+//             r2 = i;
+//             break;
+//         }
+//     }
+    
+
+//     int head = r1;
+//     bool ok = true;
+//     if(r2){
+//         int last = r1;
+//         mp[last]--;
+//         if(mp[last] < 0) ok = false;
+//         for(int i = 2;i <= n && ok;i++){
+//             int cur = x[i] - x[i-1] - last;
+//             mp[cur]--;
+//             if(mp[cur] < 0){
+//                 ok = false;
+//                 break;
+//             }
+//             last = cur;
+//         }
+//         if(!ok) head = r2;
+//     }
+
+//     cout << head << ' ';
+//     for(int i = 2;i <= n;i++){
+//         int cur = x[i] - x[i-1] - head;
+//         head = cur;
+//         cout << cur << ' ';
+//     }
+// }
+// signed main()
+// {
+//     IOS;
+//     int T = 1;
+//     // cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 1000 + 10;
+// int n, m, mp[N][N], mx[N];
+
+// void solve()
+// {
+//     cin >> n;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= n;j++){
+//             cin >> mp[i][j];
+//             if(mp[i][mx[i]] < mp[i][j]) mx[i] = j;
+//         }
+//         if(i < n)
+//             ans += mp[i][mx[i]];
+//     }
+
+//     cout << ans << '\n';
+//     for(int i = n - 1;i >= 1;i--){
+//         cout << i << ' ' << min(mx[i], i + 1) << '\n';
+//     }
+// }
+// signed main()
+// {
+//     IOS;
+//     int T = 1;
+//     // cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 1e5 + 10;
+// int n, a[N];
+
+// void solve(){
+//     cin >> n;
+//     bool od = false;
+//     bool ev = false;
+//     int sum = 0;
+//     for(int i = 1;i <= n;i ++ ) {
+//         cin >> a[i];
+//         sum += a[i];
+//         if(a[i] & 1) od = true;
+//         else ev = true;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         if((a[i] & 1) == ((sum - a[i]) & 1)){
+//             cout << "YES\n";
+//             return;
+//         }
+//     }
+//     cout << "NO\n";
+//     // cout << sum << '\n';
+
+// }
+
+// signed main(){
+//     IOS;
+//     int T = 1;
+//     cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 1e5 + 10;
+// int n, a[N];
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     for(int i = s.size() - 1;i >= 0;i--){
+//         if(s[i] > '9'){
+//             if(i - 1 >= 0){
+//                 s[i-1] += s[i] - '9';
+                
+//             }else{
+//                 s = '1' + s;
+//                 i++;
+//             }
+//             s[i] = 'x';
+//         }else if(s[i] >= '5'){
+//             if(i - 1 >= 0){
+//                 s[i-1]++;
+//             }else{
+//                 s = '1' + s;
+//                 i++;
+//             }
+//             s[i] = 'x';
+//         }
+//     }
+
+//     bool f = false;
+//     for(int i = 0;i < s.size();i++){
+//         if(s[i] == 'x') f = true;
+//         if(f) cout << '0';
+//         else cout << s[i];
+//     }
+//     cout << '\n';
+// }
+
+// signed main(){
+//     IOS;
+//     int T = 1;
+//     cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 1e6 + 10;
+// int n, m, b[N], a[N];
+
+// void solve(){
+//     cin >> n;
+//     m = (n * (n - 1)) / 2;
+
+//     map<int,int>mp;
+//     for(int i = 1;i <= m;i++) cin >> b[i], mp[b[i]]++;
+
+//     int pos = 1;
+//     for(auto &[s, cnt] : mp){
+//         while(cnt > 0){
+//             a[pos] = s;
+//             cnt -= (n - pos);
+//             pos++;
+//         }
+//     }
+//     while(pos <= n) a[pos++] = prev(mp.end())->first;
+//     for(int i = 1;i <= n;i++) cout << a[i] << ' ';
+//     cout << '\n';
+// }
+
+// signed main(){
+//     IOS;
+//     int T = 1;
+//     cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 2e5 + 10;
+// int n, m, b[N];
+
+// void solve(){
+//     cin >> n;
+//     vector<array<int, 2>>a(n+1);
+//     for(int i = 1;i <= n;i++) cin >> a[i][0], a[i][1] = i;
+//     for(int i = 1;i <= n;i++) cin >> b[i], a[i][0] -= b[i];
+
+//     sort(a.begin() + 1, a.end());
+//     int cnt = 0;
+//     for(int i = n;i >= 1;i--){
+//         if(a[i][0] == a[n][0]) cnt++;
+//         else break;
+//     }
+//     cout << cnt << '\n';
+//     for(int i = n -  cnt + 1;i <= n;i++) cout << a[i][1] << ' ';
+//     cout << '\n';
+// }
+
+// signed main(){
+//     IOS;
+//     int T = 1;
+//     cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 2e5 + 10;
+// int n, m, ans[N];
+
+// void solve(){
+//     cin >> n;
+//     vector<array<int, 2>>x(n+1);
+//     for(int i = 1;i <= n;i++ ) cin >> x[i][0], x[i][1] = i;
+//     sort(x.begin() + 1, x.end());
+//     ans[x[1][1]] = 0;
+//     for(int i = 1;i <= n;i++){
+//         ans[x[1][1]] += x[i][0] - x[1][0] + 1;
+//     }
+//     for(int i = 2;i <= n;i++){
+//         int id = x[i][1];
+//         int pid = x[i-1][1];
+//         if(x[i][0] == x[i-1][0]) {
+//             ans[id] = ans[pid];
+//             continue;
+//         }
+//         int pre = (i - 1) * (x[i][0] - x[i-1][0]);
+//         int suf = (n - i + 1) * (x[i][0] - x[i-1][0]);
+//         ans[id] = ans[pid] + pre - suf;
+//     }
+
+//     for(int i = 1;i <= n;i++) cout << ans[i] << ' ';
+//     cout << '\n';
+
+// }
+
+// signed main(){
+
+//     IOS;
+//     int T = 1;
+//     cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+const int N = 2e5 + 10;
+int q, n, m, a[N];
+
+void solve(){
+    cin >> n;
+    unordered_map<int, int>mp;
+    for(int i = 1;i <= n;i++) cin >> a[i], mp[a[i]]++;
+    cin >> q;
+    while(q--){
+        int x, y;
+        cin >> x >> y;
+        if(sqrt(x*x - 4 * y) < 0) {
+            cout << "0 ";
+            continue;
+        }
+        int e1 = (x + sqrt(x*x - 4 * y)) / 2;
+        int e2 = (x - sqrt(x*x - 4 * y)) / 2;
+        // cout << e1 << ' ' << e2 << '\n';
+        int f1 = x - e1;
+        int f2 = x - e2;
+        
+        int ans = 0;
+        if(e1 == e2){
+            ans += (mp[e1] * (mp[f1]-1)) / 2;
+
+        }else{
+            if(e1 * f1 == y)
+            ans += mp[e1] * mp[f1];
+            if(e1 != e2 && e1 != f2)
+            if(e2 * f2 == y)
+                ans += mp[e2] * mp[f2];
+        }
+        cout << ans << ' ';
+    }
+    cout << '\n';
+}
+
+signed main(){
+
+    IOS;
+    int T = 1;
+    cin >> T;
+    while (T--)
+    {
+        solve();
+    }
+
+    return 0;
+}
