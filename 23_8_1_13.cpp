@@ -2508,56 +2508,355 @@
 
 
 
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
-const int N = 2e5 + 10;
-int q, n, m, a[N];
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 2e5 + 10;
+// int q, n, m, a[N];
 
-void solve(){
-    cin >> n;
-    unordered_map<int, int>mp;
-    for(int i = 1;i <= n;i++) cin >> a[i], mp[a[i]]++;
-    cin >> q;
-    while(q--){
-        int x, y;
-        cin >> x >> y;
-        if(sqrt(x*x - 4 * y) < 0) {
-            cout << "0 ";
-            continue;
-        }
-        int e1 = (x + sqrt(x*x - 4 * y)) / 2;
-        int e2 = (x - sqrt(x*x - 4 * y)) / 2;
-        // cout << e1 << ' ' << e2 << '\n';
-        int f1 = x - e1;
-        int f2 = x - e2;
+// void solve(){
+//     cin >> n;
+//     unordered_map<int, int>mp;
+//     for(int i = 1;i <= n;i++) cin >> a[i], mp[a[i]]++;
+//     cin >> q;
+//     while(q--){
+//         int x, y;
+//         cin >> x >> y;
+//         if(sqrt(x*x - 4 * y) < 0) {
+//             cout << "0 ";
+//             continue;
+//         }
+//         int e1 = (x + sqrt(x*x - 4 * y)) / 2;
+//         int e2 = (x - sqrt(x*x - 4 * y)) / 2;
+//         // cout << e1 << ' ' << e2 << '\n';
+//         int f1 = x - e1;
+//         int f2 = x - e2;
         
-        int ans = 0;
-        if(e1 == e2){
-            ans += (mp[e1] * (mp[f1]-1)) / 2;
+//         int ans = 0;
+//         if(e1 == e2){
+//             ans += (mp[e1] * (mp[f1]-1)) / 2;
 
-        }else{
-            if(e1 * f1 == y)
-            ans += mp[e1] * mp[f1];
-            if(e1 != e2 && e1 != f2)
-            if(e2 * f2 == y)
-                ans += mp[e2] * mp[f2];
-        }
-        cout << ans << ' ';
-    }
-    cout << '\n';
-}
+//         }else{
+//             if(e1 * f1 == y)
+//             ans += mp[e1] * mp[f1];
+//             if(e1 != e2 && e1 != f2)
+//             if(e2 * f2 == y)
+//                 ans += mp[e2] * mp[f2];
+//         }
+//         cout << ans << ' ';
+//     }
+//     cout << '\n';
+// }
 
-signed main(){
+// signed main(){
 
-    IOS;
-    int T = 1;
-    cin >> T;
-    while (T--)
-    {
-        solve();
-    }
+//     IOS;
+//     int T = 1;
+//     cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 2e5 + 10;
+// int q, n, m, a[N];
+
+// int _sqrt(int x){
+//     int ret = sqrtl(x);
+//     while((ret + 1) * (ret + 1) <= x) ret++;
+//     while(ret * ret > x) ret--;
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n;
+//     unordered_map<int, int>mp;
+//     for(int i = 1;i <= n;i++) cin >> a[i], mp[a[i]]++;
+//     cin >> q;
+//     while(q--){
+//         int x, y;
+//         cin >> x >> y;
+//         int delt = sqrtl(x * x - 4 * y);
+//         if(delt < 0) {
+//             cout << "0 ";
+//             continue;
+//         }
+//         int e1 = (x + delt) / 2;
+//         int e2 = (x - delt) / 2;
+//         int f1 = x - e1;
+//         int f2 = x - e2;
+//         for(int i = e1 - 3;i <= e1 + 3;i++){
+//             if(i * (x - i) == y){
+//                 e1 = i;
+//                 break;
+//             }
+//         }
+//         for(int i = e2 - 3;i <= e2 + 3;i++) if(i != e1 && i != f1){
+//             if(i * (x - i) == y){
+//                 e2 = i;
+//                 break;
+//             }
+//         }
+//         f1 = x - e1;
+//         f2 = x - e2;
+
+//         int ans = 0;
+//         if(e1 == e2 || e1 == f2){
+//             if(e1 * f1 == y){
+//                 if(e1 == f1) ans += (mp[e1] * (mp[f1] - 1)) / 2;
+//                 else ans += mp[e1] * mp[f1];
+//             }
+//         }else{
+//             if(e1 * f1 == y){
+//                 if(e1 == f1) ans += (mp[e1] * (mp[f1] - 1)) / 2;
+//                 else ans += mp[e1] * mp[f1];
+//             }
+//             if(e2 * f2 == y){
+//                 if(e2 == f2) ans += (mp[e2] * (mp[f2] - 1)) / 2;
+//                 else ans += mp[e2] * mp[f2];
+//             }
+//         }
+//         cout << ans << ' ';
+//     }
+//     cout << '\n';
+// }
+
+// signed main(){
+
+//     IOS;
+//     int T = 1;
+//     cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 1000 + 10;
+// int n, m, mp[N][N], mx[N], fa[N];
+
+// int find(int x){
+//     return x == fa[x] ? x : fa[x] = find(fa[x]);
+// }
+// void merg(int a, int b){
+//     a = find(a);
+//     b = find(b);
+//     fa[a] = b;
+// }
+
+// void solve()
+// {
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) fa[i] = i;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= n;j++){
+//             cin >> mp[i][j];
+//             if(mp[i][mx[i]] < mp[i][j]) mx[i] = j;
+//         }
+//         if(i < n)
+//             ans += mp[i][mx[i]];
+//     }
+
+//     cout << ans << '\n';
+//     for(int i = n;i > 1;i--){
+//         int e = min(find(mx[i]), i - 1);
+//         cout << i << ' ' << e << '\n';
+//         merg(i, e);
+//     }
+// }
+// signed main()
+// {
+//     IOS;
+//     int T = 1;
+//     // cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int mod = 998244353;
+// const int N = 5005;
+// int n;
+
+// int inv[N * N], fac[N * N];
+// int qpow(int a, int q){
+//     int ret = 1;
+//     while(q){
+//         if(q & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         q >>= 1;
+//     }
+//     return ret;
+// }
+// void init(){
+//     fac[0] = 1;
+//     for (int i = 1; i <= 5000 * 5000; ++i)
+//         fac[i] = fac[i - 1] * i % mod;
+//     inv[5000 * 5000] = qpow(fac[5000 * 5000], mod - 2);
+//     for (int i = 5000 * 5000 - 1; i >= 0; --i)
+//     {
+//         inv[i] = inv[i + 1] * (i + 1) % mod;
+//         inv[i] %= mod;
+//     }
+// }
+// int C(int a, int b){
+//     // if(!a || !b) return 1;
+//     return (fac[a] * inv[b] % mod * inv[a - b] % mod);
+// }
+
+// void solve(){
+//     cin >> n;
+//     int ans = 0;
+//     int nn = n * n;
+//     for(int i = 1;i <= n;i++){
+//         ans = (ans + C(nn - i, n - 1)) % mod;
+//     }
+//     ans = ((ans * n % mod) * fac[n] % mod) * fac[nn - n] % mod;
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+//     init();
+//     int T;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// const int mod = 998244353;
+// int n, m, a[N];
+
+// struct node{
+//     int sum, tag;
+//     bool flag;
+// }tr[N<<2];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void up(int id){
+//     tr[id].sum = (tr[lson].sum + tr[rson].sum) % mod;
+//     tr[id].flag = (tr[lson].flag && tr[rson].flag);
+// }
+// void settag(int id, int x){
+//     tr[id].sum *= x;
+//     tr[id].sum %= mod;
+//     tr[id].tag *= x;
+//     tr[id].tag %= mod;
+// }
+// void down(int id){
+//     if(tr[id].tag == 1) return;
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 1;
+// }
+// void build(int id, int l, int r){
+//     tr[id].tag = 1;
+//     if(l == r){
+//         tr[id].sum = a[l];
+//         if(lowbit(a[l]) == a[l]) tr[id].flag = true;
+//         else tr[id].flag = false;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+// void modify(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr){
+//         if(tr[id].flag){
+//             settag(id, 2);
+//             return;
+//         }else if(l == r){
+//             tr[id].sum += lowbit(tr[id].sum);
+//             // tr[id].sum %= mod;
+//             if(tr[id].sum == lowbit(tr[id].sum)) tr[id].flag = true;
+//             return;
+//         }
+//     }
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr);
+//     else modify(lson, l, mid, ql, qr), modify(rson, mid + 1, r, ql, qr);
+//     up(id);
+// }
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].sum % mod;
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr) % mod;
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr) % mod;
+//     else return (query(lson, l, mid, ql ,qr) + query(rson, mid + 1, r, ql, qr)) % mod;
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     cin >> m;
+//     for(int i = 1;i <= m;i++){
+//         int op, x, y;
+//         cin >> op >> x >> y;
+//         if(op == 1){
+//             modify(1, 1, n, x, y);
+//         }else{
+//             cout << query(1, 1, n, x, y) % mod << '\n';
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
