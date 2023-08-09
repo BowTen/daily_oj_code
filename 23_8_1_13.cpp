@@ -2860,3 +2860,115 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 998244353;
+// int n, dp[N][3];
+// vector<int>g[N];
+
+// void dfs(int u, int f){
+//     dp[u][0] = dp[u][1] = 1;
+//     dp[u][2] = 0;
+//     int d2 = 1;
+//     for(auto v : g[u]) if(v != f){
+//         dfs(v, u);
+//         dp[u][0] *= dp[v][0] + dp[v][2];
+//         dp[u][0] %= mod;
+//         dp[u][1] *= dp[v][0];
+//         dp[u][1] %= mod;
+//         d2 *= dp[v][0] + dp[v][1] + dp[v][2];
+//         d2 %= mod;
+//     }
+//     dp[u][2] = ((d2 + mod) - dp[u][1]) % mod;
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) g[i].clear();
+//     for(int i = 1;i < n;i++){
+//         int u, v;
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+
+//     dfs(1, 0);
+//     int ans = (dp[1][0] + dp[1][2]) % mod;
+
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 1000 + 10;
+// int n, m, mp[N][N], way[N], fa[N];
+
+// int find(int x){
+//     return x == fa[x] ? x : fa[x] = find(fa[x]);
+// }
+// void merg(int a, int b){
+//     a = find(a);
+//     b = find(b);
+//     if(a < b) swap(a, b);
+//     fa[a] = b;
+// }
+
+// void solve()
+// {
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) fa[i] = i;
+//     vector<array<int, 3>>g;
+//     for(int i = 1;i <= n;i++)
+//         for(int j = 1;j <= n;j++){
+//             cin >> mp[i][j];
+//             g.push_back({mp[i][j], i, j});
+//         }
+    
+//     int ans = 0;
+//     vector<array<int, 2>>way;
+//     sort(g.begin(), g.end(), greater<array<int, 3>>());
+//     for(auto [s, u, v] : g){
+//         u = find(u);
+//         v = find(v);
+//         if(u == v) continue;
+//         ans += s;
+//         way.push_back({u, v});
+//         merg(u, v);
+//     }
+
+//     cout << ans << '\n';
+//     for(auto [u, v] : way) cout << u << ' ' << v << '\n';
+// }
+// signed main()
+// {
+//     IOS;
+//     int T = 1;
+//     // cin >> T;
+//     while (T--)
+//     {
+//         solve();
+//     }
+
+//     return 0;
+// }
