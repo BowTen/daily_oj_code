@@ -4,7 +4,6 @@
 // const int N = 5010;
 // int n, a[N];
 
-
 // void solve(){
 //     cin >> n;
 //     for(int i = 1;i <= n;i++) cin >> a[i];
@@ -41,7 +40,6 @@
 //     cout << '\n';
 // }
 
-
 // signed main(){
 
 //     int t;
@@ -51,10 +49,9 @@
 //     return 0;
 // }
 
-
 // #include<bits/stdc++.h>
 // using namespace std;
-// #define lson id << 1 
+// #define lson id << 1
 // #define rson id << 1 | 1
 // const int N = 1e5 + 10;
 // const int MULT = 0;
@@ -68,7 +65,7 @@
 //         val ret = *this;
 //         ret.sum += e2.sum;
 //         ret.len += e2.len;
-//         return ret; 
+//         return ret;
 //     }
 // };
 // struct node{
@@ -135,7 +132,6 @@
 //     else return (query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr)) % mod;
 // }
 
-
 // int main(){
 
 //     cin >> n >> m >> mod;
@@ -159,9 +155,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -243,7 +236,6 @@
 //     else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
 // }
 
-
 // signed main(){
 
 //     cin >> n >> mod;
@@ -269,14 +261,11 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // const int N = 1e4 + 10;
 // int l, m;
 // array<int, 2> a[N];
-
 
 // signed main(){
 
@@ -295,12 +284,8 @@
 
 //     cout << l;
 
-
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -393,7 +378,6 @@
 //     up(id);
 // }
 
-
 // signed main(){
 
 //     cin >> n >> m;
@@ -414,8 +398,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -462,7 +444,6 @@
 //     else return max(query(lson, l, mid, ql, qr), query(rson, mid + 1, r, ql, qr));
 // }
 
-
 // signed main(){
 
 //     cin >> n >> m;
@@ -484,13 +465,10 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
-// #define lson id << 1 
+// #define lson id << 1
 // #define rson id << 1 | 1
 // const int N = 1e5 + 10;
 // int n, m;
@@ -522,7 +500,7 @@
 //     int mid = l + r >> 1;
 //     if(x <= mid) return query(lson, l, mid, x);
 //     else return query(rson, mid + 1, r, x);
-// }   
+// }
 
 // signed main(){
 
@@ -540,8 +518,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -577,8 +553,6 @@
 //     up(id);
 // }
 
-
-
 // void solve(){
 //     cin >> n >> m;
 //     build(1, 1, n);
@@ -603,9 +577,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -666,9 +637,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -719,7 +687,6 @@
 
 //     cout << ans << '\n';
 
-
 // }
 
 // signed main(){
@@ -733,9 +700,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -782,7 +746,7 @@
 
 // void solve(){
 //     cin >> n;
-    
+
 //     for(int i = 1;i <= n;i++) {
 //         cin >> a[i];
 //         add2(a[i], 1);
@@ -810,8 +774,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // const int N = 1e5 + 10;
@@ -837,7 +799,7 @@
 //     }else{
 //         c[u] = inf;
 //     }
-    
+
 //     l[u] = ++tot;
 //     dfs(tot, u, 2);
 //     r[u] = ++tot;
@@ -874,9 +836,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -884,11 +843,10 @@
 // int n, a[N], dp[N], t[N], no_son[N];
 // vector<int>g[N];
 
-
 // void dfs(int u, int f){
 //     int mx = 0;
 //     int mxns = 0;
-//     int tmp = a[u]; 
+//     int tmp = a[u];
 //     for(auto v : g[u]) if(v != f){
 //         dfs(v, u);
 //         tmp += dp[v] - a[v];
@@ -936,7 +894,6 @@
 //     cout << dp[1] << '\n';
 // }
 
-
 // signed main(){
 
 //     ios::sync_with_stdio(false);
@@ -949,8 +906,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -990,14 +945,9 @@
 //     return 0;
 // }
 
-
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // vector<int>fac;
-
 
 // void solve(){
 //     int a, b;
@@ -1011,7 +961,6 @@
 
 // }
 
-
 // int main(){
 
 //     int t;
@@ -1020,8 +969,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -1099,7 +1046,6 @@
 //     if (t > 1) vec.push_back(t);
 //     vec.erase(unique(vec.begin(), vec.end()), vec.end());
 
-
 //     dfs(a, b, 0);
 
 //     cout << ans << '\n';
@@ -1116,9 +1062,6 @@
 //     }
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1174,7 +1117,6 @@
 //     cout << dfs(a, b) << '\n';
 // }
 
-
 // signed main(){
 
 //     ios::sync_with_stdio(false);
@@ -1187,9 +1129,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1226,7 +1165,6 @@
 //     printf("%llf\n", min({E(l),E(l-1),E(l-2),E(l+1),E(l+2),E(1)}));
 // }
 
-
 // signed main(){
 
 //     IO;
@@ -1234,12 +1172,8 @@
 //     cin >> t;
 //     while(t--) solve();
 
-
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1300,7 +1234,6 @@
 //     }
 // }
 
-
 // signed main(){
 
 //     IO;
@@ -1308,13 +1241,8 @@
 //     // cin >> t;
 //     while(t--) solve();
 
-
 //     return 0;
 // }
-
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1334,10 +1262,9 @@
 //     }
 //     dp[u][0][0] += son[u];
 //     for(int i = 1;i <= n;i++){
-//         dp[u][i][1] += 
+//         dp[u][i][1] +=
 //     }
 // }
-
 
 // void solve(){
 //     cin >> n;
@@ -1350,7 +1277,6 @@
 //     dfs(1, 0);
 // }
 
-
 // signed main(){
 
 //     IO;
@@ -1360,8 +1286,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1396,14 +1320,11 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 1e5 + 10;
 // int n, b[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -1441,14 +1362,11 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 1e5 + 10;
 // int n, b[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -1485,16 +1403,12 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 1e4 + 10;
 // int n, k, a_b[N], a[N];
-
 
 // signed main(){
 
@@ -1538,15 +1452,11 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 2e5 + 10;
 // int n;
-
 
 // void solve(){
 //     cin >> n;
@@ -1612,15 +1522,11 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 110;
 // int n, a[N], b[N], sufa[N], sufb[N];
-
 
 // void solve(){
 //     cin >> n ;
@@ -1677,15 +1583,11 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 1e5 + 10;
 // int n, a[N];
-
 
 // void solve(){
 //     cin >> n ;
@@ -1722,9 +1624,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1768,9 +1667,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -1808,9 +1704,7 @@
 //     int cnt = 0;
 //     for(int i = 1;i <= n;i++) cnt += abs(a[i] - b[i]);
 
-
 //     cout << cnt/2 << '\n';
-
 
 // }
 
@@ -1826,9 +1720,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1839,7 +1730,6 @@
 
 // void solve(){
 
-
 // }
 
 // signed main(){
@@ -1854,8 +1744,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1890,9 +1778,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1932,12 +1817,8 @@
 //     cin >> t;
 //     while(t--) solve();
 
-
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1997,10 +1878,8 @@
 //     cin >> t;
 //     while(t--) solve();
 
-
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2047,9 +1926,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2154,8 +2030,6 @@
 //     return 0;
 // }
 
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2173,7 +2047,7 @@
 //     for (int i = 1; i <= n; i++)
 //         cin >> R[i], sum += R[i] * R[i], mp[R[i]]++;
 //     if(n == 1){cout << R[1]; return;}
-    
+
 //     int tmp = 0;
 //     int a = n, b = 0, c = -sum;
 //     for(int i = 2;i <= n;i++){
@@ -2198,7 +2072,6 @@
 //             break;
 //         }
 //     }
-    
 
 //     int head = r1;
 //     bool ok = true;
@@ -2238,10 +2111,6 @@
 //     return 0;
 // }
 
-
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2279,7 +2148,6 @@
 
 //     return 0;
 // }
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -2322,9 +2190,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2339,7 +2204,7 @@
 //         if(s[i] > '9'){
 //             if(i - 1 >= 0){
 //                 s[i-1] += s[i] - '9';
-                
+
 //             }else{
 //                 s = '1' + s;
 //                 i++;
@@ -2376,8 +2241,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -2418,9 +2281,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2456,8 +2316,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -2505,9 +2363,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2532,7 +2387,7 @@
 //         // cout << e1 << ' ' << e2 << '\n';
 //         int f1 = x - e1;
 //         int f2 = x - e2;
-        
+
 //         int ans = 0;
 //         if(e1 == e2){
 //             ans += (mp[e1] * (mp[f1]-1)) / 2;
@@ -2561,12 +2416,6 @@
 
 //     return 0;
 // }
-
-
-
-
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -2648,7 +2497,6 @@
 //     return 0;
 // }
 
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2698,8 +2546,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2756,9 +2602,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2861,8 +2704,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2898,7 +2739,6 @@
 //         g[v].push_back(u);
 //     }
 
-
 //     dfs(1, 0);
 //     int ans = (dp[1][0] + dp[1][2]) % mod;
 
@@ -2914,8 +2754,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -2944,7 +2782,7 @@
 //             cin >> mp[i][j];
 //             g.push_back({mp[i][j], i, j});
 //         }
-    
+
 //     int ans = 0;
 //     vector<array<int, 2>>way;
 //     sort(g.begin(), g.end(), greater<array<int, 3>>());
@@ -2972,3 +2810,677 @@
 
 //     return 0;
 // }
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// using namespace std;
+// const int N = 2e5 + 10;
+// int n, a[N];
+
+// void solve(){
+//     cin >> n;
+//     int sum = 0;
+//     int ans = INT_MAX;
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         sum += a[i];
+//         int tmp = 0;
+//         int x = a[i] & 1;
+//         while((a[i] & 1) == x){
+//             tmp++;
+//             a[i] /= 2;
+//         }
+//         ans = min(tmp, ans);
+//     }
+
+//     if(sum % 2 == 0) ans = 0;
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// using namespace std;
+// const int N = 1e5 + 10;
+// int n, a[N];
+
+// void solve(){
+//     cin >> n;
+//     vector<array<int, 2>>ans;
+//     vector<array<int, 2>>a(n+1);
+//     for(int i = 1;i <= n;i++) cin >> a[i][0], a[i][1] = i;
+//     sort(a.begin()+1, a.end());
+
+//     int cur = a[1][0];
+//     for(int i = 2;i <= n;i++){
+//         auto &[v, id] = a[i];
+//         while(cur <= v) cur *= 2;
+//         ans.push_back({id, cur - v});
+//     }
+
+//     cout << ans.size() << '\n';
+//     for(auto [id, x] : ans) cout << id << ' ' << x << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// using namespace std;
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// int n, a[N], pre1[N], pre0[N];
+
+// int tree0[N], treei0[N];
+// int lowbit(int x){
+//   return x & -x;
+// }
+// void add0(int x, int v){
+//   int vi = x * v;
+//   while(x <= n){
+//     tree0[x] += v;
+//     treei0[x] += vi;
+//     x += lowbit(x);
+//   }
+// }
+// int getsum0(int x){
+//   int s1 = 0, s2 = 0, r = x;
+//   while(x){
+//     s1 += tree0[x];
+//     s2 += treei0[x];
+//     x -= lowbit(x);
+//   }
+//   return (r + 1) * s1 - s2;
+// }
+
+// int tree1[N], treei1[N];
+// void add1(int x, int v){
+//   int vi = x * v;
+//   while(x <= n){
+//     tree1[x] += v;
+//     treei1[x] += vi;
+//     x += lowbit(x);
+//   }
+// }
+// int getsum1(int x){
+//   int s1 = 0, s2 = 0, r = x;
+//   while(x){
+//     s1 += tree1[x];
+//     s2 += treei1[x];
+//     x -= lowbit(x);
+//   }
+//   return (r + 1) * s1 - s2;
+// }
+
+// void solve(){
+//     string s;
+//     cin >> n;
+//     cin >> s;
+//     s = ' ' + s;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(s[i] == '1') pre1[i] = pre1[i-1] + 1, pre0[i] = pre0[i-1];
+//         else pre0[i] = pre0[i-1] + 1, pre1[i] = pre1[i-1];
+//     }
+
+//     memset(tree0, 0, sizeof(tree0));
+//     memset(tree1, 0, sizeof(tree1));
+//     memset(treei0, 0, sizeof(treei0));
+//     memset(treei1, 0, sizeof(treei1));
+
+//     for(int i = 2;i <= n;i++)
+//         if(s[i] == '1'){
+//             //放1
+//             ans = (ans + getsum1(i) - getsum1(i - pre1[i] - 2)) % mod;
+//             add1(i - pre1[i], 1);
+//             add1(i + 2, -1);
+//             //放0
+//             ans = (ans + getsum1(i) - getsum1(i - pre1[i] - 1)) % mod;
+//             add1(i - pre1[i] + 1, 1);
+//             add1(i + 2, -1);
+//         }else{
+//             //放0
+//             ans = (ans + getsum0(i) - getsum0(i - pre0[i] - 2)) % mod;
+//             add0(i - pre0[i], 1);
+//             add0(i + 2, -1);
+//             //放1
+//             ans = (ans + getsum0(i) - getsum0(i - pre0[i] - 1)) % mod;
+//             add0(i - pre1[i] + 1, 1);
+//             add0(i + 2, -1);
+//         }
+
+//     cout << ans % mod << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// using namespace std;
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// int n, a[N], pre1[N], pre0[N];
+
+// struct node{
+//     int sum, tag, len;
+// };
+// node tr1[N<<2];
+// void settag1(int id, int v){
+//     tr1[id].sum += v * tr1[id].len;
+//     tr1[id].tag += v;
+// }
+// void up1(int id){
+//     tr1[id].sum = tr1[lson].sum + tr1[rson].sum;
+// }
+// void down1(int id){
+//     if(!tr1[id].tag) return;
+//     settag1(lson, tr1[id].tag);
+//     settag1(rson, tr1[id].tag);
+//     tr1[id].tag = 0;
+// }
+// void modify1(int id, int l, int r, int ql, int qr, int v = 1){
+//     if(ql <= l && r <= qr){
+//         settag1(id, v);
+//         return;
+//     }
+//     down1(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify1(lson, l, mid, ql, qr, v);
+//     else if(ql > mid) modify1(rson, mid + 1, r, ql, qr, v);
+//     else modify1(lson, l, mid, ql, qr, v), modify1(rson, mid + 1, r, ql, qr, v);
+//     up1(id);
+// }
+// int query1(int id, int l, int r, int ql ,int qr){
+//     if(ql <= l && r <= qr){
+//         return tr1[id].sum % mod;
+//     }
+//     down1(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query1(lson, l, mid, ql, qr) % mod;
+//     else if(ql > mid) return query1(rson, mid + 1, r, ql, qr) % mod;
+//     else return (query1(lson, l, mid, ql, qr) + query1(rson, mid + 1, r, ql, qr)) % mod;
+// }
+// void build1(int id, int l ,int r){
+//     if(l == r){
+//         tr1[id].len = 1;
+//         tr1[id].sum = 0;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build1(lson, l, mid);
+//     build1(rson, mid + 1, r);
+//     up1(id);
+//     tr1[id].len = tr1[lson].len + tr1[rson].len;
+// }
+// //线段树
+// node tr[N << 2];
+// void settag(int id, int v){
+//     tr[id].sum += v * tr[id].len;
+//     tr[id].tag += v;
+// }
+// void up(int id){
+//     tr[id].sum = tr[lson].sum + tr[rson].sum;
+// }
+// void down(int id){
+//     if(!tr[id].tag) return;
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+// void modify(int id, int l, int r, int ql, int qr, int v = 1){
+//     if(ql <= l && r <= qr){
+//         settag(id, v);
+//         return;
+//     }
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, v);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, v);
+//     else modify(lson, l, mid, ql, qr, v), modify(rson, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
+// int query(int id, int l, int r, int ql ,int qr){
+//     if(ql <= l && r <= qr){
+//         return tr[id].sum % mod;
+//     }
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr) % mod;
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr) % mod;
+//     else return (query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr)) % mod;
+// }
+// void build(int id, int l ,int r){
+//     if(l == r){
+//         tr[id].len = 1;
+//         tr[id].sum = 0;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+//     tr[id].len = tr[lson].len + tr[rson].len;
+// }
+
+// void solve(){
+//     string s;
+//     cin >> n;
+//     cin >> s;
+//     s = ' ' + s;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(s[i] == '1') pre1[i] = pre1[i-1] + 1, pre0[i] = pre0[i-1];
+//         else pre0[i] = pre0[i-1] + 1, pre1[i] = pre1[i-1];
+//     }
+
+//     build1(1, 1, n);
+//     build(1, 1, n);
+//     modify(1, 1, n, 1, 1, 1);
+//     modify1(1, 1, n, 1, 1, 1);
+//     // cout << query1(1, 1, n, 1, 1) << '\n';
+
+//     for(int i = 2;i <= n;i++)
+//         if(s[i] == '1'){
+//             //放1
+//             ans = (ans + query1(1, 1, n, i - pre1[i] - 1 + 1, i + 1)) % mod;
+//             modify1(1, 1, n, i - pre1[i] + 1, i + 1 + 1);
+//             modify1(1, 1, n, i - pre1[i] - 1 + 1, i + 1, -1);
+//             //放0
+//             ans = (ans + query1(1, 1, n, i - pre1[i] + 1, i + 1)) % mod;
+//             modify1(1, 1, n, i - pre1[i] + 1 + 1, i + 1 + 1);
+//             modify1(1, 1, n, i - pre1[i] + 1, i + 1, -1);
+//         }else{
+//             //放0
+//             ans = (ans + query(1, 1, n, i - pre0[i] - 1 + 1, i + 1)) % mod;
+//             modify(1, 1, n, i - pre0[i] + 1, i + 1 + 1);
+//             modify(1, 1, n, i - pre0[i] - 1 + 1, i + 1, -1);
+//             //放1
+//             ans = (ans + query(1, 1, n, i - pre0[i] + 1, i + 1)) % mod;
+//             modify(1, 1, n, i - pre0[i] + 1 + 1, i + 1 + 1);
+//             modify(1, 1, n, i - pre0[i] + 1, i + 1, -1);
+//         }
+
+//     cout << (ans + 1) % mod << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// int n;
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     cin >> n;
+//     cout << ((n / 3) * ((n % 3) + n - 3)) / 2 + ((n / 3) * (2 + (n / 3 - 1)));
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1010;
+// int n, m;
+// string a[N];
+// string a2[N];
+// string b[N];
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++) cin >> a[i], a[i] = ' ' + a[i] + ' ', a2[i] = a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i], b[i] = ' ' + b[i] + ' ';
+
+//     int as = 0;
+//     for(int i = 1;i <= n;i++)
+//         for(int j = 1;j <= m;j++)
+//             if(a[i][j] == 'X')
+//             for(int x = i - 1;x <= i + 1;x++)
+//                 for(int y = j - 1;y <= j + 1;y++)
+//                     if(a[x][y] == '.') as++;
+
+//     int bs = 0;
+//     for(int i = 1;i <= n;i++)
+//         for(int j = 1;j <= m;j++)
+//             if(b[i][j] == 'X')
+//             for(int x = i - 1;x <= i + 1;x++)
+//                 for(int y = j - 1;y <= j + 1;y++)
+//                     if(b[x][y] == '.') bs++;
+
+//     bool ans = true;
+//     if(a != b){
+//         for(int i = 1;i <= n;i++)
+//             for(int j = 1;j <= m;j++)
+//                 a2[i][j] = (a[i][j] == '.' ? 'X' : '.');
+
+//         int c1 = 0, c2 = 0;
+//         for(int i = 1;i <= n;i++)
+//             for(int j = 1;j <= m;j++)
+//                 c1 += (a[i][j] != b[i][j]), c2 += (a2[i][j] != b[i][j]);
+
+//         // cout << c1 << ' ' << c2 << '\n';
+//         if(min(c1, c2) <= (n * m) / 2){
+//         if(c1 < c2)
+//             for(int i = 1;i <= n;i++) b[i] = a[i];
+//         else
+//             for(int i = 1;i <= n;i++) b[i] = a2[i];
+//         }else{
+//             ans = false;
+//         }
+
+//     }
+
+//     if(!ans){
+//         cout << -1;
+//         return 0;
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             cout << b[i][j];
+//         }
+//         cout << '\n';
+//     }
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1010;
+// int n, m;
+// struct node{
+//     int del = 0;
+//     bool all = false;
+//     bool ignore = false;
+//     string s;
+//     list<node*> ne;
+
+//     node(string s, bool ig) : s(s), ignore(ig) {}
+// };
+
+// list<node*>heads;
+
+// node* get(list<node*> &ls, const string &s, bool ig){
+//     node* ret = nullptr;
+//     for(auto p : ls)
+//         if(p->s == s){
+//             ret = p;
+//             break;
+//         }
+//     if(ret == nullptr){
+//         ret = new node(s, ig);
+//         ls.push_back(ret);
+//     }
+//     return ret;
+// }
+
+// void init(){
+//     heads.clear();
+// }
+
+// void solve(){
+//     init();
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++){
+//         string s;
+//         cin >> s;
+//         vector<int>_pos;
+//         for(int i = 0, len = s.length();i < len;i++){
+//             if(s[i] == '/') s.push_back(i);
+//         }
+//         s.push_back(s.length());
+//         string headstr(s.begin(), s.begin() + _pos.front());
+
+//         node* cur = get(heads, headstr, true);
+
+//         for(int i = 1, len = _pos.size();i < len;i++){
+//             string fil(s.begin() + _pos[i-1] + 1, s.begin() + _pos[i]);
+//             cur = get(cur->ne, fil, true);
+//         }
+//     }
+
+//     for(int i = 1;i <= m;i++){
+//         string s;
+//         cin >> s;
+//         vector<int>_pos;
+//         for(int i = 0, len = s.length();i < len;i++){
+//             if(s[i] == '/') s.push_back(i);
+//         }
+//         s.push_back(s.length());
+//         string headstr(s.begin(), s.begin() + _pos.front());
+
+//         node* cur = get(heads, headstr, false);
+
+//         for(int i = 1, len = _pos.size();i < len;i++){
+//             string fil(s.begin() + _pos[i-1] + 1, s.begin() + _pos[i]);
+//             cur = get(cur->ne, fil, false);
+//         }
+//     }
+
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false); cin.tie(0), cout.tie(0);
+// const int N = 1e6 + 10;
+// int n, q, a[N];
+// int B;
+// int k, bid[N], preAns, ans[N], num[N], cnt[N];
+
+// struct Query
+// {
+//     int ql, qr, ID;
+//     int operator<(const Query &e) const
+//     {
+//         if (bid[ql] == bid[e.ql])
+//             if (bid[ql] & 1)
+//                 return qr < e.qr;
+//             else
+//                 return qr > e.qr;
+//         return bid[ql] < bid[e.ql];
+//     }
+// };
+// Query qry[N];
+
+// void build()
+// {
+//     for (int i = 1; i <= n; i++)
+//         bid[i] = (i - 1) / B + 1;
+// }
+
+// void add(int v)
+// {
+//     num[cnt[v]]--;
+//     num[++cnt[v]]++;
+//     preAns = max(preAns, num[cnt[v]]);
+// }
+
+// void del(int v)
+// {
+//     num[cnt[v]]--;
+//     num[--cnt[v]]++;
+//     if(cnt[v] + 1 == preAns && num[preAns] == 0)
+//         preAns--;
+// }
+
+// void init(){
+//     memset(num, 0, sizeof(num));
+//     memset(cnt, 0, sizeof(cnt));
+//     preAns = 0;
+// }
+
+// void solve(){
+//     cin >> n >> q;
+//     init();
+//     B = sqrt(n);
+//     vector<vector<int>>yz(n + 1);
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         for(int j = 2, sq = sqrt(a[i]);j <= sq;j++){
+//             if(a[i] % j == 0){
+//                 yz[i].push_back(j);
+//                 while(a[i] % j == 0) a[i] /= j;
+//             }
+//         }
+//         if(a[i] > 0) yz[i].push_back(a[i]);
+//     }
+
+//     build();
+
+//     for(int i = 1;i <= q;i++){
+//         cin >> qry[i].ql >> qry[i].qr;
+//         qry[i].ID = i;
+//     }
+//     sort(qry + 1, qry + 1 + q);
+
+//     for (int i = 1, l = 1, r = 0; i <= q; i++)
+//     {
+//         while (l < qry[i].ql){
+//             for(auto ad : yz[l])
+//                 del(ad);
+//             l++;
+//         }
+//         while (r < qry[i].qr){
+//             ++r;
+//             for(auto ad : yz[r])
+//                 add(a[++r]);
+//         }
+//         while (l > qry[i].ql){
+//             --l;
+//             for(auto ad : yz[l])
+//                 add(ad);
+//         }
+//         while (r > qry[i].qr){
+//             for(auto ad : yz[r])
+//                 del(ad);
+//             r--;
+//         }
+//         ans[qry[i].ID] = preAns;
+//     }
+
+//     for(int i = 1;i <= q;i++) cout << ans[i] << '\n';
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+const int N = 505;
+int n, m, p, q, mp[N][N];
+int dp[2][N][1005];
+
+signed main()
+{
+    IO;
+
+    cin >> n >> m >> p >> q;
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++)
+            cin >> mp[i][j];
+
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++)
+        {
+            int cur = i & 1;
+            int last = !cur;
+            if (mp[i][j])
+            {
+                for (int k = 0; k <= 1002; k++)
+                    dp[cur][j][k] = dp[i][j - 1][k] + dp[cur][j][k];
+            }
+            else
+            {
+                dp[cur][j][0] = 0;
+                for (int k = 1; k <= 1002; k++)
+                    dp[cur][j][k] = dp[i][j - 1][k - 1] + dp[cur][j][k - 1];
+            }
+        }
+
+    int cur = n & 1;
+    int ans = 0;
+    for (int i = p; i <= n + m - 1 - q; i++)
+    {
+        ans += dp[n & 1][m][i];
+    }
+
+    cout << ans;
+
+    return 0;
+}
