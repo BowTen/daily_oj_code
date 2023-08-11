@@ -3438,49 +3438,311 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-const int N = 505;
-int n, m, p, q, mp[N][N];
-int dp[2][N][1005];
+// #include <bits/stdc++.h>
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define int long long
+// using namespace std;
+// const int N = 505;
+// const int M = 1005;
+// const int mod = 998244353;
+// int n, m, p, q, mp[N][N];
+// int dp[2][N][1005];
 
-signed main()
-{
-    IO;
+// signed main()
+// {
+//     IO;
 
-    cin >> n >> m >> p >> q;
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= m; j++)
-            cin >> mp[i][j];
+//     cin >> n >> m >> p >> q;
+//     for (int i = 1; i <= n; i++)
+//         for (int j = 1; j <= m; j++)
+//             cin >> mp[i][j];
 
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= m; j++)
-        {
-            int cur = i & 1;
-            int last = !cur;
-            if (mp[i][j])
-            {
-                for (int k = 0; k <= 1002; k++)
-                    dp[cur][j][k] = dp[i][j - 1][k] + dp[cur][j][k];
-            }
-            else
-            {
-                dp[cur][j][0] = 0;
-                for (int k = 1; k <= 1002; k++)
-                    dp[cur][j][k] = dp[i][j - 1][k - 1] + dp[cur][j][k - 1];
-            }
-        }
+//     if(mp[1][1]) dp[1][1][0] = 1;
+//     else dp[1][1][1] = 1;
+//     for (int i = 1; i <= n; i++)
+//         for (int j = 1; j <= m; j++)
+//         {
+//             if(i == 1 && j == 1) continue;
+//             int cur = i & 1;
+//             int last = 1 ^ cur;
+//             if (mp[i][j])
+//             {
+//                 for (int k = 0; k <= 1002; k++){
+//                     dp[cur][j][k] = 0;
+//                     if(j - 1 >= 1)
+//                         dp[cur][j][k] += dp[cur][j - 1][k];
+//                     if(i - 1 >= 1)
+//                         dp[cur][j][k] += dp[last][j][k];
+//                     dp[cur][j][k] %= mod;
+//                 }
+//             }
+//             else
+//             {
+//                 dp[cur][j][0] = 0;
+//                 for (int k = 1; k <= 1002; k++){
+//                     dp[cur][j][k] = 0;
+//                     if(j - 1 >= 1)
+//                         dp[cur][j][k] += dp[cur][j - 1][k - 1];
+//                     if(i - 1 >= 1)
+//                         dp[cur][j][k] += dp[last][j][k - 1];
+//                     dp[cur][j][k] %= mod;
+//                 }
+//             }
+// 		}
 
-    int cur = n & 1;
-    int ans = 0;
-    for (int i = p; i <= n + m - 1 - q; i++)
-    {
-        ans += dp[n & 1][m][i];
-    }
+//     int cur = n & 1;
+//     int ans = 0;
+//     for (int i = p; i <= n + m - 1 - q; i++)
+//     {
+//         ans += dp[cur][m][i];
+//         ans %= mod;
+//     }
 
-    cout << ans;
+//     cout << ans;
 
-    return 0;
-}
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false); cin.tie(0), cout.tie(0);
+// const int N = 1e6 + 10;
+// int n, q, a[N];
+// int B;
+// int k, bid[N], preAns, ans[N], num[N], cnt[N];
+
+// struct Query
+// {
+//     int ql, qr, ID;
+//     int operator<(const Query &e) const
+//     {
+//         if (bid[ql] == bid[e.ql])
+//             if (bid[ql] & 1)
+//                 return qr < e.qr;
+//             else
+//                 return qr > e.qr;
+//         return bid[ql] < bid[e.ql];
+//     }
+// };
+// Query qry[N];
+
+// void build()
+// {
+//     for (int i = 1; i <= n; i++)
+//         bid[i] = (i - 1) / B + 1;
+// }
+
+// void add(int v)
+// {
+//     num[cnt[v]]--;
+//     num[++cnt[v]]++;
+//     preAns = max(preAns, cnt[v]);
+// }
+
+// void del(int v)
+// {
+//     num[cnt[v]]--;
+//     num[--cnt[v]]++;
+//     if(cnt[v] + 1 == preAns && num[preAns] == 0)
+//         preAns--;
+// }
+
+// void init(){
+//     memset(num, 0, sizeof(num));
+//     memset(cnt, 0, sizeof(cnt));
+//     preAns = 0;
+// }
+
+// void solve(){
+//     cin >> n >> q;
+//     init();
+//     B = sqrt(n);
+//     vector<vector<int>>yz(n + 1);
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         for(int j = 2, sq = sqrt(a[i]);j <= sq;j++){
+//             if(a[i] % j == 0){
+//                 yz[i].push_back(j);
+//                 while(a[i] % j == 0) a[i] /= j;
+//             }
+//         }
+//         if(a[i] > 0) yz[i].push_back(a[i]);
+//     }
+
+//     build();
+
+//     for(int i = 1;i <= q;i++){
+//         cin >> qry[i].ql >> qry[i].qr;
+//         qry[i].ID = i;
+//     }
+//     sort(qry + 1, qry + 1 + q);
+
+//     for (int i = 1, l = 1, r = 0; i <= q; i++)
+//     {
+//         while (l < qry[i].ql){
+//             for(auto ad : yz[l])
+//                 del(ad);
+//             l++;
+//         }
+//         while (r < qry[i].qr){
+//             ++r;
+//             for(auto ad : yz[r])
+//                 add(a[++r]);
+//         }
+//         while (l > qry[i].ql){
+//             --l;
+//             for(auto ad : yz[l])
+//                 add(ad);
+//         }
+//         while (r > qry[i].qr){
+//             for(auto ad : yz[r])
+//                 del(ad);
+//             r--;
+//         }
+//         ans[qry[i].ID] = preAns;
+//     }
+
+//     for(int i = 1;i <= q;i++) cout << ans[i] << '\n';
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 1e3 + 10;
+// int n, m, ans = 0;
+// char mp[N][N];
+// bool vis[N][N];
+// int dir[4][2] = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+// int xdir[4][2] = {{-1, 1}, {1, 1}, {1, -1}, {-1, -1}};
+
+// bool check(int x, int y, int dx, int dy){
+//     int nx = x + dx;
+//     int ny = y + dy;
+//     if(nx < 1 || nx > n || ny < 1 || ny > m) return false;
+//     if(dx == dy && mp[x + dx][y] == '/' && mp[x][y + dy] == '/') return false;
+//     if(dx != dy && mp[x + dx][y] == '\\' && mp[x][y + dy] == '\\') return false;
+
+//     return true;
+// }
+
+// void bfs(int x, int y){
+//     bool ot = false;
+//     queue<array<int, 2>>que;
+//     que.push({x, y});
+//     while(que.size()){
+//         auto [x, y] = que.front();
+//         que.pop();
+//         vis[x][y] = 1;
+//         if(x == 1 || x == n || y == 1 || y == m) ot = true;
+//         for(int i = 0;i < 4;i++){
+//             int nx = x + dir[i][0];
+//             int ny = y + dir[i][1];
+//             if(mp[nx][ny] == '.' && vis[nx][ny] == 0) que.push({nx, ny});
+//         }
+//         for(int i = 0;i < 4;i++){
+//             int nx = x + xdir[i][0];
+//             int ny = y + xdir[i][1];
+//             if(mp[nx][ny] == '.' && vis[nx][ny] == 0 && check(x, y, xdir[i][0], xdir[i][1])) que.push({nx, ny});
+//         }
+//     }
+
+//     if(ot) ans--;
+// }
+
+// void solve()
+// {
+//     cin >> n >> m;
+//     for (int i = 1; i <= n; i++)
+//         for (int j = 1; j <= m; j++)
+//         {
+//             cin >> mp[i][j];
+//         }
+//     for (int i = 1; i <= n; i++)
+//         for (int j = 1; j <= m; j++)
+//         {
+//             if (mp[i][j] == '.' && !vis[i][j])
+//             {
+//                 ans++;
+//                 bfs(i, j);
+//             }
+//         }
+
+//     for(int i = 1;i < n;i++){
+//         for(int j = 1;j < m;j++){
+//             if(mp[i][j] == '/' && mp[i][j+1] == '\\' && mp[i+1][j] == '\\' && mp[i+1][j+1] == '/') ans++, j++;
+//         }
+//     }
+
+//     cout << ans;
+// }
+
+// signed main()
+// {
+//     // IOS;
+//     int T = 1;
+//     // cin >> T;
+//     while (T--)
+//         solve();
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 2e5 + 10;
+// int n, k, a[N], fis[N], vis[N], pt[N];
+
+// void solve()
+// {
+//     cin >> n >> k;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         cin >> a[i];
+//         fis[a[i]] = i;
+//     }
+
+//     stack<int> st;
+//     for (int i = 1; i <= n; i++) if(!vis[a[i]])
+//     {   
+//         while(st.size() && a[i] < st.top() && fis[st.top()] > i){
+//             vis[st.top()] = 0;
+//             st.pop();
+//         }
+//         st.push(a[i]);
+//         vis[a[i]] = 1;
+//     }
+
+//     vector<int>ans;
+//     while (st.size())
+//     {
+//         ans.push_back(st.top());
+//         st.pop();
+//     }
+
+//     for(int i = ans.size() - 1;i >= 0;i--) cout << ans[i] << ' ';
+// }
+
+// signed main()
+// {
+//     IOS;
+//     int T = 1;
+//     // cin >> T;
+//     while (T--)
+//         solve();
+//     return 0;
+// }
