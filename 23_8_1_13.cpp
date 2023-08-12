@@ -3751,60 +3751,320 @@
 
 
 
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IOS ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
-const int N = 1e5 + 10;
-int n, a[N];
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IOS ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+// const int N = 1e5 + 10;
+// int n, a[N];
 
-vector<array<int, 2>>g[N];  
-int siz[N], sval[N], slen[N], sv_l[N];
-void dfs(int u, int f){
-    siz[u] = 1;
-    sval[u] = a[u];
-    for(auto [v, w] : g[u]) if(v != f){
-        dfs(v, u);
-        siz[u] += siz[v];
-        sval[u] += sval[v];
-        slen[u] += slen[v] + w * siz[v];
-        sv_l[u] += sv_l[v] + w * sval[v];
-    }
-}
+// vector<array<int, 2>>g[N];  
+// int siz[N], sval[N], slen[N], sv_l[N];
+// void dfs(int u, int f){
+//     siz[u] = 1;
+//     sval[u] = a[u];
+//     for(auto [v, w] : g[u]) if(v != f){
+//         dfs(v, u);
+//         siz[u] += siz[v];
+//         sval[u] += sval[v];
+//         slen[u] += slen[v] + w * siz[v];
+//         sv_l[u] += sv_l[v] + w * sval[v];
+//     }
+// }
 
-void dfs2(int u, int f){
-    for(auto [v, w] : g[u]) if(v != f){
-        slen[v] = slen[u] - siz[v] * w + w * (n - siz[v]);
-        sv_l[v] = (sval[1] - sval[v]) * w + (sv_l[u] - sval[v] * w);
-        dfs2(v, u);
-    }
-}
+// void dfs2(int u, int f){
+//     for(auto [v, w] : g[u]) if(v != f){
+//         slen[v] = slen[u] - siz[v] * w + w * (n - siz[v]);
+//         sv_l[v] = (sval[1] - sval[v]) * w + (sv_l[u] - sval[v] * w);
+//         dfs2(v, u);
+//     }
+// }
 
-void solve()
-{
-    cin >> n;
-    for(int i = 1;i <= n;i++) cin >> a[i];
-    for(int i = 1;i < n;i++){
-        int u, v, w;
-        cin >> u >> v >> w;
-        g[u].push_back({v, w});
-        g[v].push_back({u, w});
-    }
+// void solve()
+// {
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i < n;i++){
+//         int u, v, w;
+//         cin >> u >> v >> w;
+//         g[u].push_back({v, w});
+//         g[v].push_back({u, w});
+//     }
 
-    dfs(1, 0);
-    dfs2(1, 0);
+//     dfs(1, 0);
+//     dfs2(1, 0);
 
-    for(int i = 1;i <= n;i++){
-        cout << sv_l[i] + slen[i] * a[i] << '\n';
-    }
-}
+//     for(int i = 1;i <= n;i++){
+//         cout << sv_l[i] + slen[i] * a[i] << '\n';
+//     }
+// }
 
-signed main()
-{
-    IOS;
-    int T = 1;
-    // cin >> T;
-    while (T--)
-        solve();
-    return 0;
-}
+// signed main()
+// {
+//     IOS;
+//     int T = 1;
+//     // cin >> T;
+//     while (T--)
+//         solve();
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 2e6 + 10;
+// const int EMPTY = 1;
+// const int FULL = 2;
+// int n, q;
+
+// int tr, lson[N << 2], rson[N << 2], sum[N << 2], tot, tag[N << 2];
+// void settag(int &id, int op, int l, int r){
+//     if(!id) id = ++tot;
+//     tag[id] = op;
+//     if(op == FULL) sum[id] = r - l + 1;
+//     else sum[id] = 0;
+// }
+// void up(int id, int l, int r){
+//     int mid = l + r >> 1;
+//     if(!lson[id]){
+//         lson[id] = ++tot;
+//         sum[lson[id]] = mid - l + 1;
+//     }
+//     if(!rson[id]){
+//         rson[id] = ++tot;
+//         sum[rson[id]] = r - mid;
+//     }
+//     sum[id] = sum[lson[id]] + sum[rson[id]];
+// }
+// void down(int id, int l, int r){
+//     int mid = l + r >> 1;
+//     settag(lson[id], tag[id], l, mid);
+//     settag(rson[id], tag[id], mid + 1, r);
+//     tag[id] = 0;
+// }
+// void modify(int &id, int l, int r, int ql, int qr, int op){
+//     if(!id) {
+//         id = ++tot;
+//         sum[id] = r - l + 1;
+//     }
+//     if(ql <= l && r <= qr){
+//         settag(id, op, l, r);
+//         return;
+//     }
+//     if(tag[id]) down(id, l, r);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson[id], l, mid, ql, qr, op);
+//     else if(ql > mid) modify(rson[id], mid + 1, r, ql, qr, op);
+//     else modify(lson[id], l, mid, ql, qr, op), modify(rson[id], mid + 1, r, ql, qr, op);
+//     if(tag[id]) down(id, l, r);
+//     up(id, l, r);
+// }
+
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     cin >> n >> q;
+//     for(int i = 1;i <= q;i++){
+
+//         int l, r, k;
+//         cin >> l >> r >> k;
+//         modify(tr, 1, n, l, r, k);
+//         cout << sum[tr] << '\n';
+//     }   
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define i32 signed
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// int n, m, a[N];
+
+// struct node{
+//     int sum[9];
+//     i32 p;
+//     int tag;
+// }tr[N << 2];
+
+// void up(int id){
+//     tr[id].p = max(tr[lson].p, tr[rson].p);
+//     for(i32 i = tr[id].p, d = 0;i >= 0;i--, d++)
+//         tr[id].sum[i] = tr[lson].sum[max(0, tr[lson].p - d)] + tr[rson].sum[max(0, tr[rson].p - d)];
+// }
+
+// void build(int id, int l, int r){
+//     tr[id].tag = 0;
+//     if(l == r){
+//         tr[id].p = 8;
+//         tr[id].sum[8] = a[l];
+//         for(int i = 7;i >= 0;i--) tr[id].sum[i] = sqrt(tr[id].sum[i+1]);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// void settag(int id, int x){
+//     tr[id].tag += x;
+//     tr[id].p = max(0ll, tr[id].p - x);
+// }
+
+// void down(int id){
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+
+// void modify(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr){
+//         settag(id, 1);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr);
+//     else modify(lson, l, mid, ql, qr), modify(rson, mid + 1, r, ql, qr);
+//     up(id);
+// }
+
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].sum[tr[id].p];
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+// }
+
+// void solve(){
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     cin >> m;
+//     for(int i = 1;i <= m;i++){
+//         int op, l, r;
+//         cin >> op >> l >> r;
+//         if(l > r) swap(l, r);
+//         if(op == 1){
+//             cout << query(1, 1, n, l, r) << '\n';
+//         }else{
+//             modify(1, 1, n, l, r);
+//         }
+//     }
+// }
+
+// i32 main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     while(cin >> n){
+//         cout << "Case #" << t++ << ":\n";
+//         solve();
+//         cout << '\n';
+//     }
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define i32 signed
+// const int N = 1e5 + 10;
+// int n, m, a[N];
+
+
+// void solve(){
+//     cin >> n;
+//     vector<vector<int>>vec(n + 1);
+//     for(int i = 1;i <= n;i++) {
+//         int t;
+//         cin >> t;
+//         vec[i].resize(t);
+//         for(auto &e : vec[i]) cin >> e;
+//     }
+//     int k;
+//     cin >> k;
+//     vector<int>ans;
+//     for(int i = 1;i <= n;i++) for(auto e : vec[i]) if(e == k) { ans.push_back(i); break;}
+
+//     int mn = INT_MAX;
+//     for(auto e : ans) {
+//         mn = min(mn, (int)vec[e].size());
+//     }
+//     int cnt = 0;
+//     for(auto e : ans) if(vec[e].size() == mn) cnt++;
+
+//     cout << cnt << '\n';
+//     for(auto e : ans) if(vec[e].size() == mn) cout << e << ' ';
+// }
+
+// i32 main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define i32 signed
+// const int N = 2e5 + 10;
+// int n, m, c[N];
+
+// void solve(){
+//     cin >> n >> m;
+//     string s;
+//     vector<vector<int>>pos(m + 1);
+//     vector<int>it(m + 1);
+//     cin >> s;
+//     s = ' ' + s;
+//     for(int i = 1;i <= n;i++) cin >> c[i];
+//     for(int i = 1;i <= n;i++) pos[c[i]].push_back(i);
+//     for(int i = 1;i <= m;i++)
+//         it[i] = pos[i].size() - 1;
+
+//     for(int i = 1;i <= n;i++) cout << s[pos[c[i]][(it[c[i]]++) % pos[c[i]].size()]] ;
+// }
+
+// i32 main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
