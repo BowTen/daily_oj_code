@@ -3746,3 +3746,65 @@
 //         solve();
 //     return 0;
 // }
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IOS ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
+const int N = 1e5 + 10;
+int n, a[N];
+
+vector<array<int, 2>>g[N];  
+int siz[N], sval[N], slen[N], sv_l[N];
+void dfs(int u, int f){
+    siz[u] = 1;
+    sval[u] = a[u];
+    for(auto [v, w] : g[u]) if(v != f){
+        dfs(v, u);
+        siz[u] += siz[v];
+        sval[u] += sval[v];
+        slen[u] += slen[v] + w * siz[v];
+        sv_l[u] += sv_l[v] + w * sval[v];
+    }
+}
+
+void dfs2(int u, int f){
+    for(auto [v, w] : g[u]) if(v != f){
+        slen[v] = slen[u] - siz[v] * w + w * (n - siz[v]);
+        sv_l[v] = (sval[1] - sval[v]) * w + (sv_l[u] - sval[v] * w);
+        dfs2(v, u);
+    }
+}
+
+void solve()
+{
+    cin >> n;
+    for(int i = 1;i <= n;i++) cin >> a[i];
+    for(int i = 1;i < n;i++){
+        int u, v, w;
+        cin >> u >> v >> w;
+        g[u].push_back({v, w});
+        g[v].push_back({u, w});
+    }
+
+    dfs(1, 0);
+    dfs2(1, 0);
+
+    for(int i = 1;i <= n;i++){
+        cout << sv_l[i] + slen[i] * a[i] << '\n';
+    }
+}
+
+signed main()
+{
+    IOS;
+    int T = 1;
+    // cin >> T;
+    while (T--)
+        solve();
+    return 0;
+}
