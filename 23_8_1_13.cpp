@@ -4068,3 +4068,270 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define i32 signed
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+// void solve(){
+//     cin >> n;
+//     vector<int>b;
+//     vector<int>c;
+//     int mn = INT_MAX;
+//     for(int i = 1;i <= n;i++ ) {
+//         cin >> a[i];
+//         mn = min(mn, a[i]);
+//         // if(a[i] & 1) b.push_back(a[i]);
+//         // else c.push_back(a[i]);
+//     }
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] == mn) b.push_back(a[i]);
+//         else c.push_back(a[i]);
+//     }
+//     if(c.size() == 0){
+//         cout << "-1\n";
+//         return;
+//     }
+//     // if(c.size() == 0){
+//     //     sort(b.begin(), b.end());
+//     //     c.push_back(b.back());
+//     //     b.pop_back();
+//     //     if(b.back() == c.back()){
+//     //         cout << "-1\n";
+//     //         return;
+//     //     }
+//     // }
+//     // if(b.size() == 0){
+//     //     sort(c.begin(), c.end());
+//     //     b.push_back(c.back());
+//     //     c.pop_back();
+//     //     if(b.back() == c.back()){
+//     //         cout << "-1\n";
+//     //         return;
+//     //     }
+//     // }
+
+//     cout << b.size() << ' ' << c.size() << '\n';
+//     for(auto e : b) cout << e << ' ';
+//     cout << '\n';
+//     for(auto e : c) cout << e << ' ';
+//     cout << '\n';
+
+// }
+
+// i32 main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define i32 signed
+// const int N = 5e4 + 10;
+// int n, m, a[N];
+
+// void solve(){
+//     cin >> n;
+//     vector<vector<int>>vec(n + 1);
+//     vector<int>mn(n + 1, INT_MAX);
+//     vector<int>mn2(n + 1, INT_MAX);
+//     int mmn = INT_MAX;
+//     for(int i = 1;i <= n;i++){
+//         cin >> m;
+//         vec[i].resize(m + 1);
+//         for(int j = 1;j <= m;j++) {
+//             cin >> vec[i][j];
+//             mmn = min(mmn, vec[i][j]);
+//             if(vec[i][j] < mn[i]){
+//                 mn2[i] = mn[i];
+//                 mn[i] = vec[i][j];
+//             }else 
+//                 mn2[i] = min(mn2[i], vec[i][j]);
+//         }
+//     }
+
+//     sort(mn2.begin() + 1, mn2.end());
+//     int ans = mmn;
+//     for(int i = n;i > 1;i--){
+//         ans += mn2[i];
+//     }
+//     cout << ans << '\n';
+// }
+
+// i32 main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define i32 signed
+// const int N = 500 + 10;
+// int n, m, sum[N];
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i < n;i++)
+//         sum[i] = sum[i-1] + i * i;
+//     int ans = sum[n-1];
+//     for(int i = n - 1;i >= 1;i--){
+//         int tmp = sum[i - 1];
+//         int mx = 0;
+//         for(int j = i, x = n;j <= n;j++, x--){
+//             tmp += x * j;
+//             mx = max(mx, x * j);
+//         }
+//         tmp -= mx;
+//         ans = max(tmp, ans);
+//     }
+
+//     cout << ans << '\n';
+
+// }
+
+// i32 main(){
+
+    // ios::sync_with_stdio(false);
+    // cin.tie(0);
+    // cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// const int N = 2e6 + 10;
+// const int mxn = 1e9 + 10;
+// int n, q;
+
+// int mxl[N << 2];
+// int tr, lson[N << 2], rson[N << 2], tot;
+// void up(int id){
+//     mxl[id] = max(mxl[lson[id]], mxl[rson[id]]);
+// }
+// void down(int id){
+//     if(!lson[id]) lson[id] = ++tot;
+//     if(!rson[id]) rson[id] = ++tot;
+//     mxl[lson[id]] = max(mxl[lson[id]], mxl[id]);
+//     mxl[rson[id]] = max(mxl[rson[id]], mxl[id]);
+// }
+// void modify(int &id, int l, int r, int ql, int qr, int x){
+//     if(!id) id = ++tot;
+//     if(ql <= l && r <= qr){
+//         mxl[id] = max(mxl[id], x);
+//         return;
+//     }
+//     if(mxl[id]) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson[id], l, mid, ql, qr, x);
+//     else if(ql > mid) modify(rson[id], mid + 1, r, ql, qr, x);
+//     else modify(lson[id], l, mid, ql, qr, x), modify(rson[id], mid + 1, r, ql, qr, x);
+//     // up(id);
+// }
+// int query(int id, int l, int r, int x){
+//     if(!id) return 0;
+//     if(l == r) return mxl[id];
+//     if(mxl[id]) down(id);
+//     int mid = l + r >> 1;
+//     if(x <= mid) return query(lson[id], l, mid, x);
+//     else if(x > mid) return query(rson[id], mid + 1, r, x);
+//     else return max(query(lson[id], l, mid, x), query(rson[id], mid + 1, r, x));
+// }
+// int query2(int &id, int l, int r, int ql, int qr){
+//     if(!id) id = ++tot;
+//     // if(!id) return 0;
+//     if(ql <= l && r <= qr && mxl[id]) return mxl[id];
+//     if(l == r) return 0;
+//     if(mxl[id]) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query2(lson[id], l, mid, ql, qr);
+//     else if(ql > mid) return query2(rson[id], mid + 1, r, ql, qr);
+//     else return max(query2(lson[id], l, mid, ql, qr), query2(rson[id], mid + 1, r, ql, qr));
+// }
+
+// struct edge{
+//     int l, r, x, y;
+
+//     int operator<(const edge e) const{
+//         if(y == e.y) return l < e.l;
+//         return y > e.y;
+//     }
+// }g[N];
+
+// int x[N];
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++)
+//         cin >> g[i].l >> g[i].r >> g[i].x >> g[i].y;
+//     sort(g + 1, g + 1 + n);
+//     // for(int i = 1;i <= n;i++)
+//     //     cout << g[i].l << ' ' << g[i].r << ' ' << g[i].x << ' '  << g[i].y << '\n';
+//     for(int i = 1;i <= n;i++){
+//         int qr = max(g[i].y, query2(tr, 1, mxn, g[i].x, g[i].y));
+//         modify(tr, 1, mxn, g[i].l, g[i].r, qr);
+//     }
+
+//     cin >> q;
+//     for(int i = 1;i <= q;i++) {
+//         cin >> x[i];
+//         cout << max(query(tr, 1, mxn, x[i]), x[i]) << ' ';
+//     }
+
+//     cout << '\n';
+
+//     // cout << query2(tr, 1, mxn, 3, 8) << '\n';
+
+//     for(int i = 0;i < tot;i++){
+//         lson[i] = rson[i] = mxl[i] = 0;
+//     }
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
