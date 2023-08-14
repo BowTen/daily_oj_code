@@ -4335,3 +4335,325 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int N = 2e6 + 10;
+// const int mxn = 1e9 + 10;
+// int n, q;
+
+
+// void solve(){
+//     cin >> n;
+//     vector<array<int, 4>>g;
+//     vector<array<int, 2>>x;
+//     g.reserve(n + 1);
+//     for(int i = 1;i <= n;i++){
+//         int l, r, a, b;
+//         cin >> l >> r >> a >> b;
+//         g.push_back({l, r, a, b});
+//     }
+//     sort(g.begin(), g.end());
+
+//     cin >> q;
+//     x.reserve(q + 1);
+//     for(int i = 1;i <= q;i++) {
+//         int t;
+//         cin >> t;
+//         x.push_back({t, i});
+//     }
+//     sort(x.begin(), x.end());
+
+//     vector<int>ans;
+//     ans.resize(q + 1);
+//     int p = 0;
+//     int mx = 0;
+//     for(auto [cur, id] : x){
+//         while(p < g.size() && g[p][0] <= cur){
+//             mx = max(g[p][3], mx);
+//             cur = max(cur, mx);
+//             p++;
+//         }
+//         ans[id] = max(cur, mx);
+//     }
+//     for(int i = 1;i <= q;i++){
+//         cout << ans[i] << ' ';
+//     }
+//     cout << '\n';
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define i32 signed
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// int n, m, a[N];
+
+// struct node{
+//     int sum;
+//     bool f;
+// }tr[N << 2];
+
+// void up(int id){
+//     tr[id].sum = tr[lson].sum + tr[rson].sum;
+//     tr[id].f = tr[lson].f && tr[rson].f;
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id].sum = a[l];
+//         tr[id].f = (a[l] == 1 || a[l] == 0);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].sum;
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+// }
+
+// void modify(int id, int l, int r, int ql, int qr){
+//     if(l == r) {
+//         tr[id].sum = sqrt(tr[id].sum);
+//         tr[id].f = (tr[id].sum == 1 || tr[id].sum == 0);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(qr <= mid && !tr[lson].f) modify(lson, l, mid, ql, qr);
+//     else if(ql > mid && !tr[rson].f) modify(rson, mid + 1, r, ql, qr);
+//     else if(!tr[lson].f && !tr[rson].f) modify(lson, l, mid, ql, qr), modify(rson, mid + 1, r, ql, qr);
+//     up(id);
+// }
+
+// void solve(){
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     cin >> m;
+//     for(int i = 1;i <= m;i++){
+//         int op, l, r;
+//         cin >> op >> l >> r;
+//         if(l > r) swap(l, r);
+//         if(op == 1){
+//             cout << query(1, 1, n, l, r) << '\n';
+//         }else{
+//             modify(1, 1, n, l, r);
+//         }
+//     }
+// }
+
+// i32 main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     while(cin >> n){
+//         cout << "Case #" << t++ << ":\n";
+//         solve();
+//         cout << '\n';
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n >> m;
+//     vector<int>l(m + 1);
+//     vector<vector<int>>a(m + 1);
+//     vector<vector<int>>suf(m + 1);
+//     for(int i = 1;i <= m;i++) cin >> l[i];
+//     for(int i = 1;i <= n;i++){
+//         int s, k;
+//         cin >> s >> k;
+//         a[k].push_back(s);
+//     }
+//     int mxs = 0;
+//     for(int i = 1;i <= m;i++) {
+//         mxs = max(mxs, (int)a[i].size());
+//         sort(a[i].begin(), a[i].end());
+//         suf[i] = a[i];
+//         for(int j = suf[i].size() - 2;j >= 0;j--) suf[i][j] += suf[i][j + 1];
+//     }
+
+//     vector<int>f(mxs + 1);
+//     int ans = 0;
+//     int sz = N;
+//     for(int i = 1;i <= mxs;i++){
+//         int tmp = 0;
+//         for(int j = 1;j <= m;j++) {
+//             int x = max(0ll, (int)(suf[j].size() - i));
+//             if(suf[j].size() - x >= l[j])
+//                 tmp += suf[j][x];
+//         }
+//         if((double)tmp / i > ans / sz){
+//             ans = tmp;
+//             sz = i;
+//         }
+//     }
+
+//     int gc = __gcd(ans, sz);
+//     cout << (ans / gc) << '/' << (sz / gc) << '\n';
+
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// int n;
+
+// int h(int a, int b){
+//     int f = 1;
+//     if(a * b < 0) f = -1;
+//     a = abs(a);
+//     b = abs(b);
+//     return (137137 * a + 713713 * b) * f;
+// }
+
+// void solve(){
+//     cin >> n;
+//     unordered_map<int, vector<long double>>mp;
+//     for(int i = 1;i <= n;i++){
+//         int x, y, xx, yy;
+//         cin >> x >> y >> xx >> yy;
+//         if(xx < x){
+//             swap(x ,xx);
+//             swap(yy, y);
+//         }
+//         int dx = xx - x;
+//         int dy = yy - y;
+//         int gc = __gcd((int)abs(dx), (int)abs(dy));
+//         dx /= gc;
+//         dy /= gc;
+//         mp[h(dx, dy)].push_back(dx != 0 ? ((long double)y - ((long double)dy * x) / dx) : x);
+//     }
+
+//     int ans = (n * (n - 1)) / 2;
+//     for(auto &[id, vec] : mp){
+//         ans -= (vec.size() * (vec.size() - 1)) / 2;
+//         sort(vec.begin(), vec.end());
+//         int tmp = 1;
+//         for(int i = 1, len = vec.size();i < len;i++){
+//             if(fabs(vec[i] - vec[i-1]) < (1e-27)) tmp++;
+//             else{
+//                 ans += (tmp * (tmp - 1)) / 2;
+//                 tmp = 1;
+//             }
+//         }
+//         if(tmp > 1) ans += (tmp * (tmp - 1)) / 2;
+//     }
+
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+const int N = 1e6 + 10;
+int n;
+
+void solve(){
+    cin >> n;
+    int ans = 0;
+
+    vector<int>h;
+    vector<int>v;
+    for(int i = 1;i <= n;i++){
+        int a, b, c, d;
+        cin >> a >> b >> c >> d;
+        // ans+=0-(d-b+c-a);
+        h.push_back(a);
+        h.push_back(c);
+        v.push_back(b);
+        v.push_back(d);
+    }
+    sort(h.begin(), h.end());
+    sort(v.begin(), v.end());
+
+    int mh=h[n], mv=v[n];
+
+    for(int i = 0;i <2*n;i++){
+        ans+=abs(h[i]-mh)+abs(v[i]-mv);
+    }
+    cout << ans / 2 << '\n';
+    // for(auto [a, b] : v) cout << a << ' ' << b << '\n';
+}
+
+signed main(){
+
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    int t;
+    cin >> t;
+    while(t--)solve();
+
+    return 0;
+}
