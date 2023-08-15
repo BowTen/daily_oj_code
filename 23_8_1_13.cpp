@@ -4781,3 +4781,186 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5+ 10;
+// int n, m;
+
+
+// void solve(){
+//     int a, b, c;
+//     cin >> a >> b >> c;
+//     if(c & 1) a++;
+//     if(a > b) cout << "First\n";
+//     else cout << "Second\n";
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// int n, m, d, a[N];
+
+// void solve(){
+//     cin >> n >> m >> d;
+//     vector<int>pos(m + 2);
+//     pos[0] = 1;
+//     for(int i = 1;i <= m;i++){
+//         cin >> pos[i];
+//     }
+//     int sum = 1;
+//     for(int i = 1;i <= m;i++){
+//         sum += (pos[i] - pos[i-1]) / d;
+//         if((pos[i] - pos[i-1]) % d) sum++;
+//     }
+//     if(pos[m] != n) sum += (n - pos[m]) / d;
+
+//     int mn = 0;
+//     vector<int>delt(m + 1);
+//     for(int i = 1;i < m;i++){
+//         int ori = (pos[i] - pos[i-1]) / d + (((pos[i] - pos[i-1]) % d) != 0);
+//         ori += (pos[i + 1] - pos[i]) / d + (((pos[i + 1] - pos[i]) % d) != 0);
+//         int cur = (pos[i+1] - pos[i-1]) / d + (((pos[i+1] - pos[i-1]) % d) != 0);
+//         mn = min(mn, cur - ori);
+//         delt[i] = cur - ori;
+//     }
+//     int i = m;
+//     int ori = (pos[i] - pos[i-1]) / d + (((pos[i] - pos[i-1]) % d) != 0);
+//     int cur = (n - pos[i-1]) / d;
+//     if(pos[m] != n){
+//         ori += (n - pos[i]) / d;
+//     }
+//     // cout << ori << ' ' << cur << '\n';
+//     delt[m] = cur - ori;
+//     mn = min(mn, delt[m]);
+
+
+//     int cnt = 0;
+//     for(int i = 1;i <= m;i++) cnt += (mn == delt[i]);
+
+//     cout << sum + mn << ' ' << cnt << '\n';
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>ans;
+//     vector<bool>vis(n + 1);
+//     ans.reserve(n + 1);
+//     ans.push_back(1);
+//     for(int i = 2;i <= n;i++){
+//         int cur = i;
+//         while(cur <= n){
+//             if(!vis[cur]) ans.push_back(cur);
+//             vis[cur] = true;
+//             cur *= 2;
+//         }
+//     }
+
+//     for(auto e : ans) cout << e << ' ';
+//     cout << '\n';
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// int n, k;
+
+// void solve(){
+//     cin >> n >> k;
+//     string s;
+//     int l[2] = {0};
+//     int t[2] = {0};
+//     t[s[0] - '0'] = 1;
+//     for(int i = 1;i < n;i++){
+//         if(s[i] == s[i-1]) t[s[i] - '0']++;
+//         else{
+//             l[s[i-1] - '0'] = max(l[s[i-1] - '0'], t[s[i-1] - '0']);
+//             t[s[i-1] - '0'] = 0;
+//             t[s[i] - '0'] = 1;
+//         }
+//     }
+//     cin >> s;
+//     for(int i = 1;i <= n;i++){
+
+//     }
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
