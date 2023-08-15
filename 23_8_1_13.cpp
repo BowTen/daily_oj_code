@@ -4612,48 +4612,172 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-const int N = 1e6 + 10;
-int n;
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// int n;
 
-void solve(){
-    cin >> n;
-    int ans = 0;
+// void solve(){
+//     cin >> n;
+//     int ans = 0;
 
-    vector<int>h;
-    vector<int>v;
-    for(int i = 1;i <= n;i++){
-        int a, b, c, d;
-        cin >> a >> b >> c >> d;
-        // ans+=0-(d-b+c-a);
-        h.push_back(a);
-        h.push_back(c);
-        v.push_back(b);
-        v.push_back(d);
-    }
-    sort(h.begin(), h.end());
-    sort(v.begin(), v.end());
+//     vector<int>h;
+//     vector<int>v;
+//     for(int i = 1;i <= n;i++){
+//         int a, b, c, d;
+//         cin >> a >> b >> c >> d;
+//         ans+=0-(d-b+c-a);
+//         h.push_back(a);
+//         h.push_back(c);
+//         v.push_back(b);
+//         v.push_back(d);
+//     }
+//     sort(h.begin(), h.end());
+//     sort(v.begin(), v.end());
 
-    int mh=h[n], mv=v[n];
+//     int mh=h[n], mv=v[n];
 
-    for(int i = 0;i <2*n;i++){
-        ans+=abs(h[i]-mh)+abs(v[i]-mv);
-    }
-    cout << ans / 2 << '\n';
-    // for(auto [a, b] : v) cout << a << ' ' << b << '\n';
-}
+//     for(int i = 0;i <2*n;i++){
+//         ans+=abs(h[i]-mh)+abs(v[i]-mv);
+//     }
+//     cout << ans / 2 << '\n';
+//     // for(auto [a, b] : v) cout << a << ' ' << b << '\n';
+// }
 
-signed main(){
+// signed main(){
 
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    cout.tie(0);
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
 
-    int t;
-    cin >> t;
-    while(t--)solve();
+//     int t;
+//     cin >> t;
+//     while(t--)solve();
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5+ 10;
+// int n, m;
+
+// double a[N];
+
+// struct val{
+//     int len;
+//     double sum, av, s, pow;
+
+//     val operator+(const val& e) const {
+//         val ret = *this;
+//         ret.len += e.len;
+//         ret.sum += e.sum;
+//         ret.pow += e.pow;
+//         ret.av = ret.sum / ret.len;
+//         ret.s = ret.pow / ret.len - ret.av * ret.av;
+//         return ret;
+//     }
+//     val operator+(const double x) const {
+//         val ret = *this;
+//         ret.pow = ret.pow + 2 * x * ret.sum + ret.len * x * x;
+//         ret.sum += x * ret.len;
+//         ret.av = ret.sum / ret.len;
+//         ret.s = ret.pow / ret.len - ret.av * ret.av;
+//         return ret;
+//     }
+
+//     val(double x = 0, int len = 1) : len(len), sum(x), av(x), s(0), pow(x * x) {}
+// };
+
+// struct node{
+//     double tag = 0;
+//     val v;
+// }tr[N << 2];
+
+// void up(int id){
+//     tr[id].v = tr[lson].v + tr[rson].v;
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id].v = val(a[l]);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// void settag(int id, double x){
+//     tr[id].v = tr[id].v + x;
+//     tr[id].tag += x;
+// }
+
+// void down(int id){
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+
+// void modify(int id, int l, int r, int ql, int qr, double k){
+//     if(ql <= l && r <= qr){
+//         settag(id, k);
+//         return;
+//     }
+//     if(tr[id].tag > 0) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, k);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, k);
+//     else modify(lson, l, mid, ql, qr, k), modify(rson, mid + 1, r, ql, qr, k);
+//     up(id);
+// }
+
+// val query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].v;
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+
+//     while(m--){
+//         int op, l, r;
+//         double k;
+//         cin >> op >> l >> r;
+//         if(op == 1){
+//             cin >> k;
+//             modify(1, 1, n, l, r, k);
+//         }else if(op == 2){
+//             printf("%.4lf\n", query(1, 1, n, l, r).av);
+//         }else{
+//             printf("%.4lf\n", query(1, 1, n, l, r).s);
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
