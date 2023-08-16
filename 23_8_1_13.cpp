@@ -4926,30 +4926,60 @@
 
 // #include<bits/stdc++.h>
 // using namespace std;
-// #define int long long
-// #define lson id << 1
-// #define rson id << 1 | 1
 // const int N = 1e5 + 10;
 // int n, k;
 
 // void solve(){
 //     cin >> n >> k;
 //     string s;
-//     int l[2] = {0};
-//     int t[2] = {0};
-//     t[s[0] - '0'] = 1;
-//     for(int i = 1;i < n;i++){
-//         if(s[i] == s[i-1]) t[s[i] - '0']++;
-//         else{
-//             l[s[i-1] - '0'] = max(l[s[i-1] - '0'], t[s[i-1] - '0']);
-//             t[s[i-1] - '0'] = 0;
-//             t[s[i] - '0'] = 1;
+//     cin >> s;
+//     s = ' ' + s;
+
+//     vector<vector<int>> f(n + 2, vector<int>(k + 2, 0)), f2(n + 2, vector<int>(k + 2, 0));
+//     vector<vector<int>> f3(n + 2, vector<int>(k + 2, 0)), f4(n + 2, vector<int>(k + 2, 0));
+
+//     for(int i = 1;i <= n;i++){
+//         if(s[i] == '0') f[i][0] = f[i-1][0] + 1;
+//         else f4[i][0] = f4[i-1][0] + 1;
+//         for(int j = 1;j <= k;j++){
+//             if(s[i] == '0') f[i][j] = f[i-1][j] + 1, f4[i][j] = f4[i-1][j-1] + 1;
+//             else f[i][j] = f[i-1][j-1] + 1, f4[i][j] = f4[i-1][j] + 1;
 //         }
 //     }
-//     cin >> s;
-//     for(int i = 1;i <= n;i++){
 
+//     for(int i = n;i >= 1;i--){
+//         if(s[i] == '0') f3[i][0] = f3[i+1][0] + 1;
+//         else f2[i][0] = f2[i+1][0] + 1;
+//         for(int j = 1;j <= k;j++){
+//             if(s[i] == '1') f2[i][j] = f2[i+1][j] + 1, f3[i][j] = f3[i+1][j-1] + 1;
+//             else f2[i][j] = f2[i+1][j-1] + 1, f3[i][j] = f3[i+1][j] + 1; 
+//         }
 //     }
+
+//     for(int j = k;j >= 0;j--)
+//         for(int i = n;i >= 1;i--)
+//             f2[i][j] = max(f2[i][j], f2[i+1][j]);
+    
+//     for(int j = k;j >= 0;j--)
+//         for(int i = 1;i <= n;i++)
+//             f4[i][j] = max(f4[i][j], f4[i-1][j]);
+
+//     vector<int>mx(n + 2, -1);
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 0;j <= k;j++){
+//             mx[f[i][j]] = max(mx[f[i][j]], f2[i+1 + ((f[i][j]) ? 0 : -1)][k-j]);
+//             mx[f3[i][j]] = max(mx[f3[i][j]], f4[i-1 + ((f3[i][j]) ? 0 : 1)][k-j]);
+//         }
+//     }
+
+//     vector<int>ans(n + 1, 0);
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 0;j <= n;j++) if(mx[j] != -1)
+//             ans[i] = max(ans[i], i * j + mx[j]);
+//         cout << ans[i] << ' ';
+//     }
+//     cout << '\n';
 // }
 
 // signed main(){
