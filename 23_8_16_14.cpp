@@ -588,3 +588,127 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long 
+// const int N = 2e5 + 10;
+// int n, m, a[N], a1, ak, k;
+
+// void solve(){
+//     cin >> m >> k >> a1 >> ak;
+//     int ans = 0;
+//     if(ak * k > m){
+//         m %= k;
+//         m = max(0ll, m - a1);
+//         cout << m << '\n';
+//         return;
+//     }
+//     m -= ak * k;
+//     if(m <= a1){
+//         cout << "0\n";
+//         return;
+//     }
+//     m -= a1;
+
+//     int ck = m / k;
+//     ans += ck;
+//     m -= ck * k;
+
+//     if(m && a1 + m >= k) ans++;
+//     else ans += m;
+
+//     cout << ans << '\n';
+
+// }
+
+// signed main(){
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long 
+const int N = 3e5 + 10;
+int n, m, a[N];
+
+int d[N], w[N];
+int lowbit(int x){
+    return x & -x;
+}
+
+void addd(int x, int v){
+    while(x <= n){
+        d[x] += v;
+        x += lowbit(x);
+    }
+}
+void addw(int x, int v){
+    while(x <= n){
+        w[x] += v;
+        x += lowbit(x);
+    }
+}
+int getd(int x){
+    int ret = 0;
+    while(x > 0){
+        ret += d[x];
+        x -= lowbit(x);
+    }
+    return ret;
+}
+int getw(int x){
+    int ret = 0;
+    while(x > 0){
+        ret += w[x];
+        x -= lowbit(x);
+    }
+    return ret;
+}
+
+void init(){
+    for(int i = 1;i <= n;i++) d[i] = w[i] = 0;
+}
+
+void solve(){
+    cin >> n;
+    init();
+    for(int i = 1;i <= n;i++) cin >> a[i];
+
+    int p = n + 1;
+    addd(a[1], 1);
+    for(int i = 2;i <= n;i++){
+        if(a[i] > a[i-1]){
+            p = i;
+            break;
+        }
+        addd(a[i], 1);
+    }
+
+    int ans = 0;
+    for(int i = p;i <= n;i++){
+        if(getw(a[i])) addd(a[i], 1);
+        else if(getd(a[i])) addw(a[i], 1), ans++;
+        else addd(a[i], 1);
+    }
+
+    cout << ans << '\n';
+}
+
+signed main(){
+
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
