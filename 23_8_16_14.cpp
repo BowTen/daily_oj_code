@@ -635,80 +635,250 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long 
+// const int N = 3e5 + 10;
+// int n, m, a[N];
+
+// int d[N], w[N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+
+// void addd(int x, int v){
+//     while(x <= n){
+//         d[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+// void addw(int x, int v){
+//     while(x <= n){
+//         w[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+// int getd(int x){
+//     int ret = 0;
+//     while(x > 0){
+//         ret += d[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+// int getw(int x){
+//     int ret = 0;
+//     while(x > 0){
+//         ret += w[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void init(){
+//     for(int i = 1;i <= n;i++) d[i] = w[i] = 0;
+// }
+
+// void solve(){
+//     cin >> n;
+//     init();
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+
+//     int p = n + 1;
+//     addd(a[1], 1);
+//     for(int i = 2;i <= n;i++){
+//         if(a[i] > a[i-1]){
+//             p = i;
+//             break;
+//         }
+//         addd(a[i], 1);
+//     }
+
+//     int ans = 0;
+//     for(int i = p;i <= n;i++){
+//         if(getw(a[i])) addd(a[i], 1);
+//         else if(getd(a[i])) addw(a[i], 1), ans++;
+//         else addd(a[i], 1);
+//     }
+
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// int n, m, a[N], pw[20];
+
+// struct node{
+//     int bits[20], tag = 0, sum, len = 0;
+
+//     node operator+(const node &e) const {
+//         node ret = *this;
+//         ret.tag = 0;
+//         ret.sum += e.sum;
+//         ret.len += e.len;
+//         for(int i = 0;i < 20;i++) ret.bits[i] += e.bits[i];
+//         return ret;
+//     }
+
+//     void operator^=(int x) {
+//         for(int i = 0;i < 20;i++) if((x >> i) & 1) {
+//             sum -= pw[i] * bits[i];
+//             bits[i] = len - bits[i];
+//             sum += pw[i] * bits[i];
+//         }
+//     }
+
+//     node(int x = 0) : sum(x) {
+//         for(int i = 0;i < 20;i++) bits[i] = (x >> i) & 1;
+//     }
+// }tr[N << 2];
+
+// void up(int id){
+//     tr[id] = tr[lson] + tr[rson];
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id] = node(a[l]);
+//         tr[id].len = 1;
+//         return;
+//     }   
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// void settag(int id, int x){
+//     // cout << id << ' ' << x << '\n';
+//     tr[id].tag ^= x;
+//     tr[id] ^= x;
+// }
+
+// void down(int id){
+//     // cout << id << '\n';
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].sum;
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+// }
+
+// void modify(int id, int l, int r, int ql, int qr, int x){
+//     if(ql <= l && r <= qr){
+//         // cout << id << ' ' << x << '\n';
+//         settag(id, x);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, x);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, x);
+//     else modify(lson, l, mid, ql, qr, x), modify(rson, mid + 1, r, ql, qr, x);
+//     up(id);
+// }
+ 
+// signed main(){
+
+//     pw[0] = 1;
+//     for(int i = 1;i < 20;i++) pw[i] = pw[i-1] * 2;
+
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     cin >> m;
+//     while(m--){
+//         int op, l, r, k;
+//         cin >> op >> l >> r;
+//         if(op == 1){
+//             cout << query(1, 1, n, l, r) << '\n';
+//         }else{
+//             cin >> k;
+//             modify(1, 1, n, l, r, k);
+//             // cout << "___\n";
+//         }
+//     }
+
+//     // cout << tr[2].sum;
+
+//     return 0;
+// }
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
-#define int long long 
-const int N = 3e5 + 10;
-int n, m, a[N];
+#define int long long
+#define lson id << 1
+#define rson id << 1 | 1
+#define IO ios::sync_with_stdio(false); cin.tie(0), cout.tie(0);
+const int N = 2e5 + 10;
+int n, q;
 
-int d[N], w[N];
-int lowbit(int x){
-    return x & -x;
-}
+struct node{
+    int l, r, mx, pre, suf, len;
+    node() : l(0), r(0), mx(1), pre(1), suf(1), len(1) {}
+}tr[N << 2];
 
-void addd(int x, int v){
-    while(x <= n){
-        d[x] += v;
-        x += lowbit(x);
+
+void up(int id){
+    tr[id].len = tr[lson].len + tr[rson].len;
+    tr[id].l = tr[lson].l;
+    tr[id].r = tr[rson].r;
+    tr[id].pre = tr[lson].pre;
+    tr[id].suf = tr[rson].suf;
+    tr[id].mx = max(tr[lson].mx, tr[rson].mx);
+    if(tr[lson].r != tr[rson].l){
+        tr[id].mx = max(tr[id].mx, tr[lson].suf + tr[rson].pre);
+        if(tr[lson].len == tr[lson].pre) tr[id].pre += tr[rson].pre;
+        if(tr[rson].len == tr[rson].suf) tr[id].suf += tr[lson].suf;
     }
 }
-void addw(int x, int v){
-    while(x <= n){
-        w[x] += v;
-        x += lowbit(x);
+
+void change(int id, int l, int r, int x){
+    if(l == r){
+        int x = 1 ^ tr[id].l;
+        tr[id].l = tr[id].r = x;
+        return;
     }
-}
-int getd(int x){
-    int ret = 0;
-    while(x > 0){
-        ret += d[x];
-        x -= lowbit(x);
-    }
-    return ret;
-}
-int getw(int x){
-    int ret = 0;
-    while(x > 0){
-        ret += w[x];
-        x -= lowbit(x);
-    }
-    return ret;
+    int mid = l + r >> 1;
+    if(x <= mid) change(lson, l, mid, x);
+    else change(rson, mid + 1, r, x);
+    up(id);
 }
 
-void init(){
-    for(int i = 1;i <= n;i++) d[i] = w[i] = 0;
-}
-
-void solve(){
-    cin >> n;
-    init();
-    for(int i = 1;i <= n;i++) cin >> a[i];
-
-    int p = n + 1;
-    addd(a[1], 1);
-    for(int i = 2;i <= n;i++){
-        if(a[i] > a[i-1]){
-            p = i;
-            break;
-        }
-        addd(a[i], 1);
-    }
-
-    int ans = 0;
-    for(int i = p;i <= n;i++){
-        if(getw(a[i])) addd(a[i], 1);
-        else if(getd(a[i])) addw(a[i], 1), ans++;
-        else addd(a[i], 1);
-    }
-
-    cout << ans << '\n';
-}
 
 signed main(){
 
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+    IO;
+    cin >> n >> q;
+    while(q--){
+        int x;
+        cin >> x;
+        change(1, 1, n, x);
+        cout << tr[1].mx << '\n';
+    }
 
     return 0;
 }
