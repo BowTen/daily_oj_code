@@ -827,58 +827,279 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define lson id << 1
-#define rson id << 1 | 1
-#define IO ios::sync_with_stdio(false); cin.tie(0), cout.tie(0);
-const int N = 2e5 + 10;
-int n, q;
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define IO ios::sync_with_stdio(false); cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, q;
 
-struct node{
-    int l, r, mx, pre, suf, len;
-    node() : l(0), r(0), mx(1), pre(1), suf(1), len(1) {}
-}tr[N << 2];
-
-
-void up(int id){
-    tr[id].len = tr[lson].len + tr[rson].len;
-    tr[id].l = tr[lson].l;
-    tr[id].r = tr[rson].r;
-    tr[id].pre = tr[lson].pre;
-    tr[id].suf = tr[rson].suf;
-    tr[id].mx = max(tr[lson].mx, tr[rson].mx);
-    if(tr[lson].r != tr[rson].l){
-        tr[id].mx = max(tr[id].mx, tr[lson].suf + tr[rson].pre);
-        if(tr[lson].len == tr[lson].pre) tr[id].pre += tr[rson].pre;
-        if(tr[rson].len == tr[rson].suf) tr[id].suf += tr[lson].suf;
-    }
-}
-
-void change(int id, int l, int r, int x){
-    if(l == r){
-        int x = 1 ^ tr[id].l;
-        tr[id].l = tr[id].r = x;
-        return;
-    }
-    int mid = l + r >> 1;
-    if(x <= mid) change(lson, l, mid, x);
-    else change(rson, mid + 1, r, x);
-    up(id);
-}
+// struct node{
+//     int l, r, mx, pre, suf, len;
+//     node() : l(0), r(0), mx(1), pre(1), suf(1), len(1) {}
+// }tr[N << 2];
 
 
-signed main(){
+// void up(int id){
+//     tr[id].len = tr[lson].len + tr[rson].len;
+//     tr[id].l = tr[lson].l;
+//     tr[id].r = tr[rson].r;
+//     tr[id].pre = tr[lson].pre;
+//     tr[id].suf = tr[rson].suf;
+//     tr[id].mx = max(tr[lson].mx, tr[rson].mx);
+//     if(tr[lson].r != tr[rson].l){
+//         tr[id].mx = max(tr[id].mx, tr[lson].suf + tr[rson].pre);
+//         if(tr[lson].len == tr[lson].pre) tr[id].pre += tr[rson].pre;
+//         if(tr[rson].len == tr[rson].suf) tr[id].suf += tr[lson].suf;
+//     }
+// }
 
-    IO;
-    cin >> n >> q;
-    while(q--){
-        int x;
-        cin >> x;
-        change(1, 1, n, x);
-        cout << tr[1].mx << '\n';
-    }
+// void change(int id, int l, int r, int x){
+//     if(l == r){
+//         int x = 1 ^ tr[id].l;
+//         tr[id].l = tr[id].r = x;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(lson, l, mid, x);
+//     else change(rson, mid + 1, r, x);
+//     up(id);
+// }
 
-    return 0;
-}
+
+// signed main(){
+
+//     IO;
+//     cin >> n >> q;
+//     while(q--){
+//         int x;
+//         cin >> x;
+//         change(1, 1, n, x);
+//         cout << tr[1].mx << '\n';
+//     }
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define IO ios::sync_with_stdio(false); cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, q;
+
+// int mx[N<<2], L[N<<2], R[N<<2], len[N<<2], pre[N<<2], suf[N<<2];
+
+// void up(int id){
+//     len[id] = len[lson] + len[rson];
+//     L[id] = L[lson];
+//     R[id] = R[rson];
+//     pre[id] = pre[lson];
+//     suf[id] = suf[rson];
+//     mx[id] = max(mx[lson], mx[rson]);
+//     if(R[lson] != L[rson]){
+//         mx[id] = max(mx[id], suf[lson] + pre[rson]);
+//         if(len[lson] == pre[lson]) pre[id] += pre[rson];
+//         if(len[rson] == suf[rson]) suf[id] += suf[lson];
+//     } 
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         pre[id] = suf[id] = len[id] = mx[id] = 1;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, 1, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// void change(int id, int l, int r, int x){
+//     if(l == r){
+//         int xx = L[id] ^ 1;
+//         L[id] = R[id] = xx;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(lson, l, mid, x);
+//     else change(rson, mid + 1, r, x);
+//     up(id);
+// }
+
+// signed main(){
+
+//     IO;
+//     cin >> n >> q;
+//     build(1, 1, n);
+//     while(q--){
+//         int x;
+//         cin >> x;
+//         change(1, 1, n, x);
+//         cout << mx[1] << '\n';
+//     }
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false); cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m;
+// string s;
+// int num[300], cnt;
+// int pre[N];
+// vector<int>pos[300];
+
+// signed main(){
+
+//     IO;
+//     cin >> m >> n;
+//     cin >> s;
+//     s = ' ' + s;
+//     for(int i = 1;i <= n;i++){
+//         pre[i] += pre[i-1];
+//         num[s[i]]++;
+//         if(num[s[i]] == 1) cnt++;
+//         if(cnt == m){
+//             pre[i]++;
+//             cnt = 0;
+//             for(int i = 'a';i < 'a' + m;i++) num[i] = 0;
+//         }
+//         pos[s[i]].push_back(i);
+//     }
+
+//     int q;
+//     cin >> q;
+//     while(q--){
+//         int l, r;
+//         cin >> l >> r;
+//         if(m == 1){
+//             cout << r - l + 2 << '\n';
+//             continue;
+//         }
+//         int bg = 0;
+//         bool all = true;
+//         for(int i = 'a';i < 'a' + m;i++){
+//             int mx = lower_bound(pos[i].begin(), pos[i].end(), l) - pos[i].begin();
+//             if(mx == pos[i].size() || pos[i][mx] > r){
+//                 all = false;
+//                 break;
+//             }
+//             bg = max(bg, pos[i][mx]);
+//         }
+//         if(!all){
+//             cout << "1\n";
+//             continue;
+//         }
+//         // cout << bg << ' ';
+//         int ans = pre[r] - pre[l - 1] + 1;
+//         if(pre[bg] - pre[bg - 1] == 1 && pre[bg] - pre[l - 1] == 2) ans --;
+//         cout << ans << '\n';
+//     }
+
+//     // cout << s.size();
+//     // cout << ;
+//     // for(int i = 45;i <= 80;i++) cout << s[i];
+//     // for(int i = 48;i <= 78;i++) if(pre[i] != pre[i - 1]) cout << i << ' ';
+
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// typedef long long ll;
+// typedef pair<int, int> pii;
+// typedef unsigned long long ull;
+// const ll inf = 1e18;
+// const int N = 2e5 + 10;
+// const int M = 1e6 + 10;
+// const double eps = 1e-8;
+// const int mod = 998244353;
+
+// #define fi first
+// #define se second
+// #define re register
+// #define lowbit (-x&x)
+// #define endl '\n'
+// int n, m;
+// char s[N];
+// int nxt[N][26];
+// int f[N][20];
+// int pos[26];
+// void solve() {
+//     cin >> m >> n;
+//     cin >> (s + 1);
+//     for (int i = 0; i < 26; i++) nxt[n][i] = n + 1;
+//     for (int i = n; i >= 1; i--) {
+//         if (!pos[s[i]-'a']) nxt[i][s[i]-'a'] = n + 1;
+//         else nxt[i][s[i]-'a'] = pos[s[i]-'a'];
+//         pos[s[i]-'a'] = i;
+//         for (int j = 0; j < m; j++) {
+//             if (pos[j]) nxt[i-1][j] = pos[j];
+//             else nxt[i-1][j] = n + 1;
+//         }
+//     }
+//     for (int i = 0; i <= n; i++) {
+//         int ma = 0;
+//         for (int j = 0; j < m; j++) ma = max(ma, nxt[i][j]);
+//         f[i][0] = ma;
+//         for (int j = 0; j < 20; j++) f[n+1][j] = f[n][j] = n + 1;
+//     }
+//     for (int j = 1; j < 20; j++) {
+//         for (int i = 0; i <= n; i++) {
+//             f[i][j] = f[f[i][j-1]][j-1];
+// //            if (!i) cout << f[i][j] << ' ' << f[i][j-1] << ' ' << j-1 << endl;
+//         }
+//     }
+//     int q; cin >> q;
+//     while (q--) {
+//         int l, r; cin >> l >> r;
+//         int ans = 0;
+//         int now = l - 1;
+//         for (int i = 19; ~i; i--) {
+//             if (f[now][i] <= r) {
+//                 ans += (1 << i);
+//                 now = f[now][i];
+//             }
+//         }
+//         printf("%d\n", ans+1);
+//     }
+// }
+// signed main() {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+// #ifdef ACM_LOCAL
+//     freopen("input", "r", stdin);
+//     freopen("output", "w", stdout);
+// #endif
+
+// #ifdef ACM_LOCAL
+//     auto start = clock();
+// #endif
+//     int t = 1;
+// //    cin >> t;
+//     while (t--)
+//         solve();
+// #ifdef ACM_LOCAL
+//     auto end = clock();
+//     cerr << "Run Time: " << double(end - start) / CLOCKS_PER_SEC << "s" << endl;
+// #endif
+//     return 0;
+// }
