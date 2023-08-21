@@ -1103,3 +1103,60 @@
 // #endif
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+// int n;
+
+// struct Point{
+//     double x, y;
+//     int operator<(const Point& e) const {
+//         return x == e.x ? y < e.y : x < e.x;
+//     }
+// }p[N];
+
+// Point s[N];
+// int top;
+
+// double cross(Point p1, Point p2, Point p3){
+//     p2.x -= p1.x, p2.y -= p1.y;
+//     p3.x -= p1.x, p3.y -= p1.y;
+//     return p2.x * p3.y - p2.y * p3.x;
+// }
+
+// double dis(Point a, Point b){
+//     double dx = a.x - b.x;
+//     double dy = a.y - b.y;
+//     return sqrt(dx * dx + dy * dy);
+// }
+
+// double Andrew(){
+//     sort(p + 1, p + 1 + n);
+//     for(int i = 1;i <= n;i++){
+//         while(top > 1 && cross(s[top-1], s[top], p[i]) <= 0) top--;
+//         s[++top] = p[i];
+//     }
+//     int t = top;
+//     for(int i = n - 1;i >= 1;i--){
+//         while(top > t && cross(s[top-1], s[top], p[i]) <= 0) top--;
+//         s[++top] = p[i];
+//     }
+//     double res = 0;
+//     for(int i = 1;i < top;i++) res += dis(s[i], s[i+1]);
+//     return res;
+// }
+
+// signed main(){
+
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> p[i].x >> p[i].y;
+//     }
+//     cout << fixed << setprecision(2) << Andrew();
+
+//     return 0;
+// }
