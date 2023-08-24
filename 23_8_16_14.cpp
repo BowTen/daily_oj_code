@@ -1160,3 +1160,24 @@
 
 //     return 0;
 // }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+const int N = 2e5 + 10;
+int n, a[N];
+
+void solve(){
+    
+}
+
+signed main(){
+
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
