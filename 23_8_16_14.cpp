@@ -1163,17 +1163,212 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 2e5 + 10;
+// int n, a[N], m;
+
+
+// void solve(){
+//     cin >> n >> m;
+//     char mp[22][22];
+//     for(int i = 1;i <= n;i++)
+//         cin >> mp[i];
+//     string tp = " vika";
+//     int p = 1;
+//     for(int j = 0;j < m;j++){
+//         for(int i = 1;i <= n;i++){
+//             if(mp[i][j] == tp[p]){
+//                 p++;
+//                 break;
+//             }
+//         }
+//         if(p == 5){
+//             cout << "YES\n";
+//             return;
+//         }
+//     }
+//     cout << "NO\n";
+
+// }
+
+// signed main(){
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// const int N = 1e6 + 10;
+// int n, a[N], m, b[N];
+
+
+// void solve(){
+//     cin >> n;
+//     int mn = INT_MAX;
+//     for(int i = 1;i <= n;i++) cin >> b[i], mn = min(mn, b[i]);
+//     mn = max(1, mn - 1);
+//     m = n;
+//     a[1] = b[1];
+//     for(int i = 2, j = 2;i <= n;i++, j++){
+//         if(b[i] < a[j-1]){
+//             a[j++] = mn;
+//             m++;
+//         }
+//         a[j] = b[i];
+//     }
+//     cout << m << '\n';
+//     for(int i = 1;i <= m;i++) cout << a[i] << ' ';
+//     cout << '\n';
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// int n, a[N], m, b[N];
+
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     a[n+1] = 0;
+//     if(a[1] != n){
+//         cout << "NO\n";
+//         return;
+//     }
+//     int h = 1;
+//     for(int i = 1, j = a[1];i <= n;i++, h++){
+//         while(a[i] == a[i+1]){
+//             h++;
+//             i++;
+//         }
+//         while(j > a[i + 1]){
+//             b[j] = h;
+//             j--;
+//         }
+//     }
+//     b[1] = n;
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] != b[i]){
+//             cout <<"NO\n";
+//             return;
+//         }
+//         // cout << b[i] << ' ';    
+
+//     }
+
+//     cout << "YES\n";
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// int n, a[N], m, b[N];
+
+
+// void solve(){
+//     cin >> n;
+//     int l = 2, r = 2e9;
+//     while(l <= r){
+//         int mid = l + r >> 1;
+//         if((mid * (mid - 1)) / 2 > n) r = mid - 1;
+//         else l = mid + 1;
+//     }
+//     // cout << (l * (l - 1)) / 2 << '\n';
+//     for(int i = max(2ll, l - 1);i <= l + 2;i++){
+//         if((i * (i - 1)) / 2 > n){
+//             l = i - 1;
+//             break;
+//         }
+//     }
+//     int ans = l + (n - (l * (l - 1)) / 2);
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
-const int N = 2e5 + 10;
-int n, a[N];
+const int N = 1e6 + 10;
+int n, a[N], m, b[N], d;
+
 
 void solve(){
-    
+    cin >> n >> m >> d;
+    for(int i = 1;i <= n;i++) cin >> a[i];
+    priority_queue<int, vector<int>, greater<int>>q;
+    int sum = 0, ans = 0;
+    for(int i = 1;i <= n;i++){
+        if(a[i] > 0) q.push(a[i]), sum += a[i];
+        if(q.size() > m) sum -= q.top(), q.pop();
+        ans = max(ans, sum - d * i);
+    }
+    cout << ans << '\n';
 }
 
 signed main(){
+
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
 
     int t = 1;
     cin >> t;
