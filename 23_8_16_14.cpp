@@ -1344,35 +1344,74 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-const int N = 1e6 + 10;
-int n, a[N], m, b[N], d;
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// int n, a[N], m, b[N], d;
 
 
-void solve(){
-    cin >> n >> m >> d;
-    for(int i = 1;i <= n;i++) cin >> a[i];
-    priority_queue<int, vector<int>, greater<int>>q;
-    int sum = 0, ans = 0;
-    for(int i = 1;i <= n;i++){
-        if(a[i] > 0) q.push(a[i]), sum += a[i];
-        if(q.size() > m) sum -= q.top(), q.pop();
-        ans = max(ans, sum - d * i);
-    }
-    cout << ans << '\n';
-}
+// void solve(){
+//     cin >> n >> m >> d;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     priority_queue<int, vector<int>, greater<int>>q;
+//     int sum = 0, ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] > 0) q.push(a[i]), sum += a[i];
+//         if(q.size() > m) sum -= q.top(), q.pop();
+//         ans = max(ans, sum - d * i);
+//     }
+//     cout << ans << '\n';
+// }
 
-signed main(){
+// signed main(){
 
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    cout.tie(0);
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
 
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 110;
+// int n, a[N], w, f;
+
+// void solve(){
+//     cin >> w >> f >> n;
+//     int sum = 0;
+//     for(int i = 1;i <= n;i++) cin >> a[i], sum += a[i];
+//     vector<int>dp(sum + 1, 0);
+//     dp[0] = 1;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = sum;j >= a[i];j--){
+//             dp[j] |= dp[j - a[i]];
+//         }
+//     }
+//     int ans = sum;
+//     for(int i = 0;i <= sum;i++) if(dp[i]){
+//         ans = min(ans, max((i + w - 1) / w, (sum - i + f - 1) / f));
+//     }
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
