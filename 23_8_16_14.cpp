@@ -1415,3 +1415,127 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1010;
+// int n, a[N], w, f;
+
+// void solve(){
+//     int x, y;
+//     cin >> x >> y >> n;
+//     int d = 1;
+//     a[n] = y;
+//     for(int i = n - 1;i >= 2;i--, d++){
+//         a[i] = a[i+1] - d;
+//     }
+//     if(a[2] - x <= a[3] - a[2]) cout << "-1\n";
+//     else{
+//         cout << x << ' ';
+//         for(int i = 2;i <= n - 1;i++) cout << a[i] << ' ';
+//         cout << y << '\n';
+//     }
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+// int n, k;
+// char s[N];
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) cin >> s[i];
+//     if(k % 2 == 0){
+//         sort(s + 1, s + 1 + n);
+//     }else{
+//         vector<char>ss[2];
+//         for(int i = 1;i <= n;i++){
+//             ss[(i&1)].push_back(s[i]);
+//         }
+//         sort(ss[1].begin(), ss[1].end());
+//         sort(ss[0].begin(), ss[0].end());
+//         int it[2] = {0};
+//         for(int i = 1;i <= n;i++){
+//             s[i] = ss[(i&1)][it[(i&1)]++];
+//         }
+//     }
+//         for(int i = 1;i <= n;i++) cout << s[i];
+//         cout << '\n';
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int N = 1e5 + 10;
+// int n, x;
+
+// void solve(){
+//     cin >> x;
+//     int ad = 1, cur = 1;
+//     vector<int>ans;
+//     ans.push_back(1);
+//     while(cur + ad <= x){
+//         cur += ad;
+//         ans.push_back(cur);
+//         ad *= 2;
+//     }
+//     while(cur < x){
+//         while(cur + ad > x) ad /= 2;
+//         cur += ad;
+//         ans.push_back(cur);
+//     }
+//     cout << ans.size() << '\n';
+//     for(int i = ans.size() - 1;i >= 0;i--) cout << ans[i] << ' ';
+//     cout << '\n';
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false);
+//     cin.tie(0);
+//     cout.tie(0);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
