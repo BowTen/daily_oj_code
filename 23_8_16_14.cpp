@@ -1539,3 +1539,28 @@
 
 //     return 0;
 // }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+const int N = 2e5 + 10;
+int n, m, a[N];
+
+
+void solve(){
+
+}
+
+signed main(){
+
+    IO;
+
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
