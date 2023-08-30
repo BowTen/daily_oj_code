@@ -1542,25 +1542,216 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-const int N = 2e5 + 10;
-int n, m, a[N];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, a, q;
 
 
-void solve(){
+// void solve(){
+//     cin >> n >> a >> q;
+//     string s;
+//     cin >> s;
+//     if(a >= n){
+//         cout << "YES\n";
+//         return;
+//     }
+//     int ad = 0, sum = 0;
+//     int mx = 0;
+//     for(auto c : s){
+//         if(c == '+') ad++, sum++;
+//         else ad--;
+//         mx = max(mx, ad);
+//     }
+//     if(a + mx >= n) cout << "YES\n";
+//     else if(a + sum >= n) cout << "MAYBE\n";
+//     else cout << "NO\n";
+// }
 
-}
+// signed main(){
 
-signed main(){
+//     IO;
 
-    IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
 
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+//     return 0;
+// }
 
-    return 0;
-}
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, p[N], pos[N];
+
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> p[i], pos[p[i]] = i;
+//     int ans = 0;
+//     for(int i = 1;i < n;i++){
+//         if(pos[i+1] < pos[i]) ans++;
+//     }
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, a[N], k;
+
+
+// void solve(){
+//     cin >> n >> k;
+//     vector<int>vis(n + 2, 0);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     int s = n;
+//     for(int i = n;i >= 1;i--){
+//         if(a[i] > n || vis[a[i]]) a[i] = s--;
+//         else vis[a[i]] = 1;
+//     }
+//     for(int i = 0;i <= n;i++) if(!vis[i]){
+//         a[0] = i;
+//         break;
+//     }
+//     int st = 1, ed = n;
+//     k %= (n + 1);
+//     st = (1 + n + 1 - k) % (n + 1);
+//     for(int i = 1;i <= n;i++){
+//         cout << a[st] << ' ';
+//         // cout << st << ' ';
+//         st++;
+//         st %= (n + 1);
+//     }
+//     cout << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 510;
+// int n, m, a[N], k;
+// string mp[N];
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++) cin >> mp[i], mp[i] = ' ' + mp[i];
+//     vector<int>row(n + 1, 0);  //横向多余黑格子数
+//     vector<int>col(m + 1, 0);
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) {
+//             if(mp[i][j] == 'U'){
+//                 if(i == n){
+//                     cout << "-1\n";
+//                     return;
+//                 }
+//                 if(row[i] > 0){
+//                     mp[i][j] = 'W';
+//                     row[i]--;
+//                 }else{
+//                     mp[i][j] = 'B';
+//                     row[i]++;
+//                 }
+//             }else if(mp[i][j] == 'D'){
+//                 if(i == 1){
+//                     cout << "-1\n";
+//                     return;
+//                 }
+//                 if(mp[i-1][j] == 'B'){
+//                     mp[i][j] = 'W';
+//                     row[i]--;
+//                 }else{
+//                     mp[i][j] = 'B';
+//                     row[i]++;
+//                 }
+//             }else if(mp[i][j] == 'L'){
+//                 if(j == m){
+//                     cout << "-1\n";
+//                     return;
+//                 }
+//                 if(col[j] > 0){
+//                     mp[i][j] = 'W';
+//                     col[j]--;
+//                 }else{
+//                     mp[i][j] = 'B';
+//                     col[j]++;
+//                 }
+//             }else if(mp[i][j] == 'R'){
+//                 if(j == 1){
+//                     cout << "-1\n";
+//                     return;
+//                 }
+//                 if(mp[i][j-1] == 'B'){
+//                     mp[i][j] = 'W';
+//                     col[j]--;
+//                 }else{
+//                     mp[i][j] = 'B';
+//                     col[j]++;
+//                 }
+//             }
+//         }
+//     }
+//     for(int i = 1;i <= n;i++) if(row[i] != 0){
+//         cout << "-1\n";
+//         return;
+//     }
+//     for(int i = 1;i <= m;i++) if(col[i] != 0){
+//         cout << "-1\n";
+//         return;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             cout << mp[i][j];
+//         }
+//         cout << '\n';
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
