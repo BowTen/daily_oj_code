@@ -1726,3 +1726,82 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 3010;
+// int n;
+// string mp[N];
+
+// struct node{
+//     int l, r;
+//     node() : l(0), r(0) {}
+// };
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> mp[i], mp[i] = ' ' + mp[i];
+//     vector<node>tag[2] = {vector<node>(n+1), vector<node>(n+1)};
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         int d = 0, cur = i & 1, ne = cur ^ 1;
+//         for(int j = 1;j <= n;j++){
+//             if(tag[cur][j].l){
+//                 d++;
+//             }
+//             if((d & 1) != (mp[i][j] - '0')){
+//                 tag[ne][max(1, j-1)].l ^= 1;
+//                 tag[ne][min(n, j+1)].r ^= 1;
+//                 ans++;
+//             }
+//             if(tag[cur][j].r){
+//                 d--;
+//             }
+//             if(tag[cur][j].l) tag[ne][max(1, j-1)].l ^= 1;
+//             if(tag[cur][j].r) tag[ne][min(n, j+1)].r ^= 1;
+//             tag[cur][j].l = 0;
+//             tag[cur][j].r = 0;
+//         }
+//     }
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+const int N = 2e5 + 10;
+int n, a[N];
+
+
+void solve(){
+    
+}
+
+signed main(){
+
+    IO;
+
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
