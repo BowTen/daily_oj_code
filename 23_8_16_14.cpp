@@ -1784,24 +1784,190 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-const int N = 2e5 + 10;
-int n, a[N];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, a[N];
 
 
-void solve(){
-    
-}
+// void solve(){
+//     string s;
+//     cin >> s;
+//     for(auto c : s){
+//         if(c == '3'){
+//             cout << "31\n";
+//             return;
+//         }
+//         if(c == '1'){
+//             cout << "13\n";
+//             return;
+//         }
+//     }
+// }
 
-signed main(){
+// signed main(){
 
-    IO;
+//     IO;
 
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, a[N];
+
+
+// void solve(){
+//     string a, b;
+//     cin >> a >> b;
+//     n = a.size();
+//     if(a[0] != b[0] || a[n-1] != b[n-1]){
+//         cout << "NO\n";
+//         return;
+//     }
+//     if(a[0] == a[n-1]){
+//         cout << "YES\n";
+//         return;
+//     }
+//     n = a.size();
+//     for(int i = 0;i < n - 1;i++){
+//         if(a[i] == a[0] && a[i+1] == a[n-1] && a[i] == b[i] && a[i+1] == b[i+1]){
+//             cout << "YES\n";
+//             return;
+//         }
+//     }
+//     cout << "NO\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n;
+
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     vector<int>st(s.size() + 1, 0);
+//     st[0] = st[1] = '1';
+//     int len = 0;
+//     int mn = 2;
+//     int zer = 0;
+//     for(auto c : s){
+//         if(c == '+'){
+//             len++;
+//         }else if(c == '-'){
+//             mn = max(2ll, min(mn, len));
+//             if(len > 1){
+//                 st[len] = 0;
+//             }
+//             len--;
+//             if(len < zer) zer = 0;
+//         }else{
+//             if(st[len] == 0){
+//                 if(c == '0'){
+//                     st[len] = c;
+//                     if(!zer) zer = len;
+//                 }else{
+//                     if(zer){
+//                         cout << "NO\n";
+//                         return;
+//                     }
+//                     while(mn <= len){
+//                         st[mn++] = c;
+//                     }
+//                 }
+//             }else{
+//                 if(st[len] != c || (zer && c == '1')){
+//                     cout << "NO\n";
+//                     return;
+//                 }
+//             }
+//         }
+//     }
+//     cout << "YES\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, a[N];
+
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     int ans = LONG_LONG_MAX;
+//     vector<int>pre(n + 2);
+//     vector<int>suf(n + 2);
+//     for(int i = n - 1;i >= 1;i--){
+//         suf[i] = suf[i+1];
+//         if(a[i] >= a[i+1]) suf[i]++;
+//     }
+//     for(int i = 2;i <= n;i++){
+//         pre[i] = pre[i-1];
+//         if(a[i] >= a[i-1]) pre[i]++;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         ans = min(ans, pre[i] + suf[i+1] + 1);
+//     }
+//     ans = min({ans, pre[n] + 1, suf[1]});
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
