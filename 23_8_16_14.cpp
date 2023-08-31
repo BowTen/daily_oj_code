@@ -1626,12 +1626,7 @@
 // void solve(){
 //     cin >> n >> k;
 //     vector<int>vis(n + 2, 0);
-//     for(int i = 1;i <= n;i++) cin >> a[i];
-//     int s = n;
-//     for(int i = n;i >= 1;i--){
-//         if(a[i] > n || vis[a[i]]) a[i] = s--;
-//         else vis[a[i]] = 1;
-//     }
+//     for(int i = 1;i <= n;i++) cin >> a[i], vis[a[i]] = 1;
 //     for(int i = 0;i <= n;i++) if(!vis[i]){
 //         a[0] = i;
 //         break;
@@ -1641,7 +1636,6 @@
 //     st = (1 + n + 1 - k) % (n + 1);
 //     for(int i = 1;i <= n;i++){
 //         cout << a[st] << ' ';
-//         // cout << st << ' ';
 //         st++;
 //         st %= (n + 1);
 //     }
@@ -1674,68 +1668,45 @@
 // void solve(){
 //     cin >> n >> m;
 //     for(int i = 1;i <= n;i++) cin >> mp[i], mp[i] = ' ' + mp[i];
-//     vector<int>row(n + 1, 0);  //横向多余黑格子数
-//     vector<int>col(m + 1, 0);
-//     for(int i = 1;i <= n;i++){
-//         for(int j = 1;j <= m;j++) {
-//             if(mp[i][j] == 'U'){
-//                 if(i == n){
-//                     cout << "-1\n";
-//                     return;
-//                 }
-//                 if(row[i] > 0){
+//     for(int j = 1;j <= m;j++){
+//         int last = 0;
+//         for(int i = 1;i <= n;i++){
+//             if(mp[i][j] == 'L'){
+//                 if(last){
+//                     mp[last][j] = 'B';
+//                     mp[last][j+1] = 'W';
 //                     mp[i][j] = 'W';
-//                     row[i]--;
+//                     mp[i][j+1] = 'B';
+//                     last = 0;
 //                 }else{
-//                     mp[i][j] = 'B';
-//                     row[i]++;
-//                 }
-//             }else if(mp[i][j] == 'D'){
-//                 if(i == 1){
-//                     cout << "-1\n";
-//                     return;
-//                 }
-//                 if(mp[i-1][j] == 'B'){
-//                     mp[i][j] = 'W';
-//                     row[i]--;
-//                 }else{
-//                     mp[i][j] = 'B';
-//                     row[i]++;
-//                 }
-//             }else if(mp[i][j] == 'L'){
-//                 if(j == m){
-//                     cout << "-1\n";
-//                     return;
-//                 }
-//                 if(col[j] > 0){
-//                     mp[i][j] = 'W';
-//                     col[j]--;
-//                 }else{
-//                     mp[i][j] = 'B';
-//                     col[j]++;
-//                 }
-//             }else if(mp[i][j] == 'R'){
-//                 if(j == 1){
-//                     cout << "-1\n";
-//                     return;
-//                 }
-//                 if(mp[i][j-1] == 'B'){
-//                     mp[i][j] = 'W';
-//                     col[j]--;
-//                 }else{
-//                     mp[i][j] = 'B';
-//                     col[j]++;
+//                     last = i;
 //                 }
 //             }
 //         }
+//         if(last){
+//             cout << "-1\n";
+//             return;
+//         }
 //     }
-//     for(int i = 1;i <= n;i++) if(row[i] != 0){
-//         cout << "-1\n";
-//         return;
-//     }
-//     for(int i = 1;i <= m;i++) if(col[i] != 0){
-//         cout << "-1\n";
-//         return;
+//     for(int i = 1;i <= n;i++){
+//         int last = 0;
+//         for(int j = 1;j <= m;j++){
+//             if(mp[i][j] == 'U'){
+//                 if(last){
+//                     mp[i][last] = 'B';
+//                     mp[i+1][last] = 'W';
+//                     mp[i][j] = 'W';
+//                     mp[i+1][j] = 'B';
+//                     last = 0;
+//                 }else{
+//                     last = j;
+//                 }
+//             }
+//         }
+//         if(last){
+//             cout << "-1\n";
+//             return;
+//         }
 //     }
 //     for(int i = 1;i <= n;i++){
 //         for(int j = 1;j <= m;j++){
