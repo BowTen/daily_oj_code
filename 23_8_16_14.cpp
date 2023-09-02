@@ -1971,3 +1971,323 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1 
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, m;
+
+// int trl[N], trr[N];
+
+// int lowbit(int x){
+//     return x & -x;
+// }
+
+// void add(int l, int r){
+//     while(l <= n){
+//         trl[l]++;
+//         l += lowbit(l);
+//     }
+//     while(r <= n){
+//         trr[r]++;
+//         r += lowbit(r);
+//     }
+// }
+
+// int query(int l, int r){
+//     int ret = 0;
+//     while(r > 0){
+//         ret += trl[r];
+//         r -= lowbit(r);
+//     }
+//     l--;
+//     while(l > 0){
+//         ret -= trr[l];
+//         l -= lowbit(l);
+//     }
+//     return ret;
+// }
+
+// signed main(){
+
+//     cin >> n >> m;
+//     while(m--){
+//         int op, l, r;
+//         cin >> op >> l >> r;
+//         if(op == 1){
+//             add(l, r);
+//         }else{
+//             cout << query(l, r) << '\n';
+//         }
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, q, a[N], s[N];
+
+// struct node{
+//     int mx, tag;
+// }tr[N << 2];
+
+// void up(int id){
+//     tr[id].mx = max(tr[lson].mx, tr[rson].mx);
+// }
+
+// inline void settag(int id, int x){
+//     tr[id].mx += x;
+//     tr[id].tag += x;
+// }
+
+// void down(int id){
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id].mx = a[l] - s[l-1];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// void change(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         tr[id].mx += v;
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(lson, l, mid, x, v);
+//     else change(rson, mid + 1, r, x, v);
+//     up(id);
+// }
+
+// void modify(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr){
+//         settag(id, v);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, v);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, v);
+//     else modify(lson, l, mid, ql, qr, v) , modify(rson, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
+
+// int res;
+// void query(int id, int l, int r){
+//     if(res != -1) return;
+//     if(l == r){
+//         if(tr[id].mx == 0) res = l;
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(tr[lson].mx >= 0) query(lson, l, mid);
+//     if(tr[rson].mx >= 0) query(rson, mid + 1, r);
+// }
+
+// signed main(){
+
+//     scanf("%lld %lld", &n, &q);    
+//     for(int i = 1;i <= n;i++) cin >> a[i], s[i] = s[i-1] + a[i];
+//     build(1, 1, n);
+//     while(q--){
+//         int x, v, d;
+//         scanf("%lld %lld", &x, &v);    
+//         d = v - a[x];
+//         a[x] += d;
+//         change(1, 1, n, x, d);
+//         if(x + 1 <= n)
+//             modify(1, 1, n, x + 1, n, -d);
+//         res = -1;
+//         query(1, 1, n);
+//         printf("%lld\n", res);
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 3e5 + 10;
+// int n, q, a[N];
+
+// //主席树
+// int rt[N * 50], ls[N * 50], rs[N * 50], sum[N * 50], tot;
+
+// void newLine(int &cur, int pre, int l, int r, int x){
+//     cur = ++tot;
+//     ls[cur] = ls[pre], rs[cur] = rs[pre], sum[cur] = sum[pre] + 1;
+//     if(l == r) return;
+//     int mid = l + r >> 1;
+//     if(x <= mid) newLine(ls[cur], ls[pre], l, mid, x);
+//     else newLine(rs[cur], rs[pre], mid + 1, r, x);
+// }
+
+// int query(int R, int L, int l, int r, int k){
+//     if(l == r) return l;
+//     int mid = l + r >> 1;
+//     if(sum[ls[R]] - sum[ls[L]] > k){
+//         int ret = query(ls[R], ls[L], l, mid, k);
+//         if(ret != -1) return ret;
+//     }
+//     if(sum[rs[R]] - sum[rs[L]] > k) return query(rs[R], rs[L], mid + 1, r, k);
+//     return -1;
+// }
+
+// signed main(){
+
+//     IO;
+//     cin >> n >> q;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         newLine(rt[i], rt[i - 1], 1, n, a[i]);
+//     }
+//     while(q--){
+//         int l, r, k;
+//         cin >> l >> r >> k;
+//         k = (r - l + 1) / k;
+//         cout << query(rt[r], rt[l - 1], 1, n, k) << '\n';
+//     }
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 3e5 + 10;
+// int n, k, q, a[N], m;
+
+// int ori[N << 2];
+// void build(int id, int l, int r){
+//     if(l == r){
+//         ori[id] = a[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     ori[id] = min(ori[lson], ori[rson]);
+// }
+
+// int qry(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return ori[id];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return qry(lson, l, mid, ql, qr);
+//     else if(ql > mid) return qry(rson, mid + 1, r, ql, qr);
+//     else return min(qry(lson, l, mid, ql, qr), qry(rson, mid + 1, r, ql, qr));
+// }
+
+// int rt, ls[N * 50], rs[N * 50], tag[N * 50], mn[N * 50], tot;
+
+// void settag(int id, int x){
+//     tag[id] = mn[id] = x;
+// }
+
+// void down(int id){
+//     if(!ls[id]) ls[id] = ++tot;
+//     if(!rs[id]) rs[id] = ++tot;
+//     settag(ls[id], tag[id]);
+//     settag(rs[id], tag[id]);
+//     tag[id] = 0;
+// }
+
+// int newSeg(int l, int r){
+//     ++tot;
+//     if(r - l + 1 >= n) mn[tot] = ori[1];
+//     else{
+//         int ql = l % n, qr = r % n;
+//         if(!ql) ql = n;
+//         if(!qr) qr = n;
+//         if(ql <= qr) mn[tot] = qry(1, 1, n, ql, qr);
+//         else mn[tot] = min(qry(1, 1, n, 1, qr), qry(1, 1, n, ql, n));
+//     }
+//     return tot;
+// }
+
+// void up(int id, int l, int r){
+//     int mid = l + r >> 1;
+//     if(!ls[id]) ls[id] = newSeg(l, mid);
+//     if(!rs[id]) rs[id] = newSeg(mid + 1, r);
+//     mn[id] = min(mn[ls[id]], mn[rs[id]]);
+// }
+
+// void modify(int &id, int l, int r, int ql, int qr, int x){
+//     if(!id) id = ++tot;
+//     if(ql <= l && r <= qr){
+//         settag(id, x);
+//         return;
+//     }
+//     if(tag[id]) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(ls[id], l, mid, ql, qr, x);
+//     else if(ql > mid) modify(rs[id], mid + 1, r, ql, qr, x);
+//     else modify(ls[id], l, mid, ql, qr, x), modify(rs[id], mid + 1, r, ql, qr, x);
+//     up(id, l, r);
+// }
+
+// int query(int &id, int l, int r, int ql, int qr){
+//     if(!id) id = newSeg(l, r);
+//     if(ql <= l && r <= qr) return mn[id];
+//     if(tag[id]) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls[id], l, mid, ql, qr);
+//     else if(ql > mid) return query(rs[id], mid + 1, r, ql, qr);
+//     else return min(query(ls[id], l, mid, ql, qr), query(rs[id], mid + 1, r, ql, qr));
+// }
+
+
+// signed main(){
+
+//     IO;
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     m = n * k;
+//     cin >> q;
+//     while(q--){
+//         int op, l, r, x;
+//         cin >> op >> l >> r;
+//         if(op == 1){
+//             cin >> x;
+//             modify(rt, 1, m, l, r, x);
+//         }else{
+//             cout << query(rt, 1, m, l, r) << '\n';
+//         }
+//     }
+
+//     return 0;
+// }
