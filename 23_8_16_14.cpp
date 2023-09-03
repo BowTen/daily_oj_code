@@ -2291,3 +2291,170 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 5e5 + 10;
+// int n, a[N], q, last[N], ls[N];
+
+// struct node{
+//     int mn, x;
+//     int operator<(const node &e) const{
+//         if(x == e.x) return mn > e.mn;
+//         return mn <= e.mn;
+//     }
+// }tr[N << 2];
+
+// void up(int id){
+//     tr[id] = min(tr[lson], tr[rson]);
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id].mn = INT_MAX;
+//         tr[id].x = a[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// node query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return min(query(lson, l, mid, ql, qr), query(rson, mid + 1, r, ql, qr));
+// }
+
+// void change(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         tr[id].mn = v;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(lson, l, mid, x, v);
+//     else change(rson, mid + 1, r, x, v);
+//     up(id);
+// }
+
+// signed main(){
+
+//     IO;
+
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     cin >> q;
+//     vector<array<int, 3>>que(q);
+//     for(int i = 0;i < q;i++){
+//         cin >> que[i][0] >> que[i][1];
+//         que[i][2] = i + 1;
+//     }
+//     sort(que.begin(), que.end(), [](array<int, 3>e1, array<int, 3>e2)->int {return e1[1] < e2[1];});
+//     vector<int>ans(q + 1);
+
+//     int it = 1;
+//     for(auto [l, r, id] : que){
+//         while(it <= r){
+//             change(1, 1, n, it, last[a[it]]);
+//             if(last[a[it]]) change(1, 1, n, last[a[it]], last[a[it]]);
+//             last[a[it]] = it;
+//             it++;
+//         }
+//         node res = query(1, 1, n, l, r);
+//         if(res.mn >= l) res.x = 0;
+//         ans[id] = res.x;
+//     }
+
+//     for(int i = 1;i <= q;i++) cout << ans[i] << '\n';
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 5e5 + 10;
+// int n, a[N], q, last[N];
+
+// struct node{
+//     int mn, x, ti;
+//     int operator<(const node &e) const {
+//         if(mn == e.mn) return ti > e.ti;
+//         return mn < e.mn;
+//     }
+// }tr[N << 2];
+
+// void up(int id){
+//     tr[id] = min(tr[lson], tr[rson]);
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id].mn = INT_MAX;
+//         tr[id].x = l;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// int it = 1;
+
+// void change(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         tr[id].mn = v;
+//         tr[id].ti = it;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(lson, l, mid, x, v);
+//     else change(rson, mid + 1, r, x, v);
+//     up(id);
+// }
+
+// signed main(){
+
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     cin >> q;
+//     vector<array<int, 3>>qe(q);
+//     for(int i = 0;i < q;i++){
+//         cin >> qe[i][0] >> qe[i][1];
+//         qe[i][2] = i + 1;
+//     }
+//     sort(qe.begin(), qe.end(), [](array<int,3>e1, array<int,3>e2)->int {return e1[1] < e2[1];});
+
+//     vector<int>ans(q + 1);
+//     for(auto [l, r, id] : qe){
+//         while(it <= r){
+//             change(1, 1, n, a[it], last[a[it]]);
+//             last[a[it]] = it;
+//             it++;
+//         }
+//         if(tr[1].mn < l) ans[id] = tr[1].x;
+//         else ans[id] = 0;
+//     }
+
+//     for(int i = 1;i <= q;i++) cout << ans[i] << '\n';
+
+//     return 0;
+// }
