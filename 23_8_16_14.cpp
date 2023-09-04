@@ -2458,3 +2458,250 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+
+// void solve(){
+//     cin >> n;
+//     if(n == 3) cout << "Bob\n";
+//     else cout << "Alice\n";
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+
+// void solve(){
+//     cin >> n;
+//     bool f = false;
+//     int last = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         if(f){
+//             if(a[i] >= last && a[i] <= a[1]){
+//                 cout << 1;
+//                 last = a[i];
+//             }else cout << 0;
+//         }else{
+//             if(a[i] >= last){
+//                 cout << 1;
+//                 last = a[i];
+//             }else if(a[i] <= a[1]){
+//                 cout << 1;
+//                 last = a[i];
+//                 f = true;
+//             }else cout << 0;
+//         }
+//     }
+//     cout << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+// int pow(int a, int b){
+//     int ret = 1;
+//     while(b--) ret *= a;
+//     return ret;
+// }
+
+// void solve(){
+    
+//     int z[6] = {0}, f[6] = {0}, last[6] = {0};
+//     string s;
+//     cin >> s;
+//     n = s.size();
+//     s = ' ' + s;
+
+//     int d = 0;
+//     for(int i = 1;i <= n;i++) if(s[i] < 'E'){
+//         d = 10000 - pow(10, s[i] - 'A');
+//         for(int j = i + 1;j <= n;j++){
+//             if(s[i] < s[j]){
+//                 d += pow(10, s[i] - 'A') * 2;
+//                 break;
+//             }
+//         }        
+//         break;
+//     }
+//     if(d == 0){
+//         cout << n * 10000 << '\n';
+//         return;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         int c = s[i] - 'A';
+//         z[c] += pow(10, c);
+//         last[c] = 0;
+//         for(int j = 0;j < c;j++){
+//             last[c] += z[j];
+//             f[j] += z[j];
+//             z[j] = 0;
+//         }
+//     }
+//     int ans = 0;
+//     for(int i = 0;i < 5;i++){
+//         ans += z[i] - f[i];
+//         d = max(d, last[i]);
+//     }
+//     ans += d;
+//     cout << d << '\n';
+//     cout << ans << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m;
+// int mp[10][10];
+// char op1 = 0, op2 = 0;
+// char op[5] = " +-*";
+// char num[3] = "BC";
+// string ans = "A=     "; //偶数位因子,奇数符号
+
+// bool f = false;
+
+// bool check(){
+//     for(int i = 1;i <= 7;i++){
+//         int A, B = mp[4][i], C = mp[4][i+1];
+//         A = (ans[2] == 'B' ? B : C);
+//         for(int j = 3;j <= 6 && ans[j] != ' ';j += 2){
+//             if(ans[j] == '+'){
+//                 A += (ans[j+1] == 'B' ? B : C);
+//             }else if(ans[j] == '-'){
+//                 A -= (ans[j+1] == 'B' ? B : C);
+//             }else{
+//                 A *= (ans[j+1] == 'B' ? B : C);
+//             }
+//         }
+//         if(A != mp[3][i]) return false;
+//     }
+//     return true;
+// }
+
+// void dfs(int p){
+//     if(f) return;
+//     if(p & 1){ //枚举符号
+//         for(int i = 1;i <= 3;i++){
+//             ans[p] = op[i];
+//             dfs(p + 1);
+//             if(f) return;
+//         }
+//     }else{ //枚举因子
+//         for(int i = 0;i <= 1;i++){
+//             ans[p] = num[i];
+//             if(check()){
+//                 f = true;
+//                 return;
+//             }
+//             if(p + 1 <= 6) dfs(p + 1);
+//             if(f) return;
+//         }
+//     }
+//     ans[p] = ' ';
+// }
+
+// void solve(){
+//     for(int i = 1;i <= 7;i++) cin >> mp[3][i];
+//     for(int i = 1;i <= 8;i++) cin >> mp[4][i];
+
+//     dfs(2);
+
+//     n = 6;
+//     for(int i = 2;i >= 1;i--, n--){
+//         for(int j = 1;j <= n;j++){
+//             int B = mp[i+1][j], C = mp[i+1][j+1];
+//             mp[i][j] = (ans[2] == 'B' ? B : C);
+//             for(int x = 3;x <= 6 && ans[x] != ' ';x += 2){
+//                 if(ans[x] == '+'){
+//                     mp[i][j] += (ans[x+1] == 'B' ? B : C);
+//                 }else if(ans[x] == '-'){
+//                     mp[i][j] -= (ans[x+1] == 'B' ? B : C);
+//                 }else{
+//                     mp[i][j] *= (ans[x+1] == 'B' ? B : C);
+//                 }
+//             }
+//         }
+//     }
+
+//     n = 5;
+//     for(int i = 1;i <= 4;i++, n++){
+//         for(int j = 1;j <= n;j++){
+//             cout << mp[i][j] << ' ';
+//         }
+//         cout << '\n';
+//     }
+//     cout << ans;
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     while(t--) solve();
+
+//     return 0;
+// }
