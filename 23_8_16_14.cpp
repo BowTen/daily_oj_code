@@ -2705,3 +2705,266 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long 
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= m;i++){
+//         int a, b;
+//         cin >> a >> b;
+//     }
+//     if(m < n) cout << "YES\n";
+//     else cout << "NO\n";
+// }   
+
+// signed main(){
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long 
+// const int N = 2e5 + 10;
+// int n, m, a[N], b[N];
+
+// void solve(){
+//     cin >> n;
+//     int ans = 0;
+//     int mx = 0;
+//     for(int i = 1;i <= n;i++) cin >> a[i], ans += a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i], ans += b[i], mx = max(mx, b[i]);
+//     ans -= mx;
+//     cout << ans << '\n';
+
+// }   
+
+// signed main(){
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long 
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+// int num[N];
+
+// void init(){
+//     for(int i = 0;i <= n;i++) num[i] = 0;
+// }
+
+// bool check(int x){
+//     int cur = num[1] - x;
+//     for(int i = 2;i <= x;i++){
+//         cur += num[i];
+//         if(cur < 1) return false;
+//         cur--;
+//     }
+//     return true;
+// }
+
+// void solve(){
+//     cin >> n;
+//     init();
+//     for(int i = 1;i <= n;i ++ ){
+//         cin >> a[i]; 
+//         num[a[i]]++;
+//     }
+//     int l = 0, r = min(num[1], (n + 1) / 2);
+//     while(l <= r){
+//         int mid = l + r >> 1;
+//         if(check(mid)) l = mid + 1;
+//         else r = mid - 1;
+//     }
+//     cout << l - 1 << '\n';
+// }   
+
+// signed main(){
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+// void solve(){
+//     cin >> n;
+//     m = (n + 1) * (n + 1) / 4;
+//     cout << n - 1 << '\n';
+//     for(int i = 1;i < n;i++){
+//         cout << i << ' ' << i + 1 << ' ' << m-- << '\n';
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, a[N], ti[N], mx[N], mn[N];
+// vector<int>g[N];
+// int ans[N];
+
+// void dfs(int u, int fa){
+//     for(auto v : g[u]) if(v != fa){
+//         dfs(v, u);
+//         mx[u] = max(mx[u], mx[v]);
+//         mn[u] = min(mn[u], mn[v]);
+//     }
+//     ans[mn[u]]++;
+//     ans[mx[u]]--;
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i < n;i++){
+//         int fa;
+//         cin >> fa;
+//         g[fa].push_back(i+1);
+//         g[i+1].push_back(fa);
+//     }
+//     for(int i = 1;i <= n;i++){
+//         int t;
+//         cin >> t;
+//         ti[t] = mx[t] = mn[t] = i;
+//     }
+//     dfs(1, 0);
+//     for(int i = 1;i <= n;i++) {
+//         ans[i] += ans[i-1];
+//         cout << ans[i] << ' ';
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long 
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// int n;
+
+// int rt, ls[N * 50], rs[N * 50], mn[N * 50], mn2[N * 50], tot;
+// int tag[N * 50]; //是否存在
+// const int ADD = 1, REMOVE = 2, REVERSE = 3;
+
+// int getseg(int l, int r){
+//     tot++;
+//     mn[tot] = l;
+//     mn2[tot] = r;
+//     tag[tot] = 0;
+//     return tot;
+// }
+
+// void settag(int id, int op, int l, int r){
+//     if(op == REVERSE){
+//         swap(mn2[id], mn[id]);
+//         if(mn[id] == r) mn[id] = 1e18 + 1;
+//     }else if(op == REMOVE){
+//         mn2[id] = r;
+//         mn[id] = l;
+//     }else{
+//         mn2[id] = l;
+//         mn[id] = 1e18 + 1;
+//     }
+//     tag[id] = op;
+// }
+
+// void down(int id, int l, int r){
+//     int mid = l + r >> 1;
+//     if(!ls[id]) ls[id] = getseg(l, mid);
+//     if(!rs[id]) rs[id] = getseg(mid + 1, r);
+//     settag(ls[id], tag[id], l, mid);
+//     settag(rs[id], tag[id], mid + 1, r);
+//     tag[id] = 0;
+// }
+
+// void up(int id, int l, int r){
+//     int mid = l + r >> 1;
+//     if(!ls[id]) ls[id] = getseg(l, mid);
+//     if(!rs[id]) rs[id] = getseg(mid + 1, r);
+//     mn[id] = min(mn[ls[id]], mn[rs[id]]);
+//     mn2[id] = min(mn2[ls[id]], mn2[rs[id]]);
+// }
+
+// void modify(int &id, int l, int r, int ql, int qr, int op){
+//     if(!id) id = getseg(l, r);
+//     if(ql <= l && r <= qr){
+//         settag(id, op, l, r);
+//         return;
+//     }
+//     if(tag[id]) down(id, l, r);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(ls[id], l, mid, ql, qr, op);
+//     else if(ql > mid) modify(rs[id], mid + 1, r, ql, qr, op);
+//     else modify(ls[id], l, mid, ql, qr, op), modify(rs[id], mid + 1, r, ql, qr, op);
+//     up(id, l, r);
+// }
+
+// signed main(){
+
+//     cin >> n;
+//     while(n--){
+//         int op, l, r;
+//         cin >> op >> l >> r;
+//         modify(rt, 1, 1e18, l, r, op);
+//         cout << mn[rt] << '\n';
+//     }
+
+//     return 0;
+// }
