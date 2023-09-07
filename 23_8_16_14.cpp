@@ -2969,3 +2969,273 @@
 //     return 0;
 // }
 //
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e6 + 10;
+// int n, m, a[N], q;
+
+// struct node{
+//     int mn, sum, len, tag;
+//     node() : tag(0) {}
+// }tr[N << 2];
+
+// void up(int id){
+//     tr[id].sum = tr[lson].sum + tr[rson].sum;
+//     tr[id].len = tr[lson].len + tr[rson].len;
+//     tr[id].mn = min(tr[lson].mn, tr[rson].mn);
+// }
+
+// void settag(int id, int l, int r, int x){
+//     if(tr[id].len == 0) return;
+//     if(l == r){
+//         tr[id].mn = tr[id].sum = max(0ll, tr[id].sum - x);
+//         if(tr[id].sum == 0){
+//             tr[id].mn = LLONG_MAX;
+//             tr[id].len = 0;
+//         }
+//     }else{
+//         tr[id].sum -= tr[id].len * x;
+//         tr[id].mn -= x;
+//         tr[id].tag += x;
+//     }
+// }
+
+// void down(int id, int l, int r){
+//     int mid = l + r >> 1;
+//     settag(lson, l, mid, tr[id].tag);
+//     settag(rson, mid + 1, r, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id].len = 1;
+//         tr[id].mn = tr[id].sum = a[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// int query(int id, int l, int r, int ql, int qr){
+//     // if(l > r || l < 1 || r < 1 || l > n || r > n) return 0;
+//     if(ql <= l && r <= qr) return tr[id].sum;
+//     if(tr[id].tag) down(id, l, r);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+// }
+
+// void modify(int id, int l, int r, int ql, int qr, int x){
+//     // if(l > r || l < 1 || r < 1 || l > n || r > n) return;
+//     if(ql <= l && r <= qr){
+//         if(l == r || x < tr[id].mn){
+//             settag(id, l, r, x);
+//             return;
+//         }
+//     }
+//     if(tr[id].tag) down(id, l, r);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, x);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, x);
+//     else modify(lson, l, mid, ql, qr, x), modify(rson, mid + 1, r, ql, qr, x);
+//     up(id);
+// }
+
+// void solve(){
+//     cin >> n >> q;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     while(q--){
+//         int op, l, r;
+//         cin >> op >> l >> r;
+//         // if(l > r) swap(l, r);
+//         if(op == 1){
+//             int ret = 0;
+//             if(l > r) ret = query(1, 1, n, l, n) + query(1, 1, n, 1, r);
+//             else ret = query(1, 1, n, l, r);
+//             cout << ret << '\n';
+//         }else{
+//             int x;
+//             cin >> x;
+//             if(l > r){
+//                 modify(1, 1, n, l, n, x);
+//                 modify(1, 1, n, 1, r, x);
+//             }else modify(1, 1, n, l, r, x);
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e6 + 10;
+// int n, m, a[N], q;
+
+// struct node{
+//     int mn, se, sum, len, tag, mtag, cnt;
+//     node() : tag(0), mtag(0) {}
+// }tr[N << 2];
+
+// void up(int id){
+//     tr[id].sum = tr[lson].sum + tr[rson].sum;
+//     tr[id].len = tr[lson].len + tr[rson].len;
+//     if(tr[lson].mn == tr[rson].mn){
+//         tr[id].cnt = tr[lson].cnt + tr[rson].cnt;
+//         tr[id].mn = tr[lson].mn;
+//         tr[id].se = min(tr[lson].se, tr[rson].se);
+//     }else if(tr[lson].mn < tr[rson].mn){
+//         tr[id].cnt = tr[lson].cnt;
+//         tr[id].mn = tr[lson].mn;
+//         tr[id].se = min(tr[lson].se, tr[rson].mn);
+//     }else{
+//         tr[id].cnt = tr[rson].cnt;
+//         tr[id].mn = tr[rson].mn;
+//         tr[id].se = min(tr[rson].se, tr[lson].mn);
+//     }
+// }
+
+// void settag(int id, int x){
+//     tr[id].sum -= tr[id].len * x;
+//     tr[id].mn -= x;
+//     tr[id].se -= x;
+//     tr[id].tag += x;
+// }
+
+// void down(int id){
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+
+// void setmax(int id){
+//     tr[id].sum += (0 - tr[id].mn) * tr[id].cnt;
+//     tr[id].mn = 0;
+//     tr[id].se = max(tr[id].se, 0ll);
+//     tr[id].mtag = 1;
+//     if(tr[id].sum == 0) tr[id].cnt = tr[id].len;
+// }
+
+// void mdown(int id){
+//     setmax(lson);
+//     setmax(rson);
+//     tr[id].mtag = 0;
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id].len = tr[id].cnt = 1;
+//         tr[id].se = tr[id].mn = tr[id].sum = a[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].sum;
+//     if(tr[id].tag) down(id);
+//     if(tr[id].mtag) mdown(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+// }
+
+// void modify(int id, int l, int r, int ql, int qr, int x){
+//     if(tr[id].sum == 0) return;
+//     if(ql <= l && r <= qr){
+//         settag(id, x);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     if(tr[id].mtag) mdown(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, x);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, x);
+//     else modify(lson, l, mid, ql, qr, x), modify(rson, mid + 1, r, ql, qr, x);
+//     up(id);
+// }
+
+// void getmax(int id, int l, int r, int ql, int qr){
+//     if(tr[id].mn >= 0) return;
+//     if(ql <= l && r <= qr){
+//         if(tr[id].se > 0 || l == r || tr[id].cnt == tr[id].len){
+//             setmax(id);
+//             return;
+//         }
+//     }
+//     if(tr[id].tag) down(id);
+//     if(tr[id].mtag) mdown(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) getmax(lson, l, mid, ql, qr);
+//     else if(ql > mid) getmax(rson, mid + 1, r, ql, qr);
+//     else getmax(lson, l, mid, ql, qr), getmax(rson, mid + 1, r, ql, qr);
+//     up(id);
+// }
+
+// void solve(){
+//     cin >> n >> q;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     while(q--){
+//         int op, l, r;
+//         cin >> op >> l >> r;
+//         if(op == 1){
+//             int ret = 0;
+//             if(l > r) ret = query(1, 1, n, l, n) + query(1, 1, n, 1, r);
+//             else ret = query(1, 1, n, l, r);
+//             cout << ret << '\n';
+//         }else{
+//             int x;
+//             cin >> x;
+//             if(l > r){
+//                 modify(1, 1, n, l, n, x);
+//                 getmax(1, 1, n, l, n);
+//                 modify(1, 1, n, 1, r, x);
+//                 getmax(1, 1, n, 1, r);
+//             }else modify(1, 1, n, l, r, x), getmax(1, 1, n, l, r);
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
