@@ -77,8 +77,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -158,8 +156,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -232,7 +228,6 @@
 
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -352,8 +347,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -374,13 +367,13 @@
 //     dep[u] = dep[f] + 1;
 //     par[u][0] = f;
 //     for(int i = 1;i < 20;i++) par[u][i] = par[par[u][i-1]][i-1];
-//     for(auto v : g[u]) if(v != f) 
+//     for(auto v : g[u]) if(v != f)
 //         dfs(v, u);
 // }
 
 // int lca(int u, int v){
 //     if(dep[u] < dep[v]) swap(u, v);
-//     for(int i = 19;i >= 0;i--) if(dep[par[u][i]] >= dep[v]) 
+//     for(int i = 19;i >= 0;i--) if(dep[par[u][i]] >= dep[v])
 //         u = par[u][i];
 //     if(u == v) return u;
 //     for(int i = 19;i >= 0;i--) if(par[u][i] != par[v][i]){
@@ -505,7 +498,7 @@
 //     }else{
 //         ans ^= w[u];
 //     }
-//     return ans;        
+//     return ans;
 // }
 
 // void solve(){
@@ -520,7 +513,7 @@
 //     for(int i = 1;i <= m;i++){
 //         cin >> q[i].op >> q[i].u >> q[i].v;
 //         q[i].k = 0;
-//         if(q[i].op == 1 || q[i].op == 2 || q[i].op == 3 || q[i].op == 7) cin >> q[i].k; 
+//         if(q[i].op == 1 || q[i].op == 2 || q[i].op == 3 || q[i].op == 7) cin >> q[i].k;
 //         isq[q[i].u] = isq[q[i].v] = true;
 //     }
 
@@ -589,11 +582,9 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
-// #define int long long 
+// #define int long long
 // const int N = 2e5 + 10;
 // int n, m, a[N], a1, ak, k;
 
@@ -633,11 +624,9 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
-// #define int long long 
+// #define int long long
 // const int N = 3e5 + 10;
 // int n, m, a[N];
 
@@ -713,8 +702,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define lson id << 1
@@ -756,7 +743,7 @@
 //         tr[id] = node(a[l]);
 //         tr[id].len = 1;
 //         return;
-//     }   
+//     }
 //     int mid = l + r >> 1;
 //     build(lson, l, mid);
 //     build(rson, mid + 1, r);
@@ -798,7 +785,7 @@
 //     else modify(lson, l, mid, ql, qr, x), modify(rson, mid + 1, r, ql, qr, x);
 //     up(id);
 // }
- 
+
 // signed main(){
 
 //     pw[0] = 1;
@@ -825,8 +812,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -840,7 +825,6 @@
 //     int l, r, mx, pre, suf, len;
 //     node() : l(0), r(0), mx(1), pre(1), suf(1), len(1) {}
 // }tr[N << 2];
-
 
 // void up(int id){
 //     tr[id].len = tr[lson].len + tr[rson].len;
@@ -868,7 +852,6 @@
 //     up(id);
 // }
 
-
 // signed main(){
 
 //     IO;
@@ -882,9 +865,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -908,7 +888,7 @@
 //         mx[id] = max(mx[id], suf[lson] + pre[rson]);
 //         if(len[lson] == pre[lson]) pre[id] += pre[rson];
 //         if(len[rson] == suf[rson]) suf[id] += suf[lson];
-//     } 
+//     }
 // }
 
 // void build(int id, int l, int r){
@@ -948,9 +928,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1017,8 +994,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -1104,8 +1079,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -1161,14 +1134,11 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 2e5 + 10;
 // int n, a[N], m;
-
 
 // void solve(){
 //     cin >> n >> m;
@@ -1202,15 +1172,11 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // // #define int long long
 // const int N = 1e6 + 10;
 // int n, a[N], m, b[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -1244,15 +1210,11 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 1e6 + 10;
 // int n, a[N], m, b[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -1279,7 +1241,7 @@
 //             cout <<"NO\n";
 //             return;
 //         }
-//         // cout << b[i] << ' ';    
+//         // cout << b[i] << ' ';
 
 //     }
 
@@ -1299,15 +1261,11 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 1e6 + 10;
 // int n, a[N], m, b[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -1341,15 +1299,11 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // const int N = 1e6 + 10;
 // int n, a[N], m, b[N], d;
-
 
 // void solve(){
 //     cin >> n >> m >> d;
@@ -1376,8 +1330,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1416,9 +1368,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -1453,9 +1402,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1498,9 +1444,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -1540,15 +1483,12 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 2e5 + 10;
 // int n, m, a, q;
-
 
 // void solve(){
 //     cin >> n >> a >> q;
@@ -1581,16 +1521,12 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 2e5 + 10;
 // int n, p[N], pos[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -1613,15 +1549,12 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 2e5 + 10;
 // int n, a[N], k;
-
 
 // void solve(){
 //     cin >> n >> k;
@@ -1652,10 +1585,6 @@
 
 //     return 0;
 // }
-
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1727,9 +1656,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
@@ -1781,16 +1707,12 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 2e5 + 10;
 // int n, a[N];
-
 
 // void solve(){
 //     string s;
@@ -1818,17 +1740,12 @@
 //     return 0;
 // }
 
-
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 2e5 + 10;
 // int n, a[N];
-
 
 // void solve(){
 //     string a, b;
@@ -1863,17 +1780,12 @@
 //     return 0;
 // }
 
-
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 2e5 + 10;
 // int n;
-
 
 // void solve(){
 //     string s;
@@ -1929,16 +1841,12 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 2e5 + 10;
 // int n, a[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -1972,12 +1880,10 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
-// #define lson id << 1 
+// #define lson id << 1
 // #define rson id << 1 | 1
 // const int N = 2e5 + 10;
 // int n, m;
@@ -2028,8 +1934,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2110,12 +2014,12 @@
 
 // signed main(){
 
-//     scanf("%lld %lld", &n, &q);    
+//     scanf("%lld %lld", &n, &q);
 //     for(int i = 1;i <= n;i++) cin >> a[i], s[i] = s[i-1] + a[i];
 //     build(1, 1, n);
 //     while(q--){
 //         int x, v, d;
-//         scanf("%lld %lld", &x, &v);    
+//         scanf("%lld %lld", &x, &v);
 //         d = v - a[x];
 //         a[x] += d;
 //         change(1, 1, n, x, d);
@@ -2128,8 +2032,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2178,9 +2080,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2269,7 +2168,6 @@
 //     else return min(query(ls[id], l, mid, ql, qr), query(rs[id], mid + 1, r, ql, qr));
 // }
 
-
 // signed main(){
 
 //     IO;
@@ -2291,8 +2189,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2380,9 +2276,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2459,15 +2352,12 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 2e5 + 10;
 // int n, m, a[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -2487,16 +2377,12 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 2e5 + 10;
 // int n, m, a[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -2534,10 +2420,6 @@
 //     return 0;
 // }
 
-
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -2552,7 +2434,7 @@
 // }
 
 // void solve(){
-    
+
 //     int z[6] = {0}, f[6] = {0}, last[6] = {0};
 //     string s;
 //     cin >> s;
@@ -2567,7 +2449,7 @@
 //                 d += pow(10, s[i] - 'A') * 2;
 //                 break;
 //             }
-//         }        
+//         }
 //         break;
 //     }
 //     if(d == 0){
@@ -2604,9 +2486,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2706,10 +2585,9 @@
 //     return 0;
 // }
 
-
 // #include<bits/stdc++.h>
 // using namespace std;
-// #define int long long 
+// #define int long long
 // const int N = 2e5 + 10;
 // int n, m;
 
@@ -2721,7 +2599,7 @@
 //     }
 //     if(m < n) cout << "YES\n";
 //     else cout << "NO\n";
-// }   
+// }
 
 // signed main(){
 
@@ -2732,11 +2610,9 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
-// #define int long long 
+// #define int long long
 // const int N = 2e5 + 10;
 // int n, m, a[N], b[N];
 
@@ -2749,7 +2625,7 @@
 //     ans -= mx;
 //     cout << ans << '\n';
 
-// }   
+// }
 
 // signed main(){
 
@@ -2760,13 +2636,9 @@
 //     return 0;
 // }
 
-
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
-// #define int long long 
+// #define int long long
 // const int N = 2e5 + 10;
 // int n, m, a[N];
 // int num[N];
@@ -2789,7 +2661,7 @@
 //     cin >> n;
 //     init();
 //     for(int i = 1;i <= n;i ++ ){
-//         cin >> a[i]; 
+//         cin >> a[i];
 //         num[a[i]]++;
 //     }
 //     int l = 0, r = min(num[1], (n + 1) / 2);
@@ -2799,7 +2671,7 @@
 //         else r = mid - 1;
 //     }
 //     cout << l - 1 << '\n';
-// }   
+// }
 
 // signed main(){
 
@@ -2809,7 +2681,6 @@
 
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2836,9 +2707,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -2889,12 +2757,9 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
-// #define int long long 
+// #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 1e5 + 10;
 // int n;
@@ -2969,7 +2834,6 @@
 //     return 0;
 // }
 //
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3079,16 +2943,13 @@
 // signed main(){
 
 //     IO;
-    
+
 //     int t = 1;
 //     // cin >> t;
 //     while(t--) solve();
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3232,7 +3093,7 @@
 // signed main(){
 
 //     IO;
-    
+
 //     int t = 1;
 //     // cin >> t;
 //     while(t--) solve();
@@ -3240,16 +3101,12 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 1e6 + 10;
 // int n, m, a[N], q;
-
 
 // void solve(){
 //     double a, b, c;
@@ -3262,7 +3119,7 @@
 // signed main(){
 
 //     IO;
-    
+
 //     int t = 1;
 //     cin >> t;
 //     while(t--) solve();
@@ -3270,15 +3127,12 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 110;
 // int n, m, d[N], s[N], len[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -3295,7 +3149,7 @@
 // signed main(){
 
 //     IO;
-    
+
 //     int t = 1;
 //     cin >> t;
 //     while(t--) solve();
@@ -3303,15 +3157,12 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 110;
 // int n, m, d[N], s[N], len[N];
-
 
 // void solve(){
 //     int l, r;
@@ -3330,7 +3181,7 @@
 // signed main(){
 
 //     IO;
-    
+
 //     int t = 1;
 //     cin >> t;
 //     while(t--) solve();
@@ -3338,15 +3189,12 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 110;
 // int n, m, d[N], s[N], len[N];
-
 
 // void solve(){
 //     int x, y;
@@ -3366,16 +3214,13 @@
 // signed main(){
 
 //     IO;
-    
+
 //     int t = 1;
 //     cin >> t;
 //     while(t--) solve();
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3404,13 +3249,13 @@
 //     }
 //     ans[0] = pre[0][n];
 //     ans[1] = pre[1][n];
-    
+
 //     cin >> q;
 //     while(q--){
 //         int op, l, r;
 //         cin >> op >> l;
 //         if(op == 1){
-//             cin >> r;   
+//             cin >> r;
 //             ans[0] ^= pre[0][r] ^ pre[0][l-1] ^ pre[1][r] ^ pre[1][l-1];
 //             ans[1] ^= pre[0][r] ^ pre[0][l-1] ^ pre[1][r] ^ pre[1][l-1];
 //         }else{
@@ -3423,17 +3268,13 @@
 // signed main(){
 
 //     IO;
-    
+
 //     int t = 1;
-//     cin >> t;   
+//     cin >> t;
 //     while(t--) solve();
 
 //     return 0;
 // }
-
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3488,17 +3329,13 @@
 // signed main(){
 
 //     IO;
-    
+
 //     int t = 1;
-//     cin >> t;   
+//     cin >> t;
 //     while(t--) solve();
 
 //     return 0;
 // }
-
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -3531,7 +3368,7 @@
 //     }
 
 //     vector<int>num;
-//     for(int i = l;i <= r;i++) 
+//     for(int i = l;i <= r;i++)
 //         if(a[i] > 1) num.push_back(i);
 
 //     int L = 1, R = 1, ans = 0;
@@ -3545,17 +3382,259 @@
 //             }
 //         }
 //     }
-    
+
 //     cout << L << ' ' << R << '\n';
 // }
 
 // signed main(){
 
 //     IO;
-    
+
 //     int t = 1;
-//     cin >> t;   
+//     cin >> t;
 //     while(t--) solve();
 
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e5 + 10;
+// int B;
+// int n, q, st[N], d[N], cnt[N], vis[N];
+// char ch[N];
+// int fa[322][N];
+
+// int find(int id, int x){
+//     return fa[id][x] == x ? x : fa[id][x] = find(id, fa[id][x]);
+// }
+
+// void merg(int id, int a, int b){
+//     a = find(id, a);
+//     b = find(id, b);
+//     if(a == b) return;
+//     if(a > b) swap(a, b);
+//     fa[id][a] = b;
+// }
+
+// void solve()
+// {
+//     for (int i = 1; i <= 320; i++)
+//         for (int j = 1; j < N; j++)
+//             fa[i][j] = j;
+//     string s;
+//     cin >> s;
+//     n = s.size();
+//     s = ' ' + s;
+//     B = sqrt(n) + 1;
+//     cin >> q;
+//     for (int i = q; i >= 1; i--)
+//     {
+//         cin >> st[i] >> d[i] >> cnt[i] >> ch[i];
+//     }
+//     for (int i = 1; i <= q; i++)
+//     {
+//         if (d[i] >= B)
+//         {
+//             for (int j = st[i], len = min(n, st[i] + cnt[i] * d[i]); j <= len; j += d[i])
+//                 if (!vis[j])
+//                 {
+//                     vis[j] = 1;
+//                     s[j] = ch[i];
+//                 }
+//         }
+//         else
+//         {
+//             if(!vis[st[i]]){
+//                 vis[st[i]] = 1;
+//                 s[st[i]] = ch[i];
+//             }
+//             for (int j = st[i] + d[i], len = min(n, st[i] + cnt[i] * d[i]); j <= len; j += d[i]){
+//                 merg(d[i], j - d[i], j);
+//                 if (!vis[j])
+//                 {
+//                     vis[j] = 1;
+//                     s[j] = ch[i];
+//                 }else{
+//                     j = find(d[i], j);
+//                 }
+//             }
+//         }
+//     }
+//     for(int i = 1;i < s.size();i++) cout << s[i];
+// }
+
+// signed main()
+// {
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while (t--)
+//         solve();
+
+//     return 0;
+// }
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define lson id << 1
+#define rson id << 1 | 1
+const int N = 1e5 + 10;
+int n, m, w[N];
+vector<int>g[N];
+
+int par[N], dep[N], son[N], top[N], id[N], siz[N], tot, tr_data[N];
+
+void pre_dfs(int u, int fa){
+    dep[u] = dep[fa] + 1;
+    par[u] = fa;
+    siz[u] = 1;
+    for(auto v : g[u]) if(v != fa){
+        pre_dfs(v, u);
+        siz[u] += siz[v];
+        if(siz[son[u]] < siz[v]) son[u] = v;
+    }
+}
+
+int mxtr[N];
+
+void dfs(int u, int tp){
+    top[u] = tp;
+    id[u] = ++tot;
+    mxtr[u] = max(mxtr[u], tot);
+    tr_data[tot] = w[u];
+    if(son[u]) {
+        dfs(son[u], tp);
+        mxtr[u] = max(mxtr[u], mxtr[son[u]]);
+    }
+    else return;
+
+    for(auto v : g[u]) if(v != par[u] && v != son[u]){
+        dfs(v, v);
+        mxtr[u] = max(mxtr[u], mxtr[son[u]]);
+    }
+}
+
+struct node{
+    int sum, tag;
+}tr[N << 2];
+
+void up(int id){
+    tr[id].sum = tr[lson].sum + tr[rson].sum;
+}
+
+void build(int id, int l, int r){
+    if(l == r){
+        tr[id].sum = tr_data[l];
+        return;
+    }
+    int mid = l + r >> 1;
+    build(lson, l, mid);
+    build(rson, mid + 1, r);
+    up(id);
+}
+
+void settag(int id, int x){
+    tr[id].sum += x;
+    tr[id].tag += x;
+}
+
+void down(int id){
+    settag(lson, tr[id].tag);
+    settag(rson, tr[id].tag);
+    tr[id].tag = 0;
+}
+
+int query(int id, int l, int r, int ql, int qr){
+    if(ql <= l && r <= qr) return tr[id].sum;
+    if(tr[id].tag) down(id);
+    int mid = l + r >> 1;
+    if(qr <= mid) return query(lson, l, mid, ql, qr);
+    else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+    else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+}
+
+void modify(int id, int l, int r, int ql, int qr, int x){
+    if(ql <= l && r <= qr){
+        settag(id, x);
+        return;
+    }
+    if(tr[id].tag) down(id);
+    int mid = l + r >> 1;
+    if(qr <= mid) modify(lson, l, mid, ql, qr, x);
+    else if(ql > mid) modify(rson, mid + 1, r, ql, qr, x);
+    else modify(lson, l, mid, ql, qr, x) , modify(rson, mid + 1, r, ql, qr, x);
+    up(id);
+}
+
+int line_query(int x){
+    int ret = 0;
+    while(x){
+        ret += query(1, 1, n, id[x], id[top[x]]);
+        x = par[top[x]];
+    }
+    return ret;
+}
+
+void solve(){
+    cin >> n >> m;
+    for(int i = 1;i <= n;i++) cin >> w[i];
+    for(int i = 1;i < n;i++){
+        int a, b;
+        cin >> a >> b;
+        g[a].push_back(b);
+        g[b].push_back(a);
+    }
+
+    pre_dfs(1, 0);
+    dfs(1, 1);
+    build(1, 1, n);
+
+    while(m--){
+        int op, x, a;
+        cin >> op >> x;
+        if(op == 1){
+            cin >> a;
+            modify(1, 1, n, id[x], id[x], a);
+            // cout << op << ' ' << x << ' ' << a << '\n';
+        }else if(op == 2){
+            cin >> a;
+            cout << id[x] << ' ' << mxtr[x] << '\n';
+            // modify(1, 1, n, id[x], mxtr[x], a);
+            // cout << op << ' ' << x << ' ' << a << '\n';
+        }else{
+            // cout << line_query(x) << '\n';
+            // cout << op << ' ' << x << '\n';
+        }
+    }
+    // cout << 9;
+
+    // for(int i = 1;i <= n;i++){
+    //     cout << id[i] << ' ';
+    // }
+    // for(int i = 1;i <= n;i++){
+    //     cout << mxtr[i] << ' ';
+    // }
+}
+
+signed main()
+{
+    IO;
+
+    int t = 1;
+    // cin >> t;
+    while (t--)
+        solve();
+
+    return 0;
+}
