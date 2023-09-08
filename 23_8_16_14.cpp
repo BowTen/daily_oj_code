@@ -3495,3 +3495,67 @@
 
 //     return 0;
 // }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, a[N], pre[N], pro[N] = {1};
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//     }
+
+//     int l = 1, r = n;
+//     while(l < n && a[l] == 1) l++;
+//     while(r > 1 && a[r] == 1) r--;
+//     int prod = 1;
+//     for(int i = l;i <= r;i++){
+//         prod *= a[i];
+//         if(prod > 1e9){
+//             cout << l << ' ' << r << '\n';
+//             return;
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         pre[i] = pre[i-1] + a[i];
+//         pro[i] = pro[i-1] * a[i];
+//     }
+
+//     vector<int>num;
+//     for(int i = l;i <= r;i++) 
+//         if(a[i] > 1) num.push_back(i);
+
+//     int L = 1, R = 1, ans = 0;
+//     for(int i = 0;i < num.size();i++){
+//         for(int j = i;j < num.size();j++){
+//             int d = (pro[num[j]] / pro[num[i]-1]) - (pre[num[j]] - pre[num[i]-1]);
+//             if(d > ans){
+//                 ans = d;
+//                 L = num[i];
+//                 R = num[j];
+//             }
+//         }
+//     }
+    
+//     cout << L << ' ' << R << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;   
+//     while(t--) solve();
+
+//     return 0;
+// }
