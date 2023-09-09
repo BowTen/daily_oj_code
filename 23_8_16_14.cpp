@@ -3482,159 +3482,432 @@
 
 
 
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define lson id << 1
-#define rson id << 1 | 1
-const int N = 1e5 + 10;
-int n, m, w[N];
-vector<int>g[N];
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// int n, m, w[N];
+// vector<int>g[N];
 
-int par[N], dep[N], son[N], top[N], id[N], siz[N], tot, tr_data[N];
+// int par[N], dep[N], son[N], top[N], id[N], siz[N], tot, tr_data[N];
 
-void pre_dfs(int u, int fa){
-    dep[u] = dep[fa] + 1;
-    par[u] = fa;
-    siz[u] = 1;
-    for(auto v : g[u]) if(v != fa){
-        pre_dfs(v, u);
-        siz[u] += siz[v];
-        if(siz[son[u]] < siz[v]) son[u] = v;
-    }
-}
+// void pre_dfs(int u, int fa){
+//     dep[u] = dep[fa] + 1;
+//     par[u] = fa;
+//     siz[u] = 1;
+//     for(auto v : g[u]) if(v != fa){
+//         pre_dfs(v, u);
+//         siz[u] += siz[v];
+//         if(siz[son[u]] < siz[v]) son[u] = v;
+//     }
+// }
 
-int mxtr[N];
+// int mxtr[N];
 
-void dfs(int u, int tp){
-    top[u] = tp;
-    id[u] = ++tot;
-    mxtr[u] = max(mxtr[u], tot);
-    tr_data[tot] = w[u];
-    if(son[u]) {
-        dfs(son[u], tp);
-        mxtr[u] = max(mxtr[u], mxtr[son[u]]);
-    }
-    else return;
+// void dfs(int u, int tp){
+//     top[u] = tp;
+//     id[u] = ++tot;
+//     mxtr[u] = max(mxtr[u], tot);
+//     tr_data[tot] = w[u];
+//     if(son[u]) {
+//         dfs(son[u], tp);
+//         mxtr[u] = max(mxtr[u], mxtr[son[u]]);
+//     }
+//     else return;
 
-    for(auto v : g[u]) if(v != par[u] && v != son[u]){
-        dfs(v, v);
-        mxtr[u] = max(mxtr[u], mxtr[son[u]]);
-    }
-}
+//     for(auto v : g[u]) if(v != par[u] && v != son[u]){
+//         dfs(v, v);
+//         mxtr[u] = max(mxtr[u], mxtr[v]);
+//     }
+// }
 
-struct node{
-    int sum, tag;
-}tr[N << 2];
+// struct node{
+//     int sum, tag, len;
+// }tr[N << 2];
 
-void up(int id){
-    tr[id].sum = tr[lson].sum + tr[rson].sum;
-}
+// void up(int id){
+//     tr[id].sum = tr[lson].sum + tr[rson].sum;
+//     tr[id].len = tr[lson].len + tr[rson].len;
+// }
 
-void build(int id, int l, int r){
-    if(l == r){
-        tr[id].sum = tr_data[l];
-        return;
-    }
-    int mid = l + r >> 1;
-    build(lson, l, mid);
-    build(rson, mid + 1, r);
-    up(id);
-}
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id].sum = tr_data[l];
+//         tr[id].len = 1;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
 
-void settag(int id, int x){
-    tr[id].sum += x;
-    tr[id].tag += x;
-}
+// void settag(int id, int x){
+//     tr[id].sum += x * tr[id].len;
+//     tr[id].tag += x;
+// }
 
-void down(int id){
-    settag(lson, tr[id].tag);
-    settag(rson, tr[id].tag);
-    tr[id].tag = 0;
-}
+// void down(int id){
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
 
-int query(int id, int l, int r, int ql, int qr){
-    if(ql <= l && r <= qr) return tr[id].sum;
-    if(tr[id].tag) down(id);
-    int mid = l + r >> 1;
-    if(qr <= mid) return query(lson, l, mid, ql, qr);
-    else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
-    else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
-}
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].sum;
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+// }
 
-void modify(int id, int l, int r, int ql, int qr, int x){
-    if(ql <= l && r <= qr){
-        settag(id, x);
-        return;
-    }
-    if(tr[id].tag) down(id);
-    int mid = l + r >> 1;
-    if(qr <= mid) modify(lson, l, mid, ql, qr, x);
-    else if(ql > mid) modify(rson, mid + 1, r, ql, qr, x);
-    else modify(lson, l, mid, ql, qr, x) , modify(rson, mid + 1, r, ql, qr, x);
-    up(id);
-}
+// void modify(int id, int l, int r, int ql, int qr, int x){
+//     if(ql <= l && r <= qr){
+//         settag(id, x);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, x);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, x);
+//     else modify(lson, l, mid, ql, qr, x) , modify(rson, mid + 1, r, ql, qr, x);
+//     up(id);
+// }
 
-int line_query(int x){
-    int ret = 0;
-    while(x){
-        ret += query(1, 1, n, id[x], id[top[x]]);
-        x = par[top[x]];
-    }
-    return ret;
-}
+// int line_query(int x){
+//     int ret = 0;
+//     while(x){
+//         // cout << id[top[x]] << ' ' << id[x] << '\n';
+//         ret += query(1, 1, n, id[top[x]], id[x]);
+//         x = par[top[x]];
+//     }
+//     return ret;
+// }
 
-void solve(){
-    cin >> n >> m;
-    for(int i = 1;i <= n;i++) cin >> w[i];
-    for(int i = 1;i < n;i++){
-        int a, b;
-        cin >> a >> b;
-        g[a].push_back(b);
-        g[b].push_back(a);
-    }
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++) cin >> w[i];
+//     for(int i = 1;i < n;i++){
+//         int a, b;
+//         cin >> a >> b;
+//         g[a].push_back(b);
+//         g[b].push_back(a);
+//     }
 
-    pre_dfs(1, 0);
-    dfs(1, 1);
-    build(1, 1, n);
+//     pre_dfs(1, 0);
+//     dfs(1, 1);
+//     build(1, 1, n);
 
-    while(m--){
-        int op, x, a;
-        cin >> op >> x;
-        if(op == 1){
-            cin >> a;
-            modify(1, 1, n, id[x], id[x], a);
-            // cout << op << ' ' << x << ' ' << a << '\n';
-        }else if(op == 2){
-            cin >> a;
-            cout << id[x] << ' ' << mxtr[x] << '\n';
-            // modify(1, 1, n, id[x], mxtr[x], a);
-            // cout << op << ' ' << x << ' ' << a << '\n';
-        }else{
-            // cout << line_query(x) << '\n';
-            // cout << op << ' ' << x << '\n';
-        }
-    }
-    // cout << 9;
+//     while(m--){
+//         int op, x, a;
+//         cin >> op >> x;
+//         if(op == 1){
+//             cin >> a;
+//             // cout << id[x] << '\n';
+//             modify(1, 1, n, id[x], id[x], a);
+//             // cout << op << ' ' << x << ' ' << a << '\n';
+//         }else if(op == 2){
+//             cin >> a;
+//             // cout << id[x] << ' ' << mxtr[x] << '\n';
+//             modify(1, 1, n, id[x], mxtr[x], a);
+//             // cout << op << ' ' << x << ' ' << a << '\n';
+//         }else{
+//             cout << line_query(x) << '\n';
+//             // cout << op << ' ' << x << '\n';
+//         }
+//     }
+//     // for(int i = 1;i <= n;i++){
+//     //     cout << id[i] << ' ';
+//     // }
+//     // cout << '\n';
+//     // for(int i = 1;i <= n;i++){
+//     //     cout << mxtr[i] << ' ';
+//     // }
+// }
 
-    // for(int i = 1;i <= n;i++){
-    //     cout << id[i] << ' ';
-    // }
-    // for(int i = 1;i <= n;i++){
-    //     cout << mxtr[i] << ' ';
-    // }
-}
+// signed main()
+// {
+//     IO;
 
-signed main()
-{
-    IO;
+//     int t = 1;
+//     // cin >> t;
+//     while (t--)
+//         solve();
 
-    int t = 1;
-    // cin >> t;
-    while (t--)
-        solve();
+//     return 0;
+// }
 
-    return 0;
-}
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long 
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// int n, w[N];
+// vector<array<int, 3>>g[N];
+
+// int par[N], dep[N], siz[N], son[N], id[N], tr_data[N], tot, top[N], seg[N];
+
+// void pre_dfs(int u, int fa){
+//     dep[u] = dep[fa] + 1;
+//     siz[u] = 1;
+//     par[u] = fa;
+//     for(auto [v, s, id] : g[u]) if(v != fa){
+//         w[v] = s;
+//         seg[id] = v;
+//         pre_dfs(v, u);
+//         siz[u] += siz[v];
+//         if(siz[son[u]] < siz[v]) son[u] = v;
+//     }
+// }
+
+// void dfs(int u, int tp){
+//     top[u] = tp;
+//     id[u] = ++tot;
+//     tr_data[tot] = w[u];
+//     if(son[u]) dfs(son[u], tp);
+//     else return;
+
+//     for(auto [v, s, id] : g[u]) if(v != par[u] && v != son[u])
+//         dfs(v, v);
+// }   
+
+// int mx[N << 2];
+
+// void up(int id){
+//     mx[id] = max(mx[lson], mx[rson]);
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         mx[id] = tr_data[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// void change(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         mx[id] = v;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(lson, l, mid, x, v);
+//     else change(rson, mid + 1, r, x, v);
+//     up(id);
+// }
+
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return mx[id];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return max(query(lson, l, mid, ql, qr), query(rson, mid + 1, r, ql, qr));
+// }
+
+// int line_query(int u, int v){
+//     int ret = 0;
+//     while(top[u] != top[v]){
+//         if(dep[top[u]] < dep[top[v]]) swap(u, v);
+//         ret = max(ret, query(1, 1, n, id[top[u]], id[u]));
+//         u = par[top[u]];
+//     }
+//     if(u == v) return ret;
+//     if(dep[u] < dep[v]) swap(u, v);
+//     ret = max(ret, query(1, 1, n, id[v] + 1, id[u]));
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i < n;i++){
+//         int a, b, w;
+//         cin >> a >> b >> w;
+//         g[a].push_back({b, w, i});
+//         g[b].push_back({a, w, i});
+//     }
+
+//     pre_dfs(1, 0);
+//     dfs(1, 1);
+//     build(1, 1, n);
+
+//     string s;
+//     while(cin >> s, s != "DONE"){
+//         int a, b;
+//         cin >> a >> b;
+//         if(s == "CHANGE"){
+//             change(1, 1, n, id[seg[a]], b);
+//         }else{
+//             cout << line_query(a, b) << '\n';
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 5e5 + 10;
+// int n, m;
+// vector<int>g[N];
+
+// int dep[N], siz[N], par[N], top[N], son[N], id[N], tot, mxson[N];
+
+// void pre_dfs(int u, int fa){
+//     dep[u] = dep[fa] + 1;
+//     par[u] = fa;
+//     siz[u] = 1;
+//     for(auto v : g[u]) if(v != fa){
+//         pre_dfs(v, u);
+//         siz[u] += siz[v];
+//         if(siz[son[u]] < siz[v]) son[u] = v;
+//     }
+// }
+
+// void dfs(int u, int tp){
+//     top[u] = tp;
+//     mxson[u] = id[u] = ++tot;
+//     if(son[u]) dfs(son[u], tp), mxson[u] = max(mxson[u], mxson[son[u]]);
+//     else return;
+
+//     for(auto v : g[u]) if(v != par[u] && v != son[u])
+//         dfs(v, v), mxson[u] = max(mxson[u], mxson[v]);
+// }
+
+// int same[N << 2], tr[N << 2], tag[N << 2];
+
+// void up(int id){
+//     same[id] = same[lson] && same[rson] && (tr[lson] == tr[rson]);
+//     tr[id] = tr[lson];
+// }
+
+// void build(int id, int l, int r){
+//     if(l == r){
+//         same[id] = true;
+//         tr[id] = 0;
+//         return;
+//     }   
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+
+// void settag(int id, int v){
+//     same[id] = true;
+//     tr[id] = v;
+//     tag[id] = v + 1;
+//     // cout << id << ' ' << v << ' ' << tag[id] << '\n';
+// }
+
+// void down(int id){
+//     settag(lson, tag[id] - 1);
+//     settag(rson, tag[id] - 1);
+//     tag[id] = 0;
+// }
+
+// void modify(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr){
+//         // cout << l << ' ' << r << ' ' << id << '\n';
+//         settag(id, v);
+//         return;
+//     }
+//     if(tag[id]) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, v);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, v);
+//     else modify(lson, l, mid, ql, qr, v), modify(rson, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
+
+// int query(int id, int l, int r, int x){
+//     if(same[id]) return tr[id];
+//     if(tag[id]) down(id);
+//     int mid = l + r >> 1;
+//     if(x <= mid) return query(lson, l, mid, x);
+//     else return query(rson, mid + 1, r, x);
+// }
+
+// void line_modify(int u, int v){
+//     while(u){
+//         modify(1, 1, n, id[top[u]], id[u], v);
+//         u = par[top[u]];
+//     }
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i < n;i++){
+//         int a, b;
+//         cin >> a >> b;
+//         g[a].push_back(b);
+//         g[b].push_back(a);
+//     }
+
+//     pre_dfs(1, 0);
+//     dfs(1, 1);
+//     build(1, 1, n);
+    
+//     // for(int i = 1;i <= n;i++) cout << query(1, 1, n, id[i]) << ' ';
+//     // cout << '\n';
+//     // modify(1, 1, n, 1, 5, 1);
+//     // // cout << tag[1] << '\n';
+//     // modify(1, 1, n, 1, 3, 1);
+//     // for(int i = 1;i <= n;i++) cout << query(1, 1, n, id[i]) << ' ';
+//     // cout << '\n';
+
+
+
+//     cin >> m;
+//     while(m--){
+//         int op, u;
+//         cin >> op >> u;
+//         if(op == 1){
+//             modify(1, 1, n, id[u], mxson[u], 1);
+//         }else if(op == 2){
+//             line_modify(u, 0);
+//         }else{
+//             cout << query(1, 1, n, id[u]) << '\n';
+//         }
+//     }
+//     // for(int i = 1;i <= n;i++) cout << id[i] << ' ';
+//     // cout << '\n';
+//     // for(int i = 1;i <= n;i++) cout << mxson[i] << ' ';
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
