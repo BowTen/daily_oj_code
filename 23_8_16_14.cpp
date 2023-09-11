@@ -4543,211 +4543,423 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define lson id << 1
-#define rson id << 1 | 1
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-const int N = 5e4 + 10;
-const int mod = 1e9 + 7;
-int n, m, q, a[N], vis[N], ans[N];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 5e4 + 10;
+// const int mod = 1e9 + 7;
+// int n, m, q, a[N], vis[N], ans[N];
 
 
-struct node{
-    int val[4]; //S, A2, A, len
+// struct node{
+//     int val[4]; //S, A2, A, len
 
-    node() {
-        for(int i = 0; i < 3;i++) val[i] = 0;
-        val[3] = 1;
-    }
-    node(int x) {
-        val[0] = x * x;
-        val[1] = val[0];
-        val[2] = x;
-        val[3] = 1;
-    }
-    node(int s, int a2, int a, int le) {
-        val[0] = s;
-        val[1] = a2;
-        val[2] = a;
-        val[3] = le;
-    }
+//     node() {
+//         for(int i = 0; i < 3;i++) val[i] = 0;
+//         val[3] = 1;
+//     }
+//     node(int x) {
+//         val[0] = x * x;
+//         val[1] = val[0];
+//         val[2] = x;
+//         val[3] = 1;
+//     }
+//     node(int s, int a2, int a, int le) {
+//         val[0] = s;
+//         val[1] = a2;
+//         val[2] = a;
+//         val[3] = le;
+//     }
 
-    node operator+(const node& e) const{
-        node ret(*this);
-        for(int i = 0;i < 4;i++) ret.val[i] += e.val[i];
-        return ret;
-    }
-};
+//     node operator+(const node& e) const{
+//         node ret(*this);
+//         for(int i = 0;i < 4;i++) ret.val[i] += e.val[i];
+//         return ret;
+//     }
+// };
 
-struct Mat{
-    int mp[4][4];
-    Mat() {
-        memset(mp, 0, sizeof(mp));
-    }
-    Mat(int x) : Mat() {
-        mp[0][0] = mp[0][1] = mp[1][1] = mp[2][2] = mp[3][3] = 1;
-        mp[0][2] = mp[1][2] = 2 * x;
-        mp[0][3] = mp[1][3] = x * x;
-        mp[2][3] = x;
-    }
+// struct Mat{
+//     int mp[4][4];
+//     Mat() {
+//         memset(mp, 0, sizeof(mp));
+//     }
+//     Mat(int x) : Mat() {
+//         mp[0][0] = mp[0][1] = mp[1][1] = mp[2][2] = mp[3][3] = 1;
+//         mp[0][2] = mp[1][2] = 2 * x;
+//         mp[0][3] = mp[1][3] = x * x;
+//         mp[2][3] = x;
+//     }
     
-    void init(){
-        for(int i = 0; i < 4;i++)
-            for(int j = 0;j < 4;j++) 
-                mp[i][j] = i == j;
-    }
+//     void init(){
+//         for(int i = 0; i < 4;i++)
+//             for(int j = 0;j < 4;j++) 
+//                 mp[i][j] = i == j;
+//     }
 
-    node operator*(const node& e) const {
-        node ret(0, 0, 0, e.val[3]);
-        for(int i = 0; i < 4;i++){
-            for(int j = 0;j < 4;j++){
-                ret.val[i] = (ret.val[i] + mp[i][j] * e.val[j]) % mod;
-            }
-        }
-        return ret;
-    }
+//     node operator*(const node& e) const {
+//         node ret(0, 0, 0, e.val[3]);
+//         for(int i = 0; i < 4;i++){
+//             for(int j = 0;j < 4;j++){
+//                 ret.val[i] = (ret.val[i] + mp[i][j] * e.val[j]) % mod;
+//             }
+//         }
+//         return ret;
+//     }
 
-    Mat operator*(const Mat& e) const{
-        Mat ret;
-        for(int i = 0;i < 4;i++){
-            for(int j = 0;j < 4;j++){
-                for(int k = 0;k < 4;k++){
-                    ret.mp[i][j] = (ret.mp[i][j] + mp[i][k] * e.mp[k][j]) % mod;
-                }
-            }
-        }
-        return ret;
-    }
-};
+//     Mat operator*(const Mat& e) const{
+//         Mat ret;
+//         for(int i = 0;i < 4;i++){
+//             for(int j = 0;j < 4;j++){
+//                 for(int k = 0;k < 4;k++){
+//                     ret.mp[i][j] = (ret.mp[i][j] + mp[i][k] * e.mp[k][j]) % mod;
+//                 }
+//             }
+//         }
+//         return ret;
+//     }
+// };
 
-Mat tag[N << 2];
-node tr[N << 2];
+// Mat tag[N << 2];
+// node tr[N << 2];
 
-bool tag_act[N << 2] = {0};
+// bool tag_act[N << 2] = {0};
 
-void up(int id){
-    tr[id] = tr[lson] + tr[rson];
-}
+// void up(int id){
+//     tr[id] = tr[lson] + tr[rson];
+// }
 
-void build(int id, int l, int r){
-    tag[id].init();
-    if(l == r){
-        tr[id] = node(a[l]);
-        return;
-    }
-    int mid = l + r >> 1;
-    build(lson, l, mid);
-    build(rson, mid + 1, r);
-    up(id);
-}
+// void build(int id, int l, int r){
+//     tag[id].init();
+//     if(l == r){
+//         tr[id] = node(a[l]);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
 
-void settag(int id, const Mat& mt){
-    tr[id] = mt * tr[id];
-    tag[id] = mt * tag[id];
-    tag_act[id] = true;
-}
+// void settag(int id, const Mat& mt){
+//     tr[id] = mt * tr[id];
+//     tag[id] = mt * tag[id];
+//     tag_act[id] = true;
+// }
 
-void down(int id){
-    settag(lson, tag[id]);
-    settag(rson, tag[id]);
-    tag[id].init();
-    tag_act[id] = false;
-}
+// void down(int id){
+//     settag(lson, tag[id]);
+//     settag(rson, tag[id]);
+//     tag[id].init();
+//     tag_act[id] = false;
+// }
 
-void modify(int id, int l, int r, int ql, int qr, int v){
-    if(ql <= l && r <= qr){
-        // cerr << 9;
-        settag(id, Mat(v));
-        return;
-    }
-    if(tag_act[id]) down(id);
-    int mid = l + r >> 1;
-    if(qr <= mid) modify(lson, l, mid, ql, qr, v);
-    else if(ql > mid) modify(rson, mid + 1, r, ql, qr, v);
-    else modify(lson, l, mid, ql, qr, v), modify(rson, mid + 1, r, ql, qr, v);
-    up(id);
-}
+// void modify(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr){
+//         // cerr << 9;
+//         settag(id, Mat(v));
+//         return;
+//     }
+//     if(tag_act[id]) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, v);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, v);
+//     else modify(lson, l, mid, ql, qr, v), modify(rson, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
 
-int query(int id, int l, int r, int ql, int qr){
-    if(ql <= l && r <= qr) return tr[id].val[2] % mod;
-    if(tag_act[id]) down(id);
-    int mid = l + r >> 1;
-    if(qr <= mid) return query(lson, l, mid, ql, qr) % mod;
-    else if(ql > mid) return query(rson, mid + 1, r, ql, qr) % mod;
-    else return (query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr)) % mod;
-}
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].val[2] % mod;
+//     if(tag_act[id]) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr) % mod;
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr) % mod;
+//     else return (query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr)) % mod;
+// }
 
-struct quer{
-    int ti, l, r, id;
-    bool operator<(const quer& e) const {
-        return ti < e.ti;
-    }
-};
+// struct quer{
+//     int ti, l, r, id;
+//     bool operator<(const quer& e) const {
+//         return ti < e.ti;
+//     }
+// };
 
-signed main(){
+// signed main(){
 
-    IO;
+//     IO;
 
-    cin >> n >> m >> q;
-    vector<array<int, 3>>modi(m + 1);
-    vector<quer>qr;
-    for(int i = 1;i <= n;i++) cin >> a[i];
+//     cin >> n >> m >> q;
+//     vector<array<int, 3>>modi(m + 1);
+//     vector<quer>qr;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
 
-    build(1, 1, n);
+//     build(1, 1, n);
 
-    for(int i = 1;i <= m;i++){
-        cin >> modi[i][0] >> modi[i][1] >> modi[i][2];
-    }
-    for(int i = 1;i <= q;i++){
-        int l, r, x, y;
-        cin >> l >> r >> x  >> y;
-        if(x == 0) vis[i] = 1;
-        else qr.push_back({x - 1, l, r, i});
-        qr.push_back({y, l, r, i});
-    }
-    sort(qr.begin(), qr.end());
+//     for(int i = 1;i <= m;i++){
+//         cin >> modi[i][0] >> modi[i][1] >> modi[i][2];
+//     }
+//     for(int i = 1;i <= q;i++){
+//         int l, r, x, y;
+//         cin >> l >> r >> x  >> y;
+//         if(x == 0) vis[i] = 1;
+//         else qr.push_back({x - 1, l, r, i});
+//         qr.push_back({y, l, r, i});
+//     }
+//     sort(qr.begin(), qr.end());
 
-    // cout << query(1, 1, n, 1, n) << '\n';
-    // modify(1, 1, n, 1, 2, 1);
-    // modify(1, 1, n, 3, n, 0);
-    // cout << query(1, 1, n, 1, n) << '\n';
-    // modify(1, 1, n, 1, n, 0);
-    // cout << query(1, 1, n, 1, n) << '\n';
+//     // cout << query(1, 1, n, 1, n) << '\n';
+//     // modify(1, 1, n, 1, 2, 1);
+//     // modify(1, 1, n, 3, n, 0);
+//     // cout << query(1, 1, n, 1, n) << '\n';
+//     // modify(1, 1, n, 1, n, 0);
+//     // cout << query(1, 1, n, 1, n) << '\n';
 
-    for(int i = 1;i <= m;i++){
-        auto [l, r, x] = modi[i];
-        modify(1, 1, n, l, r, x);
-        if(l > 1) modify(1, 1, n, 1, l - 1, 0);
-        if(r < n) modify(1, 1, n, r + 1, n, 0);
-        cout << i << ' ' << query(1, 1, n, 2, 2) << '\n';
-    }
+//     for(int i = 1;i <= m;i++){
+//         auto [l, r, x] = modi[i];
+//         modify(1, 1, n, l, r, x);
+//         if(l > 1) modify(1, 1, n, 1, l - 1, 0);
+//         if(r < n) modify(1, 1, n, r + 1, n, 0);
+//         cout << i << ' ' << query(1, 1, n, 2, 2) << '\n';
+//     }
 
-    // int it = 0;
-    // for(int i = 0;i <= m;i++){
-    //     auto [l, r, x] = modi[i];
-    //     // cerr << 9;
-    //     if(l){
-    //         modify(1, 1, n, l, r, x);
-    //         // if(l > 1) modify(1, 1, n, 1, l - 1, 0);
-    //         // if(r < n) modify(1, 1, n, r + 1, n, 0);
-    //     }
-    //     // cout << l << ' ' << r << ' ' << x << '\n';
-    //     while(it < qr.size() && qr[it].ti == i){
-    //         auto [ti, l, r, id] = qr[it++];
-    //         cout << ti << ' ' << l << ' ' << r << ' ' << id << '\n';
-    //         int val = query(1, 1, n, l, r);
-    //         if(vis[id]) ans[id] += val;
-    //         else{
-    //             vis[id] = 1;
-    //             ans[id] -= val;
-    //         }
-    //     }
-    // }
+//     // int it = 0;
+//     // for(int i = 0;i <= m;i++){
+//     //     auto [l, r, x] = modi[i];
+//     //     // cerr << 9;
+//     //     if(l){
+//     //         modify(1, 1, n, l, r, x);
+//     //         // if(l > 1) modify(1, 1, n, 1, l - 1, 0);
+//     //         // if(r < n) modify(1, 1, n, r + 1, n, 0);
+//     //     }
+//     //     // cout << l << ' ' << r << ' ' << x << '\n';
+//     //     while(it < qr.size() && qr[it].ti == i){
+//     //         auto [ti, l, r, id] = qr[it++];
+//     //         cout << ti << ' ' << l << ' ' << r << ' ' << id << '\n';
+//     //         int val = query(1, 1, n, l, r);
+//     //         if(vis[id]) ans[id] += val;
+//     //         else{
+//     //             vis[id] = 1;
+//     //             ans[id] -= val;
+//     //         }
+//     //     }
+//     // }
 
-    // for(int i = 1;i <= q;i++)
-    //     cout << ans[i] % mod << '\n';
+//     // for(int i = 1;i <= q;i++)
+//     //     cout << ans[i] % mod << '\n';
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// int n, m, a[N];
+
+// void solve(){
+//     cin >> n;
+//     vector<array<int, 2>> vec(n + 1);
+//     vector<int> ans(n + 1);
+//     for(int i = 1;i <= n;i++) cin >> vec[i][0], vec[i][1] = i;
+//     sort(vec.begin() + 1, vec.end());
+//     for(int i = 1, tmp = n;i <= n;i++, tmp--){
+//         ans[vec[i][1]] = tmp;
+//     }
+//     for(int i = 1;i <= n;i++) cout << ans[i] << ' ';
+//     cout << '\n';
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// int n, m, a[N];
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     int mid = (n + 1) / 2;
+
+//     int q = 1, p = n;
+//     bool ok = true;
+//     while(q < p){
+//         if(s[q++] != s[p--]){
+//             ok = false;
+//             break;
+//         }
+//     }
+//     if(ok){
+//         for(int i = 0;i <= n;i++){
+//             if(i & 1){
+//                 if(n & 1) cout << 1;
+//                 else cout << 0;
+//             }else{
+//                 cout << 1;
+//             }
+//         }
+//         cout << '\n';
+//         return;
+//     }
+
+//     int mst = 0, cnt = 0;
+//     for(int i = 1;i <= mid;i++){
+//         if(s[i] != s[n + 1 - i]) mst++;
+//         else cnt += 2;
+//     }
+//     vector<int>ans(n + 2);
+//     if(n & 1){
+//         cnt -= 2;
+//         for(int i = mst;i <= mst + 1 + cnt;i++) ans[i] = 1;
+//     }else{
+//         for(int i = mst;i <= mst + cnt;i += 2) ans[i] = 1;
+//     }
+//     for(int i = 0;i <= n;i++) cout << ans[i];
+//     cout << '\n';
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// int n, m, a[N], y;
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     int cur = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] > cur) break;
+//         cur++;
+//     }
+//     while(1){
+//         cout << cur << '\n';
+//         fflush(stdout);
+//         cin >> y;
+//         if(y == -1 || y == -2) return;
+//         cur = y;
+//     }
+// }
+
+// signed main(){
+
+//     // IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int mod = 1e9 + 7;
+// int n, m, a[N], k;
+
+// void solve(){
+//     cin >> n >> k;
+//     vector<int>vis(n + 1);
+//     vector<int>cd(n + 1);
+//     vector<int>rd(n + 1);
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         if(a[i]) cd[i]++, rd[a[i]]++;
+//     }
+
+//     if(k==1){
+//         for(int i = 1;i <= n;i++) if(a[i] && a[i] != i){
+//             cout << "NO\n";
+//             return;
+//         }
+//         cout << "YES\n";
+//         return;
+//     }
+
+//     for(int i = 1;i <= n;i++) if(rd[i] == 0 && cd[i] == 1){
+//         int cur = i;
+//         while(rd[cur] == 0 && cd[cur] == 1){
+//             if(rd[a[cur]] == 1) rd[a[cur]]--;
+//             cd[cur]--;
+//             cur = a[cur];
+//         }
+//     }
+//     for(int i = 1;i <= n;i++) if(rd[i] && !vis[i]){
+//         int cur = a[i], siz = 1;
+//         vis[i] = 1;
+//         while(cur != i){
+//             siz++;
+//             vis[cur] = 1;
+//             cur = a[cur];
+//         }
+//         if(siz != k){
+//             cout << "NO\n";
+//             return;
+//         }
+//     }
+//     cout << "YES\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
