@@ -459,3 +459,109 @@
 
 //     return 0;
 // }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define all(x) x.begin(), x.end()
+const int N = 2e5 + 10;
+const int mod = 1e9 + 7;
+const int as = 5782344;
+int n, q;
+
+struct node{
+    int l, r, id;
+    node(int l = 0, int r = 0, int id = 0) : l(l), r(r), id(id) {}
+    int operator<(const node& e) const {
+        return l < e.l;
+    }
+    int operator>(const node& e) const {
+        return l > e.l;
+    }
+}pt[N];
+
+int qpow(int a, int x){
+    int ret = 1;
+    while(x){
+        if(x & 1) ret = ret * a % mod;
+        a = a * a % mod;
+        x >>= 1;
+    }
+    return ret;
+}
+
+//树状数组
+vector<node>tr[N];
+int lowbit(int x){
+    return x & -x;
+}
+void add(int x, const node& e){
+    while(x < N){
+        tr[x].push_back(e);
+        x += lowbit(x);
+    }
+}
+vector<node> getvec(int x, int L){
+    vector<node>ret;
+    while(x > 0){
+        ret.insert(ret.end(), lower_bound(all(tr[x]), node(L, 0, 0)), tr[x].end());
+        x -= lowbit(x);
+    }
+    return ret;
+}
+
+void solve(){
+    cin >> n >> q;
+    vector<int>idx;
+    idx.reserve(2 * n + 1);
+    for(int i = 1, x, y;i <= n;i++){
+        cin >> x >> y;
+        pt[i] = {y - x, y + x, i};
+        idx.push_back(y - x);
+        idx.push_back(y + x);
+    }
+    sort(idx.begin(), idx.end());
+    for(int i = 1;i <= n;i++){
+        pt[i].l = lower_bound(all(idx), pt[i].l) - idx.begin() + 1;
+        pt[i].r = lower_bound(all(idx), pt[i].r) - idx.begin() + 1;
+    }
+    sort(pt + 1, pt + 1 + n, [](const node& e1, const node& e2)->int {return e1.r < e2.r;});
+
+    for(int i = 1;i <= n;i++){
+        add(pt[i].l, pt[i]);
+    }
+
+
+    for(int i = 1, a, b, xm, ym, p = 0, L, R;i <= q;i++){
+        cin >> a >> b;
+        xm = -1 - ((p + a) % mod);
+        ym = (p + b) % mod;
+        L = ym - xm;
+        R = ym + xm;
+        L = lower_bound(all(idx), L) - idx.begin() + 1;
+        R = lower_bound(all(idx), R) - idx.begin() + 1;
+
+        vector<node>res = getvec(R, L);
+        cout << res.size() << ' ';
+        sort(all(res), [](const node& e1, const node& e2)->int {return e1.id < e2.id;});
+        for(int j = 0, len = res.size(); j < len;j++){
+            p = (p + res[j].id * qpow(as, j)) % mod;
+        }
+        cout << p << '\n';
+    }
+}
+
+signed main(){
+
+    IO;
+
+    int t = 1;
+    // cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
