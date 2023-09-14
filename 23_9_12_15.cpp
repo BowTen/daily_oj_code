@@ -462,106 +462,224 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) x.begin(), x.end()
-const int N = 2e5 + 10;
-const int mod = 1e9 + 7;
-const int as = 5782344;
-int n, q;
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// const int N = 2e5 + 10;
+// const int mod = 1e9 + 7;
+// const int as = 5782344;
+// int n, q;
 
-struct node{
-    int l, r, id;
-    node(int l = 0, int r = 0, int id = 0) : l(l), r(r), id(id) {}
-    int operator<(const node& e) const {
-        return l < e.l;
-    }
-    int operator>(const node& e) const {
-        return l > e.l;
-    }
-}pt[N];
+// struct node{
+//     double l, r;
+//     int id;
+//     node(double l = 0, double r = 0, int id = 0) : l(l), r(r), id(id) {}
+//     int operator<(const node& e) const {
+//         return r < e.r;
+//     }
+//     int operator>(const node& e) const {
+//         return r > e.r;
+//     }
+// }pt[N];
 
-int qpow(int a, int x){
-    int ret = 1;
-    while(x){
-        if(x & 1) ret = ret * a % mod;
-        a = a * a % mod;
-        x >>= 1;
-    }
-    return ret;
-}
+// int qpow(int a, int x){
+//     int ret = 1;
+//     while(x){
+//         if(x & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         x >>= 1;
+//     }
+//     return ret;
+// }
 
-//树状数组
-vector<node>tr[N];
-int lowbit(int x){
-    return x & -x;
-}
-void add(int x, const node& e){
-    while(x < N){
-        tr[x].push_back(e);
-        x += lowbit(x);
-    }
-}
-vector<node> getvec(int x, int L){
-    vector<node>ret;
-    while(x > 0){
-        ret.insert(ret.end(), lower_bound(all(tr[x]), node(L, 0, 0)), tr[x].end());
-        x -= lowbit(x);
-    }
-    return ret;
-}
+// //树状数组
+// vector<node>tr[N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x, const node& e){
+//     while(x < N){
+//         tr[x].push_back(e);
+//         x += lowbit(x);
+//     }
+// }
+// vector<node> getvec(int x, int L){
+//     vector<node>ret;
+//     while(x > 0){
+//         ret.insert(ret.end(), lower_bound(all(tr[x]), node(0, L, 0)), tr[x].end());
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
 
-void solve(){
-    cin >> n >> q;
-    vector<int>idx;
-    idx.reserve(2 * n + 1);
-    for(int i = 1, x, y;i <= n;i++){
-        cin >> x >> y;
-        pt[i] = {y - x, y + x, i};
-        idx.push_back(y - x);
-        idx.push_back(y + x);
-    }
-    sort(idx.begin(), idx.end());
-    for(int i = 1;i <= n;i++){
-        pt[i].l = lower_bound(all(idx), pt[i].l) - idx.begin() + 1;
-        pt[i].r = lower_bound(all(idx), pt[i].r) - idx.begin() + 1;
-    }
-    sort(pt + 1, pt + 1 + n, [](const node& e1, const node& e2)->int {return e1.r < e2.r;});
+// void solve(){
+//     cin >> n >> q;
+//     vector<double>idx;
+//     idx.reserve(2 * n + 1);
+//     for(int i = 1;i <= n;i++){
+//         double x, y;
+//         cin >> x >> y;
+//         x /= 2.0;
+//         pt[i] = {y - x, y + x, i};
+//         idx.push_back(y - x);
+//         idx.push_back(y + x);
+//     }
+//     sort(idx.begin(), idx.end());
+//     for(int i = 1;i <= n;i++){
+//         pt[i].l = lower_bound(all(idx), pt[i].l) - idx.begin() + 1;
+//         pt[i].r = lower_bound(all(idx), pt[i].r) - idx.begin() + 1;
+//     }
+//     sort(pt + 1, pt + 1 + n, [](const node& e1, const node& e2)->int {return e1.r < e2.r;});
 
-    for(int i = 1;i <= n;i++){
-        add(pt[i].l, pt[i]);
-    }
+//     for(int i = 1;i <= n;i++){
+//         add(pt[i].l, pt[i]);
+//         // cout << pt[i].l << endl;
+//     }
 
 
-    for(int i = 1, a, b, xm, ym, p = 0, L, R;i <= q;i++){
-        cin >> a >> b;
-        xm = -1 - ((p + a) % mod);
-        ym = (p + b) % mod;
-        L = ym - xm;
-        R = ym + xm;
-        L = lower_bound(all(idx), L) - idx.begin() + 1;
-        R = lower_bound(all(idx), R) - idx.begin() + 1;
+//     for(int i = 1, a, b, p = 0;i <= q;i++){
+//         cin >> a >> b;
+//         int xm, ym;
+//         double L, R;
+//         xm = -1 - ((p + a) % mod);
+//         ym = (p + b) % mod;
+//         // cout << xm << ' ' << ym << endl;
+//         double xx = xm / 2.0;
+//         L = ym + xx;
+//         R = ym - xx;
+//         // cout << L << ' ' << R << '\n';
+//         L = lower_bound(all(idx), L) - idx.begin() + 1;
+//         R = lower_bound(all(idx), R) - idx.begin() + 1;
 
-        vector<node>res = getvec(R, L);
-        cout << res.size() << ' ';
-        sort(all(res), [](const node& e1, const node& e2)->int {return e1.id < e2.id;});
-        for(int j = 0, len = res.size(); j < len;j++){
-            p = (p + res[j].id * qpow(as, j)) % mod;
-        }
-        cout << p << '\n';
-    }
-}
+//         int ans = 0;
+//         vector<node>res = getvec(R, L);
+//         // cout << res.size() << ' ';
+//         sort(all(res), [](const node& e1, const node& e2)->int {return e1.id < e2.id;});
+//         for(int j = 0, len = res.size(); j < len;j++){
+//             ans = (ans + res[j].id * qpow(as, j)) % mod;
+//             // cout << res[j].id << endl;
+//         }
+//         cout << ans << '\n';
+//         p = ans;
+//     }
 
-signed main(){
+//     // cout << "End\n";
+// }
 
-    IO;
+// signed main(){
 
-    int t = 1;
-    // cin >> t;
-    while(t--) solve();
+//     IO;
 
-    return 0;
-}
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int mod = 1e9 + 7;
+// int n;
+
+// void solve(){
+//     string s;
+//     cin >> n;
+//     cin >> s;
+//     s = ' ' + s;
+//     int E = 0, N = 0, ans = 0;
+//     for(int i = n;i >= 1;i--){
+//         if(s[i] == 'N') N++;
+//         else if(s[i] == 'E') E = (E + N) % mod;
+//         else if(s[i] == 'T') ans = (ans + E) % mod;
+//     }
+//     if(ans) cout << ans % mod;
+//     else cout << "ten,win!!!";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e4 + 10;
+// int n, m, a[N], b[N];
+
+// //树状数组
+// int tr[N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x){
+//     while(x <= n){
+//         tr[x] ++;
+//         x += lowbit(x);
+//     }
+// }
+// int getsum(int x){
+//     int ret = 0;
+//     while(x > 0){
+//         ret += tr[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void solve(){
+//     memset(tr, 0, sizeof(tr));
+//     cin >> n >> m;
+//     int f = 0;
+//     vector<int>idx;
+//     for(int i = 1;i <= n;i++) cin >> a[i], idx.push_back(a[i]);
+//     for(int i = 1;i <= m;i++) cin >> b[i], f |= (b[i] & 1);
+
+//     if(f){
+//         cout << "Yes\n";
+//         return;
+//     }
+
+//     sort(idx.begin(), idx.end());
+//     idx.erase(unique(idx.begin(), idx.end()), idx.end());
+//     if(idx.size() < n){
+//         cout << "Yes\n";
+//         return;
+//     }
+// 	int sum = 0;
+//     for(int i = n;i >= 1;i--){
+//         a[i] = lower_bound(idx.begin(), idx.end(), a[i]) - idx.begin() + 2;
+//         sum += getsum(a[i] - 1);
+//         add(a[i]);
+//     }
+
+// 	if(sum % 2 == 0) cout << "Yes\n";
+// 	else cout << "No\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
