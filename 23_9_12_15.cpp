@@ -683,3 +683,295 @@
 
 // 	return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e4 + 10;
+// int n, k, a[N], b[N], fac[11];
+
+// int vis[11], num[11];
+
+// int numat(int x){
+//     int cnt = 0, ret = 1;
+//     while(1){
+//         if(vis[ret] == 0){
+//             cnt++;
+//         }
+//         if(cnt == x) {
+//             vis[ret] = 1;
+//             return num[ret];
+//         }
+//         ret++;
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) cin >> num[i];
+//     sort(num + 1, num + 1 + n);
+//     fac[0] = 1;
+//     for(int i = 1;i <= n;i++) fac[i] = i * fac[i-1];
+//     k = fac[n] - k + 1;
+//     for(int i = n;i >= 1;i--){
+//         cout << numat(((max(0, k - 1)) / fac[i-1]) + 1);
+//         k %= fac[i-1];
+//         if(k == 0) k = fac[i-1];
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+// 	int t = 1;
+// 	// cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e4 + 10;
+// int n, k, a[N], b[N], fac[11], num[11];
+
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) cin >> num[i];
+//     sort(num + 1, num + 1 + n);
+//     fac[0] = 1;
+//     for(int i = 1;i <= n;i++) fac[i] = i * fac[i-1];
+//     k = fac[n] - k + 1;
+//     for(int i = 1;i < k;i++) next_permutation(num + 1, num + 1 + n);
+//     for(int i = 1;i <= n;i++) cout << num[i];
+// }
+
+// signed main(){
+
+//     IO;
+
+// 	int t = 1;
+// 	// cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// const int N = 2e5 + 10;
+// const int mod = 1e9 + 7;
+// const int as = 5782344;
+// int n, q;
+
+// struct node{
+//     int l, r, id;
+//     node(int l = 0, int r = 0, int id = 0) : l(l), r(r), id(id) {}
+//     int operator<(const node& e) const {
+//         return r < e.r;
+//     }
+//     int operator>(const node& e) const {
+//         return r > e.r;
+//     }
+// }pt[N];
+
+// int qpow(int a, int x){
+//     int ret = 1;
+//     while(x){
+//         if(x & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         x >>= 1;
+//     }
+//     return ret;
+// }
+
+// //树状数组
+// vector<node>tr[N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x, const node& e){
+//     while(x < N){
+//         tr[x].push_back(e);
+//         x += lowbit(x);
+//     }
+// }
+// vector<node> getvec(int x, int L){
+//     vector<node>ret;
+//     while(x > 0){
+//         ret.insert(ret.end(), lower_bound(all(tr[x]), node(0, L, 0)), tr[x].end());
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n >> q;
+//     vector<int>idx;
+//     idx.reserve(2 * n + 1);
+//     for(int i = 1, x, y;i <= n;i++){
+//         cin >> x >> y;
+//         pt[i] = {2 * y - x, 2 * y + x, i};
+//         idx.push_back(pt[i].l);
+//         // idx.push_back(pt[i].r);
+//     }
+//     sort(idx.begin(), idx.end());
+//     for(int i = 1;i <= n;i++){
+//         pt[i].l = lower_bound(all(idx), pt[i].l) - idx.begin() + 1;
+//         // pt[i].r = lower_bound(all(idx), pt[i].r) - idx.begin() + 1;
+//     }
+//     sort(pt + 1, pt + 1 + n, [](const node& e1, const node& e2)->int {return e1.r < e2.r;});
+
+//     for(int i = 1;i <= n;i++){
+//         add(pt[i].l, pt[i]);
+//         // cout << pt[i].l << endl;
+//     }
+
+
+//     for(int i = 1, a, b, p = 0, xm, ym, L, R;i <= q;i++){
+//         cin >> a >> b;
+//         xm = -1 - ((p + a) % mod);
+//         ym = (p + b) % mod;
+//         // cout << xm << ' ' << ym << endl;
+//         L = 2 * ym + xm;
+//         R = 2 * ym - xm;
+//         // cout << L << ' ' << R << '\n';
+//         // L = upper_bound(all(idx), L) - idx.begin();
+//         R = upper_bound(all(idx), R) - idx.begin();
+
+//         int ans = 0;
+//         vector<node>res = getvec(R, L);
+//         // cout << res.size() << ' ';
+//         sort(all(res), [](const node& e1, const node& e2)->int {return e1.id < e2.id;});
+//         for(int j = 0, len = res.size(); j < len;j++){
+//             ans = (ans + res[j].id * qpow(as, j)) % mod;
+//             // cout << res[j].id << endl;
+//         }
+//         cout << ans << '\n';
+//         p = ans;
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #include<ext/rope>
+// using namespace std;
+// using namespace __gnu_cxx;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// int n, m, tot, x;
+// rope<char>* s[N];
+
+// signed main(){
+
+//     IO;
+
+//     s[0] = new rope<char>;
+//     cin >> n;
+//     while(n--){
+//         char op, c;
+//         cin >> op;
+//         if(op == 'T'){
+//             cin >> c;
+//             tot++;
+//             s[tot] = new rope<char>(*s[tot-1]);
+//             s[tot]->push_back(c);
+//         }else if(op == 'U'){
+//             cin >> x;
+//             tot++;
+//             s[tot] = new rope<char>(*s[tot-x-1]);
+//         }else{
+//             cin >> x;
+//             cout << s[tot]->at(x-1) << '\n';
+//         }
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int M = 1e7;
+// int n, m, tot, x, len[N], cur;
+// int rt[M], lson[M], rson[M];
+// char tr[M];
+
+// void newline(int &rt, int pre, int l, int r, int x, char c){
+//     rt = ++tot;
+//     lson[rt] = lson[pre];
+//     rson[rt] = rson[pre];
+//     if(l == r){
+//         tr[rt] = c;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) newline(lson[rt], lson[pre], l, mid ,x, c);
+//     else newline(rson[rt], rson[pre], mid + 1, r, x, c);
+// }
+
+// char query(int id, int l, int r, int x){
+//     if(l == r) return tr[id];
+//     int mid = l + r >> 1;
+//     if(x <= mid) return query(lson[id], l, mid, x);
+//     else return query(rson[id], mid + 1, r, x);
+// }
+
+// signed main(){
+
+//     IO;
+
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         char op, c;
+//         cin >> op;
+//         if(op == 'T'){
+//             cin >> c;
+//             cur++;
+//             len[cur] = len[cur-1] + 1;
+//             newline(rt[cur], rt[cur-1], 1, M, len[cur], c);
+//         }else if(op == 'U'){
+//             cin >> x;
+//             cur++;
+//             len[cur] = len[cur - x - 1];
+//             rt[cur] = rt[cur - x - 1];
+//         }else{
+//             cin >> x;
+//             cout << query(rt[cur], 1, M, x) << '\n';
+//         }
+//     }
+
+//     return 0;
+// }
