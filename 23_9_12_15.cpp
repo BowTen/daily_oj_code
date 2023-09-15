@@ -52,8 +52,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -116,9 +114,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -126,7 +121,6 @@
 // #define endl '\n'
 // const int N = 2e5 + 10;
 // int n, a[N];
-
 
 // void solve(){
 //     cin >> n;
@@ -151,9 +145,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -161,7 +152,6 @@
 // #define endl '\n'
 // const int N = 2e5 + 10;
 // int n, k, a, b, x[N], y[N];
-
 
 // void solve(){
 //     cin >> n >> k >> a >> b;
@@ -190,9 +180,6 @@
 //     return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -200,7 +187,6 @@
 // #define endl '\n'
 // const int N = 2e5 + 10;
 // int n, m;
-
 
 // void solve(){
 //     cin >> n >> m;
@@ -231,9 +217,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -302,8 +285,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -341,7 +322,7 @@
 //         tr[x] += v;
 //         x += lowbit(x);
 //     }
-// }   
+// }
 
 // int getsum(int x){
 //     int ret = 0;
@@ -378,7 +359,6 @@
 
 //     dfs2(1);
 
-
 //     for(int i = 1;i <= n;i++) cout << ans[i] << ' ';
 
 // }
@@ -394,8 +374,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -405,8 +383,8 @@
 // int n, m;
 
 // struct node{
-//     int l, v, id; 
-//     node(int l = 0, int v = 0, int id = 0) : l(l), v(v), id(id) {}   
+//     int l, v, id;
+//     node(int l = 0, int v = 0, int id = 0) : l(l), v(v), id(id) {}
 // };
 // vector<node>tim[88000];
 
@@ -459,8 +437,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -539,7 +515,6 @@
 //         // cout << pt[i].l << endl;
 //     }
 
-
 //     for(int i = 1, a, b, p = 0;i <= q;i++){
 //         cin >> a >> b;
 //         int xm, ym;
@@ -580,8 +555,6 @@
 //     return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -614,7 +587,6 @@
 
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -684,9 +656,6 @@
 // 	return 0;
 // }
 
-
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
@@ -734,14 +703,11 @@
 // 	return 0;
 // }
 
-
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 // const int N = 1e4 + 10;
 // int n, k, a[N], b[N], fac[11], num[11];
-
 
 // void solve(){
 //     cin >> n >> k;
@@ -764,8 +730,6 @@
 
 // 	return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -841,7 +805,6 @@
 //         // cout << pt[i].l << endl;
 //     }
 
-
 //     for(int i = 1, a, b, p = 0, xm, ym, L, R;i <= q;i++){
 //         cin >> a >> b;
 //         xm = -1 - ((p + a) % mod);
@@ -876,9 +839,6 @@
 
 //     return 0;
 // }
-
-
-
 
 // #include<bits/stdc++.h>
 // #include<ext/rope>
@@ -916,8 +876,6 @@
 
 //     return 0;
 // }
-
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
