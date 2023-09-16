@@ -933,3 +933,153 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// const int M = 1e9 + 10;
+// int n, a[N], q;
+
+// //可持久化线段树
+// int rt[N], lson[N * 101], rson[N * 101], xorsum[N * 101], tot;
+// void newLine(int &cur, int pre, int l, int r, int x, int v){
+//     cur = ++tot;
+//     // if(r == M && l == 1){
+//     //     cerr << pre << ' '  << cur << endl;
+//     // }
+//     xorsum[cur] = xorsum[pre] ^ v;
+//     lson[cur] = lson[pre], rson[cur] = rson[pre];
+//     if(l == r) return;
+//     int mid = l + r >> 1;
+//     if(x <= mid) newLine(lson[cur], lson[pre], l, mid, x, v);
+//     else newLine(rson[cur], rson[pre], mid + 1, r, x, v);
+// }
+// int query(int lrt, int rrt, int l, int r){
+//     if(l == r) return l;
+//     int mid = l + r >> 1;
+//     if(xorsum[lson[lrt]] ^ xorsum[lson[rrt]]) return query(lson[lrt], lson[rrt], l, mid);
+//     else return query(rson[lrt], rson[rrt], mid + 1, r);
+// }
+
+// void solve(){
+//     mt19937 rnd(time(0));
+//     map<int,int>mp;
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         while(!mp[a[i]]) mp[a[i]] = rnd();
+//         newLine(rt[i], rt[i-1], 1, M, a[i], mp[a[i]]);
+//     }
+//     cin >> q;
+//     int x, y, l, r, ans = 0;
+//     while(q--){
+//         cin >> x >> y;
+//         l = x ^ ans;
+//         r = y ^ ans;
+//         if((xorsum[rt[l - 1]] ^ xorsum[rt[r]]) == 0) ans = 0;
+//         else ans = query(rt[l - 1], rt[r], 1, M);
+//         cout << ans << endl;
+//     }
+//     // for(int i = 0;i <= n;i++)
+//     //     cerr << mp[i] << endl;  
+//     // for(int i = 0;i <= n;i++)
+//     //     cerr << xorsum[i] << endl;  
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// // #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// const int N = 3e5 + 10;
+// const int M = 1e7 + 10;
+// int n, m, k;
+
+// struct edge{
+//     int l, r, p;
+//     edge(int l = 0, int r = 0, int p = 0) : l(l), r(r), p(p) {}
+//     int operator<(const edge& e) const {
+//         return r < e.r;
+//     }
+// }g[N];
+
+// int rt[N], lson[M], rson[M], mn[M], tot;
+// void upDate(int &cur, int pre, int l, int r, int x, int v){
+//     cur = ++tot;
+//     lson[cur] = lson[pre], rson[cur] = rson[pre];
+//     mn[cur] = mn[pre];
+//     if(l == r){
+//         mn[cur] = max(mn[cur], v);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) upDate(lson[cur], lson[pre], l, mid, x, v);
+//     else upDate(rson[cur], rson[pre], mid + 1, r, x, v);
+//     mn[cur] = min(mn[lson[cur]], mn[rson[cur]]);
+// }
+// int query(int id, int l, int r, int ql, int qr){
+//     if(l > qr || r < ql) return 1e9 + 10;
+//     if(ql <= l && r <= qr) return mn[id];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson[id], l, mid, ql, qr);
+//     else if(ql > mid) return query(rson[id], mid + 1, r, ql, qr);
+//     else return min(query(lson[id], l, mid, ql, qr), query(rson[id], mid + 1, r, ql, qr));
+// }
+
+// void solve(){
+//     scanf("%d%d%d", &n, &m, &k);
+//     vector<int>idx;
+//     for(int i = 1;i <= k;i++){
+//         scanf("%d%d%d", &g[i].l, &g[i].r, &g[i].p);
+//         idx.push_back(g[i].r);
+//     }
+//     sort(all(idx));
+//     idx.erase(unique(all(idx)), idx.end());
+//     sort(g + 1, g + 1 + k);
+//     for(int i = 1;i <= k;i++){
+//         g[i].r = lower_bound(all(idx), g[i].r) - idx.begin() + 1;
+//     }
+//     int ls = 0;
+//     for(int i = 1;i <= k;i++){
+//         upDate(rt[g[i].r], rt[ls], 1, n, g[i].p, g[i].l);
+//         ls = g[i].r;
+//     }
+//     while(m--){
+//         int a, b, x, y;
+//         scanf("%d%d%d%d", &a, &b, &x, &y);
+//         y = upper_bound(all(idx), y) - idx.begin();
+//         if(y == 0) printf("no\n");
+//         else{
+//             if(query(rt[y], 1, n, a, b) >= x) printf("yes\n");
+//             else printf("no\n");
+//         }
+//         fflush(stdout);
+//     }
+// }
+
+// signed main(){
+
+//     solve();
+
+//     return 0;
+// }
