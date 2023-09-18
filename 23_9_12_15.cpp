@@ -1279,3 +1279,239 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e5 + 10;
+// int n, m, a[N];
+
+
+// void solve(){
+//     cin >> n;
+//     int num[101] = {0};
+//     int mx = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         mx = max(mx, a[i]);
+//         num[a[i]]++;
+//     }
+//     for(int i = 1;i <= mx;i++){
+//         if(num[i] > num[i-1]){
+//             cout << "NO\n";
+//             return;
+//         }
+//     }
+//     cout << "YES\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f;
+// int n, m, a[N];
+
+// struct Tree_b{
+//     struct node{
+//         int sum, len, tag;
+//     }tr[N << 2];
+//     int siz;
+//     Tree_b() : siz(0) {}
+
+//     void init(){
+//         siz = 0;
+//         build(1, 1, n);
+//     }
+//     void up(int id);
+//     void settag(int id, int x);
+//     void down(int id);
+//     void build(int id, int l, int r);
+//     void modify(int id, int l, int r, int ql, int qr, int x);
+//     int query(int id, int l, int r, int ql, int qr);
+//     void insert(int id, int l, int r, int x, int v);
+// }B;
+// void Tree_b::up(int id){
+//     tr[id].len = tr[lson].len + tr[rson].len;
+//     tr[id].sum = tr[lson].sum + tr[rson].sum;
+// }
+// void Tree_b::settag(int id, int x){
+//     if(tr[id].len == 0) return;
+//     tr[id].sum = tr[id].len * x - tr[id].sum;
+//     tr[id].tag += x;
+// }
+// void Tree_b::down(int id){
+//     if(tr[id].len == 0) return;
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+// void Tree_b::build(int id, int l, int r){
+//     tr[id].tag = tr[id].sum = tr[id].len = 0;
+//     if(l == r) return;
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+// }
+// void Tree_b::modify(int id, int l, int r, int ql, int qr, int x){
+//     if(tr[id].len == 0) return;
+//     if(ql <= l && r <= qr){
+//         settag(id, x);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, x);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, x);
+//     else modify(lson, l, mid, ql, qr, x), modify(rson, mid + 1, r, ql, qr, x);
+//     up(id);
+// }
+// int Tree_b::query(int id, int l, int r, int ql, int qr){
+//     if(tr[id].len == 0) return 0;
+//     if(ql <= l && r <= qr) return tr[id].sum;
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+// }
+// void Tree_b::insert(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         tr[id].len = 1;
+//         tr[id].sum = v;
+//         siz++;
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(x <= mid) insert(lson, l, mid, x, v);
+//     else insert(rson, mid + 1, r, x, v);
+//     up(id);
+// }
+
+// struct Tree_a{
+//     struct node{
+//         int mn, sum, len, tag;
+//     }tr[N << 2];
+
+//     void up(int id);
+//     void settag(int id, int x);
+//     void down(int id);
+//     void build(int id, int l, int r);
+//     void modify(int id, int l, int r, int ql, int qr, int x);
+//     int query(int id, int l, int r, int ql, int qr);
+// }A;
+// void Tree_a::up(int id){
+//     tr[id].sum = (tr[lson].len ? tr[lson].sum : 0) + (tr[rson].len ? tr[rson].sum : 0);
+//     tr[id].mn = min(tr[lson].mn, tr[rson].mn);
+//     tr[id].len = tr[lson].len + tr[rson].len;
+// }
+// void Tree_a::settag(int id, int x){
+//     if(tr[id].len == 0) return;
+//     tr[id].tag += x;
+//     tr[id].sum -= tr[id].len * x;
+//     tr[id].mn -= x;
+// }
+// void Tree_a::down(int id){
+//     if(tr[id].len == 0) return;
+//     settag(lson, tr[id].tag);
+//     settag(rson, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+// void Tree_a::build(int id, int l, int r){
+//     tr[id].tag = 0;
+//     if(l == r){
+//         tr[id].mn = tr[id].sum = a[l];
+//         tr[id].len = 1;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+// void Tree_a::modify(int id, int l, int r, int ql, int qr, int x){
+//     if(tr[id].len == 0) return;
+//     if(ql <= l && r <= qr){
+//         if(tr[id].mn >= x){
+//             settag(id, x);
+//             return;
+//         }
+//         if(l == r){
+//             B.insert(1, 1, n, l, tr[id].sum);
+//             tr[id].mn = inf;
+//             tr[id].len = 0;
+//             tr[id].sum = 0;
+//             return;
+//         }
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr, x);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr, x);
+//     else modify(lson, l, mid, ql, qr, x), modify(rson, mid + 1, r, ql, qr, x);
+//     up(id);
+// }
+// int Tree_a::query(int id, int l, int r, int ql, int qr){
+//     if(tr[id].len == 0) return 0;
+//     if(ql <= l && r <= qr) return tr[id].sum;
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr);
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     A.build(1, 1, n);
+//     B.init();
+//     for(int i = 1;i <= m;i++){
+//         int op, l, r, x;
+//         cin >> op >> l >> r;
+//         if(op == 1){
+//             cin >> x;
+//             A.modify(1, 1, n, l, r, x);
+//             B.modify(1, 1, n, l, r, x);
+//         }else{
+//             cout << A.query(1, 1, n, l, r) + B.query(1, 1, n, l, r) << endl;
+//         }
+//     }
+//     // A.modify(1, 1, n, 1, 5, 3);
+//     // B.modify(1, 1, n, 1, 5, 3);
+//     // cout << A.query(1, 1, n, 2, 4) + B.query(1, 1, n, 2, 4) << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
