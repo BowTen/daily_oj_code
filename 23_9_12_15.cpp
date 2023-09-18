@@ -1515,3 +1515,161 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, m, a[N], k, mx[N], mn[N], vis[N], q, p;
+
+// void setmn(int v, int x){
+//     while(q <= v){
+//         mn[q] = x;
+//         q++;
+//     }
+// }
+
+// void setmx(int v, int x){
+//     while(p <= v){
+//         mx[p] = x;
+//         p++;
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> k;
+//     q = p = 1;
+//     for(int i = 1;i <= k;i++) mx[i] = mn[i] = vis[i] = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         vis[a[i]] = 1;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         setmn(a[i], i);
+//     }
+//     for(int i = n;i >= 1;i--){
+//         setmx(a[i], i);
+//     }
+//     for(int i = 1;i <= k;i++){
+//         if(!vis[i]) cout << 0 << ' ';
+//         else cout << (mx[i] - mn[i] + 1) * 2 << ' ';
+//     }
+
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, m, a[N], k, d[N], suf[N];
+
+// struct node{
+//     int mn, i;
+// }tr[N << 2];
+// void up(int id){
+//     tr[id].mn = min(tr[lson].mn, tr[rson].mn);
+//     if(tr[lson].mn < tr[rson].mn) tr[id].i = tr[lson].i;
+//     else tr[id].i = tr[rson].i;
+// }
+// void build(int id, int l ,int r){
+//     if(l == r){
+//         tr[id].mn = a[l];
+//         tr[id].i = l;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+// int query(int id, int l, int r, int ql ,int qr){
+//     if(ql <= l && r <= qr){
+//         return tr[id].i;
+//     }
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else {
+//         int ld = query(lson, l, mid, ql, qr);
+//         int rd = query(rson, mid + 1, r, ql, qr);
+//         if(a[ld] < a[rd]) return ld;
+//         else return rd;
+//     }
+// }
+
+// void solve(){
+//     cin >> n;
+//     int mx = 0;
+//     for(int i = 1;i <= n;i++) cin >> a[i], suf[i] = 0;
+//     suf[n + 1] = 0;
+//     cin >> k;
+//     build(1, 1, n);
+//     for(int i = 1;i <= n;i++) d[i] = k / a[i], mx = max(mx, d[i]);
+//     int fs = 0;
+//     for(int i = n;i >= 1;i--) if(d[i] == mx){
+//         fs = i;
+//         suf[fs] = d[i];
+//         break;
+//     }
+//     if(fs == 0){
+//         for(int i = 1;i <= n;i++) cout << 0 << ' ';
+//     }else{
+//         int cnt = k % a[fs];
+//         int cur = fs + 1;
+//         while(cur <= n){
+//             int md = query(1, 1, n, cur, n);
+//             int delt = a[md] - a[fs];
+//             // cout << cur << ' ' << md << ' ' << delt << ' ' << cnt << endl;
+//             if(cnt >= delt){
+//                 int t = cnt / delt;
+//                 suf[fs] -= t;
+//                 suf[md] += t;
+//                 cnt %= delt;
+//             }else break;
+//             cur = md + 1;
+//             fs = md;
+//         }
+//         for(int i = n;i >= 1;i--){
+//             suf[i] += suf[i+1];
+//         }
+//         for(int i = 1;i <= n;i++) cout << suf[i] << ' ';
+//     }
+//     // cout << fs;
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--)solve();
+
+//     return 0;
+// }
