@@ -2126,3 +2126,247 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, num[20];
+
+// int dp[20][20][2000][2];
+// int dfs(int pos, int point, int sum, bool limited){
+//     if(!pos) return (sum == 0);
+//     if(sum < 0) return 0;
+//     if(~dp[pos][point][sum][limited]) return dp[pos][point][sum][limited];
+//     int top = (limited ? num[pos] : 9);
+//     int ret = 0;
+//     for(int i = 0;i <= top;i++) ret += dfs(pos - 1, point, sum + i * (pos - point), i == top && limited);
+//     return dp[pos][point][sum][limited] = ret;
+// }
+
+// int f(int x){
+//     if(x < 0) return 0;
+//     if(x == 0) return 1;
+//     memset(dp, -1, sizeof(dp));
+//     int tot = 0;
+//     while(x) num[++tot] = x % 10, x /= 10;
+//     int ret = 0;
+//     for(int i = 1;i <= tot;i++) ret += dfs(tot, i, 0, 1);
+//     return ret - tot + 1;
+// }
+
+// void solve(){
+//     int a, b;
+//     cin >> a >> b;
+//     cout << f(b) - f(a - 1) << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, num[20];
+
+// int dp[20][2], cnt[11];
+
+// int dfs(int pos, bool limited){
+//     if(!pos) return 1;
+//     if(~dp[pos][limited]) return dp[pos][limited];
+//     int top = (limited ? num[pos] : 9);
+//     int ret = 0;
+//     for(int i = 0;i <= top;i++){
+//         int tmp = dfs(pos - 1, i == top && limited);
+//         cnt[i] += tmp;
+//         ret += tmp;
+//     }
+//     return dp[pos][limited] = ret;
+// }
+
+// void f(int x){
+//     memset(dp, -1, sizeof(dp));
+//     memset(cnt, 0, sizeof(cnt));
+//     if(x <= 0) return;
+//     int tot = 0;
+//     while(x) num[++tot] = x % 10, x /= 10;
+//     dfs(tot, 1);
+// }
+
+// void solve(){
+//     int ans[11];
+//     int a, b;
+//     cin >> a >> b;
+//     f(b);
+//     for(int i = 0;i <= 9;i++) ans[i] = cnt[i];
+//     // f(a - 1);
+//     // for(int i = 0;i <= 9;i++) ans[i] -= cnt[i];
+//     for(int i = 0;i <= 9;i++) cout << ans[i] << ' ';
+//     cout << endl << dp[2][0] << ' ' << dp[2][1] << endl;
+    
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// const int N = 2e5 + 10;
+// int n, m, v[N];
+// array<int, 2>x[N];
+
+// vector<int>idx;
+// int tr[N], cnt[N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x, int v){
+//     while(x <= n){
+//         tr[x] += v;
+//         cnt[x]++;
+//         x += lowbit(x);
+//     }
+// }
+// void clear(int x, int v){
+//     while(x <= n){
+//         tr[x] -= v;
+//         cnt[x]--;
+//         x += lowbit(x);
+//     }
+// }
+// int getsum(int x){
+//     int ret = 0;
+//     while(x > 0){
+//         ret += tr[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+// int getcnt(int x){
+//     int ret = 0;
+//     while(x > 0){
+//         ret += cnt[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> x[i][0], x[i][1] = i;
+//     for(int i = 1;i <= n;i++) cin >> v[i], idx.push_back(v[i]);
+//     sort(all(idx));
+//     idx.erase(unique(all(idx)), idx.end());
+//     for(int i = 1;i <= n;i++){
+//         v[i] = lower_bound(all(idx), v[i]) - idx.begin() + 1;
+//         add(v[i], x[i][0]);
+//     }
+//     int ans = 0;
+//     sort(x + 1, x + 1 + n);
+//     for(int i = n;i >= 1;i--){
+//         int id = x[i][1], pos = x[i][0];
+//         clear(v[id], pos);
+//         ans -= getsum(v[id]);
+//         ans += getcnt(v[id]) * pos;
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define all(x) x.begin(), x.end()
+const int N = 2e5 + 10;
+int n, m, now, num[20];
+
+int dp[20][2][2];
+
+int dfs(int pos, bool lead, bool limited, int sum){
+    if(!pos) return sum;
+    if(~dp[pos][lead][limited]) return dp[pos][lead][limited];
+    int top = (limited ? num[pos] : 9);
+    int ret = 0;
+    for(int i = 0;i <= top;i++){
+        if(i == 0 && lead) ret += dfs(pos - 1, 1, (limited && i == top), sum);
+        else if(i == now) ret += dfs(pos - 1, 0, (limited && i == top), sum + 1);
+        else ret += dfs(pos - 1, 0, (limited && i == top), sum);
+    }
+    return dp[pos][lead][limited] = ret;
+}
+
+int getsum(int x){
+    if(x < 0) return 0;
+    int tot = 0;
+    while(x) num[++tot] = x % 10, x /= 10;
+    memset(dp, -1, sizeof(dp));
+    return dfs(tot, 0, 1, 0);
+}
+
+void solve(){
+    int a, b;
+    cin >> a >> b;
+    for(int i = 0;i <= 9;i++){
+        now = i;
+        cout << getsum(b) - getsum(a - 1) << ' ';
+    }
+}
+
+signed main(){
+
+    IO;
+
+    int t = 1;
+    // cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
