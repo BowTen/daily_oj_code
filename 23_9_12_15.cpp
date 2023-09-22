@@ -2319,54 +2319,52 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) x.begin(), x.end()
-const int N = 2e5 + 10;
-int n, m, now, num[20];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// const int N = 2e5 + 10;
+// int n, m, now, num[20];
 
-int dp[20][2][2];
+// int dp[20][2][2][20];
 
-int dfs(int pos, bool lead, bool limited, int sum){
-    if(!pos) return sum;
-    if(~dp[pos][lead][limited]) return dp[pos][lead][limited];
-    int top = (limited ? num[pos] : 9);
-    int ret = 0;
-    for(int i = 0;i <= top;i++){
-        if(i == 0 && lead) ret += dfs(pos - 1, 1, (limited && i == top), sum);
-        else if(i == now) ret += dfs(pos - 1, 0, (limited && i == top), sum + 1);
-        else ret += dfs(pos - 1, 0, (limited && i == top), sum);
-    }
-    return dp[pos][lead][limited] = ret;
-}
+// int dfs(int pos, bool lead, bool limited, int sum){
+//     if(!pos) return sum;
+//     if(~dp[pos][lead][limited][sum]) return dp[pos][lead][limited][sum];
+//     int top = (limited ? num[pos] : 9);
+//     int ret = 0;
+//     for(int i = 0;i <= top;i++){
+//         ret += dfs(pos - 1, lead && i == 0, limited && i == top, sum + (i == now) - (now == 0 && lead && i == 0));
+//     }
+//     return dp[pos][lead][limited][sum] = ret;
+// }
 
-int getsum(int x){
-    if(x < 0) return 0;
-    int tot = 0;
-    while(x) num[++tot] = x % 10, x /= 10;
-    memset(dp, -1, sizeof(dp));
-    return dfs(tot, 0, 1, 0);
-}
+// int getsum(int x){
+//     if(x < 0) return 0;
+//     int tot = 0;
+//     while(x) num[++tot] = x % 10, x /= 10;
+//     memset(dp, -1, sizeof(dp));
+//     return dfs(tot, 1, 1, 0);
+// }
 
-void solve(){
-    int a, b;
-    cin >> a >> b;
-    for(int i = 0;i <= 9;i++){
-        now = i;
-        cout << getsum(b) - getsum(a - 1) << ' ';
-    }
-}
+// void solve(){
+//     int a, b;
+//     cin >> a >> b;
+//     for(int i = 0;i <= 9;i++){
+//         now = i;
+//         cout << getsum(b) - getsum(a - 1) << ' ';
+//     }
+// }
 
-signed main(){
+// signed main(){
 
-    IO;
+//     IO;
 
-    int t = 1;
-    // cin >> t;
-    while(t--) solve();
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
 
-    return 0;
-}
+//     return 0;
+// }
