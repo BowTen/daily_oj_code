@@ -2368,3 +2368,191 @@
 
 //     return 0;
 // }
+
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// const int N = 2e5 + 10;
+// int n, a[N], k, x;
+
+// void solve(){
+//     cin >> n >> k >> x;
+//     if((k * (2 * n - k + 1)) / 2 >= x && (k * (k + 1)) / 2 <= x) cout << "YES\n";
+//     else cout << "NO\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// const int N = 2e5 + 10;
+// int n, x[N], k, q, l[N], r[N], pre[N];
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) pre[i] = 0;
+//     string s;
+//     cin >> s;
+//     // reverse(s2.begin(), s2.end());
+//     s = ' ' + s;
+//     string s2(s);
+//     for(int i = 1;i <= k;i++) cin >> l[i];
+//     for(int i = 1;i <= k;i++) cin >> r[i], reverse(s2.begin() + l[i], s2.begin() + r[i] + 1);
+//     cin >> q;
+//     for(int i = 1;i <= q;i++) cin >> x[i];
+//     sort(x + 1, x + 1 + q);
+//     int p = 1;
+//     x[q+1] = 0;
+//     for(int i = 1;i <= q;i++){
+//         if(x[i] == x[i+1]){
+//             i++;
+//             continue;
+//         }
+//         while(x[i] > r[p]){
+//             p++;
+//         }
+//         int a = min(x[i], l[p] + r[p] - x[i]);
+//         int b = max(x[i], l[p] + r[p] - x[i]);
+//         pre[a] ^= 1;
+//         if(b + 1 <= r[p])
+//         pre[b+1] ^= 1;
+//         // cout << x[i] << ' ' << a << ' ' << b  << endl;
+//     }
+//     p = 1;
+//     int L = 0;
+//     for(int i = 1;i <= n;i++) {
+//         if(i > r[p]) {
+//             p++, pre[i - 1] = 0;
+//             // if(L){
+//             //     reverse(s.begin() + L, s.begin() + l[p]);
+//             //     L = 0;
+//             // }
+
+//         }
+//         pre[i] ^= pre[i-1];
+//         if(pre[i]) cout << s2[i];
+//         else cout << s[i];
+//         // if(!L && pre[i]) L = i;
+//         // if(L && !pre[i]){
+//         //     reverse(s.begin() + L, s.begin() + i);
+//         //     L = 0;
+//         // }
+//         // cout << pre[i] <<  ' ';
+//     }
+//     // if(L){
+//     //     reverse(s.begin() + L, s.end());
+//     // }
+//     // for(int i = 1;i <= n;i++) cout << s[i];
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, a[N], q;
+// // const int inf = (1ll << 60) - 1;
+
+// //线段树
+// int tr[N << 2];
+// void up(int id){
+//     tr[id] = tr[lson] & tr[rson];
+// }
+// void build(int id, int l ,int r){
+//     if(l == r){
+//         tr[id] = a[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+// int query(int id, int l, int r, int ql ,int qr){
+//     if(ql <= l && r <= qr){
+//         return tr[id];
+//     }
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return (query(lson, l, mid, ql, qr) & query(rson, mid + 1, r, ql, qr));
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     cin >> q;
+//     while(q--){
+//         int l, k;
+//         cin >> l >> k;
+//         if(a[l] < k){
+//             cout << "-1 ";
+//             continue;
+//         }
+//         int a = l, b = n;
+//         while(a <= b){
+//             int mid = a + b >> 1;
+//             if(query(1, 1, n, l, mid) >= k) a = mid + 1;
+//             else b = mid - 1;
+//         }
+//         cout << b << ' ';
+//     }
+
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
