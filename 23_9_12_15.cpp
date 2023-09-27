@@ -2556,3 +2556,197 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, a[N];
+// const int inf = 0x3f3f3f3f;
+
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     int cnt = 0;
+//     int cur = -inf;
+//     for(auto c : s){
+//         if(c == '1'){
+//             cnt += max(0, cur);
+//             cur = 0;
+//         }else cur++;
+//     }
+//     cnt += max(0, cur);
+//     cout << cnt << endl;
+//     cout << ((cnt & 1) ? "Alice" : "Bob");
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, a[N];
+
+
+// void solve(){
+//     cin >> n;
+//     int cur = 0;
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         cur++;
+//         if(a[i] == cur) cur ++;
+//     }
+//     cout << cur << endl;
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n;
+
+// struct node{
+//     int sz;
+//     int vec[60];
+//     map<int, int>mp;
+//     int operator<(const node& e) const {
+//         return sz > e.sz;
+//     }
+// };
+// node a[60];
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) a[i].mp.clear();
+//     set<int>st;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i].sz;
+//         for(int j = 1;j <= a[i].sz;j++) {
+//             cin >> a[i].vec[j];
+//             st.insert(a[i].vec[j]);
+//             a[i].mp[a[i].vec[j]]++;
+//         }
+//     }
+//     int ans = 0;
+//     for(auto num : st){
+//         set<int>sst;
+//         for(int i = 1;i <= n;i++){
+//             if(a[i].mp[num]) continue;
+//             for(int j = 1;j <= a[i].sz;j++) sst.insert(a[i].vec[j]);
+//         }
+//         ans = max(ans, (int)(sst.size()));
+//     }
+//     cout << ans << endl;
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, a[N];
+
+// void solve(){
+//     cin >> n;
+//     int sum = 0;
+//     int fs = n + 1;
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         if(a[i] >= 0) sum += a[i];
+//     }
+//     int ans;
+//     for(int i = 1;i <= n;i++) if(a[i] >= 0){
+//         fs = i;
+//         break;
+//     }
+//     if(fs > n){
+//         cout << 0 << endl;
+//         return;
+//     }
+//     if(fs & 1 || fs > 2){
+//         cout << sum << endl;
+//         return;
+//     }
+//     ans = max({sum - a[fs], sum + a[1], 0ll});
+//     cout << ans << endl;
+
+    
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
