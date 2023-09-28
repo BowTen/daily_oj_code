@@ -2750,3 +2750,148 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, a[N];
+
+// void solve(){
+//     cin >> n;
+//     int s, e;
+//     cin >> s >> e;
+//     int s1 = s, ans = e;
+//     bool win = true;
+//     for(int i = 2;i <= n;i++){
+//         cin >> s >> e;
+//         if(s >= s1 && e >= ans) win = false;
+//     }
+//     cout << (win ? s1 : -1) << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 3e5 + 10;
+// int n, a[N], b[N];
+
+// void solve(){
+//     cin >> n;
+//     int mn1 = 1e9 + 10, mn2 = 1e9 + 10;
+//     int s1 = 0, s2 = 0;
+//     for(int i = 1;i <= n;i++) cin >> a[i], mn1 = min(mn1, a[i]), s1 += a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i], mn2 = min(mn2, b[i]), s2 += b[i];
+//     cout << min(s1 + n * mn2, s2 + n * mn1) << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 3e5 + 10;
+// int n;
+// const int mod = 998244353;
+
+// int inv[N], fac[N];
+// int qpow(int a, int x){
+//     int ret = 1;
+//     while(x > 0){
+//         if(x & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         x >>= 1;
+//     }
+//     return ret;
+// }
+// void get_inv(){
+//     inv[0] = fac[0] = 1;
+//     for(int i = 1;i < N;i++){
+//         fac[i] = fac[i-1] * i % mod;
+//     }
+//     inv[N - 1] = qpow(fac[N - 1], mod - 2);
+//     for(int i = N - 2;i >= 1;i--){
+//         inv[i] = inv[i+1] * (i +1) %mod;
+//     }
+// }
+// int A(int a, int b){
+//     return fac[a] * inv[a - b] % mod;
+// }
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     int cnt = 0, cur = 0;
+//     n = s.size();
+//     int sum = 0;
+//     int ans = 1;
+//     for(int i = 1;i < n;i++){
+//         if(s[i] == s[i - 1]){
+//             cnt++;
+//             cur++;
+//         }else if(cnt){
+//             ans = ans * (cnt + 1) % mod;
+//             // sum += cnt + 1;
+//             cnt = 0;
+//         }
+//     }
+//     if(cnt) ans = ans * (cnt + 1) % mod;
+//     cout << cur << ' ' << fac[cur] * ans % mod << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     get_inv();
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+//     // cout << A(3, 2);
+
+//     return 0;
+// }
