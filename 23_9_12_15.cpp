@@ -2895,3 +2895,205 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 3e5 + 10;
+// int n, a[N];
+// const int mod = 998244353;
+
+
+// void solve(){
+//     cin >> n;
+//     int s1 = 0, s2 = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         if(a[i] == 1) s1 ++;
+//         else s2++;
+//     }
+//     int mid = (n + 1) / 2;
+//     if(s2 % 2 == 0){
+//         if(s1 >= s2) cout << "0\n";
+//         else{
+//             int ans = mid - s1;
+//             if((n - mid) & 1) ans++;
+//             cout << ans << endl;
+//         }
+//         return;
+//     }else{
+//         if(s1 - 1 >= mid) cout << 1 << endl;
+//         else{
+//             int ans = mid - s1;
+//             if((n - mid) & 1) ans++;
+//             cout << ans << endl;
+//         }
+//         return;
+//     }
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 3e5 + 10;
+// int n, a[N];
+// const int mod = 998244353;
+
+
+// void solve(){
+//     string L, R;
+//     cin >> L >> R;
+//     R = '0' + R;
+//     while(L.size() < R.size()) L = '0' + L;
+//     int ans = 0;
+//     bool f = false;
+//     n = L.size();
+//     for(int i = 0;i < n;i++){
+//         if(f) ans += 9;
+//         else ans += abs(R[i] - L[i]);
+//         if(R[i] > L[i]) f = true;
+//     }
+//     // cout << L << ' ' << R << endl;
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 3e5 + 10;
+// int n, a[N];
+// const int mod = 998244353;
+
+
+// void solve(){
+//     string s1, s2;
+//     cin >> n >> s1 >> s2;
+//     if(s1 == s2){
+//         cout << "0\n";
+//         return;
+//     }
+//     int ans1 = 0, ans2 = 0;
+//     for(int i = 0;i < n;i++){
+//         if(s1[i] != s2[i]) ans1++;
+//     }
+//     if(ans1 % 2 == 0) ans1 += ans1;
+//     else ans1 += ans1 - 1;
+
+//     reverse(s2.begin(), s2.end());
+//     if(s1 == s2){
+//         ans2 = 2;
+//     }else{
+//         for(int i = 0;i < n;i++){
+//             if(s1[i] != s2[i]) ans2++;
+//         }
+//         if(ans2 % 2 == 1) ans2 += ans2;
+//         else ans2 += ans2 - 1;
+//     }
+//     // cout << ans1 << endl << ans2 << endl;
+//     cout << min(ans1, ans2) << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// int n, m, a[N], l[N], r[N], len[N];
+
+
+// void solve(){
+//     cin >> n >> m;
+//     int mnr = N, mxl = 0, mnlen = N;
+//     for(int i = 1;i <= n;i++){
+//         cin >> l[i] >> r[i];
+//         len[i] = r[i] - l[i] + 1;
+//         mnr = min(mnr, r[i]);
+//         mxl = max(mxl, l[i]);
+//         mnlen = min(mnlen, len[i]);
+//     }
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         ans = max(ans, min(len[i], r[i] - mnr));        
+//         ans = max(ans, min(len[i], mxl - l[i]));        
+//         ans = max(ans, min(len[i], len[i] - mnlen));        
+//     }
+
+//     cout << ans * 2 << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
