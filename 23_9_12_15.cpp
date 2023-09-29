@@ -3097,3 +3097,295 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) x.begin(), x.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 3e5 + 10;
+// int n, m, s, t, c[N], u[N], v[N], st[N], top;
+
+// struct edge{
+//     int to, clo;
+//     int operator<(const edge& e) const{
+//         return clo < e.clo;
+//     }
+// };
+// vector<edge>g[N];
+
+
+// void print(){
+//     for(int i = 1;i <= top;i++) cout << st[i] << ' ';
+// }
+
+// bool vis[N];
+// bool bad[N];
+// void dfs(int u){
+//     if(vis[u]){
+//         cout << "TOO LONG\n";
+//         exit(0);
+//     }
+//     vis[u] = 1;
+//     if(u == t){
+//         print();
+//         exit(0);
+//     }
+//     bool cyc = true;
+//     bool good = false;
+//     for(auto [v, c] : g[u]) if(!bad[v]){
+//         if(vis[v]){
+//             cout << "TOO LONG\n";
+//             exit(0);
+//         }
+//         st[++top] = c;
+//         dfs(v);
+//         top--;
+//     }
+//     if(!good) bad[u] = 1;
+// }
+
+// void solve(){
+//     cin >> n >> m >> s >> t;
+//     for(int i = 1;i <= m;i++){
+//         cin >> u[i] >> v[i] >> c[i];
+//         g[u[i]].push_back({v[i], c[i]});
+//     }
+//     for(int i = 1;i <= n;i++) if(g[i].size())
+//         sort(g[i].begin(), g[i].end());
+//     vector<bool>vis(n + 1);
+//     queue<int>q;
+//     q.push(s);
+//     bool reach = false;
+//     while(q.size()){
+//         int cur = q.front();
+//         if(cur == t){
+//             reach = true;
+//             break;
+//         }
+//         q.pop();
+//         if(vis[cur]) continue;
+//         vis[cur] = true;
+//         for(auto [to, clo] : g[cur]) if(!vis[to]) q.push(to);
+//     }
+//     if(!reach){
+//         cout << "IMPOSSIBLE\n";
+//         return;
+//     }
+//     for(int i = 0;i <= n;i++) vis[i] = false;
+
+//     dfs(s);
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 3e5 + 10;
+// int n, m, a[N], b[N], k[N];
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i];
+
+//     // for(int i = 1;i <= n / 2;i++) k[i] = 1;
+//     // for(int i = (n / 2) + 1;i <= n;i++) k[i] = 2;
+//     // if(n & 1) k[(n / 2) + 1] = 0;
+//     // int s1 = 0, s2 = 0;
+//     // for(int i = 1;i <= n;i++){
+//     //     if(k[a[i]] <= 1) s1 += i;
+//     //     if(k[b[i]] == 2 || k[b[i]] == 0) s2 += i;
+//     // }
+
+//     int l = n / 2, r = l + 1;
+//     r += (n & 1);
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] <= l) ans += i;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         if(b[i] >= r) ans -= i;
+//     }
+    
+//     int ans2 = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(b[i] <= l) ans2 += i;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] >= r) ans2 -= i;
+//     }
+
+
+//     if(n & 1){
+//         int mid = (n / 2) + 1;
+//         for(int i = 1;i <= n;i++){
+//             if(a[i] == mid) ans += i, ans2 -= i;
+//             if(b[i] == mid) ans -= i, ans2 += i;
+//         }
+//     }
+
+//     ans = min(abs(ans2), abs(ans));
+//     cout << ans;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 3e5 + 10;
+// int n, a, b, c, k, l[3], r[3], len[3];
+
+// void solve(){
+//     cin >> a >> b >> c >> k;
+//     l[0] = pow(10, a - 1), r[0] = pow(10, a) - 1;
+//     l[1] = pow(10, b - 1), r[1] = pow(10, b) - 1;
+//     l[2] = pow(10, c - 1), r[2] = pow(10, c) - 1;
+    
+
+//     int cur = 0;
+//     for(int i = l[0];i <= r[0];i++){
+//         int lc = max(l[2], i + l[1]);
+//         int lb = max(l[1], lc - i);
+//         int rc = min(r[2], i + r[1]);
+//         int rb = min(r[1], rc - i);
+
+//         int lenb = rb - lb + 1;
+//         if(lenb <= 0) continue;
+//         // cout <<'['<<lb<<','<<rb<<"] "<<'['<<lc<<','<<rc<<"]\n";
+//         cur += lenb;
+//         if(cur >= k){
+//             cur -= lenb;
+//             cout << i << " + " << lb + (k - cur) - 1 << " = " << i + lb + (k - cur) - 1 << endl;
+//             return;
+//         }
+//     }
+//     cout << "-1\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 3e5 + 10;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     int mn = -1e9 - 10;  
+//     int f = 0;
+//     while(n--){
+//         int t;
+//         cin >> t;
+//         f = min(f, t);
+//         mn = max(mn, t);
+//     }
+//     if(f < 0) cout << f << endl;
+//     else cout << mn << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 3e5 + 10;
+// int n, a[N], p[N];
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         p[a[i]] = i;
+//     }
+//     int mid;
+//     if(p[1] > p[n] && p[2] > p[n]){
+//         cout << p[n] << ' ' << min(p[1], p[2]) << endl;
+//         return;
+//     }
+//     if(p[1] < p[n] && p[2] < p[n]){
+//         cout << p[n] << ' ' << max(p[1], p[2]) << endl;
+//         return;
+//     }
+//     cout << "1 1\n";
+
+// }
+
+// signed main(){
+
+//     IO;
+//     a[0] = N;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
