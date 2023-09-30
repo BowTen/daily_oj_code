@@ -3389,3 +3389,162 @@
 
 //     return 0;
 // }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 3e5 + 10;
+// int n, a[N];
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         cout << n - a[i] + 1 << ' ';
+//     }
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 4e5 + 10;
+// int n, a[N], b[N], ca[N], cb[N];
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= 2 * n + 1;i++) ca[i] = cb[i] = 0;
+//     a[n+1] = b[n+1] = 0; 
+
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i];
+
+//     int tmp = 1;
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] == a[i+1]) tmp++;
+//         else{
+//             ca[a[i]] = max(ca[a[i]], tmp);
+//             tmp = 1;
+//         }
+//     }
+//     tmp = 1;
+//     for(int i = 1;i <= n;i++){
+//         if(b[i] == b[i+1]) tmp++;
+//         else{
+//             cb[b[i]] = max(cb[b[i]], tmp);
+//             tmp = 1;
+//         }
+//     }
+//     int mx = 0;
+//     for(int i = 1;i <= 2 * n;i++){
+//         mx = max(mx, ca[i] + cb[i]);
+//     }
+//     cout << mx << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, a[N];
+
+// vector<array<int, 2>>g[N];
+
+// int dp[N], ans;
+// void dfs(int u, int f, int ti){
+//     for(auto [v, t] : g[u]) if(v != f){
+//         dp[v] = dp[u] + (ti > t);
+//         ans = max(ans, dp[v]);
+//         dfs(v, u, t);
+//     }
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) g[i].clear();
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back({v, i});
+//         g[v].push_back({u, i});
+//     }
+
+//     ans = dp[1] = 1;
+//     dfs(1, 0, 0);
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+// #define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+const int N = 2e5 + 10;
+int n, a[N];
+
+void solve(){
+    cin >> n;
+
+}   
+
+signed main(){
+
+    IO;
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
