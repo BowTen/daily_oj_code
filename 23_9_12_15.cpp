@@ -3526,25 +3526,186 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
+// #include<bits/stdc++.h>
+// using namespace std;
 // #define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-const int N = 2e5 + 10;
-int n, a[N];
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, x[N], a, b;
 
-void solve(){
-    cin >> n;
+// void solve(){
+//     cin >> a >> b >> n;
+//     int sum = b;
+//     for(int i = 1;i <= n;i++) {
+//         cin >> x[i];
+//         sum += min(x[i], a - 1);
+//     }
+//     cout << sum << endl;
+// }   
 
-}   
+// signed main(){
 
-signed main(){
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
 
-    IO;
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+//     return 0;
+// }
 
-    return 0;
-}
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, k, a[N], b[N];
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     int mn = 1e9, mx = 0;
+//     int sum = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         sum += a[i];
+//         mx = max(mx, a[i]);
+//         mn = min(mn, a[i]);
+//     }
+//     int mn2 = 1e9, mx2 = 0;
+//     for(int i = 1;i <= m;i++){
+//         cin >> b[i];
+//         mx2 = max(mx2, b[i]);
+//         mn2 = min(mn2, b[i]);
+//     }
+//     if(k & 1){
+//         if(mx2 > mn){
+//             sum += mx2 - mn;
+//         }
+//     }else{
+//         if(mx > mx2){   
+//             if(mn < mx2){
+//                 sum += mx2 - mn;
+//                 sum += min(mn2, mn) - mx;
+//             }else{
+//                 sum += mn2 - mx;
+//             }
+
+//         }else{
+//             sum -= mn;
+//             sum += min(mn, mn2);
+//         }
+//     }
+//     cout << sum << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m;
+
+// int lowbit(int x){
+//     return x & -x;
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     if(n % m == 0){
+//         cout << "0\n";
+//         return;
+//     }
+//     n = n - (n / m) * m;
+//     int fm = m / __gcd(m, n);
+//     if(lowbit(fm) != fm) {
+//         cout << "-1\n";
+//         return;
+//     }
+//     int cnt = 0;
+
+//     while(n > 0){
+//         cnt += n;
+//         n *= 2;
+//         if(n >= m) n -= m;
+//     }
+//     cout << cnt << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 5e3 + 10;
+// int n, a[N], m, dp[N], c[N];
+// const int inf = 0x3f3f3f3f;
+
+
+// void solve(){
+//     memset(c, 0, sizeof(c));
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//     }
+//     sort(a + 1, a + 1 + n);
+//     if(a[1] != 0){
+//         cout << "0\n";
+//         return;
+//     }
+//     c[0] = 1;
+//     m = 0;
+//     for(int i = 2;i <= n;i++){
+//         if(a[i] - a[i - 1] > 1) break;
+//         c[a[i]]++;
+//         m = max(m, a[i]);
+//     }
+//     m++;
+
+//     dp[1] = c[0] - 1;
+//     for(int i = 2;i <= m;i++){
+//         dp[i] = (c[0] - 1) * i;
+//         for(int j = 1;j < i;j++){
+//             dp[i] = min(dp[i], dp[j] + i * (c[j] - 1) + j);
+//         }
+//     }
+
+//     cout << dp[m] << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
