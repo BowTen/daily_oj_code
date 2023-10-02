@@ -3709,3 +3709,186 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, a[N];
+// const int inf = 0x3f3f3f3f;
+
+
+// void solve(){
+//     int x, k;
+//     cin >> x >> k;
+//     if(x % k){
+//         cout << "1\n";
+//         cout << x << endl;
+//     }else{
+//         cout << "2\n";
+//         cout << x - 1 << ' ' << 1 << endl;
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, a[N];
+// const int inf = 0x3f3f3f3f;
+
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     set<char>st;
+//     for(auto c : s) st.insert(c);
+//     if(st.size() == 1){
+//         cout << n + 1 << endl;
+//         return;
+//     }
+
+//     map<char, int>mp;
+//     mp['>'] = mp['<'] = 1;
+
+//     for(int i = 0;i < n - 1;i++){
+//         if(s[i] == s[i + 1]){
+//             int len = 2;
+//             for(int j = i + 2;j < n;j++){
+//                 if(s[j] == s[i]) len++;
+//                 else break;
+//                 i = j;
+//             }
+//             mp[s[i]] = max(mp[s[i]], len);
+//         }
+//     }
+//     cout << max(mp['>'], mp['<']) + 1 << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, a[N];
+// const int inf = 0x3f3f3f3f;
+
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     n = s.size();
+//     s = '0' + s;
+//     for(int i = 1;i <= n;i++){
+//         if(s[i] == '?'){
+//             s[i] = s[i-1];
+//         }
+//         cout << s[i];
+//     }
+//     cout << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, ans[N], top;
+// const int inf = 0x3f3f3f3f;
+
+// int mp[300];
+
+
+// void solve(){
+//     top = 0;
+//     int c1 = 0, c2 = 0;
+//     cin >> n;
+//     string s;
+//     cin >> s;
+
+//     mp['('] = mp[')'] = 0;
+//     for(auto c : s) mp[c]++;
+//     if(mp['('] != mp[')']){
+//         cout << "-1\n";
+//         return;
+//     }
+
+//     int cur = 0;
+//     for(int i = 0;i < n;i++){
+//         if(s[i] == '('){
+//             if(cur >= 0) ans[++top] = 1, c1 = 1;
+//             else ans[++top] = 2, c2 = 1;
+//             cur++;
+//         }else{
+//             if(cur > 0) ans[++top] = 1, c1 = 1;
+//             else ans[++top] = 2, c2 = 1;
+//             cur--;
+//         }
+//     }
+//     cout << c1 + c2 << endl;
+//     if(c1 + c2 == 1){
+//         for(int i = 1;i <= n;i++) cout << "1 ";
+//     }else
+//         for(int i = 1;i <= top;i++) cout << ans[i] << ' ';
+//     cout << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
