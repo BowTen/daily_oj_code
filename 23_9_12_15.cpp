@@ -3892,3 +3892,150 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, q, k, c[N], d[N];
+
+// bool red[N];
+
+// vector<array<int, 2>>g[N];
+
+// void dfs1(int u, int f) {
+//     for (auto [v, w] : g[u]) if(v != f){
+//         d[v] = d[u] + w;
+//         if (red[v]) c[v] = 0;
+//         else c[v] = c[u] + w;
+//         dfs1(v, u);
+//     }
+// }
+
+// //树剖
+// // int par[N], dep[N], top[N], son[N], siz[N];
+// // void pre_dfs(int u, int fa){
+// //     par[u] = fa;
+// //     dep[u] = dep[fa] + 1;
+// //     siz[u] = 1;
+// //     for(auto [v, w] : g[u]) if(v != fa){
+// //         pre_dfs(v, u);
+// //         siz[u] += siz[v];
+// //         if(siz[v] > siz[son[u]])
+// //             son[u] = v;
+// //     }
+// // }
+// // void dfs(int u, int tp){
+// //     top[u] = tp;
+// //     if(son[u]) dfs(son[u], tp);
+// //     else return;
+
+// //     for(auto [v, w] : g[u]) if(v != par[u] && v != son[u])
+// //         dfs(v, v);
+// // }
+// // int lca(int a, int b){
+// //     while(top[a] != top[b]){
+// //         if(dep[top[a]] > dep[top[b]])
+// //             a = par[top[a]];
+// //         else
+// //             b = par[top[b]];
+// //     }
+// //     return dep[a] < dep[b] ? a : b;
+// // }
+
+// int fa[N][20], dep[N], last[N];
+// void dfs(int u, int par)
+// {
+//     fa[u][0] = par;
+//     for (int i = 1; i <= 18; ++i)
+//         fa[u][i] = fa[fa[u][i - 1]][i - 1];
+//     dep[u] = dep[par] + 1;
+//     if (red[u])
+//         last[u] = u;
+//     else
+//         last[u] = last[par];
+//     c[u] = d[u] - d[last[u]];
+//     for (auto [v, w] : g[u])
+//     {
+//         if (v == par)
+//             continue;
+//         d[v] = d[u] + w;
+//         dfs(v, u);
+//     }
+// }
+// int lca(int u, int v)
+// {
+//     if (dep[u] < dep[v])
+//         swap(u, v);
+//     for (int i = 18; i >= 0; --i)
+//         if (dep[fa[u][i]] >= dep[v])
+//             u = fa[u][i];
+//     if (u == v)
+//         return u;
+//     for (int i = 18; i >= 0; --i)
+//         if (fa[u][i] != fa[v][i])
+//             u = fa[u][i], v = fa[v][i];
+//     return fa[u][0];
+// }
+
+// void init(){
+//     for(int i = 0;i <= n;i++){
+//         red[i] = false;
+//         // top[i] = son[i] = 0;
+//         c[i] = d[i] = 0;
+//         g[i].clear();
+//     }
+
+// }
+
+// void solve(){
+//     cin >> n >> m >> q;
+//     init();
+//     for(int i = 1, u;i <= m;i++){
+//         cin >> u;
+//         red[u] = true;
+//     }
+//     for(int i = 1, u, v, w;i < n;i++){
+//         cin >> u >> v >> w;
+//         g[u].push_back({v, w});
+//         g[v].push_back({u, w});
+//     }   
+
+//     // dfs1(1, 0);
+//     // pre_dfs(1, 0);  
+//     dfs(1, 1);
+    
+//     while(q--){
+//         cin >> k;
+//         vector<int>vec(k);
+//         for(auto &e : vec) cin >> e;
+//         sort(vec.begin(), vec.end(), [](int e1, int e2)-> int {return c[e1] > c[e2];});
+
+//         int ans = c[vec[0]];
+//         int lc = vec[0], mx = d[vec[0]];
+//         for(int i = 1;i < k;i++){
+//             lc = lca(lc, vec[i-1]);
+//             mx = max(mx, d[vec[i - 1]]);
+//             ans = min(ans, max(mx - d[lc], c[vec[i]]));
+//         }
+//         lc = lca(lc, vec.back());
+//         mx = max(mx, d[vec.back()]);
+//         ans = min(ans, mx - d[lc]);
+//         cout << ans << endl;
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
