@@ -4039,3 +4039,130 @@
 
 //     return 0;
 // }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e5 + 10;
+// int n, m, X[N], Y[N], Z[N], R, ans[N];
+
+// vector<int>g[N];
+
+// int dep[N], siz[N], son[N], top[N], par[N];
+// void dfs1(int u, int f){
+//     dep[u] = dep[f] + 1;
+//     par[u] = f;
+//     siz[u] = 1;
+//     for(auto v : g[u]) if(v != f){
+//         dfs1(v, u);
+//         siz[u] += siz[v];
+//         if(siz[v] > siz[son[u]]) son[u] = v;   
+//     }
+// }
+// void dfs2(int u, int tp){
+//     top[u] = tp;
+//     if(son[u]) dfs2(son[u], tp);
+//     else return;
+
+//     for(auto v : g[u]) if(v != par[u] && v != son[u]) 
+//         dfs2(v, v);
+// }
+// int lca(int u, int v){
+//     while(top[u] != top[v]){
+//         if(dep[top[u]] < dep[top[v]]) swap(u, v);
+//         u = par[top[u]];
+//     }
+//     return dep[v] < dep[u] ? v : u;
+// }
+
+// struct node{
+//     int mx, k;
+//     int operator<(const node& e) const {
+//         return mx < e.mx;
+//     }
+// }tr[N * 100];
+// int rt[N * 100], ls[N * 100], rs[N * 100], tot;
+
+// void up(int id){
+//     tr[id] = max(tr[ls[id]], tr[rs[id]]);
+// }
+// void change(int &id, int l, int r, int x, int v){
+//     if(!id) id = ++tot;
+//     if(l == r){
+//         tr[id].mx += v;
+//         tr[id].k = l;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(ls[id], l, mid, x, v);
+//     else change(rs[id], mid + 1, r, x, v);
+//     up(id);
+// }
+
+// void merg(int &a, int b, int l, int r){
+//     if(!b) return;
+//     if(!a){
+//         a = b;
+//         return;
+//     }
+//     if(l == r){
+//         tr[a].mx += tr[b].mx;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     merg(ls[a], ls[b], l, mid);
+//     merg(rs[a], rs[b], mid + 1, r);
+//     up(a);
+// }
+
+// void dfs(int u, int f){
+//     for(auto v : g[u]) if(v != f){
+//         dfs(v, u);
+//         merg(rt[u], rt[v], 1, R);
+//     }
+//     if(tr[rt[u]].mx > 0)
+//         ans[u] = tr[rt[u]].k;
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     dfs1(1, 0);
+//     dfs2(1, 1);
+
+//     for(int i = 1;i <= m;i++){
+//         cin >> X[i] >> Y[i] >> Z[i];
+//         R = max(R, Z[i]);
+//     }
+//     for(int i = 1, lc;i <= m;i++){
+//         lc = lca(X[i], Y[i]);
+//         change(rt[X[i]], 1, R, Z[i], 1);
+//         change(rt[Y[i]], 1, R, Z[i], 1);
+//         change(rt[lc], 1, R, Z[i], -1);
+//         if(par[lc]) change(rt[par[lc]], 1, R, Z[i], -1);
+//     }
+
+//     dfs(1, 0);
+//     for(int i = 1;i <= n;i++) cout << ans[i] << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
