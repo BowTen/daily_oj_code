@@ -4604,3 +4604,276 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e5 + 10;
+// int n, m, a[N], f[N][20], Log[N];
+
+
+// signed main(){
+
+//     IO;
+
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         f[i][0] = a[i];
+//     }
+//     for(int j = 1;j < 20 ;j++){
+//         for(int i = 1;i <= n && i + (1 << j) - 1 <= n;i++){
+//             f[i][j] = max(f[i][j - 1], f[i + (1 << (j - 1))][j - 1]);
+//         }
+//     }
+//     for(int i = 2;i <= n;i++){
+//         Log[i] = Log[i / 2] + 1;
+//     }
+
+//     int l, r, s;
+//     while(m--){
+//         cin >> l >> r;
+//         s = Log[r - l + 1];
+//         cout << max(f[l][s], f[r - (1 << s) + 1][s]) << endl;
+//     }
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// const int N = 2e5 + 10;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>h(n), w(n);
+//     int mw = 0, mh = 0;
+//     int S = 0;
+//     for(int i = 0;i < n;i++){
+//         cin >> h[i] >> w[i];
+//         mw = max(mw, w[i]);
+//         mh = max(mh, h[i]);
+//         S += h[i] * w[i];
+//     }
+
+//     vector<int>sw(n), sh(n);
+//     iota(all(sw), 0);
+//     iota(all(sh), 0);
+//     sort(all(sw), [&](int i, int j){
+//         return w[i] > w[j];
+//     });
+//     sort(all(sh), [&](int i, int j){
+//         return h[i] > h[j];
+//     });
+
+//     set<pair<int, int>>st;
+//     auto print = [&](){
+//         cout << st.size() << endl;
+//         for(auto [a, b] : st) cout << a << ' ' << b << endl;
+//     };
+
+
+//     //先找最大宽度
+//     int h1, w1;
+//     w1 = mw;
+//     h1 = S / w1;
+//     if(w1 * h1 == S){
+//         st.insert({h1, w1});
+//         vector<bool>vis(n);
+//         int hp = 0, wp = 0;
+//         int W = w1, H = h1;
+//         int cnt = 0;
+//         while(cnt < n){
+//             bool f = false;
+//             for(wp; wp < n;wp ++) if(!vis[sw[wp]]){
+//                 if(w[sw[wp]] != W) break;
+//                 vis[sw[wp]] = true;
+//                 cnt++;
+//                 H -= h[sw[wp]];
+//                 f = true;
+//             }
+//             if(!f){
+//                 st.clear();
+//                 break;
+//             }
+//             if(!H) break;
+//             f = false;
+//             for(hp; hp < n; hp++) if(!vis[sh[hp]]){
+//                 if(h[sh[hp]] != H) break;
+//                 vis[sh[hp]] = true;
+//                 cnt++;
+//                 W -= w[sh[hp]];
+//                 f = true;
+//             }
+//             if(!f){
+//                 st.clear();
+//                 break;
+//             }
+//         }
+//     }
+
+//     int h2, w2;
+//     h2 = mh;
+//     w2 = S / h2;
+//     if(h2 * w2 == S){
+//         st.insert({h2, w2});
+//         if(st.size() == 1){
+//             print();
+//             return;
+//         }        
+
+//         vector<bool>vis(n);
+//         int hp = 0, wp = 0;
+//         int W = w2, H = h2;
+//         int cnt = 0;
+//         while(cnt < n){
+//             bool f = false;
+//             for(hp; hp < n;hp ++) if(!vis[sh[hp]]){
+//                 if(h[sh[hp]] != H) break;
+//                 vis[sh[hp]] = true;
+//                 cnt++;
+//                 W -= w[sh[hp]];
+//                 f = true;
+//             }
+//             if(!f){
+//                 st.erase(st.find({h2, w2}));
+//                 break;
+//             }
+//             if(!W) break;
+//             f = false;
+//             for(wp; wp < n; wp++) if(!vis[sw[wp]]){
+//                 if(w[sw[wp]] != W) break;
+//                 vis[sw[wp]] = true;
+//                 cnt++;
+//                 H -= h[sw[wp]];
+//                 f = true;
+//             }
+//             if(!f){
+//                 st.erase(st.find({h2, w2}));
+//                 break;
+//             }
+//         }
+//     }
+//     print();
+// }
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2010;
+// int n, m, d[N];
+// bool mp[N][N];
+// vector<int>g[N];
+
+
+// void init(){
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= n;j++){
+//             mp[i][j] = 0;
+//         }
+//     }
+//     for(int i = 1;i <= n;i++){
+//         d[i] = 0;
+//         g[i].clear();
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     init();
+//     for(int i = 1, u, v;i <= m;i++){
+//         cin >> u >> v;
+//         mp[u][v] = mp[v][u] = 1;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//         d[u]++;
+//         d[v]++;
+//     }
+
+
+//     for(int i = 1;i <= n;i++) if(d[i] >= 4){
+//         vector<bool>vis(n + 1);
+//         vector<int>fa(n + 1);
+
+//         for(int j = 1;j <= n;j++) if(mp[i][j] && !vis[j]){
+//             vis[j] = 1;
+//             fa[j] = i;
+//             queue<int>que;
+//             for(auto v : g[j]) if(v != i){
+//                 que.push(v);
+//                 fa[v] = j;
+//             }
+//             while(que.size()){
+//                 int u = que.front();
+//                 que.pop();
+//                 if(vis[u]) continue;
+//                 vis[u] = 1;
+//                 if(mp[u][i]){
+//                     for(int i = 1;i <= n;i++) vis[i] = 0;
+//                     cout << "YES\n";
+//                     int cnt = 3;
+//                     int cur = u;
+//                     while(cur != i){
+//                         cnt++;
+//                         vis[cur] = 1;
+//                         cur = fa[cur];
+//                     }
+//                     cur = u;
+//                     cout << cnt << '\n';
+//                     cout << u << ' ' << i << endl;
+//                     while(cur != i){
+//                         cout << cur << ' ' << fa[cur] << endl;
+//                         cur = fa[cur];
+//                     }
+
+//                     int tmp = 0;
+//                     for(int k = 1;k <= n && tmp < 2;k++) if(mp[k][i] && !vis[k]){
+//                         cout << i << ' ' << k << endl;
+//                         tmp++;
+//                     }
+//                     return;
+//                 }
+//                 for(auto v : g[u]) if(!vis[v]){
+//                     que.push(v);
+//                     fa[v] = u;
+//                 }
+//             }
+//         }
+//     }
+
+//     cout << "NO\n";
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
