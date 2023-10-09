@@ -598,3 +598,444 @@
 
 //     return 0;
 // }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// const int N = 1e6 + 10;
+// const int mod = 19930726;
+// int n, k, p[N], pw[N];
+
+// int qpow(int a, int x){
+//     int ret = 1;
+//     while(x){
+//         if(x & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         x >>= 1;
+//     }
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n >> k;
+//     pw[0] = 1;
+//     for(int i = 1;i <= n;i++){
+//         pw[i] = pw[i - 1] * i % mod;
+//     }
+//     string s;
+//     cin >> s;
+//     s = '!' + s + '@';
+//     int R = 0, mid = 0;
+//     int ans = 1;
+//     for(int i = 1;i <= n;i++){
+//         p[i] = R > i ? min(p[2 * mid - i], R - i) : 0;
+//         while(s[i + p[i] + 1] == s[i - p[i] - 1]) p[i]++;
+//         if(i + p[i] > R){
+//             R = i + p[i];
+//             mid = i;
+//         }
+//     }
+//     sort(p + 1, p + 1 + n, greater<int>());
+//     int len = 0, num = p[1];
+//     for(int i = 1;i <= n;i++){
+//         if(p[i + 1] != p[1] || i == n){
+//             len = i;
+//             break;
+//         }
+//     }
+//     while(k && num > 0){
+//         // cerr << k << ' ' << len << ' ' << num << endl;
+//         ans = ans * qpow(num * 2 + 1, min(len, k)) % mod;
+//         k -= min(len, k);
+//         num --;
+//         while(len < n && p[len + 1] == num) len++;
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// const int N = 1e7 + 10;
+// int n, k, p[N];
+
+// void solve(){
+//     string str, s;
+//     cin >> str;
+//     n = str.size();
+//     s.reserve(2 * n + 4);
+//     s.push_back('^');
+//     for(int i = 0;i < n;i++){
+//         s.push_back('*');
+//         s.push_back(str[i]);
+//     }
+//     s.push_back('*');
+//     s.push_back('@');
+//     n = s.size() - 2;
+//     int R = 0, mid = 0;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         p[i] = R > i ? min(R - i, p[2 * mid - i]) : 0;
+//         while(s[i + p[i] + 1] == s[i - p[i] - 1]) p[i]++;
+//         if(i + p[i] > R){
+//             R = i + p[i];
+//             mid = i;
+//         }
+//         ans = max(p[i], ans);
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, k, a[N], x, dp[N][22];
+
+// void solve(){
+//     cin >> n >> k >> x;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         a[i] -= x;
+//     }
+//     x *= 2;
+
+//     dp[1][0] = a[1];
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         dp[i][0] = a[i] + max(0ll, dp[i - 1][0]);
+//         if(n - i >= k) ans = max(ans, dp[i][0]);
+//         for(int j = 1;j <= k && j <= i;j++){
+//             dp[i][j] = a[i] + x + max(0ll, dp[i-1][j-1]);
+//             if(i-1 >= j) dp[i][j] = max(dp[i][j], a[i] + max(dp[i-1][j], 0ll));
+//             if(n - i >= k - j) ans = max(ans, dp[i][j]);
+//         }
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     int sum = 0;
+//     for(int i = 1, t;i < n;i++){
+//         cin >> t;
+//         sum += t;
+//     }
+//     cout << -sum << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, p;
+
+// void solve(){
+//     cin >> n >> p;
+//     vector<array<int, 2>>vec(n + 1);
+//     for(int i = 1;i <= n;i++) cin >> vec[i][1];
+//     for(int i = 1;i <= n;i++) cin >> vec[i][0];
+//     vec[0] = {p, N};
+//     sort(vec.begin(), vec.end(), [](const array<int,2>&a1, const array<int,2>& a2)->int{
+//         if(a1[0] == a2[0]) return a1[1] > a2[1];
+//         return a1[0] < a2[0];
+//     });
+//     if(vec[0][0] == p){
+//         cout << p * n << endl;
+//         return;
+//     }
+//     int ans = p;
+//     n--;
+//     int pos = 0;
+//     int cnt = 0;
+//     while(n){
+//         if(vec[pos][0] == p){
+//             ans += p * n;
+//             break;
+//         }
+//         int d = min(n, vec[pos][1]);
+//         n -= d;
+//         ans += d * vec[pos][0];
+//         pos++;
+//     }
+//     cout << ans << endl;
+
+// }   
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, m, k;
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     if(k == 1){
+//         cout << "1\n";
+//         return;
+//     }
+//     else if(k == 2){
+//         int ans = min(n, m);
+//         ans += max(0ll, m - n) / n; 
+//         cout << ans << endl;
+//         return;
+//     }else if(k == 3){
+//         int d = max(0ll, m - n);
+//         int ans = d % n;
+//         d /= n;
+//         ans += d * (n - 1);
+//         cout << ans << endl;
+//         return;
+//     }   
+//     cout << 0 << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll=long long;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 1e5 + 10;
+// const int mod = 998244353;
+// int n, m;
+
+// ll pw[N];
+// array<int, 2>a[N];
+// bool vis[N];
+// int cnt[N];
+
+// void solve(){
+//     pw[0] = 1;
+//     for(int i = 1;i < N;i++){
+//         pw[i] = (pw[i - 1] << 1) % mod; 
+//     }
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i][0], a[i][1] = i;
+//     sort(a + 1, a + 1 + n, greater<array<int, 2>>());
+//     for(int i = 1;i <= n;i++){
+//         int sq = sqrt(a[i][1]);
+//         for(int j = 1;j <= sq;j++) {
+//             if(a[i][1] % j == 0){
+//                 if(!vis[j]) cnt[a[i][0]]++;
+//                 vis[j] = 1;
+//                 if(a[i][1] % (a[i][1] / j) == 0){
+//                     if(!vis[a[i][1] / j]) cnt[a[i][0]]++;
+//                     vis[a[i][1] / j] = 1;
+//                 }
+//             }
+//         }
+//     }
+
+//     int q = 1;
+//     for(int p = 1;p <= n;p++){
+//         if(a[p][0] != a[p-1][0]) a[q++][0] = a[p][0];
+//     }
+//     q--;
+
+//     int p = n - 1;
+//     ll ans = 0;
+//     set<int>ss;
+//     for(int i = 1;i <= q;i++){
+//         int d = cnt[a[i][0]];
+//         while(d--){
+//             ans = (ans + (pw[p] * a[i][0] % mod)) % mod;
+//             --p;
+//         }
+//     }   
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll=long long;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// int n, m;
+
+// unordered_map<bitset<26>, int>mp[2][26];
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     for(int i = 1;i <= n;i++){
+//         cin >> s;
+//         bitset<26>st;
+//         bitset<26>bst;
+//         int id = s.size() & 1;
+//         for(auto e : s){
+//             st[e - 'a'] = 1;
+//             bst[e - 'a'] = ~bst[e - 'a'];
+//         }
+//         for(int i = 0;i < 26;i++) if(!st[i]) {
+//             mp[id][i][bst]++;
+//         }
+//     }
+
+//     int ans = 0;
+//     bitset<26>ac((1<<27)-1);
+//     for(int i = 0;i < 26;i++){
+//         for(const auto& [s, sum] : mp[1][i]){
+//             bitset<26>nd(ac);
+//             nd[i] = 0;
+//             nd ^= s;
+//             ans += mp[0][i][nd] * sum;
+//         }
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     while(t--) solve();
+
+//     return 0;
+// }
