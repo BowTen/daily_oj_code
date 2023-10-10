@@ -1039,3 +1039,406 @@
 
 //     return 0;
 // }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll=long long;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// int n, m;
+
+
+// void solve(){
+//     cin >> n;
+//     if(n <= 6){
+//         cout << "NO\n";
+//         return;
+//     }
+//     if(n == 9){
+//         cout << "NO\n";
+//         return;
+//     }
+//     if(n == 8){
+//         cout << "YES\n";
+//         cout << "1 2 5\n";
+//         return;
+//     }
+//     if(n == 7){
+//         cout << "YES\n";
+//         cout << "1 2 4\n";
+//         return;
+//     }
+
+//     cout << "YES\n";
+//     if(n % 3){
+//         cout << "1 2 " << n - 3 << endl;
+//     }else{
+//         cout << "1 4 " << n - 5 << endl;
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll=long long;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// int n, m, x[4], y[4];
+// double d[4][4];
+
+// double dis(int a, int b){
+//     return sqrt((x[a] - x[b]) * (x[a] - x[b]) + (y[a] - y[b]) * (y[a] - y[b]));
+// }
+
+// bool check(double x){
+//     if(d[1][0] <= x && d[1][3] <= x) return true;
+//     if(d[2][0] <= x && d[2][3] <= x) return true;
+//     if(d[1][2] > 2*x) return false;
+
+//     if(d[1][0] <= x && d[2][3] <= x) return true;
+//     if(d[2][0] <= x && d[1][3] <= x) return true;
+//     return false;
+// }
+
+// void solve(){
+//     for(int i = 0;i < 3;i++){
+//         cin >> x[i] >> y[i];
+//     }
+//     for(int i = 0;i < 4;i++){
+//         for(int j = 0;j < 4;j++){
+//             d[i][j] = dis(i, j);
+//         }
+//     }
+//     double l = 0, r = 1e6;
+//     int cnt = 200;
+//     while(cnt--){
+//         double mid = (l + r) / 2.0;
+//         if(check(mid)) r = mid;
+//         else l = mid;
+//     }
+//     cout << fixed << setprecision(10);
+//     cout << l << endl;
+// }       
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll=long long;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// int n, pos;
+
+
+// void solve(){
+//     string s;
+//     cin >> s >> pos;
+//     n = s.size();
+//     s = (char)0 + s;
+//     s.push_back(0);
+
+//     vector<int>ans(n + 1);
+//     ans[0] = 1;
+//     int tot = 0;
+//     list<int>ls(n + 2);
+//     iota(ls.begin(), ls.end(), 0);
+//     auto q = ls.begin(), p = next(ls.begin());
+//     while(p != ls.end()){
+//         while(s[*q] > s[*p]){
+//             ans[*q] = ++tot;
+//             ls.erase(q);
+//             q = prev(p);
+//         }
+//         p++;
+//         q = prev(p);
+//     }
+
+//     int l = 0, sum = n;
+//     while(pos > sum){
+//         pos -= sum;
+//         sum--;
+//         l++;
+//     }
+//     string ss = " ";
+//     for(int i = 1;i <= n;i++){
+//         if(ans[i] > l) ss.push_back(s[i]);
+//     }
+//     cout << ss[pos];
+// }       
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll=long long;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(a) a.begin(), a.end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// int n, w[N], tot;
+
+// vector<int>g[N];
+
+// int siz[N], dep[N], son[N], top[N], par[N], id, idx[N], tr_data[N];
+// void dfs1(int u, int f){
+//     dep[u] = dep[f] + 1;
+//     siz[u] = 1;
+//     par[u] = f;
+//     for(auto v : g[u]) if(v != f){
+//         dfs1(v, u);
+//         siz[u] += siz[v];
+//         if(siz[son[u]] < siz[v]) son[u] = v;
+//     }
+// }
+// void dfs2(int u, int tp){
+//     top[u] = tp;
+//     idx[u] = ++id;
+//     tr_data[id] = w[u];
+//     if(son[u]) dfs2(son[u], tp);
+//     else return;
+
+//     for(auto v : g[u]) if(v != son[u] && v != par[u]){
+//         dfs2(v, v);
+//     }
+// }
+// int lca(int u, int v){
+//     while(top[u] != top[v]){
+//         if(dep[top[u]] < dep[top[v]]) swap(u, v);
+//         u = par[top[u]];
+//     }
+//     return (dep[v] < dep[u] ? v : u);
+// }
+
+// struct node{
+//     int pre, suf, mx, sum;
+//     int nep, nes, mn;
+
+//     node() : pre(0), suf(0), mx(0), sum(0), nep(0), nes(0), mn(0) {};
+
+//     void reverse(){
+//         swap(pre, suf);
+//         swap(nep, nes);
+//     }
+//     void assgin(int x){
+//         nep = nes = mn = pre = suf = mx = sum = x;
+//     }
+// }tr[N << 2];
+// node merg(const node& e1, const node& e2){
+//     if(e1.mn == 0) return e2;
+//     if(e2.mn == 0) return e1;
+//     node ret;
+//     ret.sum  = e1.sum + e2.sum;
+//     ret.mx = max({e1.mx, e2.mx, e1.suf + e2.pre});
+//     ret.pre = max(e1.pre, e1.sum + e2.pre);
+//     ret.suf = max(e2.suf, e2.sum + e1.suf);
+
+//     ret.mn = min({e1.mn, e2.mn, e1.nes + e2.nep});
+//     ret.nep = min(e1.nep, e1.sum + e2.nep);
+//     ret.nes = min(e2.nes, e2.sum + e1.nes);
+//     return ret;
+// }
+// node operator+(const node& e1, const node& e2){
+//     if(e1.mn == 0) return e2;
+//     if(e2.mn == 0) return e1;
+//     node ret;
+//     ret.sum  = e1.sum + e2.sum;
+//     ret.mx = max({e1.mx, e2.mx, e1.suf + e2.pre});
+//     ret.pre = max(e1.pre, e1.sum + e2.pre);
+//     ret.suf = max(e2.suf, e2.sum + e1.suf);
+
+//     ret.mn = min({e1.mn, e2.mn, e1.nes + e2.nep});
+//     ret.nep = min(e1.nep, e1.sum + e2.nep);
+//     ret.nes = min(e2.nes, e2.sum + e1.nes);
+//     return ret;
+// }
+// void up(int id){
+//     tr[id] = merg(tr[lson], tr[rson]);
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id].assgin(tr_data[l]);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+// node query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return merg(query(lson, l, mid, ql, qr), query(rson, mid + 1, r, ql, qr));
+// }
+
+// node line_query(int u, int v){
+//     node L, R;  
+//     while(top[u] != top[v]){
+//         if(dep[top[u]] > dep[top[v]]){
+//             node tmp = query(1, 1, tot, idx[top[u]], idx[u]);
+//             tmp.reverse();
+//             L = merg(L, tmp);
+//             u = par[top[u]];
+//         }else{
+//             R = merg(query(1, 1, tot, idx[top[v]], idx[v]), R);
+//             v = par[top[v]];            
+//         }
+//     }
+//     if(dep[u] > dep[v]){
+//         node tmp = query(1, 1, tot, idx[v], idx[u]);
+//         tmp.reverse();
+//         L = merg(L, tmp);
+//     }else{
+//         R = merg(query(1, 1, tot, idx[u], idx[v]), R);
+//     }
+//     L = merg(L, R);
+//     return L;
+// }
+// // node rev(node e){
+// //     swap(e.pre, e.suf);
+// //     swap(e.nep, e.nes);
+// //     return e;
+// // }
+
+// // node line_query(int u, int v)
+// // {
+// //     node L, R;
+// //     while (top[u] != top[v])
+// //     {
+// //         if (dep[top[u]] > dep[top[v]])
+// //         {
+// //             L = L + rev(query(1, 1, tot, idx[top[u]], idx[u]));
+// //             u = par[top[u]];
+// //         }
+// //         else
+// //         {
+// //             R = query(1, 1, tot, idx[top[v]], idx[v]) + R;
+// //             v = par[top[v]];
+// //         }
+// //     }
+// //     if (dep[u] < dep[v])
+// //         R = query(1, 1, tot, idx[u], idx[v]) + R;
+// //     else
+// //         L = L + rev(query(1, 1, tot, idx[v], idx[u]));
+// //     return (L + R);
+// // }
+
+// void init(){
+//     for(int i = 1;i <= tot;i++){
+//         son[i] = 0;
+//         g[i].clear();
+//     }
+//     id = tot = 0;
+// }
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     vector<array<int, 3>>que;
+//     que.reserve(n + 1);
+//     w[++tot] = 1;
+//     for(int i = 1, a, b, x;i <= n;i++){
+//         cin >> s;
+//         if(s[0] == '+'){
+//             cin >> a >> x;
+//             w[++tot] = x;
+//             g[a].push_back(tot);
+//             g[tot].push_back(a);
+//         }else{
+//             cin >> a >> b >> x;
+//             que.push_back({a, b, x});
+//         }
+//     }
+
+//     dfs1(1, 0);
+//     dfs2(1, 1);
+//     build(1, 1, tot);
+
+//     for(auto [u, v, x] : que){
+//         if(x > 0){
+//             int mx = line_query(u, v).mx;
+//             cout << (mx >= x ? "YES\n" : "NO\n");
+//         }else if(x < 0){
+//             int mn = line_query(u, v).mn;
+//             cout << (mn <= x ? "YES\n" : "NO\n");
+//         }else{
+//             cout << "YES\n";
+//         }
+//     }
+//     init();
+// }       
+
+// signed main(){
+
+//     IO;
+    
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
