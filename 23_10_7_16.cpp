@@ -1442,3 +1442,93 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define end '\n'
+// const int N = 1e5 + 10;
+// int n, m, a[N];
+// int siz[N], sum[N], fa[N], son[N];
+// struct node{
+//     int id;
+//     node(int x = 0) : id(x) {};
+//     signed operator<(const node& e) const {
+//         if(siz[id] == siz[e.id]) return id < e.id;
+//         return siz[id] > siz[e.id];
+//     }
+//     signed operator==(const node& e) const {
+//         return id == e.id;
+//     }
+//     signed operator>(const node& e) const {
+//         if(siz[id] == siz[e.id]) return id > e.id;
+//         return siz[id] < siz[e.id];
+//     }
+// };
+// set<node>g[N];
+// vector<int>vec[N];
+
+// void dfs(int u, int f){
+//     siz[u] = 1;
+//     sum[u] = a[u];
+//     fa[u] = f;
+//     for(auto v : vec[u]) if(v != f){
+//         dfs(v, u);
+//         g[u].insert(v);
+//         sum[u] += sum[v];
+//         siz[u] += siz[v];
+//     }
+//     if(g[u].size()) son[u] = g[u].begin()->id;
+// }
+
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         vec[u].push_back(v);
+//         vec[v].push_back(u);
+//     }
+
+//     dfs(1, 0);
+
+//     int t, x;
+//     while(m--){
+//         cin >> t >> x;
+//         if(t == 1){
+//             cout << sum[x] << endl;
+//         }else{
+//             if(g[x].size() == 0) continue;
+//             int v = son[x];
+//             int f = fa[x];
+//             g[f].erase(x);
+//             g[x].erase(v);
+//             fa[v] = f;
+//             fa[x] = v;            
+//             swap(sum[v], sum[x]);
+//             swap(siz[v], siz[x]);
+//             sum[x] = sum[v] - sum[x];
+//             siz[x] = siz[v] - siz[x];
+//             g[v].insert(x);
+//             g[f].insert(v);
+//             son[f] = g[f].begin()->id;
+//             son[v] = g[v].begin()->id;
+//             if(g[x].size()) son[x] = g[x].begin()->id;
+//             else son[x] = 0;
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
