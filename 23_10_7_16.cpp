@@ -1532,3 +1532,44 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 110;
+// int n, c[2];
+
+// int dp[N][10000];
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     for(auto e : s) c[e - '0']++;
+//     n = s.size();
+//     // s = ' ' + s;
+//     int need = ((n*(n-1))/2 - (c[0]*(c[0]-1))/2 + (c[1]*(c[1]-1))/2) / 2;
+//     memset(dp, 0x3f, sizeof(dp));
+//     dp[0][0] = 0;
+//     for(int i = 0;i < n;i++){
+//         for(int j = c[1];j >= 1;j--){
+//             for(int k = i;k <= need;k++){
+//                 dp[j][k] = min(dp[j-1][k-i] + (s[i] != '1'), dp[j][k]);
+//             }
+//         }
+//     }
+//     cout << dp[c[1]][need] << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
