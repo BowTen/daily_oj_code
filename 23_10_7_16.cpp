@@ -1833,7 +1833,6 @@
 
 
 
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -1846,36 +1845,29 @@
 
 // vector<int>g[N];
 
-// int dep[N], mx[N], mx2[N], id1[N], id2[N];
-// void dfs1(int u, int fa){
+// int dep[N], mx[N], len = 0;
+// void dfs(int u, int fa){
 //     dep[u] = dep[fa] + 1;
-//     vector<array<int, 2>>vec;
+//     if(f[u]) mx[u] = 0;
 //     for(auto v : g[u]) if(v != fa){
-//         dfs1(v, u);
-//         if(f[v] && !mx[u]){
-//             vec.push_back({1, v});
-//             mx[u] = 1;
-//         }
-//         if(mx[v]){
-//             mx[u] = max(mx[u], mx[v] + 1);
-//             vec.push_back({mx[v] + 1, v});
-//         }
-//     }
-//     if(vec.size() > 1){
-//         mx2[u] = vec[vec.size() - 2][0];
-//         id1[u] = vec.back()[1];
-//         id2[u] = vec[vec.size() - 2][1];
+//         dfs(v, u);
+//         len = max(len, mx[u] + 1 + mx[v]);
+//         mx[u] = max(mx[u], mx[v] + 1);
 //     }
 // }
 
-// void dfs2(int u, int fa){
-//     for(auto v : g[u]) if(v != fa){
-
+// void init(){
+//     for(int i = 1;i <= n;i++){
+//         f[i] = false;
+//         g[i].clear();
+//         mx[i] = -inf;
 //     }
+//     len = 0;
 // }
 
 // void solve(){
 //     cin >> n >> k;
+//     init();
 //     for(int i = 1, t;i <= k;i++){
 //         cin >> t;
 //         f[t] = true;
@@ -1886,8 +1878,8 @@
 //         g[v].push_back(u);
 //     }
 
-//     dfs1(1, 0);
-//     dfs2(1, 0);
+//     dfs(1, 0);
+//     cout << (len + 1) / 2 << endl;
 // }
 
 // signed main(){
@@ -1895,6 +1887,175 @@
 //     IO;
 //     int t = 1;
 //     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll=long long;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// int n, p[N];
+
+// mt19937_64 rnd(time(0));
+// ll mx_fac;
+// vector<int> fac;
+
+// ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
+
+// ll qpow(ll a, ll b, ll p)
+// { // 快速幂
+//     ll res = 1;
+//     while (b)
+//     {
+//         if (b & 1)
+//             res = (__int128)res * a % p;
+//         a = (__int128)a * a % p;
+//         b >>= 1;
+//     }
+//     return res;
+// }
+
+// bool Miller_Rabin(ll p)
+// { // 判断素数
+//     if (p < 2)
+//         return 0;
+//     if (p == 2)
+//         return 1;
+//     if (p == 3)
+//         return 1;
+//     ll d = p - 1, r = 0;
+//     while (!(d & 1))
+//         ++r, d >>= 1; // 将d处理为奇数
+//     for (ll k = 0; k < 10; ++k)
+//     {
+//         ll a = rnd() % (p - 2) + 2;
+//         ll x = qpow(a, d, p);
+//         if (x == 1 || x == p - 1)
+//             continue;
+//         for (int i = 0; i < r - 1; ++i)
+//         {
+//             x = (__int128)x * x % p;
+//             if (x == p - 1)
+//                 break;
+//         }
+//         if (x != p - 1)
+//             return 0;
+//     }
+//     return 1;
+// }
+
+// ll Pollard_Rho(ll x)
+// {
+//     ll s = 0, t = 0;
+//     ll c = (ll)rnd() % (x - 1) + 1;
+//     int step = 0, goal = 1;
+//     ll val = 1;
+//     for (goal = 1;; goal *= 2, s = t, val = 1)
+//     { // 倍增优化
+//         for (step = 1; step <= goal; ++step)
+//         {
+//             t = ((__int128)t * t + c) % x;
+//             val = (__int128)val * abs(t - s) % x;
+//             if ((step % 127) == 0)
+//             {
+//                 ll d = gcd(val, x);
+//                 if (d > 1)
+//                     return d;
+//             }
+//         }
+//         ll d = gcd(val, x);
+//         if (d > 1)
+//             return d;
+//     }
+// }
+
+// void divide_fac(ll x)
+// {
+//     if (x < 2)
+//         return;
+//     if (Miller_Rabin(x))
+//     {                            // 如果x为质数
+//         mx_fac = max(mx_fac, x); // 更新答案
+//         fac.push_back(x);
+//         return;
+//     }
+//     ll p = x;
+//     while (p >= x)
+//         p = Pollard_Rho(x);
+//     // 不用求质因子幂次时使用
+//     while ((x % p) == 0)
+//          x /= p;
+//     divide_fac(x), divide_fac(p); // 继续向下分解x和p
+// }
+
+// int exgcd(int a, int b, int& x, int& y){
+//     if(b == 0) {
+//         x = 1;
+//         y = 0;
+//         return a;
+//     }
+//     int d = exgcd(b, a % b, y, x);
+//     y -= a / b * x;
+//     return d;
+// }
+
+// void solve(){
+//     cin >> n;
+//     int lcm = 1;
+//     for(int i = 1;i <= n;i++){
+//         cin >> p[i];
+//         int l1 = lcm / __gcd(lcm, p[i]);
+//         lcm = l1 * p[i];
+//     }
+//     lcm *= 2;
+//     divide_fac(lcm);
+//     int lc = lcm;
+//     for(auto &e : fac){
+//         int t = 1;
+//         while(lc % e == 0){
+//             lc /= e;
+//             t *= e;
+//         }
+//         e = t;
+//     }
+//     int tmp = 1;
+//     for(auto &e : fac){
+//         tmp *= e;
+//         // cerr << e << endl;
+//     }
+//     // cerr << lcm << endl;
+//     // cerr << tmp << endl;
+
+//     int ans = lcm;
+//     for(int i = 0, tp = (1ll << fac.size()) - 1;i <= tp;i++){
+//         int a = 1, b = 1;
+//         for(int j = 0, len = fac.size();j < len;j++){
+//             if((1 << j) & i) a *= fac[j];
+//             else b *= fac[j];
+//         }
+//         int x, y;
+//         exgcd(a, b, x, y);
+//         if(a*x == 0 || b*y == 0) continue;
+//         // cerr << a*x << ' ' << b*y << endl;
+//         int d = min(a * x, b * y);
+//         if(d < 0) d = -d;
+//         ans = min(ans, d);
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
 //     while(t--) solve();
 
 //     return 0;
