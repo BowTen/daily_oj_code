@@ -2757,3 +2757,311 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<iostream>
+// using namespace std;
+// #define int long long
+// #define all(a) a.begin(), a.end()
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 210;
+// const int mod = 1e9 + 7;
+// int n, mp[N][N], dp[N];
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = i + 1;j <= n;j++){
+//             cin >> mp[i][j];
+//             mp[j][i] = mp[i][j];
+//         }
+//     }
+
+//     for(int i = 2;i <= n;i++){
+//         dp[i] = mp[1][i];
+//         for(int j = 2;j < i;j++){
+//             dp[i] = min(dp[i], dp[j] + mp[j][i]);
+//         }
+//     }
+
+//     cout << dp[n] << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<iostream>
+// using namespace std;
+// #define int long long
+// #define all(a) a.begin(), a.end()
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 40;
+// const int mod = 1e9 + 7;
+// int n, m, v[N], w[N], dp[N][40000];
+
+// void solve(){
+//     cin >> m >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> v[i] >> w[i];
+//     }
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 0;j <= m;j++){
+//             dp[i][j] = dp[i-1][j];
+//             if(j + v[i] <= m) dp[i][j] = max(dp[i][j], dp[i-1][j + v[i]] + v[i] * w[i]);
+//             ans = max(ans, dp[i][j]);
+//         }
+//     }
+//     cout << ans << endl;
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<iostream>
+// using namespace std;
+// #define int long long
+// #define all(a) a.begin(), a.end()
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1010;
+// const int mod = 1e9 + 7;
+// int n, x, los[N], win[N], dp[N], cost[N];
+
+// void solve(){
+//     cin >> n >> x;
+//     for(int i = 1;i <= n;i++){
+//         cin >> los[i] >> win[i] >> cost[i];
+//     }
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = x;j >= 0;j--){
+//             if(j >= cost[i]) dp[j] = max(dp[j] + los[i], dp[j-cost[i]] + win[i]);
+//             else dp[j] += los[i];
+//             ans = max(ans, dp[j]);
+//         }
+//     }
+//     cout << ans * 5 << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<iostream>
+// using namespace std;
+// #define int long long
+// #define all(a) a.begin(), a.end()
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 40;
+// const int mod = 1e9 + 7;
+// int n, v, a[N], dp[N][20010];
+
+// void solve(){
+//     cin >> v >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//     }
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = v;j >= 0;j--){
+//             if(j >= a[i]) dp[i][j] = max(dp[i-1][j], dp[i-1][j - a[i]] + a[i]);
+//             else dp[i][j] = dp[i-1][j];
+//             ans = max(ans, dp[i][j]);
+//         }
+//     }
+//     cout << v - ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<iostream>
+// using namespace std;
+// #define int long long
+// #define all(a) a.begin(), a.end()
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 110;
+// const int mod = 1e9 + 7;
+// int t, n, c[N], v[N], f[1010];
+
+// void solve(){
+//     cin >> t >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> c[i] >> v[i];
+//     }
+//     for(int i = 1;i <= n;i++){
+//         for(int j = t;j >= c[i];j--){
+//             f[j] = max(f[j], f[j - c[i]] + v[i]);
+//         }
+//     }
+//     cout << f[t];
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<iostream>
+// #include<vector>
+// #include<map>
+// #include<unordered_map>
+// using namespace std;
+// #define int long long
+// #define all(a) a.begin(), a.end()
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1010;
+// const int mod = 1e9 + 7;
+// int m, n;
+
+// struct node{
+//     int w, v;
+// };
+// unordered_map<int, vector<node>>vec;
+
+// int f[N];
+
+// void solve(){
+//     cin >> m >> n;
+//     for(int i = 1, w, v, x;i <= n;i++){
+//         cin >> w >> v >> x;
+//         vec[x].push_back({w, v});
+//     }
+
+//     for(auto &[id, g] : vec){
+//         for(int j = m;j >= 0;j--){
+//             for(auto [w, v] : g){
+//                 if(j >= w) f[j] = max(f[j], f[j - w] + v);
+//             }
+//         }
+//     }
+//     cout << f[m];
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define all(a) a.begin(), a.end()
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1010;
+// int n;
+
+// bool isprime[N];
+// int prime[N];
+// int cnt;
+// void euler(){
+//     memset(isprime, true, sizeof(isprime));
+//     isprime[1] = false;
+//     for(int i = 2;i < N;i++){
+//         if(isprime[i]) prime[++cnt] = i;
+//         for(int j = 1; j <= cnt && prime[j] * i < N;j++){
+//             isprime[prime[j]*i] = false;
+//             if(i % prime[j] == 0) break;
+//         }
+//     }
+// }
+
+// int f[N];
+// int dfs(int x){
+//     // cerr << x << endl;
+//     if(f[x]) return x;
+//     int ret = isprime[x];
+//     for(int i = 1;i <= cnt && prime[i] <= x / 2;i++){
+//         // if(x == 7) cerr << prime[i] << endl;
+
+//         if(isprime[x - prime[i]])
+//             ret ++;
+//         else
+//             ret += dfs(x - prime[i]);
+//     }
+//     if(ret == 0) ret = -1;
+//     return f[x] = ret;
+// }
+
+// void solve(){
+//     euler();
+//     cin >> n;
+//     f[0] = 1;
+//     // cerr << dfs(4);
+//     cout << dfs(n) << endl;
+//     // for(int i = 1;i <= 7;i++) cerr << i << ' ' << f[i] << endl;
+//     // cerr << prime[0] << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
