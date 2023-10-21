@@ -5460,9 +5460,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int N = 4e4 + 5;
+const int M = 4e4 + 5;
 const int maxB = 250;
-int n, m, a[N], L, R, x, B, id[N], l[maxB], r[maxB], mx[maxB][maxB];
+int n, m, a[M], L, R, x, B, id[M], l[maxB], r[maxB], mx[maxB][maxB];
 unordered_map<int, vector<int>> vec;
 // vector<int> idx[N];
 
