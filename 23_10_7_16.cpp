@@ -3622,14 +3622,14 @@
 // void solve(){
 //     cin >> n >> k;
 //     for(int i = 1;i <= k;i++) cin >> x[i];
-    // for(int i = 1;i <= k;i++) {
-    //     cin >> c[i];
-    // }
-    // for(int i = 1;i <= k;i++)
-    //     if(c[i] - c[i-1] > x[i] - x[i - 1]){
-    //         cout << "NO\n";
-    //         return;
-    //     }
+//     for(int i = 1;i <= k;i++) {
+//         cin >> c[i];
+//     }
+//     for(int i = 1;i <= k;i++)
+//         if(c[i] - c[i-1] > x[i] - x[i - 1]){
+//             cout << "NO\n";
+//             return;
+//         }
 //     string ans = "abc";
 //     char cur = 'd';
 //     int last = 3;
@@ -3658,4 +3658,357 @@
 //     while(t--) solve();
 
 //     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     int cur = '1';
+//     int ans = 0;
+//     for(auto c : s){
+//         if(c == '0') c = '9' + 1;
+//         ans += abs(c - cur);
+//         cur = c;
+//         ans++;
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     string s;
+//     int num[300] = {0};
+//     cin >> n >> m >> s;
+//     for(auto c : s) num[c]++;
+//     int j = 0, o = 0;
+//     for(int i = 'a';i <= 'z';i++) if(num[i]){
+//         if(num[i] & 1) j++;
+//         else o++;
+//     }
+//     n -= m;
+//     if(n & 1){  
+//         if(j - 1 > m){
+//             cout << "NO\n";
+//         }else{
+//             m -= (j - 1);
+//             if(m & 1) cout << "NO\n";
+//             else cout << "YES\n";
+//         } 
+//     }else{
+//         if(j > m){
+//             cout << "NO\n";
+//         }else{
+//             m -= j;
+//             if(m & 1) cout << "NO\n";
+//             else cout << "YES\n";
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, k, a[N];
+
+// void solve(){
+//     cin >> n >> k;
+//     int ans = 10;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         if(a[i] % k == 0){
+//             ans = 0;
+//             continue;
+//         }
+//         if(a[i] > k) ans = min(ans, k - (a[i] % k));
+//         else ans = min(ans, k - a[i]);
+//         // cerr << ans << endl;
+//     }
+//     if(k == 4 && n >= 2){
+//         int d = 0;
+//         for(int i = 1;i <= n;i++) if(a[i] % 2 == 0) d++;
+//         if(d < 2) d = 2 - d;
+//         else d = 0;
+//         ans = min(d, ans);
+//     }
+//     cout << ans << endl;
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, k, L[N], R[N], m;
+
+
+// void solve(){
+//     cin >> n;
+//     multiset<int>l;
+//     multiset<int>r;
+//     // map<pair<int,int>, int>mp;
+//     char op;
+//     for(int i = 1;i <= n;i++){
+//         cin >> op >> L[i] >> R[i];
+//         if(op == '+'){
+//             // mp[{L[i], R[i]}]++;
+//             l.insert(L[i]);
+//             r.insert(R[i]);
+//         }else{
+//             // mp[{L[i], R[i]}]--;
+//             // if(mp[{L[i], R[i]}] == 0){
+//                 l.erase(l.find(L[i]));
+//                 r.erase(r.find(R[i]));
+//             // }
+//         }
+
+//         // cerr << op << ' ' << L[i] << ' ' << R[i] << endl;
+
+//         if(l.size() >= 2){
+//             if(*r.begin() < *prev(l.end())) cout << "YES\n";
+//             else cout << "NO\n";
+//         }else{
+//             cout << "NO\n";
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, a[N], cnt[N], b[N];
+
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         b[i] = a[i];
+//         cnt[i] = 0;
+//     }
+//     int ans = 0;
+//     for(int i = 2;i <= n;i++)if(a[i] < a[i - 1]){
+//         if(cnt[i - 1]){
+//             int q = b[i - 1], p = b[i];
+//             // cnt[i] = cnt[i-1] + 1;
+//             if(q > p){
+//                 while(p < q){
+//                     p *= 2;
+//                     cnt[i]++;
+//                 }
+//                 cnt[i] += cnt[i - 1];
+//             }else{
+//                 while(q < p){
+//                     q *= 2;
+//                     cnt[i]--;
+//                 }
+//                 cnt[i] += cnt[i - 1];
+//                 if(q > p) cnt[i] ++;
+//             }
+//             // cerr << cnt[i] << ' ' << a[i] << endl;
+//             for(int j = 1;j <= cnt[i] && a[i] <= 1e9;j++){
+//                 a[i] *= 2;
+//             }
+//             // cerr << cnt[i] << ' ' << a[i] << "\n____\n";
+//             // cerr << "KKONILJL\n";
+//         }else{
+//             while(a[i] < a[i-1]) {
+//                 a[i] *= 2;
+//                 cnt[i]++;
+//             }
+//         }
+//         ans += cnt[i];
+//     }   
+//     cout << ans << endl;
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, m, a[N], b[N];
+
+
+// void solve(){
+//     cin >> n >> m;
+//     a[1] = 1;
+//     for(int i = 2;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i];
+//     sort(a + 1, a + 1 + n);
+//     sort(b + 1, b + 1 + n);
+//     int p = n;
+//     while(p >= 1 && a[p] >= b[p]) p--;
+//     for(int i = )
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define IOIOIO std::ios::sync_with_stdio(false), std::cin.tie(0), std::cout.tie(0)
+// #define int long long
+// #define endl '\n'
+// const int N = 1e5 + 10, M = 4e5 + 10;
+
+// int n, m, A_A[N], BB[N], c[N];
+
+// int p = 1;
+// int qpow(int a,int k,int p){
+//     int ret = 1;
+//     while(k){
+//         if(k & 1)
+//             ret = ret * a % p;
+//         a = a * a % p;
+//         k >>= 1;
+//     }
+//     return ret;
+// }
+
+// void solve()
+// {
+// cin >> n >> m;
+// A_A[1] = 1;
+// for (int i=2;i<=n;++i) 
+//  cin >> A_A[i];
+// for (int i=1;i<=n;++i)
+// cin >> BB[i];
+// sort(A_A + 1, A_A + n + 1);
+// sort(BB + 1, BB + n + 1);
+// int now = 1;
+// for (int i=1;i<=n;++i) {
+//  int pos = lower_bound(A_A + 1, A_A + n + 1, BB[i]) - A_A - 1;
+//  if (pos >= now) {
+//  now++;
+//  }
+// }
+// now--;
+// cout << n - now << endl; 
+// }
+// signed main(void)
+// {
+// IOIOIO;
+// int T = 1;
+// cin >> T;
+// while (T--)
+// solve();
+// return 0;
 // }
