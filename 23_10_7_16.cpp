@@ -4196,3 +4196,136 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int M = N * 27;
+// int n, tr[N][27], tot, fail[M], siz[M], id[N];
+// string T[N], s;
+// vector<int>g[M];
+
+// int add(const string& s){
+//     int i = 0, p = 0, len = s.size();   
+//     while(i < len){
+//         if(!tr[p][s[i] - 'a']) tr[p][s[i] - 'a'] = ++tot;
+//         p = tr[p][s[i] - 'a'];
+//         i++;
+//     }   
+//     return p;
+// }
+// void build(){
+//     queue<int>q;
+//     for(int i = 0;i < 26;i++)
+//         if(tr[0][i]) q.push(tr[0][i]);
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         for(int i = 0;i < 26;i++){
+//             int v = tr[u][i];
+//             if(v) fail[v] = tr[fail[u]][i], q.push(v);
+//             else tr[u][i] = tr[fail[u]][i];
+//         }
+//     }
+// }
+// void query(const string& s){
+//     int len = s.size(), p = 0;
+//     for(int k = 0;k < len;k++){
+//         p = tr[p][s[k] - 'a'];
+//         siz[p]++;
+//     }
+// }   
+// void dfs(int u){
+//     for(auto v : g[u]){
+//         dfs(v);
+//         siz[u] += siz[v];
+//     }
+// }
+
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> T[i];
+//         id[i] = add(T[i]);
+//     }
+//     build();
+//     cin >> s;
+//     query(s);
+    
+//     for(int i = 1;i <= tot;i++){
+//         g[fail[i]].push_back(i);
+//     }
+//     dfs(0);
+
+//     for(int i = 1;i <= n;i++){
+//         cout << siz[id[i]] << endl; 
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+// #define int long long
+#define endl '\n'
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+const int N = 2e5 + 10;
+const int M = 1e6;
+const int mod = 1e9 + 7;
+int n, tr[N][27], tot, fail[N * 27], m;
+string T[M], S[N];
+
+void add(const string& s){
+    int p = 0;
+    for(int i = 0, len = s.size();i < len;i++){
+        if(!tr[p][s[i] - 'a']) tr[p][s[i] - 'a'] = ++tot;
+        p = tr[p][s[i] - 'a'];
+    }
+}
+int query(const string& s){
+    
+}
+
+void solve(){
+    cin >> n >> m;
+    for(int i = 1;i <= n;i++){
+        cin >> S[i];
+        add(S[i]);
+    }
+    int ans = 0;
+    for(int i = 1;i <= m;i++){
+        cin >> T[i];
+        ans = (ans + query(T[i])) % mod;
+    }
+
+}
+
+signed main(){
+
+    IO;
+
+    int t = 1;
+    // cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
