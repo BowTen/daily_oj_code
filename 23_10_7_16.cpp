@@ -4012,3 +4012,187 @@
 // solve();
 // return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, m, a, b;
+
+// int val(int x){
+//     int ret = 0;
+//     while(x){
+//         ret += x % 10;
+//         x /= 10;
+//     }
+//     return ret;
+// }
+
+// void solve(){
+
+//     string s;
+//     cin >> a >> b;
+//     while(val(a) % b) a++;
+//     cout << a << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define lson id << 1
+// #define rson id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, m, a, b;
+
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     int p[2] = {n - 1, n - 1};
+//     int cnt = 1;
+//     int ans = 0;
+//     while(p[1] >= 0 && p[0] >= 0){
+//         if(s[p[1]] == '1'){
+//             while(p[0] >= 0 && s[p[0]] == '1') p[0]--;
+//             if(p[0] < 0) break;
+//             swap(s[p[0]], s[p[1]]);
+//             ans += p[1] - p[0]; 
+//         }
+//         cout << ans << ' ';
+//         p[0]--;
+//         p[1]--;
+//     }
+//     while(p[1] >= 0) {
+//         cout << "-1 ";
+//         p[1]--;    
+//     }
+//     cout << endl;
+//     // cerr << n << endl << s << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, m, L[N], R[N];
+
+// int rt, ls[N * 30], rs[N * 30], tag[N * 30], mn[N * 30], mx[N * 30], tot;
+// void settag(int id, int x){
+//     tag[id] += x;
+//     mx[id] += x;
+//     mn[id] += x;
+// }
+// int newSeg(){
+//     ++tot;
+//     ls[tot] = rs[tot] = mx[tot] = mn[tot] = tag[tot] = 0;
+//     return tot;
+// }
+// void down(int id){
+//     if(!ls[id]) ls[id] = newSeg();
+//     if(!rs[id]) rs[id] = newSeg();
+//     settag(ls[id], tag[id]);
+//     settag(rs[id], tag[id]);
+//     tag[id] = 0;
+// }
+// void up(int id){
+//     if(!ls[id]) ls[id] = newSeg();
+//     if(!rs[id]) rs[id] = newSeg();
+//     mn[id] = min(mn[ls[id]], mn[rs[id]]);
+//     mx[id] = max(mx[ls[id]], mx[rs[id]]);
+// }
+// void modify(int &id, int l, int r, int ql, int qr, int x){
+//     if(!id) id = newSeg();
+//     if(ql <= l && r <= qr){
+//         settag(id, x);
+//         return;
+//     }
+//     if(tag[id]) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(ls[id], l, mid, ql, qr, x);
+//     else if(ql > mid) modify(rs[id], mid + 1, r, ql, qr, x);
+//     else modify(ls[id], l, mid, ql, qr, x), modify(rs[id], mid + 1, r, ql, qr, x);
+//     up(id);
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     tot = rt = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> L[i] >> R[i];
+//     }
+//     vector<array<int, 3>>evt;
+//     evt.reserve(n * 2 + 2);
+//     for(int i = 1;i <= n;i++){
+//         modify(rt, 1, m, L[i], R[i], 1);
+//         evt.push_back({L[i], 0, i});
+//         evt.push_back({R[i], 1, i});
+//     }
+//     sort(all(evt));
+//     // cerr << mx[1] << endl;
+
+//     int ans = 0;
+//     for(auto [p, k, id] : evt){
+//         ans = max(ans, mx[1] - mn[1]);
+//         if(k == 0){
+//             modify(rt, 1, m, L[id], R[id], -1);
+//         }else{
+//             modify(rt, 1, m, L[id], R[id], 1);
+//         }
+//     }
+//     ans = max(ans, mx[1] - mn[1]);
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
