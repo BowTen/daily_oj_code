@@ -4283,49 +4283,276 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
+// #include<bits/stdc++.h>
+// using namespace std;
 // #define int long long
-#define endl '\n'
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-const int N = 2e5 + 10;
-const int M = 1e6;
-const int mod = 1e9 + 7;
-int n, tr[N][27], tot, fail[N * 27], m;
-string T[M], S[N];
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int M = 1e6;
+// const int mod = 1e9 + 7;
+// int n, tr[N][27], tot, fail[N], m;
+// string T[M], S[N];
+// list<int>g[N];
 
-void add(const string& s){
-    int p = 0;
-    for(int i = 0, len = s.size();i < len;i++){
-        if(!tr[p][s[i] - 'a']) tr[p][s[i] - 'a'] = ++tot;
-        p = tr[p][s[i] - 'a'];
-    }
-}
-int query(const string& s){
-    
-}
+// int cnt[N], sumr2[N], sumr[N], L[N];
 
-void solve(){
-    cin >> n >> m;
-    for(int i = 1;i <= n;i++){
-        cin >> S[i];
-        add(S[i]);
-    }
-    int ans = 0;
-    for(int i = 1;i <= m;i++){
-        cin >> T[i];
-        ans = (ans + query(T[i])) % mod;
-    }
+// void add(const string& s){
+//     int p = 0;
+//     for(int i = 0, len = s.size();i < len;i++){
+//         if(!tr[p][s[i] - 'a']) tr[p][s[i] - 'a'] = ++tot;
+//         p = tr[p][s[i] - 'a'];
+//     }
+//     L[p] = s.size();
+// }
+// void build(){
+//     queue<int>q;
+//     for(int i = 0;i < 26;i++)
+//         if(tr[0][i]) q.push(tr[0][i]);
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         for(int j = 0;j < 26;j++){
+//             int v = tr[u][j];
+//             if(v) fail[v] = tr[fail[u]][j], q.push(v);
+//             else tr[u][j] = tr[fail[u]][j];
+//         }
+//     }
+// }
+// inline int _add(int a, int b){
+//     return (a + b) % mod;
+// }
+// inline int _sub(int a, int b){
+//     return (((a - b) % mod) + mod) % mod;
+// }
+// inline int _pro(int a, int b){
+//     return (a * b) % mod;
+// }
+// int query(const string& s){
+//     int p = 0, mx = 0, len = s.size();
+//     int ans = 0;
+//     for(int i = 0, r = 1;i < len;i++, r++){
+//         p = tr[p][s[i] - 'a'];
+//         cnt[p]++;
+//         sumr2[p] = (sumr2[p] + r * r) % mod;
+//         sumr[p] = (sumr[p] + r) % mod;
+//         mx = max(mx, p);
+//     }
+//     auto dfs = [&](auto self, int u) -> void {
+//         if(u > mx) return;
+//         for(auto v : g[u]){
+//             self(self, v);
+//             cnt[u] = (cnt[u] + cnt[v]) % mod;
+//             sumr2[u] = (sumr2[u] + sumr2[v]) % mod;
+//             sumr[u] = (sumr[u] + sumr[v]) % mod;
+//         }
+//         if(L[u]) ans = _add(ans,_add(_sub((len*sumr[u]%mod),sumr2[u]),_add((L[u]*sumr[u]%mod),(cnt[u]*(_sub(_sub(len+1,L[u]),(L[u]*len%mod)))%mod))));
+//         // if(L[u]) ans = _add(ans,_add(_add(_sub(_pro(len,sumr[u]),sumr2[u]),_pro(L[u],sumr[u])),_pro(cnt[u],(_sub(_sub(len+1,L[u]),_pro(L[u],len))))));
+//         cnt[u] = 0;
+//         sumr2[u] = 0;
+//         sumr[u] = 0;
+//     };
+//     dfs(dfs, 0);
+//     return ans;
+// }
 
-}
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++){
+//         cin >> S[i];
+//         add(S[i]);
+//     }
+//     build();
+//     for(int i = 1;i <= tot;i++){
+//         g[fail[i]].push_back(i);
+//     }
+//     for(int i = 1;i <= m;i++){
+//         cin >> T[i];
+//         cout << query(T[i]) << endl;
+//     }
+// }
 
-signed main(){
+// signed main(){
 
-    IO;
+//     IO;
 
-    int t = 1;
-    // cin >> t;
-    while(t--) solve();
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e6 + 10;
+// int n, m;
+// string s[N];
+
+// int tr[N][27], cnt[N], tot, fail[N];
+// void add(const string& s){
+//     int p = 0, len = s.size();
+//     for(int i = 0;i < len;i++){
+//         if(!tr[p][s[i] - 'a']) tr[p][s[i] - 'a'] = ++tot;
+//         p = tr[p][s[i] - 'a'];
+//     }
+//     cnt[p]++;
+// }
+// void build(){
+//     queue<int>q;
+//     for(int i = 0;i < 26;i++){
+//         if(tr[0][i]) q.push(tr[0][i]);
+//     }
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         for(int i = 0; i < 26;i++){
+//             int v = tr[u][i];
+//             if(v) fail[v] = tr[fail[u]][i], q.push(v);
+//             else tr[u][i] = tr[fail[u]][i];
+//         }
+//     }
+// }
+// int query(const string& s){
+//     int ret = 0, len = s.size(), p = 0;
+//     for(int i = 0;i < len;i++){
+//         p = tr[p][s[i] - 'a'];
+//         for(int j = p;j && ~cnt[j];j = fail[j]){
+//             ret += cnt[j];
+//             cnt[j] = -1;
+//         }
+//     }
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> s[i];
+//         add(s[i]);
+//     }
+//     build();
+//     string T;
+//     cin >> T;
+//     cout << query(T) << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--){
+//         solve();
+//     }
+
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e6 + 10;
+// int n, m;
+// string s[N], T;
+
+// list<int>g[N];
+
+// int tr[N][27], fail[N], tot, ed[N], cnt[N];
+// int add(const string& s){
+//     int len = s.size(), p = 0;
+//     for(int i = 0;i < len;i++){
+//         if(!tr[p][s[i] - 'a']) tr[p][s[i] - 'a'] = ++tot;
+//         p = tr[p][s[i] - 'a'];
+//     }
+//     return p;
+// }
+// void build(){
+//     queue<int>q;
+//     for(int i = 0;i < 26;i++){
+//         if(tr[0][i]) q.push(tr[0][i]);
+//     }
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         for(int i = 0;i < 26;i++){
+//             int v = tr[u][i];
+//             if(v) fail[v] = tr[fail[u]][i], q.push(v);
+//             else tr[u][i] = tr[fail[u]][i];
+//         }
+//     }
+// }
+// void query(const string& s){
+//     int len = s.size(), p = 0;
+//     for(int i = 0;i < len;i++){
+//         p = tr[p][s[i] - 'a'];
+//         cnt[p]++;
+//     }
+//     for(int i = 1;i <= tot;i++){
+//         g[fail[i]].push_back(i);
+//     }
+//     auto dfs = [&](auto self, int u) -> void {
+//         for(auto v : g[u]){
+//             self(self, v);
+//             cnt[u] += cnt[v];
+//         }
+//     };
+//     dfs(dfs, 0);
+// }
+
+// void init(){
+//     for(int i = 0;i <= tot;i++){
+//         g[i].clear();
+//         fail[i] = cnt[i] = 0;
+//         for(int j = 0;j < 26;j++){
+//             tr[i][j] = 0;
+//         }
+//     }
+//     tot = 0;
+// }
+
+// void solve(){
+//     init();
+//     for(int i = 1;i <= n;i++){
+//         cin >> s[i];
+//         ed[i] = add(s[i]);
+//     }
+//     build();
+//     cin >> T;
+//     query(T);
+//     int mx = 0;
+//     for(int i = 1;i <= n;i++){
+//         mx = max(mx, cnt[ed[i]]);
+//     }
+//     cout << mx << endl;
+//     for(int i = 1;i <= n;i++){
+//         if(cnt[ed[i]] == mx){
+//             cout << s[i] << endl;
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(cin >> n, n){
+//         solve();
+//     }
+
+
+//     return 0;
+// }
+
+
