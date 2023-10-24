@@ -4556,3 +4556,116 @@
 // }
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// const int N = 2e5 + 10;
+// const int M = N * 30;
+// int n, m, a[N];
+
+// int idx = 1;
+// int tot, rt[N];
+// struct node{
+//     int l, r;
+//     int sum;
+// }tr[M];
+
+// void up(int id){
+//     tr[id].sum = tr[ls].sum + tr[rs].sum;
+// }
+// void modify(int& id, int l, int r, int x, int v){
+//     if(!id) id = ++tot;
+//     tr[id].sum += v;
+//     if(l == r) return;
+//     int mid = l + r >> 1;
+//     if(x <= mid) modify(ls, l, mid, x, v);
+//     else modify(rs, mid + 1, r, x, v);
+// }
+// int split(int& id, int l, int r, int ql, int qr){
+//     if(!id) return 0;
+//     int n = ++tot;
+//     if(ql <= l && r <= qr){
+//         tr[n] = tr[id];
+//         id = 0;
+//     }else{
+//         int mid = l + r >> 1;
+//         if(ql <= mid) tr[n].l = split(ls, l, mid, ql, qr);
+//         if(qr > mid)  tr[n].r = split(rs, mid + 1, r, ql, qr);
+//         up(id), up(n);
+//     }
+//     return n;
+// }
+// void merg(int&x, int y){
+//     if(!x || !y) x |= y;
+//     else{
+//         tr[x].sum += tr[y].sum;
+//         merg(tr[x].l, tr[y].l);
+//         merg(tr[x].r, tr[y].r);
+//     }
+// }
+// int query(int id, int l, int r, int ql, int qr){
+//     if(!id) return 0;
+//     if(ql <= l && r <= qr) return tr[id].sum;
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls, l, mid, ql, qr);
+//     else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//     else return query(ls,l,mid,ql,qr) + query(rs,mid+1,r,ql,qr);
+// }
+// int rak(int id, int l, int r, int k){
+//     if(l == r) return l;
+//     int mid = l + r >> 1;
+//     if(tr[ls].sum >= k) return rak(ls, l, mid, k);
+//     else return rak(rs, mid + 1, r, k - tr[ls].sum);
+// }
+// int s_rak(int id, int l, int r, int k){
+//     if(tr[id].sum < k) return -1;
+//     else return rak(id, l, r, k);
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         modify(rt[1], 1, n, i, a[i]);
+//     }
+//     while(m--){
+//         int op, p, x, y, t;
+//         cin >> op;
+//         switch(op){
+//         case(0):
+//             cin >> p >> x >> y;
+//             rt[++idx] = split(rt[p], 1, n, x, y);
+//             break;
+//         case(1):
+//             cin >> p >> t;
+//             merg(rt[p], rt[t]);
+//             break;
+//         case(2):
+//             cin >> p >> x >> t;
+//             modify(rt[p], 1, n, t, x);
+//             break;
+//         case(3):
+//             cin >> p >> x >> y;
+//             cout << query(rt[p], 1, n, x, y) << endl;
+//             break;
+//         case(4):
+//             cin >> p >> x;
+//             cout << s_rak(rt[p], 1, n, x) << endl;
+//             break;
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
