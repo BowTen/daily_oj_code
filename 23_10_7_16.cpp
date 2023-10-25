@@ -4669,3 +4669,146 @@
 
 //     return 0;
 // }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls id << 1
+// #define rs id << 1 | 1
+// const int N = 2e5 + 10;
+// const int M = N * 30;
+// int n, m, a[N];
+
+// double mx[N << 2];
+// int sum[N << 2];
+// int query(int id, int l, int r, double x){
+//     if(x >= mx[id]) return 0;
+//     if(l == r) return x < mx[id];
+//     int mid = l + r >> 1;
+//     if(mx[ls] <= x) return query(rs, mid + 1, r, x);
+//     else return query(ls, l, mid, x) + (sum[id] - sum[ls]);
+// }
+// void up(int id, int l, int r){
+//     mx[id] = max(mx[ls], mx[rs]);
+//     sum[id] = sum[ls] + query(rs, ((l+r)/2)+1, r, mx[ls]);
+// }
+// void change(int id, int l, int r, int x, double v){
+//     if(l == r){
+//         mx[id] = v;
+//         sum[id] = v > 0 ? 1 : 0;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(ls, l, mid, x, v);
+//     else change(rs, mid + 1, r, x, v);
+//     up(id, l, r);
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1, x, y;i <= m;i++){
+//         cin >> x >> y;
+//         change(1, 1, n, x, (1.0*y) / x);
+//         cout << sum[1] << endl;
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls id << 1
+// #define rs id << 1 | 1
+// const int N = 2e5 + 10;
+// const int M = N * 30;
+// int n, m, a[N], p;
+
+// int mx[N << 2], mi[N << 2]; // max(a[j] - j), min(i + mx[j])
+// int query(int id, int l, int r, int mxr){
+//     if(l == r) return l + max(mxr, mx[id]);
+//     int mid = l + r >> 1;
+//     if(mxr >= mx[rs]) return min(mid + 1 + mxr, query(ls, l, mid, mxr));
+//     else return min(mi[id], query(rs, mid + 1, r, mxr));
+// }
+// void up(int id, int l, int r){
+//     mx[id] = max(mx[ls], mx[rs]);
+//     mi[id] = query(ls, l, (l+r>>1), mx[rs]);
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         mx[id] = a[l] - l;
+//         mi[id] = a[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id, l, r);
+// }
+// void change(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         mx[id] = v - l;
+//         mi[id] = v;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(ls, l, mid, x, v);
+//     else change(rs, mid + 1, r, x, v);
+//     up(id, l, r);
+// }
+
+// void solve(){
+//     cin >> n >> m >> p;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         a[i + n] = a[i];
+//     }
+//     int len = n;
+//     n *= 2;
+//     build(1, 1, n);
+//     int ans = mi[1] + len - 1;
+//     cout << ans << endl;
+//     int x, y;
+//     while(m--){
+//         cin >> x >> y;
+//         if(p){
+//             x ^= ans;
+//             y ^= ans;
+//         }
+//         change(1, 1, n, x, y);
+//         change(1, 1, n, x + len, y);
+//         ans = mi[1] + len - 1;
+//         cout << ans << endl;
+//     }
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
