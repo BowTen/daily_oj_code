@@ -4812,3 +4812,147 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// const int N = 2e5 + 10;
+// int m, n;
+// string s;
+
+// struct node{
+//     int l, r;
+//     bool f;
+// }tr[N * 40];
+// int rt[27], tot;
+
+// void up(int id){
+//     tr[id].f = tr[ls].f | tr[rs].f;
+// }
+// void insert(int& id, int l, int r, int x){
+//     if(!id) id = ++tot;
+//     tr[id].f = true;
+//     if(l == r) return;
+//     int mid = l + r >> 1;
+//     if(x <= mid) insert(ls, l, mid, x);
+//     else insert(rs, mid + 1, r, x);
+// }
+// int split(int& id, int l, int r, int ql, int qr){
+//     if(!id) return 0;
+//     int n = ++tot;
+//     if(ql <= l && r <= qr){
+//         n = id;
+//         id = 0;
+//     }else{
+//         int mid = l + r >> 1;
+//         if(ql <= mid) tr[n].l = split(ls, l, mid, ql, qr);
+//         if(qr > mid) tr[n].r = split(rs, mid + 1, r, ql, qr);
+//         up(id), up(n);
+//     }
+//     return n;
+// }
+// void merg(int &x, int y){
+//     if(!x || !y) x |= y;
+//     else{
+//         tr[x].f |= tr[y].f;
+//         merg(tr[x].l, tr[y].l);
+//         merg(tr[x].r, tr[y].r);
+//     }
+// }
+// void dfs(int id, int l, int r, char ch){
+//     if(l == r) {
+//         s[l] = ch;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(tr[ls].f) dfs(ls, l, mid, ch);
+//     if(tr[rs].f) dfs(rs, mid + 1, r, ch);
+// }
+
+// void solve(){
+//     cin >> s;
+//     n = s.size();
+//     s = ' ' + s;
+//     for(int i = 1;i <= n;i++){
+//         insert(rt[s[i] - 'a'], 1, n, i);
+//     }
+
+//     cin >> m;
+//     int l, r;
+//     char x, y;
+//     while(m--){
+//         cin >> l >> r >> x >> y;
+//         merg(rt[y - 'a'], split(rt[x - 'a'], 1, n, l, r));
+//     }
+//     for(int i = 0;i < 26;i++){
+//         dfs(rt[i], 1, n, i + 'a');
+//     }
+//     for(int i = 1;i <= n;i++) cout << s[i];
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// const int mod = 1e9 + 7;
+// const int N = 5e3 + 10;
+// int s, b, f[N][N], pre[N][N], pro[N][N];
+
+// void solve(){
+//     cin >> s >> b;
+
+//     // for(int i = 1;i <= s;i++){
+//     //     f[i][i] = 1;
+//     //     for(int j = i + 1;j <= b;j++){
+//     //         for(int k = min(i, j - i);k >= 1;k--){
+//     //             f[i][j] = (f[i][j] + (f[k][j - i] * (i - k + 1) % mod)) % mod;
+//     //         }
+//     //     }
+//     // }
+//     // cout << f[s][b] << endl;
+
+//     for(int i = 1;i <= s;i++){
+//         f[i][i] = 1;
+
+//         for(int j = 1;j <= b;j++){
+//             if(j >= i) f[i][j] = (f[i][j] + pro[i][j - i]) % mod;
+//             pre[i][j] = (pre[i][j] + pre[i-1][j] + f[i][j]) % mod;
+//             pro[i][j] = (pro[i][j] + pro[i-1][j] + pre[i][j]) % mod;
+//         }
+//     }
+//     cout << f[s][b] << endl;
+
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
