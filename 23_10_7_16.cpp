@@ -4956,3 +4956,93 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define all(x) (x).begin(), (x).end()
+// const int mod = 1e9 + 7;
+// const int N = 2e5 + 10;
+// int n, a[N], last[N], m, fs[N];
+
+// int sum[N << 2];
+// void up(int id){
+//     sum[id] = sum[ls] + sum[rs];
+// }
+// void change(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         sum[id] = v;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(ls, l, mid, x, v);
+//     else change(rs, mid + 1, r, x, v);
+//     up(id);
+// }
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return sum[id];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls, l, mid, ql, qr);
+//     else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//     else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr); 
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         sum[id] = 0;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+// }
+
+
+// void solve(){
+//     cin >> n;
+//     vector<int>idx;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         idx.push_back(a[i]);
+//     }
+//     sort(all(idx));
+//     idx.erase(unique(all(idx)), idx.end());
+//     for(int i = 1;i <= n;i++){
+//         a[i] = lower_bound(all(idx), a[i]) - idx.begin() + 1;
+//         m = max(m, a[i]);
+//         fs[a[i]] = 0;
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         last[a[i]] = i;
+//         if(!fs[a[i]]) fs[a[i]] = i;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         change(1, 1, n, last[a[i]], 1);
+//     }
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++) if(i == fs[a[i]]){
+//         ans += query(1, 1, n, i, n);
+//     }
+//     build(1, 1, n);
+
+//     cout << ans << endl;
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
