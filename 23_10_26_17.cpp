@@ -967,3 +967,533 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e5 + 10;
+// const int INC = 0;
+// const int DEC = 1;
+// int n, m, a[N];
+// int rt[N], tot;
+
+// struct seg{
+//     int rt, op, tag;
+//     bool all;
+// }idtr[N << 2];
+// void idup(int id){
+//     if(idtr[id << 1].rt == idtr[id << 1 | 1].rt){
+//         idtr[id].all = 1;
+//         idtr[id].rt = idtr[id << 1].rt;
+//         idtr[id].op = idtr[id << 1].op;
+//     }else{
+//         idtr[id] = {0};
+//     }
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         idtr[id].rt = rt[l];
+//         idtr[id].all = true;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(id << 1, l, mid);
+//     build(id << 1 | 1, mid + 1, r);
+// }
+
+// struct node{
+//     int l, r;
+//     int sum;
+// }tr[N * 40];
+// void insert(int& id, int l, int r, int x){
+//     if(!id) id = ++tot;
+//     tr[id].sum++;
+//     if(l == r) return;
+//     int mid = l + r >> 1;
+//     if(x < mid) insert(ls, l, mid, x);
+//     else insert(rs, mid + 1, r, x);    
+// }
+// void merg(int& x, int y){
+//     if(!x || !y) x |= y;
+//     else{
+//         tr[x].sum += tr[y].sum;
+//         merg(tr[x].l, tr[y].l);
+//         merg(tr[x].r, tr[y].r);
+//     }
+// }
+// void Split(int id, int l, int r, int ql, int qr, int& sp){
+//     if(ql <= l && r <= qr && idtr[id].all){
+//         merg(sp, idtr[id].rt);
+//         return;
+//     }
+//     if(idtr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) Split(id << 1, l, mid, ql, qr, sp);
+//     else if(ql > mid) Split(id << 1 | 1, mid + 1, r, ql, qr, sp);
+//     else Split(id << 1, l, mid, ql, qr, sp), Split(id << 1 | 1, mid + 1, r, ql, qr, sp);
+// }
+// void Sort(int op, int l, int r){
+//     int sp = ++tot;
+//     Split(1, 1, n, l, r, sp);
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         insert(rt[i], 1, n, a[i]);
+//     }
+//     build(1, 1, n);
+//     int op, l, r;
+//     while(m--){
+//         cin >> op >> l >> r;
+//         Sort(op, l, r);
+//     }
+
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+
+// void solve(){
+//     map<int, int>mp;
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         mp[a[i]]++;
+//     }
+//     if(mp.size() == 1) cout << "Yes\n";
+//     else if(mp.size() == 2){
+//         if(abs(mp.begin()->second - mp.rbegin()->second) <= 1) cout << "Yes\n";
+//         else cout << "No\n";
+//     }else{
+//         cout << "No\n";
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, m;
+
+
+// void solve(){
+//     cin >> n >> m;
+//     string a, b;
+//     cin >> a >> b;
+//     bool f = true;
+//     for(int i = 0;i < n - 1;i++){
+//         if(a[i] == a[i + 1]){
+//             f = false;
+//             break;
+//         }
+//     }
+//     if(f){
+//         cout << "Yes\n";
+//         return;
+//     }
+
+//     f = true;
+//     for(int i = 0;i < m - 1;i++){
+//         if(b[i] == b[i + 1]){
+//             f = false;
+//             break;
+//         }
+//     }
+//     if(f == false || b.front() != b.back()){
+//         cout << "No\n";
+//         return;
+//     }
+
+//     for(int i = 0;i < n - 1;i++){
+//         if(a[i] == a[i + 1]){
+//             if(a[i] == b.front()){
+//                 cout << "No\n";
+//                 return;
+//             }
+//         }
+//     }
+//     cout << "Yes\n";
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, m, st[400], top;
+
+
+// void solve(){
+//     top = 0;
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     if(n & 1){
+//         cout << "-1\n";
+//         return;
+//     }
+
+//     int cnt = 0;
+//     int q = 0, p = n;
+//     while(s.size()){
+//         if(s[0] == s.back()){
+//             if(s[0] == '1'){
+//                 st[++top] = q;
+//                 s = "01" + s;
+//             }else{
+//                 st[++top] = p;
+//                 s = s + "01";
+//             }
+//             p += 2;
+//             cnt++;
+//         }
+//         q++, p--;
+//         s.erase(s.begin());
+//         s.pop_back();
+//         if(cnt > 300){
+//             cout << "-1\n";
+//             return;
+//         }
+//     }
+
+//     cout << top << endl;
+//     for(int i = 1;i <= top;i++)cout << st[i] << ' ';
+//     cout << endl;
+
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, m, c;
+
+// struct node{
+//     int v, nd, d;
+//     int operator<(const node& e){
+//         return d < e.d;
+//     }
+// }a[N];
+
+// void solve(){
+//     cin >> n >> c;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i].v;
+//         a[i].nd = i * c;
+//         a[i].d = max(0ll, a[i].nd - a[i].v);
+//     }
+//     sort(a + 2, a + 1 + n);
+//     int cur = a[1].v;
+//     for(int i = 2;i <= n;i++){
+//         cur += a[i].v;
+//         if(cur < a[i].nd){
+//             cout << "No\n";
+//             return;
+//         }
+//     }
+//     cout << "Yes\n";
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// int a, b, x, y, d, cnt;
+
+
+// void solve(){
+//     cin >> a >> b >> x >> y >> d >> cnt;
+//     if(b <= x){
+//         cout << "Y\n";
+//         return;
+//     }
+//     if(a <= y){
+//         cout << "N\n";
+//         return;
+//     }
+//     // int win = (b + x - 1) / x;
+//     // int die = (a + y - 1) / y;
+//     // if(die == 2){
+
+//     if(d > y){
+//         int ma = a;
+//         while(a > 0){
+
+//             int t = a / y;
+//             for(int i = t;i >= 0;i--){
+//                 t = 0;
+//                 if(a - i * y >= y){
+//                     t = i;
+//                     break;
+//                 }
+//             }
+//             a -= t * y;
+//             b -= t * x;
+
+
+//             if(a <= y && cnt > 0){
+//                 a = min(ma, a + d);
+//                 cnt--;
+//             }else{
+//                 b -= x;
+//                 if(b <= 0) {
+//                     cout << "Y\n";
+//                     return;
+//                 }
+//             }
+//             a -= y;
+//         }
+
+//         if(a <= 0){
+//             cout << "N\n";
+//             return;
+//         }
+//     }else{
+//         int win = (b + x - 1) / x;
+//         int die = (a + y - 1) / y;
+//         if(die >= win) cout << "Y\n";
+//         else cout << "N\n";
+//     }
+
+//     // int win = (b + x - 1) / x;
+//     // int die = (a + y - 1) / y;
+//     // if(die >= win) cout << "Y\n";
+//     // else cout << "N\n";
+
+//     // }else{
+//     //     int tmp = a - (a % y);
+//     //     d = min(tmp, d);
+//     //     a += cnt * d;
+//     //     die = (a + y - 1) / y;
+//     //     if(die >= win) cout << "Y\n";
+//     //     else cout << "N\n";
+//     // }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// int a, n;
+
+
+// void solve(){
+//     cin >> a >> n;
+//     cout << n % (a + 1) << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// int y, r;
+// int day[] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+
+// void solve(){
+//     cin >> y >> r;
+//     int ans = 0;
+//     if(y < 10 || (y == 10 && r < 23)){ //next year
+//         ans = day[10] - 23 + day[11] + day[12];
+//         int cy = 1;
+//         while(cy < y){
+//             ans += day[cy];
+//             cy++;
+//         }
+//         ans += r;
+//     }else{ //this year
+//         ans = -23;
+//         int cy = 10;
+//         while(cy < y){
+//             ans += day[cy];
+//             cy++;
+//         }
+//         ans += r;
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls (tr[id].l)
+// #define rs (tr[id].r)
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// int n;
+
+
+// void solve(){
+//     cin >> n;
+//     if(n == 100){
+//         cout << "Genshin Qidong!\n";
+//     }else if(n < 40){
+//         cout << "wyswd\n";
+//     }else{
+//         int ans = (int)ceil((60.0 - (0.6 * n))/0.4);
+//         for(int i = ans - 2;i <= ans + 2;i++){
+//             if(i * 0.4 + 0.6 * n >= 60){
+//                 ans = i;
+//                 break;
+//             }
+//         }
+//         cout << ans << endl;
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
