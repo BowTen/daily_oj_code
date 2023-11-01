@@ -2199,3 +2199,202 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//     }
+
+//     for(int i = 0;i <= (1 << 8);i++){
+//         int tmp = 0;
+//         for(int j = 1;j <= n;j++){
+//             tmp ^= (a[j] ^ i);
+//         }
+//         if(tmp == 0){
+//             cout << i << endl;
+//             return;
+//         }
+//     }
+//     cout << "-1\n";
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     int pos[30] = {0};
+//     for(int i = 0;i < n;i++) pos[s[i] - 'a'] = i;
+//     for(int i = 0;i + 'a' <= s[0];i++) if(pos[i]){
+//         string s1 = s.substr(0, pos[i]) + s.substr(pos[i] + 1);
+//         s1 = (char)('a' + i) + s1;
+//         s = s1;
+//         break;
+//     }
+//     cout << s << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// int n, m, k[N];
+
+// void solve(){
+//     cin >> n >> m;
+//     vector<int>idx;
+//     for(int i = 1;i <= n;i++) cin >> k[i], idx.push_back(k[i]);
+//     sort(idx.begin(), idx.end());
+//     idx.erase(unique(idx.begin(), idx.end()), idx.end());
+//     for(int i = 1, a, b, c;i <= m;i++){
+//         cin >> a >> b >> c;
+//         a = 4 * a * c;
+//         auto p = lower_bound(idx.begin(), idx.end(), b);
+//         // cerr << *p << endl;
+//         if(p != idx.end() && (b-*p) * (b-*p) < a){
+//             cout << "YES\n" << (*p) << endl;
+//             continue;
+//         }
+//         if(p != idx.begin()){
+//             p--;
+//             if((b-*p) * (b-*p) < a){
+//                 cout << "YES\n" << (*p) << endl;
+//                 continue;
+//             }
+//         }
+
+//         cout << "NO\n";
+//     }
+
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// int n, m;
+// list<int>g[N];
+
+// int dep[N], md;
+// void dfs(int u, int f){
+//     dep[u] = dep[f] + 1;
+//     if(dep[u] > dep[md]) md = u;
+//     for(auto v : g[u]) if(v != f){
+//         dfs(v, u);
+//     }
+// }
+// int dis[N], d = 0;
+// void dfs2(int u, int f){
+//     dep[u] = dep[f] + 1;
+//     if(dep[u] > dep[md]) md = u;
+//     d = max(d, dep[u]);
+
+//     dis[u] = dep[u] - 1;
+//     for(auto v : g[u]) if(v != f){
+//         dfs2(v, u);
+//     }
+// }
+// int pre[N];
+// void dfs3(int u, int f){
+//     dep[u] = dep[f] + 1;
+//     dis[u] = max(dis[u], dep[u] - 1);
+//     pre[dis[u]]++;
+//     for(auto v : g[u]) if(v != f){
+//         dfs3(v, u);
+//     }
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     dfs(1, 0);
+//     dfs2(md, 0);
+//     dfs3(md, 0);
+
+//     for(int i = 1;i <= d;i++){
+//         pre[i] += pre[i-1];
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         if(i >= d) cout << n << ' ';
+//         else{
+//             cout << 1 + pre[i-1] << ' ';
+//         }
+//     }
+
+//     // cerr << d;
+//     // for(int i = 1;i <= n;i++) cerr << dis[i] << ' ';
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
