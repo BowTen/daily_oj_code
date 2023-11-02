@@ -2398,3 +2398,234 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using pii = pair<int,int>;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define ls id << 1
+// #define rs id << 1 | 1
+// const int N = 1e5 + 10;
+// const int HOR = 0;
+// const int VER = 1;
+// int n, q;
+
+// struct node{
+//     int x, y;
+//     int s, xt, yt, tagx, tagy, len;
+// }tr[N << 2];
+// void up(int id){
+//     tr[id].len = tr[ls].len + tr[rs].len;
+//     tr[id].x = tr[ls].x + tr[rs].x;
+//     tr[id].y = tr[ls].y + tr[rs].y;
+//     if(tr[ls].s == tr[rs].s){
+//         if(tr[ls].s == VER && tr[rs].x == 0) tr[id].s = VER;
+//         else if(tr[ls].s == HOR && tr[rs].y == 0) tr[id].s = HOR;
+//     }else if(tr[ls].len == 1 || tr[rs].len == 1){
+//         if(tr[rs].x == 0) tr[id].s = VER;
+//         else if(tr[rs].y == 0) tr[id].s = HOR;
+//     }
+// }
+// void settagx(int id, int x){
+//     tr[id].x += x * tr[id].len;
+//     tr[id].tagx += x;
+//     tr[id].xt = 1;
+// }
+// void settagy(int id, int x){
+//     tr[id].y += tr[id].len * x;
+//     tr[id].tagy += x;
+//     tr[id].yt = 1;
+// }
+// void down(int id){
+//     if(tr[id].xt){
+//         settagx(ls, tr[id].tagx);
+//         settagx(rs, tr[id].tagx);
+//         tr[id].xt = tr[id].tagx = 0;
+//     }
+//     if(tr[id].yt){
+//         settagy(ls, tr[id].tagy);
+//         settagy(rs, tr[id].tagy);
+//         tr[id].yt = tr[id].tagy = 0;
+//     }
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id].x = 1;
+//         tr[id].len = 1;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+// }
+// int state(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].s;
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(ql <= mid) return state(ls, l, mid, ql, qr);
+//     else return state(rs, mid + 1, r, ql, qr);
+//     up(id);
+// }
+// void modifyx(int id, int l, int r, int ql, int qr, int x){
+//     if(ql <= l && r <= qr){
+//         settagx(id, x);
+//         return;
+//     }
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modifyx(ls, l, mid, ql, qr, x);
+//     else if(ql > mid) modifyx(rs, mid + 1, r, ql, qr, x);
+//     else modifyx(ls, l, mid, ql, qr, x), modifyx(rs, mid + 1, r, ql, qr, x);
+//     up(id);
+// }
+// pair<int, int> query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return {tr[id].x, tr[id].y};
+//     pair<int,int>ret = {0, 0};
+//     pair<int,int>tmp = {0, 0};
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(ql <= mid){
+//         tmp = query(ls, l, mid, ql, qr);
+//         ret.first += tmp.first;
+//         ret.second += tmp.second;
+//     }
+//     else{
+//         tmp = query(rs, mid + 1, r, ql, qr);
+//         ret.first += tmp.first;
+//         ret.second += tmp.second;
+//     }
+//     up(id);
+//     return ret;
+// }
+// void modifyy(int id, int l, int r, int ql, int qr, int x){
+//     if(ql <= l && r <= qr){
+//         settagy(id, x);
+//         return;
+//     }
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modifyy(ls, l, mid, ql, qr, x);
+//     else if(ql > mid) modifyy(rs, mid + 1, r, ql, qr, x);
+//     else modifyy(ls, l, mid, ql, qr, x), modifyy(rs, mid + 1, r, ql, qr, x);
+//     up(id);
+// }
+// void recoverx(int l, int r, int a0, int d){
+//     pii tmp = {0, 0};
+//     if(l > 1) tmp = query(1, 1, n, 1, l - 1);
+//     modifyx(1, 1, n, l, l, a0 - tmp.first);
+//     if(l + 1 <= r) modifyx(1, 1, n, l + 1, r, d);
+//     if(l + 1 <= n) modifyx(1, 1, n, l + 1, l + 1, -((a0-tmp.first)+d*(r-l)));
+// }
+// void recovery(int l, int r, int a0, int d){
+//     pii tmp = {0, 0};
+//     if(l > 1) tmp = query(1, 1, n, 1, l - 1);
+//     modifyy(1, 1, n, l, l, a0 - tmp.second);
+//     if(l + 1 <= r) modifyy(1, 1, n, l + 1, r, d);
+//     if(l + 1 <= n) modifyy(1, 1, n, l + 1, l + 1, -((a0-tmp.second)+d*(r-l)));
+// }
+
+// void solve(){
+//     cin >> n >> q;
+//     build(1, 1, n);
+//     int op, l, r, x, y;
+//     while(q--){
+//         cin >> op;
+//         if(op == 1){
+//             cin >> l >> r;
+//             pair<int,int>tmp = query(1, 1, n, 1, l);
+//             if(state(1, 1, n, l, r) == HOR){
+//                 recoverx(l, r, tmp.first, 1);
+//                 recovery(l, r, tmp.second, 0);
+//             }else{
+//                 recoverx(l, r, tmp.first, 0);
+//                 recovery(l, r, tmp.second, 1);
+//             }
+//         }else{
+//             cin >> l;
+//             auto pii = query(1, 1, n, 1, l);
+//             cout << pii.first << ' ' << pii.second << endl;
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+const int N = 1e4 + 10;
+const int M = 110;
+int n, m;
+int k[M], ans[M];
+int del[N], root;
+list<array<int, 2>>g[N];
+int siz[N], mxs, sum;
+
+void getroot(int u, int f){
+    siz[u] = 1;
+    int mx = 0;
+    for(auto [v, w] : g[u]) if(!del[v] && v != f){
+        getroot(v, u);
+        siz[u] += siz[v];
+        mx = max(mx, siz[v]);
+    }
+    mx = max(mx, sum - siz[u]);
+    if(mx < mxs){
+        mxs = mx;
+        root = u;
+    }
+}
+void divide(int u){
+    calc(u);
+
+    for(auto [v, w] : g[u]) if(!del[v]){
+        mxs = sum = siz[v];
+        getroot(v, 0);
+        divide(root);
+    }
+}
+
+void solve(){
+    cin >> n >> m;
+    for(int i = 1, u, v, w;i < n;i++){
+        cin >> u >> v >> w;
+        g[u].push_back({{v, w}});
+        g[v].push_back({{u, w}});
+    }
+
+    for(int i = 1;i <= m;i++){
+        cin >> k[i];
+    }
+
+    divide(1, 0);
+
+    for(int i = 1;i <= m;i++){
+        cout << (ans[i] ? "AYE\n" : "NAY\n");
+    }
+
+}
+
+signed main(){
+    
+    IO;
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+    return 0;
+}
