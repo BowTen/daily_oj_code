@@ -2564,68 +2564,204 @@
 // }
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e4 + 10;
+// const int M = 110;
+// const int INF = 10000005;
+// int n, m;
+// int k[M], ans[M];
+// int del[N], root, judge[INF];
+// list<array<int, 2>>g[N];
+// int siz[N], mxs, sum, d[N];
+// int que[N], dis[N], cnt; //模拟队列和栈
+
+// void getroot(int u, int f){
+//     siz[u] = 1;
+//     int mx = 0;
+//     for(auto [v, w] : g[u]) if(!del[v] && v != f){
+//         getroot(v, u);
+//         siz[u] += siz[v];
+//         mx = max(mx, siz[v]);
+//     }
+//     mx = max(mx, sum - siz[u]);
+//     if(mx < mxs){
+//         mxs = mx;
+//         root = u;
+//     }
+// }
+// void getdis(int u, int f){
+//     dis[++cnt] = d[u];
+//     for(auto [v, w] : g[u]) if(v != f && !del[v]){
+//         d[v] = d[u] + w;
+//         getdis(v, u);
+//     }
+// }
+// void calc(int u){
+//     del[u] = judge[0] = 1;
+//     int p = 0;
+
+//     for(auto [v, w] : g[u]) if(!del[v]){
+//         cnt = 0;
+//         d[v] = w;
+//         getdis(v, u);
+//         for(int i = 1;i <= cnt;i++)
+//             for(int j = 1;j <= m;j++)
+//                 if(k[j] >= dis[i])
+//                     ans[j] |= judge[k[j] - dis[i]];
+//         for(int i = 1;i <= cnt;i++)
+//             if(dis[i] < INF) que[++p] = dis[i], judge[que[p]] = 1;
+//     }
+
+//     for(int i = 1;i <= p;i++) judge[que[i]] = 0;
+// }
+// void divide(int u){
+//     calc(u);
+
+//     for(auto [v, w] : g[u]) if(!del[v]){
+//         mxs = sum = siz[v];
+//         getroot(v, 0);
+//         divide(root);
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1, u, v, w;i < n;i++){
+//         cin >> u >> v >> w;
+//         g[u].push_back({{v, w}});
+//         g[v].push_back({{u, w}});
+//     }
+
+//     for(int i = 1;i <= m;i++){
+//         cin >> k[i];
+//     }
+
+//     mxs = sum = n;
+//     getroot(1, 0);
+//     getroot(root, 0);
+//     divide(root);
+
+//     for(int i = 1;i <= m;i++){
+//         cout << (ans[i] ? "AYE\n" : "NAY\n");
+//     }
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 #define endl '\n'
-const int N = 1e4 + 10;
-const int M = 110;
-int n, m;
-int k[M], ans[M];
-int del[N], root;
-list<array<int, 2>>g[N];
-int siz[N], mxs, sum;
+const int N = 1e6 + 10;
+int n, L, R;
+list<int>g[N];
+int del[N];
+int sz[N], dep[N];
+int ans = 0;
 
-void getroot(int u, int f){
-    siz[u] = 1;
-    int mx = 0;
-    for(auto [v, w] : g[u]) if(!del[v] && v != f){
-        getroot(v, u);
-        siz[u] += siz[v];
-        mx = max(mx, siz[v]);
-    }
-    mx = max(mx, sum - siz[u]);
-    if(mx < mxs){
-        mxs = mx;
-        root = u;
+void calc(int u){
+    // cerr << u << endl;
+    vector<int>q(n + 10);
+    vector<int>pre(n + 10);
+    q[0] = 1;
+    int p1 = 0, mdp = 0;
+    dep[u] = 0;
+    auto getdis = [&](auto self, int u, int f) -> void {
+        dep[u] = dep[f] + 1;
+        pre[dep[u]]++;
+        mdp = max(mdp, dep[u]);
+        for(auto v : g[u]) if(v != f && !del[v]){
+            self(self, v, u);
+        }
+    };
+    for(auto v : g[u]) if(!del[v]){
+        mdp = 0;
+        getdis(getdis, v, u);
+        for(int i = 1;i <= R;i++) pre[i] += pre[i - 1];
+        for(int i = 0;i <= p1;i++){
+            ans += q[i] * (pre[max(0ll, R-i)] - pre[max(0ll, L-i-1)]);
+        }
+        for(int i = 1, len;i <= mdp;i++) {
+            len = pre[i]-pre[i-1];
+            if(len > n || len < 0) continue;
+            q[len]++;
+            p1 = max(p1, len);
+        }
+        for(int i = 1;i <= R;i++) pre[i] = 0;
     }
 }
-void divide(int u){
-    calc(u);
 
-    for(auto [v, w] : g[u]) if(!del[v]){
-        mxs = sum = siz[v];
-        getroot(v, 0);
-        divide(root);
+void dfs(int u, int s){
+    int ms = s + 1, root = -1;
+    auto getroot = [&](auto self, int u, int f) -> void {
+        sz[u] = 1;
+        int mx = 0;
+        for(auto v : g[u]) if(!del[v] && v != f){
+            self(self, v, u);
+            sz[u] += sz[v];
+            mx = max(mx, sz[v]);
+        }   
+        mx = max(mx, s - sz[u]);
+        if(mx < ms) ms = mx, root = u;
+    };
+    getroot(getroot, u, 0);
+
+    calc(root);
+    del[root] = 1;
+    for(auto v : g[root]) if(!del[v]){
+        dfs(v, sz[v]);
     }
-}
+}    
+
+void init(){
+    ans = 0;
+    for(int i = 1;i <= n;i++) {
+        sz[i] = del[i] = 0;
+        g[i].clear();
+    }
+}   
 
 void solve(){
-    cin >> n >> m;
-    for(int i = 1, u, v, w;i < n;i++){
-        cin >> u >> v >> w;
-        g[u].push_back({{v, w}});
-        g[v].push_back({{u, w}});
+    int l, r;
+    cin >> n >> l >> r;
+    L = n - 1 - r;
+    R = n - 1 - l;
+    // cerr << L << ' ' << R << endl;
+    for(int i = 1, u, v;i < n;i++){
+        cin >> u >> v;
+        g[u].push_back(v);
+        g[v].push_back(u);
     }
 
-    for(int i = 1;i <= m;i++){
-        cin >> k[i];
-    }
+    dfs(1, n);
 
-    divide(1, 0);
+    cout << ans << endl;
 
-    for(int i = 1;i <= m;i++){
-        cout << (ans[i] ? "AYE\n" : "NAY\n");
-    }
-
+    init();
 }
 
 signed main(){
-    
+
     IO;
     int t = 1;
     cin >> t;
     while(t--) solve();
+
     return 0;
 }
