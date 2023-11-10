@@ -3994,3 +3994,495 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// const int sq = 500;
+// signed n, q, a[N];
+// int val[N];
+// vector<signed>g[N];
+// unordered_map<signed, int>mp[N];
+
+// int dep[N], par[N][20];
+// void dfs1(int u, int f){
+//     dep[u] = dep[f] + 1;
+//     val[u] += val[f];
+// 	par[u][0] = f;
+// 	for (int i = 1; i < 20; ++i) {
+// 		par[u][i] = par[ par[u][i - 1] ][i - 1];
+// 	}
+//     for(auto v : g[u]){
+//         dfs1(v, u);
+//     }
+// }
+// int lca(int u, int v) {
+// 	if (dep[u] < dep[v]) swap(u, v);
+// 	for (int i = 19; i >= 0; --i) {
+// 		if (dep[ par[u][i] ] >= dep[v]) u = par[u][i];
+// 	}
+// 	if (u == v) return u;
+// 	for (int i = 19; i >= 0; --i) {
+// 		if (par[u][i] != par[v][i]) {
+// 			u = par[u][i], v = par[v][i];
+// 		}
+// 	}
+// 	return par[u][0];
+// }
+// inline long long jump(int x,int y, int fa){
+// 	if (x==fa) return val[fa]; if (x>y) swap(x,y);
+// 	if (dep[x]-dep[fa]<=sq) return jump(par[x][0],par[y][0],fa)+1ll*a[x]*a[y];
+// 	if (mp[x].count(y)) return mp[x][y];
+// 	return mp[x][y]=jump(par[x][0],par[y][0],fa)+1ll*a[x]*a[y];
+// }
+
+// void solve(){
+//     scanf("%d%d", &n, &q);
+//     for(int i = 1;i <= n;i++){
+//         scanf("%d", &a[i]);
+//         val[i] = a[i] * a[i];
+//     }
+//     for(signed i = 2, p;i <= n;i++){
+//         scanf("%d", &p);
+//         g[p].push_back(i);
+//     }
+
+//     dfs1(1, 0);
+
+//     signed x, y;
+//     while(q--){
+//         scanf("%d%d", &x, &y);
+//         int ca = lca(x, y);
+//         printf("%lld\n", jump(x, y, ca));
+//     }
+// }
+
+// signed main(){
+
+//     // IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// const int sq = 505;
+// int n, q, a[N], dep[N], p[N], mp[N][sq], tot[N], id[N];
+
+// int jump(int x, int y){
+//     if(!x) return 0;
+//     if(id[y] <= sq && mp[x][id[y]]) return mp[x][id[y]];
+//     int ret = jump(p[x], p[y]) + a[x] * a[y];
+//     if(id[y] <= sq) mp[x][id[y]] = ret;
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n >> q;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//     }
+//     for(int i = 2;i <= n;i++){
+//         cin >> p[i];
+//         dep[i] = dep[p[i]] + 1;
+//         id[i] = ++tot[dep[i]];
+//     }
+//     int x, y;
+//     while(q--){
+//         cin >> x >> y;
+//         cout << jump(x, y) << '\n';
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+
+
+// void solve(){
+//     int n, t, z = 0, f = 0;
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> t;
+//         if(t > 0) z++;
+//         else f++;
+//     }
+//     for(int i = 1;i <= z;i++) cout << i << ' ';
+//     for(int i = 1;i <= f;i++) cout << z - i << ' ';
+//     cout << '\n';
+//     for(int i = 1;i <= f;i++) cout << "1 0 ";
+//     for(int i = 1, p = 1;i <= z - f;i++, p++) cout << p << ' ';
+//     cout << endl;
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// int n;
+
+// void solve(){
+//     cin >> n;   
+//     int cur = 0, ans = 0, sum = 0;
+//     for(int i = 1, t;i <= n;i++){
+//         cin >> t;
+//         if(t == 1){
+//             sum++;
+//             cur++;
+//         }else{
+//             if(sum)
+//             cur = 1 + (sum / 2);
+//         }
+//         // cerr << cur <<  ' ';
+//         ans = max(ans, cur);
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 200 + 10;
+// int n, m, mp[N][N], mm;
+
+// void solve(){
+//     cin >> n >> m;
+//     mm = m + 8 - (m % 8);
+//     // cerr << mm << endl;
+//     int cur = 16;
+//     for(int i = 1;i <= n;i++){
+//         if(i % 4 == 1){
+//             int j = 1;
+//             while(j <= mm){
+//                 mp[i][j++] = cur++;
+//                 mp[i][j++] = cur;
+//                 cur += 3;
+//                 mp[i][j++] = cur++;
+//                 mp[i][j++] = cur;
+//                 cur += 3;
+//             }
+//         }else if(i % 4 == 2){
+//             for(int j = 1;j <= mm;j++){
+//                 mp[i][j] = mp[i-1][j] + 2;
+//             }
+//         }else{
+//             for(int j = 1;j <= mm;j++){
+//                 mp[i][j] = mp[i-2][j];
+//             }
+//             int j = 1;
+//             while(j <= mm){
+//                 int q = j, p = j + 3;
+//                 swap(mp[i][q++], mp[i][p--]);
+//                 swap(mp[i][q++], mp[i][p--]);
+//                 j += 4;
+//             }
+//         }
+//     }
+
+//     set<int>st;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             if(i & 1){
+//                 if(j & 1) mp[i][j] += (1ll << 62);
+//                 else mp[i][j] += (1ll << 61);
+//             }else{
+//                 if(j & 1) mp[i][j] += (1ll << 61);
+//                 else mp[i][j] += (1ll << 62);
+//             }
+//             st.insert(mp[i][j]);
+//             // int tmp;
+//             // if(i & 1){
+//             //     if(j & 1) tmp = 1;
+//             //     else tmp = 2;
+//             // }else{
+//             //     if(j & 1) tmp = 4;
+//             //     else tmp = 8;
+//             // }
+//             // mp[i][j] = tmp;
+//             // cerr << tmp << ' ';
+//         }
+//     }
+
+//     cout << n*m << endl;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             cout << mp[i][j] <<" ";
+//         }
+//         cout << endl;
+//     }
+//     // for(int i = 1;i + 3 <= n;i++){
+//     //     for(int j = 1;j + 3 <= m;j++){
+//     //         int x1 = 0, x2= 0, x3 = 0, x4 = 0;
+//     //         int ii = i, jj = j;
+//     //         x1 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+//     //         ii += 2, jj += 2;
+//     //         x2 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+//     //         ii -= 2;
+//     //         x3 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+//     //         ii += 2, jj -= 2;
+//     //         x4 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+
+//     //         cerr << x1 << " " << x2 << ' ' << x3 << " " << x4 << endl;
+//     //     }
+//     // }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 200 + 10;
+// int n, m, mp[N][N], mm;
+
+// void solve(){
+//     cin >> n >> m;
+//     mm = m + 8 - (m % 8);
+//     // cerr << mm << endl;
+//     int cur = 16;
+//     for(int i = 1;i <= n;i++){
+//         if(i % 4 == 1){
+//             int j = 1;
+//             while(j <= mm){
+//                 mp[i][j++] = cur++;
+//                 mp[i][j++] = cur;
+//                 cur += 3;
+//                 mp[i][j++] = cur++;
+//                 mp[i][j++] = cur;
+//                 cur += 3;
+//             }
+//         }else if(i % 4 == 2){
+//             for(int j = 1;j <= mm;j++){
+//                 mp[i][j] = mp[i-1][j] + 2;
+//             }
+//         }else{
+//             for(int j = 1;j <= mm;j++){
+//                 mp[i][j] = mp[i-2][j];
+//             }
+//             int j = 1;
+//             while(j <= mm){
+//                 int q = j, p = j + 3;
+//                 swap(mp[i][q++], mp[i][p--]);
+//                 swap(mp[i][q++], mp[i][p--]);
+//                 j += 4;
+//             }
+//         }
+//     }
+
+//     set<int>st;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             if(i & 1){
+//                 if(j & 1) mp[i][j] += (1ll << 62);
+//                 else mp[i][j] += (1ll << 61);
+//             }else{
+//                 if(j & 1) mp[i][j] += (1ll << 61);
+//                 else mp[i][j] += (1ll << 62);
+//             }
+//             st.insert(mp[i][j]);
+//             // int tmp;
+//             // if(i & 1){
+//             //     if(j & 1) tmp = 1;
+//             //     else tmp = 2;
+//             // }else{
+//             //     if(j & 1) tmp = 4;
+//             //     else tmp = 8;
+//             // }
+//             // mp[i][j] = tmp;
+//             // cerr << tmp << ' ';
+//         }
+//     }
+
+//     cout << n*m << endl;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             cout << mp[i][j] <<" ";
+//         }
+//         cout << endl;
+//     }
+//     // for(int i = 1;i + 3 <= n;i++){
+//     //     for(int j = 1;j + 3 <= m;j++){
+//     //         int x1 = 0, x2= 0, x3 = 0, x4 = 0;
+//     //         int ii = i, jj = j;
+//     //         x1 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+//     //         ii += 2, jj += 2;
+//     //         x2 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+//     //         ii -= 2;
+//     //         x3 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+//     //         ii += 2, jj -= 2;
+//     //         x4 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+
+//     //         cerr << x1 << " " << x2 << ' ' << x3 << " " << x4 << endl;
+//     //     }
+//     // }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 200 + 10;
+// int n, m, mp[N][N], mm;
+
+// void solve(){
+//     cin >> n >> m;
+//     cout << n * m << endl;
+//     vector<int>x(n + 1), y(m + 1);
+//     int cnt = 0;
+//     for(int i = 0;cnt < n && i < 30;i++)
+//         for(int j = i + 1;cnt < n && j < 30;j++){
+//                 x[++cnt] = (1ll << i) + (1ll << j);
+//             }
+//     cnt = 0;
+//     for(int i = 30;cnt < m && i <= 62;i++)
+//         for(int j = i + 1;cnt < m && j <= 62;j++){
+//                 y[++cnt] = (1ll << i) + (1ll << j);
+//             }
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             mp[i][j] = x[i] + y[j];
+//             cout << mp[i][j] << ' ';
+//         }
+//         cout << endl;
+//     }
+
+//     // for(int i = 1;i + 3 <= n;i++){
+//     //     for(int j = 1;j + 3 <= m;j++){
+//     //         int x1 = 0, x2= 0, x3 = 0, x4 = 0;
+//     //         int ii = i, jj = j;
+//     //         x1 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+//     //         ii += 2, jj += 2;
+//     //         x2 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+//     //         ii -= 2;
+//     //         x3 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+//     //         ii += 2, jj -= 2;
+//     //         x4 = mp[ii][jj] ^ mp[ii][jj+1] ^ mp[ii+1][jj] ^ mp[ii+1][jj+1];
+
+//     //         cerr << x1 << " " << x2 << ' ' << x3 << " " << x4 << endl;
+//     //     }
+//     // }
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<stdio.h>
+
+// int main(){
+
+//     int n;
+//     scanf("%d", &n);
+//     for(int i = 1;i <= n;i++) printf("***");
+//     for(int i = 1;i <= n;i++) printf(" ");
+//     for(int i = 1;i <= n;i++) printf("***");
+//     printf("\n");
+//     int a = 2, b = 3 * n + 1, c = 4 * n, d = 7 * n - 1;
+//     for(int i = 2;i < 2 * n - 1;i++){
+//         for(int j = 1;j <= 7 * n;j++){
+//             if(j == a || j == d || (c - b > 2 && (j == b || j == c))) printf("*");
+//             else printf(" ");
+//         }
+//         if(i < n) a++, b++, c--, d--;
+//         else a--, b--, c++, d++;
+//         printf("\n");
+//     }
+//     for(int i = 1;i <= n;i++) printf("***");
+//     for(int i = 1;i <= n;i++) printf(" ");
+//     for(int i = 1;i <= n;i++) printf("***");
+
+//     return 0;
+// }
