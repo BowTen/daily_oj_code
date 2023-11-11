@@ -4486,3 +4486,232 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     vector<string>vec;
+//     for(int i = 1;i <= 2 * n - 2;i++){
+//         string s;
+//         cin >> s;
+//         if(s.size() == n / 2) vec.push_back(s);
+//     }
+
+//     reverse(vec[0].begin(), vec[0].end());
+//     if(vec[0] == vec[1]) cout << "YES\n";
+//     else cout << "NO\n";
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     // vector<int>vec()
+//     int ls = 1e10;
+//     for(int i = 1, t;i <= n;i++){
+//         cin >> t;
+//         if(t == 1) t++;
+//         if(t % ls == 0) t++;
+//         cout << t << ' ';
+//         ls = t;
+//     }
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     deque<int>que;
+//     for(int i = 1, t;i <= n;i++){
+//         cin >> t;
+//         que.push_back(t);
+//         while(que.front() < que.size()) que.pop_front();
+//         cout << que.size() <<  ' ';
+//     }
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// const int mod = 998244353;
+// int n, m, ans = 0;
+// vector<int>a;
+// vector<int>pr;
+// vector<int>id;
+// int mp[N];
+
+// bool isprime[N];
+// int prime[N];
+// int cnt;
+
+// void euler(){
+//     memset(isprime, true, sizeof(isprime));
+//     isprime[1] = false;
+//     for(int i = 2;i < N;i++){
+//         if(isprime[i]) prime[++cnt] = i;
+//         for(int j = 1; j <= cnt && prime[j] * i < N;j++){
+//             isprime[prime[j]*i] = false;
+//             if(i % prime[j] == 0) break;
+//         }
+//     }
+// }
+// int qpow(int a,int k,int p = mod){
+//     int ret = 1;
+//     while(k){
+//         if(k & 1)
+//             ret = ret * a % p;
+//         a = a * a % p;
+//         k >>= 1;
+//     }
+//     return ret;
+// }
+// int inv[N], fac[N];
+// void get_inv(){
+//     inv[0] = fac[0] = 1;
+//     for(int i = 1;i < N;i++){
+//         fac[i] = fac[i-1] * i % mod;
+//     }
+//     inv[N - 1] = qpow(fac[N - 1], mod - 2);
+//     for(int i = N - 2;i >= 1;i--){
+//         inv[i] = inv[i+1] * (i +1) %mod;
+//     }
+// }
+// int C(int a, int b){
+//     return (fac[a] * inv[a-b] % mod) * inv[b] % mod;
+// }
+
+// int calc(){
+//     int len = n;
+//     int ans = 1;
+//     int cnt = 0;
+//     for(auto num : id){
+//         int x = mp[num];
+//         if(x == 0) continue;
+//         if(x == 1) {
+//             cnt++;
+//             continue;
+//         }
+//         ans = ans * C(len, x) % mod;
+//         len -= x;
+//     }
+//     if(cnt){
+//         ans = ans * fac[cnt] % mod;
+//     }
+//     return ans;
+// }
+
+// void dfs(int x, int j){
+//     if(x + 1 == n){
+//         for(int i = j;i < m;i++){
+//             mp[pr[i]]--;
+//             ans = (ans + calc() % mod);
+//             mp[pr[i]]++;
+//         }
+//         return;
+//     }
+//     for(int i = j;i < m && m - i >= n - x;i++){
+//         mp[pr[i]]--;
+//         dfs(x + 1, i + 1);
+//         mp[pr[i]]++;
+//     }
+// }
+
+// void solve(){
+//     cin >> n;
+//     a.resize(n * 2);
+//     for(auto& e : a){
+//         cin >> e;
+//         mp[e]++;
+//         id.push_back(e);
+//         if(isprime[e]) pr.push_back(e);
+//     }
+//     sort(all(pr));
+//     pr.erase(unique(all(pr)), pr.end());
+//     sort(all(id));
+//     id.erase(unique(all(id)), id.end());
+//     m = pr.size();
+
+//     if(pr.size() < n){
+//         cout << "0\n";
+//         return;
+//     }
+
+//     dfs(0, 0);
+
+//     cout << ans << endl;
+
+// }
+
+// signed main(){
+
+//     IO;
+//     euler();
+//     get_inv();
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
