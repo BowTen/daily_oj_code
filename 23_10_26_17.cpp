@@ -4715,3 +4715,358 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// const int mod = 998244353;
+// int n, m, ans = 0;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n);
+//     for(auto& e : a) cin >> e;
+//     int mn = 3;
+//     for(int i = 0;i < n;i++){
+//         for(int j = i + 1;j < n;j++){
+//             mn = min(mn, __gcd(a[i], a[j]));
+//         }
+//     }
+//     if(mn <= 2) cout << "Yes\n";
+//     else cout << "No\n";
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// const int mod = 998244353;
+// int n, m, ans = 0;
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     int q, p;
+//     if(n & 1){
+//         q = n / 2 - 1;
+//         p = n / 2 + 1;
+//     }else{
+//         q = n / 2 - 1;
+//         p = n / 2;
+//     }
+//     bool cnt = true, f = false;
+//     while(p < n){
+//         if(s[q] != s[p]){
+//             if(!f){
+//                 if(cnt){
+//                     cnt = false;
+//                     f = true;
+//                 }else{
+//                     cout << "No\n";
+//                     return;
+//                 }
+//             }
+//         }else{
+//             if(f) f = false;
+//         }
+//         q--;
+//         p++;
+//     }
+//     cout << "Yes\n";
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// const int mod = 998244353;
+// int n, m;
+
+// void solve(){
+//     cin >> n >> m;
+//     vector<int>a(n + 1);
+//     vector<int>cnt(n + m + 1);
+//     vector<int>ls(n + m + 1);
+//     int ans = 0, d = 0;
+//     for(int i = 1;i <= n;i++) cin >> a[i], cnt[a[i]]++;
+//     for(int i = 1, p, v;i <= m;i++){
+//         cin >> p >> v;
+//         // cerr << i << " " << a[p] << " " << cnt[a[p]] << endl;
+//         cnt[a[p]] += i - ls[a[p]] - 1;
+//         d -= i - cnt[a[p]];
+//         a[p] = v;
+//         d += i - cnt[a[p]];
+//         cnt[a[p]]++;
+//         ls[a[p]] = i;
+//         ans += d + n * i;
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// const int mod = 998244353;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     string a, b;
+//     cin >> a >> b;
+//     bool fa = false, fb = false;
+//     for(auto e : a) if(e == '1') fa = true;
+//     for(auto e : b) if(e == '1') fb = true;
+//     if(fa != fb) {
+//         cout << "-1\n";
+//         return;
+//     }
+//     // if(a == b){
+//     //     cout << "0\n";
+//     //     return;
+//     // }
+
+//     vector<int>ans;
+//     auto XO = [&](int x){
+//         ans.push_back(x);
+//         if(x > 0)
+//             for(int i = 0;i < n && x < n;i++, x++){
+//                 a[i] = (a[i] - '0') ^ (a[x] - '0') + '0';
+//             }      
+//         else{
+//             string tmp = a;
+//             for(int i = -x;i < n;i++){
+//                 a[i] = ((a[i] - '0') ^ (tmp[i + x] - '0')) + '0';
+//             }
+//         }  
+//     };
+
+//     int bs, ae;
+//     for(int i = 0;i < n;i++){
+//         if(b[i] == '1'){
+//             bs = i;
+//             break;
+//         }
+//     }
+//     int st;
+//     for(int i = bs;i >= 0;i--){
+//         if(a[i] != b[i]){
+//             for(int i = n - 1;i >= 0;i--){
+//                 if(a[i] == '1'){
+//                     ae = i;
+//                     break;
+//                 }
+//             }
+//             XO(ae - i);
+//         }
+//         if(a[i] == '1') st = i;
+//     }
+
+//     for(int i = bs + 1;i < n;i++){
+//         if(a[i] != b[i]){
+//             XO(st - i);
+//         }
+//     }
+//     // if(ans.size() <= n){
+//         cout << ans.size() << endl;
+//         for(auto e : ans) cout << e << ' ';
+//         if(ans.size()) cout << endl;
+//     // }else{
+//     //     cout << "-1\n";
+//     // }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// const int mod = 998244353;
+
+// void solve(){
+//     int n, m, a, b, ans = 0;
+//     cin >> a >> b >> n >> m;
+//     if(a * m < b * (m + 1)){
+//         int d = n / (m + 1);
+//         ans = d * m * a;
+//         n %= (m + 1);
+//         ans += min(a, b) * n;
+//     }else{
+//         ans = b * n;
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// const int mod = 998244353;
+
+// void solve(){
+//     int x, y;
+//     cin >> x >> y;
+//     cout << (x - y) * 2 << endl;
+//     for(int i = x;i >= y;i--) cout << i << ' ';
+//     for(int i = y + 1;i < x;i++) cout << i << ' ';
+//     cout << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// int n;
+
+// int tr[N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x, int v){
+//     while(x <= n + 1){
+//         tr[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+// int getsum(int x){
+//     int ret = 0;
+//     while(x > 0){
+//         ret += tr[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 0;i <= n + 1;i++) tr[i] = 0;
+//     vector<int>a(n + 1);
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         add(a[i], 1);
+//     }
+//     int l = 1, r = n;
+//     while(l < r){
+//         bool f = true;
+//         while(l < r && (getsum(n+1) - getsum(a[l]) == 0 || getsum(a[l]-1) == 0)){
+//             add(a[l], -1); 
+//             l++;
+//             f = false;
+//         }
+//         while(l < r && (getsum(n+1) - getsum(a[r]) == 0 || getsum(a[r]-1) == 0)){
+//             add(a[r], -1); 
+//             r--;
+//             f = false;
+//         }
+//         if(f){
+//             cout << l << ' ' << r << endl;
+//             return;
+//         }
+//     }
+//     cout << "-1\n";
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
