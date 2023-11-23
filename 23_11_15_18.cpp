@@ -2484,3 +2484,195 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 3e5 + 10;
+// const int mod = 998244353;
+// int n, m, k;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>a(n + 10);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     int p = 1;
+//     for(int i = 1;i < n;i++){
+//         if(a[i] < 0 || a[i + 1] < 0) p = i;
+//         if(a[i] < 0 && a[i + 1] < 0){
+//             p = i;
+//             break;
+//         }
+//     }
+//     a[p] *= -1;
+//     a[p + 1] *= -1;
+//     int sum = 0;
+//     for(int i = 1;i <= n;i++) sum += a[i];
+//     cout << sum << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 3e5 + 10;
+// const int mod = 998244353;
+// int n, m, k, d;
+
+
+// void solve(){
+//     cin >> n >> m >> d;
+//     vector<int>p(n + 10);
+//     vector<int>pos(n + 10);
+//     vector<int>a(m + 10);
+//     for(int i = 1;i <= n;i++) cin >> p[i], pos[p[i]] = i;
+//     for(int i = 1;i <= m;i++) cin >> a[i];
+//     int ans = n;
+//     for(int i = 1;i < m;i++){
+//         ans = min(ans, max(0ll, pos[a[i+1]] - pos[a[i]]));
+//         if(d + 1 < n) ans = min(ans, max(0ll, pos[a[i]] + d + 1 - pos[a[i+1]]));
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 3e5 + 10;
+// const int mod = 998244353;
+// int n, m, k, d, sz;
+// int vis[300];
+
+// void solve(){
+//     cin >> n >> k;
+//     string a, b;
+//     cin >> a >> b;
+//     vector<char>c;
+//     set<char>st;
+//     for(auto e : a){
+//         if(!st.count(e)){
+//             st.insert(e);
+//             c.push_back(e);
+//         }
+//     }
+//     if(k >= c.size()){
+//         cout << n * (n + 1) / 2 << endl;
+//         return;
+//     }
+//     sz = c.size();
+
+//     int ans = 0;
+
+//     auto check = [&]() -> int {
+//         int len = 0, ret = 0;
+//         for(int i = 0;i < n;i++){
+//             if(vis[a[i]] || a[i] == b[i]){
+//                 len ++;
+//             }else{
+//                 ret += len * (len + 1) / 2;
+//                 len = 0;
+//             }
+//         }
+//         ret += len * (len + 1) / 2;
+//         return ret;
+//     };
+//     auto dfs = [&](auto self, int x, int p) -> void {
+//         for(int i = p;i < sz;i++){
+//             vis[c[i]] = 1;
+//             if(x == k){
+//                 ans = max(ans, check());
+//             }else if(i + (k - x) < sz){
+//                 self(self, x + 1, i + 1);
+//             }
+//             vis[c[i]] = 0;
+//         }
+//     };
+
+//     ans = check();
+//     dfs(dfs, 1, 0);
+
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1010;
+// int h[N], n;
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> h[i];
+//     }
+
+//     auto check = [&](int i) -> int {
+//         if(i - 2 < 1 || i + 2 > n) return 0;
+//         return h[i-2] < h[i-1] && h[i-1] < h[i] && h[i] > h[i+1] && h[i+1] > h[i+2];
+//     };
+
+//     int sum = 0;
+//     for(int i = 3;i + 2 <= n;i++){
+//         if(check(i)) sum++;
+//     }
+
+//     cout << sum << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
