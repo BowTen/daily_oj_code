@@ -2975,3 +2975,207 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, k;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n + 10);
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//     }
+//     if(a[1] == 1) cout << "YES\n";
+//     else cout << "NO\n";
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, k;
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     int q = n, p = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(s[i] == 'A'){
+//             q = i;
+//             break;
+//         }
+//     }
+//     for(int i = n;i >= 1;i--){
+//         if(s[i] == 'B'){
+//             p = i;
+//             break;
+//         }
+//     }
+//     cout << max(0ll, p - q) << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, k, ans[N];
+
+// void solve(){
+//     cin >> n >> k;
+//     vector<int>a(n+10);
+//     vector<int>b(n+10);
+//     vector<int>id(n+10);
+//     iota(id.begin() + 1, id.begin() + 1 + n, 1);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i];
+//     sort(id.begin() + 1, id.begin() + 1 + n, [&](int i, int j) -> int {
+//         return a[i] < a[j];
+//     });
+//     sort(a.begin() + 1, a.begin() + 1 + n);
+//     sort(b.begin() + 1, b.begin() + 1 + n);
+//     for(int i = n - k + 1, j = 1;i <= n;i++, j++){
+//         if(a[i] <= b[j]){
+//             cout << "NO\n";
+//             return;
+//         }
+//     }
+//     for(int i = 1, j = 1 + k;j <= n;j++, i++){
+//         if(a[i] > b[j]){
+//             cout << "NO\n";
+//             return;
+//         }
+//     }
+//     vector<int>c = b;
+//     for(int i = n - k + 1, j = 1;i <= n;i++, j++){
+//         c[i] = b[j];
+//     }
+//     for(int i = 1, j = 1 + k;j <= n;j++, i++){
+//         c[i] = b[j];
+//     }
+//     for(int i = 1;i <= n;i++){
+//         ans[id[i]] = c[i];
+//     }
+//     cout << "YES\n";
+//     for(int i = 1;i <= n;i++) cout << ans[i] << ' ';
+//     cout << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e6 + 10;
+// int n;
+
+// int tr[N * 2];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x, int v){
+//     while(x <= 2*n){
+//         tr[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+// int getsum(int x){
+//     int ret = 0;
+//     while(x > 0){
+//         ret += tr[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void init(){
+//     for(int i = 0;i <= 2*n + 5;i++) {
+//         tr[i] = 0;
+//     }
+// }
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n + 10);
+//     vector<int>ans(2*n + 10);
+//     vector<int>d(2*n + 10);
+//     vector<int>v(2*n + 10);
+//     vector<vector<int>>q(2*n + 10);
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         d[i] = (a[i] - i + n) % n;
+//         q[i + d[i]].push_back(a[i]);
+//         v[i] = d[i] + i;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         v[i+n] = d[i] + (i+n);
+//     }
+//     for(int i = 1;i <= 2*n;i++){
+//         add(v[i], 1);
+//         if(i <= n) ans[a[i]] = d[i] + getsum(i + d[i]);
+//         for(auto id : q[i]){
+//             ans[id] -= getsum(i);
+//         }
+//     }
+//     for(int i = 1;i <= n;i++) cout << ans[i] << ' ';
+//     cout << endl;
+//     init();
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
