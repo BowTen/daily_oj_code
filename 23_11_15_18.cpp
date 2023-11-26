@@ -3179,3 +3179,197 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n;
+
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     vector<int>len;
+//     int cur = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(s[i] == '.') cur++;
+//         else if(cur){
+//             len.push_back(cur);
+//             cur = 0;
+//         }
+//     }
+//     if(cur) len.push_back(cur);
+
+//     for(auto e : len) if(e >= 3){
+//         cout << "2\n";
+//         return;
+//     }
+//     int ans = 0;
+//     for(auto e : len){
+//         ans += e;
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n;
+
+
+// void solve(){
+//     int a[4];
+//     int b[4];
+//     for(int i = 1;i <= 3;i++) cin >> a[i], b[i] = a[i];
+//     sort(a + 1, a + 4);
+//     if((a[1] == a[2] && a[2] == a[3]) || (a[2] == a[3] && (a[2] - a[1]) % 2 == 0)){
+//         cout << "1 1 1\n";
+//         return;
+//     }
+//     if(a[2] == a[3]){
+//         if(b[1] == a[1]){
+//             cout << "1 0 0\n";
+//         }else if(b[2] == a[1]){
+//             cout << "0 1 0\n";
+//         }else{
+//             cout << "0 0 1\n";
+//         }
+//         return;
+//     }
+//     if(b[1] == a[3]){
+//         cout << "1 0 0\n";
+//     }else if(b[2] == a[3]){
+//         cout << "0 1 0\n";
+//     }else{
+//         cout << "0 0 1\n";
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n;
+
+
+// void solve(){
+//     int a, b, c;
+//     cin >> a >> b >> c;
+//     if(abs(b-c) % 2 == 0) cout << "1 ";
+//     else cout << "0 ";
+//     if(abs(a-c) % 2 == 0) cout << "1 ";
+//     else cout << "0 ";
+//     if(abs(b-a) % 2 == 0) cout << "1\n";
+//     else cout << "0\n";
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+
+//     vector<int>f(n + 5);
+//     vector<int>l(n + 5);
+//     vector<int>r(n + 5);
+//     for(int i = 1;i <= n;i++){
+//         cin >> l[i] >> r[i];
+//     }
+
+//     auto dfs = [&](auto self, int u) -> void {
+//         if(!l[u] && !r[u]) return;
+//         int L = l[u], R = r[u];
+//         if(l[u] && r[u]){
+//             self(self, L);
+//             self(self, R);
+//             if(s[u] == 'U'){
+//                 f[u] = min(f[L], f[R]) + 1;
+//             }else if(s[u] == 'L'){
+//                 f[u] = min(f[L], f[R] + 1);
+//             }else{
+//                 f[u] = min(f[L] + 1, f[R]);
+//             }
+//         }else{
+//             if(L){
+//                 self(self, L);  
+//                 if(s[u] == 'L') f[u] = f[L];
+//                 else f[u] = f[L] + 1;
+//             }else{
+//                 self(self, R);
+//                 if(s[u] == 'R') f[u] = f[R];
+//                 else f[u] = f[R] + 1;
+//             }
+//         }
+//     };
+
+//     dfs(dfs, 1);
+
+//     cout << f[1] << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
