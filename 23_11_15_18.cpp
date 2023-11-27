@@ -3376,63 +3376,295 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-const int N = 1e5 + 10;
-int n, val[N];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e5 + 10;
+// int n, val[N];
 
-void solve(){
-    cin >> n;
-    vector<int>a(n + 5);
-    vector<int>cnt(N);
-    for(int i = 1;i <= n;i++) cin >> a[i];
-    sort(a.begin() + 1, a.begin() + 1 + n);
-    int ans = 0;
-    for(int i = 2;i <= n;i++){
-        int sq = sqrt(a[i]);
-        int t, ct = n - i;
-        for(int j = 1;j < sq;j++){
-            if(a[i] % j == 0){
-                t = j;
-                ans += val[t] * cnt[t] * ct;
-                cnt[t]++;
-                if(a[i] % (a[i] / j) == 0){
-                    t = a[i] / j;  
-                    ans += val[t] * cnt[t] * ct;
-                    cnt[t]++;
-                }
-            }
-        }
-        if(a[i] % sq == 0){
-            t = sq;
-            ans += val[t] * cnt[t] * ct;
-            cnt[t]++;
-            if(a[i] % (a[i] / sq) == 0 && sq * sq != a[i]){
-                t = a[i] / sq;
-                ans += val[t] * cnt[t] * ct;
-                cnt[t]++;
-            }
-        }
-    }
-}   
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n + 5);
+//     vector<int>cnt(N);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     sort(a.begin() + 1, a.begin() + 1 + n);
 
-signed main(){
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         int sq = sqrt(a[i]);
+//         int t, ct = n - i;
+//         for(int j = 1;j <= sq;j++){
+//             if(a[i] % j == 0){
+//                 t = j;
+//                 ans += val[t] * cnt[t] * ct;
+//                 cnt[t]++;
+//                 if(a[i] % (a[i] / j) == 0 && a[i] / j != j){
+//                     t = a[i] / j;  
+//                     ans += val[t] * cnt[t] * ct;
+//                     cnt[t]++;
+//                 }
+//             }
+//         }
+//     }
 
-    IO;
+//     cout << ans << endl;
+// }   
 
-    for(int i = 1;i <= 1e5;i++) val[i] = i;
-    for(int i = 1;i <= n;i++){
-        for(int j = i + i;j <= 1e5;j += i){
-            val[j] -= val[i];
-        }
-    }
+// signed main(){
 
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+//     IO;
 
-    return 0;
-}
+//     for(int i = 1;i <= 1e5;i++) val[i] = i;
+//     for(int i = 1;i <= 1e5;i++){
+//         for(int j = i + i;j <= 1e5;j += i){
+//             val[j] -= val[i];
+//         }
+//     }
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, v[N];
+// vector<int>g[N];
+
+// //tarjan
+// int dfn[N], scc[N], low[N], tot, stot;
+// vector<int>sg[N];
+// vector<int>sp[N];
+// int siz[N], val[N];
+// int st[N], top;
+// void tarjan(int u){
+//     dfn[u] = low[u] = ++tot;
+//     st[++top] = u;
+//     for(auto v : g[u]){
+//         if(!dfn[v]){
+//             tarjan(v);
+//             low[u] = min(low[u], low[v]);
+//         }else if(!scc[v]){
+//             low[u] = min(low[u], low[v]);
+//         }
+//     }
+//     if(low[u] == dfn[u]){
+//         sp[++stot].push_back(u);
+//         scc[u] = stot;
+//         val[stot] += v[u];
+//         siz[stot]++;
+//         while(st[top] != u){
+//             sp[stot].push_back(st[top]);
+//             scc[st[top]] = stot;
+//             val[stot] += v[st[top]];
+//             siz[stot]++;
+//             top--;
+//         }
+//         top--;
+//     }
+
+// }
+
+// void init(){
+//     for(int i = 1;i <= n;i++){
+//         g[i].clear();
+//         dfn[i] = scc[i] = low[i] = 0;
+//     }
+//     for(int i = 1;i <= stot;i++){
+//         siz[i] = val[i] = 0;
+//         sp[i].clear();
+//         sg[i].clear();
+//     }
+//     tot = 0;
+//     stot = 0;
+// }
+
+// int cmp(array<int, 2> e1, array<int, 2> e2){
+//     if(e1[0] == e2[0]) return e1[1] > e2[1];
+//     return e1[0] < e2[0];
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     init();
+//     for(int i = 1;i <= n;i++) cin >> v[i];
+//     for(int i = 1, u, v;i <= m;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//     }
+
+//     for(int i = 1;i <= n;i++) if(!dfn[i]){
+//         tarjan(i);
+//     }
+
+//     int T = 4;
+//     vector<int>vis(stot + 5);
+//     for(int i = 1;i <= stot;i++){
+//         vis[i] = T;
+//         for(auto u : sp[i]){
+//             for(auto v : g[u]){
+//                 if(vis[scc[v]] != T){
+//                     sg[i].push_back(scc[v]);
+//                     vis[scc[v]] = T;
+//                 }
+//             }
+//         }
+//         T++;
+//     }
+
+//     array<int, 2>ans = {0}; //len, val;
+
+//     vector<array<int, 2>>f(stot + 5);
+//     for(int i = 1;i <= stot;i++){
+//         if(sg[i].size() == 0){
+//             f[i] = {siz[i], val[i]};
+//         }else{
+//             for(auto v : sg[i]){
+//                 auto e = f[v];
+//                 e[0] += siz[i];
+//                 e[1] += val[i];
+//                 f[i] = max(f[i], e, cmp);
+//             }
+//         }
+//         ans = max(ans, f[i], cmp);
+//     }
+
+//     cout << ans[0] << ' ' << ans[1] << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e5 + 10;
+// int n, m;
+
+// int tr[N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x, int v){
+//     while(x <= n){
+//         tr[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+// int getsum(int x){
+//     int ret = 0;
+//     while(x > 0){
+//         ret += tr[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void init(){
+//     for(int i = 1;i <= n;i++){
+//         tr[i] = 0;
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     init();
+//     vector<int>a(n + 5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+
+//     int q = n, p = 0;
+//     set<int>pos;
+//     for(int i = 1;i <= n;i++){
+//         add(i, a[i]);
+//         if(a[i] == 1){
+//             pos.insert(i);
+//         }
+//     }
+//     int sum = 0;
+//     if(pos.size()){
+//         q = *pos.begin();
+//         p = *pos.rbegin();
+//         sum = getsum(p) - getsum(q - 1);
+//     }
+
+//     int op, x, y;
+//     while(m--){
+//         cin >> op;
+//         if(op == 1){
+//             cin >> x;
+//             if(x <= sum){
+//                 cout << "YES\n";
+//                 continue;
+//             }
+//             if(q <= p){
+//                 if(x % 2 == sum % 2){
+//                     if(sum + (n-p)*2 + (q-1)*2 >= x) cout << "YES\n";
+//                     else cout << "NO\n";
+//                 }else{
+//                     if(sum-1 + max((n-p)*2, (q-1)*2) >= x) cout << "YES\n";
+//                     else cout << "NO\n";
+//                 }
+//                 // if(x == 1){
+//                 //     cerr << x << endl;
+//                 // }
+//             }else{
+//                 if(x % 2 == 0 && n*2 >= x) cout << "YES\n";
+//                 else cout << "NO\n";
+//             }
+//         }else{
+//             cin >> x >> y;
+//             if(a[x] == y) continue;
+
+//             a[x] = y;
+//             if(y == 2){
+//                 add(x, 1);
+//                 pos.erase(pos.find(x));
+//                 if(pos.size()){
+//                     q = *pos.begin();
+//                     p = *pos.rbegin();
+//                     sum = getsum(p) - getsum(q - 1);
+//                 }else{
+//                     q = n, p = 0;
+//                     sum = 0;
+//                 }
+//             }else{
+//                 add(x, -1);
+//                 pos.insert(x);
+//                 q = *pos.begin();
+//                 p = *pos.rbegin();
+//                 sum = getsum(p) - getsum(q - 1);
+//             }
+//         }
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
