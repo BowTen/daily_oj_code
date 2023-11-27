@@ -3373,3 +3373,66 @@
 
 //     return 0;
 // }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+const int N = 1e5 + 10;
+int n, val[N];
+
+void solve(){
+    cin >> n;
+    vector<int>a(n + 5);
+    vector<int>cnt(N);
+    for(int i = 1;i <= n;i++) cin >> a[i];
+    sort(a.begin() + 1, a.begin() + 1 + n);
+    int ans = 0;
+    for(int i = 2;i <= n;i++){
+        int sq = sqrt(a[i]);
+        int t, ct = n - i;
+        for(int j = 1;j < sq;j++){
+            if(a[i] % j == 0){
+                t = j;
+                ans += val[t] * cnt[t] * ct;
+                cnt[t]++;
+                if(a[i] % (a[i] / j) == 0){
+                    t = a[i] / j;  
+                    ans += val[t] * cnt[t] * ct;
+                    cnt[t]++;
+                }
+            }
+        }
+        if(a[i] % sq == 0){
+            t = sq;
+            ans += val[t] * cnt[t] * ct;
+            cnt[t]++;
+            if(a[i] % (a[i] / sq) == 0 && sq * sq != a[i]){
+                t = a[i] / sq;
+                ans += val[t] * cnt[t] * ct;
+                cnt[t]++;
+            }
+        }
+    }
+}   
+
+signed main(){
+
+    IO;
+
+    for(int i = 1;i <= 1e5;i++) val[i] = i;
+    for(int i = 1;i <= n;i++){
+        for(int j = i + i;j <= 1e5;j += i){
+            val[j] -= val[i];
+        }
+    }
+
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
