@@ -3668,3 +3668,187 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 5e5 + 10;
+// int n, m, a[N];
+// vector<int>g[N];
+// int ans, f[N];
+
+// void dfs(int u, int fa){
+//     int sum = 0, cnt = 0, mx = -1e16 - 10, smx = -1e16 - 10, cmx = -1e16 - 10;
+//     for(auto v : g[u]) if(v != fa){
+//         dfs(v, u);
+//         if(f[v] >= 0){
+//             cnt++;
+//             sum += f[v];
+//             cmx = max(cmx, f[v]);
+//             if(mx < cmx) swap(cmx, mx);
+//         }else{
+//             smx = max(smx, f[v]);
+//         }
+//     }
+//     if(cnt > 2){
+//         ans = max({ans, f[u] + sum, mx + cmx});
+//         f[u] = max(f[u] + sum, mx);
+//     }else if(cnt == 2){
+//         ans = max({ans, f[u] + mx, f[u] + sum + smx, sum});
+//         f[u] = max(f[u] + sum, mx);
+//     }else if(cnt == 1){
+//         ans = max({ans, f[u] + sum, smx + sum});
+//         // ans = max({ans, f[u] + sum});
+//         f[u] = max({f[u], mx, f[u] + mx + smx});
+//     }else{
+//         ans = max(ans, f[u]);
+//         f[u] = max(f[u], smx);
+//     }
+//     // cerr << u << ' ' << ans << endl;
+// }
+
+// void init(){
+//     for(int i = 1;i <= n;i++){
+//         g[i].clear();
+//     }
+//     ans = 0;
+// }
+
+// void solve(){
+//     cin >> n;
+//     init();
+//     for(int i = 1;i <= n;i++) cin >> a[i], f[i] = a[i];
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+//     dfs(1, 0);
+//     cout << ans << endl;
+
+//     // cerr << endl;
+//     // for(int i = 1;i <= n;i++) cerr << i << ' '  << f[i] << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, k, L[N], R[N];
+
+// int tr[2][N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x, int v, int f){
+//     int* s = tr[f-1];
+//     while(x <= n){
+//         s[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+// int getsum(int x, int f){
+//     int* s = tr[f-1];
+//     int ret = 0;
+//     while(x > 0){
+//         ret += s[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void init(){
+//     for(int i = 1;i <= n;i++){
+//         tr[0][i] = tr[1][i] = 0;
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     init();
+//     vector<int>pre(n + 10);
+//     vector<array<int, 3>>evt;
+//     for(int i = 1;i <= m;i++){
+//         cin >> L[i] >> R[i];
+//         pre[L[i]]++;
+//         pre[R[i]+1]--;
+//         evt.push_back({L[i], 0, i});
+//         evt.push_back({R[i], 1, i});
+//     }
+//     sort(evt.begin(), evt.end());
+//     int ze = 0;
+//     for(int i = 1;i <= n;i++){
+//         pre[i] += pre[i-1];
+//         if(pre[i] <= 2){
+//             if(pre[i]){
+//                 add(i, 1, pre[i]);
+//             }else{
+//                 ze++;
+//             }
+//         }
+//     }
+//     int mx = 0, smx = 0;
+//     for(int i = 1;i <= m;i++){
+//         int s = getsum(R[i], 1) - getsum(L[i] - 1, 1);
+//         smx = max(smx, s);
+//         if(smx > mx) swap(mx, smx);
+//     }
+    
+//     int ans = ze + smx + mx;
+
+//     set<int>st;
+
+//     auto check = [&]() -> int {
+//         int i = *st.begin(), j = *st.rbegin();
+//         int l = max(L[i], L[j]);
+//         int r = min(R[i], R[j]);
+//         int ret = getsum(r, 2) - getsum(l-1, 2);
+//         ret += getsum(l-1, 1) - getsum(min(L[i], L[j])-1, 1);
+//         ret += getsum(max(R[i], R[j]), 1) - getsum(r, 1);
+//         return ret;
+//     };
+
+//     for(auto [p, op, id] : evt){
+//         if(op == 0){
+//             st.insert(id);
+//         }else{
+//             st.erase(st.find(id));
+//         }
+//         if(st.size() == 2){
+//             ans = max(ans, ze + check());
+//         }
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
