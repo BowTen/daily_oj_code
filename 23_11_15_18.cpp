@@ -3852,3 +3852,252 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e6 + 10;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n + 10);
+//     vector<int>cnt(n + 10);
+//     vector<int>lim(n + 10);
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         cnt[a[i]]++;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         for(int j = i;j <= n;j += i){
+//             lim[j] += cnt[i];
+//         }
+//     }
+//     int ans = 0;
+//     vector<int>f(n+10);
+//     for(int i = n;i;i--){
+//         for(int j = i;j <= n;j += i){
+//             f[i] += cnt[j];
+//         }
+//         f[i] = f[i] * (f[i]-1) / 2;
+//         for(int j = i*2;j <= n;j += i){
+//             f[i] -= f[j];
+//         }
+//         if(!lim[i]) ans += f[i];
+//     }
+
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls id << 1
+// #define rs id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, m, a[N];
+
+// struct inf{
+//     int l, r, ll, rr, ok = 0, len;
+//     // inf() : 
+//     inf operator+ (const inf& e) {
+//         inf ret;
+//         ret.ok = ok | e.ok;
+//         ret.l = l;
+//         ret.r = e.r;
+//         ret.len = len + e.len;
+//         if(r == e.l) ret.ok = 1;
+//         if(len > 1){
+//             ret.ll = ll;
+//             if(rr == e.l) ret.ok = 1;
+//         }else{
+//             ret.ll = e.l;
+//         }
+//         if(e.len > 1){
+//             ret.rr = e.rr;
+//             if(e.ll == r) ret.ok = 1;
+//         }else{
+//             ret.rr = r;
+//         }
+//         return ret;
+//     }
+// };
+// struct node{
+//     inf v;
+//     int tag;
+// }tr[N << 2];
+// void up(int id){
+//     tr[id].v = tr[ls].v + tr[rs].v;
+// }
+// void build(int id, int l, int r){
+//     tr[id] = {0};
+//     tr[id].v = {0};
+//     tr[id].v.ok = 0;
+//     if(l == r){
+//         tr[id].v.l = tr[id].v.r = a[l];
+//         tr[id].v.len = 1;
+//         tr[id].v.ok = 0;
+//         // cerr << id << ' ' << l << ' ' << r << ' ' << tr[id].v.ok << endl;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+//     // cerr << id << ' ' << l << ' ' << r << ' ' << tr[id].v.ok << endl;
+// }
+// void settag(int id, int x){
+//     tr[id].tag = (tr[id].tag + x) % 26;
+//     tr[id].v.l = (tr[id].v.l + x) % 26;
+//     tr[id].v.ll = (tr[id].v.ll + x) % 26;
+//     tr[id].v.r = (tr[id].v.r + x) % 26;
+//     tr[id].v.rr = (tr[id].v.rr + x) % 26;
+// }
+// void down(int id){
+//     settag(ls, tr[id].tag);
+//     settag(rs, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+// void modify(int id, int l, int r, int ql, int qr, int x){
+//     if(ql <= l && r <= qr){
+//         settag(id, x);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(ls, l, mid, ql, qr, x);
+//     else if(ql > mid) modify(rs, mid + 1, r, ql, qr, x);
+//     else modify(ls, l, mid, ql, qr, x), modify(rs, mid + 1, r, ql, qr, x);
+//     up(id);
+// }
+// inf query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr){
+//         // cerr << id << ' ' << l << ' ' << r << ' ' << tr[id].v.ok << endl;
+//         return tr[id].v;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls, l, mid, ql, qr);
+//     else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//     else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     for(int i = 1;i <= n;i++){
+//         a[i] = s[i] - 'a';
+//     }
+//     build(1, 1, n);
+//     int op, l, r, x;
+//     while(m--){
+//         cin >> op >> l >> r;
+//         if(op == 1){
+//             cin >> x;
+//             x %= 26;
+//             modify(1, 1, n, l, r, x);
+//         }else{
+//             int ret = query(1, 1, n, l, r).ok;
+//             cout << (ret ? "NO\n" : "YES\n");
+//         }
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define Zeoy std::ios::sync_with_stdio(false), std::cin.tie(0), std::cout.tie(0)
+// #define all(x) (x).begin(), (x).end()
+// #define rson id << 1 | 1
+// #define lson id << 1
+// #define int long long
+// #define mpk make_pair
+// #define endl '\n'
+// typedef long long ll;
+// const int inf = 0x3f3f3f3f;
+// const ll INF = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// const double eps = 1e-9;
+// const int N = 4e5 + 10, M = 4e5 + 10;
+// const int le = 0;
+// const int ri = 1;
+// int m, pw[N];
+
+// void solve() {
+// 	int n;
+// 	cin >> n;
+// 	vector<int>l(n + 10);
+// 	vector<int>r(n + 10);
+// 	vector<array<int, 2>>evt;
+// 	for(int i = 1;i <= n;i++){
+// 		cin >> l[i] >> r[i];
+//         evt.push_back({l[i], le});
+//         evt.push_back({r[i], ri});
+// 	}
+//     sort(all(evt));
+//     int cnt = 0, ans = 0, last;
+//     for(auto [p, op] : evt){
+//         if(op == le){
+//             if(cnt){
+//                 int len = p - last;
+//                 ans = (ans + ((pw[cnt] - 1) * (pw[n-cnt] * len % mod) % mod)) % mod;
+//             }
+//             cnt++;
+//             last = p;
+//         }else{
+//             if(cnt){
+//                 int len = p - last;
+//                 ans = (ans + ((pw[cnt] - 1) * (pw[n-cnt] * len % mod) % mod)) % mod;
+//             }
+//             cnt--;
+//             last = p;
+//         }
+//     }
+//     cout << ans << endl;
+// }
+// signed main(void) {
+// 	Zeoy;
+
+// 	pw[0] = 1;
+// 	for(int i = 1;i < N;i++){
+// 		pw[i] = pw[i-1] * 2 % mod;
+// 	}
+
+// 	int Test = 1;
+// 	// cin >> Test;
+// 	while (Test--)
+// 		solve();
+// 	return 0;
+// }
