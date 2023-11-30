@@ -4101,3 +4101,100 @@
 // 		solve();
 // 	return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define ls id << 1
+// #define rs id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, m;
+
+
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     int cur = 1;
+//     int ans = 0;
+//     for(auto c : s){
+//         c = c - '0';
+//         if(c == 0) c = 10;
+//         ans += abs(cur - c) + 1;
+//         cur = c;
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define ls id << 1
+#define rs id << 1 | 1
+const int N = 2e5 + 10;
+int n, m;
+
+
+void solve(){
+    cin >> n >> m;
+    vector<int>a(n + 10);
+    vector<int>b(n + 10);
+    a[1] = 1;
+    for(int i = 2;i <= n;i++) cin >> a[i];
+    for(int i = 1;i <= n;i++) cin >> b[i];
+    sort(a.begin() + 1, a.begin() + 1 + n);
+    sort(b.begin() + 1, b.begin() + 1 + n);
+    int ans = 0;
+    int k = 0;
+    for(int i = 1;i <= n;i++){
+        if(a[k+1] < b[i]) k++;
+    }
+    int bp = n - k + 1, ap = k, p = 1;
+    while(a[p] < m && p <= ap){
+        int d = min(m, b[bp+p-1]) - a[p];
+        // if(a[p] + d == m) d++;
+        ans += (bp-1) * d;
+        a[p] += d;
+        if(a[p] == m) {
+            ans += (bp-1);
+            break;
+        }
+        while(p <= ap && p < n && a[p] > a[p+1]) swap(a[p], a[p+1]), p++;
+        while(p <= ap && a[p] >= b[bp+p-1]){
+            ap--;
+            bp++;
+        }
+    }
+    int d = m - a[p];
+    ans += n * d;
+    cout << ans << endl;
+}
+
+signed main(){
+
+    IO;
+
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
