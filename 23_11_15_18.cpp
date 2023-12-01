@@ -4142,50 +4142,161 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m;
+
+
+// void solve(){
+//     cin >> n >> m;
+//     vector<int>a(n + 10);
+//     vector<int>b(n + 10);
+//     a[1] = 1;
+//     for(int i = 2;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i];
+//     sort(a.begin() + 1, a.begin() + 1 + n);
+//     sort(b.begin() + 1, b.begin() + 1 + n);
+//     int ans = 0;
+//     int k = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(a[k+1] < b[i]) k++;
+//     }
+//     int bp = n - k + 1, ap = k, p = 1;
+//     while(a[p] < m && p <= ap){
+//         int d = min(m, b[bp+p-1]) - a[p];
+//         // if(a[p] + d == m) d++;
+//         ans += (bp-1) * d;
+//         a[p] += d;
+//         // if(a[p] == m) {
+//         //     ans += (bp-1);
+//         //     break;
+//         // }
+//         while(p <= ap && p < n && a[p] > a[p+1]) swap(a[p], a[p+1]), p++;
+//         while(p <= ap && a[p] >= b[bp+p-1]){
+//             ap--;
+//             bp++;
+//         }
+//     }
+//     int d = m - a[p] + 1;
+//     ans += (bp-1) * d;
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, k;
+
+
+// void solve(){
+//     cin >> n >> k;
+//     vector<int>a(n);
+//     for(int i = 0;i < n;i++) cin >> a[i];
+//     if(is_sorted(a.begin(), a.end()) || k > 1){
+//         cout << "YES\n";
+//     }else cout << "NO\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, k;
+
+
+// void solve(){
+//     cin >> n;
+//     vector<vector<int>>mp(n, vector<int>(n));
+//     vector<int>a(n, (1 << 30)-1);
+//     for(auto& vec : mp){
+//         for(auto& e : vec) cin >> e;
+//     }
+//     for(int j = 0;j < n;j++){
+//         for(int i = 0;i < n;i++) if(i != j) a[j] &= mp[i][j];
+//     }
+//     for(int i = 0;i < n;i++){
+//         for(int j = 0;j < n;j++)if(i != j){
+//             if(mp[i][j] != (a[i] | a[j])){
+//                 cout << "NO\n";
+//                 return;
+//             }
+//         }
+//     }
+//     cout << "YES\n";
+//     for(auto e : a) cout << e << ' ';
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 #define endl '\n'
-#define ls id << 1
-#define rs id << 1 | 1
 const int N = 2e5 + 10;
-int n, m;
+int n, m, k;
 
 
 void solve(){
-    cin >> n >> m;
-    vector<int>a(n + 10);
-    vector<int>b(n + 10);
-    a[1] = 1;
-    for(int i = 2;i <= n;i++) cin >> a[i];
-    for(int i = 1;i <= n;i++) cin >> b[i];
-    sort(a.begin() + 1, a.begin() + 1 + n);
-    sort(b.begin() + 1, b.begin() + 1 + n);
-    int ans = 0;
-    int k = 0;
-    for(int i = 1;i <= n;i++){
-        if(a[k+1] < b[i]) k++;
+    cin >> n;
+    vector<int>a(n+10);
+    int sum = 0;
+    for(int i = 1;i <= n;i++) {
+        cin >> a[i];
+        sum += a[i] * i;
     }
-    int bp = n - k + 1, ap = k, p = 1;
-    while(a[p] < m && p <= ap){
-        int d = min(m, b[bp+p-1]) - a[p];
-        // if(a[p] + d == m) d++;
-        ans += (bp-1) * d;
-        a[p] += d;
-        if(a[p] == m) {
-            ans += (bp-1);
-            break;
-        }
-        while(p <= ap && p < n && a[p] > a[p+1]) swap(a[p], a[p+1]), p++;
-        while(p <= ap && a[p] >= b[bp+p-1]){
-            ap--;
-            bp++;
-        }
+    for(int i = n;i >= 1;i--){
+        a[i] += a[i+1];
+        if(a[i] < 0 && i > 1) sum -= a[i];
     }
-    int d = m - a[p];
-    ans += n * d;
-    cout << ans << endl;
+    cout << sum << endl;
 }
 
 signed main(){
