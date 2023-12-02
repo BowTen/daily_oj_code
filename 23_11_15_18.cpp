@@ -4275,37 +4275,119 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-const int N = 2e5 + 10;
-int n, m, k;
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, q;
 
 
-void solve(){
-    cin >> n;
-    vector<int>a(n+10);
-    int sum = 0;
-    for(int i = 1;i <= n;i++) {
-        cin >> a[i];
-        sum += a[i] * i;
-    }
-    for(int i = n;i >= 1;i--){
-        a[i] += a[i+1];
-        if(a[i] < 0 && i > 1) sum -= a[i];
-    }
-    cout << sum << endl;
-}
+// void solve(){
+//     cin >> n >> q;
+//     vector<int>a(n + 10);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     while(q--){
+//         vector<int>b(a);
+//         int k, ans = 0;
+//         cin >> k;
+//         for(int i = 61;i >= 0;i--){
+//             int nd = 0;
+//             for(int j = 1;j <= n;j++){
+//                 if(!(b[j] & (1ll<<i))) nd += (1ll<<i) - b[j];
+//                 if(nd > k) break;
+//             }
+//             if(k >= nd){
+//                 k -= nd;
+//                 ans += (1ll<<i);
+//                 for(int j = 1;j <= n;j++){
+//                     if(!(b[j] & (1ll<<i))) b[j] = 0;
+//                 }
+//             }
+//             for(int j = 1;j <= n;j++){
+//                 if(b[j] & (1ll<<i)) b[j] -= (1<<i);
+//             }
+//         }
+//         cout << ans << endl;
+//     }
+// }
 
-signed main(){
+// signed main(){
 
-    IO;
+//     IO;
 
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// // #define endl '\n'
+// const int N = 2e5 + 10;
+// int n;
+
+
+// void solve(){
+//     cin >> n;
+//     int st, ed;
+//     cin >> st >> ed;
+//     st = ((st ^ ed) & 1);
+//     int cnt[2] = {0};
+//     set<int>t[2];
+//     vector<int>u(n+10);
+//     vector<int>v(n+10);
+//     for(int i = 1;i <= n;i++){
+//         cin >> u[i] >> v[i];
+//         int op = (u[i]^v[i])&1;
+//         cnt[op]++;
+//         t[op].insert(i);
+//     }
+
+//     int x;
+//     int op;
+//     if(cnt[st] >= cnt[st^1]){
+//         cout << "First" << endl;
+//         op = st ^ 1;
+//     }else{
+//         cout << "Second" << endl;
+//         op = st;
+//         cin >> x;
+//         int bit = (u[x]^v[x])&1;
+//         t[bit].erase(t[bit].find(x));
+//     }
+
+//     while(t[0].size() + t[1].size()){
+//         if(t[op].size()){
+//             cout << *t[op].begin() << endl;
+//             t[op].erase(t[op].begin());
+//         }else{
+//             op ^= 1;
+//             cout << *t[op].begin() << endl;
+//             t[op].erase(t[op].begin());
+//             op ^= 1;
+//         }
+//         if((t[0].size() + t[1].size()) == 0) break;
+//         cin >> x;
+//         int bit = (u[x]^v[x])&1;
+//         t[bit].erase(t[bit].find(x));
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
