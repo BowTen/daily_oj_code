@@ -4391,3 +4391,90 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m, k;
+// mt19937 rnd(time(0));
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     vector<string>s(n+10);
+//     for(int i = 1;i <= n;i++){
+//         cin >> s[i];
+//         s[i] = ' ' + s[i];
+//     }
+
+//     int sumv = 0;
+//     vector<int>v(n+10);
+//     for(int i = 1;i <= n;i++){
+//         v[i] = rnd();
+//         sumv += v[i] * k;
+//     }
+//     vector<vector<int>>cv(4, vector<int>(m+10));
+//     for(int i = 'A';i <= 'D';i++){
+//         for(int j = 1;j <= m;j++){
+//             for(int k = 1;k <= n;k++){
+//                 if(s[k][j] == i) cv[i-'A'][j] += v[k];
+//             }
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//             int sum = 0;
+//         for(int j = 1;j <= m;j++){
+//             for(int k = 'A';k <= 'D';k++) if(k != s[i][j]){
+//                 sum += cv[k-'A'][j];
+//             }
+//         }
+//             if(sum == sumv - v[i] * k){
+//                 cout << i << endl;
+//                 return;
+//             }
+//     }
+//     // cerr << "_________\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+const int N = 2e5 + 10;
+int n, m, k;
+
+void solve(){
+
+}
+
+signed main(){
+
+    IO;
+
+    int t = 1;
+    // cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
