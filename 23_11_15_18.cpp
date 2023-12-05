@@ -4866,3 +4866,70 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n + 10);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     int ans = 0;
+//     for(int i = 2;i <= n;i++){
+//         if(a[i]%2 == a[i-1]%2) ans++;
+//     }
+//     cout << ans << endl;
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// const int mod = 1e9 + 7;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     int ret = 1;
+//     for(int i = 1;i <= n;i++){
+//         ret = ret * i % mod;
+//     }
+//     ret = ret * n % mod;
+//     ret = ret * (n-1) % mod;
+//     cout << ret << endl;
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
