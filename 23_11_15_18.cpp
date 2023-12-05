@@ -4933,3 +4933,106 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// int n, m;
+// vector<int>fac[N];
+
+// void solve(){
+//     cin >> n >> m;
+//     vector<int>a(n+10);
+//     vector<int>cnt(m+10);
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//     }
+//     sort(a.begin() + 1, a.begin() + 1 + n);
+//     int cur = 0, l = 1, ans = a[n] + 10;
+//     for(int r = 1;r <= n;r++){
+//         for(auto e : fac[a[r]]) if(e <= m){
+//             cnt[e]++;
+//             if(cnt[e] == 1) cur++;
+//         }
+//         while(cur == m){
+//             ans = min(ans, a[r] - a[l]);
+//             for(auto e : fac[a[l]]) if(e <= m){
+//                 cnt[e]--;
+//                 if(!cnt[e]) cur--;
+//             }
+//             l++;
+//         }
+//     }
+//     if(ans == a[n] + 10) cout << "-1\n";
+//     else cout << ans << endl;
+// }
+
+
+// signed main(){
+
+//     IO;
+//     for(int i = 1;i < N;i++){
+//         for(int j = i;j < N;j += i){
+//             fac[j].push_back(i);
+//         }
+//     }
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     vector<vector<int>>g(n+10);
+//     vector<int>dep(n+10, 1);
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     int ans = 0;
+//     auto dfs = [&](auto self, int u, int f) -> void {
+//         for(auto v : g[u]) if(v != f){
+//             self(self, v, u);
+//             dep[u] = max(dep[u], dep[v] + 1);
+//         }
+//         ans = (ans + dep[u]) % mod;
+//     };
+//     dfs(dfs, 1, 0);
+
+//     for(int i = 1;i < n;i++){
+//         ans = ans * 2 % mod;
+//     }
+//     cout << ans << endl;
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
