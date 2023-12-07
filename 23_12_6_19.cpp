@@ -229,3 +229,130 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m;
+
+
+// void solve(){
+//     cin >> n;
+//     int ans = 1;
+//     while(n){
+//         int tmp = n % 10;
+//         ans *= (tmp + 1) * (tmp + 2) / 2;
+//         n /= 10;
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// int n, m;
+
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n+10);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     if(is_sorted(a.begin() + 1, a.begin() + 1 + n)){
+//         cout << "0\n";
+//         return;
+//     }
+//     reverse(a.begin() + 1, a.begin() + 1 + n);
+//     if(is_sorted(a.begin() + 1, a.begin() + 1 + n)){
+//         cout << "1\n";
+//         return;
+//     }
+//     reverse(a.begin() + 1, a.begin() + 1 + n);
+
+//     int p;
+//     int cnt = 0;
+//     for(int i = 2;i <= n;i++){
+//         if(a[i] < a[i-1]){
+//             p = i;
+//             cnt++;
+//         }
+//     }
+//     int ans = 1e9 + 7;
+//     if(cnt == 1 && a[n] <= a[1]){
+//         ans = min({ans, n - p + 1, p + 1});
+//     }
+    
+//     reverse(a.begin() + 1, a.begin() + 1 + n);
+//     cnt = 0;
+//     for(int i = 2;i <= n;i++){
+//         if(a[i] < a[i-1]){
+//             p = i;
+//             cnt++;
+//         }
+//     }
+//     if(cnt == 1 && a[n] <= a[1]){
+//         ans = min({ans, n - p + 2, p});
+//     }
+
+//     if(ans == 1e9 + 7){
+//         cout << "-1\n";
+//     }else{
+//         cout << ans << endl;
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+const int N = 2e5 + 10;
+int n, m;
+
+
+void solve(){
+    cin >> n;
+
+}   
+
+signed main(){
+
+    IO;
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
