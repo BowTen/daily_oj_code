@@ -333,26 +333,132 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-const int N = 2e5 + 10;
-int n, m;
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// const int B = 19;
+// int n, m, a[N];
+// vector<int>g[N];
+
+// struct LBS{
+//     int num[B + 1];
+//     LBS() : num({0}) {};
+//     void insert(int x){
+//         while(x){
+//             int i = __lg(x);
+//                 if(num[i]) x ^= num[i];
+//                 else{
+//                     num[i] = x;
+//                     return;
+//                 }
+//         }
+//     }
+//     void merg(const LBS& e){
+//         for(int i = B;i >= 0;i--) if(e.num[i]){
+//             insert(e.num[i]);
+//         }
+//     }
+//     bool query(int x){
+//         for(int i = B;i >= 0;i--) if(num[i]){
+//             x = min(x, x ^ num[i]);
+//         }
+//         return x == 0;
+//     }
+// };
+
+// LBS merg(const LBS& e1, const LBS& e2){
+//     LBS ret(e1);
+//     for(int i = B;i >= 0;i--) if(e2.num[i]){
+//         ret.insert(e2.num[i]);
+//     }
+//     return ret;
+// }
+
+// int top[N], dep[N], son[N], par[N], siz[N], tot, dfn[N];
+// void dfs(int u, int f){
+//     dep[u] = dep[f] + 1;
+//     par[u] = f;
+//     siz[u] = 1;
+//     for(auto v : g[u]) if(v != f){
+//         dfs(v, u);
+//         siz[u] += siz[v];
+//         if(siz[v] > siz[son[u]]) son[u] = v;
+//     }
+// }
+// int df_data[N], Log[N];
+// LBS f[N][B+1];
+// void dfs2(int u, int tp){
+//     top[u] = tp;
+//     dfn[u] = ++tot;
+//     df_data[tot] = a[u];
+//     f[tot][0].insert(df_data[tot]);
+//     if(son[u]) dfs2(son[u], tp);
+//     else return;
+
+//     for(auto v : g[u]) if(v != son[u] && v != par[u]){
+//         dfs2(v, v);
+//     }
+// }
 
 
-void solve(){
-    cin >> n;
+// LBS getlbs(int l, int r){
+//     int s = Log[r - l + 1];
+//     return merg(f[l][s], f[r - (1 << s) + 1][s]);
+// }
 
-}   
+// bool query(int u, int v, int k){
+//     LBS Q;
+//     while(top[u] != top[v]){
+//         if(dep[top[u]] < dep[top[v]]) swap(u, v);
+//         Q.merg(getlbs(dfn[top[u]], dfn[u]));
+//         u = par[top[u]];
+//     }
+//     if(dep[u] < dep[v]) swap(u, v);
+//     Q.merg(getlbs(dfn[v], dfn[u]));
+//     return Q.query(k);
+// }
 
-signed main(){
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//     }
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
 
-    IO;
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+//     dfs(1, 0);
+//     dfs2(1, 1);
 
-    return 0;
-}
+//     for(int j = 1;j <= B;j++){
+//         for(int i = 1;i <= n && i + (1 << j) - 1 <= n;i++){
+//             f[i][j] = merg(f[i][j - 1], f[i + (1 << (j - 1))][j - 1]);
+//         }
+//     }
+
+//     int q, x, y, k;
+//     cin >> q;
+//     while(q--){
+//         cin >> x >> y >> k;
+//         if(query(x, y, k)) cout << "YES\n";
+//         else cout << "NO\n";
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     for(int i = 2;i < N;i++){  //预处理对数
+//         Log[i] = Log[i / 2] + 1;
+//     }
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
