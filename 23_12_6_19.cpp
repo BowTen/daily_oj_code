@@ -462,3 +462,156 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, m, a[N], d[N], del[N], vis[N];
+
+// void init(){
+//     for(int i = 0;i <= n+2;i++){
+//         del[i] = vis[i] = d[i] = 0;
+//     }
+// }
+
+// void solve(){
+//     init();
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     int cnt = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         d[a[i]]++;
+//         cnt += s[i] == '1';
+//     }
+//     if(cnt & 1){
+//         cout << "-1\n";
+//         return;
+//     }
+
+//     vector<int>ans;
+//     queue<int>que;
+//     for(int i = 1;i <= n;i++){
+//         if(d[i] == 0){
+//             que.push(i);
+//         }
+//     }
+//     while(que.size()){
+//         int p = que.front();
+//         que.pop();
+//         if(s[p] == '1'){
+//             ans.push_back(p);
+//             s[p] = ((s[p] - '0') ^ 1) + '0';
+//             s[a[p]] = ((s[a[p]] - '0') ^ 1) + '0';
+//         }
+//         del[p] = 1;
+//         d[a[p]]--;
+//         if(d[a[p]] == 0){
+//             que.push(a[p]);
+//         }
+//     }
+
+//     vector<vector<int>>line;
+//     vector<vector<int>>cyc;
+//     int T = 1;
+//     for(int i = 1;i <= n;i++, T++) if(!vis[i] && !del[i]){
+//         int cur = i;
+//         vector<int>tmp;
+//         int cnt = 0;
+//         while(1){
+//             cnt += s[cur] == '1';
+//             tmp.push_back(cur);
+//             vis[cur] = T;
+//             cur = a[cur];
+//             if(del[cur] || (vis[cur] && vis[cur] != T)) break;
+//             if(vis[cur] == T){
+//                 vector<int>cc(lower_bound(all(tmp), cur), tmp.end());
+//                 for(auto e : cc) cnt -= s[e] == '1';
+//                 if(cnt & 1) break;
+//                 tmp.erase(lower_bound(all(tmp), cur), tmp.end());
+//                 cyc.push_back(cc);
+//                 break;
+//             }
+//         }
+//         line.push_back(tmp);
+//     }
+
+//     for(auto vec : line){
+//         int cnt = 0;
+//         for(auto e : vec){
+//             cnt += s[e] == '1';
+//         }
+//         if(cnt & 1){
+//             cout << "-1\n";
+//             return;
+//         }
+//     }
+//     for(auto vec : cyc){
+//         int cnt = 0;
+//         for(auto e : vec){
+//             cnt += s[e] == '1';
+//         }
+//         if(cnt & 1){
+//             cout << "-1\n";
+//             return;
+//         }
+//     }
+
+//     for(auto vec : line) if(vec.size()){
+//         int f = 0;
+//         for(auto e : vec){
+//             f ^= (s[e] - '0');
+//             if(f) ans.push_back(e);
+//         }
+//     }
+
+//     for(auto vec : cyc) if(vec.size()){
+//         int f = 0;
+//         vector<int>a1;
+//         vector<int>a2;
+//         for(auto e : vec){
+//             f ^= (s[e] - '0');
+//             if(f) a1.push_back(e);
+//         }
+//         int p;
+//         for(int i = 0, len = vec.size();i < len;i++){
+//             if(s[vec[i]] == '1'){
+//                 p = i;
+//                 break;
+//             }
+//             a2.push_back(vec[i]);
+//         }
+//         f = 0;
+//         for(int i = p + 1, len = vec.size();i < len;i++){
+//             f ^= (s[vec[i]] - '0');
+//             if(f) a2.push_back(vec[i]);
+//         }
+
+//         if(a1.size() < a2.size()) {
+//             for(auto e : a1) ans.push_back(e);
+//         }
+//         else {
+//             for(auto e : a2) ans.push_back(e);
+//         }
+//     }
+//     cout << ans.size() << endl;
+//     for(auto e : ans) cout << e << ' ';
+//     cout << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
