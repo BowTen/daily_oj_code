@@ -615,3 +615,33 @@
 
 //     return 0;
 // }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+const int N = 2e5 + 10;
+int n, m;
+int op[2] = {-1, 1};
+
+void solve(){
+    int a[2], x[2], y[2];
+    cin >> a[0] >> a[1] >> x[0] >> y[0] >> x[1] >> y[1];
+    int cnt = 0;
+
+    cout << cnt << endl;
+}   
+
+signed main(){
+
+    IO;
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
