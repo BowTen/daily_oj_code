@@ -618,30 +618,324 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) (x).begin(), (x).end()
-const int N = 2e5 + 10;
-int n, m;
-int op[2] = {-1, 1};
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, m;
+// int op[2] = {-1, 1};
 
-void solve(){
-    int a[2], x[2], y[2];
-    cin >> a[0] >> a[1] >> x[0] >> y[0] >> x[1] >> y[1];
-    int cnt = 0;
+// void solve(){
+//     int a[2], x[2], y[2];
+//     cin >> a[0] >> a[1] >> x[0] >> y[0] >> x[1] >> y[1];
+//     int cnt = 0;
 
-    cout << cnt << endl;
-}   
+//     map<int, map<int, int>>mp;
+//     for(int i = 0;i < 2;i++){
+//         for(int j = 0;j < 2;j++){
+//             for(int k = 0;k < 2;k++){
+//                 int xx = x[0] + op[i] * a[k];
+//                 int yy = y[0] + op[j] * a[k^1];
+//                 mp[xx][yy];
+//             }
+//         }
+//     }
 
-signed main(){
+//     for(auto e : mp){
+//         int xx = e.first;
+//         for(auto g : e.second){
+//             int yy = g.first;
+//             int X = abs(x[1] - xx);
+//             int Y = abs(yy - y[1]);
+//             if((X == a[0] && Y == a[1]) || (X == a[1] && Y == a[0])) cnt++;
+//         }
+//     }
 
-    IO;
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+//     cout << cnt << endl;
+// }   
 
-    return 0;
-}
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n);
+//     for(auto &e : a) cin >> e;
+//     vector<int>b(a);
+//     vector<int>pre(n);
+//     vector<int>idx(n);
+//     vector<int>ans(n);
+//     iota(all(idx), 0);
+//     sort(all(b));
+//     sort(all(idx), [&](int i, int j) -> int {return a[i] < a[j];});
+//     pre[0] = b[0];
+//     for(int i = 1;i < n;i++) pre[i] = pre[i-1] + b[i];
+//     int r = 0;
+//     for(int i = 0;i < n;i++){
+//         r = max(r, i);
+//         int sum = pre[r];
+//         while(r + 1 < n && sum >= b[r+1]){
+//             r++;
+//             sum += b[r];
+//         }
+//         ans[idx[i]] = r;
+//     }
+//     for(auto e : ans) cout << e << ' ';
+//     cout << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, k;
+
+// void solve(){
+//     cin >> n >> k;
+//     vector<int>a(n);
+//     for(auto& e : a) cin >> e;
+//     vector<int>b(a);
+//     sort(all(b));
+
+//     int ans = b[0];
+//     if(k >= 3){
+//         cout << "0\n";
+//         return;
+//     }else if(k == 2){
+//         for(int i = 0;i < n;i++){
+//             for(int j = i + 1;j < n;j++){
+//                 int d = abs(b[i] - b[j]);
+//                 ans = min(ans, d);
+//                 int p = lower_bound(all(b), d) - b.begin();
+//                 for(int k = p - 1;k <= p + 1;k++) if(k >= 0 && k < n){
+//                     ans = min(ans, abs(b[k] - d));
+//                 }
+//             }
+//         }
+//     }else{
+//         for(int i = 1;i < n;i++){
+//             ans = min(ans, b[i] - b[i-1]);
+//         }
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define ls id << 1
+// #define rs id << 1 | 1
+// const int N = 2e5 + 10;
+// int n, a[N], b[N];
+
+// struct node{
+//     node(int mx = 0, int mn = 0) : mx(mx), mn(mn) {};
+//     int mx, mn;
+// }tr[N<<2];
+// void up(int id){
+//     tr[id].mx = max(tr[ls].mx, tr[rs].mx);
+//     tr[id].mn = min(tr[ls].mn, tr[rs].mn);
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id] = {a[l], b[l]};
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+// }
+// int getmx(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].mx;
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return getmx(ls, l, mid, ql, qr);
+//     else if(ql > mid) return getmx(rs, mid + 1, r, ql, qr);
+//     else return max(getmx(ls, l, mid, ql, qr), getmx(rs, mid + 1, r, ql, qr));
+// }
+// int getmn(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].mn;
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return getmn(ls, l, mid, ql, qr);
+//     else if(ql > mid) return getmn(rs, mid + 1, r, ql, qr);
+//     else return min(getmn(ls, l, mid, ql, qr), getmn(rs, mid + 1, r, ql, qr));
+// }
+
+
+// void solve(){
+//     cin >> n;
+//     vector<int>l(n + 10);
+//     vector<int>r(n + 10);
+//     vector<int>pos(n + 10);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i];
+//     build(1, 1, n);
+//     for(auto& e : pos) e = -1;
+//     for(int i = 1;i <= n;i++){
+//         pos[a[i]] = i;
+//         l[i] = pos[b[i]];
+//     }
+//     for(auto& e : pos) e = -1;
+//     for(int i = n;i >= 1;i--){
+//         pos[a[i]] = i;
+//         r[i] = pos[b[i]];
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] == b[i]) continue;
+//         if(a[i] > b[i]){
+//             cout << "NO\n";
+//             return;
+//         }
+//         if(l[i] != -1){
+//             if(getmx(1, 1, n, l[i], i) == b[i] && getmn(1, 1, n, l[i], i) == b[i]) continue;
+//         }
+//         if(r[i] != -1){
+//             if(getmx(1, 1, n, i, r[i]) == b[i] && getmn(1, 1, n, i, r[i]) == b[i]) continue;
+//         }
+//         cout << "NO\n";
+//         return;
+//     }
+//     cout << "YES\n";
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, mx[N][20], mn[N][20], Log[N], a[N], b[N];
+
+// int gtemx(int l, int r){
+//     int s = Log[r - l + 1];
+//     return max(mx[l][s], mx[r - (1 << s) + 1][s]);
+// }
+// int gtemn(int l, int r){
+//     int s = Log[r - l + 1];
+//     return min(mn[l][s], mn[r - (1 << s) + 1][s]);
+// }
+
+// void solve(){
+//     cin >> n;
+//     vector<int>l(n + 10);
+//     vector<int>r(n + 10);
+//     vector<int>pos(n+10);
+//     for(int i = 1;i <= n;i++) cin >> a[i]; 
+//     for(int i = 1;i <= n;i++) cin >> b[i]; 
+//     for(auto& e : pos) e = -1;
+//     for(int i = 1;i <= n;i++){
+//         pos[a[i]] = i;
+//         l[i] = pos[b[i]];
+//     }
+//     for(auto& e : pos) e = -1;
+//     for(int i = n;i >= 1;i--){
+//         pos[a[i]] = i;
+//         r[i] = pos[b[i]];
+//     }
+
+//     for(int i = 1;i <= n;i++) mx[i][0] = a[i], mn[i][0] = b[i];
+//     for(int j = 1;j < 20 ;j++){
+//         for(int i = 1;i <= n && i + (1 << j) - 1 <= n;i++){
+//             mx[i][j] = max(mx[i][j - 1], mx[i + (1 << (j - 1))][j - 1]);
+//             mn[i][j] = min(mn[i][j - 1], mn[i + (1 << (j - 1))][j - 1]);
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] == b[i]) continue;
+//         if(a[i] > b[i]){
+//             cout << "NO\n";
+//             return;
+//         }
+//         if(l[i] != -1){
+//             if(gtemx(l[i], i) == b[i] && gtemn(l[i], i) == b[i]) continue;
+//         }
+//         if(r[i] != -1){
+//             if(gtemx(i, r[i]) == b[i] && gtemn(i, r[i]) == b[i]) continue;
+//         }
+//         cout << "NO\n";
+//         return;
+//     }
+//     cout << "YES\n";
+// }   
+
+// signed main(){
+
+//     IO;
+//     for(int i = 2;i < N;i++){  //预处理对数
+//         Log[i] = Log[i / 2] + 1;
+//     }
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
