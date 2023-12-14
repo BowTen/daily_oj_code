@@ -1351,3 +1351,145 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// const int Q = 1e5 + 10;
+// const int M = Q * 60;
+// int n, m, q, n2;
+
+// int rt[Q], sum[M], ls[M], rs[M], tot;
+
+// void build(int &id, int l, int r){
+//     id = ++tot;
+//     if(l == r) return;
+//     int mid = l + r >> 1;
+//     build(ls[id], l, mid);
+//     build(rs[id], mid + 1, r);
+// }
+// void add(int &id, int pre, int l, int r, int x, int v){
+//     id = ++tot;
+//     sum[id] = sum[pre] + v;
+//     ls[id] = ls[pre];
+//     rs[id] = rs[pre];
+//     if(l == r) return;
+//     int mid = l + r >> 1;
+//     if(x <= mid) add(ls[id], ls[pre], l, mid, x, v);
+//     else add(rs[id], rs[pre], mid + 1, r, x, v);
+// }
+// int get(int id, int l, int r, int x){
+//     if(l == r) return sum[id];
+//     int mid = l + r >> 1;
+//     if(x <= mid) return get(ls[id], l, mid, x);
+//     else return get(rs[id], mid + 1, r, x);
+// }
+
+// int prt[Q], tot2, L[M], R[M], rv[M], st[M];
+// void build2(int &id, int l, int r){
+//     id = ++tot2;
+//     if(l == r) return;
+//     int mid = l + r >> 1;
+//     build2(L[id], l, mid);
+//     build2(R[id], mid + 1, r);
+// }
+// void push(int &id, int pre, int l, int r, int x){
+//     id = ++tot2;
+//     L[id] = L[pre];
+//     R[id] = R[pre];
+//     st[id] = st[pre];
+//     rv[id] = rv[pre];
+//     if(l == r){
+//         st[id] ^= 1;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) push(L[id], L[pre], l, mid, x);
+//     else push(R[id], R[pre], mid + 1, r, x);
+// }
+// int query(int id, int l, int r, int x){
+//     if(l == r){
+//         return st[id] ^ rv[id];
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) return query(L[id], l, mid, x) ^ rv[id];
+//     else return query(R[id], mid + 1, r, x) ^ rv[id];
+// }
+// void rev(int &id, int pre, int l, int r, int ql, int qr){
+//     id = ++tot2;
+//     L[id] = L[pre];
+//     R[id] = R[pre];
+//     st[id] = st[pre];
+//     rv[id] = rv[pre];
+//     if(ql <= l && r <= qr){
+//         rv[id] ^= 1;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(qr <= mid) rev(L[id], L[pre], l, mid, ql, qr);
+//     else if(ql > mid) rev(R[id], R[pre], mid + 1, r, ql, qr);
+//     else rev(L[id], L[pre], l, mid, ql, qr), rev(R[id], R[pre], mid + 1, r, ql, qr);
+// }
+
+// void solve(){
+//     cin >> n >> m >> q;
+//     n2 = n * m;
+//     build(rt[0], 1, n);
+//     build2(prt[0], 1, n2);
+//     int op, x, y, k;
+//     for(int i = 1;i <= q;i++){
+//         cin >> op;
+//         if(op == 1){
+//             cin >> x >> y;
+//             k = (x - 1) * m + y;
+//             int d = query(prt[i-1], 1, n2, k);
+//             if(!d){
+//                 add(rt[i], rt[i-1], 1, n, x, 1);
+//                 push(prt[i], prt[i-1], 1, n2, k);
+//             }else{
+//                 rt[i] = rt[i-1];
+//                 prt[i] = prt[i-1];
+//             }
+//         }else if(op == 2){
+//             cin >> x >> y;
+//             k = (x - 1) * m + y;
+//             int d = query(prt[i-1], 1, n2, k);
+//             if(d == 1){
+//                 add(rt[i], rt[i-1], 1, n, x, -1);
+//                 push(prt[i], prt[i-1], 1, n2, k);
+//             }else{
+//                 rt[i] = rt[i-1];
+//                 prt[i] = prt[i-1];
+//             }
+//         }else if(op == 3){
+//             cin >> x;
+//             int d = get(rt[i-1], 1, n, x);
+//             add(rt[i], rt[i-1], 1, n, x, (m-d)-d);
+//             rev(prt[i], prt[i-1], 1, n2, (x-1)*m+1, x*m);
+//         }else{
+//             cin >> k;
+//             rt[i] = rt[k];
+//             prt[i] = prt[k];
+//         }
+//         cout << sum[rt[i]] << '\n';
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+//     // n = 2;
+//     // n2 = n * n;
+//     // build(rt[0], 1, n);
+//     // build2(prt[0], 1, n2);
+
+//     return 0;
+// }
