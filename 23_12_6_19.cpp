@@ -1493,3 +1493,240 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define ls id << 1
+// #define rs id << 1 | 1
+// const int N = 1e5 + 10;
+// int n, m, x, a[N];
+
+// struct val{
+//     vector<array<int, 2>>pre, suf;
+//     int ans;
+//     val(int v = 0) : pre(1, {v, 1}), suf(1, {v, 1}), ans(v >= x ? 1 : 0) {}
+
+//     val operator+(const val &e) const {
+//         val ret(*this);
+//         ret.ans += e.ans;
+//         int l = 0, r = e.pre.size() - 1;
+//         int sum = e.pre.back()[1];
+//         while(l < suf.size()){
+//             while(r > 0 && (e.pre[r-1][0] | suf[l][0]) >= x) {
+//                 r--;
+//                 sum += e.pre[r][1];
+//             }
+//             if((e.pre[r][0] | suf[l][0]) >= x) ret.ans += suf[l][1] * sum;
+//             l++;
+//         }
+//         vector<array<int, 2>>tmp(e.suf);
+//         for(auto [v, len] : suf){
+//             if((v | tmp.back()[0]) == tmp.back()[0]) tmp.back()[1] += len;
+//             else tmp.push_back({(v | tmp.back()[0]), len});
+//         }
+//         ret.suf = tmp;
+//         for(auto [v, len] : e.pre){
+//             if((v | ret.pre.back()[0]) == ret.pre.back()[0]) ret.pre.back()[1] += len;
+//             else ret.pre.push_back({(v | ret.pre.back()[0]), len});
+//         }
+//         return ret;
+//     }
+// }tr[N << 2];
+
+// void up(int id){
+//     tr[id] = tr[ls] + tr[rs];
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id] = val(a[l]);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+// }
+// void change(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         tr[id] = val(v);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(ls, l, mid, x, v);
+//     else change(rs, mid + 1, r, x, v);
+//     up(id);
+// }
+// val query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls, l, mid, ql, qr);
+//     else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//     else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+// }
+
+// void solve(){
+//     cin >> n >> m >> x;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+
+//     int op, x, y;
+//     while(m--){
+//         cin >> op >> x >> y;
+//         if(op == 1){
+//             change(1, 1, n, x, y);
+//         }else{
+//             cout << query(1, 1, n, x, y).ans << endl;
+//         }
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// int n, a[N];
+
+// int lowbit(int x){
+//     return x & -x;
+// }
+// int nebit(int x){
+//     int ret = x * 2;
+//     while(x){
+//         ret = x * 2;
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n;
+//     int av = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         av += a[i];
+//     }
+//     if(av % n){
+//         cout << "No\n";
+//         return;
+//     }
+//     av /= n;
+//     map<int,int>mp;
+//     for(int i = 1;i <= n;i++) if(a[i] < av){
+//         int d = av - a[i];
+//         if(d & 1){
+//             if(a[i] == 0){
+//                 if(d == 1) mp[1]--;
+//                 else{
+//                     cout << "No\n";
+//                     return;
+//                 }
+//             }else{
+//                 mp[1]++;
+//                 d++;
+//                 if(d != lowbit(d)){
+//                     cout << "No\n";
+//                     return;
+//                 }
+//                 mp[d]--;
+//             }
+//         }else{
+//             if(d == lowbit(d)){
+//                 mp[d]--;
+//             }else{
+//                 int d2 = nebit(d) - d;
+//                 if(d2 != lowbit(d2)){
+//                     cout << "No\n";
+//                     return;
+//                 }
+//                 mp[d2]++;
+//                 mp[d2+d]--;
+//             }   
+//         }
+//     }
+//     //     for(auto [k, v] : mp) {
+//     //         cerr << k << ' ' << v << endl;
+//     //     // if(v){
+//     //     //     cout << "No\n";
+//     //     //     return;
+//     //     // }
+//     // }
+//     // cerr << endl;
+//     for(int i = 1;i <= n;i++) if(a[i] > av){
+//         int d = a[i] - av;
+//         if(d & 1){
+//             if(d == 1){
+//                 if(mp[1] < 0) mp[1]++;
+//                 else{
+//                     mp[1]--;
+//                     mp[2]++;
+//                 }
+//             }else{
+//                 if(d+1 != lowbit(d+1)){
+//                     cout << "No\n";
+//                     return;
+//                 }
+//                 mp[1]--;
+//                 mp[d+1]++;
+//             }
+//         }else{
+//             if(d == lowbit(d)){
+//                 mp[d]++;
+//             }else{
+//                 int d2 = nebit(d) - d;
+//                 mp[d2]--;
+//                 mp[d2+d]++;
+//             }   
+//         }
+//     }
+
+//     // cerr << av << endl;
+//     for(auto &[k, v] : mp) {
+//             // cerr << k << ' ' << v << endl;
+//         if(v){
+//             while(v >= 2 && mp[k<<1] < 0){
+//                 v -= 2;
+//                 mp[k<<1]++;
+//             }
+//             while(v <= -2 && mp[k<<1] > 0){
+//                 v += 2;
+//                 mp[k<<1]--;
+//             }
+//             if(v){
+//                 cout << "No\n";
+//                 return;
+//             }
+//         }
+//     }
+//     cout << "Yes\n";
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
