@@ -1,10 +1,8 @@
-import turtle as t
-
-t.speed(0);
-
-
-for i in range(100) :
-    t.circle(i * 2)
-    t.right(1);
-
-input()
+n = int(input())
+ans = 0
+while n != 0 :
+    n //= 6
+    ans += 1
+if ans == 0 : 
+    ans = 1
+print(ans)
