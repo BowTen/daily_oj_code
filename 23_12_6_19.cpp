@@ -2041,90 +2041,342 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// int n, m, f[N*2][22], Log[N], p[N], a[N * 2], pos;
+
+// int cmp(int i, int j){
+//     return a[i] < a[j];
+// }
+// int query(int l, int r){
+//     int s = Log[r - l + 1];
+//     return min(f[l][s], f[r - (1 << s) + 1][s], cmp);
+// }
+
+// int check(int x){
+//     int cur = n, ed = 2*n - x, ret = n;
+//     while(cur < ed){
+//         int ne = query(cur + 1, ed);
+//         ret += (ne - cur) * a[ne];
+//         cur = ne;
+//     }
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> p[i];
+//         if(p[i] == 0) pos = i;
+//         f[i][0] = i;
+//     }
+//     int tmp = n;
+//     for(int i = 1;i <= n;i++){
+//         a[tmp--] = p[pos--];
+//         if(pos < 1) pos = n;
+//     }
+//     for(int i = n + 1;i <= n * 2;i++){
+//         a[i] = a[i-n];
+//         f[i][0] = i;
+//     }
+//     for(int j = 1;j < 22;j++){
+//         for(int i = 1;i <= n*2 && i + (1 << j) - 1 <= n*2;i++){
+//             f[i][j] = min(f[i][j - 1], f[i + (1 << (j - 1))][j - 1], cmp);
+//         }
+//     }
+
+//     int l = 2, r = n-1;
+//     while(l < r){
+//         int mid = l + r >> 1;
+//         int e1 = check(mid - 1), e2 = check(mid), e3 = check(mid + 1);
+//         if(e2 > e1 && e2 > e3){
+//             l = mid;
+//             break;
+//         }else if(e3 > e2){
+//             l = mid + 1;
+//         }else if(e1 > e2){
+//             r = mid - 1;
+//         }
+//     }
+//     l = min(n, l);
+//     int ans = max(check(1), check(l));
+//     cout << ans << endl;
+//     // cerr << l << endl;
+//     // for(int i = 1;i <= n;i++){
+//     //     cerr << i << ' ' << check(i) << endl;
+//     // }
+//     // cerr << check()
+//     cerr << check(10);
+// }
+
+// signed main(){
+
+//     IO;
+
+//     for(int i = 2;i < N;i++){  //预处理对数
+//         Log[i] = Log[i / 2] + 1;
+//     }
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
 // #define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) (x).begin(), (x).end()
-const int N = 1e6 + 10;
-int n, m, f[N*2][22], Log[N], p[N], a[N * 2], pos;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// int n, m, f[N*2][22], Log[N], p[N], a[N * 2], pos;
 
-int cmp(int i, int j){
-    return a[i] < a[j];
-}
-int query(int l, int r){
-    int s = Log[r - l + 1];
-    return min(f[l][s], f[r - (1 << s) + 1][s], cmp);
-}
+// int cmp(int i, int j){
+//     return a[i] < a[j];
+// }
+// int query(int l, int r){
+//     int s = Log[r - l + 1];
+//     return min(f[l][s], f[r - (1 << s) + 1][s], cmp);
+// }
 
-int check(int x){
-    int cur = n, ed = 2*n - x, ret = n;
-    while(cur < ed){
-        int ne = query(cur + 1, ed);
-        ret += (ne - cur) * a[ne];
-        cur = ne;
-    }
-    return ret;
-}
+// int check(int x){
+//     int cur = n, ed = 2*n - x, ret = n;
+//     while(cur < ed){
+//         int ne = query(cur + 1, ed);
+//         ret += (ne - cur) * a[ne];
+//         cur = ne;
+//     }
+//     return ret;
+// }
 
-void solve(){
-    cin >> n;
-    for(int i = 1;i <= n;i++){
-        cin >> p[i];
-        if(p[i] == 0) pos = i;
-        f[i][0] = i;
-    }
-    int tmp = n;
-    for(int i = 1;i <= n;i++){
-        a[tmp--] = p[pos--];
-        if(pos < 1) pos = n;
-    }
-    for(int i = n + 1;i <= n * 2;i++){
-        a[i] = a[i-n];
-        f[i][0] = i;
-    }
-    for(int j = 1;j < 22;j++){
-        for(int i = 1;i <= n*2 && i + (1 << j) - 1 <= n*2;i++){
-            f[i][j] = min(f[i][j - 1], f[i + (1 << (j - 1))][j - 1], cmp);
-        }
-    }
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> p[i];
+//         if(p[i] == 0) pos = i;
+//         f[i][0] = i;
+//     }
+//     int tmp = n;
+//     for(int i = 1;i <= n;i++){
+//         a[tmp--] = p[pos--];
+//         if(pos < 1) pos = n;
+//     }
+//     for(int i = n + 1;i <= n * 2;i++){
+//         a[i] = a[i-n];
+//         f[i][0] = i;
+//     }
+//     for(int j = 1;j < 22;j++){
+//         for(int i = 1;i <= n*2 && i + (1 << j) - 1 <= n*2;i++){
+//             f[i][j] = min(f[i][j - 1], f[i + (1 << (j - 1))][j - 1], cmp);
+//         }
+//     }
 
-    int l = 2, r = n-1;
-    while(l < r){
-        int mid = l + r >> 1;
-        int e1 = check(mid - 1), e2 = check(mid), e3 = check(mid + 1);
-        if(e2 > e1 && e2 > e3){
-            l = mid;
-            break;
-        }else if(e3 > e2){
-            l = mid + 1;
-        }else if(e1 > e2){
-            r = mid - 1;
-        }
-    }
-    l = min(n, l);
-    int ans = max(check(1), check(l));
-    cout << ans << endl;
-    // cerr << l << endl;
-    // for(int i = 1;i <= n;i++){
-    //     cerr << i << ' ' << check(i) << endl;
-    // }
-    // cerr << check()
-    cerr << check(10);
-}
+//     int ed;
+//     for(int i = 2*n - 1;i >= n;i--){
+//         if(a[i] == n-1){
+//             ed = i;
+//             break;
+//         }
+//     }
+//     // cerr << ed << endl;
 
-signed main(){
+//     int l = 2, r = 2*n - ed;
+//     while(l < r){
+//         int mid = l + r >> 1;
+//         int e1 = check(mid), e2 = check(mid + 1);
+//         if(e2 > e1){
+//             l = mid + 1;
+//         }else{
+//             r = mid;
+//         }
+//     }
+//     l = min(l, n);
+//     int ans = max({check(1), check(r), check(l), check(2), check(2*n - ed)});
+//     cout << ans << endl;
 
-    IO;
+//     // for(int i = 1;i <= n;i++) cerr << check(i) << ' ';
+//     // cerr << endl;
+// }
 
-    for(int i = 2;i < N;i++){  //预处理对数
-        Log[i] = Log[i / 2] + 1;
-    }
+// signed main(){
 
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+//     IO;
 
-    return 0;
-}
+//     for(int i = 2;i < N;i++){  //预处理对数
+//         Log[i] = Log[i / 2] + 1;
+//     }
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// int n, m, a[N];
+
+// void solve(){
+//     cin >> n;
+//     int p;
+//     for(int i = 0;i < n;i++){
+//         cin >> a[i];
+//         if(a[i] == 0) p = i;
+//     }
+
+//     int ans = 0, cur = 0;
+//     stack<array<int, 2>>st;
+//     for(int i = 1;i <= n;i++){
+//         int cnt = 0;
+//         while(st.size() && st.top()[0] > a[p]){
+//             cur -= st.top()[0] * st.top()[1];
+//             cnt += st.top()[1];
+//             st.pop();
+//         }
+//         if(cnt){
+//             st.push({a[p], cnt});
+//             cur += a[p] * cnt;
+//         }
+//         st.push({n, 1});
+//         cur += n;
+//         ans = max(ans, cur);
+//         p = (p + 1) % n;
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int unsigned long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// const int mod = 998244353;
+// int n, m, ans, RET;
+// unordered_map<int, int>v;
+// unordered_map<int, list<int>>ls;
+
+// int qpow(int a, int x){
+//     int ret = 1;
+//     while(x){
+//         if(x & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         x >>= 1;
+//     }
+//     return ret;
+// }
+
+// void dfs2(int id, int l, int r){
+//     int d = r - l + 1;
+//     if(v[d]){
+//         RET = (RET + v[d]) % mod;
+//         id--;
+//         for(auto e : ls[d]){
+//             RET = (RET + (e * id % mod)) % mod;
+//             id = (id << 1) % mod;
+//         }
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     dfs2((id << 1) % mod, l, mid);
+//     dfs2((id << 1 | 1) % mod, mid + 1, r);
+
+//     //更新ans
+//     RET = (RET + (id * ls[d].front() % mod)) % mod;
+// }
+
+// void dfs(int id, int l, int r){
+//     int d = r - l + 1;
+//     if(v[d]){
+//         ans = (ans + v[d]) % mod;
+//         id--;
+//         for(auto e : ls[d]){
+//             ans = (ans + (e * id % mod)) % mod;
+//             id = (id << 1) % mod;
+//         }
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     dfs((id << 1) % mod, l, mid);
+//     dfs((id << 1 | 1) % mod, mid + 1, r);
+
+//     int ld = mid - l + 1, rd = r - mid;
+    
+//     //更新ls    
+//     list<int>lst(ls[ld]);
+//     auto it = lst.begin();
+//     auto Rs = ls[rd].begin();
+//     int cnt = ls[rd].size();
+//     while(cnt--){
+//         *it = (*it + *Rs) % mod;
+//         Rs++;
+//         it++;
+//     }
+//     lst.push_front( (qpow(2, ld) - 1) * (qpow(2, rd) - 1) % mod);
+//     ls[d] = lst;
+    
+//     //更新ans
+//     ans = (ans + (id * ls[d].front() % mod) ) % mod;
+
+//     //更新v
+//     RET = 0;
+//     dfs2(1, 1, d);
+//     v[d] = RET;
+// }
+
+// void init(){
+//     RET = ans = 0;
+// }
+
+// void solve(){
+//     cin >> n;
+//     init();
+//     dfs(1, 1, n);
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     v[1] = 1;
+//     ls[1] = list<int>({1});
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
