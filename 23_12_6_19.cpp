@@ -2780,3 +2780,126 @@
 
 //     return 0;
 // }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+const int N = 2e5 + 10;
+int n, m, k, a[N], fa[N];
+set<int>g[N];
+
+struct node{
+    int l, r, len;
+    node(int l, int r) : l(l), r(r), len(0) {
+        if(r < k){
+            len = -1;
+            return;
+        }
+        int L = (l ? k : 0), R = r - (r % k);
+        len = (R - L) / k;
+        r %= k;
+    }
+};
+vector<node>seg;
+
+void insert(int f, int s){
+    if(!fa[s]){
+        g[f].insert(s);
+        fa[s] = f;
+    }else{
+        if(a[f] > a[s]){
+            if(a[fa[s]] < a[s] || a[fa[s]] > a[f]){
+                g[fa[s]].erase(g[fa[s]].find(fa[s]));
+                fa[s] = f;
+            }
+        }else{
+            if(a[fa[s]] < a[s] && a[fa[s]] > a[f]){
+                g[fa[s]].erase(g[fa[s]].find(fa[s]));
+                fa[s] = f;
+            }
+        }
+    }
+}
+
+int root;
+void dfs(int u, int val){
+    // cerr << u << ' ' << val << endl;
+    if(g[u].empty()){
+        seg.push_back({root, val});
+        return;
+    }
+    for(auto v : g[u]){
+        if(a[v] > a[u]) dfs(v, val - a[u] + a[v]);
+        else dfs(v, val + k - a[u] + a[v]);
+    }
+}
+
+void init(){
+    seg.clear();
+    for(int i = 1;i <= n;i++){
+        fa[i] = 0;
+        g[i].clear();
+    }
+}
+
+void solve(){
+    cin >> n >> m >> k;
+    init();
+    for(int i = 1;i <= n;i++) cin >> a[i];
+    for(int i = 1, u, v;i <= m;i++){
+        cin >> u >> v;
+        insert(u, v);
+    }
+
+    for(int i = 1;i <= n;i++) if(!fa[i]){
+        root = a[i];
+        dfs(i, a[i]);        
+    }
+
+    int mx = -1, ml = k, mr = 0;
+    for(auto [l, r, len] : seg){
+        mx = max(mx, len);
+        ml = min(ml, l);
+        mr = max(mr, r);
+    }
+
+    if(mx == -1){
+        cout << mr - ml << endl;
+    }else if(mx == 0){
+        sort(all(seg), [&](const node& e1, const node& e2) -> int {
+            if(e1.l == e2.l) return e1.r > e2.r;
+            return e1.l < e2.l;
+        });
+        ml = k, mr = 0;
+        for(auto [l, r, len] : seg) if(len == 0){
+            ml = min(ml, l);
+            mr = max(mr, r);
+        }
+        int ans = 2 * k, lsr = 0, lsl = -1;
+        for(auto [l, r, len] : seg) if(len == -1){
+            if(lsl == l) continue;
+            ans = min(ans, max(lsr, mr)+k - min(l, ml));
+            lsl = l;
+            lsr = r;
+        }
+        cout << ans << endl;
+    }else{
+        
+    }
+
+}
+
+signed main(){
+
+    IO;
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
