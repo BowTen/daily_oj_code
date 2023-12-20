@@ -2783,122 +2783,386 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// int n, m, k, a[N], fa[N];
+// set<int>g[N];
+
+// struct node{
+//     int l, r;
+//     node(int l, int r) : l(l), r(r) {}
+// };
+// vector<node>seg;
+
+// void insert(int f, int s){
+//     if(a[f] == a[s]) return;
+//     if(!fa[s]){
+//         g[f].insert(s);
+//         fa[s] = f;
+//     }else{
+//         if(a[f] > a[s]){
+//             if(a[fa[s]] < a[s] || a[fa[s]] > a[f]){
+//                 g[fa[s]].erase(g[fa[s]].find(s));
+//                 g[f].insert(s);
+//                 fa[s] = f;
+//             }
+//         }else{
+//             if(a[fa[s]] < a[s] && a[fa[s]] > a[f]){
+//                 g[fa[s]].erase(g[fa[s]].find(s));
+//                 g[f].insert(s);
+//                 fa[s] = f;
+//             }
+//         }
+//     }
+// }
+
+// int root;
+// void dfs(int u, int val){
+//     if(g[u].empty()){
+//         seg.push_back({root, val});
+//         return;
+//     }
+//     for(auto v : g[u]){
+//         if(a[v] > a[u]) dfs(v, val - a[u] + a[v]);
+//         else dfs(v, val + k - a[u] + a[v]);
+//     }
+// }
+
+// void init(){
+//     seg.clear();
+//     for(int i = 0;i <= n + 10;i++){
+//         fa[i] = 0;
+//         g[i].clear();
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1, u, v;i <= m;i++){
+//         cin >> u >> v;
+//         insert(u, v);
+//     }
+
+//     for(int i = 1;i <= n;i++) if(!fa[i]){
+//         root = a[i];
+//         dfs(i, a[i]);        
+//     }
+
+//     int mr = 0;
+//     for(auto [l, r] : seg){
+//         mr = max(mr, r);
+//     }
+//     sort(all(seg), [&](const node& e1, const node& e2) -> int {
+//         if(e1.l == e2.l) return e1.r < e2.r;
+//         return e1.l < e2.l;
+//     });
+
+//     int ans = mr;
+//     for(auto [l, r] : seg){
+//         ans = min(ans, mr - l);
+//         mr = max(mr, r + k);
+//     }
+//     cout << ans << endl;
+//     init();
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+    
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e6 + 10;
+// int n, m, k, deg[N];
+// array<int, 2>a[N];
+// vector<int>g[N];
+
+
+// void init(){
+//     for(int i = 1;i <= n;i++){
+//         deg[i] = 0;
+//         g[i].clear();
+//     }
+// } 
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     for(int i = 1;i <= n;i++) cin >> a[i][0], a[i][1] = i;
+//     while(m--){
+//         int u, v;
+//         cin >> u >> v;
+//         deg[v]++;
+//         g[u].push_back(v);
+//     }
+//     vector<int>q;
+//     for(int i = 1;i <= n;i++){
+//         if(deg[i] == 0) q.push_back(i);
+//     }
+//     for(int i = 0;i < n;i++){
+//         int u = q[i];
+//         for(auto v : g[u]){
+//             if(--deg[v] == 0) q.push_back(v);
+//         }
+//     }
+//     vector<int>dp(n+5);
+//     for(int i = n - 1;i >= 0;i--){
+//         int u = q[i];
+//         for(auto v : g[u]){
+//             dp[u] = max(dp[u], dp[v] + ((a[v][0] - a[u][0] + k) % k));
+//         }
+//     }
+//     for(int i = 1;i <= n;i++) dp[i] += a[i][0];
+//     int mr = *max_element(all(dp));
+//     sort(a + 1, a + 1 + n);
+//     int ans = mr;
+//     for(int i = 1;i <= n;i++){
+//         ans = min(ans, mr - a[i][0]);
+//         mr = max(mr, dp[a[i][1]] + k);
+//     }
+
+//     cout << ans << endl;
+//     init();
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+    
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e5 + 10;
+// const int inf = 1e17;
+// int n, m, cl, ce, V, q;
+
+
+// void solve(){
+//     cin >> n >> m >> cl >> ce >> V;
+//     vector<int>sta(cl), ele(ce);
+//     for(auto &e : sta) cin >> e;
+//     for(auto &e : ele) cin >> e;
+//     cin >> q;
+//     while(q--){
+//         int x, y, u, v;
+//         cin >> x >> y >> u >> v;
+//         if(u == x){
+//             cout << abs(y - v) << endl;
+//         } else{
+//             auto ps = upper_bound(all(sta), y);
+//             auto pe = upper_bound(all(ele), y);
+//             int cs = inf, ce = inf;
+//             if(sta.size()){
+//                 int p1;
+//                 if(ps != sta.begin()){
+//                     p1 = *prev(ps);
+//                     // cerr << p1 << ' ';
+//                     cs = abs(y - p1) + abs(x - u) + abs(v - p1);
+//                 }
+//                 if(ps != sta.end()){
+//                     p1 = *ps;
+//                     // cerr << p1 << ' ';
+//                     cs = min(cs, abs(y - p1) + abs(x - u) + abs(v - p1));
+//                 }
+//             }
+//             if(ele.size()){
+//                 int p1;
+//                 if(pe != ele.begin()){
+//                     p1 = *prev(pe);
+//                     // cerr << p1 << ' ';
+//                     ce = abs(y - p1) + (abs(x - u)+V-1)/V + abs(v - p1);
+//                 }
+//                 if(pe != ele.end()){
+//                     p1 = *pe;
+//                     // cerr << p1 << '\n';
+//                     ce = min(ce, abs(y - p1) + (abs(x - u)+V-1)/V + abs(v - p1));
+//                 }
+//             }
+//             cout << min(cs, ce) << endl;
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
-const int N = 2e5 + 10;
-int n, m, k, a[N], fa[N];
-set<int>g[N];
+const int N = 3e5 + 10;
+const int inf = 1e17;
+int n, k, tot;
+vector<int>op[N];
+vector<int>vec[N];
 
-struct node{
-    int l, r, len;
-    node(int l, int r) : l(l), r(r), len(0) {
-        if(r < k){
-            len = -1;
-            return;
-        }
-        int L = (l ? k : 0), R = r - (r % k);
-        len = (R - L) / k;
-        r %= k;
-    }
-};
-vector<node>seg;
-
-void insert(int f, int s){
-    if(!fa[s]){
-        g[f].insert(s);
-        fa[s] = f;
-    }else{
-        if(a[f] > a[s]){
-            if(a[fa[s]] < a[s] || a[fa[s]] > a[f]){
-                g[fa[s]].erase(g[fa[s]].find(fa[s]));
-                fa[s] = f;
-            }
-        }else{
-            if(a[fa[s]] < a[s] && a[fa[s]] > a[f]){
-                g[fa[s]].erase(g[fa[s]].find(fa[s]));
-                fa[s] = f;
-            }
-        }
-    }
-}
-
-int root;
-void dfs(int u, int val){
-    // cerr << u << ' ' << val << endl;
-    if(g[u].empty()){
-        seg.push_back({root, val});
-        return;
-    }
-    for(auto v : g[u]){
-        if(a[v] > a[u]) dfs(v, val - a[u] + a[v]);
-        else dfs(v, val + k - a[u] + a[v]);
-    }
-}
-
-void init(){
-    seg.clear();
-    for(int i = 1;i <= n;i++){
-        fa[i] = 0;
-        g[i].clear();
-    }
-}
+list<unordered_map<int, int>>res;
 
 void solve(){
-    cin >> n >> m >> k;
-    init();
-    for(int i = 1;i <= n;i++) cin >> a[i];
-    for(int i = 1, u, v;i <= m;i++){
-        cin >> u >> v;
-        insert(u, v);
+    string s;
+    cin >> n >> k >> s;
+    s = ' ' + s;
+    map< vector<int>, int>hmp;
+    for(int i = 1, sz;i <= k;i++){
+        cin >> sz;
+        vector<int>tmp(sz);
+        for(auto &e : tmp) cin >> e;
+        if(hmp[tmp]++ == 0) vec[++tot] = tmp;
     }
 
-    for(int i = 1;i <= n;i++) if(!fa[i]){
-        root = a[i];
-        dfs(i, a[i]);        
+    for(int i = 1;i <= tot;i++){
+        for(auto e : vec[i]) op[e].push_back(i);
     }
 
-    int mx = -1, ml = k, mr = 0;
-    for(auto [l, r, len] : seg){
-        mx = max(mx, len);
-        ml = min(ml, l);
-        mr = max(mr, r);
-    }
-
-    if(mx == -1){
-        cout << mr - ml << endl;
-    }else if(mx == 0){
-        sort(all(seg), [&](const node& e1, const node& e2) -> int {
-            if(e1.l == e2.l) return e1.r > e2.r;
-            return e1.l < e2.l;
-        });
-        ml = k, mr = 0;
-        for(auto [l, r, len] : seg) if(len == 0){
-            ml = min(ml, l);
-            mr = max(mr, r);
+    int ans = inf;
+    if(s[1] == '1'){
+        if(op[1].size() == 2){
+            res.push_back(unordered_map<int,int>());
+            (*res.begin())[op[1][0]] = 1;
+            (*res.begin())[op[1][1]] = 1;
         }
-        int ans = 2 * k, lsr = 0, lsl = -1;
-        for(auto [l, r, len] : seg) if(len == -1){
-            if(lsl == l) continue;
-            ans = min(ans, max(lsr, mr)+k - min(l, ml));
-            lsl = l;
-            lsr = r;
+        res.push_back(unordered_map<int,int>());
+        ans = 0;
+    }else{
+        res.push_back(unordered_map<int,int>());
+        (*res.begin())[op[1][0]] = 1;
+        if(op[1].size() == 2){
+            res.push_back(unordered_map<int,int>());
+            (*res.rbegin())[op[1][1]] = 1;
+        }
+        ans = 1;
+    }
+
+    cout << ans << endl;
+    for(int i = 2;i <= n;i++){
+        ans = inf;
+        if(s[i] == '1'){
+            if(op[i].size() == 2){
+                auto it = res.begin();
+                while(it != res.end()){
+                    if(it->count(op[i][0])){
+                        if(vec[op[i][1]][0] == i) (*it)[op[i][1]] = 1;
+                        else if(!(it->count(op[i][1]))){
+                            it++;
+                            res.erase(prev(it));
+                            continue;
+                        }
+                    }else if(it->count(op[i][1])){
+                        if(vec[op[i][0]][0] == i) (*it)[op[i][0]] = 1;
+                        else{
+                            it++;
+                            res.erase(prev(it));
+                            continue;
+                        }
+                    }
+                    it++;
+                }
+            }else if(op[i].size() == 1){
+                auto it = res.begin();
+                while(it != res.end()){
+                    if(it->count(op[i][0])){
+                        it++;
+                        res.erase(prev(it));
+                        continue;
+                    };
+                    it++;
+                }
+            }
+            for(auto &mp : res) ans = min(ans, (int)mp.size());
+        }else{
+            if(op[i].size() == 2){
+                auto it = res.begin();
+                while(it != res.end()){
+                    int cnt = 0;
+                    if((*it).count(op[i][0])) cnt++;
+                    if((*it).count(op[i][1])) cnt++;
+                    if(cnt == 0){
+                        if(vec[op[i][0]][0] == i){
+                            res.push_back(*it);
+                            (*res.rbegin())[op[i][0]] = 1;
+                        }
+                        if(vec[op[i][1]][0] == i){
+                            res.push_back(*it);
+                            (*res.rbegin())[op[i][1]] = 1;
+                        }
+                        it++;
+                        res.erase(prev(it));
+                        continue;
+                    }else if(cnt == 2){
+                        it++;
+                        res.erase(prev(it));
+                        continue;
+                    };
+                    it++;
+                }
+            }else if(op[i].size() == 1){
+                auto it = res.begin();
+                while(it != res.end()){
+                    if((*it).count(op[i][0])) {}
+                    else{
+                        if(vec[op[i][0]][0] == i){
+                            res.push_back(*it);
+                            (*res.rbegin())[op[i][0]] = 1;
+                        }
+                        it++;
+                        res.erase(prev(it));
+                        continue;
+                    }
+                    it++;
+                }
+            }
+            for(auto &mp : res) ans = min(ans, (int)mp.size());
         }
         cout << ans << endl;
-    }else{
-        
     }
-
 }
 
 signed main(){
 
     IO;
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--) solve();
 
     return 0;
