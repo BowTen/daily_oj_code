@@ -3025,145 +3025,203 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) (x).begin(), (x).end()
-const int N = 3e5 + 10;
-const int inf = 1e17;
-int n, k, tot;
-vector<int>op[N];
-vector<int>vec[N];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 3e5 + 10;
+// const int inf = 1e17;
+// int n, k, tot;
+// vector<int>op[N];
+// vector<int>vec[N];
 
-list<unordered_map<int, int>>res;
+// list<unordered_map<int, int>>res;
 
-void solve(){
-    string s;
-    cin >> n >> k >> s;
-    s = ' ' + s;
-    map< vector<int>, int>hmp;
-    for(int i = 1, sz;i <= k;i++){
-        cin >> sz;
-        vector<int>tmp(sz);
-        for(auto &e : tmp) cin >> e;
-        if(hmp[tmp]++ == 0) vec[++tot] = tmp;
-    }
+// void solve(){
+//     string s;
+//     cin >> n >> k >> s;
+//     s = ' ' + s;
+//     map< vector<int>, int>hmp;
+//     for(int i = 1, sz;i <= k;i++){
+//         cin >> sz;
+//         vector<int>tmp(sz);
+//         for(auto &e : tmp) cin >> e;
+//         if(hmp[tmp]++ == 0) vec[++tot] = tmp;
+//     }
 
-    for(int i = 1;i <= tot;i++){
-        for(auto e : vec[i]) op[e].push_back(i);
-    }
+//     for(int i = 1;i <= tot;i++){
+//         for(auto e : vec[i]) op[e].push_back(i);
+//     }
 
-    int ans = inf;
-    if(s[1] == '1'){
-        if(op[1].size() == 2){
-            res.push_back(unordered_map<int,int>());
-            (*res.begin())[op[1][0]] = 1;
-            (*res.begin())[op[1][1]] = 1;
-        }
-        res.push_back(unordered_map<int,int>());
-        ans = 0;
-    }else{
-        res.push_back(unordered_map<int,int>());
-        (*res.begin())[op[1][0]] = 1;
-        if(op[1].size() == 2){
-            res.push_back(unordered_map<int,int>());
-            (*res.rbegin())[op[1][1]] = 1;
-        }
-        ans = 1;
-    }
+//     int ans = inf;
+//     if(s[1] == '1'){
+//         if(op[1].size() == 2){
+//             res.push_back(unordered_map<int,int>());
+//             (*res.begin())[op[1][0]] = 1;
+//             (*res.begin())[op[1][1]] = 1;
+//         }
+//         res.push_back(unordered_map<int,int>());
+//         ans = 0;
+//     }else{
+//         res.push_back(unordered_map<int,int>());
+//         (*res.begin())[op[1][0]] = 1;
+//         if(op[1].size() == 2){
+//             res.push_back(unordered_map<int,int>());
+//             (*res.rbegin())[op[1][1]] = 1;
+//         }
+//         ans = 1;
+//     }
 
-    cout << ans << endl;
-    for(int i = 2;i <= n;i++){
-        ans = inf;
-        if(s[i] == '1'){
-            if(op[i].size() == 2){
-                auto it = res.begin();
-                while(it != res.end()){
-                    if(it->count(op[i][0])){
-                        if(vec[op[i][1]][0] == i) (*it)[op[i][1]] = 1;
-                        else if(!(it->count(op[i][1]))){
-                            it++;
-                            res.erase(prev(it));
-                            continue;
-                        }
-                    }else if(it->count(op[i][1])){
-                        if(vec[op[i][0]][0] == i) (*it)[op[i][0]] = 1;
-                        else{
-                            it++;
-                            res.erase(prev(it));
-                            continue;
-                        }
-                    }
-                    it++;
-                }
-            }else if(op[i].size() == 1){
-                auto it = res.begin();
-                while(it != res.end()){
-                    if(it->count(op[i][0])){
-                        it++;
-                        res.erase(prev(it));
-                        continue;
-                    };
-                    it++;
-                }
-            }
-            for(auto &mp : res) ans = min(ans, (int)mp.size());
-        }else{
-            if(op[i].size() == 2){
-                auto it = res.begin();
-                while(it != res.end()){
-                    int cnt = 0;
-                    if((*it).count(op[i][0])) cnt++;
-                    if((*it).count(op[i][1])) cnt++;
-                    if(cnt == 0){
-                        if(vec[op[i][0]][0] == i){
-                            res.push_back(*it);
-                            (*res.rbegin())[op[i][0]] = 1;
-                        }
-                        if(vec[op[i][1]][0] == i){
-                            res.push_back(*it);
-                            (*res.rbegin())[op[i][1]] = 1;
-                        }
-                        it++;
-                        res.erase(prev(it));
-                        continue;
-                    }else if(cnt == 2){
-                        it++;
-                        res.erase(prev(it));
-                        continue;
-                    };
-                    it++;
-                }
-            }else if(op[i].size() == 1){
-                auto it = res.begin();
-                while(it != res.end()){
-                    if((*it).count(op[i][0])) {}
-                    else{
-                        if(vec[op[i][0]][0] == i){
-                            res.push_back(*it);
-                            (*res.rbegin())[op[i][0]] = 1;
-                        }
-                        it++;
-                        res.erase(prev(it));
-                        continue;
-                    }
-                    it++;
-                }
-            }
-            for(auto &mp : res) ans = min(ans, (int)mp.size());
-        }
-        cout << ans << endl;
-    }
-}
+//     cout << ans << endl;
+//     for(int i = 2;i <= n;i++){
+//         ans = inf;
+//         if(s[i] == '1'){
+//             if(op[i].size() == 2){
+//                 auto it = res.begin();
+//                 while(it != res.end()){
+//                     if(it->count(op[i][0])){
+//                         if(vec[op[i][1]][0] == i) (*it)[op[i][1]] = 1;
+//                         else if(!(it->count(op[i][1]))){
+//                             it++;
+//                             res.erase(prev(it));
+//                             continue;
+//                         }
+//                     }else if(it->count(op[i][1])){
+//                         if(vec[op[i][0]][0] == i) (*it)[op[i][0]] = 1;
+//                         else{
+//                             it++;
+//                             res.erase(prev(it));
+//                             continue;
+//                         }
+//                     }
+//                     it++;
+//                 }
+//             }else if(op[i].size() == 1){
+//                 auto it = res.begin();
+//                 while(it != res.end()){
+//                     if(it->count(op[i][0])){
+//                         it++;
+//                         res.erase(prev(it));
+//                         continue;
+//                     };
+//                     it++;
+//                 }
+//             }
+//             for(auto &mp : res) ans = min(ans, (int)mp.size());
+//         }else{
+//             if(op[i].size() == 2){
+//                 auto it = res.begin();
+//                 while(it != res.end()){
+//                     int cnt = 0;
+//                     if((*it).count(op[i][0])) cnt++;
+//                     if((*it).count(op[i][1])) cnt++;
+//                     if(cnt == 0){
+//                         if(vec[op[i][0]][0] == i){
+//                             res.push_back(*it);
+//                             (*res.rbegin())[op[i][0]] = 1;
+//                         }
+//                         if(vec[op[i][1]][0] == i){
+//                             res.push_back(*it);
+//                             (*res.rbegin())[op[i][1]] = 1;
+//                         }
+//                         it++;
+//                         res.erase(prev(it));
+//                         continue;
+//                     }else if(cnt == 2){
+//                         it++;
+//                         res.erase(prev(it));
+//                         continue;
+//                     };
+//                     it++;
+//                 }
+//             }else if(op[i].size() == 1){
+//                 auto it = res.begin();
+//                 while(it != res.end()){
+//                     if((*it).count(op[i][0])) {}
+//                     else{
+//                         if(vec[op[i][0]][0] == i){
+//                             res.push_back(*it);
+//                             (*res.rbegin())[op[i][0]] = 1;
+//                         }
+//                         it++;
+//                         res.erase(prev(it));
+//                         continue;
+//                     }
+//                     it++;
+//                 }
+//             }
+//             for(auto &mp : res) ans = min(ans, (int)mp.size());
+//         }
+//         cout << ans << endl;
+//     }
+// }
 
-signed main(){
+// signed main(){
 
-    IO;
-    int t = 1;
-    // cin >> t;
-    while(t--) solve();
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 5e4 + 10;
+// const int inf = 1e17;
+// int n, k, fa[N * 3];
+
+// int find(int x){
+//     return fa[x] == x ? x : fa[x] = find(fa[x]);
+// }
+// void merg(int a, int b){
+//     a = find(a);
+//     b = find(b);
+//     fa[a] = b;
+// }
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n*3;i++) fa[i] = i;
+//     int ans = 0;
+//     while(k--){
+//         int op, a, b;
+//         cin >> op >> a >> b;
+//         if(a > n || b > n){
+//             ans++;
+//             continue;
+//         }
+//         if(op == 1){
+//             if(find(a) == find(b + n) || find(a) == find(b + n*2)) {
+//                 ans++;
+//                 continue;
+//             }
+//             merg(a, b), merg(a + n, b + n), merg(a + n*2, b + n*2);
+//         }else{
+//             if(find(a) == find(b) || find(a + 2*n) == find(b)){
+//                 ans++;
+//                 continue;
+//             }
+//             merg(a+n, b), merg(a, b+2*n), merg(b+n, a+2*n);
+//         }
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
