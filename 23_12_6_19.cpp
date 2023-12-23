@@ -3705,3 +3705,208 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     map<int,int>mp;
+//     for(int i = 1;i <= n;i++){
+//         int x, y;
+//         cin >> x >> y;
+//         if(x > 0) mp[1]++;
+//         else if(x < 0) mp[2]++;
+//         if(y > 0) mp[3]++;
+//         else if(y < 0) mp[4]++;
+//     }
+//     if(mp.size() <= 3) cout << "YES\n";
+//     else cout << "NO\n";
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n);
+//     set<int>st;
+//     for(auto& e : a){
+//         cin >> e;
+//         st.insert(e & 1);
+//     }
+//     if(n == 2){
+//         cout << (int)(1e18) << endl;
+//         return;
+//     }
+//     if(st.size() == 2){
+//         cout << "2\n";
+//         return;
+//     }
+
+//     for(int pw = 2; 1; pw <<= 1){
+//         set<int>st;
+//         for(auto e : a){
+//             st.insert(e % pw);
+//             if(st.size() > 2) break;
+//         }
+//         if(st.size() == 2){
+//             cout << pw << endl;
+//             return;
+//         }
+//     }    
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     vector<array<int, 2>>a(n * 2);
+//     for(int i = 0;i < n;i++){
+//         cin >> a[i][0];
+//         a[i][1] = 0;
+//     }
+//     for(int i = n;i < n * 2;i++){
+//         cin >> a[i][0];
+//         a[i][1] = 1;
+//     }
+//     vector<int>c(n);
+//     for(int i = 0;i < n;i++) cin >> c[i];
+//     sort(all(a));
+//     stack<int>st;
+
+//     vector<int>seg;
+//     for(auto [p, op] : a){
+//         if(op){
+//             seg.push_back(p - st.top());
+//             st.pop();
+//         }else{
+//             st.push(p);
+//         }
+//     }
+
+//     sort(all(seg));
+//     sort(all(c));
+//     int ans = 0;
+//     for(int i = 0;i < n;i++){
+//         ans += seg[i] * c[n-1-i];
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// int n, m, k;
+
+// int lowbit(int x){
+//     if(x == 0) return 0; 
+//     return x & -x;
+// }
+
+// void solve(){
+//     cin >> n >> k;
+//     vector<int>a(n);
+//     set<int>st;
+//     for(auto &e : a){
+//         cin >> e;
+//         if(e > k) st.insert(1);
+//         else if(e == k) st.insert(0);
+//         else st.insert(-1);
+//     }
+//     if(st.size() > 1){
+//         cout << "-1\n";
+//         return;
+//     }
+
+//     st.clear();
+//     for(auto e : a) st.insert(e);
+//     if(st.size() == 1){
+//         cout << "0\n";
+//         return;
+//     }
+
+//     vector<int>d(n);
+//     for(auto e : a) d.push_back(abs(e - k));
+//     int gc = d.front();
+//     for(auto e : d) gc = __gcd(gc, e);
+//     int ans = -n;
+//     for(auto e : d) ans += e / gc;
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
