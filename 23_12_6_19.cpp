@@ -3439,77 +3439,269 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) (x).begin(), (x).end()
-const int N = 2e5 + 10;
-const int inf = 1e17;
-int n, k, p[N], f[N], son[N];
-vector<int>g[N];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// int n, k, p[N], f[N], son[N];
+// vector<int>g[N];
 
-void dfs(int u){
-    son[u] = 1;
-    if(g[u].empty()) return;
-    vector<array<int, 2>>vec;
-    int sum = 0;
-    for(auto v : g[u]){
-        dfs(v);
-        sum += f[v];
-        vec.push_back({son[v], f[v]});
-    }
-    sort(all(vec));
-    int liv = vec.size() - 1;
-    for(int i = vec.size() - 2;i >= 0;i--){
-        int d = min(vec[i][0], vec[liv][0]);
-        f[u] += d;
-        vec[i][0] -= d;
-        vec[liv][0] -= d;
-        if(vec[liv][0] == 0) liv = i;
-    }
-    sum -= vec[liv][1];
-    if(sum && vec[liv][0]){
-        int s = vec[liv][0];
-        int d = min(s ^ (s&1), sum * 2);
-        f[u] += d;
-        vec[liv][0] -= d;
-        sum -= d / 2;
-    }
-    sum += vec[liv][1];
-    f[u] += sum;
-    son[u] += vec[liv][0];
-}
+// void dfs(int u){
+//     son[u] = 1;
+//     if(g[u].empty()) return;
+//     vector<array<int, 2>>vec;
+//     int sum = 0;
+//     for(auto v : g[u]){
+//         dfs(v);
+//         sum += f[v];
+//         vec.push_back({son[v], f[v]});
+//     }
+//     sort(all(vec));
+//     int liv = vec.size() - 1;
+//     for(int i = vec.size() - 2;i >= 0;i--){
+//         int d = min(vec[i][0], vec[liv][0]);
+//         f[u] += d;
+//         vec[i][0] -= d;
+//         vec[liv][0] -= d;
+//         if(vec[liv][0] == 0) liv = i;
+//     }
+//     sum -= vec[liv][1];
+//     if(sum && vec[liv][0]){
+//         int s = vec[liv][0];
+//         int d = min(s ^ (s&1), sum * 2);
+//         f[u] += d;
+//         vec[liv][0] -= d;
+//         sum -= d / 2;
+//     }
+//     sum += vec[liv][1];
+//     f[u] += sum;
+//     son[u] += vec[liv][0];
+// }
 
-void init(){
-    for(int i = 1;i <= n;i++) {
-        g[i].clear();
-        son[i] = f[i] = 0;
-    }
-}
+// void init(){
+//     for(int i = 1;i <= n;i++) {
+//         g[i].clear();
+//         son[i] = f[i] = 0;
+//     }
+// }
 
-void solve(){
-    cin >> n;
-    init();
-    for(int i = 2;i <= n;i++){
-        cin >> p[i];
-        g[p[i]].push_back(i);
-    }
-    dfs(1);
-    cout << f[1] << endl;
+// void solve(){
+//     cin >> n;
+//     init();
+//     for(int i = 2;i <= n;i++){
+//         cin >> p[i];
+//         g[p[i]].push_back(i);
+//     }
+//     dfs(1);
+//     cout << f[1] << endl;
 
-    // for(int i = 1;i <= n;i++){
-    //     cerr << f[i] << ' ' << son[i] << endl;
-    // }
-}
+//     // for(int i = 1;i <= n;i++){
+//     //     cerr << f[i] << ' ' << son[i] << endl;
+//     // }
+// }
 
-signed main(){
+// signed main(){
 
-    IO;
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// int n, k;
+
+// void solve(){
+//     cin >> n;
+//     vector<vector<int>>g(n+1);
+//     vector<int>siz(n+1);
+//     for(int i = 2, p;i <= n;i++){
+//         cin >> p;
+//         g[p].push_back(i);
+//     }
+
+//     auto dfs1 = [&](auto self, int u) -> void {
+//         siz[u] = 1;
+//         for(auto v : g[u]){
+//             self(self, v);
+//             siz[u] += siz[v];
+//         }
+//     };
+//     dfs1(dfs1, 1);
+
+//     auto dfs = [&](auto self, int u) -> int {
+//         int mx = 0;
+//         for(auto v : g[u]) mx = max(mx, siz[v]);
+//         if(mx * 2 > siz[u] - 1) {
+//             for(auto v : g[u]) if(siz[v] == mx){
+//                 int d = self(self, v);
+//                 return d + min(siz[u] - 1 - mx, (siz[u] - 1 - d * 2) / 2);
+//             }
+//         }else {
+//             return (siz[u] - 1) / 2;
+//         }
+//     };
+
+//     cout << dfs(dfs, 1) << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2000 + 10;
+// const int inf = 1e17;
+// int n, x, r, p, k;
+// string s;
+
+// void solve(){
+//     cin >> n >> x >> r >> p >> k >> s;
+//     int ans = n * x;
+//     vector<int>vec;
+//     for(int i = 0;i < n;i++){
+//         vec.push_back((n - i) * p);
+//         if(s[i] == '1'){
+//             ans -= (n - i) * r;
+//             vec.back() += (n - i) * r;
+//         }
+//     }
+//     sort(all(vec));
+//     for(int i = n - 1;i >= max(0ll, n - k);i--){
+//         ans += vec[i];
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2000 + 10;
+// const int inf = 1e17;
+// int n, m, k;
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     if((2 * k - 1) >= m) cout << "Yuto\n";
+//     else if((n * m) & 1) cout << "Yuto\n";
+//     else cout << "Platina\n";
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 610;
+// const int inf = 1e17;
+// int n, m, k, l[N], r[N], d[N], f[N][N], x[N];
+
+// void solve(){
+//     cin >> n;
+//     int top = 0;
+//     vector<int>idx;
+//     for(int i = 1;i <= n;i++){
+//         cin >> l[i] >> r[i] >> d[i];
+//         x[++top] = l[i], x[++top] = r[i];
+//         idx.push_back(l[i]);
+//         idx.push_back(r[i]);
+//     }
+//     sort(all(idx));
+//     idx.erase(unique(all(idx)), idx.end());
+//     sort(x + 1, x + 1 + top);
+//     int M = unique(x + 1, x + 1 + top) - x - 1;
+//     for(int i = 1;i <= n;i++){
+//         l[i] = lower_bound(x + 1, x + 1 + M, l[i]) - x;
+//         r[i] = lower_bound(x + 1, x + 1 + M, r[i]) - x;
+//     }
+//     for(int len = 1;len <= M;len++){
+//         for(int st = 1;st + len - 1 <= M;st++){
+//             int mx = 0;
+//             int L = st, R = st + len - 1;
+//             f[L][R] = inf;
+//             for(int i = 1;i <= n;i++){
+//                 if(L <= l[i] && r[i] <= R){
+//                     if(mx == 0 || d[i] > d[mx]) mx = i;
+//                 }
+//             }
+//             if(mx == 0){
+//                 f[L][R] = 0;
+//             }else{
+//                 for(int i = l[mx];i <= r[mx];i++){
+//                     if(i-1 >= L && i+1 <= R)
+//                     f[L][R] = min(f[L][R], d[mx] + f[L][i-1] + f[i+1][R]);
+//                 }
+//             }
+//         }
+//     }
+
+//     cout << f[1][M] << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
