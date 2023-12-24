@@ -4008,3 +4008,148 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// int n, m, k;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n + 5);
+//     int f = 0, cnt = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         if(a[i] < 0) cnt++;
+//         if(a[i] == 0) f = 1;
+//     }
+//     if(f || (cnt & 1)){
+//         cout << "0\n";
+//         return;
+//     }
+
+//     cout << "1\n1 0\n";
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// int n, m, k;
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     set<char>st;
+//     int ans = 1;
+//     st.insert(s[0]);
+//     for(int i = 1;i < n;i++){
+//         st.insert(s[i]);
+//         ans += st.size();
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// int n, m, k, d;
+
+// void solve(){
+//     cin >> n >> k >> d;
+//     vector<int>a(n + 5); 
+//     vector<int>v(k + 5); 
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= k;i++) cin >> v[i];
+
+//     int ans = 0, p = 1;
+//     for(int i = 1;i <= min(max(n+1, k * 2+2), d);i++){
+//         int tmp = 0;
+//         for(int j = 1;j <= n;j++) tmp += (a[j] == j);
+//         ans = max(ans, tmp + (d - i) / 2);
+
+//         for(int j = 1, val = v[p];j <= val;j++) a[j]++;
+//         p++;
+//         if(p > k) p = 1;
+//     }
+
+//     cout << ans << endl;
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+const int N = 2e5 + 10;
+const int inf = 1e17;
+int n, m, k, d;
+
+void solve(){
+
+}
+
+signed main(){
+
+    IO;
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
