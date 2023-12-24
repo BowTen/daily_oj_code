@@ -4142,6 +4142,7 @@ int n, m, k, d;
 
 void solve(){
 
+
 }
 
 signed main(){
