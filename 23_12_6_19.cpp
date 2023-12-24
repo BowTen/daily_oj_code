@@ -3910,3 +3910,101 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// int n, m, k;
+
+// string s;
+
+// void solve(){
+
+//     vector<array<int, 2>>seg;
+//     char last = 0;
+//     for(auto c : s){
+//         if(c == last){
+//             seg.back()[1]++;
+//         }else{
+//             seg.push_back({c, 1});
+//             last = c;
+//         }
+//     }
+
+//     int id = -1;
+//     char tmp[50] = {0};
+
+//     for(int j = 0;j < seg.size();j++){
+//         auto [c, v] = seg[j];
+//         if(v == 1){
+//             if(j + 1 < seg.size() && c > seg[j+1][0]){
+//                 id = j;
+//                 break;
+//             }
+//         }
+//     }
+
+//     if(id == -1){
+//         for(int j = seg.size() - 1;j >= 0;j--){
+//             auto [c, v] = seg[j];
+//             itoa(v, tmp, 16);
+//             if(v <= 2){
+//                 id = j;
+//                 break;
+//             }
+//             if(tmp[0] == '1'){
+//                 int ok = 1;
+//                 for(int i = 1;tmp[i];i++){
+//                     if(tmp[i] != '0'){
+//                         ok = 0;
+//                         break;
+//                     }
+//                 }
+//                 if(ok){
+//                     id = j;
+//                     break;
+//                 }
+//             }
+//         }
+//     }
+
+//     if(id != -1){
+//         seg[id][1]--;
+//     }else{
+//         seg[0][1]--;
+//     }
+
+//     for(auto [c, v] : seg) if(v){
+//         if(v >= 2){
+//             cout << (char)c;
+//             itoa(v, tmp, 16);
+//             for(int i = 0;tmp[i];i++){
+//                if(tmp[i] >= 'a' && tmp[i] <= 'z') tmp[i] += 'A' - 'a';
+//                cout << tmp[i];
+//             }
+//         }else{
+//             cout << (char)c;
+//         }
+//     }
+
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(cin >> s) solve();
+
+//     // cerr << (int)'A' << ' ' << (int)'9';
+
+//     return 0;
+// }
