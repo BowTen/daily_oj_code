@@ -4130,18 +4130,168 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 4e5 + 10;
+// const int inf = 1e17;
+// const int mod = 998244353;
+// int n, m;
+
+// int lowbit(int x){
+//     return x & -x;
+// }
+// struct BIT{
+//     vector<int>tr;
+//     int n;
+
+//     BIT(int x) : tr(x + 5), n(x) {}
+
+//     void add(int x, int v){
+//         while(x <= n){
+//             tr[x] += v;
+//             x += lowbit(x);
+//         }
+//     }
+//     int getsum(int x){
+//         int ret = 0;
+//         while(x > 0){
+//             ret += tr[x];
+//             x -= lowbit(x);
+//         }
+//         return ret;
+//     }
+// };
+
+// void solve(){
+//     cin >> n >> m;
+//     vector<int>p(n), q(m);
+//     for(auto &e : p) cin >> e;
+//     for(auto &e : q){
+//         cin >> e;
+//         e++;
+//     }
+
+//     int ans = 0;
+//     BIT tr(m);
+//     for(int i = m-1;i >= 0;i--){
+//         ans = (ans + tr.getsum(q[i])) % mod;
+//         tr.add(q[i], 1);
+//     }
+//     ans = ans * n % mod;
+
+//     int all = m*(m+1)/2;
+//     for(int i = 0;i < m && i <= 18;i++) all -= m - i;
+
+//     tr = BIT(n << 1);
+//     for(int i = n-1;i >= 0;i--){
+//         for(int j = -18;j <= 18;j++){
+//             if(abs(j) >= m) continue;
+//             int d = (j > 0 ? (p[i] << j) : ((p[i] >> -j)));
+//             d = min(d, 2*n);
+//             d = tr.getsum(d);
+//             ans = (ans + (m-abs(j)) * d % mod) % mod;
+//         }   
+//         ans = (ans + tr.getsum(2*n) * all % mod) % mod;
+//         tr.add(p[i], 1);
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 4e5 + 10;
+// const int inf = 1e17;
+// const int mod = 998244353;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>h(n);
+//     vector<array<int, 2>>b;
+//     for(auto &e : h) cin >> e;
+//     int mx = 0;
+//     for(int i = n-1;i >= 0;i--){
+//         if(h[i] >= mx) b.push_back({h[i], i}), mx = h[i];
+//     }
+//     reverse(all(b));
+
+//     auto find = [&](auto self, int ql, int qr, int l, int r) -> int {
+//         if(l > r) return 0;
+//         int ret = 0;
+//         if(l == r){
+//             for(int i = ql;i <= qr && i < b[l][1];i++){
+//                 ret = max(ret, (b[l][0] + h[i]) * (b[l][1] - i));
+//             }
+//             return ret;
+//         }
+        
+//         int mid = (l + r) >> 1, s;
+//         for(int i = ql;i <= qr && i < b[mid][1];i++){
+//             if((b[mid][0] + h[i]) * (b[mid][1] - i) > ret){
+//                 ret = (b[mid][0] + h[i]) * (b[mid][1] - i);
+//                 s = i;
+//             }
+//         }
+
+//         return max({self(self, ql, s, l, mid-1), self(self, s, qr, mid+1, r), ret});
+
+//     };
+
+//     m = b.size();
+//     // cerr << m << endl;
+//     // for(auto [v,id] : b) cerr << v << ' ';
+
+//     cout << find(find, 0, n-1, 0, m-1);
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
-const int N = 2e5 + 10;
+const int N = 4e5 + 10;
 const int inf = 1e17;
-int n, m, k, d;
+const int mod = 998244353;
+int n, m;
 
 void solve(){
-
 
 }
 
@@ -4149,7 +4299,7 @@ signed main(){
 
     IO;
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--) solve();
 
     return 0;
