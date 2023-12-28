@@ -4841,27 +4841,135 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) (x).begin(), (x).end()
-const int N = 4e5 + 10;
-const int inf = 1e17;
-const int mod = 1e9 + 7;
-int n, m, k, x;
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll = long long;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 1e17;
+// const int mod = 1e9 + 7;
+// int n, val[N], ans[N];
+// vector<array<int, 2>>g[N];
 
-void solve(){
-    
-}   
+// using i64 = long long;
+// struct Line {
+// 	mutable i64 k, b, p;
+// 	bool operator<(const Line &o) const { return k < o.k; }
+// 	bool operator<(i64 x) const { return p < x; }
+// };
+// struct LineContainer : multiset<Line, less<>> {
+//     static const int DOWN = 0;
+//     static const int UP = 1;
+//     bool MOD;
+//     void setmod(int m){
+//         MOD = m;
+//     }
+// 	static constexpr i64 INF = numeric_limits<i64>::max();
+// 	i64 div(i64 a, i64 b) {
+// 		return a / b - ((a ^ b) < 0 && a % b);
+// 	}
+// 	bool isect(iterator x, iterator y) {
+// 		if (y == end()) return x->p = INF, 0;
+// 		if (x->k == y->k) x->p = x->b > y->b ? INF : -INF;
+// 		else x->p = div(y->b - x->b, x->k - y->k);
+// 		return x->p >= y->p;
+// 	}
+//     // Insert f(x) = kx + b
+// 	void add(i64 k, i64 b) {
+//         if(MOD) k = -k, b = -b;
+// 		auto z = insert({k, b, 0}), y = z++, x = y;
+// 		while (isect(y, z)) z = erase(z);
+// 		if (x != begin() && isect(--x, y)) isect(x, y = erase(y));
+// 		while ((y = x) != begin() && (--x)->p >= y->p)
+// 			isect(x, erase(y));
+// 	}
+//     // Query max(f(x))
+// 	i64 query(i64 x) {
+// 		if (empty()) return -INF;
+// 		auto l = *lower_bound(x);
+//         i64 ret = l.k * x + l.b;
+//         if(MOD) ret = -ret;
+// 		return ret;
+// 	}
+// };
 
-signed main(){
+// int del[N];
+// int sz[N], dep[N], path[N];
+// int k;
 
-    IO;
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+// void calc(int u){
+//     LineContainer lc;
+//     lc.setmod(lc.UP);
+//     auto dfs = [&](auto self, int u, int f) -> void {
+//         lc.add(val[u], path[u]);
+//         for(auto [v, w] : g[u]) if(!del[v] && v != f){
+//             path[v] = path[u] + w; 
+//             self(self, v, u);
+//         }
+//     };
+//     path[u] = 0;
+//     dfs(dfs, u, 0);
+//     auto dfs2 = [&](auto self, int u, int f) -> void {
+//         ans[u] = min(ans[u], lc.query(val[u]) + path[u]);
+//         for(auto [v, w] : g[u]) if(!del[v] && v != f){
+//             self(self, v, u);
+//         }
+//     };
+//     dfs2(dfs2, u, 0);
+// }
 
-    return 0;
-}
+// void dfs(int u, int s){
+//     int ms = s + 1, root = -1;
+//     //求重心，最大子树最小
+//     auto getroot = [&](auto self, int u, int f) -> void {
+//         sz[u] = 1;
+//         int mx = 0;
+//         for(auto [v, w] : g[u]) if(!del[v] && v != f){
+//             self(self, v, u);
+//             sz[u] += sz[v];
+//             mx = max(mx, sz[v]);
+//         }   
+//         mx = max(mx, s - sz[u]);
+//         if(mx < ms) ms = mx, root = u;
+//     };
+//     getroot(getroot, u, 0);
+
+//     calc(root);
+//     del[root] = 1;
+//     for(auto [v, w] : g[root]) if(!del[v]){
+//         dfs(v, sz[v]);
+//     }
+// }   
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> val[i], ans[i] = inf;
+//     for(int i = 1, u, v, w;i < n;i++){
+//         cin >> u >> v >> w;
+//         g[u].push_back({v, w});
+//         g[v].push_back({u, w});
+//     }
+
+//     dfs(1, n);
+
+//     int sum = 0;
+//     for(int i = 1;i <= n;i++){
+//         sum += ans[i];
+//         // cerr << ans[i] << endl;
+//     }
+
+//     cout << sum << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
