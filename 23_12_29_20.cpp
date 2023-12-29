@@ -267,3 +267,84 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 3e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, m, vis[N];
+// vector<int>g[N];
+// double f[N];
+// int to[N];
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++){
+//         f[i] = inf;    
+//     }
+
+//     for(int i = 1, u, v;i <= m;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     f[n] = 0;
+//     priority_queue<pair<double, int>, vector<pair<double, int>>, greater<pair<double, int>>>que;
+//     que.push({0, n});
+//     while(que.size()){
+//         auto u = que.top();
+//         que.pop();
+//         if(vis[u.second]) continue;
+//         vis[u.second] = 1;
+//         for(auto v : g[u.second]) if(!vis[v]){
+//             int son = g[v].size();
+//             if(to[v] == 0){
+//                 to[v] = 1;
+//                 f[v] = ((u.first/son) + 1) * son;
+//                 que.push({f[v], v});
+//             }else{
+//                 double tmp = ((f[v] * to[v]) / son + (u.first/son)) * son / (to[v] + 1);
+//                 if(tmp < f[v]){
+//                     f[v] = tmp;
+//                     to[v]++;
+//                     que.push({f[v], v});
+//                 }
+//             }
+//         }
+//     }
+
+//     // for(int i = 1;i <= n;i++){
+//     //     cerr << i << ' ' << f[i] << endl;
+//     // }
+
+//     printf("%.10lf\n", f[1]);
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     // priority_queue<pair<double, int>, vector<pair<double, int>>, greater<pair<double, int>>>que;
+//     // que.push({5, 0});
+//     // que.push({9, 0});
+
+//     // while(que.size()){
+//     //     auto p = que.top();
+//     //     que.pop();
+//     //     cerr << p.first << ' ' << p.second << endl;
+
+//     // }
+
+//     return 0;
+// }
