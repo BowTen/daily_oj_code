@@ -348,3 +348,448 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 3e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n);
+//     vector<int>b(n);
+//     for(auto &e : a) cin >> e;
+//     for(auto &e : b) cin >> e;
+//     sort(all(a));
+//     sort(all(b));
+//     for(int i = 0; i< n;i++){
+//         if(b[i] > a[i]){
+//             cout << "NO\n";
+//             return;
+//         }
+//     }
+//     cout << "YES\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 5e4 + 10;
+// const int C = 500 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, c, p[N], f[C], mx[C], mn[C], up[C];
+
+// void init(){
+//     for(int i = 1;i <= c;i++){
+//         f[i] = -1;
+//         up[i] = 0;
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> c;
+//     init();
+//     for(int i = 1;i <= n;i++) cin >> p[i];
+//     // unordered_map<int,int>f;
+//     // unordered_map<int,int>mx;
+//     // unordered_map<int,int>mn;
+//     // for(int i = 1;i <= n;i++){
+//     //     mx[p[i]] = mn[p[i]] = p[i];
+//     //     f[p[i]] = 0;
+//     // }
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 0, tp = c - p[i];j <= c - p[i];j++) if(f[j] != -1 && up[j] != i){
+//             int ne = j + p[i];
+//             if(f[ne] == -1){
+//                 mx[ne] = max(mx[j], p[i]);
+//                 mn[ne] = min(mn[j], p[i]);
+//                 f[ne] = mx[ne] - mn[ne];
+//                 up[ne] = i;
+//             }else{
+//                 int tmx = max({mx[j], p[i], mx[ne]});
+//                 int tmn = min({mn[j], p[i], mn[ne]});
+//                 int tf = tmx - tmn;
+//                 if(tf < f[ne]){
+//                     mx[ne] = tmx;
+//                     mn[ne] = tmn;
+//                     f[ne] = tf;
+//                     up[ne] = i;
+//                 }
+//             }
+//         }
+//     }
+
+//     cout << f[c] << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     f[0] = 0;
+//     mx[0] = -inf;;
+//     mn[0] = inf;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int C = 500 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, k, a[N], m;
+
+// int les(int x){
+//     int ret = 0, p = n;
+//     for(int i = 1;i <= n;i++){
+//         while(p >= i && a[i] + a[p] >= x) p--;
+//         if(p < i) break;
+//         ret += p - i;
+//     }
+//     return ret;
+// }
+// int gt(int x){
+//     int ret = 0, p = 1;
+//     for(int i = n;i >= 1;i--){
+//         while(p <= i && a[i] + a[p] <= x) p++;
+//         if(p > i) break;
+//         ret += i - p;
+//     }
+//     return ret;
+// }
+// int rk(int x){
+//     int l = les(x)+1, r = m - gt(x);
+//     if(l > r){
+//         if(l != k) return l;
+//         return r;
+//     }
+//     if(k >= l && k <= r) return k;
+//     return l;
+// }
+
+// void solve(){
+//     cin >> n;
+//     m = (n*(n-1)) / 2;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     cin >> k;
+//     sort(a + 1, a + 1 + n);
+
+//     int l = a[1] + a[2], r = a[n] + a[n-1];
+//     while(l <= r){
+//         int mid = l + r >> 1;
+//         int rank = rk(mid);
+//         if(rank == k) {
+//             cout << mid << endl;
+//             return;
+//         }
+//         if(rank >= k){
+//             r = mid - 1;
+//         }else{
+//             l = mid + 1;
+//         }
+//     }
+
+//     cout << l << endl;
+
+//     // cerr << les(7) << ' ' << m-gt(7) << rk(7) << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 5e4 + 10;
+// const int C = 500 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, c, p[N], mn[C], ok[C];
+
+// void init(){
+//     for(int i = 1;i <= c;i++){
+//         ok[i] = 0;
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> c;
+//     init();
+//     for(int i = 1;i <= n;i++) cin >> p[i];
+//     sort(p+1, p+1+n);
+
+//     int ans = inf;
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = c - p[i];j >= 0;j--) if(ok[j]){
+//             int ne = j + p[i];
+//             if(!ok[ne]){
+//                 ok[ne] = 1;
+//                 mn[ne] = min(p[i], mn[j]);
+//             }
+//             else mn[ne] = max(mn[ne], min(p[i], mn[j]));
+
+//             if(ne == c){
+//                 if(j == 0) ans = 0;
+//                 else ans = min(ans, p[i] - mn[j]);
+//             }
+//         }
+//     }
+
+//     if(ok[c]) cout << ans << endl;
+//     else cout << "-1\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     ok[0] = 1;
+//     mn[0] = inf;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define ls id << 1
+// #define rs id << 1 | 1
+// const int N = 1e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, c, a[N];
+
+// struct node{
+//     int len, v[33], tag, mx;
+//     node() : len(0), v({0}), tag(0) {};
+
+//     void assign(int x){
+//         len = mx = x;
+//         for(int i = 0;i <= 31;i++) {
+//             v[i] = ((x >> i) & 1) * x;
+//         }
+//     }
+
+//     void setmin(int x){
+//         for(int i = 0;i <= 31;i++) {
+//             v[i] /= mx;
+//             v[i] *= x;
+//         }
+//         mx = len = x;
+//     }
+
+//     void Xor(int x){
+//         for(int i = 0;i <= 31;i++) if((x >> i) & 1){
+//             v[i] = len - v[i];
+//         }
+//     }
+//     node operator+(const node& e){
+//         node ret(*this);
+//         ret.tag = 0;
+//         ret.mx = max(ret.mx, e.mx);
+//         ret.len += e.len;
+//         for(int i = 0;i < 33;i++){
+//             ret.v[i] += e.v[i];
+//         }
+//         return ret;
+//     }
+
+//     void init(){
+//         tag = mx = len = 0;
+//         for(int i = 0;i < 33;i++){
+//             v[i] = 0;
+//         }
+//     }
+// }tr[N<<2];
+
+// void up(int id){
+//     tr[id] = tr[ls] + tr[rs];
+// }
+// void settag(int id, int x){
+//     tr[id].Xor(x);
+//     tr[id].tag ^= x;
+// }
+// void down(int id){
+//     settag(ls, tr[id].tag);
+//     settag(rs, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+// void build(int id, int l, int r){
+//     tr[id].init();
+//     if(l == r){
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+// }
+// void insert(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         tr[id].assign(v);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(x <= mid) insert(ls, l, mid, x, v);
+//     else insert(rs, mid + 1, r, x, v);
+//     up(id);
+// }
+// void Xor(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr){
+//         settag(id, v);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) Xor(ls, l, mid, ql, qr, v);
+//     else if(ql > mid) Xor(rs, mid + 1, r, ql, qr, v);
+//     else Xor(ls, l, mid, ql, qr, v), Xor(rs, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
+// void setmin(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr) {
+//         if(tr[id].mx <= v) return;
+//         else{
+//             if(l == r){
+//                 tr[id].setmin(v);
+//                 return;
+//             }
+//         }
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) setmin(ls, l, mid, ql, qr, v);
+//     else if(ql > mid) setmin(rs, mid + 1, r, ql, qr, v);
+//     else setmin(ls, l, mid, ql, qr, v), setmin(rs, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
+// node query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id];
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls, l, mid, ql, qr);
+//     else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//     else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         insert(1, 1, n, i, a[i]);
+//         if(i > 1){
+//             Xor(1, 1, n, 1, i-1, a[i]);
+//             setmin(1, 1, n, 1, i-1, a[i]);
+//         }
+
+//         node tmp = query(1, 1, n, 1, i);
+//         int sum = 0;
+//         for(int i = 0;i <= 31;i++) {
+//             sum = (((1 << i) * tmp.v[i] % mod) + sum) % mod;
+//         }
+
+//         ans = (ans + sum) % mod;
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     freopen("D:\\Codes\\testfile\\in3.txt", "r", stdin);
+//     freopen("D:\\Codes\\testfile\\out3.txt", "w", stdout);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define all(x) (x).begin(), (x).end()
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+const int N = 1e5 + 10;
+const int C = 500 + 10;
+const int inf = 0x3f3f3f3f3f3f3f3f;
+int n;
+
+
+void solve(){
+
+}
+
+signed main(){
+
+    IO;
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+
+    return 0;
+}
