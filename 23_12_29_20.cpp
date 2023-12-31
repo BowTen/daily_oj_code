@@ -1006,3 +1006,386 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, k, q, a[N];
+
+// int val(int x){
+//     return ((x - 1)*x) / 2;
+// }
+
+// //线段树
+// struct node{
+//     int ans, tag, len, rc, lc, rlen, llen;
+
+//     node() : ans(0), len(0), tag(0), rc(0), lc(0), rlen(0), llen(0) {};
+
+//     void init(){
+//         ans = tag = 0;
+//     }
+
+//     node operator+(const node& e){
+//         node ret;
+//         ret.ans = ans + e.ans;
+//         ret.len = len + e.len;
+//         ret.lc = lc;
+//         ret.rc = e.rc;
+//         ret.llen = llen;
+//         ret.rlen = e.rlen;
+//         if(rc ^ e.lc){
+//             ret.ans -= val(rlen) + val(e.llen);
+//             ret.ans += val(rlen + e.llen);
+//             if(rlen == len) ret.llen = len + e.llen;
+//             if(e.llen == e.len) ret.rlen = e.len + rlen;
+//         }
+//         return ret;
+//     }
+
+// }tr[N << 2];
+
+// void settag(int id){
+//     tr[id].lc ^= 1;
+//     tr[id].rc ^= 1;
+//     tr[id].tag ^= 1;
+// }
+// void up(int id){
+//     tr[id] = tr[lson] + tr[rson];
+// }
+// void down(int id){
+//     settag(lson);
+//     settag(rson);
+//     tr[id].tag = 0;
+// }
+// void build(int id, int l ,int r){
+//     tr[id].init();
+//     if(l == r){
+//         tr[id].len = tr[id].llen = tr[id].rlen = 1;
+//         tr[id].lc = tr[id].rc = a[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+// void modify(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr){
+//         settag(id);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr);
+//     else modify(lson, l, mid, ql, qr), modify(rson, mid + 1, r, ql, qr);
+//     up(id);
+// }
+// node query(int id, int l, int r, int ql ,int qr){
+//     if(ql <= l && r <= qr) return tr[id];
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return (query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr));
+// }
+
+
+// void solve(){
+//     cin >> n >> q;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+//     while(q--){
+//         int t, l, r;
+//         cin >> t >> l >> r;
+//         if(t == 1){
+//             modify(1, 1, n, l, r);
+//         }else{
+//             cout << query(1, 1, n, l, r).ans + r - l + 1 << endl;
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, k, q;
+// string s;
+
+
+// //线段树
+// struct node{
+//     int tag, k[2][2];
+
+//     node() : tag(0), k({0}) {};
+
+//     void assign(int x){
+//         k[0][0] = 1;
+//         k[0][1] = 0;
+//         k[1][0] = 0;
+//         k[1][1] = 1;
+//         k[x][x^1] = 1;
+//     }
+
+//     node operator+(const node& e){
+//         node ret;
+//         ret.k[0][0] = ((e.k[0][0] * k[0][0] % mod) + (e.k[0][1] * k[1][0] % mod)) % mod;
+//         ret.k[0][1] = ((e.k[0][0] * k[0][1] % mod) + (e.k[0][1] * k[1][1] % mod)) % mod;
+//         ret.k[1][0] = ((e.k[1][0] * k[0][0] % mod) + (e.k[1][1] * k[1][0] % mod)) % mod;
+//         ret.k[1][1] = ((e.k[1][0] * k[0][1] % mod) + (e.k[1][1] * k[1][1] % mod)) % mod;
+
+//         return ret;
+//     }
+
+// }tr[N << 2];
+
+// void ptk(const node& ret){
+//         cerr << ret.k[0][0] << "A " << ret.k[0][1] << "B\n";
+//         cerr << ret.k[1][0] << "A " << ret.k[1][1] << "B\n";
+// }
+
+// void settag(int id){
+//     swap(tr[id].k[0][0], tr[id].k[1][0]);
+//     swap(tr[id].k[0][1], tr[id].k[1][1]);
+//     swap(tr[id].k[0][0], tr[id].k[0][1]);
+//     swap(tr[id].k[1][0], tr[id].k[1][1]);
+//     tr[id].tag ^= 1;
+// }
+// void up(int id){
+//     tr[id] = tr[lson] + tr[rson];
+// }
+// void down(int id){
+//     settag(lson);
+//     settag(rson);
+//     tr[id].tag = 0;
+// }
+// void build(int id, int l ,int r){
+//     tr[id].tag = 0;
+//     if(l == r){
+//         tr[id].assign(s[l]);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+// void modify(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr){
+//         // cerr << l << ' ' << r << endl;
+//         // ptk(tr[id]);
+//         settag(id);
+//         // cerr << l << ' ' << r << endl;
+//         // ptk(tr[id]);
+//         return;
+//     }
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(lson, l, mid, ql, qr);
+//     else if(ql > mid) modify(rson, mid + 1, r, ql, qr);
+//     else modify(lson, l, mid, ql, qr), modify(rson, mid + 1, r, ql, qr);
+//     up(id);
+// }
+// node query(int id, int l, int r, int ql ,int qr){
+//     if(ql <= l && r <= qr) return tr[id];
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return (query(lson, l, mid, ql, qr) + query(rson, mid + 1, r, ql, qr));
+// }
+
+// int add(int a, int b){
+//     return (a + b) % mod;
+// }
+// int mul(int a, int b){
+//     return a * b % mod;
+// }
+
+// void solve(){
+//     cin >> n >> q >> s;
+//     s = ' ' + s;
+//     for(int i = 1;i <= n;i++) s[i] -= 'A';
+//     build(1, 1, n);
+//     while(q--){
+//         int t, l, r, a, b;
+//         cin >> t >> l >> r;
+//         if(t == 1){
+//             modify(1, 1, n, l, r);
+//         }else{
+//             cin >> a >> b;
+//             node ret = query(1, 1, n, l, r);
+//             int A = add(mul(ret.k[0][0], a), mul(ret.k[0][1], b));
+//             int B = add(mul(ret.k[1][0], a), mul(ret.k[1][1], b));
+//             cout << A << ' ' << B << endl;
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// // #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 4e5 + 10;
+// const int mod = 1e9 + 7;
+// // const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, k, q, a[N];
+
+// //线段树
+// int mx[N<<2], ad[N<<2];
+
+// void up(int id){
+//     mx[id] = max(mx[ls], mx[rs]);
+//     ad[id] = (ad[ls] | ad[rs]);
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         mx[id] = ad[id] = a[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+// }
+// void modify(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr){
+//         if((ad[id] & v) == ad[id]) return;
+//         if(l == r) {
+//             mx[id] = ad[id] = (ad[id] & v);
+//             return;
+//         }
+//     }
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(ls, l, mid, ql, qr, v);
+//     else if(ql > mid) modify(rs, mid + 1, r, ql, qr, v);
+//     else modify(ls, l, mid, ql, qr, v), modify(rs, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
+// void change(int id, int l, int r, int x, int v){
+//     if(l == r) {
+//         mx[id] = ad[id] = v;
+//         return ;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(ls, l, mid, x, v);
+//     else change(rs, mid + 1, r, x, v);
+//     up(id);
+// }
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return mx[id];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls, l, mid, ql, qr);
+//     else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//     else return max(query(ls, l, mid, ql, qr), query(rs, mid + 1, r, ql, qr));
+// }
+
+// inline int read()
+// {
+//     int x=0,f=1;
+//     char ch=getchar();
+//     while(ch<'0'||ch>'9')
+//     {
+//         if(ch=='-')
+//             f=-1;
+//         ch=getchar();
+//     }
+//     while(ch>='0' && ch<='9')
+//         x=x*10+ch-'0',ch=getchar();
+//     return x*f;
+// }
+// void write(int x)
+// {
+//     if(x<0)
+//         putchar('-'),x=-x;
+//     if(x>9)
+//         write(x/10);
+//     putchar(x%10+'0');
+//     return;
+// }
+
+// void solve(){
+//     n = read();
+//     q = read();
+//     for(int i = 1;i <= n;i++) a[i] = read();
+
+//     build(1, 1, n);
+
+//     char s[5];
+//     int l, r, x, v;
+//     while(q--){
+//         scanf("%s ", s);
+//         if(s[0] == 'A'){
+//             l = read();
+//             r = read();
+//             v = read();
+//             modify(1, 1, n, l, r, v);
+//         }else if(s[0] == 'U'){
+//             x = read();
+//             v = read();
+//             change(1, 1, n, x, v);
+//         }else{
+//             l = read();
+//             r = read();
+//             write(query(1, 1, n, l, r));
+//             puts("");
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     // IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
