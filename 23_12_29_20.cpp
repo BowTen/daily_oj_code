@@ -1327,64 +1327,130 @@
 //     else return max(query(ls, l, mid, ql, qr), query(rs, mid + 1, r, ql, qr));
 // }
 
-// inline int read()
-// {
-//     int x=0,f=1;
-//     char ch=getchar();
-//     while(ch<'0'||ch>'9')
-//     {
-//         if(ch=='-')
-//             f=-1;
-//         ch=getchar();
-//     }
-//     while(ch>='0' && ch<='9')
-//         x=x*10+ch-'0',ch=getchar();
-//     return x*f;
-// }
-// void write(int x)
-// {
-//     if(x<0)
-//         putchar('-'),x=-x;
-//     if(x>9)
-//         write(x/10);
-//     putchar(x%10+'0');
-//     return;
-// }
-
 // void solve(){
-//     n = read();
-//     q = read();
-//     for(int i = 1;i <= n;i++) a[i] = read();
+//     cin >> n >> q;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
 
 //     build(1, 1, n);
 
 //     char s[5];
 //     int l, r, x, v;
 //     while(q--){
-//         scanf("%s ", s);
+//         cin >> s;
 //         if(s[0] == 'A'){
-//             l = read();
-//             r = read();
-//             v = read();
+//             cin >> l >> r >> v;
 //             modify(1, 1, n, l, r, v);
 //         }else if(s[0] == 'U'){
-//             x = read();
-//             v = read();
+//             cin >> x >> v;
 //             change(1, 1, n, x, v);
 //         }else{
-//             l = read();
-//             r = read();
-//             write(query(1, 1, n, l, r));
-//             puts("");
+//             cin >> l >> r;
+//             cout << query(1, 1, n, l, r) << '\n';
 //         }
 //     }
 // }
 
 // signed main(){
 
-//     // IO;
+//     IO;
 //     int t = 1;
 //     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int inf = LLONG_MAX;
+// int n, leaf[N];
+// vector<int>g[N];
+
+// void dfs(int u, int f){
+//     for(auto v : g[u]) if(v != f){
+//         dfs(v, u);
+//         leaf[u] = min(leaf[u], leaf[v]);
+//     }
+//     sort(all(g[u]), [&](int i, int j) -> int {
+//         if(i == f) return 1;
+//         if(j == f) return 0; 
+//         return leaf[i] < leaf[j];
+//     });
+// }
+// void print(int u, int f){
+//     for(auto v : g[u]) if(v != f){
+//         print(v, u);
+//     }
+//     cout << u << ' ';
+// }
+// void dfs2(int u, int f){
+//     if(g[u].size() == 1){
+//         cout << u;
+//         return;
+//     }
+//     for(auto v : g[u]) if(v != f && v != g[u].back()){
+//         print(v, u);
+//     }
+//     if(leaf[g[u].back()] > u){
+//         cout << u << ' ';
+//         dfs2(g[u].back(), u);
+//     }else{
+//         print(g[u].back(), u);
+//         cout << u;
+//         return;
+//     }
+// }
+// void init(){
+//     for(int i = 1;i <= n;i++){
+//         leaf[i] = n + 1;
+//         g[i].clear();
+//     }
+// }
+
+// void solve(){
+//     cin >> n;
+//     init();
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     int mn = n + 1;
+//     for(int i = 1;i <= n;i++) if(g[i].size() == 1){
+//         leaf[i] = i;
+//         mn = min(mn, i);
+//     }
+
+//     int cur = g[mn][0];
+
+//     if(g[cur].size() == 1){
+//         print(cur, 0);
+//         cout << endl;
+//         return;
+//     }
+
+//     dfs(cur, 0);
+//     dfs2(cur, 0);
+
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
 //     while(t--) solve();
 
 //     return 0;
