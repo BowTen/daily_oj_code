@@ -1647,3 +1647,580 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e6 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, m, fac[N], cnt[N];
+
+// vector<int> pri;
+// bool not_prime[N];
+// int phi[N];
+// int pre[N];
+
+// void euler(int n) {
+//   phi[1] = 1;
+//   for (int i = 2; i <= n; i++) {
+//     if (!not_prime[i]) {
+//       pri.push_back(i);
+//       phi[i] = i - 1;
+//     }
+//     for (int pri_j : pri) {
+//       if (i * pri_j > n) break;
+//       not_prime[i * pri_j] = true;
+//       if (i % pri_j == 0) {
+//         phi[i * pri_j] = phi[i] * pri_j;
+//         break;
+//       }
+//       phi[i * pri_j] = phi[i] * phi[pri_j];
+//     }
+//   }
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 2;i <= n;i++){
+//         // cnt[i] = n / i - 1;
+//         // int d = n / i;
+//         // for(int j = 2;j * i <= n;j++){
+//         //     int s = d - j;
+//         //     cnt[i] += (s / j) * (j - fac[j]);
+//         //     s %= j;
+
+//         //     // int tmp = 0;
+//         //     // for(int k = 2;k <= s && k * k <= j;k++){
+//         //     //     if(j % k == 0){
+//         //     //         tmp++;
+//         //     //         int f = j / k;
+//         //     //         if(f <= s && f * f != j) tmp++;
+//         //     //     }
+//         //     // }
+//         //     // cnt[i] += s - tmp;
+
+//         //     int tmp = 0;
+//         //     for(int k = 1;k <= s;k++){
+//         //         if(__gcd(j, k) == 1) tmp++;
+//         //     }
+//         //     cnt[i] += tmp;
+//         // }
+//         cnt[i] = pre[n/i];
+//         cnt[i] /= i - 1;
+//         // if(!cnt[i]) break;
+//     }
+
+//     // for(int i = 2;i <= n;i++){
+//     //     for(int j = i + 1;j <= n;j++){
+//     //         cnt[__gcd(i, j)]++;
+//     //     }
+//     // }
+//     // for(int i = 2;i <= n;i++) cnt[i] /= i-1;
+
+//     int ans = 0;
+//     for(int i = n;i >= 2;i--) if(cnt[i]){
+//         int d = min(cnt[i], m / (i-1));
+//         m -= d * (i-1);
+//         ans += d * i;
+//     }
+
+//     if(!m) cout << ans << endl;
+//     else cout << "-1\n";
+
+//     for(int i = 1;i <= n;i++) cnt[i] = 0;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     euler(N-1);
+//     for(int i = 2;i < N-2;i++){
+//         pre[i] = phi[i] + pre[i-1];
+//     }
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 5e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 1e6;
+// const int INF = 1e6;
+// int n, m, a[N], b[N], f[N], d[N];
+
+// struct node{
+//     int mn, mx, smx, atag, mtag;
+// }tr[N<<3];
+// void up(int id){
+//     tr[id].mn = min(tr[ls].mn, tr[rs].mn);
+// 	if(tr[ls].mx==tr[rs].mx){
+// 		tr[id].mx=tr[ls].mx;
+// 		tr[id].smx=max(tr[ls].smx,tr[rs].smx);
+// 	}else if(tr[ls].mx>tr[rs].mx){
+// 		tr[id].mx=tr[ls].mx;
+// 		tr[id].smx=max(tr[ls].smx,tr[rs].mx);
+// 	}else {
+// 		tr[id].mx=tr[rs].mx;
+// 		tr[id].smx=max(tr[ls].mx,tr[rs].smx);
+// 	}
+// }
+// void settag(int id, int at, int mt){
+//     tr[id].atag += at;
+//     tr[id].mn += at;
+//     tr[id].mx += at;
+//     tr[id].smx += at;
+//     // tr[id].mtag += at;
+//     // if(mt < tr[id].mtag){
+//         // tr[id].mtag = mt;
+//         tr[id].mx = min(tr[id].mx, mt);
+//         tr[id].mn = min(tr[id].mn, tr[id].mx);
+//     // }   
+// }
+// void down(int id){
+//     settag(ls, tr[id].atag, tr[id].mx);
+//     settag(rs, tr[id].atag, tr[id].mx);
+//     tr[id].atag = 0;
+//     // tr[id].mtag = inf;
+// }
+// void build(int id, int l, int r){
+//     tr[id].atag = 0;
+//     tr[id].mtag = inf;
+//     if(l == r){
+//         tr[id].smx = -inf;
+//         if(l <= n) tr[id].mn = tr[id].mx = inf;
+//         else tr[id].mn = tr[id].mx = 1;
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+// }
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].mn;
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls, l, mid, ql, qr);
+//     else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//     else return min(query(ls, l, mid, ql, qr), query(rs, mid + 1, r, ql, qr));
+// }
+// void modify(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr) {
+//         settag(id, v, inf);
+//         return;
+//     }
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) modify(ls, l, mid, ql, qr, v);
+//     else if(ql > mid) modify(rs, mid + 1, r, ql, qr, v);
+//     else modify(ls, l, mid, ql, qr, v), modify(rs, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
+// void setmin(int id, int l, int r, int ql, int qr, int v){
+//     if(v >= tr[id].mx) return;
+//     if(ql <= l && r <= qr && v > tr[id].smx){
+//         settag(id, 0, v);
+//         return;
+//     }
+//     down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) setmin(ls, l, mid, ql, qr, v);
+//     else if(ql > mid) setmin(rs, mid + 1, r, ql, qr, v);
+//     else setmin(ls, l, mid, ql, qr, v), setmin(rs, mid + 1, r, ql, qr, v);
+//     up(id); 
+// }
+
+
+// // struct node{
+// // 	int mx,smx,mi;
+// // 	int add1,add2;
+// // }tr[4000050];
+// // #define ls p<<1
+// // #define rs p<<1|1
+// // #define mid (l+r>>1)
+// // void pushup(int p){
+// // 	tr[p].mi=min(tr[ls].mi,tr[rs].mi);
+// // 	if(tr[ls].mx==tr[rs].mx){
+// // 		tr[p].mx=tr[ls].mx;
+// // 		tr[p].smx=max(tr[ls].smx,tr[rs].smx);
+// // 	}else if(tr[ls].mx>tr[rs].mx){
+// // 		tr[p].mx=tr[ls].mx;
+// // 		tr[p].smx=max(tr[ls].smx,tr[rs].mx);
+// // 	}else {
+// // 		tr[p].mx=tr[rs].mx;
+// // 		tr[p].smx=max(tr[ls].mx,tr[rs].smx);
+// // 	}
+// // }
+// // void update(int p,int k1,int k2){
+// // 	if(tr[p].mi==tr[p].mx){
+// // 		tr[p].mi+=k1;tr[p].mx+=k1;
+// // 		k2=k1;
+// // 	}else{
+// // 		tr[p].mx+=k1;tr[p].mi+=k2;tr[p].smx+=k2;
+// // 	}
+// // 	tr[p].add1+=k1;tr[p].add2+=k2;
+// // }
+// // void pushdown(int p){
+// // 	int mx=max(tr[ls].mx,tr[rs].mx);
+// // 	if(tr[ls].mx==mx)update(ls,tr[p].add1,tr[p].add2);
+// // 	else update(ls,tr[p].add2,tr[p].add2);
+// // 	if(tr[rs].mx==mx)update(rs,tr[p].add1,tr[p].add2);
+// // 	else update(rs,tr[p].add2,tr[p].add2);
+// // 	tr[p].add1=tr[p].add2=0;
+// // }
+// // void build(int p,int l,int r){
+// // 	tr[p].add1=tr[p].add2=0;
+// // 	if(l==r){
+// // 		if(l<=n)tr[p].mi=tr[p].mx=INF;
+// // 		else tr[p].mi=tr[p].mx=1;
+// // 		tr[p].smx=-INF;
+// // 		return;
+// // 	}
+// // 	build(ls,l,mid);
+// // 	build(rs,mid+1,r);
+// // 	pushup(p);
+// // }
+// // void update1(int p,int l,int r,int x,int y,int w){
+// // 	if(x<=l&&r<=y){
+// // 		update(p,w,w);
+// // 		return;
+// // 	}
+// // 	pushdown(p);
+// // 	if(x<=mid)update1(ls,l,mid,x,y,w);
+// // 	if(mid<y)update1(rs,mid+1,r,x,y,w);
+// // 	pushup(p);
+// // }
+// // void update2(int p,int l,int r,int x,int y,int w){
+// // 	if(tr[p].mx<=w)return;
+// // 	if(x<=l&&r<=y&&tr[p].smx<w){
+// // 		update(p,w-tr[p].mx,0);
+// // 		return;
+// // 	}
+// // 	pushdown(p);
+// // 	if(x<=mid)update2(ls,l,mid,x,y,w);
+// // 	if(mid<y)update2(rs,mid+1,r,x,y,w);
+// // 	pushup(p);
+// // }
+// // int query(int p,int l,int r,int x,int y){
+// // 	if(x<=l&&r<=y)return tr[p].mi;
+// // 	pushdown(p);
+// // 	int ans=INF;
+// // 	if(x<=mid)ans=min(ans,query(ls,l,mid,x,y));
+// // 	if(mid<y)ans=min(ans,query(rs,mid+1,r,x,y));
+// // 	return ans;
+// // }
+// // #undef ls
+// // #undef rs
+// // #undef mid
+
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= m;i++) cin >> b[i];
+//     sort(b + 1, b + 1 + m);
+//     build(1, 1, m+n);
+    
+
+//     f[1] = 0;
+//     int it, st = n;
+//     int* dp = f;
+//     for(int i = 2;i <= n;i++){
+//         it = lower_bound(b + 1, b + 1 + m, a[i]) - b - 1;
+//         f[i] = min(a[i] > a[i-1] ? f[i-1] : inf, it >= 1 ? query(1, 1, m+n, st+1, st+it) : inf);
+//         st--;
+//         modify(1, 1, n+m, st+1, st + m, 1);
+//         // update1(1, 1, n+m, st+1, st + m, 1);
+
+//         it = lower_bound(b + 1, b + 1 + m, a[i-1]) - b;
+//         if(it <= m) setmin(1, 1, m+n, st + it, st + m, f[i-1]+1);
+//         // if(it <= m) update2(1, 1, m+n, st + it, st + m, f[i-1]+1);
+//         // cerr << i << ' ' << f[i] << endl;
+
+//         // if(a[i-1]<a[i])dp[i]=dp[i-1];
+// 		// else dp[i]=INF;
+// 		// int pos=lower_bound(b+1,b+1+m,a[i])-b;
+// 		// int res=query(1,1,n+m,st+1,st+pos-1);
+// 		// pos=lower_bound(b+1,b+1+m,a[i-1])-b;
+// 		// if(dp[i]>res)dp[i]=res;
+// 		// st--;
+// 		// update1(1,1,n+m,st+1,st+m,1);
+// 		// update2(1,1,n+m,st+pos,st+m,dp[i-1]+1);
+//     }
+
+//     int ans = min(f[n], query(1, 1, m+n, st+1, st+m));
+//     if(ans >= inf) cout << "-1\n";
+//     else cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int NONE = 0;
+// const int NEED = 1;
+// const int MUST = 2;
+// int n, m, fa[N], a[N], L[N], R[N], vis[N], el[N], er[N];
+
+// int find(int x){
+//     return x == fa[x] ? x : fa[x] = find(fa[x]);
+// }
+// void merg(int a, int b){
+//     a = find(a);
+//     b = find(b);
+//     fa[a] = b;
+// }
+
+// struct edge{
+//     int u, v, w, id;
+// };
+// vector<edge>g[N];
+// vector<edge>G[N];
+// vector<edge>e;
+
+// int tr_data[N], id[N], tot;
+// int dep[N], par[N], top[N], siz[N], son[N];
+
+// //线段树
+// int tr[N << 2];
+// void up(int id){
+//     tr[id] = max(tr[lson], tr[rson]);
+// }
+// void build(int id, int l ,int r){
+//     if(l == r){
+//         tr[id] = tr_data[l];
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(lson, l, mid);
+//     build(rson, mid + 1, r);
+//     up(id);
+// }
+// int query(int id, int l, int r, int ql ,int qr){
+//     if(ql <= l && r <= qr) return tr[id];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(lson, l, mid, ql, qr);
+//     else if(ql > mid) return query(rson, mid + 1, r, ql, qr);
+//     else return max(query(lson, l, mid, ql, qr), query(rson, mid + 1, r, ql, qr));
+// }
+
+// //树链剖分
+// void dfs(int u, int fa){
+//     dep[u] = dep[fa] + 1;
+//     par[u] = fa;
+//     siz[u] = 1;
+//     for(auto [u, v, w, id] : g[u]) if(v != fa) {
+//         a[v] = w;
+//         dfs(v, u);
+//         siz[u] += siz[v];
+//         if(siz[son[u]] < siz[v])
+//             son[u] = v;
+//     }
+// }
+// void dfs2(int u, int tp){
+//     top[u] = tp;
+//     L[u] = id[u] = ++ tot;
+//     tr_data[tot] = a[u];
+//     if(son[u]) dfs2(son[u], tp);
+
+//     for(auto [u, v, w, id] : g[u]) if(v != par[u] && v != son[u])
+//         dfs2(v, v);
+//     R[u] = tot;
+// }
+
+// //操作函数
+// int line_query(int u, int v){
+//     int ret = 0;
+//     while(top[u] != top[v]){
+//         if(dep[top[u]] < dep[top[v]]) swap(u, v);
+//         ret = max(ret, query(1, 1, n, id[top[u]], id[u]));
+//         u = par[top[u]];
+//     }
+//     if(u == v) return ret;
+//     if(dep[u] < dep[v]) swap(u, v);
+//     ret = max(ret, query(1, 1, n, id[v] + 1, id[u]));
+//     return ret;
+// }
+
+// unordered_map<int, stack<int>>st;
+
+// int ans[N];
+// void dfs3(int u, int f){
+//     for(auto [u, v, w, i] : g[u]) if(v != f){
+//         el[i] = L[v], er[i] = R[v];
+//         st[w].push(i);
+//         dfs3(v, u);
+//         if(st[w].size() && st[w].top() == i) st[w].pop();
+//     }
+
+//     for(auto [u, v, w, i] : G[u]) if(!vis[i]){
+//         int ret = line_query(u, v);
+//         if(w <= ret){
+//             ans[i] = NEED;
+//             while(st[w].size() && (id[v] < el[st[w].top()] || id[v] > er[st[w].top()])){
+//                 ans[st[w].top()] = NEED;
+//                 st[w].pop();
+//             }
+//         }
+//     }
+// }
+
+// void init(){
+//     for(int i = 1;i <= n;i++){
+//         fa[i] = i;
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     init();
+//     for(int i = 1, u, v, w;i <= m;i++){
+//         ans[i] = NONE;
+//         cin >> u >> v >> w;
+//         e.push_back({u, v, w, i});
+//         G[u].push_back({u, v, w, i});
+//         G[v].push_back({v, u, w, i});
+//     }
+
+//     sort(all(e), [&](const edge& e1, const edge& e2) -> int {
+//         return e1.w < e2.w;
+//     });
+
+//     for(auto [u, v, w, id] : e){
+//         if(find(u) != find(v)){
+//             vis[id] = 1;
+//             ans[id] = MUST;
+//             merg(u, v);
+//             g[u].push_back({u, v, w, id});
+//             g[v].push_back({v, u, w, id});
+//         }
+//     }
+
+//     dfs(1, 0);
+//     dfs2(1, 1);
+//     build(1, 1, n);
+    
+//     dfs3(1, 0);
+
+//     for(int i = 1;i <= m;i++){
+//         // if(n == 20 && m == 100 && i == 9) cout << vis[i] << endl; 
+//         if(ans[i] == NONE) cout << "none\n";
+//         else if(ans[i] == NEED) cout << "at least one\n";
+//         else cout << "any\n";
+//     }
+
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int NONE = 0;
+// const int NEED = 1;
+// const int MUST = 2;
+// int n, a, b;
+
+// void solve(){
+//     int i = 1;
+//     for(int a = 1;a <= 3;a++)
+//     for(int b = 1;b <= 3;b++){
+//     // for(int i = 1;i <= 9;i++){
+//         string s = "D:\\second\\in";
+//         string s2 = "D:\\second\\out";
+//         s += (char)(i+'0');
+//         s += ".txt";
+
+//         // freopen(s.c_str(), "w", stdout);
+//         // cout << a << ' ' << b;
+
+//         s2 += (char)(i+'0');
+//         s2 += ".txt";
+//         i++;
+//         // freopen(s.c_str(), "r", stdin);
+//         freopen(s2.c_str(), "w", stdout);
+//         // cin >> a >> b;
+//         if(a == b) cout << "draw";
+//         else if(a == 1){
+//             if(b == 3) cout << "Alice";
+//             else cout << "Bob";
+//         }else if(a == 2){
+//             if(b == 1) cout << "Alice";
+//             else cout << "Bob";
+//         }else{
+//             if(b == 2) cout << "Alice";
+//             else cout << "Bob";
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     // IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
