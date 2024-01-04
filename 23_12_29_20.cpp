@@ -2224,3 +2224,331 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define lson id << 1
+// #define rson id << 1 | 1
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, m;
+
+// void solve(){
+//     cin >> n >> m;
+//     vector<array<int, 2>>eg;
+//     vector<array<int, 3>>R;
+//     int sl, sr, l, r;
+//     cin >> sl >> sr;
+//     for(int i = 2;i <= n;i++){
+//         cin >> l >> r;
+//         eg.push_back({l-sr, r-sl});
+//         sl = l;
+//         sr = r;
+//         R.push_back({eg.back()[1], eg.back()[0], i-2});
+//     }
+//     set<array<int, 2>>st;
+//     for(int i = 1, x;i <= m;i++){
+//         cin >> x;
+//         st.insert({x, i});
+//     }
+
+//     vector<int>ans(n-1);
+//     sort(all(R));
+//     for(auto [r, l, id] : R){
+//         auto P = st.lower_bound({l, 0});
+//         if(P == st.end() || (*P)[0] > r){
+//             cout << "No\n";
+//             return;
+//         }
+//         ans[id] = (*P)[1];
+//         st.erase(P);
+//     }
+
+//     cout << "Yes\n";
+//     for(auto e : ans) cout << e << ' ';
+
+// }
+
+// signed main(){
+
+//     // IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define lson id << 1
+// // #define rson id << 1 | 1
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int M = N * 35;
+// const int mod = 1e9 + 7;
+// const int inf = 2e9+100;
+// int n, m, a[N], ans[N];
+
+// int rt[N], sum[M], ls[M], rs[M], tot;
+// void insert(int& id1, int id2, int l, int r, int x){
+//     id1 = ++tot;
+//     sum[id1] = sum[id2] + 1;
+//     ls[id1] = ls[id2];
+//     rs[id1] = rs[id2];
+//     if(l == r && l == x){
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) insert(ls[id1], ls[id2], l, mid, x);
+//     else insert(rs[id1], rs[id2], mid + 1, r, x);
+// }
+// int query(int L, int R, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return sum[R] - sum[L];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls[L], ls[R], l, mid, ql, qr);
+//     else if(ql > mid) return query(rs[L], rs[R], mid + 1, r, ql, qr);
+//     else return query(ls[L], ls[R], l, mid, ql, qr) + query(rs[L], rs[R], mid + 1, r, ql, qr);
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         a[i] += mod;
+//         insert(rt[i], rt[i-1], 1, inf, a[i]);
+//     }
+
+//     for(int i = 1;i < n;i++){
+//         if(a[i+1] < a[i]) ans[1]++;
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         for(int k = 2;k <= n-1;k++){
+//             int l = k*i - (k-2), r = min(n, k*i+1);
+//             if(l > n) break;
+//             int tmp = query(rt[l-1], rt[r], 1, inf, 1, a[i]-1);
+//             ans[k] += tmp;
+//         }
+//     }
+
+//     for(int i = 1;i < n;i++) cout << ans[i] << ' ';
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+#define int long long
+#define all(x) (x).begin(), (x).end()
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define ls id << 1
+#define rs id << 1 | 1
+const int N = 1e5 + 10;
+const int inf = 0x3f3f3f3f3f3f3f3f;
+const int mod = 998244353;
+int n, c, a[N];
+
+struct node{
+    int len, v[33], tag, mx, smx, mv[33], msum, mtag;
+    node() : len(0), v({0}), tag(0), mv({0}), mx(0), smx(0), msum(0), mtag(0) {};
+
+    void assign(int x){
+        msum = len = mx = x;
+        for(int i = 0;i <= 31;i++) {
+            mv[i] = v[i] = ((x >> i) & 1) * x;
+        }
+    }
+
+    void setmin(int x){
+        // if(mx <= x) return;
+        int tmp;
+        for(int i = 0;i <= 31;i++) {
+            tmp = mv[i];
+            mv[i] /= mx;
+            mv[i] *= x;
+            v[i] -= tmp - mv[i];
+        }
+        tmp = msum;
+        msum /= mx;
+        msum *= x;
+        len -= tmp - msum;
+        mtag = mx = x;
+    }
+
+    void Xor(int x){
+        for(int i = 0;i <= 31;i++) if((x >> i) & 1){
+            v[i] = len - v[i];
+            mv[i] = msum - mv[i];
+        }
+    }
+    node operator+(const node& e){
+        node ret(*this);
+        ret.tag = 0;
+        ret.mx = max(ret.mx, e.mx);
+
+        if(mx == e.mx){
+            ret.smx = mx;
+            msum += e.msum;
+            for(int i = 0;i <= 31;i++) ret.mv[i] += e.mv[i];
+        }else if(ret.mx == mx){
+            ret.smx = max(smx, e.smx);
+        }else{
+            ret.smx = max(mx, e.smx);
+            msum = e.msum;
+            for(int i = 0;i <= 31;i++) ret.mv[i] = e.mv[i];
+        }
+
+        ret.len += e.len;
+        for(int i = 0;i < 33;i++){
+            ret.v[i] += e.v[i];
+        }
+        return ret;
+    }
+
+    void init(){
+        tag = mx = len = 0;
+        for(int i = 0;i < 33;i++){
+            v[i] = 0;
+        }
+    }
+}tr[N<<2];
+
+void downm(int id){
+    if(tr[ls].mx > tr[id].mtag && tr[ls].smx < tr[id].mtag) tr[ls].setmin(tr[id].mtag);
+    if(tr[rs].mx > tr[id].mtag && tr[rs].smx < tr[id].mtag) tr[rs].setmin(tr[id].mtag);
+    tr[id].mtag = 0;
+}
+void up(int id){
+    tr[id] = tr[ls] + tr[rs];
+}
+void settag(int id, int x){
+    tr[id].Xor(x);
+    tr[id].tag ^= x;
+}
+void down(int id){
+    settag(ls, tr[id].tag);
+    settag(rs, tr[id].tag);
+    tr[id].tag = 0;
+}
+void build(int id, int l, int r){
+    tr[id].init();
+    if(l == r){
+        return;
+    }
+    int mid = l + r >> 1;
+    build(ls, l, mid);
+    build(rs, mid + 1, r);
+    up(id);
+}
+void insert(int id, int l, int r, int x, int v){
+    if(l == r){
+        tr[id].assign(v);
+        return;
+    }
+    if(tr[id].mtag) downm(id);
+    if(tr[id].tag) down(id);
+    int mid = l + r >> 1;
+    if(x <= mid) insert(ls, l, mid, x, v);
+    else insert(rs, mid + 1, r, x, v);
+    up(id);
+}
+void Xor(int id, int l, int r, int ql, int qr, int v){
+    if(ql <= l && r <= qr){
+        settag(id, v);
+        return;
+    }
+    if(tr[id].mtag) downm(id);
+    if(tr[id].tag) down(id);
+    int mid = l + r >> 1;
+    if(qr <= mid) Xor(ls, l, mid, ql, qr, v);
+    else if(ql > mid) Xor(rs, mid + 1, r, ql, qr, v);
+    else Xor(ls, l, mid, ql, qr, v), Xor(rs, mid + 1, r, ql, qr, v);
+    up(id);
+}
+void setmin(int id, int l, int r, int ql, int qr, int v){
+    if(ql <= l && r <= qr) {
+        if(tr[id].mx <= v) return;
+        if(tr[id].smx < v) tr[id].setmin(v);
+    }
+    if(tr[id].mtag) downm(id);
+    if(tr[id].tag) down(id);
+    int mid = l + r >> 1;
+    if(qr <= mid) setmin(ls, l, mid, ql, qr, v);
+    else if(ql > mid) setmin(rs, mid + 1, r, ql, qr, v);
+    else setmin(ls, l, mid, ql, qr, v), setmin(rs, mid + 1, r, ql, qr, v);
+    up(id);
+}
+node query(int id, int l, int r, int ql, int qr){
+    if(ql <= l && r <= qr) return tr[id];
+    if(tr[id].tag) down(id);
+    int mid = l + r >> 1;
+    if(qr <= mid) return query(ls, l, mid, ql, qr);
+    else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+    else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+}
+
+void solve(){
+    cin >> n;
+    for(int i = 1;i <= n;i++) cin >> a[i];
+    build(1, 1, n);
+
+    int ans = 0;
+    for(int i = 1;i <= n;i++){
+        insert(1, 1, n, i, a[i]);
+        if(i > 1){
+            Xor(1, 1, n, 1, i-1, a[i]);
+            setmin(1, 1, n, 1, i-1, a[i]);
+        }
+
+        node tmp = query(1, 1, n, 1, i);
+        int sum = 0;
+        for(int i = 0;i <= 31;i++) {
+            sum = (((1 << i) * tmp.v[i] % mod) + sum) % mod;
+        }
+
+        ans = (ans + sum) % mod;
+    }
+
+    cout << ans << endl;
+}
+
+signed main(){
+
+    IO;
+
+    // freopen("D:\\Codes\\testfile\\in3.txt", "r", stdin);
+    // freopen("D:\\Codes\\testfile\\out3.txt", "w", stdout);
+
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
