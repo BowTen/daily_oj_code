@@ -2362,193 +2362,448 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define endl '\n'
-#define int long long
-#define all(x) (x).begin(), (x).end()
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define ls id << 1
-#define rs id << 1 | 1
-const int N = 1e5 + 10;
-const int inf = 0x3f3f3f3f3f3f3f3f;
-const int mod = 998244353;
-int n, c, a[N];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define ls id << 1
+// #define rs id << 1 | 1
+// const int N = 1e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, c, a[N];
 
-struct node{
-    int len, v[33], tag, mx, smx, mv[33], msum, mtag;
-    node() : len(0), v({0}), tag(0), mv({0}), mx(0), smx(0), msum(0), mtag(0) {};
+// struct node{
+//     int len, v[33], tag, mx, smx, mv[33], msum, mtag;
+//     // node() : len(0), v({0}), tag(0) {};
+//     // node() : len(0), v({0}), tag(0), mv({0}), mx(0), smx(0), msum(0), mtag(0) {};
 
-    void assign(int x){
-        msum = len = mx = x;
-        for(int i = 0;i <= 31;i++) {
-            mv[i] = v[i] = ((x >> i) & 1) * x;
-        }
-    }
+//     void assign(int x){
+//         msum = len = mx = x;
+//         for(int i = 0;i <= 31;i++) {
+//             mv[i] = v[i] = ((x >> i) & 1) * x;
+//         }
+//     }
 
-    void setmin(int x){
-        // if(mx <= x) return;
-        int tmp;
-        for(int i = 0;i <= 31;i++) {
-            tmp = mv[i];
-            mv[i] /= mx;
-            mv[i] *= x;
-            v[i] -= tmp - mv[i];
-        }
-        tmp = msum;
-        msum /= mx;
-        msum *= x;
-        len -= tmp - msum;
-        mtag = mx = x;
-    }
+//     void setmin(int x){
+//         // if(mx <= x) return;
+//         int tmp;
+//         for(int i = 0;i <= 31;i++) {
+//             tmp = mv[i];
+//             mv[i] /= mx;
+//             mv[i] *= x;
+//             v[i] -= tmp - mv[i];
+//         }
+//         tmp = msum;
+//         msum /= mx;
+//         msum *= x;
+//         len -= tmp - msum;
+//         mtag = mx = x;
+//     }
 
-    void Xor(int x){
-        for(int i = 0;i <= 31;i++) if((x >> i) & 1){
-            v[i] = len - v[i];
-            mv[i] = msum - mv[i];
-        }
-    }
-    node operator+(const node& e){
-        node ret(*this);
-        ret.tag = 0;
-        ret.mx = max(ret.mx, e.mx);
+//     void Xor(int x){
+//         for(int i = 0;i <= 31;i++) if((x >> i) & 1){
+//             v[i] = len - v[i];
+//             mv[i] = msum - mv[i];
+//         }
+//     }
+//     node operator+(const node& e){
+//         node ret(*this);
+//         ret.tag = 0;
+//         ret.mtag = 0;
+//         ret.mx = max(ret.mx, e.mx);
 
-        if(mx == e.mx){
-            ret.smx = mx;
-            msum += e.msum;
-            for(int i = 0;i <= 31;i++) ret.mv[i] += e.mv[i];
-        }else if(ret.mx == mx){
-            ret.smx = max(smx, e.smx);
-        }else{
-            ret.smx = max(mx, e.smx);
-            msum = e.msum;
-            for(int i = 0;i <= 31;i++) ret.mv[i] = e.mv[i];
-        }
+//         if(mx == e.mx){
+//             ret.smx = max(smx, e.smx);
+//             ret.msum += e.msum;
+//             for(int i = 0;i <= 31;i++) ret.mv[i] += e.mv[i];
+//         }else if(ret.mx == mx){
+//             ret.smx = max(smx, e.smx);
+//         }else{
+//             ret.smx = max(mx, e.smx);
+//             ret.msum = e.msum;
+//             for(int i = 0;i <= 31;i++) ret.mv[i] = e.mv[i];
+//         }
 
-        ret.len += e.len;
-        for(int i = 0;i < 33;i++){
-            ret.v[i] += e.v[i];
-        }
-        return ret;
-    }
+//         ret.len += e.len;
+//         for(int i = 0;i < 33;i++){
+//             ret.v[i] += e.v[i];
+//         }
+//         return ret;
+//     }
 
-    void init(){
-        tag = mx = len = 0;
-        for(int i = 0;i < 33;i++){
-            v[i] = 0;
-        }
-    }
-}tr[N<<2];
+//     void init(){
+//         tag = mx = len = 0;
+//         for(int i = 0;i < 33;i++){
+//             v[i] = 0;
+//         }
+//     }
+// }tr[N<<2];
 
-void downm(int id){
-    if(tr[ls].mx > tr[id].mtag && tr[ls].smx < tr[id].mtag) tr[ls].setmin(tr[id].mtag);
-    if(tr[rs].mx > tr[id].mtag && tr[rs].smx < tr[id].mtag) tr[rs].setmin(tr[id].mtag);
-    tr[id].mtag = 0;
-}
-void up(int id){
-    tr[id] = tr[ls] + tr[rs];
-}
-void settag(int id, int x){
-    tr[id].Xor(x);
-    tr[id].tag ^= x;
-}
-void down(int id){
-    settag(ls, tr[id].tag);
-    settag(rs, tr[id].tag);
-    tr[id].tag = 0;
-}
-void build(int id, int l, int r){
-    tr[id].init();
-    if(l == r){
-        return;
-    }
-    int mid = l + r >> 1;
-    build(ls, l, mid);
-    build(rs, mid + 1, r);
-    up(id);
-}
-void insert(int id, int l, int r, int x, int v){
-    if(l == r){
-        tr[id].assign(v);
-        return;
-    }
-    if(tr[id].mtag) downm(id);
-    if(tr[id].tag) down(id);
-    int mid = l + r >> 1;
-    if(x <= mid) insert(ls, l, mid, x, v);
-    else insert(rs, mid + 1, r, x, v);
-    up(id);
-}
-void Xor(int id, int l, int r, int ql, int qr, int v){
-    if(ql <= l && r <= qr){
-        settag(id, v);
-        return;
-    }
-    if(tr[id].mtag) downm(id);
-    if(tr[id].tag) down(id);
-    int mid = l + r >> 1;
-    if(qr <= mid) Xor(ls, l, mid, ql, qr, v);
-    else if(ql > mid) Xor(rs, mid + 1, r, ql, qr, v);
-    else Xor(ls, l, mid, ql, qr, v), Xor(rs, mid + 1, r, ql, qr, v);
-    up(id);
-}
-void setmin(int id, int l, int r, int ql, int qr, int v){
-    if(ql <= l && r <= qr) {
-        if(tr[id].mx <= v) return;
-        if(tr[id].smx < v) tr[id].setmin(v);
-    }
-    if(tr[id].mtag) downm(id);
-    if(tr[id].tag) down(id);
-    int mid = l + r >> 1;
-    if(qr <= mid) setmin(ls, l, mid, ql, qr, v);
-    else if(ql > mid) setmin(rs, mid + 1, r, ql, qr, v);
-    else setmin(ls, l, mid, ql, qr, v), setmin(rs, mid + 1, r, ql, qr, v);
-    up(id);
-}
-node query(int id, int l, int r, int ql, int qr){
-    if(ql <= l && r <= qr) return tr[id];
-    if(tr[id].tag) down(id);
-    int mid = l + r >> 1;
-    if(qr <= mid) return query(ls, l, mid, ql, qr);
-    else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
-    else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
-}
+// void downm(int id){
+//     if(tr[ls].mx > tr[id].mtag && tr[ls].smx < tr[id].mtag) tr[ls].setmin(tr[id].mtag);
+//     if(tr[rs].mx > tr[id].mtag && tr[rs].smx < tr[id].mtag) tr[rs].setmin(tr[id].mtag);
+//     tr[id].mtag = 0;
+// }
+// void up(int id){
+//     tr[id] = tr[ls] + tr[rs];
+// }
+// void settag(int id, int x){
+//     tr[id].Xor(x);
+//     tr[id].tag ^= x;
+// }
+// void down(int id){
+//     settag(ls, tr[id].tag);
+//     settag(rs, tr[id].tag);
+//     tr[id].tag = 0;
+// }
+// void build(int id, int l, int r){
+//     tr[id].init();
+//     if(l == r){
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+// }
+// void insert(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         tr[id].assign(v);
+//         return;
+//     }
+//     if(tr[id].mtag) downm(id);
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(x <= mid) insert(ls, l, mid, x, v);
+//     else insert(rs, mid + 1, r, x, v);
+//     up(id);
+// }
+// void Xor(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr){
+//         settag(id, v);
+//         return;
+//     }
+//     if(tr[id].mtag) downm(id);
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) Xor(ls, l, mid, ql, qr, v);
+//     else if(ql > mid) Xor(rs, mid + 1, r, ql, qr, v);
+//     else Xor(ls, l, mid, ql, qr, v), Xor(rs, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
+// int cnt = 0;
+// void setmin(int id, int l, int r, int ql, int qr, int v){
+//     if(ql <= l && r <= qr) {
+//         if(tr[id].mx <= v) return;
+//         if(tr[id].smx < v){
+//             cnt++;
+//             tr[id].setmin(v);
+//             return;
+//         }
+//     }
+//     if(tr[id].mtag) downm(id);
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) setmin(ls, l, mid, ql, qr, v);
+//     else if(ql > mid) setmin(rs, mid + 1, r, ql, qr, v);
+//     else setmin(ls, l, mid, ql, qr, v), setmin(rs, mid + 1, r, ql, qr, v);
+//     up(id);
+// }
+// node query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id];
+//     if(tr[id].tag) down(id);
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls, l, mid, ql, qr);
+//     else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//     else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+// }
 
-void solve(){
-    cin >> n;
-    for(int i = 1;i <= n;i++) cin >> a[i];
-    build(1, 1, n);
+// void solve(){
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
 
-    int ans = 0;
-    for(int i = 1;i <= n;i++){
-        insert(1, 1, n, i, a[i]);
-        if(i > 1){
-            Xor(1, 1, n, 1, i-1, a[i]);
-            setmin(1, 1, n, 1, i-1, a[i]);
-        }
+//     // n = 100000;
+//     // for(int i = 1;i <= n;i++) a[i] = n - i + 1;
 
-        node tmp = query(1, 1, n, 1, i);
-        int sum = 0;
-        for(int i = 0;i <= 31;i++) {
-            sum = (((1 << i) * tmp.v[i] % mod) + sum) % mod;
-        }
+//     build(1, 1, n);
 
-        ans = (ans + sum) % mod;
-    }
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         insert(1, 1, n, i, a[i]);
+//         if(i > 1){
+//             Xor(1, 1, n, 1, i-1, a[i]);
+//             setmin(1, 1, n, 1, i-1, a[i]);
+//         }
 
-    cout << ans << endl;
-}
+//         node tmp = query(1, 1, n, 1, i);
+//         int sum = 0;
+//         for(int i = 0;i <= 31;i++) {
+//             sum = (((1 << i) * tmp.v[i] % mod) + sum) % mod;
+//         }
 
-signed main(){
+//         ans = (ans + sum) % mod;
+//         // cerr << ans << endl;
+//     }
 
-    IO;
+//     cout << ans << endl;
 
-    // freopen("D:\\Codes\\testfile\\in3.txt", "r", stdin);
-    // freopen("D:\\Codes\\testfile\\out3.txt", "w", stdout);
+//     // cout << cnt << endl;
+// }
 
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+// signed main(){
 
-    return 0;
-}
+//     IO;
+
+//     // freopen("D:\\Codes\\testfile\\in3.txt", "r", stdin);
+//     // freopen("D:\\Codes\\testfile\\out3.txt", "w", stdout);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+// //757613646
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     int cnt[2] = {0};
+//     for(auto c : s) cnt[c - '0']++;
+//     cout << abs(cnt[0] - cnt[1]) << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n);
+//     for(auto &e : a) cin >> e;
+//     int d = (n - a[0]) % n;
+//     for(int i = 0;i < n;i++){
+//         if(i & 1) {
+//             a[i] -= d;
+//             while(a[i] < 0) a[i] += n;
+//         }else{
+//             a[i] += d;
+//             a[i] %= n;
+//         }
+//         if(a[i] != i) {
+//             cout << "No\n";
+//             return;
+//         }
+//     }
+//     cout << "Yes\n";
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// int n, m, k;
+
+// void solve(){
+//     cin >> n >> k;
+//     int ans = 0, cnt = 0;
+//     for(int i = 1, e, ls;i <= k;i++){
+//         cin >> m >> ls;
+//         if(ls == 1){
+//             int f = 1;
+//             for(int j = 2;j <= m;j++){
+//                 cin >> e;
+//                 if(f && e - ls != 1) ans += m - j + 1, f = 0, cnt += m - j + 2;
+//                 ls = e;
+//             }
+//             if(f) cnt++;
+//         }else{
+//             cnt += m;
+//             ans += m - 1;
+//             for(int j = 2;j <= m;j++) cin >> e;
+//         }
+//     }
+
+//     ans += cnt-1;
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// // #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int M = N * 30;
+// const int inf = 1e9 + 10;
+// int n, q;
+
+// struct Tree{
+//     int smn[M], mn[M], mx[M], tot, rt, ls[M], rs[M], tag[M];
+
+//     Tree() : tot(0), rt(0) {
+//         smn[0] = inf;
+//         mn[0] = mx[0] = ls[0] = rs[0] = tag[0] = 0;
+//     };
+
+//     int getrt(){
+//         tot++;
+//         mx[tot] = mn[tot] = 0;
+//         smn[tot] = inf;
+//         ls[tot] = rs[tot] = 0;
+//         return tot;
+//     }
+
+//     void settag(int id, int v){
+//         if(v < mn[id]) return;
+//         mn[id] = max(mn[id], v);
+//         mx[id] = max(mx[id], v);
+//         tag[id] = max(tag[id], v);
+//     }
+//     void down(int id){
+//         if(!ls[id]) ls[id] = getrt();
+//         if(!rs[id]) rs[id] = getrt();
+//         settag(ls[id], tag[id]);
+//         settag(rs[id], tag[id]);
+//         tag[id] = 0;
+//     }
+//     void up(int id){
+//         mn[id] = min(mn[ls[id]], mn[rs[id]]);
+//         mx[id] = max(mx[ls[id]], mx[rs[id]]);
+//         if(mn[ls[id]] == mn[rs[id]]){
+//             smn[id] = mn[ls[id]];
+//         }else if(mn[id] == mn[ls[id]]){
+//             smn[id] = min(smn[ls[id]], mn[rs[id]]);
+//         }else{
+//             smn[id] = min(smn[rs[id]], mn[ls[id]]);
+//         }
+//     }
+
+//     void setmax(int &id, int l, int r, int ql, int qr, int v){
+//         if(!id) id = getrt();
+//         if(ql <= l && r <= qr){
+//             if(mn[id] >= v) return;
+//             if(v <= smn[id]) {
+//                 settag(id, v);
+//                 return;    
+//             }
+//         }
+//         if(tag[id]) down(id);
+//         int mid = l + r >> 1;
+//         if(qr <= mid) setmax(ls[id], l, mid, ql, qr, v);
+//         else if(ql > mid) setmax(rs[id], mid + 1, r, ql, qr, v);
+//         else setmax(ls[id], l, mid, ql, qr, v), setmax(rs[id], mid + 1, r, ql, qr, v);
+//         up(id);
+//     }
+//     int getmax(int &id, int l, int r, int x){
+//         if(!id){
+//             id = getrt();
+//             return mx[id];
+//         }
+//         if(l == r) return mx[id];
+//         if(tag[id]) down(id);
+//         int mid = l + r >> 1;
+//         if(x <= mid) return getmax(ls[id], l, mid, x);
+//         else return getmax(rs[id], mid + 1, r, x);
+//     }
+// }hor, ver;
+
+// void solve(){
+//     cin >> n >> q;
+
+//     unordered_map<int,int>vis;
+//     while(q--){
+//         int x, y;
+//         char op;
+//         cin >> x >> y >> op;
+//         swap(x, y);
+//         if(vis[x]++){
+//             cout << "0\n";
+//             continue;
+//         }
+
+//         if(op == 'U'){
+//             int r = x;
+//             int l = hor.getmax(hor.rt, 1, inf, y);
+//             cout << r - l << endl;
+//             if(l < r) ver.setmax(ver.rt, 1, inf, l + 1, r, y);
+//         }else{
+//             int r = y;
+//             int l = ver.getmax(ver.rt, 1, inf, x);
+//             cout << r - l << endl;
+//             if(l < r) hor.setmax(hor.rt, 1, inf, l + 1, r, x);
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
