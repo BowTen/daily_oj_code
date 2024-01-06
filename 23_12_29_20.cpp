@@ -2807,3 +2807,116 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 100 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 1e9 + 10;
+// int n, k, a[N], f[N][N][3], s[N];
+
+// int qpow(int a, int b){
+//     int ret = 1;
+//     while(b){
+//         if(b & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         b >>= 1;
+//     }
+//     return ret;
+// }
+
+// int inv[N], fac[N];
+// void get_inv(){
+//     inv[0] = fac[0] = 1;
+//     for(int i = 1;i < N;i++){
+//         fac[i] = fac[i-1] * i % mod;
+//     }
+//     inv[N - 1] = qpow(fac[N - 1], mod - 2);
+//     for(int i = N - 2;i >= 1;i--){
+//         inv[i] = inv[i+1] * (i+1) % mod;
+//     }
+// }
+
+// int add(int a, int b){
+//     return (a + b) % mod;
+// }
+// int mul(int a, int b){
+//     return a * b % mod;
+// }
+// int C(int a, int b){
+//     return (fac[b] * inv[b-a] % mod) * inv[b] % mod;
+// }
+
+// void solve(){
+//     cin >> n >> k;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+    
+//     f[1][1][2] = f[1][0][0] = 1;
+//     for(int i = 2;i <= n;i++){
+//         for(int j = 1;j <= min(i, k);j++){
+//             f[i][j][0] = add(f[i-1][j][0], f[i-1][j][1]);
+//             f[i][j][1] = add(f[i-1][j-1][1], f[i-1][j-1][2]);
+//             f[i][j][2] = add(f[i-1][j-1][0], add(f[i-1][j-1][1], f[i-1][j-1][2]));
+//         }
+//     }
+
+//     cerr << f[n][k][0] << ' ' << f[n][k][1] << endl;
+
+//     f[n][k][2] = 0;
+//     for(int i = 1;i <= n;i++){
+//         s[i] = mul(fac[n-i], add(f[i][k][0], add(f[i][k][1], f[i][k][2])));
+//     }
+
+//     int ans = 0;
+//     for(int i = k;i <= n;i++){
+//         ans = add(ans, mul(mul((((i-k)&1) ? -1 : 1), C(i, k)), s[i]) );
+//     }
+
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     get_inv();
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define endl '\n'
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+const int N = 100 + 10;
+const int mod = 1e9 + 7;
+const int inf = 1e9 + 10;
+int n, m;
+
+
+void solve(){
+
+}   
+
+signed main(){
+
+    IO;
+    int t = 1;
+    // cin >> t;
+    while(t--) solve();
+
+
+    return 0;
+}
