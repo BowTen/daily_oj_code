@@ -2895,15 +2895,237 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 100 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 1e9 + 10;
+// int n, m;
+
+
+// void solve(){
+//     cin >> n >> m;
+//     if(((n + m) & 1) == 0) cout << "Bob\n";
+//     else cout << "Alice\n";
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 100 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 1e9 + 10;
+// int n, m;
+
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     int a = 0, b = 0;
+//     for(auto e : s) {
+//         if(e == '+') a++;
+//         else b++;
+//     }
+//     cout << abs(a - b) << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 100 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 1e9 + 10;
+// int n, m;
+
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n + 5);
+//     vector<int>vis(n + 5);
+//     vector<int>b;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         if(a[i] == a[i-1]) i--, n--;
+//     }
+
+//     if(is_sorted(a.begin() + 1, a.begin() + 1 + n)){
+//         for(int i = 1;i < n;i++){
+//             if(a[i] < a[i+1]) ans++;
+//         }
+//         ans--;
+//         cout << max(0ll, ans) << endl;
+//         return;
+//     }
+
+//     for(int i = 2;i < n;i++){
+//         if((a[i-1] > a[i] && a[i] < a[i+1]) || (a[i-1] < a[i] && a[i] > a[i+1])){
+//             vis[i] = 1;
+//             b.push_back(a[i]);
+//             i++;
+//         }
+//     }
+
+//     // for(auto e : b) cerr << e << ' ';
+
+//     for(int i = 0;i + 1 < b.size();i++){
+//         if(b[i] < b[i+1]) ans++;
+//     }
+//     int ls = inf;
+//     for(int i = 1;i <= n;i++) if(!vis[i]){
+//         if(a[i] > ls) ans++;
+//         ls = a[i];
+//     }
+
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 1e9 + 10;
+// int n, m, a[N];
+
+
+// void solve(){
+//     // cin >> n;
+//     // vector<int>a(n+5);
+//     // int a1 = inf, a2 = inf, ans = 0;
+//     // for(int i = 1;i <= n;i++){
+//     //     cin >> a[i];
+//     //     if(a[i] > a1 && a[i] > a2){
+//     //         ans++;
+//     //         if(a1 < a2) a1 = a[i];
+//     //         else a2 = a[i]; 
+//     //     }else if(a[i] <= a1 && a[i] <= a2){
+//     //         if(a1 < a2) a1 = a[i];
+//     //         else a2 = a[i];
+//     //     }else if(a[i] <= a1){
+//     //         a1 = a[i];
+//     //     }else {
+//     //         a2 = a[i];
+//     //     }
+//     // }
+
+//     // cout << ans << endl;
+
+
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     vector<int>vec[2];
+//     vec[0].push_back(inf);
+//     vec[1].push_back(inf);
+ 
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         // if(vec[0].size() == 1) {
+//         //     vec[0].push_back(a[i]);
+//         //     continue;
+//         // }
+//         // if(vec[1].size() == 1) {
+//         //     vec[1].push_back(a[i]);
+//         //     continue;
+//         // }
+//         if(a[i] <= vec[0].back() && a[i] <= vec[1].back()){
+//             if(vec[0].back() > vec[1].back()) vec[1].push_back(a[i]);
+//             else vec[0].push_back(a[i]);
+//             continue;
+//         }
+//         if(a[i] > vec[0].back() && a[i] > vec[1].back()){
+//             if(vec[0].back() > vec[1].back()) vec[1].push_back(a[i]);
+//             else vec[0].push_back(a[i]);
+//             continue;
+//         }
+//         if(vec[0].back() > vec[1].back()) vec[0].push_back(a[i]);
+//         else vec[1].push_back(a[i]);
+//     }
+//     for(int i = 0;i <= 1;i++){
+//         for(int j = 1;j + 1 < vec[i].size();j++){
+//             if(vec[i][j] < vec[i][j+1]) ans++;
+//             // cerr << vec[i][j] << ' ';
+//         }
+//         // cerr << vec[i].back() << endl;
+//     }
+ 
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+
+//     return 0;
+// }
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
+#define all(x) (x).begin(), (x).end()
 #define int long long
 #define endl '\n'
 #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-const int N = 100 + 10;
+const int N = 2e5 + 10;
 const int mod = 1e9 + 7;
 const int inf = 1e9 + 10;
-int n, m;
+int n, m, a[N];
 
 
 void solve(){
@@ -2914,9 +3136,8 @@ signed main(){
 
     IO;
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--) solve();
-
 
     return 0;
 }
