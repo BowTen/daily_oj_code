@@ -3116,28 +3116,346 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define all(x) (x).begin(), (x).end()
-#define int long long
-#define endl '\n'
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-const int N = 2e5 + 10;
-const int mod = 1e9 + 7;
-const int inf = 1e9 + 10;
-int n, m, a[N];
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 1e9 + 10;
+// int n, m, a[N];
+
+// int lowbit(int x){
+//     return x & -x;
+// }
+
+// void solve(){
+//     cin >> n;
+//     if(n & 1){
+//         cout << "Bob\n";
+//     }else{
+//         if(lowbit(n) == n){
+//             for(int i = 0;i <= 31;i++) if((1<<i) == n){
+//                 if(i & 1) cout << "Bob\n";
+//                 else cout << "Alice\n";
+//                 return;
+//             }
+//         }else{
+//             cout << "Alice\n";
+//         }
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
 
 
-void solve(){
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 1e9 + 10;
+// int n, q, a[N];
 
-}   
+// class Tree{
+//     int sum[N<<2], len[N<<2], tag[N<<2];
 
-signed main(){
+// public:
+//     void up(int id){
+//         sum[id] = sum[ls] + sum[rs];
+//         len[id] = len[ls] + len[rs];
+//     }
+//     void build(int id, int l, int r){
+//         sum[id] = tag[id] = 0;
+//         if(l == r) {
+//             len[id] = 1;
+//             return;
+//         }
+//         int mid = l + r >> 1;
+//         build(ls, l, mid);
+//         build(rs, mid + 1, r);
+//         up(id);
+//     }
+//     void settag(int id, int v){
+//         sum[id] += v * len[id];
+//         tag[id] += v;
+//     }
+//     void down(int id){
+//         settag(ls, tag[id]);
+//         settag(rs, tag[id]);
+//         tag[id] = 0;
+//     }
+//     void modify(int id, int l, int r, int ql, int qr, int v){
+//         if(ql <= l && r <= qr){
+//             settag(id, v);
+//             return;
+//         }
+//         if(tag[id]) down(id);
+//         int mid = l + r >>1;
+//         if(qr <= mid) modify(ls, l, mid, ql, qr, v);
+//         else if(ql > mid) modify(rs, mid + 1, r, ql, qr, v);
+//         else modify(ls, l, mid, ql, qr, v), modify(rs, mid + 1, r, ql, qr, v);
+//         up(id);
+//     }
+//     int query(int id, int l, int r, int ql, int qr){
+//         if(ql <= l && r <= qr) return sum[id];
+//         if(tag[id]) down(id);
+//         int mid = l + r >> 1;
+//         if(qr <= mid) return query(ls, l, mid, ql, qr);
+//         else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//         else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+//     }
+//     void change(int id, int l, int r, int x, int v){
+//         if(l == r){
+//             sum[id] = v;
+//             return;
+//         }
+//         if(tag[id]) down(id);
+//         int mid = l  + r >> 1;
+//         if(x <= mid) change(ls, l, mid, x, v);
+//         else change(rs, mid + 1, r, x, v);
+//         up(id);
+//     }
+// }atr, idtr;
 
-    IO;
-    int t = 1;
-    cin >> t;
-    while(t--) solve();
+// void solve(){
+//     cin >> n >> q;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     atr.build(1, 1, n);
+//     idtr.build(1, 1, n);
 
-    return 0;
-}
+//     int sum = 0;
+//     while(q--){
+//         int op, x, y, l, r;
+//         cin >> op;
+//         if(op == 1){
+//             cin >> x >> y;
+//             if(a[x] == y) continue;
+//             atr.modify(1, 1, n, a[x], a[x], idtr.query(1, 1, n, x, x));
+//             idtr.change(1, 1, n, x, 0);
+//             a[x] = y;
+//         }else if(op == 2){
+//             cin >> l >> r;
+//             sum += r - l + 1;
+//             idtr.modify(1, 1, n, l, r, 1);
+//         }else{
+//             cin >> x;
+//             int p = lower_bound(a + 1, a + 1 + n, x) - a - 1;
+//             int ans = sum;
+//             if(p >= 1) ans -= idtr.query(1, 1, n, 1, p);
+//             if(x - 1 >= 1) ans -= atr.query(1, 1, n, 1, x-1);
+//             cout << ans << endl;
+//         }
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, q, a[N], f[N][4];
+// int mp[300], vd[300];
+// char c[] = "hard";
+
+// void solve(){
+//     mp['h'] = 0;
+//     mp['a'] = 1;
+//     mp['r'] = 2;
+//     mp['d'] = 3;
+
+//     vd['h'] = 1;
+//     vd['a'] = 1;
+//     vd['r'] = 2;
+//     vd['d'] = 3;
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+
+//     for(int i = 1;i <= n;i++){
+//         if(!vd[s[i]]){
+//             for(int j = 0;j < 4;j++) f[i][j] = f[i-1][j];
+//         }else{
+//             for(int j = 0;j < 4;j++){
+//                 if(mp[s[i]] == j){
+//                     f[i][j] = f[i-1][j] + a[i];
+//                 }else if(mp[s[i]] == j-1){
+//                     f[i][j] = min(f[i-1][j-1], f[i-1][j]);
+//                 }else{
+//                     f[i][j] = f[i-1][j];
+//                 }
+//             }
+//         }
+//     }
+
+//     int ans = inf;
+//     for(int i = 0;i < 4;i++){
+//         ans = min(ans, f[n][i]);
+//     }
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 3e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, q, a[N];
+
+
+// int qpow(int a, int b){
+//     int ret = 1;
+//     while(b){
+//         if(b & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         b >>= 1;
+//     }
+//     return ret;
+// }
+
+// struct node{
+//     int sum, mx, sum2;
+
+//     node(){}
+//     node(int x) : mx(x) {
+//         int p = qpow(10, x) - 1;
+//         // if(p < 9){
+//         //     sum = sum2 = (p+mod) / 9;
+//         // }else{
+//         //     sum = sum2 = (p) / 9;
+//         // }
+//         if(p < 0) p += mod;
+//         sum = sum2 = p * qpow(9, mod-2) % mod;
+//     }
+
+//     node operator+(const node& e){
+//         node ret;
+//         ret.sum = (sum + e.sum) % mod;
+//        if(mx > e.mx){
+//             ret.mx = mx;
+//             ret.sum2 = (sum2 + (qpow(10, mx - e.mx) * e.sum2 % mod)) % mod;
+//        }else{
+//             ret.mx = e.mx;
+//             ret.sum2 = (e.sum2 + (qpow(10, e.mx - mx) * sum2 % mod)) % mod;
+//        }
+//        return ret;
+//     }
+// }tr[N<<2];
+
+// void up(int id){
+//     tr[id] = tr[ls] + tr[rs];
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id] = node(a[l]);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+// }
+// void change(int id, int l, int r, int x, int v){
+//     if(l == r){
+//         tr[id] = node(v);
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     if(x <= mid) change(ls, l, mid, x, v);
+//     else change(rs, mid + 1, r, x, v);
+//     up(id);
+// }
+// node query(int id, int l, int r, int ql, int qr){
+//     // cerr << l << ' ' << r << ' ' << ql << " " << qr << endl;
+//     if(ql <= l && r <= qr) return tr[id];
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls, l, mid, ql, qr);
+//     else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//     else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+// }
+
+// void solve(){
+//     cin >> n >> q;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     build(1, 1, n);
+
+
+//     while(q--){
+//         int op, x, d, l, r;
+//         cin >> op;
+//         if(op == 1){
+//             cin >> x >> d;
+//             change(1, 1, n, x, d);
+//         }else if(op == 2){
+//             cin >> l >> r;
+//             cout << query(1, 1, n, l, r).sum << endl;
+//         }else{
+//             cin >> l >> r;
+//             cout << query(1, 1, n, l, r).sum2 << endl;
+//         }
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
