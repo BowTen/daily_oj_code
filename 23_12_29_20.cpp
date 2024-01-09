@@ -3459,3 +3459,307 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n;
+
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     cout << s;
+//     reverse(all(s));
+//     cout << s << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n;
+
+
+// void solve(){
+//     cin >> n;
+//     if(n & 1){
+//         for(int i = 1;i <= n;i++) cout << "1 ";
+//     }else{
+//         for(int i = 1;i <= n - 2;i++) cout << "2 ";
+//         cout << "1 3";
+//     }
+//     cout << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 3e5 + 10;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, a[N];
+
+
+// void solve(){
+//     cin >> n;
+//     a[1] = 3*n;
+//     a[n] = 5*n;
+//     int j = 2, q = 4*n - 1, p = 4*n + 1;
+//     while(j + 1 < n){
+//         a[j++] = q--;
+//         a[j++] = p++;
+//     }
+//     if(j < n) a[j] = 4*n;
+
+//     for(int i = 1;i <= n;i++) cout << a[i] << ' ';
+//     cout << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1000 + 5;
+// const int mod = 1e9 + 7;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, m, dis[N][N][4];
+// string mp[N];
+// const int UP = 0;
+// const int DOWN = 1;
+// const int LEFT = 2;
+// const int RIGHT = 3;
+// int dx[4] = {-1, 1, 0, 0};
+// int dy[4] = {0, 0, -1, 1};
+
+// struct node{
+//     int x, y, d, dir;
+// };
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++) {
+//         for(int k = 0;k < 4;k++){
+//             for(int j = 1;j <= m;j++) 
+//                     dis[i][j][k] = inf;
+//         }
+//     }
+//     for(int i = 1;i <= n;i++) {
+//         cin >> mp[i];
+//         mp[i] = ' ' + mp[i];
+//     }
+
+//     deque<node>q;
+//     q.push_back({n, m, 0, LEFT});
+//     dis[n][m][LEFT] = 0;
+//     while(q.size()){
+//         auto [x, y, d, dir] = q.front();
+//         q.pop_front();
+//         int nx, ny;
+//         nx = x + dx[dir];
+//         ny = y + dy[dir];
+//         if(d < dis[nx][ny][dir]){
+//             dis[nx][ny][dir] = d;
+//             q.push_front({nx, ny, d, dir});
+//         }
+//         if(mp[x][y] == '#'){
+//             if(x == 1 && y == 1){
+//                 dis[1][1][LEFT] = min(dis[1][1][LEFT], d + 1);
+//             }
+//             for(int i = 0;i < 4;i++) if(i != dir){
+//                 nx = x + dx[i];
+//                 ny = y + dy[i];
+//                 if(d + 1 < dis[nx][ny][i]){
+//                     dis[nx][ny][i] = d + 1;
+//                     q.push_back({nx, ny, d + 1, i});
+//                 }
+//             }
+//         }
+//     }
+
+//     if(dis[1][1][LEFT] >= inf) cout << "-1\n";
+//     else cout << dis[1][1][LEFT] << endl;
+
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }0
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define ds dis[k]
+// const int N = 1000 + 5;
+// const int mod = 1e9 + 7;
+// const int inf = 1e12;
+// int n, m, dis[4][N][N], iscity[N][N];
+// int dx[4] = {-1, 1, 0, 0};
+// int dy[4] = {0, 0, -1, 1};
+// const int UP = 0;
+// const int DOWN = 1;
+// const int LEFT = 2;
+// const int RIGHT = 3;
+// string mp[N];
+
+// void solve(){
+//     cin >> n >> m;
+//     mp[n + 1] = mp[0] = string(m + 3, '#');
+//     for(int i = 1;i <= n;i++) cin >> mp[i], mp[i] = '#' + mp[i] + '#';
+
+//     for(int i = 1;i <= n;i++)
+//         for(int j = 1;j <= m;j++){
+//             if(mp[i][j] >= '1' && mp[i][j] <= '3')
+//                 iscity[i][j] = 1;
+//             for(int k = 1;k <= 3;k++)
+//                 dis[k][i][j] = inf;
+//         }
+    
+//     for(int k = 1;k <= 3;k++){
+//         // int **ds = (int**)dis[k];
+//         deque<array<int, 3>>q;
+//         for(int i = 1;i <= n;i++)
+//             for(int j = 1;j <= m;j++)
+//                 if(mp[i][j] == '0'+k){
+//                     ds[i][j] = 0;
+//                     q.push_back({0, i, j});
+//                     break;
+//                 }
+
+//         while(q.size()){
+//             auto [d, x, y] = q.front();
+//             q.pop_front();
+//             int nx, ny, nd;
+//             for(int i = 0;i < 4;i++){
+//                 nx = x + dx[i];
+//                 ny = y + dy[i];
+//                 if(mp[nx][ny] == '#') continue;
+//                 if(iscity[nx][ny]){
+//                     nd = d;
+//                 }else{
+//                     nd = d+1;
+//                 }
+//                 if(nd < ds[nx][ny]){
+//                     ds[nx][ny] = nd;
+//                     if(nd == d) q.push_front({nd, nx, ny});
+//                     else q.push_back({nd, nx, ny});
+//                 }
+//             }
+//         }
+//     }
+
+//     int ans = inf;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             if(iscity[i][j])
+//                 ans = min(ans, dis[1][i][j] + dis[2][i][j] + dis[3][i][j]);
+//             else 
+//                 ans = min(ans, dis[1][i][j] + max(0ll, dis[2][i][j]-1) + max(0ll, dis[3][i][j]-1));
+//         }
+//     }
+
+//     if(ans >= inf) cout << "-1\n";
+//     else cout << ans << endl;
+
+//     // for(int k = 1;k <= 3;k++){
+//     // for(int i = 1;i <= n;i++){
+//     //     for(int j = 1;j <= m;j++){
+//     //         // printf("%5d ", ds[i][j]);
+//     //         cerr << ds[i][j] << ' ';
+//     //     }
+//     //     cerr << endl;
+//     // }
+//     //     cerr << endl;
+//     // }
+
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
