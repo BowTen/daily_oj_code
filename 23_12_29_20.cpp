@@ -3763,3 +3763,137 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using namespace __cxx11;
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define ds dis[k]
+// const int N = 1000 + 5;
+// const int mod = 1e9 + 7;
+// const int inf = 1e12;
+// int n, m;
+
+// struct node{
+//     int v;
+//     list<int>::iterator it;
+
+//     int operator<(const node& e){
+//         return v > e.v;
+//     }
+// };
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n+5);
+//     a[0] = -1;
+//     list<int>ls;
+//     ls.push_back(-1);
+//     vector<node> vec;
+//     int cnt = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         if(a[i] == 0){
+//             cnt++;
+//         }
+//         if(a[i] == a[i-1]){
+//             i--;
+//             n--;
+//             continue;
+//         }
+//         ls.push_back(a[i]);
+//         vec.push_back({a[i], prev(ls.end())});
+//     }
+//     ls.push_back(-1);
+//     if(cnt != 1){
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     sort(all(vec));
+
+//     // for(auto e : ls) cerr << e << endl;
+
+//     for(auto [v, it] : vec){
+//         if(*it - *prev(it) == 1 || *it - *next(it) == 1 || *it - *prev(it) == 0 || *it - *next(it) == 0){
+//             ls.erase(it);
+//         }else{
+//             cout << "NO\n";
+//             return;
+//         }
+//     }
+
+//     cout << "YES\n";
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using namespace __cxx11;
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define ds dis[k]
+// const int N = 1000 + 5;
+// const int mod = 1e9 + 7;
+// const int inf = 1e12;
+// int n, m;
+
+//     vector<int>a({5,2,6});
+//     void Sort(vector<int>::iterator st, vector<int>::iterator ed){
+//         int n = ed - st;
+//         if(n <= 1) return;
+//         int midi = rand() % n;
+//         int l = 0, r = n-1;
+//         swap(st[midi], st[r]);
+//         int ls = -1;
+//         for(int i = 0;i < r;i++){
+//             if(ls == -1){
+//                 if(st[i] > st[r]) ls = i;
+//             }else{
+//                 if(st[i] <= st[r]) {
+//                     swap(st[ls], st[i]);
+//                     ls++;
+//                 }
+//             }
+//         }
+//         if(ls != -1) swap(st[r], st[ls]);
+//         else ls = r;
+//         Sort(st, st + ls);
+//         Sort(st + ls + 1, ed);
+//     }
+
+// void solve(){
+//     Sort(all(a));
+//     for(auto e : a) cout << e << ' ';
+//     cout << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
