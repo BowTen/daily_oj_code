@@ -3897,3 +3897,80 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define ds dis[k]
+// const int N = 2e5 + 5;
+// const int mod = 1e9 + 7;
+// const int inf = 1e12;
+// int n, m, h;
+
+// int qpow(int a, int b){
+//     int ret = 1;
+//     while(b){
+//         if(b & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         b >>= 1;
+//     }
+//     return ret;
+// }
+
+// void solve(){
+//     cin >> n >> m >> h;
+//     vector<vector<array<int, 2>>>g(n+m+5);
+//     for(int i = 1, c;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             cin >> c;
+//             if(c != -1){
+//                 g[i].push_back({j+n, c});
+//                 g[j+n].push_back({i, c});
+//             }
+//         }
+//     }
+
+//     int cnt = 0;
+//     vector<int>v(n+m+5, -1);
+//     for(int i = 1;i <= n+m;i++){
+//         if(v[i] != -1) continue;
+//         queue<int>q;
+//         v[i] = 0;
+//         q.push(i);
+//         while(q.size()){
+//             int u = q.front();
+//             q.pop();
+//             for(auto [to, s] : g[u]){
+//                 int x = (s - v[u] + h) % h;
+//                 if(v[to] != -1 && v[to] != x){
+//                     cout << "0\n";
+//                     return;
+//                 }
+//                 if(v[to] == -1){
+//                     v[to] = x;
+//                     q.push(to);
+//                 }
+//             }
+//         }
+//         cnt++;
+//     }
+
+
+//     cout << qpow(h, cnt-1) << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
