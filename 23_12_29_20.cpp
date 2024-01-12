@@ -3974,3 +3974,702 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define ds dis[k]
+// const int N = 1e6 + 5;
+// const int mod = 1e9 + 7;
+// const int inf = 1e12;
+// int n, m;
+// vector<int>g[N];
+// vector<int>sg[N];
+
+// int scc[N], dfn[N], low[N], idx, cnt, st[N], top;
+// void tarjan(int u){
+//     low[u] = dfn[u] = ++idx;
+//     st[++top] = u;
+//     for(auto v : g[u]) {
+//         if(!dfn[v]){
+//             tarjan(v);
+//             low[u] = min(low[u], low[v]);
+//         }else if(!scc[v]){
+//             low[u] = min(low[u], low[v]);
+//         }
+//     }
+//     if(low[u] == dfn[u]){
+//         ++cnt;
+//         while(st[top] != u){
+//             scc[st[top--]] = cnt;
+//         }
+//         scc[st[top--]] = cnt;
+//     }
+// }
+
+// void init(){
+//     for(int i = 1;i <= n;i++) {
+//         g[i].clear();
+//         dfn[i] = scc[i] = low[i] = 0;
+//     }
+//     for(int i = 1;i <= cnt;i++){
+//         sg[i].clear();
+//     }
+//     idx = cnt = top = 0;
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1, u, v;i <= m;i++){
+//         cin >> u >> v;
+//         if(u != v) g[u].push_back(v);
+//     }
+
+//     for(int i = 1;i <= n;i++) if(!dfn[i]) tarjan(i);
+
+//     // for(int i = 1;i <= n;i ++){
+//     //     cerr << i << " -> " << scc[i] << endl;
+//     // }
+
+//     for(int i = 1;i <= cnt;i++){
+//         for(auto v : g[i]){
+//             if(scc[i] != scc[v]) sg[scc[i]].push_back(scc[v]);
+//         }
+//     }
+
+//     vector<int>vis(cnt+5);
+//     queue<int>q;
+//     q.push(1);
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         vis[u] = 1;
+//         for(auto v : sg[u]) q.push(v);
+//     }
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(vis[scc[i]]) ans++;
+//     }
+
+//     if(ans == n){
+//         cout << "No\n";
+//     }else{
+//         cout << "Yes\n";
+//         cout << ans << ' ' << n - ans << endl;
+//         for(int i = 1;i <= n;i++){
+//             if(vis[scc[i]]) cout << i << ' ';
+//         }
+//         cout << endl;
+//         for(int i = 1;i <= n;i++){
+//             if(vis[scc[i]] == 0) cout << i << ' ';
+//         }
+//         cout << endl;
+//     }
+
+
+ 
+
+//     // for(int i = 1;i <= n;i ++){
+//     //     cerr << i << " : ";
+//     //     for(auto e : g[i]) cerr << e << ' ';
+//     //     cerr << endl;
+//     // }
+//     init();
+// }   
+
+// signed main(){
+
+//     IO;
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(), cout.tie(0);
+// #define endl '\n'
+// const int N = 210;
+// const int M = 5010;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, m, s, t;
+
+// int tot = 1, h[N];
+// struct edge{
+//     int v, c, ne;
+// }e[M<<1];
+// void add(int u, int v, int c){
+//     e[++tot] = {v, c, h[u]};
+//     h[u] = tot;
+// }
+
+// int mf[N], pre[N];
+// bool bfs(){
+//     for(int i = 1;i <= n;i++) mf[i] = 0;
+//     mf[s] = inf;
+//     queue<int>q;
+//     q.push(s);
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         for(int i = h[u];i;i = e[i].ne){
+//             int v = e[i].v;
+//             if(mf[v] == 0 && e[i].c){
+//                 mf[v] = min(e[i].c, mf[u]);
+//                 pre[v] = i;
+//                 q.push(v);
+//                 if(v == t) return true;
+//             }
+//         }
+//     }
+//     return false;
+// }   
+
+// int EK(){
+//     int flow = 0;
+//     while(bfs()){
+//         int v = t;
+//         while(v != s){
+//             int i = pre[v];
+//             e[i].c -= mf[t];
+//             e[i^1].c += mf[t];
+//             v = e[i^1].v;
+//         }
+//         flow += mf[t];
+//     }
+//     return flow;
+// }
+
+// int d[N], cur[N];
+
+// int Dinic(){
+//     int flow = 0;
+//     while(bfs()){
+        
+//     }
+// }
+
+
+
+// void solve(){
+//     cin >> n >> m >> s >> t;
+//     for(int i = 1, u, v, c;i <= m;i++){
+//         cin >> u >> v >> c;
+//         add(u, v, c);
+//         add(v, u, 0);
+//     }
+
+//     // cout << EK() << endl;
+//     cout << Dinic() << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(), cout.tie(0);
+// #define endl '\n'
+// const int N = 100;
+// const int M = 2010;
+// const int inf = 0x3f3f3f3f3f3f3f;
+// int n, m, s, t;
+
+// int tot = 1, h[N];
+// struct edge{
+//     int v, c, ne;
+// }e[M<<1];
+// void add(int u, int v, int c){
+//     e[++tot] = {v, c, h[u]};
+//     h[u] = tot;
+// }
+
+// int dep[N], cur[N];
+
+// bool bfs(){  //先对点分层，减小dfs深度
+//     for(int i = 1;i <= n;i++) dep[i] = 0;
+//     dep[s] = 1;
+//     queue<int>q;
+//     q.push(s);
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         for(int i = h[u];i;i = e[i].ne){
+//             int v = e[i].v;
+//             if(dep[v] == 0 && e[i].c){
+//                 dep[v] = dep[u] + 1;
+//                 q.push(v);
+//                 if(v == t) return true;
+//             }
+//         }
+//     }
+//     return false;
+// } 
+
+// int dfs(int u, int mf){  //多路增广
+//     if(u == t) return mf;
+//     int sum = 0;
+//     for(int i = cur[u];i;i = e[i].ne){
+//         cur[u] = i;  //当前弧优化
+//         int v = e[i].v;
+//         if(dep[v] == dep[u] + 1 && e[i].c){
+//             int f = dfs(v, min(mf, e[i].c));
+//             e[i].c -= f;   //更新残留网
+//             e[i^1].c += f;
+//             sum += f;
+//             mf -= f;
+//             if(mf == 0) break;
+//         }
+//     }
+//     if(sum == 0) dep[u] = 0;  //残枝优化
+//     return sum;
+// }
+
+// int Dinic(){  //累加可行流
+//     int flow = 0;
+//     while(bfs()){
+//         for(int i = 1;i <= n;i++) cur[i] = h[i];
+//         flow += dfs(s, inf);
+//     }
+//     return flow;
+// }
+
+// int a[M], b[M];
+
+// void solve(){
+//     cin >> n >> m;
+//     s = 1;
+//     t = n;
+//     for(int i = 1, c;i <= m;i++){
+//         cin >> a[i] >> b[i] >> c;
+//         add(a[i], b[i], c * 1010 + 1);
+//         add(b[i], a[i], 0);
+//     }
+
+//     int ans = Dinic();
+//     cout << ans / 1010 << ' ' << ans % 1010 << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 5e3 + 10;
+// const int M = 5e4 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, m, s, t;
+
+// int tot = 1, h[N];
+// struct edge{
+//     int v, c, w, ne;
+// }e[M<<1];
+// void add(int u, int v, int c, int w){
+//     e[++tot] = {v, c, w, h[u]};
+//     h[u] = tot;
+// }
+
+// int mf[N], pre[N], dis[N], vis[N];
+// bool bfs(){
+//     for(int i = 1;i <= n;i++){
+//         mf[i] = 0, dis[i] = inf;
+//     }
+//     mf[s] = inf, dis[s] = 0, vis[s] = 1;
+//     queue<int>q;
+//     q.push(s);
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         vis[u] = 0;
+//         for(int i = h[u];i;i = e[i].ne){
+//             auto [v, c, w, ne] = e[i];
+//             if(dis[v] > dis[u] + w && c){
+//                 dis[v] = dis[u] + w;
+//                 mf[v] = min(mf[u], c);
+//                 pre[v] = i;
+//                 if(!vis[v]){
+//                     q.push(v);
+//                     vis[v] = 1;
+//                 }
+//             }
+//         }
+//     }
+//     return mf[t] > 0;
+// }
+
+// pair<int,int> EK(){
+//     int cost = 0, flow = 0;
+//     while(bfs()){
+//         for(int v = t;v != s;){
+//             int i = pre[v];
+//             e[i].c -= mf[t];
+//             e[i^1].c += mf[t];
+//             v = e[i^1].v;
+//         }
+//         flow += mf[t];
+//         cost += mf[t] * dis[t];
+//     }
+//     return {flow, cost};
+// }
+
+// void solve(){
+//     cin >> n >> m >> s >> t;
+//     for(int i = 1, u, v, w, c;i <= m;i++){
+//         cin >> u >> v >> c >> w;
+//         add(u, v, c, w);
+//         add(v, u, 0, -w);
+//     }
+
+//     auto ans = EK();
+//     cout << ans.first << ' ' << ans.second << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 5e3 + 10;
+// const int M = 5e4 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int n, m, s, t;
+
+// int tot = 1, h[N];
+// struct edge{
+//     int v, c, w, ne;
+// }e[M<<1];
+// void add(int u, int v, int c, int w){
+//     e[++tot] = {v, c, w, h[u]};
+//     h[u] = tot;
+// }
+
+// int dis[N], vis[N], cur[N], flow, cost;
+// bool spfa(){
+//     for(int i = 1;i <= n;i++){
+//         dis[i] = inf, vis[i] = 0;
+//     }
+//     queue<int>q;
+//     q.push(s);
+//     dis[s] = 0, vis[s] = 1;
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         vis[u] = 0;
+//         for(int i = h[u];i;i = e[i].ne){
+//             int v = e[i].v;
+//             if(dis[u] + e[i].w < dis[v] && e[i].c){
+//                 dis[v] = dis[u] + e[i].w;
+//                 if(!vis[v]){
+//                     q.push(v);
+//                     vis[v] = 1;
+//                 }
+//             }
+//         }
+//     }
+//     return dis[t] != inf;
+// }
+// int dfs(int u, int mf){
+//     if(u == t) return mf;
+//     vis[u] = 1;
+//     int sum = 0;
+//     for(int i = cur[u];i;i = e[i].ne){
+//         cur[u] = i;
+//         int v = e[i].v;
+//         if(dis[u] + e[i].w == dis[v] && e[i].c && vis[v] == 0){
+//             int f = dfs(v, min(mf, e[i].c));
+//             e[i].c -= f;
+//             e[i^1].c += f;
+//             cost += e[i].w * f;
+//             sum += f;
+//             mf -= f;
+//             if(mf == 0) break;
+//         }
+//     }
+//     vis[u] = 0;
+//     if(sum == 0) dis[u] = inf;
+//     return sum;
+// } 
+
+// void Dinic(){
+//     flow = 0, cost = 0;
+//     while(spfa()){
+//         for(int i = 1;i <= n;i++) cur[i] = h[i];
+//         flow += dfs(s, inf);
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> m >> s >> t;
+//     for(int i = 1, u, v, w, c;i <= m;i++){
+//         cin >> u >> v >> c >> w;
+//         add(u, v, c, w);
+//         add(v, u, 0, -w);
+//     }
+
+//     Dinic();
+//     cout << flow << ' ' << cost << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2010;
+// const int M = 1e4 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int k, n, m, s, t, pid, mp[33][33], id[33][33][2];
+// int dx[4] = {-1, 1, 0, 0};
+// int dy[4] = {0, 0, -1, 1};
+
+// int tot = 1, h[N];
+// struct edge{
+//     int v, c, w, ne;
+// }e[M<<1];
+// void add(int u, int v, int c, int w){
+//     e[++tot] = {v, c, w, h[u]};
+//     h[u] = tot;
+//     e[++tot] = {u, 0, -w, h[v]};
+//     h[v] = tot;
+// }
+
+// int vis[N], dis[N], pre[N], mf[N];
+// bool spfa(){
+//     for(int i = 1;i <= pid;i++){
+//         mf[i] = 0, dis[i] = inf;
+//     }
+//     queue<int>q;
+//     q.push(s);
+//     vis[s] = 1, dis[s] = 0, mf[s] = inf;
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         vis[u] = 0;
+//         for(int i = h[u];i;i = e[i].ne){
+//             int v = e[i].v;
+//             if(dis[u] + e[i].w < dis[v] && e[i].c){
+//                 pre[v] = i;
+//                 dis[v] = dis[u] + e[i].w;
+//                 mf[v] = min(mf[u], e[i].c);
+//                 if(!vis[v]){
+//                     q.push(v);
+//                     vis[v] = 1;
+//                 }
+//             }
+//         }
+//     }
+//     if(mf[t] == 0 || dis[t] >= 0) return false;
+//     return true;
+// }
+
+// int EK(){
+//     int cost = 0;
+//     while(spfa()){
+//         for(int v = t;v != s;){
+//             int i = pre[v];
+//             e[i].c -= mf[t];
+//             e[i^1].c += mf[t];
+//             v = e[i^1].v;
+//         }
+//         cost += mf[t] * dis[t];
+//     }
+//     return cost;
+// }
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     s = ++pid;
+//     t = ++pid;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             cin >> mp[i][j];
+//             if(mp[i][j] != -1){
+//                 id[i][j][0] = ++pid;
+//                 id[i][j][1] = ++pid;
+//                 add(id[i][j][0], id[i][j][1], 1, mp[i][j]^1);
+//             }
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) if(mp[i][j] != -1){
+//             for(int k = 0;k < 4;k++){
+//                 int x = i + dx[k];
+//                 int y = j + dy[k];
+//                 if(id[x][y][0]){
+//                     add(id[i][j][1], id[x][y][0], 1, 0);
+//                     add(id[x][y][1], id[i][j][0], 1, 0);
+//                 }
+//             }
+//         }
+//     }
+
+//     for(int i = 1, x, y;i <= k;i++){
+//         cin >> x >> y;
+//         add(s, id[x][y][0], 1, 0);
+//     }
+//     for(int i = 1, x, y;i <= k;i++){
+//         cin >> x >> y;
+//         add(id[x][y][1], t, 1, -100);
+//     }
+
+//     cout << -EK() << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 2010;
+// const int M = 1e4 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int k, n, m, s, t, pid, mp[33][33], id[33][33][2];
+// int dx[4] = {-1, 1, 0, 0};
+// int dy[4] = {0, 0, -1, 1};
+
+// int tot = 1, h[N];
+// struct edge{
+//     int v, c, w, ne;
+// }e[M<<1];
+// void add(int u, int v, int c, int w){
+//     e[++tot] = {v, c, w, h[u]};
+//     h[u] = tot;
+//     e[++tot] = {u, 0, -w, h[v]};
+//     h[v] = tot;
+// }
+
+// int vis[N], dis[N], pre[N], mf[N];
+// bool spfa(){
+//     for(int i = 1;i <= pid;i++){
+//         mf[i] = 0, dis[i] = inf;
+//     }
+//     queue<int>q;
+//     q.push(s);
+//     vis[s] = 1, dis[s] = 0, mf[s] = inf;
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         vis[u] = 0;
+//         for(int i = h[u];i;i = e[i].ne){
+//             int v = e[i].v;
+//             if(dis[u] + e[i].w < dis[v] && e[i].c){
+//                 pre[v] = i;
+//                 dis[v] = dis[u] + e[i].w;
+//                 mf[v] = min(mf[u], e[i].c);
+//                 if(!vis[v]){
+//                     q.push(v);
+//                     vis[v] = 1;
+//                 }
+//             }
+//         }
+//     }
+//     if(mf[t] == 0 || dis[t] >= 0) return false;
+//     return true;
+// }
+
+// int EK(){
+//     int cost = 0;
+//     while(spfa()){
+//         for(int v = t;v != s;){
+//             int i = pre[v];
+//             e[i].c -= mf[t];
+//             e[i^1].c += mf[t];
+//             v = e[i^1].v;
+//         }
+//         cost += mf[t] * dis[t];
+//     }
+//     return cost;
+// }
+
+// void solve(){
+//     cin >> n;
+//     int sum = 0;
+//     while(n--){
+//         int c;
+//         cin >> c;
+//         sum += c;
+//     }
+//     int x = sqrt(sum);
+//     if(x*x == sum) cout << "YES\n";
+//     else cout << "NO\n";    
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
