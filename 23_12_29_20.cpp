@@ -4673,3 +4673,141 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int N = 1e3 + 10;
+// int n, m, k, pre[N][N], vis[N][N];
+// string s;
+
+// void add(int x, int y, int xx, int yy){
+//     if(vis[x][y]) return;
+//     vis[x][y] = 1;
+//     pre[x][y]++;
+//     pre[xx][y]--;
+//     pre[x][yy]--;
+//     pre[xx][yy]++;
+// }
+
+// void solve(){
+//     cin >> n >> m >> k >> s;
+//     int x = 1, y = 1, xx = n+1, yy = m+1;
+//     int tmp = 0, mx = 0;
+//     for(auto c : s){
+//         if(c == 'U') tmp++;
+//         else if(c == 'D') tmp--;
+//         mx = max(mx, tmp);
+//     }
+//     x += mx;
+//     tmp = 0, mx = 0;
+//     for(auto c : s){
+//         if(c == 'L') tmp++;
+//         else if(c == 'R') tmp--;
+//         mx = max(mx, tmp);
+//     }
+//     y += mx;
+//     tmp = 0, mx = 0;
+//     for(auto c : s){
+//         if(c == 'D') tmp++;
+//         else if(c == 'U') tmp--;
+//         mx = max(mx, tmp);
+//     }
+//     xx -= mx;
+//     tmp = 0, mx = 0;
+//     for(auto c : s){
+//         if(c == 'R') tmp++;
+//         else if(c == 'L') tmp--;
+//         mx = max(mx, tmp);
+//     }
+//     yy -= mx;
+
+//     // cerr << x << ' ' << y << endl << xx << ' ' << yy << endl;
+//     int sum = (xx - x) * (yy - y);
+//     // cerr << sum << endl;
+
+//     if(x >= xx || y >= yy){
+//         if(k == 0){
+//             cout << n * m << endl;
+//         }else{
+//             cout << "0\n";
+//         }
+//         return;
+//     }
+//     sum -= k;
+//     if(sum < 0){
+//         cout << "0\n";
+//         return;
+//     }
+
+//     add(x, y, xx, yy);
+//     for(auto c : s){
+//         if(c == 'U'){
+//             x--;
+//             xx--;
+//         }else if(c == 'D'){
+//             x++;
+//             xx++;
+//         }else if(c == 'L'){
+//             y--;
+//             yy--;
+//         }else{
+//             y++;
+//             yy++;
+//         }
+//         add(x, y, xx, yy);
+//     }
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             pre[i][j] += pre[i-1][j] + pre[i][j-1] - pre[i-1][j-1];
+//             if(pre[i][j] == sum) ans++;
+//         }
+//     }
+
+//     cout << ans << endl;
+
+//     for(int i = 0;i <= n+3;i++){
+//         for(int j = 0;j <= m+3;j++){
+//             vis[i][j] = pre[i][j] = 0;
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+const int N = 1e3 + 10;
+int n, m, k;
+
+void solve(){
+
+}
+
+signed main(){
+
+    IO;
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
