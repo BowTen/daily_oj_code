@@ -176,3 +176,182 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e6 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, m, q;
+
+
+// void solve(){
+//     cin >> n;
+//     cout << "L";
+//     for(int i = 1;i <= n;i++) cout << "o";
+//     cout << "ng";
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e6 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, m, q;
+
+
+// void solve(){
+//     cin >> n;
+//     int ans = 0;
+//     while(n % 2 == 0){
+//         ans++;
+//         n >>= 1;
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e6 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, m, q;
+// int num[5] = {0, 2, 4, 6, 8};
+
+// void solve(){
+//     cin >> n;
+//     if(n == 1){
+//         cout << "0\n";
+//         return;
+//     }
+//     n--;
+//     stack<int>st;
+//     while(n){
+//         st.push(n % 5);
+//         n /= 5;
+//     }
+//     while(st.size()){
+//         cout << num[st.top()];
+//         st.pop();
+//     }
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 1e6 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, m, q;
+// int num[5] = {0, 2, 4, 6, 8};
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n+5);
+//     vector<int>pre(n+5);
+//     vector<int>suf(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++){
+//         pre[i] = min(0ll, a[i] - i);
+//         pre[i] = min(pre[i], pre[i-1]);
+//     }
+//     for(int i = n;i >= 1;i--){
+//         suf[i] = min(0ll, a[i] - (n-i+1));
+//         suf[i] = min(suf[i], suf[i+1]);
+//     }
+//     int ans = 1;
+//     for(int i = 1;i <= n;i++){
+//         pre[i] = i + pre[i];
+//         suf[i] = (n-i+1) + suf[i];
+//         ans = max(ans, min(pre[i], suf[i]));
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define endl '\n'
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+const int N = 1e6 + 10;
+const int inf = 0x3f3f3f3f3f3f3f3f;
+const int mod = 998244353;
+int n, m, q;
+int num[5] = {0, 2, 4, 6, 8};
+
+void solve(){
+
+}
+
+signed main(){
+
+    IO;
+    int t = 1;
+    // cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
