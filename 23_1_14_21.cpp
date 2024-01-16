@@ -820,3 +820,267 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 6e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, a[N], s, t;
+
+// void solve(){
+//     cin >> n;
+//     cout << (n + 1) / 2 << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 6e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, a[N], s, t;
+
+// void solve(){
+//     string s;
+//     cin >> n;
+//     cin >> s;
+//     s = ' ' + s;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         vector<int>cnt(10);
+//         int mx = 0, sum = 0;
+//         for(int j = i;j >= max(1ll, i - 100);j--){
+//             cnt[s[j]-'0']++;
+//             if(cnt[s[j]-'0'] == 1) sum++;
+//             mx = max(mx, cnt[s[j] - '0']);
+//             if(mx <= sum) ans++;
+//         }        
+//     }
+
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 6e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, a[N], s, t;
+
+// void solve(){
+//     string s;
+//     cin >> n;
+//     cin >> s;
+//     s = ' ' + s;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         vector<int>cnt(10);
+//         int mx = 0, sum = 0;
+//         for(int j = i;j >= max(1ll, i - 100);j--){
+//             cnt[s[j]-'0']++;
+//             if(cnt[s[j]-'0'] == 1) sum++;
+//             mx = max(mx, cnt[s[j] - '0']);
+//             if(mx <= sum) ans++;
+//         }        
+//     }
+
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 6e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, a[N], s, t;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i], a[i] += a[i-1];
+//     map<int,int>mp;
+//     int ans = 0, mx = 0;
+//     for(int i = n;i >= 1;i--){
+//         mp[a[i]]++;
+//         mx = max(mx, mp[a[i]]);
+//         if(a[i] == a[i-1]){
+//             ans += mx;
+//             mx = 0;
+//             mp.clear();
+//         }
+//     }
+//     ans += mp[0];
+
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 3e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, fa[N], siz[N], d[N];
+
+// int find(int x){
+//     if(x == fa[x]) return x;
+//     int rt = find(fa[x]);
+//     d[x] += d[fa[x]];
+//     return fa[x] = rt;
+// }
+// void merg(int a, int b){
+//     a = find(a);
+//     b = find(b);
+//     d[a] = siz[b];
+//     siz[b] += siz[a];
+//     fa[a] = b;
+// }
+
+// void solve(){
+//     for(int i = 1;i < N;i++){
+//         fa[i] = i;
+//         siz[i] = 1;
+//     }
+//     cin >> n;
+//     while(n--){
+//         char op;
+//         int x, y;
+//         cin >> op >> x >> y;
+//         if(op == 'M'){
+//             merg(x, y);
+//         }else{
+//             if(find(x) == find(y)){
+//                 cout << abs(d[x] - d[y]) - 1 << endl;
+//             }else{
+//                 cout << "-1\n";
+//             }
+//         }
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e6 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, m, fa[N];
+
+// int find(int x){
+//     return x == fa[x] ? x : fa[x] = find(fa[x]);
+// }
+// void merg(int a, int b){
+//     a = find(a);
+//     b = find(b);
+//     fa[a] = b;
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= 2 * n;i++) fa[i] = i;
+//     vector<array<int, 3>>g;
+//     while(m--){
+//         int x, y, w;
+//         cin >> x >> y >> w;
+//         g.push_back({w, x, y});
+//     }
+//     sort(g.begin(), g.end());
+//     for(int i = g.size() - 1;i >= 0;i--){
+//         auto [w, x, y] = g[i];
+//         if(find(x) == find(y)){
+//             cout << w << endl;
+//             return;
+//         }else{
+//             merg(x, y + n);
+//             merg(x + n, y);
+//         }
+//     }
+//     cout << 0 << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
