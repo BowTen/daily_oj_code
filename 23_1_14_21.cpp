@@ -1084,3 +1084,60 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// const int N = 2e6 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n;
+
+// int lowbit(int x){
+//     if(!x) return 0;
+//     return x & -x;
+// }
+
+// void solve(){
+//     int a, b, d;
+//     cin >> a >> b >> d;
+//     a |= b;
+//     if(lowbit(a) < lowbit(d)){
+//         cout << "-1\n";
+//         return;
+//     }
+
+//     int p;
+//     for(int i = 0;i <= 33;i++){
+//         if((d >> i) & 1) {
+//             p = i;
+//             break;
+//         }
+//     }
+
+//     int ans = 0;
+//     for(int i = 0;i < 60;i++) if( ((a >> i) & 1) && (((ans >> i) & 1) == 0) ){
+//         ans += (d << (i-p));
+//     }
+
+//     ans |= a;
+//     if(ans % d){
+//         cout << "-1\n";
+//     }else{
+//         cout << ans << endl;
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
