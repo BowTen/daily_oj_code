@@ -2105,3 +2105,197 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// int n, k, m;
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     int gc = a[1];
+//     for(int i = 1;i <= n;i++) gc = gcd(gc, a[i]);
+//     if(gc == 1){
+//         cout << "0\n";
+//         return;
+//     }
+//     int ans;
+//     for(int i = n;i >= 1;i--){
+//         int g = (i == 1 ? 1 : a[1]);
+//         for(int j = 1;j <= n;j++){
+//             g = gcd(i == j ? gcd(i, a[i]) : a[j], g);
+//         }
+//         if(g == 1){
+//             ans = n - i + 1;
+//             break;
+//         }
+//     }
+//     if(n >= 2) ans = min(ans, 3ll);
+//     cout << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// int n, k, m;
+
+// void solve(){
+//     cin >> n;
+//     string s;
+//     char c, ls = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> c;
+//         if(c == ls) continue;
+//         s.push_back(c);
+//         ls = c;
+//     }   
+//     int p = n, ans = 0; 
+//     for(int i = 0;i < s.size();i++){
+//         if(s[i] == '1'){
+//             p = i + 1;
+//             break;
+//         }
+//     }
+//     ans = s.size() - p;
+//     cout << max(0ll, ans) << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// int n, k, m;
+
+// void solve(){
+//     cin >> n >> k;
+//     vector<int>a(n+5);
+//     int x = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         x ^= a[i];
+//     }
+//     int s = x;
+//     int l, r;
+//     cin >> l >> r;
+//     int L = l, R = r;
+//     while(l < r && ((x ^ a[l]) == x - a[l])){
+//         x -= a[l];
+//         l++;
+//     }
+//     while(l < r && ((x ^ a[r]) == x - a[r])){
+//         x -= a[r];
+//         r--;
+//     }
+//     swap(l, L);
+//     swap(r, R);
+//     x = s;
+//     while(l < r && ((x ^ a[r]) == x - a[r])){
+//         x -= a[r];
+//         r--;
+//     }
+//     while(l < r && ((x ^ a[l]) == x - a[l])){
+//         x -= a[l];
+//         l++;
+//     }
+
+//     if(r-l+1 < R-L+1) cout << l << ' ' << r << endl;
+//     else cout << L << ' ' << R << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// int n, k, m;
+
+// void solve(){
+//     cin >> n;
+//     set<int>st;
+//     map<int,int>pos;
+//     st.insert(0);
+//     while(n--){
+//         char op;
+//         int x;
+//         cin >> op >> x;
+//         if(op == '+'){
+//             st.insert(x);
+//         }else{
+//             while(st.count(pos[x])){
+//                 pos[x] += x;
+//             }
+//             cout << pos[x] << endl;
+//         }
+//     }
+// }   
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
