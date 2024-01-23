@@ -2299,3 +2299,72 @@
 
 //     return 0;
 // }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define all(x) (x).begin(), (x).end()
+const int N = 2e5 + 10;
+const int inf = 0x3f3f3f3f3f3f3f3f;
+const int mod = 1e9 + 7;
+int n, k, m, q;
+
+void solve(){
+    cin >> n >> q;
+    vector<int>a(n+5);
+    vector<int>pre(n+5);
+    vector<int>xp(n+5);
+    vector<int>p;
+    for(int i = 1;i <= n;i++){
+        cin >> a[i];
+        if(a[i]) p.push_back(i);
+        pre[i] = pre[i-1] + a[i];
+        xp[i] = xp[i-1] ^ a[i];
+    }
+
+    auto val = [&](int L, int R) -> int {
+        return (pre[R] - pre[L-1]) - (xp[R] ^ xp[L-1]);
+    };
+
+    // for(auto e : p) cerr  << e << ' ';
+    // cerr << endl;
+    
+    while(q--){
+        int L, R;
+        cin >> L >> R;
+        // cerr << L << " " << R << endl;
+        int sum = (pre[R] - pre[L-1]) - (xp[R] ^ xp[L-1]);
+        int st = lower_bound(all(p), L) - p.begin();
+        int al = L, ar = R, alen = R - L + 1;
+        for(int i = st;i < p.size() && p[i] <= R;i++){
+            int l = p[i], r = R;
+            if(val(p[i], r) != sum) continue;
+            while(l <= r){
+                int mid = l + r >> 1;
+                if(val(p[i], mid) >= sum) r = mid - 1;
+                else l = mid + 1;
+            }
+            if(l - p[i] + 1 < alen){
+                alen = l - p[i] + 1;
+                al = p[i];
+                ar = l;
+            }
+        }
+        cout << al << ' ' << ar << endl;
+    }
+}   
+
+signed main(){
+
+    IO;
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
