@@ -2500,3 +2500,289 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 110;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+
+// int C[N][N];
+
+// void init() {
+//     for (int i = 1; i < N; i++) {
+//         C[i][0] = C[i][i] = 1;
+//         for (int j = 1; j < i; j++)
+//             C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % mod;
+//     }
+//     C[0][0] = 1;
+// }
+
+// void solve(){
+//     int n, i, j, x, y;
+//     cin >> n >> i >> j >> x >> y;
+//     if(x > y){
+//         i = n - i + 1;
+//         j = n - j + 1;
+//         swap(i, j);
+//         swap(x, y);
+//     }
+
+
+//     int ans = 0;
+
+//     if(y == n){
+//         ans = (C[x-1][i-1] * C[y-x-1][j-i-1]) % mod;
+//         if(j == n) ans = 0;
+//         cout << ans << endl;
+//         return;
+//     }
+
+//     for(int p = i + 1;p < j;p++){
+//         ans = (ans + ((C[x-1][i-1] * C[y-x-1][p-i-1 - (n-y-1-(j-p-1))] % mod) * C[n-y-1][j-p-1] % mod)) % mod;
+//     }
+//     for(int p = j + 1;p < n;p++){
+//         ans = (ans + ((C[x-1][i-1] * C[y-x-1][j-i-1] % mod) * C[n-y-1][p-j-1] % mod)) % mod;
+//     }
+
+//     cout << ans << endl;
+// }       
+
+// signed main(){
+
+//     IO;
+//     init();
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// int n, m, k; 
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     vector<string>mp(n+5);
+//     vector<vector<int>>RD(n + 5, vector<int>(m+5));
+//     vector<vector<int>>LD(n + 5, vector<int>(m+5));
+//     vector<vector<int>>RU(n + 5, vector<int>(m+5));
+//     vector<vector<int>>LU(n + 5, vector<int>(m+5));
+//     vector<vector<int>>D(n + 5, vector<int>(m+5));
+//     vector<vector<int>>R(n + 5, vector<int>(m+5));
+//     vector<vector<int>>U(n + 5, vector<int>(m+5));
+//     vector<vector<int>>L(n + 5, vector<int>(m+5));
+//     mp[n+1] = mp[0] = string(m + 5, '.');
+//     for(int i = 1;i <= n;i++){
+//         cin >> mp[i];
+//         mp[i] = '.' + mp[i] + '.';
+//     }
+    
+//     for(int i = n;i >= 1;i--){
+//         for(int j = m;j >= 1;j--){
+//             RD[i][j] += (mp[i][j] == '#') + RD[i+1][j+1] - ((i+k+1<=n && j+k+1<=m) ? (mp[i+k+1][j+k+1]=='#') : 0ll);
+//             R[i][j] += (mp[i][j] == '#') + R[i][j+1] - (j+k+1<=m ? (mp[i][j+k+1]=='#') : 0ll);
+//             D[i][j] += (mp[i][j] == '#') + D[i+1][j] - (i+k+1<=n ? (mp[i+k+1][j]=='#') : 0ll);
+//         }
+//         for(int j = 1;j <= m;j++){
+//             LD[i][j] += (mp[i][j] == '#') + LD[i+1][j-1] - ((i+k+1<=n && j-k-1>=1) ? (mp[i+k+1][j-k-1]=='#') : 0ll);
+//         }
+//     }
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             LU[i][j] += (mp[i][j] == '#') + LU[i-1][j-1] - ((i-k-1>=1 && j-k-1>=1) ? (mp[i-k-1][j-k-1]=='#') : 0ll);
+//             L[i][j] += (mp[i][j] == '#') + L[i][j-1] - (j-k-1>=1 ? (mp[i][j-k-1]=='#') : 0ll);
+//             U[i][j] += (mp[i][j] == '#') + U[i-1][j] - (i-k-1>=1 ? (mp[i-k-1][j]=='#') : 0ll);
+//         }
+//         for(int j = m;j >= 1;j--){
+//             RU[i][j] += (mp[i][j] == '#') + RU[i-1][j+1] - ((i-k-1>=1 && j+k+1<=m) ? (mp[i-k-1][j+k+1]=='#') : 0ll);
+//         }
+//     }
+
+//     vector<vector<int>>p1(n + 5, vector<int>(m+5));
+//     vector<vector<int>>p2(n + 5, vector<int>(m+5));
+//     vector<vector<int>>p3(n + 5, vector<int>(m+5));
+//     vector<vector<int>>p4(n + 5, vector<int>(m+5));
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) if(mp[i][j] == '#'){
+//             if(abs(i-n) + abs(j-1) <= k) p1[n][1]++;
+//             if(abs(i-n) + abs(j-m) <= k) p2[n][m]++;
+//             if(abs(i-1) + abs(j-m) <= k) p3[1][m]++;
+//             if(abs(i-1) + abs(j-1) <= k) p4[1][1]++;
+//         }
+//     }
+
+//     ans = max({ans, p1[n][1], p2[n][m], p3[1][m], p4[1][1]});
+    
+//     for(int i = n;i >= 1;i--){
+//         ans = max(ans, p1[i][1]);
+//         int J = 2;
+//         if(i-k < 1){
+//             J += 1-(i-k);
+//         }
+//         for(int j = 2;j <= m && J <= m;j++, J++){
+//             p1[i][j] = p1[i][j-1] - U[i][j-1] + (j+k<=m ? LU[i][j+k] : RD[max(1ll, i-k)][J]);
+//             ans = max(ans, p1[i][j]);
+//         }
+//         ans = max(ans, p2[i][m]);
+//         J = m-1;
+//         if(i-k < 1){
+//             J -= 1-(i-k);
+//         }
+//         for(int j = m-1;j >= 1 && J >= 1;j--, J--){
+//             p2[i][j] = p2[i][j+1] - U[i][j+1] + (j-k>=1 ? RU[i][j-k] : LD[max(1ll, i-k)][J]);
+//             ans = max(ans, p2[i][j]);
+//         }
+//         p1[i-1][1] = p1[i][1] - R[i][1] + ((1+k<=m) ? LU[i-1][1+k] : RD[max(1ll, i-k-1)][min(m+1, 1+((i-k-1) < 1 ? 1-(i-k-1) : 0ll))]);
+//         p2[i-1][m] = p2[i][m] - L[i][m] + ((m-k>=1) ? RU[i-1][m-k] : LD[max(1ll, i-k-1)][max(0ll, m-((i-k-1) < 1 ? 1-(i-k-1) : 0ll))]);
+//     }
+//     for(int i = 1;i <= n;i++){
+//         ans = max(ans, p4[i][1]);
+//         int J = 2;
+//         if(i+k > n){
+//             J += i+k-n;
+//         }
+//         for(int j = 2;j <= m && J <= m;j++, J++){
+//             p4[i][j] = p4[i][j-1] - D[i][j-1] + (j+k<=m ? LD[i][j+k] : RU[min(n, i+k)][J]);
+//             ans = max(ans, p4[i][j]);
+//         }
+//         ans = max(ans, p3[i][m]);
+//         J = m-1;
+//         if(i+k > n){
+//             J -= i+k-n;
+//         }
+//         for(int j = m-1;j >= 1 && J >= 1;j--, J--){
+//             p3[i][j] = p3[i][j+1] - D[i][j+1] + (j-k>=1 ? RD[i][j-k] : LU[min(n, i+k)][J]);
+//             ans = max(ans, p3[i][j]);
+//         }
+//         p4[i+1][1] = p4[i][1] - R[i][1] + ((1+k<=m) ? LD[i+1][1+k] : RU[min(n, i+k+1)][min(m+1, 1+((i+k+1) > n ? (i+k+1)-n : 0ll))]);
+//         p3[i+1][m] = p3[i][m] - L[i][m] + ((m-k>=1) ? RD[i+1][m-k] : LU[min(n, i+k+1)][max(1ll, m-((i+k+1) > n ? (i+k+1)-n : 0ll))]);
+//     }
+
+//     cout << ans << endl;
+// }       
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 1e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// int n, m, k; 
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     vector<string>mp(n + 5);
+
+//     for(int i = 1;i <= n;i++){
+//         cin >> mp[i];
+//         mp[i] = ' ' + mp[i];
+//     }
+
+//     auto calc = [&]() -> int {
+//         vector<vector<int>>D(n+5, vector<int>(m+5));
+//         vector<vector<int>>R(n+5, vector<int>(m+5));
+//         vector<vector<int>>LD(n+5, vector<int>(m+5));
+
+//         for(int i = n;i >= 1;i--){
+//             for(int j = m;j >= 1;j--){
+//                 R[i][j] = (mp[i][j] == '#') + R[i][j+1] - (j+k+1 <= m ? (mp[i][j+k+1] == '#') : 0ll);
+//                 D[i][j] = (mp[i][j] == '#') + D[i+1][j] - (i+k+1 <= n ? (mp[i+k+1][j] == '#') : 0ll);
+//             }
+//             for(int j = 1;j <= m;j++){
+//                 LD[i][j] = (mp[i][j] == '#') + LD[i+1][j-1];
+//             }
+//         }
+
+//         vector<int>p(n+5);
+        
+//         for(int i = 1;i <= n;i++){
+//             for(int j = 1;j <= m;j++) if(mp[i][j] == '#'){
+//                 if(i-1 + j-1 <= k) p[1]++;
+//             }
+//         }
+
+//         int res = p[1];
+
+//         for(int i = 1;i <= n;i++){
+//             res = max(res, p[i]);
+//             p[i+1] = p[i] - R[i][1] + (1+k<=m ? LD[i+1][1+k] : LD[min(n+1,i+1+(1+k)-m)][m]);
+//             for(int j = 2;j <= m;j++){
+//                 p[i] = p[i] - D[i][j-1] + (j+k<=m ? LD[i][j+k] : LD[min(n+1,i+(j+k)-m)][m]) - (i+k+1<=n ? LD[i+k+1][j-1] : 0ll);
+//                 res = max(res, p[i]);
+//             }
+//         }
+
+//         return res;
+//     };
+
+//     auto print = [&]() -> void {
+//         for(int i = 1;i <= n;i++){
+//             for(int j = 1;j <= m;j++){
+//                 cerr << mp[i][j];
+//             }
+//             cerr << endl;
+//         }
+//         cerr << "\n____________________\n";
+//     };
+
+//     int ans = calc();
+
+//     for(int i = 1;i <= n;i++){
+//         reverse(mp[i].begin()+1, mp[i].end());
+//     }
+//     ans = max(ans, calc());
+//     reverse(mp.begin() + 1, mp.begin() + 1 + n);
+//     ans = max(ans, calc());
+//     for(int i = 1;i <= n;i++){
+//         reverse(mp[i].begin()+1, mp[i].end());
+//     }
+//     ans = max(ans, calc());
+
+//     cout << ans << endl;
+// }       
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
