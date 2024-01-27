@@ -2786,3 +2786,30 @@
 
 //     return 0;
 // }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define all(x) (x).begin(), (x).end()
+const int N = 1e5 + 10;
+const int inf = 0x3f3f3f3f3f3f3f3f;
+const int mod = 1e9 + 7;
+int n, m, k; 
+
+void solve(){
+
+}       
+
+signed main(){
+
+    IO;
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
+    return 0;
+}
