@@ -2956,8 +2956,6 @@
 
 //     vector<int>f(k+5);
 
-//     f[1] = mul(mul(m, nnv), av);
-
 //     int p = mul(1, nnv);
 //     int s = p;
 //     int ss = s;
@@ -2965,7 +2963,7 @@
 //     for(int i = 2;i <= k;i++){
 //         // f[i] = add(f[i-1], add(mul( mul(m,nnv) , av ), mul(m, s)) );
 //         // f[i] = add(f[i-1], mul( mul(m,nnv) , add(av, mul(m, s) ) ) );
-//         f[i] = add(f[i-1], add(mul(mul(m,nnv) , av), mul(s, mul(1,nnv))) );
+//         f[i] = add(f[i-1], mul(m, mul(s, nnv)));
 //         p = mul(p, chu(nn1-1, nn1) );
 //         ss = add(ss, p);
 //         s = add(s, ss);
@@ -2975,12 +2973,95 @@
 //     //     cerr << f[i] << endl;
 //     // }
 
+//     f[k] = add(f[k], mul(mul(k, sum), nnv));
+
 //     cout << f[k]%mod << endl;
 // }       
 
 // signed main(){
 
 //     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// int n, m, k, nn1, nnv; 
+
+
+// int qpow(int a, int b){
+//     int ret = 1;
+//     while(b){
+//         if(b & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         b >>= 1;
+//     }
+//     return ret;
+// }
+// int inv[N], fac[N];
+// void get_inv(){
+//     inv[0] = fac[0] = 1;
+//     for(int i = 1;i < N;i++){
+//         fac[i] = fac[i-1] * i % mod;
+//     }
+//     inv[N-1] = qpow(fac[N-1], mod-2);
+//     for(int i = N-2;i >= 1;i--){
+//         inv[i] = inv[i+1] * (i+1) % mod;
+//     }
+// }
+
+// int add(int a, int b){
+//     return (a+b) % mod;
+// }
+// int mul(int a, int b){
+//     return a*b % mod;
+// }
+// int chu(int a, int b){
+//     return mul(a, qpow(b, mod-2));
+// }
+// int C(int a, int b){
+//     return (fac[a] * inv[a-b] % mod) * inv[b] % mod;
+// }
+
+
+// void solve(){
+//     cin >> n >> m >> k;
+//     nn1 = C(n, 2);
+//     nnv = qpow(nn1, mod-2);
+//     int sum = 0;
+//     for(int i = 1, a, b, v;i <= m;i++){
+//         cin >> a >> b >> v;
+//         sum = add(sum, v);
+//     }
+
+//     int ans = mul(mul(k, sum), nnv);
+//     for(int i = 2;i <= k;i++){
+//         int tmp = mul(C(k, i), mul(qpow(mul(1,nnv), i), qpow(mul(nn1-1,nnv), k-i)));
+//         tmp = mul(tmp, chu(mul(i,i-1),2));
+//         ans = add(ans, mul(m, tmp));
+//     }
+
+//     cout << ans << endl;
+// }       
+
+// signed main(){
+
+//     IO;
+//     get_inv();
 //     int t = 1;
 //     cin >> t;
 //     while(t--) solve();
