@@ -3068,3 +3068,293 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll = long long;
+// #define endl '\n'
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 3000 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// int n, m; 
+// // int UR[N][N], R[N][N];
+// // string mp[N];
+// // vector<array<int, 2>>Q[N][N];
+
+// class BIT {
+//     int tr[N];
+//     int lowbit(int x){
+//         return x & -x;
+//     }
+
+// public:
+//     void add(int x, int v){
+//         if(x <= 0) return;
+//         while(x < N){
+//             tr[x] += v;
+//             x += lowbit(x);
+//         }
+//     }
+//     int getsum(int x){
+//         int ret = 0;
+//         while(x > 0){
+//             ret += tr[x];
+//             x -= lowbit(x);
+//         }
+//         return ret;
+//     }
+//     int query(int l, int r){
+//         return getsum(r) - getsum(l-1);
+//     }
+//     void init(){
+//         for(int i = 0;i < N;i++) tr[i] = 0;
+//     }
+// }tr;
+
+// void solve(){
+//     cin >> n >> m;
+//     vector<string>mp(n+5);
+//     mp[0] = mp[n+1] = string(m+5, '.');
+//     ll ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> mp[i];
+//         for(auto c : mp[i]) ans += (c == 'z');
+//         mp[i] = '.' + mp[i] + '.';
+//     }
+
+//     vector<vector<int>>UR(n+5, vector<int>(m+5));
+//     vector<vector<int>>R(n+5, vector<int>(m+5));
+    
+//     for(int i = 1;i <= n;i++){
+//         for(int j = m;j >= 1;j--){
+//             R[i][j] = mp[i][j] == 'z' ? (1 + R[i][j+1]) : 0;
+//             UR[i][j] = mp[i][j] == 'z' ? (1 + UR[i-1][j+1]) : 0;
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             UR[i][j] = min(UR[i][j], R[i][j]);
+//         }
+//     }
+
+//     vector<vector<vector<array<int, 2>>>>Q(n+5, vector<vector<array<int, 2>>>(m+5));
+//     auto query = [&](int i, int l, int r) -> void {
+//         for(int j = r - 1, h = i+1;j >= l && j >= 1 && h <= n;j--, h++){
+//             Q[h][j].push_back({h-i+1, 1});
+//             Q[h][l-1].push_back({h-i+1, -1});
+//         }
+//     };
+
+//     for(int i = 1;i <= n;i++){
+//         int l = 0, r = 0;
+//         for(int j = 1;j <= m;j++){
+//             if(mp[i][j] == 'z'){
+//                 if(l){
+//                     r++;
+//                 }else{
+//                     r = l = j;
+//                 }
+//             }else{
+//                 if(r){
+//                     query(i, l, r);
+//                     l = r = 0;
+//                 }
+//             }
+//         }
+//         if(r){
+//             query(i, l, r);
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         tr.init();
+//         for(int j = 1;j <= m;j++){
+//             tr.add(UR[i][j], 1);
+//             for(auto [x, op] : Q[i][j]){
+//                 ans += op * (tr.getsum(N-1) - tr.getsum(x-1));
+//             }
+//         }
+//     }
+
+//     cout << ans << endl;
+
+// }       
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll = long long;
+// #define endl '\n'
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 3000 + 10;
+// const int inf = INT_MAX;
+// const int mod = 1e9 + 7;
+// int n, m, s, t; 
+
+
+// void solve(){
+//     cin >> n;
+//     vector<int>a(n+5);
+//     vector<int>l(n+5);
+//     vector<int>r(n+5);
+//     vector<int>pl(n+5);
+//     vector<int>pr(n+5);
+//     a[0] = a[n+1] = inf;
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     stack<int>pre, suf;
+//     pre.push(0);
+//     for(int i = 1;i <= n;i++){
+//         while(a[i] >= a[pre.top()]) pre.pop();
+//         l[i] = pre.top();
+//         pre.push(i);
+//     }
+//     suf.push(n+1);
+//     for(int i = n;i >= 1;i--){
+//         while(a[i] >= a[suf.top()]) suf.pop();
+//         r[i] = suf.top();
+//         suf.push(i);
+//     }
+
+//     int ans = 0;
+//     vector<int>ok(n+5);
+//     vector<int>pok(n+5);
+//     for(int i = 1;i <= n;i++){
+//         pok[i] += pok[i-1];
+//         if(l[i] && a[i] + n-1 < min(a[l[i]], a[r[i]])) continue;
+//         if(pok[i] - pok[l[i]] > 0){
+//             pok[i]++;
+//             ok[i] = 1;
+//             ans++;
+//             continue;
+//         }
+//         int L = l[i], R = r[i];
+//         pl[L] = pr[R] = 0;
+//         while(min(a[L], a[R]) <= a[i] + (R - L - 2)){
+//             if(a[R] <= a[i] + (R - L - 2)) pr[r[R]] = R, R = r[R];
+//             if(a[L] <= a[i] + (R - L - 2)) pl[l[L]] = L, L = l[L];
+//         }
+//         if(L == 0 && R == n+1){
+//             ok[i] = 1, ans++;
+//             pok[i]++;
+//         }else{
+//             int cur = L;
+//             while(pl[cur]){
+//                 l[pl[cur]] = L;
+//                 cur = pl[cur];
+//             }
+//             cur = R;
+//             while(pr[cur]){
+//                 r[pr[cur]] = R;
+//                 cur = pr[cur];
+//             }
+//         }
+//     }
+
+//     cout << ans << endl;
+//     for(int i = 1;i <= n;i++) if(ok[i]) cout << i << ' ';
+// }       
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     // cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// using ll = long long;
+// #define endl '\n'
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// const int N = 3000 + 10;
+// const int inf = INT_MAX;
+// const int mod = 1e9 + 7;
+// const int B = 1;
+// const int W = 0;
+// int n, m, s, t; 
+
+
+// void solve(){
+//     cin >> n;
+//     vector<array<int, 2>>a(n+5);
+//     int sum[2] = {0};
+//     int s[2] = {0};
+//     int k;
+//     char c;
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> k >> c;
+//         ans += k;
+//         a[i] = {k, (c == 'B')};
+//         sum[c=='B'] += k;
+//     }
+
+//     if(!sum[B] || !sum[W]){
+//         cout << ans << endl;
+//         return;
+//     }
+
+//     ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         int x = (a[i][1] ^ 1), c = a[i][1];
+//         if(s[x]){
+//             if((s[x]*sum[c])%sum[x] == 0){
+//                 int tmp = (s[x]*sum[c])/sum[x];
+//                 if(s[c] < tmp && s[c] + a[i][0] > tmp){
+//                     int d = tmp - s[c];
+//                     s[c] += d;
+//                     a[i][0] -= d;
+//                     i--;
+//                 }else{
+//                     s[c] += a[i][0];
+//                 }
+//             }else{
+//                 s[c] += a[i][0];
+//             }
+//         }else{
+//             s[c] += a[i][0];
+//         }
+//         if(s[0] && s[1] && s[0] * sum[1] == s[1] * sum[0]){
+//             s[1] = s[0] = 0;
+//             ans++;
+//         }
+//     }
+//     cout << ans << endl;
+// }       
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
