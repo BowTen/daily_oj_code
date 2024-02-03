@@ -582,3 +582,202 @@
 
 // 	return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// using uint = unsigned long long;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int N = 1e5 + 10;
+// const int mod = 1e9 + 7;
+
+
+// void solve(){
+//     int n, sum = 0;
+//     cin >> n;
+//     vector<int>a(n+5), b(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i], sum += abs(a[i] - b[i]);
+//     a[n+1] = 3e9;
+
+//     vector<int>ans;
+//     stack<int>as, bs;
+//     int ap = 0, bp = 0;
+//     while(ap < n || bp < n){
+//         if(ap < n && a[ap+1] < b[bp+1]){
+//             ap++;
+//             as.push(ap);
+//         }else{
+//             bp++;
+//             if(as.size() == bs.size()){
+//                 ans.push_back(bp);
+//                 ap++;
+//             }else{
+//                 bs.push(bp);
+//             }
+//             while(as.size() && as.size() == bs.size() && b[bs.top()] - a[as.top()] <= a[ap+1] - b[bs.top()]){
+//                 ans.push_back(bs.top());
+//                 bs.pop();
+//                 as.pop();
+//             }
+//         }
+//     }
+
+//     while(bs.size()) {
+//         ans.push_back(bs.top());
+//         bs.pop();
+//     }
+
+//     cout << sum << endl;
+//     for(auto e : ans) cout << e << ' ';
+//     cout << endl;
+
+// } 
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	// cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// using uint = unsigned long long;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int N = 3e5 + 10;
+// const int mod = 1e9 + 7;
+// int c[N], lcn[N], par[N][20], n, m, k, ans;
+// vector<int>g[N];
+
+// int qpow(int a, int b){
+//     int ret = 1;
+//     while(b){
+//         if(b & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         b >>= 1;
+//     }
+//     return ret;
+// }
+
+// int fac[N], inv[N];
+// void get_inv(){
+//     fac[0] = inv[0] = 1;
+//     for(int i = 1;i < N;i++){
+//         fac[i] = fac[i-1] * i % mod;
+//     }
+//     inv[N-1] = qpow(fac[N-1], mod-2);
+//     for(int i = N - 2;i >= 1;i--){
+//         inv[i] = inv[i+1] * (i+1) % mod;
+//     }
+// }
+// int C(int a, int b){
+//     if(b > a) return 0;
+//     return (fac[a] * inv[a-b] % mod) * inv[b] % mod;
+// }
+
+// int dep[N];
+// void dfs(int u, int f){
+//     dep[u] = dep[f] + 1;
+//     par[u][0] = f;
+//     for(int i = 1;i < 20;i++) par[u][i] = par[par[u][i-1]][i-1];
+//     for(auto v : g[u]) if(v != f){
+//         dfs(v, u);
+//     }
+// }
+// int lca(int u, int v){
+//     if(dep[u] < dep[v]) swap(u, v);
+//     for(int i = 19;i >= 0;i--){
+//         if(dep[par[u][i]] >= dep[v]) u = par[u][i];
+//     }
+//     if(u == v) return u;
+//     for(int i = 19;i >= 0;i--){
+//         if(par[u][i] != par[v][i]) {
+//             u = par[u][i];
+//             v = par[v][i];
+//         }
+//     }
+//     return par[u][0];
+// }
+
+// int add(int a, int b){
+//     return (a + b) % mod;
+// }
+// int dv(int a, int b){
+//     return (a - b + mod) % mod;
+// }
+// int mul(int a, int b){
+//     return a * b % mod;
+// }
+
+// void dfs2(int u, int f){
+//     for(auto v : g[u]) if(v != f){
+//         dfs2(v, u);
+//         c[u] += c[v];
+//     }
+//     ans = add(ans, dv(C(c[u], k), C(c[u] - lcn[u], k)));
+// }
+
+// void solve(){
+//     ans = 0;
+//     cin >> n >> m >> k;
+//     for(int i = 1;i <= n;i++){
+//         c[i] = lcn[i] = 0;
+//         g[i].clear();
+//     }
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     dfs(1, 0);
+
+//     for(int i = 1, u, v, ca;i <= m;i++){
+//         cin >> u >> v;
+//         c[u]++, c[v]++;
+//         ca = lca(u, v);
+//         lcn[ca]++;
+//         c[ca]--;
+//         c[par[ca][0]]--;
+//     }
+
+//     dfs2(1, 0);
+
+//     // for(int i = 1;i <= n;i++){
+//     //     cerr << "lcn " << i << " = " << lcn[i] << endl;
+//     //     cerr << " c  " << i << " = " << c[i] << endl;
+//     // }
+
+//     cout << ans << endl;
+// } 
+
+// signed main(){
+
+// 	IO;
+//     get_inv();
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
