@@ -781,3 +781,149 @@
 
 // 	return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// using uint = unsigned long long;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int N = 3e5 + 10;
+// const int mod = 1e9 + 7;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<vector<int>>g(n+5);
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     double ans = 0;
+//     auto dfs = [&](auto self, int u, int f, int fd) -> void {
+//         ans += 1.0 / fd;    
+//         for(auto v : g[u]) if(v != f){
+//             self(self, v, u, fd + 1);
+//         }
+//     };
+
+//     dfs(dfs, 1, 0, 1);
+//     printf("%.12lf\n", ans);
+
+// } 
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	// cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// using uint = unsigned long long;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int N = 4e5 + 10;
+// const int mod = 1e9 + 7;
+// int n, m;
+// vector<array<int, 2>>g[N];
+// array<int, 2>ans[N];
+
+// int dfn[N], low[N], scc[N], idx, tot, st[N], top;
+// int siz[N];
+// vector<array<int, 4>>sccg[N]; //to, id, u, v;
+// void dfs(int u, int id){
+//     dfn[u] = low[u] = ++tot;
+//     st[++top] = u;
+//     for(auto [v, id2] : g[u]) {
+//         if(!dfn[v]) dfs(v, id2);
+//         if(id2 != id) low[u] = min(low[u], low[v]);
+//     }
+//     if(dfn[u] == low[u]){
+//         idx++;
+//         while(st[top] != u){
+//             scc[st[top--]] = idx;
+//             siz[idx]++;
+//         }
+//         scc[st[top--]] = idx;
+//         siz[idx]++;
+//     }
+// }
+
+// int vis[N];
+// void dfs2(int u, int id){
+//     vis[u] = 1;
+//     for(auto [v, id2] : g[u]) if(id != id2){
+//         if(scc[u] == scc[v]){
+//             if(ans[id2][0] == 0) ans[id2] = {u, v};
+//             if(!vis[v]) dfs2(v, id2);
+//         }else{
+//             sccg[scc[u]].push_back({scc[v], id2, u, v});
+//         }
+//     }
+// }
+
+// void dfs3(int u, int f){
+//     for(auto [v, id, a, b] : sccg[u]) if(v != f){
+//         ans[id] = {b, a};
+//         dfs3(v, u);
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1, u, v;i <= m;i++){
+//         cin >> u >> v;
+//         g[u].push_back({v, i});
+//         g[v].push_back({u, i});
+//     }
+
+//     dfs(1, 0);
+
+//     for(int i = 1;i <= n;i++) if(!vis[i]){
+//         dfs2(i, 0);
+//     }
+
+//     int mx = 1;
+//     for(int i = 1;i <= idx;i++){
+//         if(siz[i] > siz[mx]) mx = i;
+//     }
+
+//     dfs3(mx, 0);
+
+//     cout << siz[mx] << endl;
+//     for(int i = 1;i <= m;i++){
+//         cout << ans[i][0] << ' ' << ans[i][1] << endl;
+//     }
+// } 
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	// cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
