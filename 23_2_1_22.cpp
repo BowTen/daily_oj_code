@@ -931,6 +931,150 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// using uint = unsigned long long;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int RED = 0;
+// const int BULE = 1;
+// const int N = 1e6 + 2e5 + 20;
+
+// struct node{
+//     int x, y, w, ty;
+// };
+
+// class BIT{
+// public:
+//     int tr[N];
+//     int lowbit(int x){
+//         return x & -x;
+//     }
+//     void init(){
+//         for(int i = 0;i < N;i++) tr[i] = -1;
+//     }
+
+//     void add(int x, int v){
+//         while(x < N){
+//             tr[x] = max(tr[x], v);
+//             x += lowbit(x);
+//         }
+//     }
+//     int get_mx(int x){
+//         int ret = -1;
+//         while(x > 0){
+//             ret = max(ret, tr[x]);
+//             x -= lowbit(x);
+//         }
+//         return ret;
+//     }
+// }tr;
+
+
+// void solve(){
+//     int n, q, m;
+//     cin >> n;
+//     vector<node>a(2*n + 5);
+//     vector<int>idx;
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i].x >> a[i].y >> a[i].w;
+//         a[i].ty = RED;
+//         idx.push_back(a[i].x);
+//     }
+//     for(int i = n+1;i <= 2*n;i++){
+//         cin >> a[i].x >> a[i].y >> a[i].w;
+//         a[i].ty = BULE;
+//         idx.push_back(a[i].x);
+//     }
+//     sort(a.begin() + 1, a.begin() + 1 + 2*n, [&](const node& e1, const node& e2) -> int {
+//         return e1.y < e2.y;
+//     });
+
+//     cin >> q;
+//     vector<array<int, 3>>qur(q+5);
+//     vector<int>ans(q+5, -1);
+//     for(int i = 1;i <= q;i++){
+//         cin >> qur[i][0] >> qur[i][1];
+//         idx.push_back(qur[i][0]), idx.push_back(qur[i][1]);
+//         qur[i][2] = i;
+//     }
+
+//     sort(all(idx));
+//     idx.erase(unique(all(idx)), idx.end());
+//     m = idx.size() + 1;
+//     for(int i = 1;i <= 2*n;i++){
+//         a[i].x = lower_bound(all(idx), a[i].x) - idx.begin() + 1;
+//         // cerr << a[i].x << ' ' << a[i].y << ' ' << a[i].w << " " << (a[i].ty==RED?"RED":"BULE") << endl;
+//     }
+//     for(int i = 1;i <= q;i++){
+//         qur[i][0] = lower_bound(all(idx), qur[i][0]) - idx.begin() + 1;
+//         qur[i][1] = lower_bound(all(idx), qur[i][1]) - idx.begin() + 1;
+//         // cerr << qur[i][0] << ' ' << qur[i][1] << endl;
+//     }
+    
+//     vector<array<int, 4>>evt; // rx, bx, w, ty/id  y轴下往上扫
+//     for(int i = 1;i <= q;i++) evt.push_back({qur[i][0], qur[i][1], 0, qur[i][2]});
+
+//     auto dfs = [&](auto self, int l, int r) -> void {
+//         if(l == r) return;
+//         int mxr = 0, mxb = 0, mid = l + r >> 1;
+//         for(int i = l;i <= mid;i++) if(a[i].ty == RED) if(!mxr || a[i].w > a[mxr].w) mxr = i;
+//         for(int i = mid + 1;i <= r;i++) if(a[i].ty == BULE) if(!mxb || a[i].w > a[mxb].w) mxb = i;
+//         if(mxr && mxb){
+//             for(int i = l;i <= mid;i++) if(a[i].ty == RED) evt.push_back({a[i].x, a[mxb].x, a[i].w + a[mxb].w, 0});
+//             for(int i = mid + 1;i <= r;i++) if(a[i].ty == BULE) evt.push_back({a[mxr].x, a[i].x, a[i].w + a[mxr].w, 0});
+//         }
+//         self(self, l, mid), self(self, mid + 1, r);
+//     };
+
+//     dfs(dfs, 1, n*2);
+
+//     sort(all(evt), [&](const array<int, 4> &a1, const array<int, 4> &a2) -> int {
+//         if(a1[1] == a2[1]) return a1[3] > a2[3];
+//         return a1[1] < a2[1];
+//     });
+//     tr.init();
+//     for(auto [rx, bx, w, id] : evt){ //维护后缀max
+//         if(id){
+//             ans[id] = max(ans[id], tr.get_mx(m-rx));
+//         }else{
+//             tr.add(m-rx+1, w);
+//         }
+//     }
+
+//     sort(all(evt), [&](const array<int, 4> &a1, const array<int, 4> &a2) -> int {
+//         if(a1[1] == a2[1]) return a1[3] > a2[3];
+//         return a1[1] > a2[1];
+//     });
+//     tr.init();
+//     for(auto [rx, bx, w, id] : evt){ //维护前缀max
+//         if(id){
+//             ans[id] = max(ans[id], tr.get_mx(rx-1));
+//         }else{
+//             tr.add(rx, w);
+//         }
+//     }
+
+//     for(int i = 1;i <= q;i++) cout << ans[i] << endl;
+
+// } 
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	// cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -941,124 +1085,11 @@ using uint = unsigned long long;
 #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
 const int RED = 0;
 const int BULE = 1;
-const int N = 2e6 + 20;
-
-struct node{
-    int x, y, w, ty;
-};
-
-class BIT{
-public:
-    int tr[N];
-    int lowbit(int x){
-        return x & -x;
-    }
-    void init(){
-        for(int i = 0;i < N;i++) tr[i] = -1;
-    }
-
-    void add(int x, int v){
-        while(x < N){
-            tr[x] = max(tr[x], v);
-            x += lowbit(x);
-        }
-    }
-    int get_mx(int x){
-        int ret = -1;
-        while(x > 0){
-            ret = max(ret, tr[x]);
-            x -= lowbit(x);
-        }
-        return ret;
-    }
-}tr;
+const int N = 1e6 + 2e5 + 20;
 
 
 void solve(){
-    int n, q, m;
-    cin >> n;
-    vector<node>a(2*n + 5);
-    vector<int>idx;
-    for(int i = 1;i <= n;i++){
-        cin >> a[i].x >> a[i].y >> a[i].w;
-        a[i].ty = RED;
-        idx.push_back(a[i].x);
-    }
-    for(int i = n+1;i <= 2*n;i++){
-        cin >> a[i].x >> a[i].y >> a[i].w;
-        a[i].ty = BULE;
-        idx.push_back(a[i].x);
-    }
-    sort(a.begin() + 1, a.begin() + 1 + 2*n, [&](const node& e1, const node& e2) -> int {
-        return e1.y < e2.y;
-    });
 
-    cin >> q;
-    vector<array<int, 3>>qur(q+5);
-    vector<int>ans(q+5, -1);
-    for(int i = 1;i <= q;i++){
-        cin >> qur[i][0] >> qur[i][1];
-        idx.push_back(qur[i][0]), idx.push_back(qur[i][1]);
-        qur[i][2] = i;
-    }
-
-    sort(all(idx));
-    idx.erase(unique(all(idx)), idx.end());
-    m = idx.size() + 1;
-    for(int i = 1;i <= 2*n;i++){
-        a[i].x = lower_bound(all(idx), a[i].x) - idx.begin() + 1;
-        // cerr << a[i].x << ' ' << a[i].y << ' ' << a[i].w << " " << (a[i].ty==RED?"RED":"BULE") << endl;
-    }
-    for(int i = 1;i <= q;i++){
-        qur[i][0] = lower_bound(all(idx), qur[i][0]) - idx.begin() + 1;
-        qur[i][1] = lower_bound(all(idx), qur[i][1]) - idx.begin() + 1;
-        // cerr << qur[i][0] << ' ' << qur[i][1] << endl;
-    }
-
-    auto dfs = [&](auto self, int l, int r) -> void {
-        if(l == r) return;
-        int mxr = 0, mxb = 0, mid = l + r >> 1;
-        for(int i = l;i <= mid;i++) if(a[i].ty == RED) if(!mxr || a[i].w > a[mxr].w) mxr = i;
-        for(int i = mid + 1;i <= r;i++) if(a[i].ty == BULE) if(!mxb || a[i].w > a[mxb].w) mxb = i;
-        if(mxr && mxb){
-            vector<array<int, 4>>evt; // rx, bx, w, ty/id  y轴下往上扫
-            for(int i = l;i <= mid;i++) if(a[i].ty == RED) evt.push_back({a[i].x, a[mxb].x, a[i].w + a[mxb].w, 0});
-            for(int i = mid + 1;i <= r;i++) if(a[i].ty == BULE) evt.push_back({a[mxr].x, a[i].x, a[i].w + a[mxr].w, 0});
-            for(int i = 1;i <= q;i++) evt.push_back({qur[i][0], qur[i][1], 0, qur[i][2]});
-            
-
-            sort(all(evt), [&](const array<int, 4> &a1, const array<int, 4> &a2) -> int {
-                if(a1[1] == a2[1]) return a1[3] > a2[3];
-                return a1[1] < a2[1];
-            });
-            tr.init();
-            for(auto [rx, bx, w, id] : evt){ //维护后缀max
-                if(id){
-                    ans[id] = max(ans[id], tr.get_mx(m-rx));
-                }else{
-                    tr.add(m-rx+1, w);
-                }
-            }
-
-            sort(all(evt), [&](const array<int, 4> &a1, const array<int, 4> &a2) -> int {
-                if(a1[1] == a2[1]) return a1[3] > a2[3];
-                return a1[1] > a2[1];
-            });
-            tr.init();
-            for(auto [rx, bx, w, id] : evt){ //维护前缀max
-                if(id){
-                    ans[id] = max(ans[id], tr.get_mx(rx-1));
-                }else{
-                    tr.add(rx, w);
-                }
-            }
-        }
-        self(self, l, mid), self(self, mid + 1, r);
-    };
-
-    dfs(dfs, 1, n*2);
-
-    for(int i = 1;i <= q;i++) cout << ans[i] << endl;
 
 } 
 
