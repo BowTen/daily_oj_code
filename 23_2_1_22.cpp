@@ -1731,3 +1731,446 @@
 
 // 	return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// using uint = unsigned long long;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>a(n+5), b(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) cin >> b[i];
+
+//     int as = 0, bs = 0;
+//     for(int i = 1;i <= n;i++){
+//         as += a[i];
+//         bs += b[i];
+//     }
+
+//     if(as == bs){
+//         for(int i = 1;i <= n;i++){
+//             if(a[i] != b[i]){
+//                 cout << "1\n";
+//                 return;
+//             }
+//         }
+//         cout << "0\n";
+//     }else if(as > bs){
+//         int f = 0;
+//         for(int i = 1;i <= n;i++){
+//             if(!a[i] && b[i]){
+//                 f = 1;
+//                 break;
+//             }
+//         }
+//         cout << f + (as - bs) << endl;
+//     }else{
+//         int f = 0;
+//         for(int i = 1;i <= n;i++){
+//             if(a[i] && !b[i]){
+//                 f = 1;
+//                 break;
+//             }
+//         }
+//         cout << f + abs(as - bs) << endl;
+//     }
+// } 
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// using uint = unsigned long long;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>a(n+5), b(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 2;i <= n;i++){
+//         b[i] = a[i-1] * a[i] / gcd(a[i], a[i-1]);
+//     }
+//     b[1] = a[1];
+//     b[n+1] = a[n];
+//     for(int i = 1;i <= n;i++){
+//         if(a[i] != gcd(b[i], b[i+1])){
+//             cout << "NO\n";
+//             return;
+//         }
+//     }
+//     cout << "YES\n";
+// } 
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// using uint = unsigned long long;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>a(n+5), d(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i], d[i] = a[i] - i;
+//     d[n+1] = -1e9;
+//     int p = 1, ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         if(d[i] < (1-i)) {
+//             p = i+1;
+//             continue;
+//         }
+//         while(d[p+1] >= (1-i)) p++;
+//         ans += p-i+1;
+//     }
+//     cout << ans << endl;
+// } 
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// using uint = unsigned long long;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int a[N], d[N], s[N], R[N];
+
+// int bit[N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x, int v){
+//     while(x < N){
+//         bit[x] += v;
+//         x += lowbit(x);
+//     }
+// }
+// int getsum(int x){
+//     int ret = 0;
+//     while(x > 0){
+//         ret += bit[x];
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// struct node{
+//     int mx, sum;
+// }tr[N<<2];
+
+// void up(int id){
+//     tr[id].mx = max(tr[ls].mx, tr[rs].mx);
+//     tr[id].sum = tr[ls].sum + tr[rs].sum;
+// }
+// void build(int id, int l, int r){
+//     if(l == r){
+//         tr[id] = {R[l], s[l]};
+//         return;
+//     }
+//     int mid = l + r >> 1;
+//     build(ls, l, mid);
+//     build(rs, mid + 1, r);
+//     up(id);
+// }
+// int getmx(int id, int l, int r, int x){
+//     if(l == r) return l;
+//     int mid = l + r >> 1;
+//     if(tr[ls].mx >= x) return getmx(ls, l, mid, x);
+//     else return getmx(rs, mid + 1, r, x);
+// }
+// int query(int id, int l, int r, int ql, int qr){
+//     if(ql <= l && r <= qr) return tr[id].sum;
+//     int mid = l + r >> 1;
+//     if(qr <= mid) return query(ls, l, mid, ql, qr);
+//     else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//     else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+// }
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> a[i], d[i] = a[i] - i;
+//     d[n+1] = -1e9;
+//     int p = 1, ans = 0, pp = 1;
+//     for(int i = 1;i <= n;i++){
+//         while(p < i || d[p+1] >= (1-i)) p++;
+//         if(pp <= p) pp = p + 1;
+//         while(d[pp+1] >= (1-i)) pp++;
+//         s[i] = p-i+1;
+//         R[i] = p;
+//         add(i, pp-i+1);
+//         ans += s[i];
+//     }
+
+//     build(1, 1, n);
+
+//     // for(int i = 1;i <= n;i++) cerr << R[i] << ' ';
+//     // cerr << endl;
+
+//     int q;
+//     cin >> q;
+//     while(q--){
+//         int p, x;
+//         cin >> p >> x;
+//         // cerr << p << ' ' << x << endl;
+//         int ret = ans;
+//         if(x < a[p]){
+//             int f = getmx(1, 1, n, p);
+//             if(f < (p-x+1)){
+//                 ret -= query(1, 1, n, f, p-x);
+//                 int cnt = (p-x)-f+1;
+//                 ret += (cnt*(2*x+cnt-1))/2;
+//             }
+//         }else if(x > a[p]){
+//             int l = lower_bound(R+1, R+1+n, p-1) - R;
+//             int r = upper_bound(R+1, R+1+n, p-1) - R - 1;
+//             // cerr << l << ' ' << r << endl;
+//             l = max(l, p-x+1);
+//             if(l <= r){
+//                 ret -= query(1, 1, n, l, r);
+//                 ret += getsum(r) - getsum(l-1);
+//             }
+//         }
+//         cout << ret << endl;
+//     }
+
+// } 
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	// cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+using uint = unsigned long long;
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+#define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+const int N = 2e5 + 10;
+const int inf = 0x3f3f3f3f3f3f3f3f;
+const int mod = 998244353;
+
+void solve(){
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    s = ' ' + s;
+
+    int cnt = 0;
+    for(int i = 1;i <= n*2;i++) cnt += s[i] == '1';
+
+    if(cnt & 1){
+        cout << "-1\n";
+        return;
+    }
+
+    vector<int>mv;
+    for(int i = 1;i <= cnt;i++){
+        if(s[i] == '0') mv.push_back(i);
+    }
+    for(int i = 1+cnt;i <= 2*n;i++){
+        if(s[i] == '1') mv.push_back(i);
+    }
+
+    cout << mv.size() << ' ';
+    for(auto e : mv) cout << e << ' ';
+    cout << endl;
+    for(int i = 1;i <= cnt/2;i++) cout << i << ' ';
+    for(int i = cnt + 1;i - cnt + cnt/2 <= n;i++) cout << i << ' ';
+    cout << endl;
+} 
+
+signed main(){
+
+	IO;
+	int t = 1;
+	cin >> t;
+	while(t--) solve();
+
+	return 0;
+}
+
+// 1
+// 00
+// 1
+// 10
+// 1
+// 01
+// 1
+// 11
+// 2
+// 0000
+// 2
+// 1000
+// 2
+// 0100
+// 2
+// 1100
+// 2
+// 0010
+// 2
+// 1010
+// 2
+// 0110
+// 2
+// 1110
+// 2
+// 0001
+// 2
+// 1001
+// 2
+// 0101
+// 2
+// 1101
+// 2
+// 0011
+// 2
+// 1011
+// 2
+// 0111
+// 2
+// 1111
+// 3
+// 000000
+// 3
+// 100000
+// 3
+// 010000
+// 3
+// 110000
+// 3
+// 001000
+// 3
+// 101000
+// 3
+// 011000
+// 3
+// 111000
+// 3
+// 000100
+// 3
+// 100100
+// 3
+// 010100
+// 3
+// 110100
+// 3
+// 001100
+// 3
+// 101100
+// 3
+// 011100
+// 3
+// 111100
+// 3
+// 000010
+// 3
+// 100010
+// 3
+// 010010
+// 3
+// 110010
+// 3
+// 001010
+// 3
+// 101010
+// 3
+// 011010
+// 3
+// 111010
+// 3
+// 000110
+// 3
+// 100110
+// 3
+// 010110
+// 3
+// 110110
+// 3
+// 001110
+// 3
+// 101110
