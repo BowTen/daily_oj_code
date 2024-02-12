@@ -2302,3 +2302,103 @@
 
 // 	return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// using uint = unsigned long long;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 2e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int dp[N], vis[N], pre[N];
+
+// void solve(){
+//     int n, x, y, s, m, ox;
+//     cin >> n >> x >> y >> s;
+//     ox = x;
+//     m = x % y;
+//     s -= n * m;
+
+//     if(s % y || s < 0){
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     s /= y;
+//     x /= y;
+
+//     int len = inf, p;
+//     for(int i = x, j = 1;x <= s;i++, j++){
+//         if(len > j + 1 + dp[s-x]){
+//             len = j + 1 + dp[s-x];
+//             p = j;
+//         }
+//         x += i+1;
+//     }
+
+
+//     if(len > n){
+//         cout << "NO\n";
+//     }else{
+//         cout << "YES\n";
+
+//         vector<int>ans;
+
+//         for(int i = 1;i <= p;i++){
+//             s -= ox/y;
+//             ans.push_back(ox);
+//             ox += y;
+//         }
+
+//         for(int i = 1;i * (i+1) / 2 <= s;i++){
+//             int v = i * (i+1) / 2;
+//             while(v <= s && dp[s-v] + 1 + i == dp[s]){
+//                 ans.push_back(m);
+//                 for(int j = 1;j <= i;j++) ans.push_back(m + j * y);
+//                 s -= v;
+//             }
+//         }
+//         while(ans.size() < n) ans.push_back(m);
+
+//         for(auto e : ans) cout << e << ' ';
+
+//         cout << endl;
+//     }
+// }
+
+// signed main(){
+
+// 	IO;
+
+//     int s = 0;
+//     for(int i = 1;s + i < N;i++){
+//         s += i;
+//         dp[s] = i;
+//         vis[s] = 1;
+//     }
+
+//     vector<int>num;
+//     for(int i = 1;i < N;i++){
+//         if(vis[i]){
+//             num.push_back(i);
+//         }else{
+//             dp[i] = dp[num.back()] + dp[i-num.back()] + 1;
+//             for(auto e : num) dp[i] = min(dp[i], dp[e] + dp[i-e] + 1);
+//         }
+//     }
+
+//     dp[0] = -1;
+
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
