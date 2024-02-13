@@ -2848,3 +2848,68 @@
 
 // 	return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 500 + 10;
+// const int M = 5e4 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+// struct edge{
+//     int to, ne;
+// }e[M<<1];
+
+// int head[N], tot;
+// void add(int u, int v){
+//     e[++tot] = {v, head[u]};
+//     head[u] = tot;
+// }
+
+// int vis[N], match[N];
+
+// int dfs(int u){
+//     for(int i = head[u];i;i = e[i].ne) if(!vis[e[i].to]){
+//         int v = e[i].to;
+//         vis[v] = 1;
+//         if(!match[v] || dfs(match[v])){
+//             match[v] = u;
+//             return 1;
+//         }
+//     }
+//     return 0;
+// }
+
+// void solve(){
+//     int n, m, k;
+//     cin >> n >> m >> k;
+//     for(int i = 1, u, v;i <= k;i++){
+//         cin >> u >> v;
+//         add(u, v);
+//     }
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++){
+//         memset(vis, 0, sizeof(vis));
+//         ans += dfs(i);
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	// cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
