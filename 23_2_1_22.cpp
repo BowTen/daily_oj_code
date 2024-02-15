@@ -2913,3 +2913,634 @@
 
 // 	return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 500 + 10;
+// const int M = 5e4 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n, k;
+//     cin >> n >> k;
+//     vector<int>a(n+5), b(k+5);
+
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         b[i%k] = max(b[i%k], a[i]);
+//     }
+
+//     int ans = 0;
+//     for(int i = 0;i < k;i++) ans += b[i];
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 500 + 10;
+// const int M = 5e4 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n, x, y;
+//     cin >> n >> x >> y;
+//     if((x && y) || (!x && !y)){
+//         cout << "-1\n";
+//         return;
+//     }
+
+//     x = max(x, y);
+
+//     if((n-1) % x){
+//         cout << "-1\n";
+//         return;
+//     }
+
+//     int cur = 2;
+//     for(int i = 1, j = 1;i <= n-1;i++, j++){
+//         cout << cur << ' ';
+//         if(j == x){
+//             cur += x;
+//             j = 0;
+//         }
+//     }
+//     cout << endl;
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 500 + 10;
+// const int M = 5e4 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>a(n+5), b(n+5);
+//     for(int i = 1;i <= n;i ++) cin >> a[i], b[i] = a[i] & 1;
+
+//     vector<array<int, 2>>ans;
+//     int f = 0;
+//     for(int i = n;i >= 1;i--){
+//         if(f){
+//             if(b[i] == b[1]) ans.push_back({i, f});
+//         }else{
+//             if(b[i] == b[1]) f = i;
+//         }
+//     }
+//     for(int i = 2;i <= n;i++){
+//         if(b[i] != b[1]) ans.push_back({1, i});
+//     }
+
+//     cout << ans.size() << endl;
+//     for(auto [l, r] : ans) cout << l << ' ' << r << endl;
+
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 500 + 10;
+// const int M = 5e4 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n, x, y;
+//     cin >> n >> x >> y;
+//     string a, b;
+//     cin >> a >> b;
+
+//     int cnt = 0;
+//     for(int i = 0;i < n;i++) cnt += (a[i] != b[i]);
+
+//     if(cnt & 1) {
+//         cout << "-1\n";
+//         return;
+//     }
+
+//     if(cnt > 2){
+//         cout << cnt/2 * y << endl;
+//     }else if(cnt == 2){
+//         for(int i = 0;i < n;i++){
+//             if(a[i] != b[i]){
+//                 if(a[i+1] != b[i+1]){
+//                     cout << min(x, 2*y) << endl;
+//                 }else{
+//                     cout << y << endl;
+//                 }
+//                 break;
+//             }
+//         }
+//     }else{
+//         cout << "0\n";
+//     }
+
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 500 + 10;
+// const int M = 5e4 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n, x, y;
+//     cin >> n >> x >> y;
+//     string a, b;
+//     cin >> a >> b;
+
+//     int cnt = 0;
+//     for(int i = 0;i < n;i++) cnt += (a[i] != b[i]);
+
+//     if(cnt & 1) {
+//         cout << "-1\n";
+//         return;
+//     }
+
+//     if(y <= x){
+//         if(cnt > 2){
+//             cout << cnt/2 * y << endl;
+//         }else if(cnt == 2){
+//             for(int i = 0;i < n;i++){
+//                 if(a[i] != b[i]){
+//                     if(a[i+1] != b[i+1]){
+//                         cout << min(x, 2*y) << endl;
+//                     }else{
+//                         cout << y << endl;
+//                     }
+//                     break;
+//                 }
+//             }
+//         }else{
+//             cout << "0\n";
+//         }
+//     }else{
+
+//         vector<int>d;
+//         d.push_back(0);
+//         for(int i = 0;i < n;i++) if(a[i] != b[i]){
+//             d.push_back(i+1);
+//         }
+//         vector<vector<int>>dp(cnt + 5, vector<int>(cnt+5));
+
+//         for(int len = 2;len <= cnt;len += 2){
+//             for(int l = 1, r = l + len-1;r <= cnt;l++, r++){
+//                 if(len == 2) dp[l][r] = min(y, (d[r]-d[l])*x);
+//                 else dp[l][r] = min({dp[l+2][r] + min(y, (d[l+1]-d[l])*x), dp[l][r-2] + min(y, (d[r]-d[r-1])*x), dp[l+1][r-1] + y});
+//             }
+//         }
+    
+//         cout << dp[1][cnt] << endl;
+//     }   
+
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int t = 1;
+// 	cin >> t;
+// 	while(t--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 1000 + 10;
+// const int M = 1e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, m, E, s, t;
+
+// int tot = 1, h[N];  //正边 ^ 1 == 反边， 所以编号从2开始
+// struct edge{
+//     int v, c, ne;
+// }e[M<<1];  //需要建反边，边数开两倍空间
+// void add(int u, int v, int c){
+//     e[++tot] = {v, c, h[u]};
+//     h[u] = tot;
+// }
+
+// int dep[N], cur[N];
+
+// bool bfs(){  //先对点分层，减小dfs深度
+//     for(int i = 1;i <= n+m+2;i++) dep[i] = 0;
+//     dep[s] = 1;
+//     queue<int>q;
+//     q.push(s);
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         for(int i = h[u];i;i = e[i].ne){
+//             int v = e[i].v;
+//             if(dep[v] == 0 && e[i].c){
+//                 dep[v] = dep[u] + 1;
+//                 q.push(v);
+//                 if(v == t) return true;
+//             }
+//         }
+//     }
+//     return false;
+// } 
+
+// int dfs(int u, int mf){  //多路增广
+//     if(u == t) return mf;
+//     int sum = 0;
+//     for(int i = cur[u];i;i = e[i].ne){
+//         cur[u] = i;  //当前弧优化
+//         int v = e[i].v;
+//         if(dep[v] == dep[u] + 1 && e[i].c){
+//             int f = dfs(v, min(mf, e[i].c));
+//             e[i].c -= f;   //更新残留网
+//             e[i^1].c += f;
+//             sum += f;
+//             mf -= f;
+//             if(mf == 0) break;
+//         }
+//     }
+//     if(sum == 0) dep[u] = 0;  //残枝优化
+//     return sum;
+// }
+
+// int Dinic(){  //累加可行流
+//     int flow = 0;
+//     while(bfs()){
+//         for(int i = 1;i <= n+m+2;i++) cur[i] = h[i];
+//         flow += dfs(s, inf);
+//     }
+//     return flow;
+// }
+
+// void solve(){
+//     cin >> n >> m >> E;
+//     s = n + m + 1, t = s + 1;
+//     for(int i = 1, u, v;i <= E;i++){
+//         cin >> u >> v;
+//         v += n;
+//         add(u, v, 1);
+//         add(v, u, 0);  //建正边后立刻建上反边
+//     }
+//     for(int i = 1;i <= n;i++){
+//         add(s, i, 1);
+//         add(i, s, 0);
+//     }
+//     for(int i = 1 + n;i <= n + m;i++){
+//         add(i, t, 1);
+//         add(t, i, 0);
+//     }
+
+//     cout << Dinic() << endl;
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	// cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 1000 + 10;
+// const int M = 1e5 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+// int n, m, E, s, t;
+
+// int tot = 1, h[N];  //正边 ^ 1 == 反边， 所以编号从2开始
+// struct edge{
+//     int v, c, ne;
+// }e[M<<1];  //需要建反边，边数开两倍空间
+// void add(int u, int v, int c){
+//     e[++tot] = {v, c, h[u]};
+//     h[u] = tot;
+// }
+
+// int mf[N], pre[N];
+// bool bfs(){  //增广
+//     for(int i = 1;i <= n+m+2;i++) mf[i] = 0;
+//     mf[s] = inf;
+//     queue<int>q;
+//     q.push(s);
+//     while(q.size()){
+//         int u = q.front();
+//         q.pop();
+//         for(int i = h[u];i;i = e[i].ne){
+//             int v = e[i].v;
+//             if(mf[v] == 0 && e[i].c){
+//                 mf[v] = min(e[i].c, mf[u]);
+//                 pre[v] = i;
+//                 q.push(v);
+//                 if(v == t) return true;
+//             }
+//         }
+//     }
+//     return false;
+// }   
+
+// int EK(){  //累加可行流
+//     int flow = 0;
+//     while(bfs()){
+//         int v = t;
+//         while(v != s){  //更新残留网
+//             int i = pre[v];
+//             e[i].c -= mf[t];
+//             e[i^1].c += mf[t];
+//             v = e[i^1].v;
+//         }
+//         flow += mf[t];
+//     }
+//     return flow;
+// }
+
+
+// void solve(){
+//     cin >> n >> m >> E;
+//     s = n + m + 1, t = s + 1;
+//     for(int i = 1, u, v;i <= E;i++){
+//         cin >> u >> v;
+//         v += n;
+//         add(u, v, 1);
+//         add(v, u, 0);  //建正边后立刻建上反边
+//     }
+//     for(int i = 1;i <= n;i++){
+//         add(s, i, 1);
+//         add(i, s, 0);
+//     }
+//     for(int i = 1 + n;i <= n + m;i++){
+//         add(i, t, 1);
+//         add(t, i, 0);
+//     }
+
+//     cout << EK() << endl;
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	// cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 500 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+// int n,m;
+// int e[N][N];
+
+// int lx[N],ly[N],slack[N];
+// int px[N],py[N],pre[N];
+// bool vx[N],vy[N];
+
+// queue<int> q;
+// void aug(int v)
+// {
+// 	int t;
+// 	while(v)
+// 	{
+// 		t=px[pre[v]];
+// 		px[pre[v]]=v;
+// 		py[v]=pre[v];
+// 		v=t;
+// 	}
+// }
+// void bfs(int s)
+// {
+// 	memset(vx,0,sizeof(vx));
+// 	memset(vy,0,sizeof(vy));
+// 	fill(slack+1,slack+n+1,inf);
+	
+// 	while(!q.empty())q.pop();
+// 	q.push(s);
+	
+// 	while(1)
+// 	{
+// 		while(!q.empty())
+// 		{
+// 			int u=q.front();q.pop();
+// 			vx[u]=1;
+// 			for(int i=1;i<=n;++i)if(!vy[i])
+// 			{
+// 				if(lx[u]+ly[i]-e[u][i]<slack[i])
+// 				{
+// 					slack[i]=lx[u]+ly[i]-e[u][i];
+// 					pre[i]=u;
+// 					if(slack[i]==0)
+// 					{
+// 						vy[i]=1;
+// 						if(!py[i]){aug(i);return;}
+// 						else q.push(py[i]);
+// 					}
+// 				}
+// 			}
+// 		}
+// 		int d=inf;
+// 		for(int i=1;i<=n;++i)if(!vy[i])d=min(d,slack[i]);
+// 		for(int i=1;i<=n;++i)
+// 		{
+// 			if(vx[i])lx[i]-=d;
+// 			if(vy[i])ly[i]+=d;else slack[i]-=d;
+// 		}
+// 		for(int i=1;i<=n;++i)if(!vy[i])
+// 		{
+// 			if(slack[i]==0)
+// 			{
+// 				vy[i]=1;
+// 				if(!py[i]){aug(i);return;}
+// 				else q.push(py[i]);
+// 			}
+// 		}
+// 	}
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= n;j++){
+//             e[i][j] = -inf;
+//         }
+//     }
+
+//     for(int i = 1, u, v, w;i <= m;i++){
+//         cin >> u >> v >> w;
+//         e[u][v] = w;
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         lx[i] = -inf;   
+//         for(int j = 1;j <= n;j++){
+//             lx[i] = max(lx[i], e[i][j]);
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++) bfs(i);
+
+
+//     int ans = 0;
+//     for(int i = 1;i <= n;i++) ans += e[py[i]][i];
+
+//     cout << ans << endl;
+//     for(int i = 1;i <= n;i++) cout << py[i] << ' ';
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	// cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+#define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+const int N = 2e5 + 10;
+const int inf = 0x3f3f3f3f3f3f3f3f;
+const int mod = 998244353;
+
+
+
+void solve(){
+
+}
+
+signed main(){
+
+	IO;
+	int T = 1;
+	// cin >> T;
+	while(T--) solve();
+
+	return 0;
+}
