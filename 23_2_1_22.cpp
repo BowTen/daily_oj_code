@@ -4613,3 +4613,343 @@
 
 // 	return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int N = 3e5 + 10;
+// const int M = N * 50;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// const int mxn = 2e9;
+
+
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     vector<int>a(m+5);
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             int x;
+//             cin >> x;
+//             if(x) a[j] = i;
+//         }
+//     }
+
+//     vector<vector<int>>dp(n+5, vector<int>(m+5));
+//     for(int i = 0;i <= m;i++){
+//         dp[0][i] = dp[n+1][i] = inf;
+//     }
+
+//     for(int j = 1;j <= m;j++){
+//         for(int i = 1;i <= n;i++){
+//             dp[i][j] = min({dp[i-1][j-1], dp[i][j-1], dp[i+1][j-1]}) + abs(a[j] - i);
+//         }
+//     }
+
+//     int ans = inf;
+//     for(int i = 1;i <= n;i++) ans = min(ans, dp[i][m]);
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	// cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int N = 3e5 + 10;
+// const int M = N * 50;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// const int mxn = 2e9;
+
+
+
+
+// void solve(){
+//     int n, x, a, c;
+//     cin >> n >> x >> a >> c;
+//     vector<int>t(n+5);
+//     for(int i = 1;i <= n;i++) cin >> t[i];
+
+//     int ans = 0, F = 0, con = 0;
+//     for(int i = 1;i <= n;i++){
+//         ans += F;
+//         if(F){
+//             if(t[i] <= x) con++;
+//             else con = 0;
+//             if(con == c){
+//                 F = 0;
+//                 con = 0;
+//             }
+//         }else{
+//             if(t[i] > x) con++;
+//             else con = 0;
+//             if(con == a){
+//                 F = 1;
+//                 con = 0;
+//             }
+//         }
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int N = 3e5 + 10;
+// const int M = N * 50;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// const int mxn = 2e9;
+
+
+// void solve(){
+//     cout << "I have read the rules of the competition above and fully understand the meaning of each rule. I understand and acknowledge the following:\n";    
+//     cout << "1. Each player on my team can use one computer for the competition, and multiple computers can be used simultaneously.\n";
+//     cout << "2. During the competition, I can use the Internet but cannot communicate with other teams.\n";
+//     cout << "3. The problems in this competition are not ordered by difficulty, so if I encounter a problem I don't know how to solve, I should continue reading the next problem.";
+// }
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	// cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 3e5 + 10;
+// const int M = N * 50;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// const int mxn = 2e9;
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     string s;
+//     cin >> s;
+//     vector<char>disp(300), real(300);
+//     for(int i = 1;i <= 200;i++) disp[i] = real[i] = i;
+
+//     while(m--){
+//         char a, b;
+//         cin >> a >> b;
+//         swap(disp[real[a]], disp[real[b]]);
+//         real[disp[a]] = a;
+//         real[disp[b]] = b;
+//     }
+
+//     for(auto c : s) cout << disp[c];
+// }
+
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	// cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 3e5 + 10;
+// const int M = N * 50;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// const int mxn = 2e9;
+
+
+// void solve(){
+//     int d, l;
+//     cin >> d >> l;
+//     if(l >= d) cout << "gg";
+//     else cout << 0;
+// }
+
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	// cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// const int N = 3e5 + 10;
+// const int M = N * 50;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// const int mxn = 2e9;
+// int n;
+// vector<int>warp(32);
+
+// void fun(int op, int mask, int d){
+//     vector<int>tmp(warp);
+//     int tg;
+//     for(int i = 0;i < 32;i++) if((i & mask) == mask){
+//         if(op == 0) tg = i - d;
+//         else if(op == 1) tg = i + d;
+//         else tg = i ^ d;
+//         if(tg >= 0 && tg < 32 && (tg & mask) == mask) warp[i] += tmp[tg];
+//     }
+// }
+
+// void solve(){
+//     cin >> n;
+//     for(int i = 0;i < 32;i++) cin >> warp[i];
+
+//     while(n--){
+//         int op, mask, d;
+//         cin >> op >> mask >> d;
+//         fun(op, mask, d);
+//     }
+
+//     int ans = 0;
+//     for(int i = 0;i < 32;i++) ans ^= warp[i];
+//     cout << ans << endl;
+// }
+
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int N = 3e5 + 10;
+// const int M = N * 50;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// const int mxn = 2e9;
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     string s;
+//     cin >> s;
+//     vector<char>fa(300), son(300);
+//     for(int i = 1;i <= 200;i++) fa[i] = son[i] = i;
+
+//     while(m--){
+//         char a, b;
+//         cin >> a >> b;
+//         swap(fa[son[a]], fa[son[b]]);
+//         swap(son[a], son[b]);
+//     }
+
+//     for(auto c : s) cout << fa[c];
+// }
+
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	// cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
