@@ -4953,3 +4953,96 @@
 
 // 	return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int N = 1e6 + 10;
+// const int M = N * 50;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 1e9 + 7;
+// const int mxn = 2e9;
+
+// int tr[N];
+// int lowbit(int x){
+//     return x & -x;
+// }
+// void add(int x, int v){
+//     while(x < N){
+//         tr[x] = (tr[x] + v) % mod;
+//         x += lowbit(x);
+//     }
+// }
+// int getsum(int x){
+//     int ret = 0;
+//     while(x > 0){
+//         ret = (ret + tr[x]) % mod;
+//         x -= lowbit(x);
+//     }
+//     return ret;
+// }
+
+// int debuff = 0, focus = 0, siz = 3;
+// queue<int>ball;
+
+// void solve(){
+//     int q, ans = 0;
+//     cin >> q;
+//     for(int i = 1;i <= q;i++){
+//         int op;
+//         cin >> op;
+//         if(op == 1){
+//             if(ball.size() + 1 > siz){
+//                 int st = ball.front();
+//                 ball.pop();
+//                 ans += 6 + ((getsum(q) - getsum(st-1) + mod) % mod);
+//             }
+//             ball.push(i);
+//             add(i, max(6 + focus, 0ll));
+//         }else if(op == 2){
+//             int k;
+//             cin >> k;
+//             siz += k;
+//         }else if(op == 3){
+//             int m;
+//             cin >> m;
+//             focus += m;
+//         }else if(op == 4){
+//             int a, b;
+//             cin >> a >> b;
+//             focus += a;
+//             debuff += b;
+//         }else if(op == 5){
+//             if(ball.empty()) continue;
+//             int st = ball.front();
+//             ball.pop();
+//             ball.push(st);
+//             ans += 6 + ((getsum(q) - getsum(st-1) + mod) % mod);
+//         }else if(op == 6){
+//             add(i, max(6 + focus, 0ll));
+//             focus -= debuff;
+//         }
+//         ans %= mod;
+//     }
+
+//     cout << ans << endl;
+// }
+
+
+// signed main(){
+
+// 	IO;
+// 	int T = 1;
+// 	// cin >> T;
+// 	while(T--) solve();
+
+// 	return 0;
+// }
