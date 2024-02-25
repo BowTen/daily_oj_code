@@ -2634,3 +2634,169 @@
 
 //     return 0;
 // }
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define all(x) (x).begin(), (x).end()
+#define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+#define ls id << 1
+#define rs id << 1 | 1
+#define endl '\n'
+const int N = 5e5 + 10;
+const int mod = 998244353;
+const int inf = 0x3f3f3f3f3f3f3f3f;
+
+struct harbour{
+    int x, v;
+    int operator<(const harbour& e) {
+        if(x != e.x) return x < e.x;
+        return v < e.v;
+    }
+};
+
+class Tree{
+public:
+
+    struct Tag{
+        int ac, a1, d;
+        Tag() : ac(0), a1(0), d(0) {};
+        Tag(int ac, int st, int a1, int d) : ac(ac), a1(a1), d(d) {};
+    };
+
+    int mxn;
+    vector<int>sum, len, L, R, atag;
+    vector<Tag>tag;
+
+    Tree(int n) : mxn(n), sum(n*4+5), len(n*4+5), L(n*4+5), R(n*4+5), tag(n*4+5), atag(n*4+5) {
+        build(1, 1, mxn);
+    }
+
+    void up(int id){
+        sum[id] = sum[ls] + sum[rs];
+        len[id] = len[ls] + len[rs];
+    }
+
+    void build(int id, int l, int r){
+        L[id] = l, R[id] = r;
+        if(l == r) {
+            len[id] = 1;
+            return;
+        }
+        int mid = l + r >> 1;
+        build(ls, l, mid);
+        build(rs, mid + 1, r);
+        up(id);
+    }
+
+    void settag(int id, int a1, int d) {
+        tag[id].ac = 1;
+        sum[id] += len[id] * (a1 + a1 + (len[id] - 1) * d) / 2;
+        tag[id].a1 += a1;
+        tag[id].d += d;
+    }
+
+    void down(int id){
+        settag(ls, tag[id].a1, tag[id].d);
+        settag(rs, tag[id].a1 + ((len[id]+1)/2)*tag[id].d, tag[id].d);
+        tag[id] = Tag();
+    }
+
+    void setatag(int id, int v) {
+        sum[id] += len[id] * v;
+        atag[id] += v;
+    }
+
+    void downa(int id){
+        setatag(ls, atag[id]);
+        setatag(rs, atag[id]);
+        atag[id] = 0;
+    }
+
+    void modify(int id, int l, int r, int ql, int qr, int a1, int d) {
+        if(ql <= l && r <= qr){
+            settag(id, a1 + (l-ql) * d, d);
+            return;
+        }
+        if(tag[id].ac) down(id);
+        if(atag[id]) downa(id);
+        int mid = l + r >> 1;
+        if(qr <= mid) modify(ls, l, mid, ql, qr, a1, d);
+        else if(ql > mid) modify(rs, mid + 1, r, ql, qr, a1, d);
+        else modify(ls, l, mid, ql, qr, a1, d), modify(rs, mid + 1, r, ql, qr, a1, d);
+        up(id);
+    }
+
+    void add(int id, int l, int r, int ql, int qr, int v){
+        if(ql <= l && r <= qr) {
+            setatag(id, v);
+            return;
+        }
+        if(tag[id].ac) down(id);
+        if(atag[id]) downa(id);
+        int mid = l + r >> 1;
+        if(qr <= mid) add(ls, l, mid, ql, qr, v);
+        else if(ql > mid) add(rs, mid + 1, r, ql, qr, v);
+        else add(ls, l, mid, ql, qr, v), add(rs, mid + 1, r, ql, qr, v);
+        up(id);
+    }
+
+    void change(int id, int l, int r, int x, int v){
+        if(l == r){
+            sum[id] = v;
+            return;
+        }
+        if(tag[id].ac) down(id);
+        if(atag[id]) downa(id);
+        int mid = l + r >> 1;
+        if(x <= mid) change(ls, l, mid, x, v);
+        else change(rs, mid + 1, r, x, v);
+        up(id);
+    }
+};
+
+void solve(){
+    int n, m, q;
+    cin >> n >> m >> q;
+    Tree tr(n);
+    set<harbour>hb;
+    vector<harbour>a(m+5);
+
+    for(int i = 1;i <= n;i++) cin >> a[i].x;
+    for(int i = 1;i <= n;i++){
+        cin >> a[i].v;
+        hb.insert(a[i]);
+    }
+
+    sort(a.begin() + 1, a.begin() + 1 + m);
+    for(int i = 1;i + 1 <= m;i++){
+        int l = a[i].x+1, r = a[i+1].x-1;
+        if(l <= r){
+            tr.modify(1, 1, n, l, r, (a[i+1].x - (a[i].x+1)) * a[i].v, -a[i].v);
+        }
+    }
+
+    while(q--){
+        int op, x, y;
+        cin >> op >> x >> y;
+        if(op == 1){
+            hb.insert({x, y});
+            
+        }else{
+
+        }
+    }
+}
+
+signed main(){
+
+    IO;
+    int T = 1;
+    // cin >> T;
+    while(T--) solve();
+
+    return 0;
+}
