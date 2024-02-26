@@ -3051,3 +3051,84 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// const int N = 1010;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int n, m, s, t;
+//     cin >> n >> m;
+//     s = m+1, t = m+2;
+//     vector<int>x(m+5), y(m+5), idx(m);
+//     vector<vector<array<int, 2>>>g(m+5);
+//     cin >> x[s] >> y[s] >> x[t] >> y[t];
+
+//     g[s].push_back({t, abs(x[s]-x[t]) + abs(y[s]-y[t])});
+
+//     for(int i = 1;i <= m;i++){
+//         cin >> x[i] >> y[i];
+//         g[i].push_back({t, abs(x[i]-x[t]) + abs(y[i]-y[t])});
+//         g[s].push_back({i, min(abs(x[i]-x[s]), abs(y[i]-y[s]))});
+//     }
+
+//     iota(all(idx), 1);
+    
+//     sort(all(idx), [&](int i, int j) -> int {
+//         return x[i] < x[j];
+//     });
+//     for(int i = 0;i + 1 < idx.size();i++){
+//         int u = idx[i], v = idx[i+1];
+//         g[u].push_back({v, x[v] - x[u]});
+//         g[v].push_back({u, x[v] - x[u]});
+//     }
+
+//     sort(all(idx), [&](int i, int j) -> int {
+//         return y[i] < y[j];
+//     });
+//     for(int i = 0;i + 1 < idx.size();i++){
+//         int u = idx[i], v = idx[i+1];
+//         g[u].push_back({v, y[v] - y[u]});
+//         g[v].push_back({u, y[v] - y[u]});
+//     }
+    
+//     vector<int>dis(m+5, inf), vis(m+5);
+//     dis[s] = 0;
+//     priority_queue<array<int,2>, vector<array<int,2>>, greater<array<int, 2>>>que;
+//     que.push({dis[s], s});
+
+//     while(que.size()){
+//         auto [d, u] = que.top();
+//         que.pop();
+//         if(vis[u]) continue;
+//         vis[u] = 1;
+//         for(auto [v, w] : g[u]) if(!vis[v] && d + w < dis[v]){
+//             dis[v] = d + w;
+//             que.push({dis[v], v});
+//         }
+//     }
+
+//     cout << dis[t] << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
