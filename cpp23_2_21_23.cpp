@@ -2821,3 +2821,233 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// const int N = 5e5 + 10;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<vector<int>>mp(n, vector<int>(n)), f(1<<n, vector<int>(n, inf));
+//     for(int i = 0;i < n;i++){
+//         for(int j = 0;j < n;j++){
+//             cin >> mp[i][j];
+//         }
+//     }
+
+//     f[1][0] = 0;
+//     for(int i = 1;i < (1<<n);i++){
+//         for(int k = 0;k < n;k++) if(i-(1<<k) == (i^(1<<k))){
+//             for(int j = 0;j < n;j++) if(i+(1<<j) == (i^(1<<j))){
+//                 int ne = i + (1<<j);
+//                 if(ne == (1<<n)-1){
+//                     f[ne][j] = min(f[ne][j], f[i][k] + mp[j][k] + mp[0][j]);
+//                 }else{
+//                     f[ne][j] = min(f[ne][j], f[i][k] + mp[j][k]);
+//                 }
+//             }
+//         }
+//     }
+
+//     int ans = inf;
+//     for(int i = 0;i < n;i++) ans = min(ans, f[(1<<n) - 1][i]);
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// const int N = 301;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+// bool isprime[N];
+// int prime[N];
+// int cnt;
+// int pid[N];
+
+// void euler() {
+//     memset(isprime, true, sizeof(isprime));
+//     isprime[1] = false;
+//     for(int i = 2;i < N;i++){
+//         if(isprime[i]) prime[++cnt] = i;
+//         for(int j = 1;j <= cnt && prime[j] * i < N;j++){
+//             isprime[prime[j] * i] = false;
+//             if(i % prime[j] == 0) break;
+//         }
+//     }
+//     for(int i = 1;i <= cnt;i++) pid[prime[i]] = i;
+// }
+
+// void solve(){
+//     int n, ans = 0;
+//     cin >> n;
+//     vector<int>a(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+
+//     map<int,int>mp;
+
+//     int cur = 0;
+//     for(int i = 1;i <= n;i++){
+//         mp[cur]++;
+//         for(int j = 1;j <= cnt;j++){
+//             int tmp = 0;
+//             while(a[i] % prime[j] == 0){
+//                 tmp++;
+//                 a[i] /= prime[j];
+//             }
+//             if(tmp & 1) cur ^= (1ll << (j-1));
+//         }
+//         ans += mp[cur];
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     euler();
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// const int N = 1010;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+// int a[N], mx[N];
+
+// void solve(){
+//     int n, l, r;
+//     cin >> n >> l >> r;
+//     int tp = r - l;
+//     if(mx[n] <= tp){
+//         for(int i = 1;i <= n;i++) cout << a[i]+l << ' ';
+//         cout << endl;
+//     }else{
+//         cout << -1 << endl;
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+//     a[0] = -1;
+//     for(int i = 1;i < N;i++){
+//         if(i & 1) a[i] = a[i-1] + 3;
+//         else a[i] = a[i-1] - 2;
+//         mx[i] = max(mx[i-1], a[i]);
+//     }
+
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// const int N = 1010;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     vector<int>ver(n+5), h;
+//     for(int i = 1;i <= n;i++) cin >> ver[i];
+//     for(int i = 1, l, r, y;i <= m;i++){
+//         cin >> l >> r >> y;
+//         if(l > 1) continue;
+//         h.push_back(r);
+//     }
+
+//     sort(all1(ver));
+//     ver[n+1] = 1e9;
+//     sort(all(h));
+
+//     int ans = h.size();
+//     for(int i = 1, j = 0;i <= n+1;i++){
+//         int tmp = i-1;
+//         while(j < h.size() && ver[i] > h[j]){
+//             j++;
+//         }
+//         tmp += h.size() - j;
+//         ans = min(ans, tmp);
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
