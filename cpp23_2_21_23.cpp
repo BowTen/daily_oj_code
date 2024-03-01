@@ -4909,3 +4909,225 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     vector<int>c(n+5);
+//     for(int i = 1;i <= n;i++) cin >> c[i];
+
+//     vector<vector<int>>mp(n+5, vector<int>(m+5)), id(n+5, vector<int>(m+5));
+//     vector<int>val(n*m+10);
+//     int tot = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             cin >> mp[i][j];
+//             id[i][j] = ++tot;
+//             val[tot] = mp[i][j];
+//         }
+//     }
+
+//     vector<vector<array<int,2>>>g(n*m*2+10);
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j < m;j++){
+//             int u = id[i][j], v = id[i][j+1];
+//             g[u].push_back({v, 0});
+//             g[v].push_back({u, 0});
+//         }
+//         for(int j = 1;j <= m;j++){
+//             int u = id[i][j], fa = u + tot;
+//             g[u].push_back({fa, c[i]});
+//             g[fa].push_back({u, 0});
+//         }
+//     }
+
+//     vector<int>idx(n);
+//     for(int j = 1;j <= m;j++){
+//         for(int i = 1;i <= n;i++){
+//             idx[i-1] = id[i][j];
+//         }
+//         sort(all(idx), [&](int i, int j) -> int {
+//             return val[i] < val[j];
+//         });
+//         for(int i = 0;i + 1 < n;i++){
+//             int fa = idx[i] + tot, nef =idx[i+1] + tot; 
+//             int u = idx[i], v = idx[i+1];
+//             g[fa].push_back({nef, val[v] - val[u]});
+//             g[nef].push_back({fa, 0});
+//         }
+//     }
+
+//     vector<int>dis(tot*2+5, inf);
+//     priority_queue<array<int, 2>, vector<array<int, 2>>, greater<array<int, 2>>>que;
+//     dis[tot] = 0;
+//     que.push({dis[tot], tot});
+//     while(que.size()){
+//         auto [d, u] = que.top();
+//         que.pop();
+//         for(auto [v, w] : g[u]) if(d + w < dis[v]){
+//             dis[v] = d + w;
+//             que.push({dis[v], v});
+//         }
+//     }
+
+//     cout << dis[1] << endl;
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     vector<vector<array<int, 3>>>g(n+5);
+//     for(int i = 1, u, v, w;i <= m;i++){
+//         cin >> u >> v >> w;
+//         g[u].push_back({v, w, i});
+//         g[v].push_back({u, w, i});
+//     }
+
+//     vector<int>dfn(n+5), top(n+5);
+//     int mn = inf, mid = 0, tot = 0;
+//     auto dfs = [&](auto self, int u, int fa) -> void {
+//         top[u] = dfn[u] = ++tot;
+//         for(auto [v, w, id] : g[u]) if(v != fa){
+//             if(dfn[v]){
+//                 top[u] = min(top[u], dfn[v]);
+//                 if(w < mn){
+//                     mn = w;
+//                     mid = id;
+//                 }
+//             } else {
+//                 self(self, v, u);
+//                 top[u] = min(top[u], top[v]);
+//                 if(top[v] <= dfn[u]){
+//                     if(w < mn){
+//                         mn = w;
+//                         mid = id;
+//                     }
+//                 }
+//             }
+//         }
+//     };
+
+//     for(int i = 1;i <= n;i++) if(!dfn[i]) dfs(dfs, i, 0);
+
+//     stack<int>st;
+//     vector<int>ans;
+//     int f = 0, ff = 0;
+//     dfn = vector<int>(n+5);
+//     tot = 0;
+//     auto dfs2 = [&](auto self, int u, int fa) -> void {
+//         if(ff) return;
+//         st.push(u);
+//         dfn[u] = ++tot;
+//         for(auto [v, w, id] : g[u]) if(v != fa){
+//             if(id == mid) f = dfn[u];
+//             if(dfn[v]){
+//                 if(f && dfn[v] <= f){
+//                     while(st.top() != v){
+//                         ans.push_back(st.top());
+//                         st.pop();
+//                     }
+//                     ans.push_back(v);
+//                     ff = 1;
+//                 }
+//             }else{
+//                 self(self, v, u);
+//             }
+//             if(ff) return;
+//         }
+//         st.pop();
+//     };  
+
+//     for(int i = 1;i <= n;i++) if(!dfn[i]) dfs2(dfs2, i, 0);
+
+//     cout << mn << ' ' << ans.size() << endl;
+//     for(auto e : ans) cout << e << ' ';
+//     cout << endl;
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define all(x) (x).begin(), (x).end()
+#define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+#define ls id << 1
+#define rs id << 1 | 1
+#define endl '\n'
+const int N = 2e5 + 10;
+const int mod = 998244353;
+const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+void solve(){
+    
+}
+
+
+signed main(){
+
+    IO;
+    int T = 1;
+    cin >> T;
+    while(T--) solve();
+
+    return 0;
+}
