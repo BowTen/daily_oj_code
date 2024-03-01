@@ -5103,31 +5103,230 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define all(x) (x).begin(), (x).end()
-#define all1(x) (x).begin() + 1, (x).begin() + 1 + n
-#define ls id << 1
-#define rs id << 1 | 1
-#define endl '\n'
-const int N = 2e5 + 10;
-const int mod = 998244353;
-const int inf = 0x3f3f3f3f3f3f3f3f;
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// const int N = 2e5 + 10;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
 
 
-void solve(){
-    
-}
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>a(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     sort(all1(a));
+//     int ans = a[n]*2 + a[n-1]*2 - a[1]*2 - a[2]*2;
+//     cout << ans << endl;
+// }
 
 
-signed main(){
+// signed main(){
 
-    IO;
-    int T = 1;
-    cin >> T;
-    while(T--) solve();
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// const int N = 200 + 10;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+// vector<int>f(N, inf);
+// int num[5] = {1, 3, 6, 10, 15};
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     int ans = n/30;
+//     ans = max(0ll, ans-3);
+//     n -= ans*30;
+//     ans *= 2;
+//     ans += f[n];
+//     cout << ans << endl;
+// }
+
+
+// signed main(){
+
+//     IO;
+//     f[0] = 0;
+//     for(int i = 1;i < N;i++){
+//         for(int j = 0;j < 5;j++) if(i-num[j] >= 0){
+//             f[i] = min(f[i], f[i-num[j]]+1);
+//         }
+//     }
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// // #define endl '\n'
+// const int N = 200 + 10;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+
+//     int d1, d2;
+//     cout << "? 1 1" << endl;
+//     cin >> d1;
+//     cout << "? 1 " << m << endl;
+//     cin >> d2;
+
+//     auto y1 = [&](int x) -> int {
+//         return d1 + 2 - x;
+//     };
+//     auto y2 = [&](int x) -> int {
+//         return x + m - d2 - 1;
+//     };
+
+//     int l = 1, r = n;
+//     while(l <= r){
+//         int mid = l + r >> 1;
+//         if(y1(mid) > y2(mid)) l = mid + 1;
+//         else if(y1(mid) < y2(mid)) r = mid - 1;
+//         else {
+//             l = r = mid;
+//             break;
+//         }
+//     }
+
+//     int res;
+//     cout << "? " << l << ' ' << y1(l) << endl;
+//     cin >> res;
+
+//     if(res == 0){
+//         cout << "! " << l << ' ' << y1(l) << endl;
+//         return;
+//     }
+
+//     int d3;
+//     cout << "? " << n << ' ' << m << endl;
+//     cin >> d3;
+
+//     auto y3 = [&](int x) -> int {
+//         return n - x + m - d3;
+//     };
+
+//     l = 1, r = n;
+//     while(l <= r){
+//         int mid = l + r >> 1;
+//         if(y3(mid) < y2(mid)) r = mid - 1;
+//         else if(y3(mid) > y2(mid)) l = mid + 1;
+//         else{
+//             l = r = mid;
+//             break;
+//         }
+//     }
+
+//     cout << "! " << l << ' ' << y3(l) << endl;
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int unsigned long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// #define endl '\n'
+// const int N = 200 + 10;
+// const int mod = 998244353;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+
+//     int mh;
+//     for(int i = 0;(1ull<<i) <= m;i++) if((m>>i) & 1){
+//         mh = i;
+//     }
+
+//     if(((n >> mh) & 1) == 1){
+//         cout << 1 << endl;
+//         cout << n << ' ' << m << endl;
+//         return;
+//     }
+
+//     vector<int>bit;
+//     for(int i = mh+1;(1ull<<i) <= n;i++) if((n>>i) & 1){
+//         bit.push_back(i);
+//     }
+
+//     if(bit.size() < 2){
+//         cout << "-1\n";
+//         return;
+//     }
+
+//     cout << 2 << endl;
+//     cout << n << ' ';
+//     n ^= (1ull<<bit[0]);
+//     n ^= (1ull<<mh);
+//     cout << n << ' ' << m << endl;
+// }
+
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
