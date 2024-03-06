@@ -1144,29 +1144,850 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define endl '\n'
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define all(x) (x).begin(), (x).end()
-#define all1(x) (x).begin() + 1, (x).begin() + 1 + n
-#define ls id << 1
-#define rs id << 1 | 1
-const int inf = 0x3f3f3f3f3f3f3f3f;
-const int mod = 998244353;
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
 
 
-void solve(){
+// void solve(){
+//     int n;
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     string rs(s.rbegin(), s.rend());
+//     if(rs < s){
+//         cout << rs << s << endl;
+//     }else{
+//         cout << s << endl;
+//     }
+// }
 
-}
+// signed main(){
 
-signed main(){
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
 
-    IO;
-    int T = 1;
-    // cin >> T;
-    while(T--) solve();
+//     return 0;
+// }
 
-    return 0;
-}
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>a(n+5), cnt(n+5);
+//     for(int i = 1;i <= n;i++) {
+//         cin >> a[i];
+//         cnt[a[i]]++;
+//     }
+//     if(cnt[0] == 0 || cnt[0] == n){
+//         cout << 2 << endl;
+//         cout << 1 << ' ' << 1 << endl;
+//         cout << 2 << ' ' << n << endl;
+//         return;
+//     }
+//     if(cnt[0] == 1){
+//         cout << -1 << endl;
+//         return;
+//     }
+
+//     int m;
+//     for(int i = 1;i <= n+1;i++) if(!cnt[i]){
+//         m = i;
+//         break;
+//     }
+
+//     cnt = vector<int>(n+5);
+//     int cur = 0;
+//     int p;
+//     for(int i = 1;i <= n;i++){
+//         cnt[a[i]]++;
+//         while(cnt[cur]) cur++;
+//         if(cur == m){
+//             p = i;
+//             break;
+//         }
+//     }
+
+//     cnt = vector<int>(n+5);
+//     for(int i = p + 1;i <= n;i++){
+//         cnt[a[i]]++;
+//     }
+//     for(int i = 0;i < m;i++) if(!cnt[i]){
+//         cout << "-1\n";
+//         return;
+//     }
+//     cout << 2 << endl;
+//     cout << 1 << ' ' << p << endl;
+//     cout << p + 1 << " " << n << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     vector<array<int, 2>>a(n+5); //b a
+//     for(int i = 1;i <= n;i++) cin >> a[i][1] >> a[i][0];
+//     // for(int i = 1;i <= n;i++)
+//     //     cerr << a[i][1] << ' ' << a[i][0] << endl;
+
+//     sort(all1(a));
+
+//     int ans = 0;
+
+//     for(int i = 1;i <= n;i++){
+//         priority_queue<int>q;
+//         int sum = 0;
+//         for(int j = i;j >= 1;j--){
+//             int d = a[j][1];
+//             // while(q.size() && sum + (a[i][0] - a[j][0]) > m) {
+//             //     sum -= q.top();
+//             //     q.pop();
+//             // }
+//             if(sum + d + (a[i][0] - a[j][0]) <= m){
+//                 q.push(a[j][1]);
+//                 sum += d;
+//                 ans = max(ans, (int)q.size());
+//             }else if(q.size() && d <= q.top()){
+//                 sum -= q.top();
+//                 q.pop();
+//                 q.push(a[j][1]);
+//                 sum += d;
+//                 ans = max(ans, (int)q.size());
+//             }
+//         }
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n, c;
+//     cin >> n >> c;
+//     vector<int>a(n+5);
+//     vector<int>num[2];
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         num[a[i]&1].push_back(a[i]);
+//     }
+
+//     int ans = ((c+1)*(c+2)) / 2;
+
+//     for(int i = 1;i <= n;i++){
+//         ans -= c - a[i] + 1;
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         ans -= (a[i] + 2) / 2;
+
+//         ans += lower_bound(all(num[a[i]&1]), a[i]) - num[a[i]&1].begin() + 1;
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// // #define ls id << 1
+// // #define rs id << 1 | 1
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int mod = 998244353;
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     vector<array<int, 2>>a(n+5); //b a
+//     for(int i = 1;i <= n;i++) cin >> a[i][1] >> a[i][0];
+
+//     sort(all1(a));
+
+//     int ans = 0;
+
+//     for(int i = 1;i <= n;i++){
+//         priority_queue<int>q;
+//         int sum = 0, B = a[i][0];
+//         for(int j = i;j >= 1;j--){
+//             int d = B - a[j][0] + a[j][1];
+//             if(sum + d <= m){
+//                 q.push(a[j][1]);
+//                 sum += d;
+//                 B = a[j][0];
+//                 ans = max(ans, (int)q.size());
+//             }else if(q.size() && d <= q.top()){
+//                 sum -= q.top();
+//                 q.pop();
+//                 q.push(a[j][1]);
+//                 sum += d;
+//                 B = a[j][0];
+//                 ans = max(ans, (int)q.size());
+//             }
+//         }
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// int main(){
+
+//     int a, b;
+//     scanf("%d:%d", &a, &b);
+//     if(a < 12 || (a == 12 && b == 0)){
+//         cout << "Only ";
+//         if(a < 10) cout << 0;
+//         cout << a << ":";
+//         if(b < 10) cout << 0;
+//         cout << b;
+//         cout << ".  Too early to Dang.\n";
+//     }else{
+//         a -= 12;
+//         if(b) a++;
+//         while(a--) cout << "Dang";
+//         cout << endl;
+//     }
+    
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// int main(){
+
+//     int a, b;
+//     cin >> a >> b;
+//     int oa = a;
+//     int ob = b;
+//     int m;
+//     cin >> m;
+//     int f = 0;
+//     while(m--){
+//         int x, y, u, v;
+//         cin >> x >> y >> u >> v;
+//         if(f) continue;
+//         cerr << m << endl;
+
+//         int ac = (y == (x + u));
+//         int bc = (v == (x + u));
+
+//         if(ac != bc){
+//             if(ac){
+//                 a--;
+//                 if(a == 0) f = 1;
+//             }else{
+//                 b--;
+//                 if(b == 0) f = 2;
+//             }
+//         }
+//     }
+
+//     cout << a << ' ' << b << endl;
+
+//     cout << (f == 1 ? 'A' : 'B') << endl;
+//     cout << (f == 1 ? ob-b : oa-a);
+    
+    
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// int main(){
+
+//     int n;
+//     cin >> n;
+    
+//     map<int,int>mp;
+//     while(n--){
+//         int k;
+//         cin >> k;
+//         if(k == 1){
+//             cin >> k;
+//             continue;
+//         }
+    
+//         while(k--){
+//             int t;
+//             cin >> t;
+//             mp[t] = 1;
+//         }    
+//     }
+
+//     vector<int>ans;
+//     cin >> n;
+//     map<int,int>vis;
+//     while(n--){
+//         int t;
+//         cin >> t;
+//         if(vis[t]) continue;
+//         if(!mp[t]) ans.push_back(t);
+//         vis[t] = 1;
+//     }
+
+//     if(ans.size()){
+//         for(int i = 0;i < ans.size();i++){
+//             cout << ans[i];
+//             if(i != ans.size()-1) cout << ' ';
+//         }
+//     }else{
+//         cout << "No one is handsome";
+//     }
+    
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// int main(){
+
+//     string t = "GPLT";
+    
+//     string s;
+//     cin >> s;
+//     map<int,int>mp;
+//     for(auto &e : s){
+//         if(e >= 'a' && e <= 'z'){
+//             e -= 'a';
+//             e += 'A';
+//         }
+//         mp[e]++;
+//     }
+
+
+//     int i = 0;
+//     do{
+//         if(mp[t[i]]){
+//             cout << t[i];
+//             mp[t[i]]--;
+//         }
+//         i = (i+1)%4;
+//     }while(mp['G'] + mp['P'] + mp['L'] + mp['T']);
+        
+    
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// struct node{
+//     int id, cnt;
+//     double s;
+// };
+
+// int main(){
+
+//     int n;
+//     cin >> n;
+//     vector<node>a(n+5);
+//     for(int i = 1;i <= n;i++) a[i].id = i;
+
+//     for(int i = 1;i <= n;i++){
+//         int k;
+//         cin >> k;
+
+//         while(k--){
+//             int id;
+//             double p;
+//             cin >> id >> p;
+//             p /= 100;
+//             a[id].cnt++;
+//             a[id].s += p;
+//             a[i].s -= p;
+//         }
+//     }
+
+//     vector<int>idx(n);
+//     iota(idx.begin(), idx.end(), 1);
+//     sort(idx.begin(), idx.end(), [&](int i, int j) -> int {
+//         if(fabs(a[i].s - a[j].s) > 0.0001) return a[i].s > a[j].s;
+//         if(a[i].cnt != a[j].cnt) return a[i].cnt > a[j].cnt;
+//         return a[i].id < a[j].id;
+//     });
+
+//     for(auto i : idx) {
+//         printf("%d %.2lf\n", a[i].id, a[i].s);
+//     }
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// const int N = 200;
+
+// int fa[N];
+// int find(int x){
+//     return x == fa[x] ? x : fa[x] = find(fa[x]);
+// }
+// void merg(int a, int b){
+//     a = find(a);
+//     b = find(b);
+//     fa[a] = b;
+// }
+
+// int bad[N][N];
+
+// int main(){
+
+//     int n, m, k;
+//     cin >> n >> m >> k;
+//     for(int i = 1;i <= n;i++) fa[i] = i;
+//     while(m--){
+//         int u, v, w;
+//         cin >> u >> v >> w;
+//         if(w == 1){
+//             merg(u, v);
+//         }else{
+//             bad[u][v] = bad[v][u] = 1;
+//         }
+//     }
+
+//     while(k--){
+//         int u, v;
+//         cin >> u >> v;
+//         if(find(u) == find(v) && !bad[u][v]) cout << "No problem\n";
+//         else if(find(u) == find(v) && bad[u][v]) cout << "OK but...\n";
+//         else if(find(u) != find(v) && !bad[u][v]) cout << "OK\n";
+//         else cout << "No way\n";
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// const int N = 50;
+// int n;
+// int mid[N], pre[N];
+// int L[N], R[N];
+
+// int pp;
+
+// int solve(int l, int r){
+//     if(l > r) return 0;
+//     int rt = pre[++pp];
+//     int rpos = l;
+//     for(int i = l;i <= r;i++) if(mid[i] == rt){
+//         rpos = i;
+//         break;
+//     }
+
+//     R[rt] = solve(l, rpos - 1);
+//     L[rt] = solve(rpos + 1, r);
+
+//     return rt;
+// }
+
+
+// vector<int>vec[N];
+// int dep[N];
+
+// void dfs(int u, int f){
+//     if(!u) return;
+//     dep[u] = dep[f] + 1;
+//     vec[dep[u]].push_back(u);
+//     dfs(L[u], u);
+//     dfs(R[u], u);
+// }
+
+// int main(){
+
+//     cin >> n;
+//     for(int i = 1;i <= n;i++) cin >> mid[i];
+//     for(int i = 1;i <= n;i++) cin >> pre[i];
+
+//     int rt = solve(1, n);
+
+//     dfs(rt, 0);
+
+//     int f = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(auto e : vec[i]){
+//             if(f) cout << ' ';
+//             f = 1;
+//             cout << e;
+
+//         }
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// const int N = 4096;
+// int hp[N], n, m;
+// int siz = 0;
+
+// void push(int x){
+//     hp[++siz] = x;
+
+//     int cur = siz;
+//     int fa = cur >> 1;
+//     while(fa > 0 && hp[cur] < hp[fa]){
+//         swap(hp[fa], hp[cur]);
+//         cur = fa;
+//         fa = cur >> 1;
+//     }
+// }
+
+// int main(){
+
+//     cin >> n >> m;
+//     vector<int>a(n+5);
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         push(a[i]);
+//     }
+
+//     map<int,int>pos;
+//     for(int i = 1;i <= siz;i++) pos[hp[i]] = i;
+
+//     while(m--){
+//         int x = 0, y = 0;
+//         cin >> x;
+
+//         string s;
+//         getline(cin, s);
+
+//         if(s.back() == 't'){ //root
+
+//             if(pos[x] == 1) cout << "T\n";
+//             else cout << "F\n";
+
+//         }else if(s[1] == 'a'){ //bro
+        
+//             for(int i = 5;s[i] != ' ';i++){
+//                 y = y * 10 + s[i] - '0';
+//             }
+//             if(pos[x]/2 == pos[y]/2) cout << "T\n";
+//             else cout << "F\n";
+
+//         }else if(s[4] == 't'){ //fa
+
+//             int pw = 1;
+//             for(int i = s.size()-1;s[i] != ' ';i--, pw *= 10){
+//                 y += pw * (s[i] - '0');
+//             }
+//             if(pos[x] == pos[y]/2) cout << "T\n";
+//             else cout << "F\n";
+
+//         }else{ //son
+
+//             int pw = 1;
+//             for(int i = s.size()-1;s[i] != ' ';i--, pw *= 10){
+//                 y += pw * (s[i] - '0');
+//             }
+//             if(pos[x] == pos[y]*2 || pos[x] == pos[y]*2+1) cout << "T\n";
+//             else cout << "F\n";
+
+//         }
+//     }
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// const int inf = 0x3f3f3f3f;
+
+// int main(){
+
+//     int n, m;
+//     cin >> n >> m;
+//     vector<vector<array<int, 3>>>g(n+5);
+//     for(int i = 1, u, v, one, len, t;i <=m;i++){
+//         cin >> u >> v >> one >> len >> t;
+//         u++, v++;
+//         g[u].push_back({v, len, t});
+//         if(!one) g[v].push_back({u, len, t});
+//     }
+
+//     int s, t;
+//     cin >> s >> t;
+//     s++, t++;
+
+//     vector<int>pre(n+5);
+//     vector<array<int, 2>>dis(n+5, {inf, inf}); // ti, d
+//     dis[s] = {0, 0};
+//     priority_queue<array<int, 3>, vector<array<int, 3>>, greater<array<int, 3>>>que;
+//     que.push({0, 0, s});
+
+//     while(que.size()){
+//         auto [tm, d, u] = que.top();
+//         que.pop();
+//         // cerr << u << endl;
+//         if(u == t) break;
+//         if(tm > dis[u][0] || (tm == dis[u][0] && d > dis[u][1])) continue;
+//         for(auto [v, w, ti] : g[u]){
+//             array<int,2>tmp({tm+ti, d+w});
+//             if(tmp < dis[v]){
+//                 dis[v] = tmp;
+//                 que.push({tmp[0], tmp[1], v});
+//                 pre[v] = u;
+//             }
+//         }
+//     }
+
+//     int tim = dis[t][0];
+//     vector<int>ans1;
+//     int cur = t;
+//     while(cur != s){
+//         ans1.push_back(cur);
+//         cur = pre[cur];
+//     }
+//     ans1.push_back(cur);
+
+    
+//     dis = vector<array<int,2>>(n+5, {inf, inf}); // d, cnt
+//     dis[s] = {0, 0};
+//     while(que.size()) que.pop();
+//     que.push({0, 0, s});
+
+//     while(que.size()){
+//         auto [d, cnt, u] = que.top();
+//         que.pop();
+//         if(u == t) break;
+//         if(d > dis[u][0] || (d == dis[u][0] && cnt > dis[u][1])) continue;
+//         for(auto [v, w, ti] : g[u]){
+//             array<int,2>tmp({d+w, cnt+1});
+//             if(tmp < dis[v]){
+//                 dis[v] = tmp;
+//                 que.push({tmp[0], tmp[1], v});
+//                 pre[v] = u;
+//             }
+//         }
+//     }
+
+//     int dist = dis[t][0];
+//     vector<int>ans2;
+//     cur = t;
+//     while(cur != s){
+//         ans2.push_back(cur);
+//         cur = pre[cur];
+//     }
+//     ans2.push_back(cur);
+
+//     if(ans1 == ans2){
+//         cout << "Time = " << tim << "; Distance = " << dist << ": ";
+//         for(int i = ans1.size()-1;i >= 0;i--){
+//             cout << ans1[i]-1;
+//             if(i) cout << " => ";
+//         }
+//     }else{
+//         cout << "Time = " << tim << ": ";
+//         for(int i = ans1.size()-1;i >= 0;i--){
+//             cout << ans1[i]-1;
+//             if(i) cout << " => ";
+//         }
+//         cout << endl;
+
+//         cout << "Distance = " << dist << ": ";
+//         for(int i = ans2.size()-1;i >= 0;i--){
+//             cout << ans2[i]-1;
+//             if(i) cout << " => ";
+//         }
+
+
+//     }
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// using namespace std;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int n, m, p;
+//     cin >> n >> m >> p;
+//     vector<int>d(n+5), h(m+5), t(m+5), pt(m+5);
+//     for(int i = 2;i <= n;i++){
+//         cin >> d[i];
+//         d[i] += d[i-1];
+//     }
+
+//     for(int i = 1;i <= m;i++) cin >> h[i] >> t[i];
+//     for(int i = 1;i <= m;i++) t[i] = t[i] - d[h[i]];
+//     sort(t.begin() + 1, t.begin() + 1 + m);
+//     for(int i = 1;i <= m;i++) pt[i] = t[i] + pt[i-1];
+
+//     vector<vector<int>>f(p+5, vector<int>(m+5));
+//     vector<int>que(m+5);
+//     int hd = 1, bk = 0;
+
+//     auto K = [&](int i, int x1, int x2) -> double {
+//         double y1 = f[i][x1] + pt[x1];
+//         double y2 = f[i][x2] + pt[x2];
+//         return (y2 - y1) / (x2 - x1);
+//     };
+
+//     for(int j = 1;j <= m;j++){
+//         f[1][j] = j*t[j] - pt[j];
+//     }
+
+//     for(int i = 2;i <= p;i++){
+//         hd = 1, bk = 0;
+//         que[++bk] = 1;
+//         for(int j = 2;j <= m;j++){
+//             while(bk > hd && K(i-1, que[hd], que[hd+1]) <= t[j]) hd++;
+//             int delt = f[i-1][que[hd]] + pt[que[hd]] - t[j]*que[hd];
+//             f[i][j] = delt - pt[j] + j*t[j];
+//             while(bk > hd && K(i-1, que[bk], j) <= K(i-1, que[bk-1], que[bk])) bk--;
+//             que[++bk] = j;
+//         }
+//     }
+
+//     int ans = inf;
+//     for(int i =  1;i <= p;i++) ans = min(ans, f[i][m]);
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
