@@ -1991,3 +1991,216 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// using namespace std;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int n, m, k;
+//     cin >> n >> m >> k;
+//     vector<vector<array<int, 2>>>g(n+5);
+//     for(int i = 1, u, v, w;i <= m;i++){
+//         cin >> u >> v >> w;
+//         g[u].push_back({v, w});
+//         g[v].push_back({u, w});
+//     }
+
+//     vector<int>ans(n+5, inf);
+//     vector<vector<int>>f(2, vector<int>(n+5, inf));
+//     vector<int>que(n+5);
+//     int hd = 1, bk = 0;
+
+//     auto K = [&](int i, int k1, int k2) -> double {
+//         double x1 = k1, x2 = k2;
+//         double y1 = f[i&1][k1] + k1*k1, y2 = f[i&1][k2] + k2*k2;
+//         return (y2 - y1) / (x2 - x1);
+//     };
+
+//     f[0][1] = 0;
+//     priority_queue<array<int, 2>, vector<array<int, 2>>, greater<array<int, 2>>>pq;
+//     pq.push({0, 1});
+//     while(pq.size()){
+//         auto [d, u] = pq.top();
+//         pq.pop();
+//         for(auto [v, w] : g[u]) if(w + d < f[0][v]){
+//             f[0][v] = d + w;
+//             pq.push({f[0][v], v});
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         f[1][i] = f[0][i];
+//         ans[i] = min(ans[i], f[0][i]);
+//         while(bk > hd && K(0, que[bk], i) <= K(0, que[bk-1], que[bk])) bk--;
+//         que[++bk] = i;
+//     }
+
+//     for(int i = 1;i <= k;i++){
+//         for(int j = 1;j <= n;j++){
+//             while(bk > hd && K((i&1)^1, que[hd], que[hd+1]) <= 2*j) hd++;
+//             int delt = f[(i&1)^1][que[hd]] + que[hd]*que[hd] - 2*j*que[hd];
+//             int tmp = delt + j*j;
+//             if(tmp < f[i&1][j]){
+//                 f[i&1][j] = tmp;
+//                 pq.push({tmp, j});
+//             }
+//         }
+//         while(pq.size()){
+//             auto [d, u] = pq.top();
+//             pq.pop();
+//             for(auto [v, w] : g[u]) if(d + w < f[i&1][v]){
+//                 f[i&1][v] = d + w;
+//                 pq.push({d+w, v});
+//             }
+//         }
+//         hd = 1, bk = 0;
+//         for(int j = 1;j <= n;j++){
+//             f[(i&1)^1][j] = f[i&1][j];
+//             ans[j] = min(ans[j], f[i&1][j]);
+//             while(bk > hd && K(i&1, que[bk], j) <= K(i&1, que[bk-1], que[bk])) bk--;
+//             que[++bk] = j;
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         cout << ans[i] << ' ';
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// using namespace std;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int n, s;
+//     cin >> n >> s;
+//     vector<int>t(n+5), c(n+5);
+//     for(int i = 1;i <= n;i++) cin >> t[i] >> c[i];
+//     for(int i = 1;i <= n;i++){
+//         t[i] += t[i-1];
+//         c[i] += c[i-1];
+//     }
+
+//     vector<int>f(n+5), que(n+5);
+//     int hd = 1, bk = 0;
+//     auto dx = [&](int i, int j) -> int {return c[j] - c[i];};
+//     auto dy = [&](int i, int j) -> int {return f[j] - f[i];};
+
+//     auto find = [&](int k) -> int {
+//         int l = hd, r = bk;
+//         while(l <= r){
+//             int mid = l + r >> 1;
+//             if(mid == bk || dy(que[mid], que[mid+1]) > k * dx(que[mid], que[mid+1])) r = mid - 1;
+//             else l = mid + 1;
+//         }
+//         return que[l];
+//     };
+
+//     for(int i = 1;i <= n;i++){
+//         while(bk > hd && dx(que[bk-1], que[bk]) * dy(que[bk], i-1) <= dx(que[bk], i-1) * dy(que[bk-1], que[bk])) bk--;
+//         que[++bk] = i-1;
+//         int j = find(t[i] + s);
+//         int delt = f[j] - s*c[j] - t[i]*c[j];
+//         f[i] = delt + s*c[n] + t[i]*c[i];
+//     }
+
+//     cout << f[n] << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// using namespace std;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>a(n+5);
+//     vector<vector<int>>f(n+5, vector<int>(n+5, inf));
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     a[n+1] = inf;
+
+//     f[0][1] = f[0][0] = 0;
+//     for(int i = 0;i <= n;i++){
+//         f[i][1] = f[i][0] = 0;
+//         for(int j = 2;j <= n+1;j++){
+//             if(i){
+//                 for(int k = 0;k < j;k++) if(a[k] < a[j]){
+//                     f[i][j] = min(f[i][j], f[i-1][k] + (j-k-1));
+//                 }
+//             }
+//             if(a[j] > a[j-1]) f[i][j] = min(f[i][j], f[i][j-1]);
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         cout << f[i][n+1] << ' ';
+//     }
+//     // for(int i = 1;i <= n;i++) cerr << f[1][i] << ' ';
+//     // cerr << endl;
+
+//     // for(int i = 0;i <= n;i++){
+//     //     for(int j = 0;j <= n+1;j++){
+//     //         if(f[i][j] == inf) cerr << "inf ";
+//     //         else cerr << f[i][j] << ' ';
+//     //     }
+//     //     cerr << endl;
+//     // }
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
