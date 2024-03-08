@@ -2204,3 +2204,246 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// using namespace std;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int n, q;
+//     cin >> n >> q;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     set<int>L, R;
+//     for(int i = 1;i < n;i++){
+//         if(s[i] == '(' && s[i+1] == '(') L.insert(i);
+//     }
+//     for(int i = 1;i < n;i++){
+//         if(s[i] == ')' && s[i+1] == ')') R.insert(i);
+//     }
+
+//     while(q--){
+//         int x;
+//         cin >> x;
+
+//         if(n & 1){
+//             cout << "NO\n";
+//             continue;
+//         }
+
+//         if(x > 1 && s[x-1] == s[x]){
+//             if(s[x] == '('){
+//                 L.erase(x-1);
+//             }else{
+//                 R.erase(x-1);
+//             }
+//         }
+//         if(x < n && s[x] == s[x+1]){
+//             if(s[x] == '('){
+//                 L.erase(x);
+//             }else{
+//                 R.erase(x);
+//             }
+//         }
+
+//         if(s[x] == '(') s[x] = ')';
+//         else s[x] = '(';
+
+//         if(x > 1 && s[x-1] == s[x]){
+//             if(s[x] == '('){
+//                 L.insert(x-1);
+//             }else{
+//                 R.insert(x-1);
+//             }
+//         }
+//         if(x < n && s[x] == s[x+1]){
+//             if(s[x] == '('){
+//                 L.insert(x);
+//             }else{
+//                 R.insert(x);
+//             }
+//         }
+
+//         if(s[1] == ')' || s[n] == '('){
+//             cout << "NO\n";
+//         }else{
+//             if(L.empty() && R.empty()){
+//                 cout << "YES\n";
+//             }else{
+//                 if(L.empty() != R.empty()){
+//                     cout << "NO\n";
+//                 }else{
+//                     int l = *L.begin();
+//                     int r = *R.begin();
+//                     if(l < r && (*L.rbegin()) < (*R.rbegin())) cout << "YES\n";
+//                     else cout << "NO\n";
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// using namespace std;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+// void solve(){
+//     int k;
+//     cin >> k;
+//     string s;
+//     cin >> s;
+//     stack<int>st;
+//     vector<int>ans;
+//     for(int i = 0;i < s.size();i++){
+//         if(s[i] == '(') st.push(i);
+//         else {
+//             ans.push_back((i-st.top()) / 2);
+//             st.pop();
+//         }
+//     }
+//     sort(all(ans));
+//     int sum = 0;
+//     for(int i = 0;i + k < ans.size();i++) sum += ans[i];
+//     cout << sum << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// using namespace std;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int N = 5010;
+// const int mod = 1e9 + 7;
+
+// int qpow(int a, int b){
+//     int ret = 1;
+//     while(b){
+//         if(b & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         b >>= 1;
+//     }
+//     return ret;
+// }
+// int fac[N], inv[N];
+// void get_inv(){
+//     fac[0] = inv[0] = 1;
+//     for(int i = 1;i < N;i++) fac[i] = fac[i-1] * i % mod;
+//     inv[N-1] = qpow(fac[N-1], mod - 2);
+//     for(int i = N - 2;i >= 1;i--) inv[i] = inv[i+1] * (i+1) % mod;
+// }
+// int C(int a, int b){
+//     if(b > a) return 0;
+//     return (fac[a] * inv[a-b] % mod) * inv[b] % mod;
+// }
+
+
+// void solve(){
+//     int n, k;
+//     cin >> n >> k;
+//     vector<int>c(n+5), f(n+5), s(n+5);
+//     for(int i = 1;i <= n;i++) cin >> c[i];
+
+//     int len = 0;
+
+//     for(int i = 1;i <= n;i++){
+//         int cnt = 0;
+//         for(int j = i;j >= 0;j--){
+//             if(cnt == k){
+//                 f[i] = max(f[i], f[j] + k);
+//             }else{
+//                 cnt += c[j] == c[i];
+//             }
+//         }
+//         len = max(len, f[i]);
+//         // cerr << f[i] << ' ';
+//     }
+//     // cerr << endl;
+
+//     if(len == 0) {
+//         cout << 1 << endl;
+//         return;
+//     }
+
+//     // cerr << len << endl;
+
+//     vector<vector<int>>last(n+5, vector<int>(n+5));
+//     int ans = 0;
+
+//     s[0] = 1;
+//     for(int i = 1;i <= n;i++){
+//         int cnt = 0;
+//         for(int j = i;j >= 0;j--){
+//             if(f[j] == f[i] - k && cnt >= k){
+//                 // s[i] = (s[i] + ((s[j] * C(cnt, k) - last[f[i]][c[i]] + mod)%mod)) % mod;
+//                 s[i] = (s[i] + (s[j] * C(cnt-1, k-1) % mod)) % mod;
+//                 // cerr << j << ' ' << i << endl;
+//             }
+//             cnt += c[j] == c[i];
+//         }
+//         if(f[i] == len){
+//             ans = (ans + s[i]) % mod;
+//             // last[c[i]] = s[i];
+//         }
+//         // last[f[i]][c[i]] = (last[f[i]][c[i]] + s[i]) % mod;
+//         // cerr << s[i] << " ";
+//     }
+//     // cerr << endl;
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     get_inv();
+
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
