@@ -2447,3 +2447,201 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// using namespace std;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int N = 5010;
+// const int mod = 1e9 + 7;
+
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     vector<vector<int>>g(n+5);
+//     for(int i = 1, u, v;i <= m;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     int k = sqrt(n);
+//     if(k * k != n){
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     map<int, int>dmp;
+//     for(int i = 1;i <= n;i++) dmp[g[i].size()]++;
+
+//     if(dmp[4] != k || dmp[2] != n - k){
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     vector<int>fa(n+5), siz(n+5, 1);
+//     iota(all(fa), 0);
+
+//     auto find = [&](auto self, int x) -> int {
+//         return x == fa[x] ? x : fa[x] = self(self, fa[x]);
+//     };
+//     auto merg = [&](int a, int b) -> void {
+//         a = find(find, a);
+//         b = find(find, b);
+//         if(a == b) return;
+//         fa[a] = b;
+//         siz[b] += siz[a];
+//     };
+
+//     for(int i = 1;i <= n;i++) if(g[i].size() == 2){
+//         for(auto v : g[i]) merg(i, v);
+//     }
+
+//     int cnt = 0;
+//     set<int>st;
+//     for(int i = 1;i <= n;i++) if(g[i].size() == 4 && siz[find(find, i)] == k){
+//         cnt++;
+//         st.insert(fa[i]);
+//     }
+
+//     if(cnt != k || cnt != st.size()){
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     iota(all(fa), 0);
+//     for(int i = 1;i <= n;i++) if(g[i].size() == 4){
+//         for(auto v : g[i]) if(g[v].size() == 4){
+//             merg(i, v);
+//         }
+//     }
+
+//     cnt = 0;
+//     for(int i = 1;i <= n;i++) cnt += (find(find, i) == i);
+    
+//     if(cnt != n-k+1) cout << "NO\n";
+//     else cout << "YES\n";
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// using namespace std;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int N = 5010;
+// const int mod = 1e9 + 7;
+
+
+// struct node{
+//     int cnt, c;
+//     int operator<(const node &e) const {
+//         if(cnt != e.cnt) return cnt < e.cnt;
+//         return c > e.c;
+//     }
+//     int operator>(const node &e) const {
+//         if(cnt != e.cnt) return cnt > e.cnt;
+//         return c < e.c;
+//     }
+// };
+
+// void solve(){
+//     int n, m, p;
+//     cin >> n >> m >> p;
+//     vector<int>w(n+5);
+//     vector<vector<array<int, 2>>>g(n+5);
+//     for(int i = 1;i <= n;i++) cin >> w[i];
+//     for(int i = 1, u, v, s;i <= m;i++){
+//         cin >> u >> v >> s;
+//         g[u].push_back({v, s});
+//     }
+
+//     vector<vector<node>>dis(n+5, vector<node>(n+5, {inf, 0}));
+//     dis[1][1] = {0, p};
+
+//     priority_queue<pair<node, array<int, 2>>, vector<pair<node, array<int, 2>>>, greater<pair<node, array<int, 2>>>>que;
+//     que.push({{0, p}, {1, 1}});
+//     while(que.size()){
+//         auto [cnt, c] = que.top().first;
+//         auto [i, j] = que.top().second;
+//         que.pop();
+//         for(auto [v, s] : g[i]){
+//             int d = max(0ll, (s-c+w[j]-1) / w[j]);
+//             int mx = j;
+//             if(w[v] > w[j]) mx = v;
+//             node ne = {cnt+d, c+d*w[j]-s};
+//             if(ne < dis[v][mx]){
+//                 dis[v][mx] = ne;
+//                 que.push({ne, {v, mx}});
+//             }
+//         }
+//     }
+
+//     int ans = inf;
+//     for(int i = 1;i <= n;i++){
+//         ans = min(ans, dis[n][i].cnt);
+//     }
+//     if(ans == inf) cout << -1 << endl;
+//     else cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define  endl '\n'
+#define all(x) (x).begin(), (x).end()
+#define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+using namespace std;
+const int inf = 0x3f3f3f3f3f3f3f3f;
+const int N = 5010;
+const int mod = 1e9 + 7;
+
+
+void solve(){
+    
+}
+
+signed main(){
+
+    IO;
+    int T = 1;
+    cin >> T;
+    while(T--) solve();
+
+    return 0;
+}
