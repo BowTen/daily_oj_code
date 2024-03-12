@@ -2620,28 +2620,698 @@
 
 
 
-#include<bits/stdc++.h>
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define  endl '\n'
-#define all(x) (x).begin(), (x).end()
-#define all1(x) (x).begin() + 1, (x).begin() + 1 + n
-using namespace std;
-const int inf = 0x3f3f3f3f3f3f3f3f;
-const int N = 5010;
-const int mod = 1e9 + 7;
+// #include<bits/stdc++.h>
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// using namespace std;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int N = 5010;
+// const int mod = 1e9 + 7;
+
+// class Tree{
+// public:
+//     vector<int>tr;
+
+//     Tree(int n) : tr(n*4+5) {}
+
+//     void up(int id){
+//         tr[id] = max(tr[ls], tr[rs]);
+//     }
+
+//     void change(int id, int l, int r, int x, int v) {
+//         if(l == r){
+//             tr[id] = max(tr[id], v);
+//             return;
+//         }
+//         int mid = l + r >> 1;
+//         if(x <= mid) change(ls, l, mid, x, v);
+//         else change(rs, mid + 1, r, x, v);
+//         up(id);
+//     }
+
+//     int query(int id, int l, int r, int ql, int qr){
+//         if(ql <= l && r <= qr) return tr[id];
+//         int mid = l + r >> 1;
+//         if(qr <= mid) return query(ls, l, mid, ql, qr);
+//         else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//         else return max(query(ls, l, mid, ql, qr), query(rs, mid + 1, r, ql, qr));
+//     }
+// };
+
+// void solve(){
+//     int n, k;
+//     cin >> n >> k;
+//     vector<int>a(n+5), h(k+5), c(k+5), last(k+5), f(n+5);
+//     vector<vector<array<int, 2>>>L(n+5);
+//     Tree mxt(n);
+
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= k;i++) cin >> c[i];
+//     for(int i = 1;i <= k;i++) cin >> h[i];
+
+//     int ans = 0, mxf = 0;
+
+//     for(int i = 1;i <= n;i++){
+//         if(last[a[i]]){
+//             if(i-last[a[i]] > 1) L[i-1].push_back({last[a[i]]+1, c[a[i]] - h[a[i]]});
+//             else ans -= c[a[i]] - h[a[i]];
+//         }
+//         last[a[i]] = i;
+//     }
 
 
-void solve(){
+//     for(int i = 1;i <= n;i++){
+//         f[i] = f[i-1];
+//         for(auto [l, w] : L[i]) if(l-1 >= 1){
+//             f[i] = max(f[i], w + mxt.query(1, 1, n, 1, l-1));
+//         }
+//         mxt.change(1, 1, n, i, f[i]);
+
+//         ans += c[a[i]];
+//         mxf = max(mxf, f[i]);
+//     }
+
+//     ans -= mxf;
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// // #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define  endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+// using namespace std;
+// const int inf = 0x3f3f3f3f;
+// // const int inf = 0x3f3f3f3f3f3f3f3f;
+// const int N = 5010;
+// const int mod = 1e9 + 7;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>c(n+5), dis(n+5, inf);
+//     vector<vector<int>>g(n+5);
+//     for(int i = 1;i <= n;i++) cin >> c[i];
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     vector<array<int,3>>que(n+5);
+//     int hd = 1, bk = 0;
+//     int ans = inf;
+
+//     auto bfs = [&](int x) -> void {
+//         hd = 1, bk = 0;
+//         que[++bk] = {x, 0, 0};
+//         while(bk >= hd){
+//             auto [u, d, pre] = que[bk--];
+//             if(d >= ans) continue;
+//             for(auto v : g[u]) if(v != pre && d + 1 < dis[v]){
+//                 dis[v] = d + 1;
+//                 que[++bk] = {v, dis[v], u};
+//             }
+//         }
+//     };
+
+//     bfs(c[1]);
+
+//     for(int i = 2;i <= n;i++){
+//         ans = min(ans, dis[c[i]]);
+//         cout << ans << ' ';
+//         bfs(c[i]);
+//     }
+
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// const int mod = 1e9 + 7;
+// const int N = 1010;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+// int op[8][2] = {
+//     1, 1,
+//     1, 0,
+//     1, -1,
+//     0, 1,
+//     0, -1,
+//     -1, 1,
+//     -1, 0,
+//     -1, -1
+// };
+// int op2[4][2] = {
+//     1, 0,
+//     0, 1,
+//     -1, 0,
+//     0, -1
+// };
+
+// int n, m;
+// string mp[N];
+// int id[N][N];
+
+// int fa[N*N], bad[N*N], siz[N*N];
+
+// int find(int x){
+//     return x == fa[x] ? x : fa[x] = find(fa[x]);
+// }
+// void merg(int a, int b){
+//     a = find(a);
+//     b = find(b);
+//     if(a == b) return;
+//     fa[a] = b;
+//     siz[b] += siz[a];
+//     if(bad[a] || bad[b]) {
+//         bad[b] = 1;
+//         siz[b] = n*m+5;
+//     }
+// }
+
+// void solve(){
+//     cin >> n >> m;
+//     int tot = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> mp[i];
+//         mp[i] = ' ' + mp[i] + ' ';
+//         for(int j = 1;j <= m;j++){
+//             id[i][j] = ++tot;
+//             fa[tot] = tot;
+//             siz[tot] = 1;
+//         }
+//     }
+//     mp[0] = mp[n+1] = string(m+5, '.');
+
+//     for(int i = 1;i <= n;i++){
+//         if(mp[i][1] == '.') bad[id[i][1]] = 1;
+//         if(mp[i][m] == '.') bad[id[i][m]] = 1;
+//     }
+//     for(int j = 1;j <= m;j++) {
+//         if(mp[1][j] == '.') bad[id[1][j]] = 1;
+//         if(mp[n][j] == '.') bad[id[n][j]] = 1;
+//     }
+
+//     array<int, 2>fans({0, 0});
+
+//     for(int i = 2;i < n;i++){
+//         for(int j = 2;j < m;j++){
+//             int f = 0;
+//             for(int ii = i-1;ii <= i+1;ii++){
+//                 for(int jj = j-1;jj <= j+1;jj++) if(!(ii == i && jj == j)){
+//                     if(mp[ii][jj] == '.') {
+//                         f = 1;
+//                         break;
+//                     }
+//                 }
+//             }
+//             if(f == 0){
+//                 for(int ii = 1;ii <= n;ii++) mp[ii] = mp[0];
+//                 for(int ii = i-1;ii <= i+1;ii++){
+//                     for(int jj = j-1;jj <= j+1;jj++) if(!(ii == i && jj == j)){
+//                         mp[ii][jj] = '#';
+//                     }
+//                 }
+//                 for(int ii = 1;ii <= n;ii++){
+//                     for(int jj = 1;jj <= m;jj++) {
+//                         cout << mp[ii][jj];
+//                     }
+//                     cout << endl;
+//                 }
+//                 return;
+//             }
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) if(mp[i][j] == '.'){
+//             for(int k = 0;k < 8;k++){
+//                 int x = i + op[k][0], y = j + op[k][1];
+//                 if(x < 1 || x > n || y < 1 || y > m || mp[x][y] == '#') continue;
+
+//                 merg(id[i][j], id[x][y]);
+//             }
+//         }
+//     }
+
+//     int mn = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) if(mp[i][j] == '.'){
+//             if(mn == 0 || siz[find(id[i][j])] < siz[mn]) mn = find(id[i][j]);
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) if(mp[i][j] == '.' && find(id[i][j]) == mn){
+//             for(int k = 0;k < 8;k++){
+//                 int x = i + op[k][0], y = j + op[k][1];
+//                 if(x < 1 || x > n || y < 1 || y > m || mp[x][y] == '.') continue;
+//                 mp[x][y] = '*';
+//             }
+//         }
+//     }
+
+
+//     vector<vector<int>>d(n+5, vector<int>(m+5));
+//     queue<array<int,2>>que;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) if(mp[i][j] == '*'){
+//             for(int k = 0;k < 4;k++){
+//                 int x = i + op2[k][0], y = j + op2[k][1];
+//                 if(x < 1 || x > n || y < 1 || y > m) continue;
+//                 if(mp[x][y] == '*') d[i][j]++;
+//             }
+//             if(d[i][j] <= 1)
+//                 que.push({i,j});
+//         }            
+//     }
+
+//     while(que.size()){
+//         auto [i, j] = que.front();
+//         que.pop();
+//         mp[i][j] = '.';
+//         d[i][j]--;
+//             for(int k = 0;k < 4;k++){
+//                 int x = i + op2[k][0], y = j + op2[k][1];
+//                 if(x < 1 || x > n || y < 1 || y > m || mp[x][y] != '*') continue;
+//                 d[x][y]--;
+//                 if(d[x][y] <= 1) que.push({x, y});
+//             }
+//     }
+
+//     // cerr << mn << endl;
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) {
+//             // cerr << find(id[i][j]) << ' ';
+//             if(mp[i][j] == '*') cout << '#';
+//             else cout << '.';
+//         }            
+//         // cerr << endl;
+//         cout << endl;
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+
+// int op8[8][2] = {
+//     0, 1, 
+//     0, -1,
+//     1, 0,
+//     1, 1, 
+//     1, -1,
+//     -1, 0,
+//     -1, 1,
+//     -1, -1
+// };
+
+// const int D = 0;
+// const int R = 1;
+// const int U = 2;
+// const int L = 3;
+// int op4[4][2] = {
+//     1, 0, 
+//     0, 1,
+//     -1, 0,
+//     0, -1
+// };
+// char cdir[4] = {'D', 'R', 'U', 'L'};
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
     
-}
+//     vector<string>mp(n+5);
+//     vector<vector<int>>id(n+5, vector<int>(m+5));
+//     vector<int>fa(n*m+5);
+//     iota(all(fa), 0);
+//     int tot = 0;
 
-signed main(){
+//     auto find = [&](auto self, int x) -> int {
+//         return fa[x] == x ? x : fa[x] = self(self, fa[x]);
+//     };
+//     auto merg = [&](int a, int b) -> void {
+//         a = find(find, a);
+//         b = find(find, b);
+//         if(a == b) return;
+//         fa[a] = b;
+//     };
 
-    IO;
-    int T = 1;
-    cin >> T;
-    while(T--) solve();
+//     for(int i = 1;i <= n;i++) {
+//         cin >> mp[i];
+//         mp[i] = '.' + mp[i] + '.';
+//         for(int j = 1;j <= m;j++){
+//             id[i][j] = ++tot;
+//         }
+//     }
+//     mp[0] = mp[n+1] = string(m+5, '.');
 
-    return 0;
-}
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             int f = 1;
+//             for(int k = 0;k < 8;k++){
+//                 int x = i + op8[k][0], y = j + op8[k][1];
+//                 if(mp[x][y] != '#'){
+//                     f = 0;
+//                     break;
+//                 }
+//             }
+//             if(f){
+//                 for(int k = 0;k < 8;k++){
+//                     int x = i + op8[k][0], y = j + op8[k][1];
+//                     mp[x][y] = 'a';
+//                 }
+//                 for(int I = 1;I <= n;I++){
+//                     for(int J = 1;J <= m;J++){
+//                         if(mp[I][J] == 'a') cout << '#';
+//                         else cout << '.';
+//                     }
+//                     cout << endl;
+//                 }
+//                 return;
+//             }
+//         }
+//     }
+
+//     vector<vector<int>>d(n+5, vector<int>(m+5));
+//     queue<array<int, 2>>que;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) if(mp[i][j] == '#'){
+//             for(int k = 0;k < 4;k++){
+//                 int x = i + op4[k][0], y = j + op4[k][1];
+//                 d[i][j] += (mp[x][y] == '#');
+//             }
+//             if(d[i][j] <= 1) que.push({i, j});
+//         }
+//     }
+
+//     while(que.size()){
+//         auto [i, j] = que.front();
+//         que.pop();
+//         d[i][j] = 0;
+//         mp[i][j] = ' ';
+//         for(int k = 0;k < 4;k++){
+//             int x = i + op4[k][0], y = j + op4[k][1];
+//             if(mp[x][y] == '#') {
+//                 d[x][y]--;
+//                 if(d[x][y] == 1) que.push({x, y});
+//             }
+//         }
+//     }
+
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) if(mp[i][j] == '.'){
+//             for(int k = 0;k < 8;k++){
+//                 int x = i + op8[k][0], y = j + op8[k][1];
+//                 if(mp[x][y] != '.') continue;
+//                 merg(id[i][j], id[x][y]);
+//             }
+//         }
+//     }
+
+//     int ze = find(find, 0);
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) if(mp[i][j] == '.' && find(find, id[i][j]) == ze){
+//             mp[i][j] = ' ';
+//         }
+//     }
+//     for(int i = 1;i <= n;i++) {
+//         mp[i][0] = mp[i][m+1] = ' ';
+//     }
+//     mp[0] = mp[n+1] = string(m+5, ' ');
+//     // for(int i = 1;i <= n;i++){
+//     //     for(int j = 1;j <= m;j++) {
+//     //         cerr << find(find, id[i][j]) << ' ';
+//     //     }
+//     //     cerr << endl;
+//     // }
+
+//     vector<set<array<int,2>>>cyc(n*m+10);
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++)if(mp[i][j] == '.'){
+//             int pid = find(find, id[i][j]);
+//             for(int k = 0;k < 8;k++){
+//                 int x = i + op8[k][0], y = j + op8[k][1];
+//                 if(mp[x][y] == '#'){
+//                     cyc[pid].insert({x, y});
+//                 }
+//             }
+//         }
+//     }
+    
+//     vector<vector<int>>vis(n+5, vector<int>(m+5)), good(n+5, vector<int>(m+5)), dfn(n+5, vector<int>(m+5));
+//     auto dfs = [&](auto self, int i, int j, int dir, int pre) -> int {
+//         dfn[i][j] = ++tot;
+//         // cerr << i << ' ' << j << ' ' << cdir[dir] << ' ' << cdir[pre] << endl;
+//         for(int k = (dir+1)%4;k != (dir+2)%4;k = (k+3)%4) if(k != pre){
+//             int x = i + op4[k][0], y = j + op4[k][1];
+//             if(mp[x][y] != '#' || !vis[x][y]) continue;
+//             if(dfn[x][y]){
+//                 // cerr << x << " " << y << ' ' << dfn[x][y] << endl;
+//                 good[i][j] = dfn[x][y];
+//                 return dfn[x][y];
+//             }else{
+//                 int ret = self(self, x, y, k, (dir+2)%4);
+//                 if(ret){
+//                     good[i][j] = ret;
+//                     if(ret == dfn[i][j]) return 0;
+//                     else return ret;
+//                 }
+//             }
+//         }
+//         mp[i][j] = ' ';
+//         return 0;
+//     };
+
+//     int mn;
+
+//     for(int i = 1;i <= n*m;i++) if(cyc[i].size()){
+//         // cerr << i << endl;
+//         mn = i;
+//         tot = 0;
+//         for(auto [x, y] : cyc[i]){
+//             vis[x][y] = 1;
+//             // cerr << x <<  ' ' << y << endl;
+//         }
+//         for(auto [x, y] : cyc[i]) {
+//             if(mp[x][y+1] == '.'){
+//                 // cerr << x << ' ' << y << endl;
+//                 dfs(dfs, x, y, D, U);
+//                 break;
+//             }
+//         }
+//         auto it = cyc[i].begin();
+//         while(it != cyc[i].end()){
+//             auto [x, y] = *it;
+//             vis[x][y] = dfn[x][y] = 0;
+//             if(!good[x][y]){
+//                 it = cyc[i].erase(it);
+//             }else{
+//                 good[x][y] = 0;
+//                 it = next(it);
+//             }
+//         }
+//     }
+
+//     for(int i = 1;i <= n*m;i++) if(cyc[i].size() && cyc[i].size() < cyc[mn].size()) mn = i;
+
+//     for(auto [x, y] : cyc[mn]) mp[x][y] = 'a';
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             if(mp[i][j] == 'a') cout << '#';
+//             else cout << '.';
+//         }
+//         cout << endl;
+//     }
+
+//     // cerr << "END\n";
+// }
+
+// signed main(){
+//     IO;
+
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// // #define int long long
+// // const int inf = 0x3f3f3f3f3f3f3f3f;
+
+// int op8[8][2] = {
+//     0, 1, 
+//     0, -1,
+//     1, 0,
+//     1, 1, 
+//     1, -1,
+//     -1, 0,
+//     -1, 1,
+//     -1, -1
+// };
+// int op[4][2] = {
+//     0, 1,
+//     0, -1,
+//     1, 0,
+//     -1, 0
+// };
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+    
+//     vector<string>mp(n+5);
+
+//     for(int i = 1;i <= n;i++) {
+//         cin >> mp[i];
+//         mp[i] = ' ' + mp[i] + ' ';
+//     }
+//     mp[0] = mp[n+1] = string(m+5, ' ');
+
+//     queue<array<int, 2>>que;
+
+//     for(int i = 1;i <= n;i++){
+//         if(mp[i][1] == '.') que.push({i, 1}), mp[i][1] = ' ';
+//         if(mp[i][m] == '.') que.push({i, m}), mp[i][m] = ' ';
+//     }
+//     for(int j = 1;j <= m;j++){
+//         if(mp[1][j] == '.') que.push({1, j}), mp[1][j] = ' ';
+//         if(mp[n][j] == '.') que.push({n, j}), mp[n][j] = ' ';
+//     }
+ 
+//     while(que.size()){
+//         auto [i, j] = que.front();
+//         que.pop();
+//         for(int k = 0;k < 8;k++){
+//             int x = i + op8[k][0], y = j + op8[k][1];
+//             if(mp[x][y] == '.') que.push({x, y}), mp[x][y] = ' ';
+//         }
+//     }
+
+
+//     int X = 0, Y = 0;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++) if(mp[i][j] == '.'){
+//             X = i;
+//             Y = j;
+//             break;
+//         }
+//         if(X) break;
+//     }
+//     X--;
+
+//     for(int i = X;i >= 1;i--) mp[i][Y] = ' ';
+
+//     vector<vector<int>>vis(n+5, vector<int>(m+5));
+//     vector<vector< array<int,2> >>pre(n+5, vector<array<int,2>>(m+5));
+//     que.push({X, Y+1});
+//     vis[X][Y+1] = 1;
+//     pre[X][Y+1] = {X, Y};
+//     while(que.size()){
+//         auto [i, j] = que.front();
+//         que.pop();
+//         for(int k = 0;k < 4;k++){
+//             int x = i+op[k][0], y = j+op[k][1];
+//             if(mp[x][y] == '#' && !vis[x][y]){
+//                 vis[x][y] = 1;
+//                 pre[x][y] = {i, j};
+//                 que.push({x, y});
+//             }
+//         }
+//     }
+
+//     int x = X, y = Y-1;
+//     while(1){
+//         mp[x][y] = 'a';
+//         auto [i, j] = pre[x][y];
+//         x = i, y = j;
+//         if(x == X && y == Y) break;
+//     }
+//     mp[x][y] = 'a';
+
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 1;j <= m;j++){
+//             if(mp[i][j] == 'a') cout << '#';
+//             else cout << '.';
+//         }
+//         cout << endl;
+//     }
+
+// }
+
+// signed main(){
+//     IO;
+
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
