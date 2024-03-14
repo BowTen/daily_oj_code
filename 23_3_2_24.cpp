@@ -3315,3 +3315,226 @@
 
 //     return 0;
 // }
+
+
+// #include<bits/stdc++.h>
+// #define all(x) (x).begin(), (x).end()
+// using namespace std;
+
+// void solve(){
+//     int n, k, x;
+//     cin >> n >> k >> x;
+
+//     vector<vector<int>>seg, zer;
+//     vector<int>vis(n+5);
+//     for(int i = 1;i <= n;i++) {
+//         int v = x ^ i;
+//         if(v > n){
+//             zer.push_back(vector<int>(0));
+//             while(i%4) i--;
+//             if(i+3 > n){
+//                 cout << "NO\n";
+//                 return;
+//             }
+//             for(int j = i;j <= i+3;j++){
+//                 vis[j] = 1;
+//                 if(j) zer.back().push_back(j);
+//             }
+//             i += 3;
+//         }
+//     }
+
+//     for(int i = 1;i <= n;i++) if(!vis[i]){
+//         int v = x ^ i;
+//         if(v && vis[v]){
+//             cout << "NO\n";
+//             return;
+//         }
+//         vis[i] = vis[v] = 1;
+//         seg.push_back({});
+//         seg.back().push_back(i);
+//         if(v) seg.back().push_back(v);
+//     }
+
+//     if((seg.size()%2) != (k%2) || k > seg.size()){
+//         cout << "NO\n";
+//     }else{
+//         cout << "YES\n";
+//         for(int i = k;i < seg.size();i++) seg[0].insert(seg[0].end(), all(seg[i]));
+//         for(auto &vec : zer) seg[0].insert(seg[0].end(), all(vec));
+//         for(int i = 0;i < k;i++){
+//             cout << seg[i].size() << ' ';
+//             for(auto e : seg[i]) cout << e << ' ';
+//             cout << endl;
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// using namespace std;
+
+// int lowbit(int x){
+//     return x & -x;
+// }
+// int bit(int x){
+//     for(int i = 0;(1<<i) <= x;i++) if((x>>i)&1) {
+//         return i;
+//     }
+//     return 0;
+// }
+
+// void solve(){
+//     int n, sum = 0;
+//     cin >> n;
+//     vector<int>a(n+5), ad(35), dv(35), adf(35), dvf(35);
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         sum += a[i];
+//     }
+//     if(sum % n){
+//         cout << "No\n";
+//         return;
+//     }
+
+//     int av = sum / n;
+
+//     for(int i = 1;i <= n;i++) if(a[i] != av){
+//         int d = abs(a[i] - av);
+//         if(lowbit(d) == d){ 
+//             if(a[i] < av){
+//                 ad[bit(d)]++;
+//                 adf[bit(d)]++;
+//             }else{
+//                 dv[bit(d)]++;
+//                 dvf[bit(d)]++;
+//             }
+//         }else{
+//             int tmp = d + lowbit(d);
+//             if(lowbit(tmp) == tmp){
+//                 if(a[i] < av){
+//                     ad[bit(tmp)]++;
+//                     dv[bit(lowbit(d))]++;
+//                 }else{
+//                     dv[bit(tmp)]++;
+//                     ad[bit(lowbit(d))]++;
+//                 }
+//             }else{
+//                 cout << "No\n";
+//                 return;
+//             }
+//         }
+//     }
+
+//     // for(int i = 0;i <= 5;i++){
+//     //     cerr << ad[i] << ' ' << adf[i] << ' ' << dv[i] << ' ' << dvf[i] << endl;
+//     // }
+
+//     for(int i = 0;i <= 30;i++){
+//         if(ad[i] < dv[i]){
+//             int d = dv[i] - ad[i];
+//             if(d % 2){
+//                 cout << "No\n";
+//                 return;
+//             }
+//             d /= 2;
+//             if(dvf[i] < d){
+//                 cout << "No\n";
+//                 return;
+//             }
+//             dv[i+1] += d;
+//         }else if(ad[i] > dv[i]){
+//             int d = ad[i] - dv[i];
+//             if(d % 2){
+//                 cout << "No\n";
+//                 return;
+//             }
+//             d /= 2;
+//             if(adf[i] < d){
+//                 cout << "No\n";
+//                 return;
+//             }
+//             ad[i+1] += d;
+//         }
+//     }
+
+//     cout << "Yes\n";
+// }
+
+// signed main(){
+
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+// using namespace std;
+// const int N = 1e6 + 10;
+// const int mod = 998244353;
+
+// int inv[N];
+// int qpow(int a, int b){
+//     int ret = 1;
+//     while(b){
+//         if(b & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         b >>= 1;
+//     }
+//     return ret;
+// }
+// void get_inv(){
+//     inv[0] = 1;
+//     for(int i = N-1;i >= 1;i--) inv[i] = qpow(i, mod-2);
+// }
+
+// void solve(){
+//     int n, k = 0;
+//     string a, b;
+//     cin >> n >> a >> b;
+
+//     for(int i = 0;i < n;i++) k += (a[i] == b[i]);
+
+//     vector<int>f(n+5);
+//     f[0] = 1;
+
+//     for(int i = 1;i < n;i++){
+//         f[i] = ((n + (i*f[i-1]%mod))%mod) * inv[n-i] % mod;
+//     }
+
+//     int ans = 0;
+//     for(int i = k;i < n;i++) ans = (ans + f[i]) % mod;
+//     cout << ans << endl;
+// }
+
+
+// signed main(){
+
+//     IO;
+//     get_inv();
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
