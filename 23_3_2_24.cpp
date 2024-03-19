@@ -4756,3 +4756,60 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// // #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n 
+// #define ls id << 1
+// #define rs id << 1 | 1
+
+// const int INF = 0x3f3f3f3f3f3f3f3f;
+// const int inf = 0x3f3f3f3f;
+
+
+// void solve(){
+//     int n, k, t;
+//     cin >> n >> k;
+//     int ans = 0;
+//     int cur = 0;
+//     while(cur + k <= n){
+//         cout << "? " << cur + 1 << endl;
+//         cin >> t;
+//         ans ^= t;
+//         cur += k;
+//     }
+
+//     if(cur < n){
+//         int d = (n - cur) / 2;
+//         cur -= k-1;
+
+//         cur += d;
+//         cout << "? " << cur << endl;
+//         cin >> t;
+//         ans ^= t;
+        
+//         cur += d;
+//         cout << "? " << cur << endl;
+//         cin >> t;
+//         ans ^= t;
+//     }
+
+//     cout << "! " << ans << endl;
+// }   
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
