@@ -4375,3 +4375,384 @@
 // }
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+
+// const int N = 1e6 + 10;
+
+// vector<int>cnt(200), vis(200);
+
+// void solve(){
+//     int n, k;
+//     cin >> n >> k;
+//     vector<string>s(n+5);
+//     for(int i = 1;i <= n;i++){
+//         cin >> s[i];
+//         s[i] = ' ' + s[i] + ' ';
+//     }
+
+//     string ans;
+
+//     vector<int>idx(n);
+//     iota(all(idx), 1);
+
+//     auto dfs = [&](auto self, int len, int k) -> void {
+//         for(int i = 'a';i <= 'z';i++) cnt[i] = vis[i] = 0;
+//         for(auto id : idx) 
+//             if(s[id].size()-2 >= len){
+//                 if(vis[s[id][len]]) cnt[s[id][len]]++;
+//                 else if(k){
+//                     k--;
+//                     vis[s[id][len]] = 1;
+//                 }
+//             }
+//             else if(s[id].size()-2+1 == len && k) k--;
+//         char t = 0;
+//         int tmp = k, nd = 0;
+//         for(int i = 'a';i <= 'z' && tmp;i++) if(cnt[i]) {
+//             int d = min(tmp, cnt[i]);
+//             tmp -= d;
+//             if(d) t = i, nd = d;
+//         }
+//         if(!t) return;
+//         ans.push_back(t);
+//         vector<int>vec;
+//         for(auto id : idx) if(s[id].size()-2 >= len && s[id][len] == t){
+//             vec.push_back(id);
+//         }
+//         idx = vec;
+//         vec.clear();
+//         self(self, len+1, nd+1);
+//     };  
+
+//     dfs(dfs, 1, k);
+
+//     if(ans.size()) cout << ans << endl;
+//     else cout << "EMPTY" << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n
+// #define ls id << 1
+// #define rs id << 1 | 1
+
+// // const int INF = 0x3f3f3f3f3f3f3f3f;
+
+// int lowbit(int x){
+//     return x & -x;
+// }
+// class BIT{
+// public:
+//     vector<int>tr;
+//     int n;
+//     BIT(int n) : n(n), tr(n+5) {};
+//     void add(int x, int v){
+//         while(x <= n){
+//             tr[x] += v;
+//             x += lowbit(x);
+//         }
+//     }
+//     int getsum(int x){
+//         int ret = 0;
+//         while(x){
+//             ret += tr[x];
+//             x -= lowbit(x);
+//         }
+//         return ret;
+//     }
+//     int query(int l, int r){
+//         return getsum(r) - getsum(l-1);
+//     }
+// };
+
+// vector<int>nums;
+
+// class Tree{
+// public:
+//     vector<unordered_map<int,int>>tr;
+//     Tree(int n) : tr(n*4+10) {};
+
+//     void add(int id, int l, int r, int p, int x, int v){
+//         tr[id][x] += v;
+//         if(tr[id][x] == 0) tr[id].erase(x);
+//         if(l == r) return;
+//         int mid = l + r >> 1;
+//         if(p <= mid) add(ls, l, mid, p, x, v);
+//         else add(rs, mid + 1, r, p, x, v);
+//     }
+
+//     int queryl(int id, int l, int r, int ql, int qr){
+//         if(l > r) return qr;
+//         int mid = l + r >> 1;
+//         if(ql <= l && r <= qr) {
+//             if(l == r){
+//                 for(auto e : nums) if(tr[id].count(e)) return l;
+//                 return qr;
+//             }
+//             int rsum = r - mid;
+//             for(auto e : nums) if(tr[rs].count(e)) rsum -= tr[rs][e];
+//             if(rsum == 0) return min(mid+1, queryl(ls, l, mid, ql, qr));
+//             return queryl(rs, mid+1, r, ql, qr);
+//         }
+//         if(qr <= mid) return queryl(ls, l, mid, ql, qr);
+//         else if(ql > mid) return queryl(rs, mid + 1, r, ql, qr);
+//         else return min(queryl(ls, l, mid, ql, qr), queryl(rs, mid + 1, r, ql, qr)); 
+//     }
+
+//     int queryr(int id, int l, int r, int ql, int qr){
+//         if(l > r) return ql;
+//         int mid = l + r >> 1;
+//         if(ql <= l && r <= qr) {
+//             if(l == r){
+//                 for(auto e : nums) if(tr[id].count(e)) return l;
+//                 return ql;
+//             }            
+//             int lsum = mid - l + 1;
+//             for(auto e : nums) if(tr[ls].count(e)) lsum -= tr[ls][e];
+//             if(lsum == 0) return max(mid, queryr(rs, mid+1, r, ql, qr));
+//             return queryr(ls, l, mid, ql, qr);
+//         }
+//         if(qr <= mid) return queryr(ls, l, mid, ql, qr);
+//         else if(ql > mid) return queryr(rs, mid + 1, r, ql, qr);
+//         else return max(queryr(ls, l, mid, ql, qr), queryr(rs, mid + 1, r, ql, qr)); 
+//     }
+// };
+
+
+// void solve(){
+//     int n, q;
+//     cin >> n >> q;
+//     BIT str(n);
+//     Tree tr(n);
+//     vector<int>c(n+5), v(n+5);
+//     for(int i = 1;i <= n;i++){
+//         cin >> c[i]; 
+//         tr.add(1, 1, n, i, c[i], 1);
+//     }
+//     for(int i = 1;i <= n;i++){
+//         cin >> v[i]; 
+//         str.add(i, v[i]);
+//     }
+
+//     while(q--){
+//         int op;
+//         cin >> op;
+//         if(op == 1){
+//             int p, x;
+//             cin >> p >> x;
+//             tr.add(1, 1, n, p, c[p], -1);
+//             c[p] = x;
+//             tr.add(1, 1, n, p, c[p], 1);
+//         }else if(op == 2){
+//             int p, x;
+//             cin >> p >> x;
+//             str.add(p, -v[p]);
+//             v[p] = x;
+//             str.add(p, v[p]);
+//         }else{
+//             int x, k;
+//             cin >> x >> k;
+//             nums.resize(k);
+//             for(auto& e : nums){
+//                 cin >> e;
+//             }
+//             int l = tr.queryl(1, 1, n, 1, x);
+//             int r = tr.queryr(1, 1, n, x, n);
+
+//             // cerr << l << ' ' << r << endl;
+
+//             cout << str.query(l, r) << endl;
+//         }
+//     }
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n 
+// #define ls id << 1
+// #define rs id << 1 | 1
+
+// const int INF = 0x3f3f3f3f3f3f3f3f;
+// const int inf = 0x3f3f3f3f;
+
+// int lowbit(int x){
+//     return x & -x;
+// }
+// class BIT{
+// public:
+//     int n;
+//     vector<int>tr;
+//     BIT(int _n) : n(_n), tr(_n+5) {};
+//     void add(int x, int v){
+//         while(x <= n){
+//             tr[x] += v;
+//             x += lowbit(x);
+//         }
+//     }
+//     int getsum(int x){
+//         int ret = 0;
+//         while(x){
+//             ret += tr[x];
+//             x -= lowbit(x);
+//         }
+//         return ret;
+//     }
+//     int query(int l, int r){
+//         return getsum(r) - getsum(l-1);
+//     }
+// };
+
+// vector<int>nums;
+// class Tree{
+// public:
+//     vector<unordered_map<int,int>>tr;
+//     Tree(int n) : tr(n*4 + 10) {};
+//     void add(int id, int l, int r, int p, int x, int v) {
+//         tr[id][x] += v;
+//         if(tr[id][x] == 0) tr[id].erase(x);
+//         if(l == r) return;
+//         int mid = l + r >> 1;
+//         if(p <= mid) add(ls, l, mid, p, x, v);
+//         else add(rs, mid + 1, r, p, x, v);
+//     }
+//     int queryl(int id, int l, int r, int ql, int qr){
+//         if(l == r){
+//             for(auto e : nums) if(tr[id].count(e) && tr[id][e] == 1) return l;
+//             return qr;
+//         }
+//         int mid = l + r >> 1;
+//         if(ql <= l && r <= qr){
+//             int rsum = r - mid;
+//             for(auto e : nums) if(tr[rs].count(e)) rsum -= tr[rs][e];
+//             if(rsum == 0) return min(mid+1, queryl(ls, l, mid, ql, qr));
+//             return queryl(rs, mid + 1, r, ql, qr);
+//         }
+//         if(qr <= mid) return queryl(ls, l, mid, ql, qr);
+//         else if(ql > mid) return queryl(rs, mid + 1, r, ql, qr);
+//         else {
+//             // return min(queryl(ls, l, mid, ql, qr), queryl(rs, mid + 1, r, ql, qr));
+//             int R = queryl(rs, mid + 1, r, ql, qr);
+//             if(R == mid + 1) return min(R, queryl(ls, l, mid, ql, qr));
+//             return R;
+//         }
+//     }
+//     int queryr(int id, int l, int r, int ql, int qr){
+//         if(l == r){
+//             for(auto e : nums) if(tr[id].count(e) && tr[id][e] == 1) return l;
+//             return ql;
+//         }
+//         int mid = l + r >> 1;
+//         if(ql <= l && r <= qr){
+//             int lsum = mid - l + 1;
+//             for(auto e : nums) if(tr[ls].count(e)) lsum -= tr[ls][e];
+//             if(lsum == 0) return max(mid, queryr(rs, mid + 1, r, ql, qr));
+//             return queryr(ls, l, mid, ql, qr);
+//         }
+//         if(qr <= mid) return queryr(ls, l, mid, ql, qr);
+//         else if(ql > mid) return queryr(rs, mid + 1, r, ql, qr);
+//         else {
+//             // return max(queryr(ls, l, mid, ql, qr), queryr(rs, mid + 1, r, ql, qr));
+//             int L = queryr(ls, l, mid, ql, qr);
+//             if(L == mid) return max(L, queryr(rs, mid + 1, r, ql, qr));
+//             return L;
+//         }
+//     }
+// };
+
+// void solve(){
+//     int n, q;
+//     cin >> n >> q;
+//     BIT str(n);
+//     Tree tr(n);
+//     vector<int>c(n+5), v(n+5);
+//     for(int i = 1;i <= n;i++){
+//         cin >> c[i];
+//         tr.add(1, 1, n, i, c[i], 1);
+//     }
+//     for(int i = 1;i <= n;i++){
+//         cin >> v[i];
+//         str.add(i, v[i]);
+//     }
+
+//     while(q--){
+//         int op;
+//         cin >> op;
+//         if(op == 1){
+//             int p, x;
+//             cin >> p >> x;
+//             tr.add(1, 1, n, p, c[p], -1);
+//             tr.add(1, 1, n, p, x, 1);
+//             c[p] = x;
+//         }else if(op == 2){
+//             int p, x;
+//             cin >> p >> x;
+//             str.add(p, x-v[p]);
+//             v[p] = x;
+//         }else{
+//             int x, k;
+//             cin >> x >> k;
+//             nums = vector<int>(k);
+//             int f = 0;
+//             for(auto &e : nums){
+//                 cin >> e;
+//                 if(e == c[x]) f = 1;
+//             }
+//             if(!f) {
+//                 cout << 0 << endl;
+//                 continue;
+//             }
+//             int l = tr.queryl(1, 1, n, 1, x);
+//             int r = tr.queryr(1, 1, n, x, n);
+//             cout << str.query(l, r) << endl;
+//         }
+//     }
+
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
