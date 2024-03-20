@@ -4813,3 +4813,185 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+// #define all1(x) (x).begin() + 1, (x).begin() + 1 + n 
+// #define ls id << 1
+// #define rs id << 1 | 1
+
+// const int INF = 0x3f3f3f3f3f3f3f3f;
+// const int inf = 0x3f3f3f3f;
+// const int N = 2e5 + 10;
+
+// int Log[N];
+
+// void init() { for(int i = 2;i < N;i++) Log[i] = Log[i/2] + 1; }
+
+// class ST{
+// public:
+//     vector<vector<int>>f;
+//     ST(int n, vector<int>&a) : f(n+5, vector<int>(20)) {
+//         for(int i = 1;i <= n;i++) f[i][0] = a[i];
+//         for(int j = 1;j < 20;j++){
+//             for(int i = 1;i <= n && i + (1<<j) - 1 <= n;i++){
+//                 f[i][j] = max(f[i][j-1], f[i+(1<<(j-1))][j-1]);
+//             }
+//         }
+//     }
+
+//     int query(int l, int r) {
+//         int s = Log[r - l + 1];
+//         return max(f[l][s], f[r-(1<<s)+1][s]);
+//     }
+// };
+
+// void solve(){
+//     int n, m;
+//     cin >> n;
+//     vector<int>a(n+5), cnt(n+5);
+//     vector<vector<int>>pos(n+5);
+
+//     for(int i = 1;i <= n;i++){
+//         cin >> a[i];
+//         pos[a[i]].push_back(i);
+//     }
+//     ST st(n, a);
+//     cin >> m;
+
+//     auto dfs = [&](auto self, int l, int r, int h) -> void {
+//         int len = r - l - 1;
+//         if(len < 1) return;
+//         // cerr << l << ' ' << r << endl;
+//         int mx = st.query(l+1, r-1);
+//         cnt[len] += h - mx;
+//         // cerr << len << ' ' << h-mx << endl;
+
+//         auto ne = upper_bound(all(pos[mx]), l);
+//         while(ne != pos[mx].end() && *ne < r){
+//             self(self, l, *ne, mx);
+//             l = *ne;
+//             ne++;
+//         }
+//         self(self, l, r, mx);
+//     };
+
+//     dfs(dfs, 0, n+1, n);
+
+//     int sum = m;
+//     for(int i = n;i >= 1 && m >= 0;i--){
+//         int d = min(cnt[i], (m + i-1) / i);
+//         sum -= d;
+//         m -= d * i;
+//     }
+
+//     cout << sum << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// const int N = 110;
+// int fa[N], L[N], R[N], val[N], dep[N];
+// unordered_map<int,int>id;
+// int tot, rt;
+
+// void insert(int x){
+//     id[x] = ++tot;
+//     val[id[x]] = x;
+//     int cur = rt, pre = 0;
+//     if(cur == 0){
+//         rt = id[x];
+//         return;
+//     }
+
+//     while(cur){
+//         pre = cur;
+//         if(x > val[cur]){
+//             cur = R[cur];
+//             if(cur == 0){
+//                 R[pre] = id[x];
+//                 fa[id[x]] = pre;
+//                 dep[id[x]] = dep[pre] + 1;
+//             }
+//         }else{
+//             cur = L[cur];
+//             if(cur == 0){
+//                 L[pre] = id[x];
+//                 fa[id[x]] = pre;
+//                 dep[id[x]] = dep[pre] + 1;
+//             }
+//         }
+//     }
+// }
+
+// int isn(int x){
+//     return x >= '0' && x <= '9';
+// }
+
+// int main(){
+
+//     int n;
+//     cin >> n;
+//     for(int i = 1, t;i <= n;i++){
+//         cin >> t;
+//         insert(t);
+//     }
+
+//     int m;
+//     cin >> m;
+//     while(m--){
+//         string s;
+//         int a, b;
+//         cin >> a >> s;
+
+//         if(s == "is"){
+//             cin >> s >> s;
+//             if(s == "root"){
+//                 if(id[a] && id[a] == rt) cout << "Yes\n";
+//                 else cout << "No\n";
+//             }else if(s[0] == 'p'){
+//                 cin >> s >> b;
+//                 if(id[a] && id[b] && fa[id[b]] == id[a]) cout << "Yes\n";
+//                 else cout << "No\n";
+//             }else if(s[0] == 'l'){
+//                 cin >> s >> s >> b;
+//                 if(id[a] && id[b] && L[id[b]] == id[a]) cout << "Yes\n";
+//                 else cout << "No\n";
+//             }else{
+//                 cin >> s >> s >> b;
+//                 if(id[a] && id[b] && R[id[b]] == id[a]) cout << "Yes\n";
+//                 else cout << "No\n";
+//             }
+//         }else{
+//             cin >> b >> s >> s;
+//             if(s[0] == 's'){
+//                 if(id[a] && id[b] && fa[id[a]] == fa[id[b]]) cout << "Yes\n";
+//                 else cout << "No\n";
+//             }else{
+//                 cin >> s >> s >> s;
+//                 if(id[a] && id[b] && dep[id[a]] == dep[id[b]]) cout << "Yes\n";
+//                 else cout << "No\n";
+//             }
+//         }
+//     }
+    
+//     return 0;
+// }
