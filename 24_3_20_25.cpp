@@ -843,5 +843,303 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+
+// #define _pre pre[k]
+// #define _mn mn[k]
+// #define _d d[k]
+// #define _idx idx[k]
+// #define _tr tr[k]
+// #define _id id[k]
+
+// const int mod = 998244353;
+// int n;
+// const int I = 0;
+// const int C = 1;
+// const int P = 2;
+// // const int rp = 0;
+// // const int ri = 1;
+// // const int rc = 2;
+// char ch[3] = {'I', 'C', 'P'};
+// char rch[3] = {'P', 'I', 'C'};
+
+// int lowbit(int x){
+//     return x & -x;
+// }
+
+// class BIT{
+// public:
+//     vector<int>tr;
+//     int n;
+//     BIT(int n = 0) : n(n), tr(n+5) {};
+//     void resize(int x){
+//         n = x;
+//         tr.resize(x+5);
+//     }
+//     void add(int x, int v){
+//         while(x <= n){
+//             tr[x] = (tr[x] + v) % mod;
+//             x += lowbit(x);
+//         }
+//     }
+//     int getsum(int x){
+//         int ret = 0;
+//         while(x){
+//             ret = (ret + tr[x]) % mod;
+//             x -= lowbit(x);
+//         }
+//         return ret;
+//     }
+// };  
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     n = s.size();
+//     s = ' ' + s;
+
+//     vector<vector<int>>pre(3, vector<int>(n+5)), d(3, vector<int>(n+5)), id(3, vector<int>(n+5));
+//     vector<vector<vector<int>>>idx(3, vector<vector<int>>(n+5));
+//     vector<vector<BIT>>tr(3, vector<BIT>(n+5));
+//     int mn[3] = {0};
+//     for(int k = 0;k < 3;k++){
+//         // auto& _pre = pre[k];
+//         // auto& _mn = mn[k];
+//         // auto& _d = d[k];
+//         for(int i = 1;i <= n;i++){
+//             _pre[i] = _pre[i-1];
+//             if(s[i] == rch[k]) _pre[i]++;
+//             else if(s[i] != ch[k]) _pre[i]--;
+//             _mn = min(_mn, _pre[i]);
+
+//             _d[i] = _d[i-1] + (s[i] == rch[k]);
+//         }
+//     }
+//     for(int k = 0;k < 3;k++)
+//         for(int i = 0;i <= n;i++){
+//             _d[i] = i - 3*_d[i];
+//             _pre[i] -= _mn;
+//         }
+
+//     for(int k = 0;k < 3;k++)
+//         for(int i = 0;i <= n;i++) _idx[_pre[i]].push_back(i);
+
+//     for(int k = 0;k < 3;k++)
+//         for(int i = 0;i <= n;i++) if(_idx[i].size()){
+//             _tr[i].resize(_idx[i].size());
+//             sort(all(_idx[i]), [&](int i, int j) -> int {
+//                 return _d[i] < _d[j];
+//             });
+//             for(int j = 0;j < _idx[i].size();j++) _id[_idx[i][j]] = j;
+//         }
+
+//     int ans;
+
+//     for(int k = 0;k < 3;k++) {
+//         _tr[_pre[0]].add(_id[0]+1, 1);
+//     }
+//     for(int i = 1;i <= n;i++){
+//         int tmp = 0;
+//         for(int k = 0;k < 3;k++){
+//             int l = 0, r = _idx[_pre[i]].size() - 1;
+//             while(l <= r){
+//                 int mid = l + r >> 1;
+//                 if(_d[_idx[_pre[i]][mid]] < _d[i]) l = mid + 1;
+//                 else r = mid - 1;
+//             }
+//             tmp = (tmp + _tr[_pre[i]].getsum(r+1)) % mod;
+//             // if(i == 2) {
+//             //     cerr << r << ' ';
+//             //     cerr << tmp << endl;
+//             // }
+//             // if(_pre[i] + _mn == 0 && _d[i] > 0) tmp = (tmp + 1) % mod;
+//         }
+//         for(int k = 0;k < 3;k++){
+//             _tr[_pre[i]].add(_id[i]+1, tmp);
+//         }
+//         if(i == n) ans = tmp;
+//         // cerr << tmp << ' ';
+//     }
+//     cout << ans << endl;
+
+//     // for(auto e : idx[C][0]) cerr << e << ' ';
+
+//     // for(int k = 0;k < 3;k++){
+//     //     // for(int i = 0;i <= n;i++) cerr << _pre[i]+_mn << " ";
+//     //     // cerr << endl;
+//     //     // for(int i = 0;i <= n;i++) cerr << _d[i] << " ";
+//     //     // cerr << endl;
+//     //     // for(int i = 0;i <= n;i++) cerr << (_d[i]-i)/-3 << " ";
+//     //     // cerr << endl;
+//     // }
+// }
+
+// signed main(){
+
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define all(x) (x).begin(), (x).end()
+
+// const int N = 1e6 + 10;
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+// int Log[N];
+
+// class ST{
+// public:
+//     vector<vector<int>>f;
+//     vector<int>&dep;
+//     ST(int n, vector<int>a, vector<int>&dep) : dep(dep), f(n+4, vector<int>(20)) {
+//         for(int i = 1;i <= n;i++) f[i][0] = a[i];
+//         for(int j = 1;j < 20;j++){
+//             for(int i = 1;i <= n && i+(1<<j)-1 <= n;i++){
+//                 f[i][j] = min(f[i+(1<<(j-1))][j-1], f[i][j-1]);
+//             }
+//         }
+//     }
+//     int query(int l, int r){
+//         int s = Log[r-l+1];
+//         return min(f[l][s], f[r-(1<<s)+1][s]);
+//     }
+//     int min(int i, int j){
+//         if(dep[i] <= dep[j]) return i;
+//         return j;
+//     }
+// };
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     vector<vector<array<int,2>>>g(n+5), G(n+5);
+//     vector<int>P, dep(n+5), h(n+5), dis(n+5), A(1), dfn(n+5), vis(n+5);
+
+//     for(int i = 1, u, v, w;i <= m;i++){
+//         cin >> u >> v >> w;
+//         g[u].push_back({v, w});
+//         g[v].push_back({u, w});
+//     }
+
+//     auto dfs = [&](auto self, int u, int fa) -> void {
+//         // cerr << u << endl;
+//         dep[u] = dep[fa] + 1;
+//         dfn[u] = A.size();
+//         A.push_back(u);
+//         for(auto [v, w] : g[u]) if(v != fa){
+//             if(!dep[v]){
+//                 h[v] = h[u] + w;
+//                 self(self, v, u);
+//                 A.push_back(u);
+//             }else{
+//                 dis[u] = dis[v] = inf;
+//                 P.push_back(u);
+//                 P.push_back(v);
+//                 G[u].push_back({v, w});
+//                 G[v].push_back({u, w});
+//             }
+//         }
+//     };
+
+//     dfs(dfs, 1, 0);
+//     sort(all(P));
+//     P.erase(unique(all(P)), P.end());
+//     int M = P.size();
+//     ST st(n*2-1, A, dep);
+
+//     // for(auto p : A) cerr << p << ' ';
+//     // cerr << endl;
+//     // for(auto p : P) cerr << p << ' ';
+//     // cerr << endl;
+
+//     auto dist = [&](int a, int b) -> int {
+//         if(dfn[a] > dfn[b]) swap(a, b);
+//         int lca = st.query(dfn[a], dfn[b]);
+//         return h[a] + h[b] - 2*h[lca];
+//     };
+
+//     for(int i = 0;i < P.size();i++){
+//         for(int j = i+1;j < P.size();j++){
+//             G[P[i]].push_back({P[j], dist(P[i], P[j])});
+//             G[P[j]].push_back({P[i], dist(P[j], P[i])});
+//         }
+//     }
+
+//     int q;
+//     cin >> q;
+//     while(q--){
+//         int u, v;
+//         cin >> u >> v;
+//         for(auto p : P){
+//             // if(u != p){
+//                 G[u].push_back({p, dist(u, p)});
+//             // }
+//             // if(v != p){
+//                 G[p].push_back({v, dist(p, v)});
+//             // }
+//         }
+
+//         if(!dis[u]){
+//             dis[u] = inf;
+//             P.push_back(u);
+//         }
+//         if(!dis[v]){
+//             dis[v] = inf;
+//             P.push_back(v);
+//         }
+
+//         dis[u] = 0;
+//         dis[v] = dist(u, v);
+//         for(int i = 0;i < P.size();i++){
+//             int mn = -1;
+//             for(int j = 0;j < P.size();j++) if(!vis[P[j]]){
+//                 if(mn == -1 || dis[P[j]] < dis[mn]) mn = P[j];
+//             }
+//             vis[mn] = 1;
+//             for(auto [t, w] : G[mn]) if(!vis[t]){
+//                 dis[t] = min(dis[t], dis[mn] + w);
+//                 // if(t == v){
+//                 //     cerr << mn << ' ' << t << ' ' << w << ' ' << dis[mn] << ' ' << dis[t] << endl;
+//                 // }
+//             }
+//         }
+
+//         cout << dis[v] << endl;
+
+//         while(P.size() > M){
+//             dis[P.back()] = vis[P.back()] = 0;
+//             P.pop_back();
+//         }
+
+//         for(auto p : P){
+//             vis[p] = 0;
+//             dis[p] = inf;
+//             G[u].pop_back();
+//             G[p].pop_back();
+//         }
+//     }
+// }
+
+// signed main(){
+
+//     ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+
+//     for(int i = 2;i < N;i++) Log[i] = Log[i/2] + 1;
+
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
