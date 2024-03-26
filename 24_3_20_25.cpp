@@ -1143,3 +1143,101 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     m++;
+//     vector<int>a(n+5), fa(n+5), siz(n+5);
+//     vector<vector<int>>g(n+5), f(n+5, vector<int>(m+5));
+//     for(int i = 1;i <= n;i++){
+//         cin >> fa[i] >> a[i];
+//         f[i][1] = a[i];
+//         g[fa[i]].push_back(i);
+//     }
+
+
+//     auto dfs = [&](auto self, int u) -> void {
+//         siz[u] = 1;
+//         for(auto v : g[u]) {
+//             self(self, v);
+//             for(int i = min(m, siz[u]);i >= 1;i--){
+//                 for(int j = 1;j <= min(m, siz[v]) && i + j <= m;j++){
+//                     f[u][i+j] = max(f[u][i+j], f[u][i] + f[v][j]);
+//                 }
+//             }
+//             siz[u] += siz[v];
+//         }
+//     };
+
+//     dfs(dfs, 0);
+
+//     cout << f[0][m] << endl;
+// }
+
+// signed main(){
+
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+// #define int long long
+
+
+// void solve(){
+//     int n, m;
+//     cin >> n >> m;
+//     vector<vector<int>>a(n+5);
+//     vector<int>c(m+5), idx(n), v(n+5);
+//     for(int i = 1, t;i <= n;i++){
+//         cin >> t;
+//         a[i].resize(t);
+//         for(auto &e : a[i]) cin >> e;
+//     }
+
+//     iota(all(idx), 1);
+//     sort(all(idx), [&](int i, int j) -> int {return a[i].size() > a[j].size();});
+//     v[0] = m;
+//     for(int i = 0;i < n;i++) v[idx[i]] = i;
+
+//     for(auto id : idx) if(a[id].size()) {
+//         int f = c[a[id][0]];
+//         for(auto p : a[id]) if(v[c[p]] > v[f]) f = c[p];
+
+//         for(auto p : a[id]) if(c[p] != f) {
+//             cout << "YES\n";
+//             if(f) cout << f << ' ' << id << endl;
+//             else cout << c[p] << ' ' << id << endl;
+//             return;
+//         }else{
+//             c[p] = id;
+//         }
+//     }
+
+//     cout << "NO\n";
+// }
+
+// signed main(){
+
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
