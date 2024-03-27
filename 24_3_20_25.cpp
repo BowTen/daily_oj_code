@@ -1241,3 +1241,327 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+// #define int unsigned long long
+
+// const int mod = 998244353;
+// const int base = 1e9+7;
+
+// int qpow(int a, int b){
+//     int ret = 1;
+//     while(b){
+//         if(b & 1) ret = ret * a % mod;
+//         a = a * a % mod;
+//         b >>= 1;
+//     }
+//     return ret;
+// }
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<vector<int>>g(n+5);
+//     for(int i = 1, u, v;i < n;i++){
+//         cin >> u >> v;
+//         g[u].push_back(v);
+//         g[v].push_back(u);
+//     }
+
+//     vector<int>h(n+5), dep(n+5);
+//     unordered_map<int,int>ok;
+
+//     auto dfs = [&](auto self, int u, int fa) -> void {
+//         h[u] = 1;
+//         dep[u] = dep[fa] + 1;
+//         for(auto v : g[u]) if(v != fa){
+//             self(self, v, u);
+//         }
+//         sort(all(g[u]), [&](int i, int j) -> int {
+//             return h[i] < h[j];
+//         });
+
+//         unordered_map<int,int>mp;
+//         int cnt = 0;
+//         for(auto v : g[u]) if(v != fa){
+//             mp[h[v]]++;
+//             cnt++;
+//             // h[u] = h[v] * mod + h[u];
+//             // h[u] = dep[v] * mod + h[u];
+//             // h[u] = ((h[u] * base % mod) + h[v]) % mod;
+//             // h[u] = ((h[u] * base % mod) + dep[v]) % mod;
+//             h[u] = ((h[u] * base % mod) + qpow(h[v], dep[v])) % mod;
+//         }
+//         // h[u] = cnt * mod + h[u];
+//         // h[u] = dep[u] * mod + h[u];
+//         // h[u] = ((h[u] * base % mod) + cnt) % mod;
+//         // h[u] = ((h[u] * base % mod) + dep[u]) % mod;
+//         // h[u] = ((h[u] * base % mod) + qpow(cnt, dep[u])) % mod;
+
+//         if(cnt & 1){
+//             int j = 0;
+//             for(auto [k, v] : mp) if(v & 1) {
+//                 if(!ok[k]) return;
+//                 if(j){
+//                     return;
+//                 }else{
+//                     j = k;
+//                 }
+//             }
+//             ok[h[u]] = 1;
+//         }else{
+//             for(auto [k, v] : mp) if(v & 1){
+//                 return;
+//             }
+//             ok[h[u]] = 1;
+//         }
+//     };
+
+//     dfs(dfs, 1, 0);
+
+//     if(ok[h[1]]) cout << "YES\n";
+//     else cout << "NO\n";
+// }
+
+// signed main(){
+
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+
+// const int inf = 0x3f3f3f3f3f3f3f3f;
+
+// signed main(){
+
+//     int n, m, q;
+//     cin >> n >> m >> q;
+//     vector<vector<array<int,2>>>g(n+5), rg(n+5);
+//     for(int i = 1, u, v, c, d;i <= m;i++){
+//         cin >> u >> v >> c >> d;
+//         g[u].push_back({v, c});
+//         rg[v].push_back({u, d});
+//     }
+//     vector<int>a(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+
+//     multiset<int>st;
+//     vector<int>ds(n+5, inf), dt(n+5, inf);
+
+//     priority_queue<array<int,2>, vector<array<int,2>>, greater<array<int,2>>>que;
+//     ds[1] = 0;
+//     que.push({0, 1});
+//     while(que.size()){
+//         auto [d, u] = que.top();
+//         que.pop();
+//         for(auto [v, w] : g[u]) if(d + w < ds[v]){
+//             ds[v] = d + w;
+//             que.push({ds[v], v});
+//         }
+//     }
+//     dt[n] = 0;
+//     que.push({0, n});
+//     while(que.size()){
+//         auto [d, u] = que.top();
+//         que.pop();
+//         for(auto [v, w] : rg[u]) if(d + w < dt[v]){
+//             dt[v] = d + w;
+//             que.push({dt[v], v});
+//         }
+//     }
+
+//     auto val = [&](int i) -> int {
+//         return ds[i] + (dt[i] + a[i]-1) / a[i];
+//     };
+    
+//     for(int i = 1;i <= n;i++) {
+//         st.insert(val(i));
+//     }
+
+//     while(q--){
+//         int xi, ai;
+//         cin >> xi >> ai;
+//         st.erase(st.find(val(xi)));
+//         a[xi] = ai;
+//         st.insert(val(xi));
+//         cout << *st.begin() << endl;
+//     }
+    
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+
+// signed main(){
+
+//     int n, m;
+//     cin >> n >> m;
+//     vector<string>s;
+//     string t;
+//     string es = "easy";
+//     string qd = "qiandao";    
+//     getchar();
+//     for(int i = 1;i <= n;i ++){
+//         getline(cin, t);
+//         int f = 1;
+//         for(int j = 0;j < t.size();j++){
+//             for(int k = 0;k < es.size() && k + j < t.size();k++){
+//                 if(t[j+k] != es[k]) break;
+//                 if(k == es.size() - 1) f = 0;
+//             }
+//         }
+//         for(int j = 0;j < t.size();j++){
+//             for(int k = 0;k < qd.size() && k + j < t.size();k++){
+//                 if(t[j+k] != qd[k]) break;
+//                 if(k == qd.size() - 1) f = 0;
+//             }
+//         }
+//         if(f) s.push_back(t);
+//     }
+
+//     if(m >= s.size()) cout << "Wo Ak le"
+
+    
+//     return 0;
+// }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+
+// signed main(){
+
+//     int n, m;
+//     cin >> n >> m;
+//     vector<vector<int>>ot(n+5, vector<int>(m));
+//     map<vector<int>,int>mp;
+//     for(int i = 1;i <= n;i++){
+//         for(int j = 0;j < m;j++){
+//             cin >> ot[i][j];
+//         }
+//         mp[ot[i]]++;
+//     }
+
+//     // cerr << "DEBUG\n";
+
+//     vector<pair<int, vector<int>>>ans;
+
+//     for(auto &[v1, v2] : mp){
+//         ans.push_back({v2, v1});
+
+//     }
+
+//     // for(auto [v2, v1] : ans){
+//     //     cerr << v2 << ' ';
+//     //     for(auto e : v1) cerr << e << ' ';
+//     //     cerr << endl;
+//     // }
+
+//     vector<int>id(ans.size());
+//     iota(all(id), 0);
+//     sort(all(id), [&](int i, int j) -> int {
+//         if(ans[i].first == ans[j].first) return ans[i].second < ans[j].second;
+//         return ans[i].first > ans[j].first;
+//     });
+
+//     cout << ans.size() << endl;
+//     for(auto i : id){
+//         cout << ans[i].first << ' ';
+//         for(int j = 0;j < ans[i].second.size();j++){
+//             cout << ans[i].second[j];
+//             if(j != ans[i].second.size()-1) cout << ' ';
+//         }
+//         cout << endl;
+//     }
+
+    
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+
+// signed main(){
+
+//     int n, m;
+//     cin >> n;
+//     vector<int>h(n+5);
+//     for(int i = 1; i <= n;i++) cin >> h[i];
+
+//     cin >> m;
+//     vector<int>siz(m+5);
+//     vector<vector<int>>a(m+5);
+//     for(int i = 1; i <= m;i++){
+//         cin >> siz[i];
+//         a[i].resize(siz[i]+3);
+//         for(int j = 1;j <= siz[i];j++) cin >> a[i][j];
+//     }
+
+//     vector<vector<int>>vec(n+5);
+
+//     for(int k = 1; k <= m;k++){
+//         vector<int>ne(a[k].size());
+//         for(int i = 2, j = 0;i <= siz[k];i++){
+//             while(j && a[k][i] != a[k][j+1]) j = ne[j];
+//             if(a[k][i] == a[k][j+1]) j++;
+//             ne[i] = j;
+//         }
+//         for(int i = 1, j = 0; i <= n; i++){
+//             while(j && h[i] != a[k][j+1]) j = ne[j];
+//             if(h[i] == a[k][j + 1]) j++;
+//             if(j == siz[k]){
+//                 vec[i-siz[k]+1].push_back(k);
+//                 j = ne[j];
+//             }
+//         }
+//     }
+
+//     // for(int i = 1; i<= n;i++){
+//     //     cerr << i << " : ";
+//     //     for(auto e : vec[i]) cerr << e << ' ' << a[e].size() << ' ';
+//     //     cerr << endl;
+//     // }
+
+//     vector<int>ans;
+//     int ok = 0;
+    
+//     auto dfs = [&](auto self, int p) -> void {
+//         if(p == n) {
+//             ok = 1;
+//             return;
+//         }
+//         for(int i = 0;i < vec[p].size();i++){
+//             ans.push_back(vec[p][i]);
+//             self(self, p+siz[vec[p][i]]-1);
+//             if(ok) return;
+//             ans.pop_back();
+//         }
+//     };
+
+//     dfs(dfs, 1);
+
+//     for(auto e : ans) cout << e << ' ';
+    
+//     return 0;
+// }
