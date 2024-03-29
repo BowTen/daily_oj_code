@@ -1682,59 +1682,138 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-const int inf = 0x3f3f3f3f3f3f3f3f;
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int inf = 0x3f3f3f3f3f3f3f3f;
 
-vector<int>a;
+// vector<int>a;
 
-int btot(int x){
-    int ret = 0, pw = 1;
-    for(int i = 0;(1<<i) <= x;i++) {
-        if((1<<i)&x) ret += pw;
-        pw *= 10;
-    }
-    return ret;
-}
+// int btot(int x){
+//     int ret = 0, pw = 1;
+//     for(int i = 0;(1<<i) <= x;i++) {
+//         if((1<<i)&x) ret += pw;
+//         pw *= 10;
+//     }
+//     return ret;
+// }
 
-int check(int x){
-    while(x){
-        if(x % 10 != 0 && x % 10 != 1) return 0;
-        x /= 10;
-    }
-    return 1;
-}
+// int check(int x){
+//     while(x){
+//         if(x % 10 != 0 && x % 10 != 1) return 0;
+//         x /= 10;
+//     }
+//     return 1;
+// }
 
-int dfs(int x){
-    if(check(x)) return 1;
-    for(auto e : a) {
-        if(e > x) break;
-        if(x % e) continue;
-        if(dfs(x / e)) return 1; 
-    }
-    return 0;
-}
+// int dfs(int x){
+//     if(check(x)) return 1;
+//     for(auto e : a) {
+//         if(e > x) break;
+//         if(x % e) continue;
+//         if(dfs(x / e)) return 1; 
+//     }
+//     return 0;
+// }
 
-void solve(){
-    int n;
-    cin >> n;
+// void solve(){
+//     int n;
+//     cin >> n;
 
-    if(dfs(n)) cout << "YES\n";
-    else cout << "NO\n";
+//     if(dfs(n)) cout << "YES\n";
+//     else cout << "NO\n";
 
-}
+// }
 
-signed main(){
+// signed main(){
 
 
-    for(int i = 2;i < (1<<6);i++){
-        a.push_back(btot(i));
-    }
+//     for(int i = 2;i < (1<<6);i++){
+//         a.push_back(btot(i));
+//     }
 
-    int T = 1;
-    cin >> T;
-    while(T--) solve();
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     string a, b;
+//     cin >> a >> b;
+
+//     reverse(b.begin(), b.end());
+
+//     map<array<char, 2>, int>mp;
+//     map<array<char, 2>, int>mp2;
+//     int cnt = 0;
+//     for(int i = 0;i < n;i++){
+//         if(a[i] == b[i]){
+//             cnt++;
+//             mp2[{a[i], a[i]}]++;
+//         }else{
+//             array<char, 2>ar = {min(a[i], b[i]), max(a[i], b[i])};
+//             mp[ar]++;
+//         }
+//     }
+
+//     if((n - cnt) & 1){
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     cnt = 0;
+//     for(auto [k, v] : mp2){
+//         cnt += (v & 1);
+//     }
+
+//     if(cnt > 1) {
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     // for(auto [k, v] : mp) cerr << k[0] << ' ' << k[1] << endl;
+
+//     for(auto [k, v] : mp) if(v & 1){
+//         cout << "NO\n";
+//         return;
+//     }
+
+//     cout << "YES\n";
+// }
+
+// signed main(){
+
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+// abcabdaa
+// adabcaba
+
+
+// cada
+// acad
+
+
+// abadaa
+// adaaba
+
+
+// abadaa
+// abaada
+
+
