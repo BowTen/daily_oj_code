@@ -1817,3 +1817,351 @@
 // abaada
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+
+
+
+// void solve(){
+//     string s;
+//     cin >> s;
+//     int n = s.size();
+//     s = ' ' + s;
+//     vector<int>ne(n+20);
+//     vector<array<int,30>>ch(n+20);
+
+//     for(int i = 2, j = 0;i <= n;i++){
+//         while(j && s[i] != s[j+1]) j = ne[j];
+//         if(s[i] == s[j+1]) j++;
+//         ne[i] = j;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         // cerr << ne[i] << ' ';
+//         for(int j = 'a';j <= 'z';j++){
+//             if(i+1 <= n && s[i+1] == j) ch[i][j-'a'] = i;
+//             else ch[i][j-'a'] = ch[ne[i]][j-'a'];
+//         }
+//     }
+
+//     // for(int i = 1;i <= n;i++) cerr << ch[i][0] << ' ';
+//     // cerr << endl;
+
+//     int q;
+//     cin >> q;
+//     while(q--){
+//         string t;
+//         cin >> t;
+
+//         for(auto c : t) s += c;
+
+//         for(int i = max(2ll, n), j = ne[max(2ll, n)-1];i < s.size();i++){
+//             while(j && s[i] != s[j+1]) j = ch[j][s[i]-'a'];
+//             if(s[i] == s[j+1]) j++;
+//             ne[i] = j;
+//             for(int k = 'a';k <= 'z';k++){
+//                 if(i+1 < s.size() && s[i+1] == k) ch[i][k-'a'] = i;
+//                 else ch[i][k-'a'] = ch[ne[i]][k-'a'];
+//             }
+//         }
+
+//         for(int i = n + 1;i < s.size();i++){
+//             // if(i+1 < s.size()) cerr << ch[i][s[i+1]-'a'] << ' ';
+//             cout << ne[i] << ' ';
+//             ne[i] = 0;
+//             for(int j = 'a';j <= 'z';j++) ch[i][j-'a'] = 0;
+//         }
+//         // cerr << endl;
+//         cout << endl;
+
+//         for(int i = 0;i < t.size();i++) s.pop_back();
+//     }
+// }
+
+// signed main(){
+
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+
+
+// void solve(){
+//     int n, k;
+//     cin >> n >> k;
+//     if(n == k){
+//         for(int i = 1;i <= n;i++) cout << 1 << ' ';
+//         cout << endl;
+//     }else if(k == 1){
+//         cout << 1 << ' ';
+//         for(int i = 2;i <= n;i++) cout << 2 << ' ';
+//         cout << endl;
+//     }else{
+//         cout << "-1\n";
+//     }
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>a(n+5), p(n+5), vis(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+
+//     int cur = 0;
+//     for(int i = 1, j = 1;i <= n;i++, j++){
+//         // cerr << i << ' ';
+//         while(a[j] < 0) j++;
+//         p[j] = cur;
+//         for(int k = i;k < j;k++){
+//             p[k] = cur-a[k];
+//             vis[p[k]] = 1;
+//         }
+//         vis[cur] = 1;
+//         while(vis[cur]) cur++;
+//         i = j;
+//     }
+
+//     for(int i = 1;i <= n;i++) cout << p[i] << ' ';
+//     cout << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+
+// const int N = 2e5 + 10;
+// int f[N];
+
+// void solve(){
+//     int n, x, y;
+//     cin >> n >> x >> y;
+//     vector<int>a(x);
+//     for(auto &e : a) cin >> e;
+
+//     sort(all(a));
+    
+//     int ans = f[x];
+//     for(int i = 0;i + 1 < x;i++){
+//         if(a[i+1] - a[i] == 2) ans++;
+//     }
+//     if(a[x-1] + 2 - n == a[0]) ans++;
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     f[3] = 1;
+//     for(int i = 4;i < N;i++){
+//         f[i] = i/2 + f[(i+1)/2];
+//     }
+
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all(x) (x).begin(), (x).end()
+
+// const int N = 2e5 + 10;
+// int f[N];
+
+// void solve(){
+//     int n, x, y;
+//     cin >> n >> x >> y;
+//     int yy = y;
+//     vector<int>a(x);
+//     for(auto &e : a) cin >> e;
+
+//     sort(all(a));
+    
+//     int ans = f[x];
+
+//     vector<vector<int>>vec(2);
+
+//     for(int i = 0;i < x;i++){
+//         int d = (a[(i+1)%x] + n - a[i]) % n;
+//         if(d == 2) ans++;
+//         else if(d > 2) vec[d&1].push_back(d);
+//     }
+
+//     sort(all(vec[0]));
+//     sort(all(vec[1]));
+
+//     for(auto d : vec[0]) if(y >= 0){
+//         if(y+1 >= d/2){
+//             int g = d/2;
+//             ans += g;
+//             ans += g-1;
+//             y -= g-1;
+//         }else{
+//             int g = y;
+//             ans += g;
+//             ans += g;
+//             y = 0;
+//         }
+//     }
+//     for(auto d : vec[1]) if(y >= 0){
+//         int g = min(d/2, y);
+//         ans += g;
+//         ans += g;
+//         y -= g;
+//     }
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+
+//     f[3] = 1;
+//     for(int i = 4;i < N;i++){
+//         f[i] = i/2 + f[(i+1)/2];
+//         // cerr << f[i] << endl;
+//     }
+
+//     int T = 1;
+//     cin >> T;
+//     while(T--) solve();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+ 
+ 
+ 
+// void solve(){
+//     string s;
+//     cin >> s;
+//     int n = s.size();
+//     s = ' ' + s;
+//     vector<int>ne(n+20);
+//     vector<array<int,30>>ch(n+20);
+ 
+//     for(int i = 2, j = 0;i <= n;i++){
+//         while(j && s[i] != s[j+1]) j = ne[j];
+//         if(s[i] == s[j+1]) j++;
+//         ne[i] = j;
+//     }
+//     for(int i = 1;i <= n;i++){
+//         // cerr << ne[i] << ' ';
+//         for(int j = 'a';j <= 'z';j++){
+//             if(i+1 <= n && s[i+1] == j) ch[i][j-'a'] = i;
+//             else ch[i][j-'a'] = ch[ne[i]][j-'a'];
+//         }
+//     }
+ 
+//     // for(int i = 1;i <= n;i++) cerr << ch[i][0] << ' ';
+//     // cerr << endl;
+ 
+//     int q;
+//     cin >> q;
+//     while(q--){
+//         string t;
+//         cin >> t;
+ 
+//         for(auto c : t) s += c;
+ 
+//         for(int i = 'a';i <= 'z';i++){
+//             if(s[2] == i) ch[1][i-'a'] = 1;
+//             else ch[1][i-'a'] = 0;
+//         }
+//         for(int i = max(2ll, n), j = ne[max(2ll, n)-1];i < s.size();i++){
+//             while(j && s[i] != s[j+1]) j = ch[j][s[i]-'a'];
+//             if(s[i] == s[j+1]) j++;
+//             ne[i] = j;
+//             for(int k = 'a';k <= 'z';k++){
+//                 if(i+1 < s.size() && s[i+1] == k) ch[i][k-'a'] = i;
+//                 else ch[i][k-'a'] = ch[ne[i]][k-'a'];
+//             }
+//         }
+ 
+//         for(int i = n + 1;i < s.size();i++){
+//             // if(i+1 < s.size()) cerr << ch[i][s[i+1]-'a'] << ' ';
+//             cout << ne[i] << ' ';
+//             ne[i] = 0;
+//             for(int j = 'a';j <= 'z';j++) ch[i][j-'a'] = 0;
+//         }
+//         // cerr << endl;
+//         cout << endl;
+ 
+//         for(int i = 0;i < t.size();i++) s.pop_back();
+//     }
+// }
+ 
+// signed main(){
+ 
+//     int T = 1;
+//     // cin >> T;
+//     while(T--) solve();
+ 
+//     return 0;
+// }
