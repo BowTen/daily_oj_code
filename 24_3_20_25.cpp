@@ -2882,3 +2882,578 @@
 //         return 0;
 
 // }
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+
+// string ans;
+
+// int pint(int x){
+//         int f = (x < 0);
+//         if(f) x = -x;
+//         string s = to_string(x);
+//         for(int q = 0, p = s.size()-1;q <= p;q++, p--){
+//                 s[q] = (s[q]-'0')/2 + '0';
+//                 s[p] = s[q];
+//         }
+//         if(f) return -stoll(s);
+//         return stoll(s);
+// }
+
+// void push(int x){
+//         if(x > 0){
+//                 ans.push_back('+');
+//                 ans += (to_string(x));
+//                 ans.push_back('-');
+//         }else{
+//                 ans += (to_string(x));
+//                 ans.push_back('+');
+//         }
+//         ans += '0';
+// }
+ 
+// void add(int x){
+
+// }
+// void sdiv(int x){
+
+// }
+
+// void solve(){
+//         int a, b;
+//         cin >> a >> b;
+//         int d = a - b;
+//         int s = 0;
+
+//         ans += '0';
+//         while(1){
+//                 int nd = pint(d-s);
+//                 if(!nd) break;
+//                 s += nd;
+//                 push(nd);
+//         }
+
+//         // cout << ans << endl;
+
+//         while(1){
+//                 int nd = d - s;
+//                 if(!nd) break;
+//                 int f = (nd < 0);
+//                 if(f) nd = -nd;
+
+//                 int x = 0;
+//                 while(nd){
+//                         x++;
+//                         nd /= 10;
+//                 }
+//                 if(f){
+//                         add(x);
+//                         s += pow(10, x-1);
+//                         if(x > 1) s++;
+//                 }
+//                 else{
+//                         sdiv(x);
+//                         s -= pow(10, x-1);
+//                         if(x > 1) s--;
+//                 }
+//         }
+// }
+
+// signed main(){
+
+//         solve();
+
+//         return 0;
+
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+
+// string ans, s;
+
+
+// void solve(){
+//         int a, b;
+//         cin >> a >> b;
+//         int d = a-b;
+//         int cur = 0;
+
+//         ans += '0';
+
+//         if(abs(d) % 2){
+//                 ans += "+12+0";
+//                 cur = 12;
+//                 d += 9;
+//         }
+
+//         if(d)
+//         {
+//                 s = to_string(d);
+//                 if(d > 0) s = '+' + s;
+//                 vector<int>vis(s.size() + 2);
+//                 for(int i = 1;i < s.size();i++){
+//                         if((s[i]-'0') & 1) vis[i+1] = 1;
+//                         s[i] = (s[i]-'0')/2 + '0';
+//                         if(vis[i]) s[i] += 5;
+//                 }
+//                 string tmp(1, s[0]);
+//                 int fg = 0;
+//                 for(int i = 1;i < s.size();i++) {
+//                         if(s[i] != '0') fg = 1;
+//                         if(fg) tmp += s[i];
+//                 }
+//                 fg = 0;
+
+//                 if(tmp.size() > 1 && tmp.back() == '0'){
+//                         fg = 1;
+//                         tmp.back() = '1';
+//                 }
+
+//                 s = tmp;
+//                 ans += s;
+//                 ans += s;
+//                 cur += stoll(s)*2;
+//                 if(s[0] == '+'){
+//                         ans += '-';
+//                         if(fg){
+//                                 ans += "0-1-1+";
+//                                 cur -= 2;
+//                         }
+//                 }else{
+//                         ans += '+';
+//                         if(fg){
+//                                 ans += "0+1+1-";
+//                                 cur += 2;
+//                         }
+//                 }
+//                 ans += '0';
+//         }
+
+
+//         while(cur != a){
+//                 d = a - cur;
+//                 s = to_string(d);
+//                 if(d >= 0) s = '+' + s;
+//                 for(int q = 1, p = s.size()-1;q <= p;q++, p--){
+//                         s[p] = s[q];
+//                 }
+//                 ans += s + s[0] + '0';
+//                 cur += stoll(s);
+//         }
+
+//         cout << ans << endl;
+
+// }
+
+// signed main(){
+
+//         solve();
+
+//         return 0;
+
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+
+
+
+// void solve(){
+//         int n;
+//         cin >> n;
+//         if(n == 1){
+//                 cout << "1\n1 0\n";
+//                 return;
+//         }
+//         vector<vector<int>>g(n+5);
+//         for(int i = 1, u, v;i < n;i++){
+//                 cin >> u >> v;
+//                 g[u].push_back(v);
+//                 g[v].push_back(u);
+//         }
+
+//         vector<int>dep(n+5), mx(n+5), R(n+5);
+//         vector<array<int,2>>mxs(n+5);
+//         mx[0] = -1;
+        
+//         auto MX = [&](int i, int j) -> int {
+//                 if(mx[i] > mx[j]) return i;
+//                 return j;
+//         };
+
+//         auto dfs = [&](auto self, int u, int fa) -> void {
+//                 dep[u] = dep[fa] + 1;
+//                 mx[u] = 0;
+//                 mxs[u] = {0,0};
+//                 for(auto v : g[u]) if(v != fa){
+//                         self(self, v, u);
+//                         mx[u] = max(mx[u], mx[v] + 1);
+//                         mxs[u][1] = MX(mxs[u][1], v);
+//                         if(MX(mxs[u][0], mxs[u][1]) == mxs[u][1]) swap(mxs[u][1], mxs[u][0]);
+//                 }
+//         };
+
+//         int rt = 1;
+//         auto dfs2 = [&](auto self, int u, int fa, int hdep) -> void {
+//                 R[u] = max(hdep, mx[u]);
+//                 if(R[u] < R[rt]) rt = u;
+//                 // cerr << u << ' ' << hdep << endl;
+//                 for(auto v : g[u]) if(v != fa){
+//                         if(v == mxs[u][0]){
+//                                 self(self, v, u, max(hdep+1, mxs[u][1] ? mx[mxs[u][1]]+2 : 0));
+//                         }else{
+//                                 self(self, v, u, max(hdep+1, mxs[u][0] ? mx[mxs[u][0]]+2 : 0));
+//                         }
+//                 }
+//         };
+
+//         dfs(dfs, 1, 0);
+//         dfs2(dfs2, 1, 0, 0);
+//         dfs(dfs, rt, 0);
+
+//         int len = R[rt] + 1;
+
+//         // cerr << rt << ' ' << len << endl;
+//         // cerr << mxs[rt][0] << ' ' << mxs[rt][1] << endl;
+
+//         if(len == 2){
+//                 cout << "2\n" << rt << ' ' << 0 << '\n' << rt << ' ' << 1 << endl;
+//                 return;
+//         }
+
+//         // cerr << len << endl;
+
+//         vector<array<int, 2>>ans;
+
+//         if(mx[mxs[rt][0]] == mx[mxs[rt][1]]){
+//                 for(int i = 0;i < len;i++) ans.push_back({rt, i});
+//         }else{
+//                 if(((len-1)*2) % 4){
+//                         for(int i = 0;i < len;i++) ans.push_back({rt, i});
+//                 }else{
+//                 // cerr << "len\n";
+//                         for(int i = 1;i < len;i += 2){
+//                                 ans.push_back({rt, i});
+//                                 ans.push_back({mxs[rt][0], i});
+//                         }
+//                 }
+//         }
+
+//         cout << ans.size() << endl;
+//         for(auto [x, y] : ans) cout << x << ' ' << y << endl;
+// }
+
+// signed main(){
+
+//         int t = 1;
+//         cin >> t;
+//         while(t--)
+//         solve();
+
+//         return 0;
+
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+
+
+// void solve(){
+//         int n, m;
+//         cin >> n >> m;
+//         vector<vector<int>>g(n+5);
+//         int mx = 0;
+//         for(int i = 1, u, v;i <= m;i++){
+//                 cin >> u >> v;
+//                 g[u].push_back(v);
+//                 mx = max(mx, (int)g[u].size());
+//         }
+//         vector<double>p(n+5);
+//         vector<vector<double>>f(n+5, vector<double>(mx+5));
+
+
+//         f[1][1] = 1;
+//         f[2][1] = 0.5;
+//         for(int i = 3;i <= mx;i++){
+//                 f[i][1] = 1.0/i;
+//                 for(int j = 2;j <= i;j++){
+//                         f[i][j] = f[i-2][j-2] * ((1.0*j-2)/i) + f[i-2][j-1] * ((1.0*(i-j))/i);
+//                 }
+//         }
+
+//         p[n] = 1;
+//         for(int i = n-1;i >= 1;i--){
+//                 sort(all(g[i]), [&](int i, int j) -> int {return p[i] > p[j];});
+//                 // cerr << i << " : ";
+//                 for(int j = 1;j <= g[i].size();j++){
+//                         // cerr << g[i][j-1] << ' ';
+//                         p[i] += f[g[i].size()][j] * p[g[i][j-1]];
+//                 }
+//                 // cerr << endl;
+//         }
+
+//         // for(int i = 1;i <= n;i++) cerr << p[i] << ' ';
+//         // cerr << endl;
+
+//         // for(int i = 1;i <= mx;i++) cerr << f[mx][i] << ' ';
+
+//         printf("%.12lf\n", p[1]);
+// }
+
+// signed main(){
+
+//         int t = 1;
+//         cin >> t;
+//         while(t--)
+//         solve();
+
+//         return 0;
+
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+
+
+// void solve(){
+//         int n;
+//         cin >> n;
+//         vector<int>a(n+5);
+//         for(int i = 1;i <= n;i++){
+//                 cin >> a[i];
+//         }
+
+//         int ans = n;
+//         map<int,int>mp;
+//         mp[0] = 1;
+//         int x = 0;
+//         for(int i = 1;i <= n;i++){
+//                 x ^= a[i];
+//                 if(mp[x]) {
+//                         ans--;
+//                         x = 0;
+//                         mp.clear();
+//                 }
+//                 mp[x] = 1;
+//         }
+
+//         cout << ans << endl;
+// }
+
+// signed main(){
+
+//         int t = 1;
+//         cin >> t;
+//         while(t--)
+//         solve();
+
+//         return 0;
+
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define all(x) (x).begin(), (x).end()
+
+
+// void solve(){
+//         int n;
+//         int sum = 0;
+//         priority_queue<array<int,2>>q;
+//         cin >> n;
+//         for(int i = 1, x;i <= n;i++){
+//                 cin >> x;
+//                 sum += x;
+//                 q.push({x, i});
+//         }
+
+//         if(sum == 1){
+//                 cout << "YES\n";
+//                 return;
+//         }
+//         if(sum == 2){
+//                 if(q.size() == 2) cout << "YES\n";
+//                 else cout << "NO\n";
+//                 return;
+//         }
+
+//         vector<int>a(2, 1);
+//         int c1 = 1, c2 = 1;
+//         sum -= 2;
+//         while(sum > 0) {
+//                 a.push_back(c1 + c2);
+//                 sum -= a.back();
+//                 c1 = c2;
+//                 c2 = a.back();
+//         }
+
+//         if(sum < 0) {
+//                 cout << "NO\n";
+//                 return;
+//         }
+
+//         // for(auto e : a) cerr << e << ' ';
+//         // cerr << endl;
+
+//         int last = 0;
+//         for(int i = a.size()-1;i >= 0;i--){
+//                 int s = a[i];
+//                 auto [v, k] = q.top();
+//                 q.pop();
+//                 if(s > v){
+//                         cout << "NO\n";
+//                         return;
+//                 }
+//                 if(k == last){
+//                         if(q.size() && q.top()[0] == v){
+//                                 auto [v2, k2] = q.top();
+//                                 q.pop();
+//                                 q.push({v, k});
+//                                 v2 -= s;
+//                                 q.push({v2, k2});
+//                                 last = k2;
+//                         }else{
+//                                 cout << "NO\n";
+//                                 return;
+//                         }
+//                 }else{
+//                         v -= s;
+//                         q.push({v, k});
+//                         last = k;
+//                 }
+//         }
+
+//         cout << "YES\n";
+// }
+
+// signed main(){
+
+//         int t = 1;
+//         cin >> t;
+//         while(t--)
+//         solve();
+
+//         return 0;
+
+// }
+
+
+
+
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+#define endl '\n'
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define all(x) (x).begin(), (x).end()
+
+
+
+void solve(){
+        int n, q, s0 = 0;
+        cin >> n >> q;
+        vector<int>a(n+5), fac;
+        for(int i = 1;i <= n;i++) cin >> a[i], s0 += a[i];
+
+        for(int i = 2;i < n;i++) if(n % i == 0){
+                fac.push_back(i);
+        }
+        vector<vector<int>>sum(fac.size());
+        vector<multiset<int>>st(fac.size());
+
+        int ans = s0;
+        // cerr << ans << endl;
+        for(int i = 0;i < fac.size();i++){
+                sum[i].resize(fac[i]);
+                for(int j = 1;j <= n;j++){
+                        int m = j % fac[i];
+                        sum[i][m] += a[j];
+                }
+                for(int j = 0;j < fac[i];j++) st[i].insert(sum[i][j]);
+                ans = max(ans, *st[i].rbegin()*fac[i]);
+                // cerr << fac[i] << ' ' << ans << ' ' << (*st[i].rbegin()*fac[i]) << endl;
+        }
+
+        cout << ans << endl;
+        while(q--){
+                int p, x;
+                cin >> p >> x;
+
+                if(a[p] == x) {
+                        cout << ans << endl;
+                        continue;
+                }
+
+                s0 -= a[p];
+                s0 += x;
+                ans = s0;
+
+                for(int i = 0;i < fac.size();i++){
+                        int m = p % fac[i];
+                        st[i].erase(st[i].find(sum[i][m]));
+                        sum[i][m] -= a[p];
+                        sum[i][m] += x;
+                        st[i].insert(sum[i][m]);
+                        ans = max(ans, *st[i].rbegin()*fac[i]);
+                }
+                a[p] = x;
+
+                cout << ans << endl;
+        }
+
+}
+
+signed main(){
+
+        IO;
+
+        int t = 1;
+        cin >> t;
+        while(t--)
+        solve();
+
+        // int N = 2e5 + 10;
+        // vector<int>cnt(N), sum(N+5);
+        // for(int i = 1;i < N;i++){
+        //         for(int j = i;j < N;j += i){
+        //                 cnt[j]++;
+        //                 sum[j] += i;
+        //         }
+        // }
+
+        // int mx = 1;
+        // for(int i = 1;i < N;i++) if(cnt[i] > cnt[mx]) mx = i;
+
+        // cerr << mx << ' ' << cnt[mx] << ' ' << sum[mx];
+
+        return 0;
+
+}
