@@ -3368,92 +3368,400 @@
 
 
 
-#include<bits/stdc++.h>
-#define int long long
-using namespace std;
-#define endl '\n'
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define all(x) (x).begin(), (x).end()
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+
+
+// const int N = 2e5 + 100;
+// bool isprime[N];
+// int prime[N];
+// int cnt;
+
+// void euler(){
+//     memset(isprime, true, sizeof(isprime));
+//     isprime[1] = false;
+//     for(int i = 2;i < N;i++){
+//         if(isprime[i]) prime[++cnt] = i;
+//         for(int j = 1; j <= cnt && prime[j] * i < N;j++){
+//             isprime[prime[j]*i] = false;
+//             if(i % prime[j] == 0) break;
+//         }
+//     }
+// }
+
+
+// void solve(){
+//         int n, q;
+//         cin >> n >> q;
+//         vector<int>a(n+5), fac;
+//         for(int i = 1;i <= n;i++) cin >> a[i];
+
+//         int tmp = n;
+//         for(int i = 2;i <= tmp;i++) if(tmp % i == 0){
+//                 fac.push_back(n/i);
+//                 while(tmp % i == 0) tmp /= i;
+//         }
+
+//         fac.push_back(1);
+//         for(int i = 2;i < n;i++) if(n % i == 0 && isprime[i]){
+//                 fac.push_back(i);
+//         }
+//         vector<vector<int>>sum(fac.size());
+//         multiset<int>st;
+
+//         int ans = 0;
+//         for(int i = 0;i < fac.size();i++){
+//                 sum[i].resize(fac[i]);
+//                 for(int j = 1;j <= n;j++){
+//                         int m = j % fac[i];
+//                         sum[i][m] += a[j];
+//                 }
+//                 for(int j = 0;j < fac[i];j++) st.insert(fac[i]*sum[i][j]);
+//         }
+
+//         cout << *st.rbegin() << endl;
+//         while(q--){
+//                 int p, x;
+//                 cin >> p >> x;
+
+//                 for(int i = 0;i < fac.size();i++){
+//                         int m = p % fac[i];
+//                         st.erase(st.find(sum[i][m]*fac[i]));
+//                         sum[i][m] -= a[p];
+//                         sum[i][m] += x;
+//                         st.insert(sum[i][m]*fac[i]);
+//                 }
+//                 a[p] = x;
+
+//                 cout << *st.rbegin() << endl;
+//         }
+
+// }
+
+// signed main(){
+
+//         IO;
+//         euler();
+//         // int t = 1;
+//         // cin >> t;
+//         // while(t--)
+//         // solve();
+
+//         int n = 176400;
+//         vector<int>fac1;
+//         vector<int>fac2;
+
+//         int tmp = n;
+//         for(int i = 2;i <= tmp;i++) if(tmp % i == 0){
+//                 fac1.push_back(n/i);
+//                 while(tmp % i == 0) tmp /= i;
+//         }
+
+//         fac2.push_back(1);
+//         for(int i = 2;i < n;i++) if(n % i == 0 && isprime[i]){
+//                 fac2.push_back(i);
+//         }
+
+//         for(auto e : fac1) cerr << e << ' ';
+//         cerr << endl;
+//         for(auto e : fac2) cerr << e << ' ';
+//         cerr << endl;
+
+//         return 0;
+
+// }
 
 
 
-void solve(){
-        int n, q, s0 = 0;
-        cin >> n >> q;
-        vector<int>a(n+5), fac;
-        for(int i = 1;i <= n;i++) cin >> a[i], s0 += a[i];
 
-        for(int i = 2;i < n;i++) if(n % i == 0){
-                fac.push_back(i);
-        }
-        vector<vector<int>>sum(fac.size());
-        vector<multiset<int>>st(fac.size());
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
 
-        int ans = s0;
-        // cerr << ans << endl;
-        for(int i = 0;i < fac.size();i++){
-                sum[i].resize(fac[i]);
-                for(int j = 1;j <= n;j++){
-                        int m = j % fac[i];
-                        sum[i][m] += a[j];
-                }
-                for(int j = 0;j < fac[i];j++) st[i].insert(sum[i][j]);
-                ans = max(ans, *st[i].rbegin()*fac[i]);
-                // cerr << fac[i] << ' ' << ans << ' ' << (*st[i].rbegin()*fac[i]) << endl;
-        }
 
-        cout << ans << endl;
-        while(q--){
-                int p, x;
-                cin >> p >> x;
+// void solve(){
+//         int n, m;
+//         cin >> n >> m;
+//         vector<int>a(n+5), b(m+5);
+//         for(int i = 1;i <= n;i++) cin >> a[i];
+//         for(int i = 1;i <= m;i++) cin >> b[i];
 
-                if(a[p] == x) {
-                        cout << ans << endl;
-                        continue;
-                }
+//         vector<int>f(n+1);
+//         for(int i = n;i >= 1;i--){
+//                 for(int j = n-i;j >= 1;j--){
+//                         f[j] = min(max(0ll, f[j]-a[i]), f[j-1]);
+//                 }
+//                 f[0] = max(0ll, f[0]-a[i]);
+//         }
 
-                s0 -= a[p];
-                s0 += x;
-                ans = s0;
+//         // for(int i = 0;i <= n;i++) cerr << f[i] << ' ';
+//         // cerr << endl;
 
-                for(int i = 0;i < fac.size();i++){
-                        int m = p % fac[i];
-                        st[i].erase(st[i].find(sum[i][m]));
-                        sum[i][m] -= a[p];
-                        sum[i][m] += x;
-                        st[i].insert(sum[i][m]);
-                        ans = max(ans, *st[i].rbegin()*fac[i]);
-                }
-                a[p] = x;
+//         for(int i = 1;i <= m;i++){
+//                 cout << n-(upper_bound(f.rbegin(), f.rend(), b[i]) - f.rbegin() - 1) << endl;
+//         }
+// }
 
-                cout << ans << endl;
-        }
+// signed main(){
 
-}
+//         IO;
 
-signed main(){
+//         solve();        
 
-        IO;
+//         return 0;
 
-        int t = 1;
-        cin >> t;
-        while(t--)
-        solve();
+// }
 
-        // int N = 2e5 + 10;
-        // vector<int>cnt(N), sum(N+5);
-        // for(int i = 1;i < N;i++){
-        //         for(int j = i;j < N;j += i){
-        //                 cnt[j]++;
-        //                 sum[j] += i;
-        //         }
-        // }
 
-        // int mx = 1;
-        // for(int i = 1;i < N;i++) if(cnt[i] > cnt[mx]) mx = i;
 
-        // cerr << mx << ' ' << cnt[mx] << ' ' << sum[mx];
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
 
-        return 0;
+// const int mod = 998244353;
 
-}
+// void solve(){
+//         int n, k;
+//         cin >> n >> k;
+//         vector<vector<vector<int>>>f(n+5, vector<vector<int>>(k+5, vector<int>(n/k+2))), suf(n+5, vector<vector<int>>(k+5, vector<int>(n/k+2)));
+
+//         f[0][0][0] = 1;
+
+//         for(int i = 1;i <= n;i++){
+//                 for(int j = 0;j < k;j++){
+//                         for(int c = 0;c <= n/k;c++){
+//                                 if(j+c*k > i) break;
+
+//                                 if(j == 0){
+//                                         if(c) f[i][j][c] = (f[i-1][k-1][c-1] + f[i-1][0][c]) % mod;
+//                                 }else{
+//                                         f[i][j][c] = f[i-1][j-1][c] * (k-(j-1)) % mod;
+//                                         f[i][j][c] = (f[i][j][c] + suf[i-1][j][c]) % mod;
+//                                 }
+//                         }
+//                 }
+
+//                 for(int c = 0;c <= n/k;c++){
+//                         suf[i][k][c] = f[i][0][c];
+//                         for(int j = k-1;j >= 1;j--){
+//                                 // if(i == 1) cerr << j << ' ' << c << endl;
+//                                 if(j+c*k > i) continue;
+//                                 suf[i][j][c] = (f[i][j][c] + suf[i][j+1][c]) % mod;
+//                         }
+//                 }
+//         }
+
+//         int ans = 0;
+//         for(int i = 0;i < k;i++){
+//                 for(int j = 1;j <= n/k;j++){
+//                         if(i+j*k > n) break;
+//                         ans = (ans + (f[n][i][j] * j % mod)) % mod;
+//                 }
+//         }
+
+//         cout << ans << endl;
+
+//         // cerr << suf[1][1][0] << endl;
+//         cerr << f[1][1][0] << endl;
+//         cerr << f[2][1][0] << endl;
+//         cerr << f[3][2][0] << endl;
+//         cerr << f[4][0][1] << endl;
+// }
+
+// signed main(){
+
+//         IO;
+
+//         solve();        
+
+//         return 0;
+
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+
+// const int mod = 998244353;
+
+// void solve(){
+//         int n, k;
+//         cin >> n >> k;
+//         // vector<vector<vector<int>>>f(n+1, vector<vector<int>>(n/k+2, vector<int>(k+1))), suf(n+1, vector<vector<int>>(n/k+2, vector<int>(k+1)));
+//         vector<vector<int>>f(n/k+5, vector<int>(k+5)), suf(n/k+5, vector<int>(k+5));
+
+//         f[0][0] = 1;
+//         for(int i = 1;i <= n;i++){
+//                 for(int c = n/k;c >= 0;c--){
+//                         if(c*k > i) continue;
+//                         if(c) f[c][0] = f[c-1][k-1];
+//                         for(int x = k-1;x >= 1;x--){
+//                                 suf[c][x+1] = 0;
+//                                 if(x+c*k > i) continue;
+
+//                                 f[c][x] = ((f[c][x-1]*(k-x+1) % mod) + suf[c][x]) % mod;
+//                         }
+//                         for(int x = k-1;x >= 1;x--)
+//                                 suf[c][x] = (f[c][x] + suf[c][x+1]) % mod;
+//                 }
+//         }
+
+//         int ans = 0;
+//         for(int i = 1;i <= n/k;i++){
+//                 for(int j = 0;j < k;j++){
+//                         if(i*k+j > n) break;
+//                         ans = (ans + (f[i][j]*i%mod)) % mod;
+//                 }
+//         }
+
+//         cout << ans << endl;
+
+//         // cerr << f[3][1][0] << endl;
+//         // cerr << f[6][2][0] << endl;
+//         // cerr << f[9][3][0] << endl;
+//         // cerr << f[10][3][1] << endl;
+
+//         // cerr << f[2][1][0] << endl;
+
+// }
+
+// signed main(){
+
+//         IO;
+
+//         solve();        
+
+//         return 0;
+
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+
+// const int mod = 998244353;
+
+// void solve(){
+//         int n, k;
+//         cin >> n >> k;
+//         vector<vector<vector<int>>>f(2, vector<vector<int>>(n/k+2, vector<int>(k+1))), suf(2, vector<vector<int>>(n/k+2, vector<int>(k+1)));
+
+//         f[0][0][0] = 1;
+//         for(int i = 1;i <= n;i++){
+//                 for(int c = 0;c <= n/k;c++){
+//                         if(c*k > i) break;
+//                         if(c) f[i&1][c][0] = f[!(i&1)][c-1][k-1];
+//                         for(int x = 1;x < k;x++){
+//                                 if(x+c*k > i) break;
+
+//                                 f[i&1][c][x] = ((f[!(i&1)][c][x-1]*(k-x+1) % mod) + suf[!(i&1)][c][x]) % mod;
+//                         }
+//                         for(int x = k-1;x >= 1;x--) {
+//                                 suf[i&1][c][x] = 0;
+//                         }
+//                         for(int x = k-1;x >= 1;x--) {
+//                                 suf[i&1][c][x] = (f[i&1][c][x] + suf[i&1][c][x+1]) % mod;
+//                         }
+//                 }
+//         }
+
+//         int ans = 0;
+//         for(int i = 1;i <= n/k;i++){
+//                 for(int j = 0;j < k;j++){
+//                         if(i*k+j > n) break;
+//                         ans = (ans + (f[n&1][i][j]*i%mod)) % mod;
+//                 }
+//         }
+
+//         cout << ans << endl;
+// }
+
+// signed main(){
+
+//         IO;
+
+//         solve();        
+
+//         return 0;
+
+// }
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+
+// const int mod = 998244353;
+
+// void solve(){
+//         int n, k;
+//         cin >> n >> k;
+//         vector<vector<vector<int>>>f(2, vector<vector<int>>(n/k+2, vector<int>(k+1))), suf(2, vector<vector<int>>(n/k+2, vector<int>(k+1)));
+
+//         f[0][0][0] = 1;
+//         for(int i = 1;i <= n;i++){
+//                 for(int c = 0;c <= n/k;c++)
+//                         for(int x = 0;x <= k;x++)
+//                                 f[i&1][c][x] = suf[i&1][c][x] = 0;
+
+//                 for(int c = 0;c <= n/k;c++){
+//                         if(c*k > i) break;
+//                         if(c) f[i&1][c][0] = f[(i&1)^1][c-1][k-1];
+//                         for(int x = 1;x < k;x++){
+//                                 if(x+c*k > i) break;
+
+//                                 f[i&1][c][x] = ((f[(i&1)^1][c][x-1]*(k-x+1) % mod) + suf[(i&1)^1][c][x]) % mod;
+//                         }
+//                         for(int x = k-1;x >= 1;x--) {
+//                                 suf[i&1][c][x] = (f[i&1][c][x] + suf[i&1][c][x+1]) % mod;
+//                         }
+//                 }
+//         }
+
+//         int ans = 0;
+//         for(int i = 1;i <= n/k;i++){
+//                 for(int j = 0;j < k;j++){
+//                         if(i*k+j > n) break;
+//                         ans = (ans + (f[n&1][i][j]*i%mod)) % mod;
+//                 }
+//         }
+
+//         cout << ans << endl;
+
+// }
+
+// signed main(){
+
+//         IO;
+
+//         solve();        
+
+//         return 0;
+
+// }
