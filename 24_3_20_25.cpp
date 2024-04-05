@@ -3765,3 +3765,182 @@
 //         return 0;
 
 // }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+// #define ls id << 1
+// #define rs id << 1 | 1
+
+
+// const int N = 1e6 + 10;
+// int tr[N<<2], tag[N<<2], len[N<<2];
+
+// void up(int id){
+//         tr[id] = tr[ls] + tr[rs];
+//         len[id] = len[ls] + len[rs];
+// }
+// void build(int id, int l, int r){
+//         tag[id] = -1;
+//         if(l == r){
+//                 len[id] = 1;
+//                 return;
+//         }
+//         int mid = l + r >> 1;
+//         build(ls, l, mid);
+//         build(rs, mid + 1, r);
+//         up(id);
+// }
+// void settag(int id, int v){
+//         tag[id] = v;
+//         tr[id] = len[id] * v;
+// }
+// void down(int id){
+//         settag(ls, tag[id]);    
+//         settag(rs, tag[id]);    
+//         tag[id] = -1;
+// }
+// void modify(int id, int l, int r, int ql, int qr, int v){
+//         if(ql <= l && r <= qr){
+//                 settag(id, v);
+//                 return;
+//         }
+//         if(tag[id] != -1) down(id);
+//         int mid = l + r >> 1;
+//         if(qr <= mid) modify(ls, l, mid, ql, qr, v);
+//         else if(ql > mid) modify(rs, mid + 1, r, ql, qr, v);
+//         else modify(ls, l, mid, ql, qr, v), modify(rs, mid + 1, r, ql, qr, v);
+//         up(id);
+// }
+
+// void solve(){
+//         int n;
+//         cin >> n;
+//         vector<int>a(n+5), mx(n+5), mn(n+5);
+//         for(int i = 1;i <= n;i++) cin >> a[i];
+
+//         build(1, 1, n);
+
+//         stack<int>mxs, mns;
+//         for(int i = 1;i <= n;i++){
+//                 while(mxs.size() && a[mxs.top()] < a[i]) mxs.pop();
+//                 if(mxs.size()) mx[i] = mxs.top();
+//                 mxs.push(i);
+//                 while(mns.size() && a[mns.top()] > a[i]) mns.pop();
+//                 if(mns.size()) mn[i] = mns.top();
+//                 mns.push(i);
+//                 // cerr << mx[i] << ' ' << mn[i] << endl;
+//         }
+
+//         int ans = 0;
+//         for(int i = 2; i <= n;i++){
+//                 if(mx[i] < i-1){
+//                         modify(1, 1, n, mx[i]+1, i-1, 1);
+//                 }else{
+//                         modify(1, 1, n, mn[i]+1, i-1, 0);
+//                 }
+//                 ans += tr[1];
+//                 // cerr << tr[1] << endl;
+//         }
+
+//         cout << ans << endl;
+// }
+
+// signed main(){
+
+//         IO;
+
+//         solve();        
+
+//         return 0;
+
+// }
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+
+// int mod = 1e9 + 7;
+// struct Mat{
+//         vector<vector<int>>m;
+//         int r, c;
+//         Mat(int r, int c) : m(r, vector<int>(c)), r(r), c(c) {}
+
+//         Mat operator*(const Mat& e) const {
+//                 assert(c == e.r);
+//                 Mat ret(r, e.c);
+//                 for(int i = 0; i < ret.r;i++){
+//                         for(int j = 0;j < ret.c;j++){
+//                                 for(int k = 0;k < c;k++){
+//                                         ret.m[i][j] = (ret.m[i][j] + (m[i][k] * e.m[k][j] % mod)) % mod;
+//                                 }
+//                         }
+//                 }
+//                 return ret;
+//         }
+//         vector<int>& operator[](int x) {
+//                 return m[x];
+//         }
+//         void init(){
+//                 if(r == c)
+//                 for(int i = 0;i < r;i++) m[i][i] = 1;
+//         }
+
+//         void log(){
+//                 for(auto vec : m){
+//                         for(auto e : vec) cerr << e << ' ';
+//                         cerr << endl; 
+//                 }
+//                 cerr << endl; 
+//         }
+// };
+// Mat qpow(Mat a, int b){
+//         Mat ret(a.r, a.r);
+//         ret.init();
+//         while(b){
+//                 if(b & 1) ret = ret * a;
+//                 a = a * a;
+//                 b >>= 1;
+//         }
+//         return ret;
+// }
+
+// void solve(){
+//         int n;
+//         cin >> n;
+
+//         if(n <= 2) {
+//                 cout << 1 << endl;
+//                 return;
+//         }
+
+//         Mat A(2,2), ans(1,2);
+//         A[0][1] = A[1][0] = A[1][1] = 1;
+//         ans[0][0] = ans[0][1] = 1;
+
+//         ans = ans * qpow(A, n-2);
+
+//         cout << ans[0][1] << endl;
+// }
+
+// signed main(){
+
+//         IO;
+
+//         solve();        
+
+//         return 0;
+
+// }
