@@ -3944,3 +3944,151 @@
 //         return 0;
 
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+// #define endl '\n'
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define all(x) (x).begin(), (x).end()
+
+// const int mod = 1e9 + 9;
+
+// struct Mat{
+//         vector<vector<int>>m;
+//         int r, c;
+//         Mat(int r, int c) : r(r), c(c), m(r+1, vector<int>(c+1)) {}
+
+//         vector<int>& operator[](int x) {
+//                 return m[x];
+//         }
+//         Mat operator* (Mat e) const {
+//                 Mat ret(r, e.c);
+//                 for(int i = 1;i <= ret.r;i++){
+//                         for(int j = 1;j <= ret.c;j++){
+//                                 for(int k = 1;k <= c;k++){
+//                                         ret[i][j] = (ret[i][j] + (m[i][k]*e[k][j] % mod)) % mod;
+//                                 }
+//                         }
+//                 }
+//                 return ret;
+//         }
+//         void init(){
+//                 for(int i = 1; i <= r;i++) m[i][i] = 1;
+//         }
+//         int getsum(){
+//                 int ret = 0;
+//                 for(int i = 1; i <= r;i++){
+//                         for(int j = 1;j <= c;j++){
+//                                 ret += m[i][j];
+//                         }
+//                 }
+//                 return ret;
+//         }
+//         void log(){
+//                 for(int i = 1;i <= r;i++){
+//                         for(int j = 1;j <= c;j++){
+//                                 cerr << m[i][j] << ' ';
+//                         }
+//                         cerr << endl;
+//                 }
+//                         cerr << endl;
+//         }
+// };
+
+// Mat qpow(Mat a, int b){
+//         Mat ret(a.r, a.c);
+//         ret.init();
+//         while(b){
+//                 if(b & 1) ret = ret * a;
+//                 a = a * a;
+//                 b >>= 1;
+//         }
+//         return ret;
+// }
+
+// void solve(){
+//         int n, m, k, d;
+//         cin >> n >> m >> k >> d;
+//         vector<vector<int>>g(n+5);
+//         vector<int>pid(n+5), kp(k+5);
+//         for(int i = 1, t;i <= k;i++){
+//                 cin >> kp[i];
+//                 pid[kp[i]] = i;
+//         }
+
+//         Mat G(n, n);
+//         for(int i = 1, u, v;i <= m;i++){
+//                 cin >> u >> v;
+//                 g[u].push_back(v);
+//                 g[v].push_back(u);
+//                 G[u][v] = G[v][u] = 1;
+//         }
+
+
+//         vector<int>f(k+5);
+//         for(int i = 0; i < (1<<k);i++){
+//                 Mat G1(G);
+//                 int ban = 0;
+//                 for(int j = 1;j <= k;j++) if(((1<<(j-1)) & i) == 0){
+//                         ban++;
+//                         for(auto v : g[kp[j]]) {
+//                                 G1[kp[j]][v] = G1[v][kp[j]] = 0;
+//                         }
+//                 }
+//                 // cerr << i << ' ' << ban << endl;
+//                 // G1.log();
+//                 G1 = qpow(G1, d-1);
+//                 f[ban] = (f[ban] + G1.getsum()) % mod;
+//         }
+
+//         int ans = 0;
+//         for(int i = 0;i <= k;i++){
+//                 if(i & 1) ans = (ans - f[i] + mod) % mod;
+//                 else ans = (ans + f[i]) % mod;
+//         }
+
+//         cout << ans << endl;
+
+// }
+
+// signed main(){
+
+//         IO;
+
+//         solve();        
+
+//         return 0;
+
+// }
+
+
+
+
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+#define endl '\n'
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define all(x) (x).begin(), (x).end()
+
+
+void solve(){
+        
+}
+
+signed main(){
+
+        IO;
+
+        int t = 1;
+        cin >> t;
+        while(t--)
+        solve();        
+
+        return 0;
+
+}
