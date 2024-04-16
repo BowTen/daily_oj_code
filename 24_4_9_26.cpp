@@ -1012,3 +1012,436 @@
 
 //     return 0;
 // }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all1(x) (x).begin()+1, (x).begin() + 1 + n
+
+
+// void solve(){
+//     int n, a, b;
+//     cin >> n >> a >> b;
+//     int ans = 0;
+//     if(a*2 > b){
+//         ans = (n/2) * b + (n&1) * a;
+//     }else{
+//         ans = n * a;
+//     }
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all1(x) (x).begin()+1, (x).begin() + 1 + n
+// #define all(x) (x).begin(), (x).end()
+
+
+// void solve(){
+//     int n, c, d;
+//     cin >> n >> c >> d;
+//     vector<int>b(n*n);
+//     for(int i = 0;i < n*n;i++) cin >> b[i];
+//     sort(all(b));
+//     vector<int>a;
+//     for(int i = 1;i <= n;i++){
+//         int a0 = b[0] + (i-1) * c;
+//         for(int j = 1;j <= n;j++){
+//             a.push_back(a0);
+//             a0 += d;
+//         }
+//     }
+//     sort(all(a));
+//     // for(auto e : a) cerr << e << ' ';
+//     // cerr << endl;
+//     // for(auto e : b) cerr << e << ' ';
+//     // cerr << endl;
+//     // cerr << endl;
+//     for(int i = 0;i < n*n;i++) if(a[i] != b[i]){
+//         cout << "NO\n";
+//         return;
+//     }
+//     cout << "YES\n";
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all1(x) (x).begin()+1, (x).begin() + 1 + n
+// #define all(x) (x).begin(), (x).end()
+
+
+// void solve(){
+//     int n, k;
+//     cin >> n >> k;
+//     vector<int>a(n+5), pre(n+5), suf(n+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= n;i++) pre[i] = a[i] + pre[i-1];
+//     for(int i = n;i >= 1;i--) suf[i] = a[i] + suf[i+1];
+
+//     int p = k/2;
+//     int q = k-p;
+
+//     int i = 1, j = n;
+//     while(i <= n && q >= a[i]) q -= a[i++];
+//     a[i] -= q;
+//     while(j >= 1 && p >= a[j]) p -= a[j--];
+
+//     int ans = min(n, i-1 + n-j);
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all1(x) (x).begin()+1, (x).begin() + 1 + n
+// #define all(x) (x).begin(), (x).end()
+
+// const int N = 1e6 + 10;
+// int cnt[N], cur[N];
+
+// void solve(){
+//     int n, m, k;
+//     cin >> n >> m >> k;
+//     vector<int>a(n+5), b(m+5);
+//     for(int i = 1;i <= n;i++) cin >> a[i];
+//     for(int i = 1;i <= m;i++){
+//         cin >> b[i];
+//         cnt[b[i]]++;
+//     }
+
+//     int tmp = 0;
+//     int ans = 0;
+
+//     auto add = [&](int x) -> void {
+//         cur[a[x]]++;
+//         if(cur[a[x]] <= cnt[a[x]]) tmp++;
+//     };
+//     auto div = [&](int x) -> void {
+//         cur[a[x]]--;
+//         if(cur[a[x]] < cnt[a[x]]) tmp--;
+//     };
+
+//     for(int i = 1;i <= m;i++){
+//         add(i);
+//     }
+
+//     for(int l = 1, r = m;r <= n;l++, r++){
+//         ans += tmp >= k;
+//         add(r+1);
+//         div(l);
+//     }
+
+//     for(auto e : a) cnt[e] = cur[e] = 0;
+//     for(auto e : b) cnt[e] = cur[e] = 0;
+
+//     cout << ans << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all1(x) (x).begin()+1, (x).begin() + 1 + n
+// #define all(x) (x).begin(), (x).end()
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     string s;
+//     cin >> s;
+//     s = ' ' + s;
+//     for(int i = n;i > 1;i--){
+//         vector<int>f(n+5);
+//         int x = 0, ok = 1;
+//         for(int j = 1;j <= n;j++){
+//             x ^= f[j];
+//             if((x ^ (s[j]-'0')) == 0){
+//                 x ^= 1;
+//                 if(j+i-1 <= n) f[j+i] ^= 1;
+//                 else{
+//                     ok = 0;
+//                     break;
+//                 }
+//             }
+//         }
+//         if(ok){
+//             cout << i << endl;
+//             return;
+//         }
+//     }
+//     cout << 1 << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// #define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+// #define endl '\n'
+// #define all1(x) (x).begin()+1, (x).begin() + 1 + n
+// #define all(x) (x).begin(), (x).end()
+
+
+// void solve(){
+//     int a, b, c, d;
+//     cin >> a >> b >> c >> d;
+//     if(a > b) swap(a, b);
+
+//     int ans = d / 2;
+//     int t1 = 0, t2 = 0;
+    
+//     if(a && c && b){
+//         t1 += (b+1)/2;
+//         t1 += (a-1)/2;
+//         t1 += (c-1)/2;
+//     }
+
+//     t2 += c/2;
+//     t2 += a/2;
+//     t2 += b/2;
+
+//     ans += max(t1,t2);
+//     cout << ans << endl;
+//     // cerr << t1 << ' ' << t2 << endl;
+// }
+
+// signed main(){
+
+//     IO;
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+
+// int n;
+// struct node{
+//     int x, y;
+// };
+// // using iter = vector<int>::iterator;
+// using Iter = vector<node>::iterator;
+
+// bool cmpx(const node a,const node b){return a.x<b.x;}
+// bool cmpy(const node a,const node b){return a.y<b.y;}
+// double dis(const node a,const node b){
+//     return sqrt(pow(a.x-b.x,2)+pow(a.y-b.y,2));
+// }
+// void min_dis(const Iter l,const Iter r,double &d){
+//     if(r-l<=1) return;
+//     vector<node> Q; Iter t=l+(r-l)/2;double w=t->x;
+//     min_dis(l,t,d),min_dis(t,r,d),inplace_merge(l,t,r,cmpy);
+//     for(Iter x=l;x!=r;++x)
+//         if(abs(w-x->x)<=d) Q.push_back(*x);
+//     for(Iter x=Q.begin(),y=x;x!=Q.end();++x){
+//         while(y!=Q.end()&&y->y<=x->y+d) ++y;
+//         for(Iter z=x+1;z!=y;++z) d=min(d,dis(*x,*z));
+//     }
+// }
+
+// void solve(){
+//     cin >> n;
+//     vector<node>a;
+//     for(int i = 1, x, y;i <= n;i++){
+//         // cin >> a[i].x >> a[i].y;
+//         cin >> x >> y;
+//         a.push_back({x, y});
+//     }
+//     // vector<int>id(n);
+//     // iota(id.begin(), id.end(), 1);
+//     // sort(id.begin(), id.end(), [&](int i, int j) -> int {
+//     //     return a[i].x < a[j].x;
+//     // });
+
+//     // auto dis = [&](int i, int j) -> double {
+//     //     int dx = a[i].x - a[j].x;
+//     //     int dy = a[i].y - a[j].y;
+//     //     return sqrt(pow(dx, 2) + pow(dy, 2));
+//     // };
+//     // auto cmpy = [&](int i, int j) -> int {
+//     //     return a[i].y < a[j].y;
+//     // };
+
+//     // auto min_dis = [&](auto self, iter l, iter r, double &d) -> void {
+//     //     if(r-l <= 1) return;
+//     //     iter mid = l + (r-l)/2;
+//     //     self(self, l, mid, d), self(self, mid, r, d);
+//     //     inplace_merge(l, mid, r, cmpy);
+//     //     vector<int>P;
+//     //     for(iter i = l;i != r;i++) if(abs(a[*i].x - a[*mid].x) <= d) P.push_back(*i);
+//     //     for(iter i = P.begin(), j = P.begin();i != P.end();i++){
+//     //         while(j != P.end() && a[*j].y <= a[*i].y+d) j++;
+//     //         for(iter k = i+1;k != j;k++) d = min(d, dis(*i, *k));
+//     //     }
+//     // };
+
+//     // auto min_dis = [&](auto self, const Iter l,const Iter r,double &d) -> void {
+//     //     if(r-l<=1) return;
+//     //     vector<node> Q; Iter t=l+(r-l)/2;double w=t->x;
+//     //     self(self,l,t,d),self(self,t,r,d),inplace_merge(l,t,r,cmpy);
+//     //     for(Iter x=l;x!=r;++x)
+//     //         if(abs(w-x->x)<=d) Q.push_back(*x);
+//     //     for(Iter x=Q.begin(),y=x;x!=Q.end();++x){
+//     //         while(y!=Q.end()&&y->y<=x->y+d) ++y;
+//     //         for(Iter z=x+1;z!=y;++z) d=min(d,dis(*x,*z));
+//     //     }
+//     // };
+
+//     sort(a.begin(), a.end(), cmpx);
+//     double d = 1e18;
+//     // min_dis(min_dis, id.begin(), id.end(), d);
+//     min_dis(a.begin(), a.end(), d);
+//     printf("%.0lf", d*d);
+//     // int ans = d * d;
+//     // cout << ans << endl;
+// }
+
+// signed main(){
+
+//     solve();
+
+//     return 0;
+// }
+
+
+
+
+// #include<bits/stdc++.h>
+// #define int long long
+// using namespace std;
+
+// struct node{
+//     int x, y;
+// };
+// vector<node>a;
+
+// double dis(const node &e1, const node &e2){
+//     return sqrt(pow(e1.x-e2.x,2)+pow(e1.y-e2.y,2));
+// }
+// int cmpx(const node &e1, const node &e2){
+//     return e1.x < e2.x;
+// }
+// int cmpy(const node &e1, const node &e2){
+//     return e1.y < e2.y;
+// }
+
+// double min_dis(int l, int r){
+//     if(r-l <= 1) return 1e20;
+//     int mid = l + (r-l)/2;
+//     double w = a[mid].x;
+//     double d = min(min_dis(l, mid), min_dis(mid, r));
+//     inplace_merge(a.begin()+l, a.begin()+mid, a.begin()+r, cmpy);
+//     vector<node>P;
+//     for(int i = l;i < r;i++) if(abs(a[i].x-w) <= d) P.push_back(a[i]);
+//     for(int i = 0, j = 0;i < P.size();i++){
+//         while(j < P.size() && P[j].y <= P[i].y+d) j++;
+//         for(int k = i+1;k < j;k++) d = min(d, dis(P[k], P[i]));
+//     }
+//     return d;
+// }
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     a.resize(n);
+//     for(int i = 0;i < n;i++) cin >> a[i].x >> a[i].y;
+//     sort(a.begin(), a.end(), cmpx);
+
+//     double d = min_dis(0, n); 
+//     printf("%.3lf", d);
+// }
+
+// signed main(){
+
+//     solve();
+
+//     return 0;
+// }
