@@ -1445,3 +1445,309 @@
 
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// void solve(){
+//     string s, tmp;
+//     cin >> s;
+//     int n;
+//     cin >> n;
+//     int l, r;
+//     string a1,a2;
+//     while(n--){
+//         cin >> l >> r >> a1 >> a2;
+//         tmp = s.substr(l-1, r-l+1);
+//         s.erase(s.begin()+l-1, s.begin()+r);
+//         int ok = 0;
+//         for(int i = 0;i < s.size();i++){
+//             int f = 1;
+//             for(int j = 0;j < a1.size() && j+i < s.size();j++) if(s[i+j] != a1[j]) {
+//                 f = 0;
+//                 break;
+//             }
+//             if(!f) continue;
+//             for(int j = 0;j < a2.size() && j+i+a1.size() < s.size();j++) if(s[i+j+a1.size()] != a2[j]){
+//                 f = 0;
+//                 break;
+//             }
+//             if(f){
+//                 ok = 1;
+//                 s.insert(i+a1.size(), tmp);
+//                 break;
+//             }
+//         }
+//         if(!ok) s += tmp;
+//     }
+//     cout << s;
+// }
+
+// int main(){
+
+//     solve();
+    
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// void solve(){
+//     int k;
+//     cin >> k;
+//     vector<vector<int>>l(k+5), mx(k+5);
+//     for(int i = 1;i <= k;i++){
+//         int sz = 1<<(k-i);
+//         l[i].resize(sz+5);
+//         mx[i].resize(sz+5);
+//         for(int j = 1;j <= sz;j++){
+//             cin >> l[i][j];
+//             if(i>1) mx[i][j] = max({l[i][j], mx[i-1][j*2], mx[i-1][j*2-1]});
+//             else mx[i][j] = l[i][j];
+//         }
+//     }
+//     int w;
+//     cin >> w;
+
+//     if(w < l[k][1]){
+//         cout << "No Solution";
+//         return;
+//     }
+    
+//     vector<vector<array<int,2>>>a(k+5);
+//     a[k].resize(3);
+//     a[k][1] = {l[k][1], w};
+//     for(int i = k-1;i >= 1;i--){
+//         int sz = 1<<(k-i);
+//         a[i].resize(sz+5);
+//         for(int j = 1;j <= sz;j++) a[i][j][0] = l[i][j];
+//         for(int j = 1;j <= sz/2;j++) {
+//             int f1 = j*2-1, f2 = j*2;
+//             if(mx[i][f1] > mx[i][f2]) swap(a[i+1][j][0], a[i+1][j][1]);
+//             a[i][f1][1] = a[i+1][j][0];
+//             a[i][f2][1] = a[i+1][j][1];
+//             if(a[i][f1][1] < a[i][f1][0] || a[i][f2][1] < a[i][f2][0]){
+//                 cout << "No Solution";
+//                 return;
+//             }
+//         }
+//     }
+
+//     int sz = (1<<(k-1));
+//     for(int i = 1;i <= sz;i++) cout << a[1][i][0] << ' ' << a[1][i][1] << ' ';
+// }
+
+// int main(){
+
+//     solve();
+    
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// void solve(){
+//     int n;
+//     stack<int>a, b;
+//     cin >> n;
+//     int x, mx = 0, cnt = 0;
+//     for(int i = 1;i <= n;i++){
+//         cin >> x;
+//         if(a.empty() || a.top() < x) a.push(x);
+//         else{
+//             if(b.empty() || b.top() < x) b.push(x);
+//             else{
+//                 cnt++;
+//                 mx = max(mx, (int)a.size());
+//                 while(a.size()) a.pop();
+//                 while(b.size() && b.top() > x) {
+//                     a.push(b.top());
+//                     b.pop();
+//                     a.push(x);
+//                 }
+//             }
+//         }
+//     }
+//     if(a.size()){
+//         cnt++;
+//         mx = max(mx, (int)a.size());
+//         while(a.size()) a.pop();
+//     }
+//     if(b.size()){
+//         cnt++;
+//         mx = max(mx, (int)b.size());
+//     }
+//     cout << cnt << ' ' << mx;
+// }
+
+// int main(){
+
+//     solve();
+    
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// void solve(){
+//     int n, c, cnt = 0;
+//     cin >> n >> c;
+//     priority_queue<array<int,2>>que;
+//     vector<string>name(n+5);
+//     vector<int>ans(n+5);
+//     int x;
+//     for(int i = 1;i <= n;i++){
+//         cin >> name[i] >> x;
+//         que.push({x, i});
+//     }
+//     list<int>ls;
+//     while(que.size()){
+//         auto [v, nm] = que.top();
+//         que.pop();
+//         ans[nm]++;
+//         // cerr << v << ' ' << name[nm] << endl;
+//         if(v >= c){
+//             v -= c;
+//             cnt++;
+//         }else{
+//             if(ls.size()){
+//                 auto it = ls.begin();
+//                 while(it != ls.end()){
+//                     if(*it + v <= c){
+//                         *it += v;
+//                         if(*it == c) ls.erase(it);
+//                         v = 0;
+//                         break;
+//                     }
+//                     it++;
+//                 }
+//             }
+//             if(v){
+//                 ls.push_back(v);
+//                 cnt++;
+//             }
+//             v = 0;
+//         }
+//         if(v) que.push({v, nm});
+//     }
+//     for(int i = 1;i <= n;i++) cout << name[i] << ' ' << ans[i] << endl;
+//     cout << cnt << endl;
+// }
+
+// int main(){
+
+//     solve();
+    
+//     return 0;
+// }
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+
+
+//int main(){
+
+//	string s("exit\n");
+//	if(s == "exit\n") cout << "YES\n";
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+
+//const int mod = 998244353;
+//const int N = 1e5 + 10;
+//int qpow(int a, int b){
+//	int ret = 1;
+//	while(b){
+//		if(b & 1) ret = ret * a % mod;
+//		a = a * a % mod;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+
+//int inv[N], fac[N];
+//void get_inv(){
+//	inv[0] = fac[0] = 1;
+//	for(int i = 1;i < N;i++) fac[i] = fac[i-1] * i % mod;
+//	inv[N-1] = qpow(fac[N-1], mod-2);
+//	for(int i = N-2;i >= 1;i--) inv[i] = inv[i+1] * (i+1) % mod;
+//}
+//int C(int a, int b){
+//	return (fac[a] * inv[a-b] % mod) * inv[b] % mod;
+//}
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5), pre(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		pre[i] = a[i] + pre[i-1];
+//	}
+
+//	auto dfs = [&](auto self, int l, int r) -> int {
+//		if(l == r || r+1 == l) return 1;
+//		if(l > r) return 1;
+//		int ls = a[l], rs = a[r];
+//		while(ls != rs && l < r){
+//			if(ls < rs) ls += a[++l];
+//			else rs += a[--r];
+//		}
+//		if(ls != rs) return 1;
+		
+//		if(r > l && pre[r-1] == pre[l]){
+//			int len = r - l;
+//			return qpow(2, len);
+//		}
+
+//		int L = 1, R = 1;
+//		while(a[l+1]==0) l++, L++;
+//		while(a[r-1]==0) r--, R++;
+//		int len = min(L, R);
+
+//		int f = 0;
+//		for(int i = 0; i <= len;i++){
+//			f = (f + (C(L, i) * C(R, i) % mod)) % mod;
+//		}
+
+//		return f * self(self, l+1, r-1) % mod;
+//	};
+
+//	int l = 1, r = n;
+//	if(a[l] != a[r] && min(a[l], a[r]) == 0){
+//		while(a[l] == 0) l++;
+//		while(a[r] == 0) r--;
+//	}
+//	cout << dfs(dfs, l, r) % mod << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	get_inv();
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
