@@ -2681,3 +2681,123 @@
 
 //	return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//const int N = 3e5 + 10;
+//int tr[N*30][2], mx[N*30][2], tot;
+//int query(int x, int id){	
+//	int p = 0, ret = 0;
+//	for(int i = 30;i >= 0;i--){
+//		bool b = (x>>i)&1, bi = (id>>i)&1;
+//		ret = max(ret, mx[tr[p][!b]][bi]);
+//		if(!tr[p][b]) break;
+//		p = tr[p][b];
+//	}
+//	return ret;
+//}
+//void insert(int x, int a, int v){
+//	int p = 0;
+//	for(int i = 30;i >= 0;i--){
+//		bool b = (x>>i)&1, ba = (a>>i)&1;
+//		if(!tr[p][b]) tr[p][b] = ++tot;
+//		p = tr[p][b];
+//		mx[p][ba] = max(mx[p][ba], v);
+//	}
+//}
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n);
+//	int ans = 0;
+//	for(int i = 0;i < n;i++){
+//		cin >> a[i];
+//		int f = query(a[i]^i, i) + 1;
+//		insert(a[i]^i, a[i], f);
+//		ans = max(ans, f);
+//	}
+//	cout << ans << endl;
+
+//	for(int i = 0;i <= tot;i++){
+//		tr[i][0] = tr[i][1] = mx[i][0] = mx[i][1] = 0;
+//	}
+//	tot = 0;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//int exgcd(int a, int b, int &x, int &y){
+//	//cerr << a << ' ' << b << endl;
+//	if(b == 0){
+//		x = 1, y = 0;
+//		return a;
+//	}
+//	int x1, y1, d;
+//	d = exgcd(b, a%b, x1, y1);
+//	x = x1, y = x1-a/b*y1;
+//	//cerr << x1 << ' ' << y1 << endl;
+//	return d;
+//}	
+
+//void solve(){
+//	int x, y, n, m, l, d;
+//	cin >> x >> y >> n >> m >> l;
+//	if(n == m){
+//		cout << "Impossible\n";
+//		return;
+//	}
+//	int k1, k2;
+//	int g = exgcd(n-m, l, k1, k2);
+//	cerr << k1 << ' ' << k2 << ' ' << g << endl;
+//	if((y-x)%g){
+//		cout << "Impossible\n";
+//		return;
+//	}
+//	k1 *= (y-x)/g;
+//	k2 *= (y-x)/g;
+//	if((k1*n+x)%l == (k1*m+y)%l) cout << k1 << endl;
+//	else cout << k2 << endl;
+//	// dn + x = dm + y  d(n-m) = y-x(mod l)
+//	// d(n-m) = (y-x) + l*k   d(n-m) - kl = y-x
+
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+//	//cerr << gcd(4, 0);
+
+//	return 0;
+//}
+
+
