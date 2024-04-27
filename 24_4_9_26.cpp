@@ -3932,3 +3932,288 @@
 
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int mod = 999999893;
+//int qpow(int a, int b){
+//    int ret = 1;
+//    while(b){
+//        if(b & 1) ret = ret * a % mod;
+//        a = a * a % mod;
+//        b >>= 1;
+//    }
+//    return ret;
+//}
+
+
+//void solve(){
+//    int n, x, y, z, w;
+//    cin >> n;
+//    if(n == 1){
+//        cout << 0 << endl;
+//        return;
+//    }else if(n == 2){
+//        cout << 1 << endl;
+//        return;
+//    }
+//    y = w = -1;
+//    x = -1;
+//    z = 0;
+//    int q = n-1;
+//    if(q&1){
+//        (y += qpow(2, (q+1)/2)) %= mod;
+//        (x += qpow(2, (q-1)/2)) %= mod;
+//        (w += qpow(2, (q+1)/2)) %= mod;
+//        (z += qpow(2, (q-1)/2)) %= mod;
+//    }else{
+//        (x += qpow(2, q/2)) %= mod;
+//        (y += qpow(2, q/2)) %= mod;
+//        (z += qpow(2, q/2)) %= mod;
+//        (w += qpow(2, q/2)) %= mod;
+//    }
+
+//    int a1 = ((y*z%mod)-(x*w%mod)+mod)%mod;
+//    int a2 = ((2*qpow(z,2)%mod)-qpow(w,2)+mod)%mod;
+//    cout << a1*qpow(a2, mod-2)%mod << endl;
+//}		
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//    string s;
+//    string ss = "odoo.com";
+//    cin >> s;
+//    int p = 0;
+//    for(int i = 0;i < s.size();i++){
+//        if(s[i] == '@'){
+//            p = i;
+//            break;
+//        }
+//        if(s[i] < 'a' || s[i] > 'z'){
+//            cout << "no\n";
+//            return;
+//        }
+//    }
+//    if(p < 2 || p > 4){
+//        cout << "no\n";
+//        return;
+//    }
+//    if(p+1 + ss.size() != s.size()){
+//        cout << "no\n";
+//        return;
+//    }
+//    for(int i = 0;i < ss.size();i++) if(ss[i] != s[p+1+i]){
+//        cout << "no\n";
+//        return;
+//    }
+//    cout << "yes\n";
+//}		
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//    string s;
+//    string ss = "ODOO";
+//    cin >> s;
+//    int ans = s.size();
+//    int d = s.size()-4;
+//    for(int i = 0; i + 3 < s.size();i++){
+//        int tmp = 0;
+//        for(int j = 0;j < 4;j++){
+//            tmp += (s[i+j] != ss[j]);
+//        }
+//        ans = min(ans, tmp+d);
+//    }    
+//    cout << ans << endl;
+//}		
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//struct node{
+//    string name;
+//    int w, pos;
+//    node() = default;
+//    node(string name, int w, int pos) : name(name), w(w), pos(pos) {};
+//};
+
+
+//void solve(){
+//    int n, m, q;
+//    cin >> n >> m >> q;
+//    vector<node>a(n+5);
+//    for(int i = 1;i <= n;i++){
+//        cin >> a[i].name >> a[i].w >> a[i].pos;
+//    }
+//    sort(all1(a), [&](const node& e1, const node& e2) -> int {
+//        return e1.pos < e2.pos;
+//    });
+
+//    vector<int>pos(m+5), die(m+5);
+//    for(int i = 1, x;i <= m;i++){
+//        cin >> x;
+//        cin >> pos[x];
+//    }
+
+//    string t;
+//    map<string, vector<array<int,3>>>g;
+//    for(int i = 1, id, w;i <= q;i++){
+//        cin >> id >> t >> w;
+//        g[t].push_back({pos[id], id, w});
+//    }
+
+//    for(auto &[name, vec] : g){
+//        sort(all(vec));
+//    }
+
+//    int cnt = 0;
+//    for(int i = n;i >= 1;i--) if(a[i].w > 0){
+//        for(auto [pos, id, w] : g[a[i].name]) if(pos >= a[i].pos && !die[id]){
+//            a[i].w -= w;
+//            if(a[i].w <= 0) break;
+//            die[id] = 1;
+//        }
+//        cnt += (a[i].w > 0);
+//    }
+//    cout << cnt << endl;
+//    for(int i = n;i >= 1;i--) if(a[i].w > 0){
+//        cout << a[i].name << ' ';
+//    }
+//}		
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+
+
+//void solve(){
+//    int n, t;
+//    cin >> n >> t;
+//    vector<int>a(n+5);
+//    int ok = 1;
+//    for(int i = 1;i <= n;i++){
+//        cin >> a[i];
+//        if(a[i] > t) ok = 0;
+//    }
+//    if(!ok){
+//        cout << -1 << endl;
+//        return;
+//    }
+
+//    auto check = [&](int x) -> int {
+//        priority_queue<int, vector<int>, greater<int>>que;
+//        for(int i = 1;i <= x;i++){
+//            que.push(a[i]);
+//        }
+//        for(int i = x+1;i <= n;i++){
+//            int tmp = que.top();
+//            que.pop();
+//            tmp += a[i];
+//            if(tmp > t) return 0;
+//            que.push(tmp);
+//        }
+//        return 1;
+//    };
+
+//    int l = 1, r = n;
+//    while(l <= r){
+//        int mid = l + r >> 1;
+//        if(check(mid)) r = mid - 1;
+//        else l = mid + 1;
+//    }
+//    cout << l << endl;
+//}		
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
