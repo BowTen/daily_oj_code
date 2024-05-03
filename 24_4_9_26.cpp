@@ -4866,3 +4866,228 @@
 
 //	return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int n, m, ans = 0, cnt = 0;
+//	cin >> n >> m;
+//	if(n > m) swap(n, m);
+//	for(int i = 1;i <= n;i++){
+//		for(int j = 1;j <= m;j++){
+//			if(gcd(i, j) != 1) continue;
+//			int t = min(n/i, m/j);
+//			if(i+j > t) break;
+//			ans += t / (i+j);
+//		}
+//	}
+//	cout << ans << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 2e5 + 10;
+//const int mod = 1e9+7;
+
+//int lowbit(int x){
+//	return x & -x;
+//}
+//int fac[N], inv[N];
+//int qpow(int a, int b){
+//	int ret = 1;
+//	while(b){
+//		if(b & 1) ret = ret * a % mod;
+//		a = a * a % mod;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+//void get_inv(){
+//	fac[0] = inv[0] = 1;
+//	for(int i = 1;i < N;i++) fac[i] = fac[i-1] * i % mod;
+//	inv[N-1] = qpow(fac[N-1], mod-2);
+//	for(int i = N-2;i >= 1;i--) inv[i] = inv[i+1] * (i+1) % mod;
+//}
+//int C(int a, int b){
+//	return (fac[a] * inv[a-b] % mod) * inv[b] % mod;
+//}
+//int dv(int a, int b){
+//	return (a - b + mod) % mod;
+//}
+
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	vector<int>b(n+5);
+//	for(int i = 1;i <= n;i++) cin >> b[i];
+//	for(int i = 1;i <= n;i++){
+//		int x = i + lowbit(i);
+//		int d = 1;
+//		while(x <= n){
+//			b[x] = dv(b[x], b[i] * C(d+k-1, d) % mod);
+//			x += lowbit(x);
+//			d++;
+//		}
+//		cout << b[i] << ' ';
+//	}
+//	cout << endl;
+//}
+
+//signed main(){
+
+//	IO;
+
+//	get_inv();
+
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 55;
+//const int M = N*N;
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//int n, m, s, t;
+
+//struct edge{
+//	int v, c, w, ne;
+//}e[M<<1];
+//int h[N<<1], tot = 1;
+//void add(int u, int v, int c, int w){
+//	e[++tot] = {v, c, w, h[u]};
+//	h[u] = tot;
+//	e[++tot] = {u, 0, -w, h[v]};
+//	h[v] = tot;
+//}
+
+//int mf[N<<1], pre[N<<1], dis[N<<1], vis[N<<1];
+//bool bfs(){  //spfa找最小费用增广路
+//    for(int i = 1;i <= t;i++){
+//        mf[i] = 0, dis[i] = inf;
+//    }
+//    mf[s] = inf, dis[s] = 0, vis[s] = 1;
+//    queue<int>q;
+//    q.push(s);
+//    while(q.size()){
+//        int u = q.front();
+//        q.pop();
+//        vis[u] = 0;
+//        for(int i = h[u];i;i = e[i].ne){
+//            auto [v, c, w, ne] = e[i];
+//            if(dis[v] > dis[u] + w && c){
+//                dis[v] = dis[u] + w;
+//                mf[v] = min(mf[u], c);
+//                pre[v] = i;
+//                if(!vis[v]){
+//                    q.push(v);
+//                    vis[v] = 1;
+//                }
+//            }
+//        }
+//    }
+//    return mf[t] > 0;
+//}
+
+//pair<int,int> EK(){
+//    int cost = 0, flow = 0;
+//    while(bfs()){
+//        for(int v = t;v != s;){
+//            int i = pre[v];
+//            e[i].c -= mf[t];
+//            e[i^1].c += mf[t];
+//            v = e[i^1].v;
+//        }
+//        flow += mf[t];
+//        cost += mf[t] * dis[t];
+//    }
+//    return {flow, cost};
+//}
+
+//int mp[N][N];
+//int a[N], b[N];
+
+//void solve(){
+//    cin >> n >> m; //1-n, n+1 - n+m, s=n+m+1, t=n+m+2
+//	s = n+m+1, t = n+m+2;
+
+//	int sw = 0;
+//	for(int i = 1;i <= n;i++){
+//		for(int j = 1;j <= m;j++){
+//			cin >> mp[i][j];
+//			sw += mp[i][j];
+//		}
+//	}
+
+//	int sum = 0;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		sum += a[i];
+//	}
+//	for(int i = 1;i <= m;i++) cin >> b[i];
+
+//	for(int i = 1;i <= n;i++) add(s, i, a[i], 0);
+//	for(int i = 1;i <= m;i++) add(n+i, t, b[i], 0);
+//	for(int i = 1;i <= n;i++){
+//		for(int j = 1;j <= m;j++){
+//			int w = (mp[i][j] ? -1 : 1);
+//			add(i, n+j, 1, w);
+//		}
+//	}
+
+//    auto ans = EK();
+
+//	//cerr << ans.first << ' ' << ans.second << endl;
+//	cout << (ans.first == sum ? sw+ans.second : -1) << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
