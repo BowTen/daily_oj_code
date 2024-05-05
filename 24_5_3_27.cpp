@@ -639,137 +639,277 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) (x).begin(), (x).end()
-#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
 
-using ar = array<int,70>;
+//using ll = long long;
+//using ar = array<int,140>;
 
-const int N = 70;
-const int mod = 998244353;
-int qpow(int a, int b){
-	int ret = 0;
-	while(b){
-		if(b & 1) ret = a * ret % mod;
-		a = a * a % mod;
-		b >>= 1;
-	}
-	return ret;
-}
-int f[N], n, m;
+//const int N = 140;
+//const int mod = 998244353;
+//int qpow(int a, int b){
+//	int ret = 1;
+//	while(b){
+//		if(b & 1) ret = a * ret % mod;
+//		a = a * a % mod;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+//int f[N];
+//int n, m;
 
-array<int,70>cnt[N], sum[N];
+//ar cnt[N], sum[N];
 
-array<int,70> merg(array<int,70>&a, array<int,70>&b){
-	array<int,70>ret;
-	for(int i = 1;i < N;i++){
-		for(int j = 1;j < N;j++){
-			if(i+j+1 >= N) break;
-			(ret[i+j+1] += a[i]*b[j]%mod) %= mod;
-		}
-	}
-	return ret;
-}
-void init(){
-	for(int i = 1;i < N;i++){
-		int pw = 1;
-		for(int j = 1;j <= i;j++, pw *= 2){
-			cnt[i][j] = pw;
-		}
-	}
-	sum[1][1] = 1;
-	for(int i = 2;i < N;i++){
-		sum[i] = merg(cnt[i-1], cnt[i-1]);
-		for(int j = 1;j < N;j++) (sum[i][j] += sum[i-1][j]*2) %= mod;
-	}
-}
-array<int,70> carr(int id){
-	int r = id << 1 | 1;
-	int l = id << 1;
-	int len = 1;
-	while(r <= n) {
-		len++;
-		l = l << 1;
-		r = r << 1 | 1;
-	}
-	array<int,70> ret = cnt[len];
-	(ret[len+1] += n-l+1) %= mod;
-	return ret;
-}
-int full(int id){
-	int l = id << 1;
-	int r = id << 1 | 1;
-	int len = 1;
-	while(r <= n){
-		l = l << 1;
-		r = r << 1 | 1;
-		len++;
-	}
-	return l > n ? len : 0;
-}
+//ar merg(ar &a, ar &b){
+//	ar ret = {0};
+//	ret[1] = 1;
+//	for(int i = 1;i < N;i++){
+//		for(int j = 1;j < N;j++){
+//			if(i+j+1 >= N) break;
+//			(ret[i+j+1] += a[i]*b[j]%mod) %= mod;
+//		}
+//	}
+//	for(int i = 2;i < N;i++) {
+//		(ret[i] += ((a[i-1] + b[i-1])%mod)) %= mod;
+//	}
+//	return ret;
+//}
+//void init(){
+//	for(int i = 1;i < N;i++){
+//		int pw = 1;
+//		for(int j = 1;j <= i;j++, pw *= 2, pw %= mod){
+//			cnt[i][j] = pw;
+//		}
+//	}
+//	sum[1][1] = 1;
+//	for(int i = 2;i < N;i++){
+//		sum[i] = merg(cnt[i-1], cnt[i-1]);
+//		for(int j = 1;j < N;j++) (sum[i][j] += sum[i-1][j]*2%mod) %= mod;
+//	}
+//}
+//ar carr(int id){
+//	if(id > n){
+//		ar ret = {0};
+//		return ret;
+//	}
+//	int r = id * 2 + 1;
+//	int l = id * 2;
+//	int len = 1;
+//	while(r <= n) {
+//		len++;
+//		l = l * 2;
+//		r = r * 2 + 1;
+//	}
+//	ar ret = cnt[len];
+//	(ret[len+1] += n-l+1) %= mod;
+//	return ret;
+//}
+//int full(int id){
+//	if(id > n) return 0;
+//	int l = id * 2;
+//	int r = id * 2 + 1;
+//	int len = 1;
+//	while(r <= n){
+//		l = l * 2;
+//		r = r * 2 + 1;
+//		len++;
+//	}
+//	return l > n ? len : 0;
+//}
 
-void solve(){
-	cin >> n >> m;
-	for(int i = 1;i < N;i++){
-		f[i] = m*qpow(m, i) % mod;
-		for(int j = 1;j < m;j++) (f[i] -= qpow(j, i)-mod) %= mod;
-	}
+//void solve(){
+//	cin >> n >> m;
+//	for(int i = 1;i < N;i++){
+//		f[i] = m*qpow(m, i) % mod;
+//		for(int j = 1;j < m;j++) (f[i] -= qpow(j, i)-mod) %= mod;
+//	}
 
-	auto dfs = [&](auto self, int u) -> array<int,70> {
-		int len = full(u);
-		if(len) return sum[len];
-		ar ls, rs, lc, rc, ret;
-		int lid = u << 1;
-		int rid = u << 1 | 1;
-		int llen = full(llen);
-		int rlen = full(rlen);
-		if(llen){
-			ls = sum[llen];
-			lc = cnt[llen];
-		}else{
-			ls = self(self, lid);
-			lc = carr(lid);
-		}
-		if(rlen){
-			rs = sum[rlen];
-			rc = cnt[rlen];
-		}else{
-			rs = self(self, rid);
-			rc = carr(rid);
-		}
-		ret = merg(lc, rc);
-		for(int i = 1;i < N;i++) (ret[i] += ls[i] + rs[i]) %= mod;
-		return ret;
-	};
+//	auto dfs = [&](auto self, int u) -> ar {
+//		if(u > n){
+//			ar ret = {0};
+//			return ret;
+//		}
+//		int len = full(u);
+//		if(len) return sum[len];
+//		ar ls, rs, lc, rc, ret;
+//		int lid = u << 1;
+//		int rid = u << 1 | 1;
+//		int llen = full(lid);
+//		int rlen = full(rid);
+//		if(llen){
+//			ls = sum[llen];
+//			lc = cnt[llen];
+//		}else{
+//			ls = self(self, lid);
+//			lc = carr(lid);
+//		}
+//		if(rlen){
+//			rs = sum[rlen];
+//			rc = cnt[rlen];
+//		}else{
+//			rs = self(self, rid);
+//			rc = carr(rid);
+//		}
+//		ret = merg(lc, rc);
+//		for(int i = 1;i < N;i++) (ret[i] += ls[i] + rs[i]) %= mod;
+//		return ret;
+//	};
 
-	auto E = dfs(dfs, 1);
-	cerr << full(1) << endl;
+//	auto E = dfs(dfs, 1);
 
-	for(int i = 0;i < N;i++)cerr << i << " : " << E[i] << endl;
+//	E[1] = n % mod;
+//	E[2] = (n-1) % mod;
+//	ll ans = 0;
+//	for(int i = 1;i < N && i <= n;i++){
+//		(ans += (f[i]*E[i]%mod)*qpow(m,n-i)%mod) %= mod;
+//	}
 
-	E[1] = n;
-	E[2] = n-1;
-	int ans = 0;
-	for(int i = 1;i < N;i++){
-		(ans += f[i]*E[i]%mod) %= mod;
-	}
+//	cout << ans << endl;
+//}
 
-	cout << ans << endl;
-}
+//signed main(){
 
-signed main(){
+//	IO;
+//	init();
+//	ll t = 1;
+//	cin >> t;
+//	while(t--) solve();
 
-	IO;
+//	return 0;
+//}
 
-	init();
 
-	int t = 1;
-	cin >> t;
-	while(t--) solve();
 
-	return 0;
-}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int M = 26*26+5;
+//const int N = 5e4 + M;
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//int n;
+
+//int h(char a, char b){
+//	return (a-'a')*26 + (b-'a') + 1 + n;
+//}
+
+//vector<array<int,2>>g[N];
+
+//void solve(){
+//	string s;
+//	cin >> s;
+//	n = s.size()-1;
+//	s = ' ' + s;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) a[i] = h(s[i], s[i+1]);
+
+//	int q;
+//	cin >> q;
+//	vector<array<int,2>>qur(q+5);
+//	vector<int>ans(q+5);
+//	for(int i = 1;i <= q;i++){
+//		cin >> qur[i][0] >> qur[i][1];
+//		ans[i] = abs(qur[i][0] - qur[i][1]);
+//	}
+
+//	for(int i = 1;i <= n;i++){
+//		if(i+1 <= n){
+//			g[i].push_back({i+1, 1});
+//			g[i+1].push_back({i, 1});
+//		}
+//		g[i].push_back({a[i], 1});
+//		g[a[i]].push_back({i, 0});
+//	}
+
+//	int lp = h('a','a'), rp = h('z','z');
+//	for(int i = lp;i <= rp;i++) if(g[i].size()){
+//		vector<int>dis(rp+5, inf);
+//		deque<int>que;
+//		dis[i] = 0;
+//		que.push_back(i);
+//		while(que.size()){
+//			int u = que.front();
+//			que.pop_front();
+//			for(auto [v, w] : g[u]) if(w + dis[u] < dis[v]){
+//				dis[v] = dis[u] + w;
+//				if(w){
+//					que.push_back(v);
+//				}else{
+//					que.push_front(v);
+//				}
+//			}
+//		}
+//		for(int j = 1;j <= q;j++){
+//			auto [l, r] = qur[j];
+//			ans[j] = min(ans[j], dis[l] + dis[r] + 1);
+//		}
+//	}
+
+//	for(int i = 1;i <= q;i++) cout << ans[i] << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	vector<int>a(n+5), f(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		a[i] %= k;
+//	}
+//	f[1] = a[1];
+//	priority_queue<int,vector<int>,greater<int>>que;
+//	for(int i = 2;i <= n;i++){
+//		if(a[i] <= a[i-1]) f[i] = f[i-1];
+//		else f[i] = f[i-1] + a[i]-a[i-1];
+//		if(que.size() && f[i-1]+que.top() < f[i]){
+//			f[i] = f[i-1]+que.top();
+//			que.pop();
+//			que.push(a[i]-a[i-1]);
+//		}		
+//		else if(a[i] < a[i-1]) que.push(a[i]+k-a[i-1]);
+//	}
+//	cout << f[n] << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
