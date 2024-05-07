@@ -1257,3 +1257,277 @@
 
 //	return 0;
 //}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+////#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 305;
+//int f[N][N*N];
+
+//void solve(){
+//	int n, sum = 0;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		sum += a[i];
+//	}
+
+//	set<int>st, st2;
+//	if(sum % 2 == 0){
+//		int hf = sum / 2;
+//		f[0][0] = -1;
+//		for(int i = 1;i <= n;i++){
+//			for(int j = 0;j <= hf;j++) if(f[i-1][j]){
+//				f[i][j] = max(f[i][j], f[i-1][j]);
+//				if(j+a[i] <= hf) f[i][j+a[i]] = i;
+//			}
+//		}
+//		if(f[n][hf]){
+//			int p = f[n][hf];
+//			while(p > 0){
+//				//if(a[p]) st.insert(p);
+//				st.insert(p);
+//				hf -= a[p];
+//				p = f[p-1][hf];
+//			}
+//		}
+//	}
+
+//	int ret, j;
+//	if(st.size()){
+//		for(int i = 1;i <= n;i++) if(a[i] && st.count(i)==0){
+//			st2.insert(i);
+//		}
+//		cout << "Second" << endl;
+//		while(1){
+//			while(st.size() && a[*st.begin()] == 0) st.erase(st.begin());
+//			while(st2.size() && a[*st2.begin()] == 0) st2.erase(st2.begin());
+//			cin >> ret;
+//			if(ret <= 0) return;
+//			if(st.count(ret)){
+//				j = *st2.begin();
+//			}else{
+//				j = *st.begin();
+//			}
+//			cout << j << endl;
+//			int d = min(a[ret], a[j]);
+//			a[ret] -= d;
+//			a[j] -= d;
+//		}
+//	}else{
+//		cout << "First" << endl;
+//		while(1){
+//			for(int i = 1;i <= n;i++) if(a[i]){
+//				j = i;
+//				break;
+//			}
+//			cout << j << endl;
+//			cin >> ret;
+//			if(ret <= 0) return;
+//			int d = min(a[ret], a[j]);
+//			a[ret] -= d;
+//			a[j] -= d;
+//		}
+//	}
+
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+//class Tree {
+//public:
+//	#define ls id << 1
+//	#define rs id << 1 | 1
+
+//	vector<int>cnt, sum, a;
+//	Tree(int n, vector<int>&a) : a(a), cnt(n*4+5), sum(n*4+5) {}
+
+//	void up(int id){
+//		sum[id] = sum[ls] + sum[rs];
+//		cnt[id] = cnt[ls] + cnt[rs];
+//	}
+//	void add(int id, int l, int r, int x, int v){
+//		if(l == r){
+//			cnt[id] += v;
+//			sum[id] = cnt[id] * a[l];
+//			return;
+//		}
+//		int mid = l + r >> 1;
+//		if(x <= mid) add(ls, l, mid, x, v);
+//		else add(rs, mid + 1, r, x, v);
+//		up(id);
+//	}
+//	int query(int id, int l, int r, int k){
+//		if(l == r) return a[l] * k;
+//		int mid = l + r >> 1;
+//		if(k <= cnt[ls]) return query(ls, l, mid, k);
+//		else return sum[ls] + query(rs, mid + 1, r, k-cnt[ls]);
+//	}
+//};
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	vector<int>a(n+5), b(1);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		b.push_back(a[i]);
+//	}
+//	sort(all1(b));
+//	b.erase(unique(all1(b)), b.end());
+//	int m = b.size()-1;
+//	Tree ptr(m, b), str(m, b);
+//	unordered_map<int,int>pos;
+//	for(int i = 1;i <= m;i++) pos[b[i]] = i;
+//	for(int i = 1;i <= n;i++){
+//		str.add(1, 1, m, pos[a[i]], 1);
+//	}
+
+//	auto val = [&](int l, int r) -> int {
+//		return max(ptr.query(1, 1, m, l), str.query(1, 1, m, r));
+//	};
+
+//	int ans = inf;
+//	for(int i = 1;i <= n;i++){
+//		int l = max(0ll, i-(n-k+1)), r = min(i-1, k);
+//		while(r-l >= 6){
+//			int d = (r-l)/3;
+//			int m1 = l+d;
+//			int m2 = l+d*2;
+//			if(val(m1, k-m1) > val(m2, k-m2)) l = m1 + 1;
+//			else r = m2 - 1;
+//		}
+//		for(int j = l;j <= r;j++) {
+//			ans = min(ans, val(j, k-j));
+//		}
+//		if(i <= n){
+//			ptr.add(1, 1, m, pos[a[i]], 1);
+//			str.add(1, 1, m, pos[a[i]], -1);
+//		}
+//	}
+
+//	cout << ans << endl;
+
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void pt(vector<int>&v){
+//	for(auto e : v) cerr << e << ' ';
+//	cerr << endl;
+//}
+
+//void solve(){
+//	int n, q, k;
+//	cin >> n >> q;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	sort(all1(a));
+//	int an = a[n];
+
+//	a[n+1] = a[n] + 1e10;
+//	vector<int>MN(n+5);
+//	int pmn = a[1];
+//	for(int i = 1;i <= n;i++){
+//		pmn++;
+//		MN[i] = min(pmn, a[i+1]);
+//		pmn = min(pmn, a[i+1]);
+//	}
+//	//cerr << MN[n] << endl;
+
+//	for(int i = 1;i <= n;i++) a[i] -= i-1;
+	
+//	sort(a.begin()+1, a.begin()+n);
+//	//pt(a);
+//	int sum2 = 0, mn2 = a[1];
+//	for(int i = 1;i < n;i++) sum2 += a[i] - mn2;
+//	//cerr << sum2 << endl;
+	
+//	sort(all1(a));
+//	int sum1 = 0, mn1 = a[1];
+//	for(int i = 1;i <= n;i++) sum1 += a[i] - mn1;
+
+//	while(q--){
+//		cin >> k;
+//		if(k <= n){
+//			cout << MN[k] << ' ';
+//		}else{	
+//			int mn, sum, d;
+//			if((k-n) % 2 == 0){
+//				d = (k-n)/2;
+//				mn = mn1 + k;
+//				sum = sum1;
+//			}else{
+//				d = (k-n+1)/2;
+//				if(an <= mn2+k){
+//					mn = an;
+//					sum = sum2 + (mn2+k-an)*(n-1);
+//				}else{
+//					mn = mn2+k;
+//					sum = sum2 + an - mn;
+//				}
+//			}
+//			if(d <= sum) cout << mn << ' ';
+//			else cout << mn - (d-sum+n-1)/n << ' ';
+//		}
+//	}
+
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
