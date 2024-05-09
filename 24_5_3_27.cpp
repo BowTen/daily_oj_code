@@ -2337,3 +2337,338 @@
 
 //	return 0;
 //}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 2000;
+//const int M = N*N;
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//int s, t;
+//int n, m;
+//int r, c, d;
+
+//int id(int x, int y){
+//	return (x-1)*c + y;
+//}
+
+//int tot = 1, h[N];  //正边 ^ 1 == 反边， 所以编号从2开始
+//struct edge{
+//    int v, c, ne;
+//}e[M<<1];  //需要建反边，边数开两倍空间
+//void add(int u, int v, int c){
+//    e[++tot] = {v, c, h[u]};
+//    h[u] = tot;
+//    e[++tot] = {u, 0, h[v]};
+//    h[v] = tot;
+//}
+
+//int dep[N], cur[N];
+
+//bool bfs(){  //先对点分层，减小dfs深度
+//    for(int i = 1;i <= n;i++) dep[i] = 0;
+//    dep[s] = 1;
+//    queue<int>q;
+//    q.push(s);
+//    while(q.size()){
+//        int u = q.front();
+//        q.pop();
+//        for(int i = h[u];i;i = e[i].ne){
+//            int v = e[i].v;
+//            if(dep[v] == 0 && e[i].c){
+//                dep[v] = dep[u] + 1;
+//                q.push(v);
+//                if(v == t) return true;
+//            }
+//        }
+//    }
+//    return false;
+//} 
+
+//int dfs(int u, int mf){  //多路增广
+//    if(u == t) return mf;
+//    int sum = 0;
+//    for(int i = cur[u];i;i = e[i].ne){
+//        cur[u] = i;  //当前弧优化
+//        int v = e[i].v;
+//        if(dep[v] == dep[u] + 1 && e[i].c){
+//            int f = dfs(v, min(mf, e[i].c));
+//            e[i].c -= f;   //更新残留网
+//            e[i^1].c += f;
+//            sum += f;
+//            mf -= f;
+//            if(mf == 0) break;
+//        }
+//    }
+//    if(sum == 0) dep[u] = 0;  //残枝优化
+//    return sum;
+//}
+
+//int Dinic(){  //累加可行流
+//    int flow = 0;
+//    while(bfs()){
+//        for(int i = 1;i <= n;i++) cur[i] = h[i];
+//        flow += dfs(s, inf);
+//    }
+//    return flow;
+//}
+
+//int op[4][2] = {
+//	0, 1,
+//	0, -1,
+//	1, 0,
+//	-1, 0
+//};
+
+//void solve(){
+//	cin >> r >> c >> d;
+//	s = id(r,c)+1;
+//	t = s+1;
+//	n = t + id(r,c);
+//	vector<string>mp(r+5);
+//	vector<vector<array<int,2>>>P(4);
+//	for(int i = 1;i <= r;i++){
+//		cin >> mp[i];
+//		mp[i] = '#' + mp[i] + '#';
+//		for(int j = 1;j <= c;j++){
+//			if(mp[i][j] == 'S'){
+//				P[1].push_back({i, j});
+//			}else if(mp[i][j] == 'H'){
+//				P[2].push_back({i, j});
+//			}else if(mp[i][j] == 'P'){
+//				P[3].push_back({i, j});
+//			}
+//		}
+//	}
+
+//	vector<vector<int>>vis(r+5, vector<int>(c+5));
+//	queue<array<int,3>>que;
+//	for(auto [cx, cy] : P[2]){
+//		for(int i = 1;i <= r;i++){
+//			for(int j = 1;j <= c;j++) vis[i][j] = 0;
+//		}
+//		que.push({cx, cy, 0});
+//		vis[cx][cy] = 1;
+//		while(que.size()){
+//			auto [x, y, ds] = que.front();
+//			que.pop();
+//			if(ds >= d) continue;
+//			for(int i = 0; i < 4;i++){
+//				int nx = x + op[i][0];
+//				int ny = y + op[i][1];
+//				if(vis[nx][ny]) continue;
+//				vis[nx][ny] = 1;
+//				if(mp[nx][ny] == '.'){
+//					que.push({nx, ny, ds+1});
+//				}else if(mp[nx][ny] == 'S'){
+//					add(id(nx,ny), id(cx, cy)+t, 1);
+//				}else if(mp[nx][ny] == 'P'){
+//					add(id(cx, cy), id(nx, ny)+t, 1);
+//				}
+//			}
+//		}
+//	}
+
+//	for(auto [x, y] : P[1]) add(s, id(x,y), 1);
+//	for(auto [x, y] : P[2]) add(id(x,y)+t, id(x,y), 1);
+//	for(auto [x, y] : P[3]) add(id(x,y)+t, id(x,y), 1), add(id(x,y), t, 1);
+
+//	cout << Dinic();
+
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int m, n;
+//	cin >> m >> n;
+//	vector<int>a(n+5);
+//	vector<bitset<5005>>b(n+5);
+//	for(int i = 1;i <= n;i++){
+//		for(int j = 1;j <= n;j++) b[i][j] = 1;
+//	}
+	
+//	vector<vector<int>>r(m+5, vector<int>(n+5));
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	for(int i = 1;i <= m;i++){
+//		for(int j = 1;j <= n;j++){
+//			cin >> r[i][j];
+//		}
+//		vector<int>idx(n);
+//		iota(all(idx), 1);
+//		sort(all(idx), [&](int x, int y) -> int {return r[i][x] < r[i][y];});
+//		bitset<5005>st;
+//		int ls = r[i][idx[0]];
+//		stack<int>sk;
+//		for(auto cur : idx){
+//			while(sk.size() && r[i][cur] > r[i][sk.top()]){
+//				st[sk.top()] = 1;
+//				sk.pop();
+//			}
+//			sk.push(cur);
+//			b[cur] &= st;
+//		}
+//	}
+
+//	vector<int>idx(n+5);
+//	iota(all1(idx), 1);
+//	sort(all1(idx), [&](int i, int j) -> int {return r[1][i] < r[1][j];});
+
+//	int ans = 0;
+//	vector<int>f(n+5);
+//	for(int i = 1;i <= n;i++){
+//		int id = idx[i];
+//		f[id] = a[id];
+//		for(int j = 1;j <= n;j++) if(j != id && b[id][j]){
+//			f[id] = max(f[id], f[j] + a[id]);
+//		}
+//		ans = max(ans, f[id]);
+//	}
+
+//	cout << ans << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//mt19937 rd(time(0));
+
+//void solve(){
+//	int n, rt = 1;
+//	cin >> n;
+//	//if(n == 200000) rt = 153;
+//	//rt = (rd() % n) + 1;
+//	vector<vector<int>>g(n+5);
+//	vector<int>siz(n+5);
+//	for(int i = 1, u, v;i < n;i++){
+//		cin >> u >> v;
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+//	for(int i = 1;i <= n;i++){
+//		if(g[i].size() > 1) {
+//			rt = i;
+//			break;
+//		}
+//	}
+//	auto dfs = [&](auto self, int u, int fa) -> void {
+//		siz[u] = 1;
+//		for(auto v : g[u]) if(v != fa){
+//			self(self, v, u);
+//			siz[u] += siz[v];
+//		}
+//		for(int i = 0;i < g[u].size();i++) if(g[u][i] == fa){
+//			g[u].erase(g[u].begin()+i);
+//			return;
+//		}
+//	};
+//	auto pt = [&]() -> void {
+//		for(int i = 1;i <= n;i++){
+//			cerr << i << " : ";
+//			for(auto e : g[i]) cerr << e << ' ';
+//			cerr << endl;
+//		}
+//		cerr << endl;
+//	};
+//	dfs(dfs, rt, 0);
+//	for(int i = 1;i <= n;i++){
+//		sort(all(g[i]), [&](int i, int j) -> int {return siz[i] > siz[j];});
+//		if(i == rt){
+//			if(g[i].size() >= 3 && siz[g[i][2]] > 1){
+//				cout << "No\n";
+//				return;
+//			}
+//		}else{
+//			if(g[i].size() >= 2 && siz[g[i][1]] > 1){
+//				cout << "No\n";
+//				return;
+//			}
+//		}
+//	}
+
+//	vector<int>ans;
+//	auto dfs2 = [&](auto self, int u, int fa, int f) -> void {
+//		if(f){
+//			reverse(all(g[u]));
+//			for(auto v : g[u]) if(v != fa){
+//				ans.push_back(v);
+//			}
+//			if(g[u].size()) self(self, g[u].back(), u, f^1);
+//		}else{
+//			if(g[u].size()) self(self, g[u].front(), u, f^1);
+//			for(auto v : g[u]) if(v != fa){
+//				ans.push_back(v);
+//			}
+//		}
+//	};
+
+//	cout << "Yes\n";
+//	ans.push_back(rt);
+
+//	dfs2(dfs2, g[rt][0], rt, 1);
+//	ans.push_back(g[rt][0]);
+
+//	for(int i = 2;i < g[rt].size();i++) ans.push_back(g[rt][i]);
+
+//	if(g[rt].size() > 1) {
+//		ans.push_back(g[rt][1]);
+//		dfs2(dfs2, g[rt][1], rt, 0);
+//	}
+
+//	for(auto e : ans) cout << e << ' ';
+
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
