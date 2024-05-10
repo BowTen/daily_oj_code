@@ -2672,3 +2672,186 @@
 
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int n, a, b, mnid = 0, mxid = 0, mx = 0, mn = 0;
+//	cin >> n >> a >> b;
+//	vector<int>v(n+5), pre(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> v[i];
+//		pre[i] = v[i] + pre[i-1];
+//		if(pre[i] > mx) mxid = i;
+//		if(pre[i] < mn) mnid = i;
+//		mx = max(pre[i], mx);
+//		mn = min(pre[i], mn);
+//	}
+//	//cerr << pre[n] << endl;
+//	//cerr << mx << ' ' << mxid << endl;
+//	//cerr << mn << ' ' << mnid << endl;
+
+//	auto op = [&](int &x, int &y, int it) -> void {
+//		for(it;it <= n;it++){
+//			int w = v[it];
+//			if(w > 0){
+//				int d = min({w, x, b-y});
+//				x -= d;
+//				y += d;
+//			}else{
+//				int d = min({-w, y, a-x});
+//				x += d;
+//				y -= d;
+//			}
+//		}
+//	};
+
+//	vector<array<int,2>>s(a+b+5);
+//	for(int i = 1;i <= a+b;i++){
+//		int y = min(i, b), x = i-y;
+//		op(x, y, mxid+1);
+//		s[i][0] = x;
+//		x = min(i, a), y = i-x;
+//		op(x, y, mnid+1);
+//		s[i][1] = x;
+//	}
+
+//	for(int i = 0;i <= a;i++){
+//		for(int j = 0;j <= b;j++){
+//			int ans;
+//			if(mx >= min(i, b-j)) ans = s[i+j][0];
+//			else if(-mn >= min(j, a-i)) ans = s[i+j][1];
+//			else ans = i-pre[n];
+//			cout << ans << ' ';
+//		}
+//		cout << endl;
+//	}
+//	//for(int i = 0;i <= a;i++){
+//	//	for(int j = 0;j <= b;j++){
+//	//		char c;
+//	//		if(mx >= min(i, b-j)) c = 'D';
+//	//		else if(-mn >= min(j, a-i)) c = 'X';
+//	//		else c = '.';
+//	//		cerr << c << ' ';
+//	//	}
+//	//	cerr << endl;
+//	//}
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//int n, k;
+//struct node{
+//	int l, r, sum, all, on;
+//	node operator+(const node& e) {
+//		node ret;
+//		ret.l = l;
+//		if(all) ret.l += e.l;
+//		ret.all = all && e.all;
+//		ret.r = e.r;
+//		ret.sum = sum + e.sum;
+//		int d = min(e.l, r);
+//		ret.sum -= d*2;
+//		if(e.on){
+//			ret.sum -= r-d;
+//		}else{
+//			ret.r = r-d;
+//		}
+//		ret.on = on || e.on;
+//		return ret;
+//	}
+//	void pt(){
+//		cerr << l << ' ' << r << ' ' << sum << ' ' << all << endl << endl;
+//	}
+//};
+//class Tree{
+//public:
+//	vector<int>&a, &b;
+//	vector<node>tr;
+//	Tree(int n, vector<int>&a, vector<int>&b) : a(a), b(b), tr(n*4+5) {
+//		build(1, 1, n);
+//	}
+
+//	#define ls id << 1
+//	#define rs id << 1 | 1
+
+//	void up(int id){
+//		tr[id] = tr[ls] + tr[rs];
+//	}
+//	void build(int id, int l, int r){
+//		if(l == r){
+//			if(b[l] == 1){
+//				tr[id] = {0, k-a[l], k, 0, 1};
+//			}else{
+//				tr[id] = {a[l], 0, a[l]*2, 1, 0};
+//			}
+//			return;
+//		}
+//		int mid = l + r >> 1;
+//		build(ls, l, mid);
+//		build(rs, mid + 1, r);
+//		up(id);
+//	}
+//	node query(int id, int l, int r, int ql, int qr) {
+//		if(ql <= l && r <= qr) return tr[id];
+//		int mid = l + r >> 1;
+//		if(qr <= mid) return query(ls, l, mid, ql, qr);
+//		else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//		else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+//	}
+//};
+
+
+//void solve(){
+//	cin >> n >> k;
+//	vector<int>a(n+5), b(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	for(int i = 1;i <= n;i++) cin >> b[i];
+//	Tree tr(n, a, b);
+
+//	node tmp = tr.query(1, 1, n, 1, n);
+//	cout << tmp.sum - tmp.r << ' ';
+//	for(int i = 2;i <= n;i++){
+//		tmp = tr.query(1, 1, n, i, n) + tr.query(1, 1, n, 1, i-1);
+//		cout << tmp.sum - tmp.r << ' ';
+//	}
+//	cout << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
