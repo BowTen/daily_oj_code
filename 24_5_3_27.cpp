@@ -4711,3 +4711,149 @@
 
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+
+//int qpow(int a, int b){
+//	int ret = 1;
+//	while(b){
+//		if(b & 1) ret = ret * a % mod;
+//		a = a * a % mod;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+//int dv(int a, int b){
+//	int ret = a-b;
+//	while(ret < 0) ret += mod;
+//	return ret;
+//}
+//int mul(int a, int b){
+//	return a * b % mod;
+//}
+//int ad(int a, int b){
+//	return (a + b) % mod;
+//}
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	vector<int>a(k+5), siz(n+5), dep(n+5), p(n+5);
+//	vector<vector<int>>g(n+5);
+//	for(int i = 1;i <= k;i++){
+//		cin >> a[i];
+//	 	p[a[i]] = siz[a[i]] = 1;
+//	}
+//	vector<array<int,2>>E(n+5);
+//	for(int i = 1, u, v;i < n;i++) {
+//		cin >> u >> v;
+//		E[i] = {u, v};
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+
+//	auto dfs1 = [&](auto self, int u, int fa) -> void {
+//		dep[u] = dep[fa] + 1;
+//		for(auto v : g[u]) if(v != fa){
+//			self(self, v, u);
+//			(siz[u] += siz[v]) %= mod;
+//		}
+//	};
+//	dfs1(dfs1, 1, 0);
+
+//	int sum = 0;
+//	for(int i = 1;i < n;i++){
+//		auto [u, v] = E[i];
+//		if(dep[u] < dep[v]) swap(u, v);
+//		(sum += mul(p[u], mul(p[v], mul(siz[u], k-siz[u])))) %= mod;
+//		(sum += mul(dv(1,p[u]), mul(dv(1,p[v]), mul(siz[u], k-siz[u])))) %= mod;
+//		(sum += mul(p[u], mul(dv(1,p[v]), mul(qpow(2,mod-2), ad(mul(siz[u],k-siz[u]), mul(siz[u]-1, k-siz[u]+1)) )))) %= mod;
+//		(sum += mul(p[v], mul(dv(1,p[u]), mul(qpow(2,mod-2), ad(mul(siz[u],k-siz[u]), mul(siz[u]+1, k-siz[u]-1)) )))) %= mod;
+//		p[u] = p[v] = (p[u] + p[v]) * qpow(2, mod-2) % mod;
+//	}
+
+//	(sum *= 2) %= mod;
+//	(sum *= qpow(k, mod-2)) %= mod;
+//	(sum *= qpow(k-1, mod-2)) %= mod;
+
+//	cout << sum << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	vector<int>a(n+5), b(n+5), idx(n+5), c(n+5);
+//	for(int i = 1;i <= n;i++) {
+//		cin >> a[i] >> b[i];
+//		c[i] = a[i] + b[i];
+//	}
+//	if(c[1] < k){
+//		cout << "NO\n";
+//		return;
+//	}
+//	if(k <= a[1]){
+//		cout << "YES\n";
+//		return;
+//	}
+
+//	iota(all1(idx), 2);
+//	sort(idx.begin()+1, idx.begin()+n, [&](int i, int j) -> int {return c[i] > c[j];});
+
+//	int L = k-b[1], it = 1;
+//	priority_queue<array<int,2>>que;
+//	while(it < n && c[idx[it]] >= L) que.push({b[idx[it]], a[idx[it++]]});
+//	while(que.size()){
+//		if(que.top()[1] >= L){
+//			cout << "YES\n";
+//			return;
+//		}
+//		L -= que.top()[0];
+//		que.pop();
+//		while(it < n && c[idx[it]] >= L) que.push({b[idx[it]], a[idx[it++]]});
+//	}
+
+//	cout << "NO\n";
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
