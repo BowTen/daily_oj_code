@@ -1139,44 +1139,172 @@
 
 //const int inf = 0x3f3f3f3f3f3f3f3f;
 
+//class Tree{
+//public:
+//	vector<int>tr, tag;
+//	Tree(int n) : tr(n*4+5), tag(n*4+5, -1) {};
+
+//	void settag(int id, int x){
+//		tr[id] = x;
+//		tag[id] = x;
+//	}
+//	void down(int id){
+//		settag(ls, tag[id]);
+//		settag(rs, tag[id]);
+//		tag[id] = -1;
+//	}
+//	void modify(int id, int l, int r, int ql, int qr, int x) {
+//		if(ql <= l && r <= qr){
+//			settag(id, x);
+//			return;
+//		}
+//		if(~tag[id]) down(id);
+//		int mid = l + r >> 1;
+//		if(qr <= mid) modify(ls, l, mid, ql, qr, x);
+//		else if(ql > mid) modify(rs, mid + 1, r, ql, qr, x);
+//		else modify(ls, l, mid, ql, qr, x), modify(rs, mid + 1, r, ql, qr, x);
+//	}
+//	int query(int id, int l, int r, int x) {
+//		if(l == r) return tr[id];
+//		if(~tag[id]) down(id);
+//		int mid = l + r >> 1;
+//		if(x <= mid) return query(ls, l, mid, x);
+//		else return query(rs, mid + 1, r, x);
+//	}
+//};
+
+////void solve(int n, vector<int>&a, vector<int>&b){
+////	int tot = 0;
+////	Tree tr(n);
+////	vector<int>vis(n+5), dfn(n+5), L(n+5), R(n+5);
+////	vector<vector<int>>g(n+5);
+////	for(int i = 1;i <= n;i++) g[a[i]].push_back(i);
+
+////	auto dfs = [&](auto self, int u, int fa, int s) -> void {
+////		L[u] = dfn[u] = ++tot;
+////		for(auto v : g[u]) if(v != fa){
+////			self(self, v, u, s);
+////		}
+////		R[u] = tot;
+////	};
+
+
+////	for(int i = 1;i <= n;i++) if(!a[i]){
+////		dfs(dfs, i, 0, i);
+////	}
+
+////	for(int i = 1;i <= n;i++) if(!vis[i]){
+////		stack<int>st;
+////		int u = i;
+////		while(u){
+////			vis[u] = 1;
+////			st.push(u);
+////			u = b[u];
+////		}
+////		while(st.size()){
+////			u = st.top();
+////			st.pop();
+////			if(tr.query(1, 1, n, L[u])){
+////				cout << u-1 << endl;
+////				return;
+////			}
+////			tr.modify(1, 1, n, L[u], R[u], 1);
+////		}
+////		tr.tag[1] = tr.tr[1] = 0;
+////	}
+
+////	cout << -1 << endl;
+////}
+
+//void solve(int n, vector<int>a, vector<int>b)
+//{
+//	for(int i = 0;i < n;i++){
+//		a[i] = a[i+1]-1;
+//		b[i] = b[i+1]-1;
+//	}
+//        for(int i=0;i<n;i++)
+//        {
+//                if(a[i]==-1||b[i]==-1) continue;
+//                else
+//                {
+//                        int k1=i;
+//                        int k2=i;
+//                        while(a[k1]!=-1&&b[k2]!=-1)
+//                        {
+//                                if(a[k1]==b[k2])
+//                                {
+//                                        cout<<i;
+//                                        return;
+//                                }
+//                                k1=a[k1];
+//                                k2=b[k2];
+//                        }
+//                }
+//        }
+//        cout<<-1;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+	
+//	int n = 5000005;
+//	vector<int>a(n+10), b(n+10);
+//	for(int i = 1;i < n;i++) {
+//		if(i&1) a[i] = i+1;
+//	}
+//	for(int i = 1;i < n;i++){
+//		if(i&1) b[i] = i+2;
+//		else b[i] = i+1;
+//	}
+//	n += 2;
+//	a[n-1] = n;
+//	b[n-1] = n;
+	
+//	while(t--) solve(n, a, b);
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
 
 //void solve(){
-//	int n;
-//	cin >> n;
-//	vector<int>scc(n+5), a(n+5), b(n+5), last(n+5), vis(n+5);
-//	vector<vector<int>>g(n+5);
-//	for(int i = 1;i <= n;i++) cin >> a[i], a[i]++, g[a[i]].push_back(i);
-//	for(int i = 1;i <= n;i++) cin >> b[i], b[i]++;
+//	int n, c;
+//	cin >> n >> c;
+//	vector<int>a(n+5), pre(n+5), suf(n+5);
+//	unordered_map<int,vector<int>>pos;
+//	for(int i = 1;i <= n;i++) cin >> a[i], pos[a[i]].push_back(i);
+//	for(int i = 1;i <= n;i++) pre[i] = pre[i-1] + (a[i] == c);
+//	for(int i = n;i >= 1;i--) suf[i] = suf[i+1] + (a[i] == c);
 
-//	auto dfs = [&](auto self, int u, int fa, int s) -> void {
-//		scc[u] = s;
-//		for(auto v : g[u]) if(v != fa){
-//			self(self, v, u, s);
-//		}
-//	};
+//	int ans = pre[n];
 
-//	for(int i = 1;i <= n;i++) if(!a[i]){
-//		dfs(dfs, i, 0, i);
-//	}
-
-//	for(int i = 1;i <= n;i++) if(!vis[i]){
-//		int u = i;
-//		while(u){
-//			if(last[scc[u]]) {
-//				cout << last[scc[u]]-1 << endl;
-//				return;
-//			}
-//			last[scc[u]] = u;
-//			u = b[u];
-//		}
-//		u = i;
-//		while(u){
-//			last[scc[u]] = 0;
-//			u = b[u];
+//	for(auto &[v, p] : pos){
+//		int m = p.size();
+//		vector<int>L(m), R(m);
+//		for(int i = 0;i < m;i++) L[i] = pre[p[i]-1], R[i] = suf[p[i]+1];
+//		int mx = 0;
+//		for(int i = 0;i < m;i++){
+//			mx = max(mx, L[i]-i+1);
+//			ans = max(ans, i+R[i]+mx);
 //		}
 //	}
 
-//	cout << -1 << endl;
+//	cout << ans << endl;
 //}
 
 //signed main(){
@@ -1188,3 +1316,76 @@
 
 //	return 0;
 //}
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+#define all1(x) (x).begin()+1, (x).begin()+1+n
+#define ls id << 1
+#define rs id << 1 | 1
+
+const int inf = 0x3f3f3f3f3f3f3f3f;
+
+void solve(){
+	int n;
+	cin >> n;
+	vector<int>fa(n*2+5);
+	iota(all(fa), 0);
+	vector<vector<int>>mp(n+5, vector<int>(n+5));
+	for(int i = 1;i <= n;i++){
+		for(int j = 1;j <= n;j++) cin >> mp[i][j];
+	}
+
+	auto find = [&](auto self, int x) -> int {
+		return x == fa[x] ? x : fa[x] = self(self,  fa[x]);
+	};
+	auto merg = [&](int a, int b) {
+		a = find(find, a);
+		b = find(find, b);
+		fa[a] = b;
+	};
+
+	for(int i = 1;i <= n;i++){
+		for(int j = 1+i;j <= n;j++) {
+			if(mp[i][j] == mp[j][i]) continue;
+			if(mp[i][j] > mp[j][i]) {
+				if(find(find, i) != find(find, j) && find(find, i+n) != find(find, j+n)) {
+					merg(i, j+n);
+					merg(i+n, j);
+					swap(mp[i][j], mp[j][i]);
+				} 
+			}else{
+				if(find(find, i) != find(find, j+n) && find(find, i+n) != find(find, j)){
+					merg(i, j);
+					merg(i+n, j+n);
+				}else{
+					swap(mp[i][j], mp[j][i]);
+				}
+			}
+		}
+	}
+
+	for(int i = 1;i <= n;i++){
+		for(int j = 1;j <= n;j++){
+			cout << mp[i][j] << ' ';
+		}
+		cout << endl;
+	}
+
+}
+
+signed main(){
+
+	IO;
+	int t = 1;
+	cin >> t;
+	while(t--) solve();
+
+	return 0;
+}
