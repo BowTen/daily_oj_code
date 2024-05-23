@@ -2121,28 +2121,97 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) (x).begin(), (x).end()
-#define all1(x) (x).begin()+1, (x).begin()+1+n
-#define ls id << 1
-#define rs id << 1 | 1
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
 
-const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
 
-void solve(){
+//int A(int a, int b){
+//	if(b > a) return 0;
+//	int ret = 1;
+//	for(int i = a-b+1;i <= a;i++) ret = ret * i % mod;
+//	return ret;
+//}
 
-}
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<array<int,2>>a(n+5);
+//	vector<vector<int>>mp(n+5, vector<int>(n+5));
+//	vector<int>mn(n+5, inf), vis(n+5);
+//	int cnt[5] = {0};
+//	for(int i = 1;i <= n;i++) cin >> a[i][0] >> a[i][1];
+//	for(int i = 1;i <= n;i++){
+//		auto [x, y] = a[i];
+//		for(int j = 1;j <= n;j++){
+//			mp[i][j] = abs(x-a[j][0]) + abs(y-a[j][1]);
+//			if(i != j) mn[i] = min(mn[i], mp[i][j]);
+//		}
+//		//cerr << mn[i] << endl;
+//	}
 
-signed main(){
 
-	IO;
-	int t = 1;
-	//cin >> t;
-	while(t--) solve();
+//	for(int i = 1;i <= n;i++) if(!vis[i]){
+//		vis[i] = 1;
+//		int ok = 1;
+//		unordered_set<int>p;
+//		p.insert(i);	
+//		for(int j = 1;j <= n;j++) if(j != i){
+//			if(mp[i][j] == mn[i]) {
+//				if(mn[j] < mn[i]) ok = 0;
+//				else{
+//					p.insert(j);
+//					vis[j] = 1;
+//				}
+//			}
+//		}
+//		if(ok && p.size() <= 4 && p.size() >= 2) {
+//			for(auto e : p){
+//				for(int j = 1;j <= n;j++) if(mp[e][j] <= mn[i]) {
+//					if(!p.count(j)) {
+//						ok = 0;
+//						break;
+//					}
+//				}
+//			}
+//			if(ok) cnt[p.size()-1]++;
+//		}
+//	}
 
-	return 0;
-}
+//	vector<int>f(n+5);
+//	f[n] = 1;
+//	for(int i = 1;i <= 3;i++){
+//		//cerr << cnt[i] << endl;
+//		while(cnt[i]--){
+//			for(int j = 1;j+i <= n;j++){
+//				(f[j] += f[j+i]) %= mod;
+//			}
+//		}
+//	}
+
+//	int ans = 0;
+//	for(int i = 1;i <= n;i++) {
+//		//cerr << i << ' ' << f[i] << endl;
+//		(ans += f[i] * A(n, i) % mod) %= mod;
+//	}
+
+//	cout << ans << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
