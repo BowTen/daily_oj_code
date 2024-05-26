@@ -3379,57 +3379,174 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) (x).begin(), (x).end()
-#define all1(x) (x).begin()+1, (x).begin()+1+n
-#define ls id << 1
-#define rs id << 1 | 1
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
 
-const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int inf = 0x3f3f3f3f3f3f3f3f;
 
-int fun(string a, string b) {
-	string s;
-	s.push_back(b[0]);
-	for(auto c : b)	if(c != s.back()) s.push_back(c);
-	int p = 0;
-	for(auto c : a){
-		if(c == s[p]) p++;
-		if(p == s.size()) return 1;
-	}
-	return 0;
-}
+//int fun(string a, string b) {
+//	string s;
+//	s.push_back(b[0]);
+//	for(auto c : b)	if(c != s.back()) s.push_back(c);
+//	int p = 0;
+//	for(auto c : a){
+//		if(c == s[p]) p++;
+//		if(p == s.size()) return 1;
+//	}
+//	return 0;
+//}
 
-void solve(){
-	int n, k;
-	cin >> n >> k;
-	string s, t;
-	cin >> s >> t;
-	vector<string>a, b;
-	for(int i = 0;i < k;i++){
-		a.push_back("");
-		b.push_back("");
-		for(int j = i;j < n;j += k){
-			a.back().push_back(s[j]);
-			b.back().push_back(t[j]);
-		}
-	}
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	string s, t;
+//	cin >> s >> t;
+//	vector<string>a, b;
+//	for(int i = 0;i < k;i++){
+//		a.push_back("");
+//		b.push_back("");
+//		for(int j = i;j < n;j += k){
+//			a.back().push_back(s[j]);
+//			b.back().push_back(t[j]);
+//		}
+//	}
 
-	int ans = 1;
-	for(int i = 0;i < a.size();i++) ans &= fun(a[i], b[i]);
-	if(ans) cout << "Yes\n";
-	else cout << "No\n";
-}
+//	int ans = 1;
+//	for(int i = 0;i < a.size();i++) ans &= fun(a[i], b[i]);
+//	if(ans) cout << "Yes\n";
+//	else cout << "No\n";
+//}
 
-signed main(){
+//signed main(){
 
-	IO;
-	int t = 1;
-	cin >> t;
-	while(t--) solve();
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
 
-	return 0;
-}
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+//void solve(){
+//	int n, q;
+//	cin >> n >> q;
+//	vector<int>c(n+5);
+//	for(int i = 1;i <= n;i++) cin >> c[i];
+//	vector<vector<int>>g(n+5);
+//	for(int i = 1, u, v;i < n;i++){
+//		cin >> u >> v;
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+//	vector<int>d(4), par(n+5), deg(n+5);
+//	auto dfs = [&](auto self, int u, int fa) -> void {
+//		par[u] = fa;
+//		for(auto v : g[u]) if(v != fa){
+//			self(self, v, u);
+//		}
+//	};
+//	dfs(dfs, 1, 0);
+
+//	int sum = 0, faw = 0, tw;
+//	set<int>st;
+
+//	auto ad = [&](int x) {
+//		sum++;
+//		if(deg[x] == 2) st.insert(x);
+//		d[min(3ll, deg[x])]++;
+//		if(deg[x] == 2) tw = x;
+//		if(!c[par[x]]) faw++;
+//		faw -= deg[x];
+
+//		deg[par[x]]++;
+//		if(c[par[x]]){
+//			if(deg[par[x]] == 2) st.insert(par[x]);
+//			if(deg[par[x]] == 3) st.erase(par[x]);
+//			if(deg[par[x]] == 2) tw = par[x];
+//			d[min(3ll, deg[par[x]])]++;
+//			d[min(3ll, deg[par[x]]-1)]--;
+//		}
+//	};
+//	auto dv = [&](int x) {
+//		sum--;
+//		if(deg[x] == 2) st.erase(x);
+//		d[min(3ll, deg[x])]--;
+//		if(!c[par[x]]) faw--;
+//		faw += deg[x];
+
+//		deg[par[x]]--;
+//		if(c[par[x]]){
+//			if(deg[par[x]] == 2) st.insert(par[x]);
+//			if(deg[par[x]] == 1) st.erase(par[x]);
+//			if(deg[par[x]] == 2) tw = par[x];
+//			d[min(3ll, deg[par[x]])]++;
+//			d[min(3ll, deg[par[x]]+1)]--;
+//		}
+//	};
+
+//	for(int i = 1;i <= n;i++) if(c[i]) deg[par[i]]++;
+//	for(int i = 1;i <= n;i++){
+//		if(c[i]){
+//			sum++;
+//			if(!c[par[i]]) faw++;
+//			if(deg[i] == 2) st.insert(i);
+//			d[min(3ll, deg[i])]++;
+//		}
+//	}
+
+//	int p;
+//	while(q--){
+//		cin >> p;
+//		c[p] ^= 1;
+//		if(c[p]) ad(p);
+//		else dv(p);
+
+//		//for(int i = 0;i <= 3;i++) cerr << d[i] << ' ';
+//		//cerr << endl;
+
+//		int ok = 1;
+//		if(sum == 0) ok = 0;
+//		//if(d[0] == 0 || d[0] > 2) ok = 0;
+//		if(d[2] > 1) ok = 0;
+//		if(d[2] == 1){
+//			tw = *st.begin();
+//		}
+//		if(d[2] == 1 && c[par[tw]]) ok = 0;
+//		if(faw != 1) ok = 0;
+//		if(d[3]) ok = 0;
+//		if(ok) cout << "Yes\n";
+//		else cout << "No\n";
+//	}
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
