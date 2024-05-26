@@ -2672,6 +2672,713 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	int cnt = 0;
+//	for(int i = 2;i <= n;i++){
+//		if(a[i] < a[i-1]){
+//			cnt++;
+//		}
+//	}
+
+//	if(cnt > 1){
+//		cout << "No\n";
+//		return;
+//	}
+//	if(cnt == 0){
+//		cout << "Yes\n";
+//		return;
+//	}
+
+//	if(a[n] <= a[1]) cout << "Yes\n";
+//	else cout << "No\n";
+
+
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n);
+//	for(int i = 0;i < n;i++) cin >> a[i];
+//	sort(all(a));
+//	a.erase(unique(all(a)), a.end());
+//	int b = 1;
+//	for(int i = 1;i < a.size();i++){
+//		if(a[i] % a[0]){
+//			b = a[i];
+//			break;
+//		}
+//	}
+//	for(int i = 1;i < a.size();i++){
+//		if(a[i] % a[0] && a[i] % b){
+//			cout << "No\n";
+//			return;
+//		}
+//	}
+//	cout << "Yes\n";
+
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+//void solve(){
+//	int n, ans = 0;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	for(int i = 1;i < n;i++) ans = max(ans, min(a[i], a[i+1]));
+
+//	vector<int>b(3);
+//	b[0] = a[1], b[1] = a[2], b[2] = a[3];
+//	sort(all(b));
+//	if(n >= 3) ans = max(ans, b[1]);
+//	for(int i = 4;i <= n;i++){
+//		for(int j = 0;j < 3;j++) if(b[j] == a[i-3]){
+//			b[j] = a[i];
+//			break;
+//		}
+//		sort(all(b));
+//		ans = max(ans, b[1]);
+//	}
+//	cout << ans << endl;
+
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+//void solve(){
+//	int a, b, n;
+//	cin >> n >> a >> b;
+//	vector<int>vis(n+5);
+//	vector<vector<int>>g(n+5);
+//	for(int i = 1, u, v;i < n;i++){
+//		cin >> u >> v;
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+
+//	vector<int>st(n+5);
+//	int tp = 0;
+//	int fd = 0;
+//	auto dfs = [&](auto self, int u) -> void {
+//		vis[u] = 1;
+//		st[++tp] = u;
+//		if(u == a) {
+//			fd = 1;
+//			return;
+//		}
+//		for(auto v : g[u]) if(!vis[v]) {
+//			self(self, v);
+//			if(fd) return;
+//		}
+//		tp--;
+//	};
+//	dfs(dfs, b);
+//	int rt = st[tp/2+1];
+//	int ans = tp/2;
+
+//	int mx = 0;
+//	vector<int>dep(n+5);
+//	auto dfs2 = [&](auto self, int u, int fa) -> void {
+//		dep[u] = dep[fa] + 1;
+//		mx = max(mx, dep[u]);
+//		for(auto v : g[u]) if(v != fa){
+//			self(self, v, u);
+//		}
+//	};
+//	dfs2(dfs2, rt, 0);
+
+//	ans += n * 2 - 1 - mx;
+
+//	cout << ans << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+//class Tree{
+//	vector<int>tr;
+//public:
+//	Tree(int n) : tr(n*4+5) {};
+//	void up(int id){
+//		tr[id] = tr[ls] + tr[rs];
+//	}
+//	void modify(int id, int l, int r, int x, int v) {
+//		if(l == r) {
+//			tr[id] += v;
+//			return;
+//		}
+//		int mid = l + r >> 1;
+//		if(x <= mid) modify(ls, l, mid, x, v);
+//		else modify(rs, mid + 1, r, x, v);
+//		up(id);
+//	}
+//	int query(int id, int l, int r, int ql, int qr) {
+//		if(ql <= l && r <= qr) return tr[id];
+//		int mid = l + r >> 1;
+//		if(qr <= mid) return query(ls, l, mid, ql, qr);
+//		else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//		else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+//	}
+//};
+
+//void solve(){
+//	int n, q, tot = 0;
+//	cin >> n >> q;
+//	vector<int>c(n+5);
+//	vector<vector<int>>g(n+5);
+//	set<pair<int,int>>st, st1, st2;
+//	for(int i = 1;i <= n;i++) cin >> c[i];
+//	for(int i = 1, u, v;i < n;i++) {
+//		cin >> u >> v;
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+
+//	vector<int>dep(n+5), dfn(n+5), son(n+5), top(n+5), siz(n+5), par(n+5);
+//	auto dfs1 = [&](auto self, int u, int fa) -> void {
+//		par[u] = fa;
+//		dep[u] = dep[fa] + 1;
+//		siz[u] = 1;
+//		for(auto v : g[u]) if(v != fa){
+//			self(self, v, u);
+//			siz[u] += siz[v];
+//			if(siz[v] > siz[son[u]]) son[u] = v;
+//		}
+//	};
+//	auto dfs2 = [&](auto self, int u, int tp) -> void {
+//		top[u] = tp;
+//		dfn[u] = ++tot;
+//		if(son[u]) self(self, son[u], tp);
+//		else return;
+
+//		for(auto v : g[u]) if(v != son[u] && v != par[u]) {
+//			self(self, v, v);
+//		}
+//	};
+//	dfs1(dfs1, 1, 0);
+//	dfs2(dfs2, 1, 1);
+
+//	Tree tr(n);
+//	auto query = [&](int u, int v) -> int {
+//		int ret = 0, tmp = 0;
+//		while(top[u] != top[v]) {
+//			if(dep[top[u]] < dep[top[v]]) swap(u, v);
+//			tmp = tr.query(1, 1, n, dfn[top[u]], dfn[u]);
+//			if(tmp != dfn[u] - dfn[top[u]] + 1) return -1;
+//			ret += tmp;
+//			u = par[top[u]];
+//		}
+//		if(dep[u] < dep[v]) swap(u, v);
+//		tmp = tr.query(1, 1, n, dfn[v], dfn[u]);
+//		if(tmp != dfn[u] - dfn[v] + 1) return -1;
+//		ret += tmp;
+//		return ret;
+//	};
+//	auto lca = [&](int u, int v) -> int {
+//		while(top[u] != top[v]) {
+//			if(dep[top[u]] < dep[top[v]]) swap(u, v);
+//			u = par[top[u]];
+//		}
+//		if(dep[u] < dep[v]) swap(u, v);
+//		return v;
+//	};
+
+//	int p, p1, p2, p4, p3, sum;
+//	for(int i = 1;i <= n;i++) if(c[i]) {
+//		p = i;
+//		if(st.empty()) p1 = p;
+//		else p1 = st.rbegin()->second;
+//		st.insert({dep[i], i});
+//		tr.modify(1, 1, n, dfn[i], 1);
+		
+//		if(st1.empty() && st2.empty()) st1.insert({dep[p], p});
+//		else if(st1.size()){
+//			int lc = lca(p, st1.rbegin()->second);
+//			if(lc == p || lc == st1.rbegin()->second) st2.insert({dep[p], p});
+//			else st1.insert({dep[p], p});
+//		}else{
+//			int lc = lca(p, st2.rbegin()->second);
+//			if(lc == p || lc == st2.rbegin()->second) st1.insert({dep[p], p});
+//			else st2.insert({dep[p], p});
+//		}
+//		//cerr << p << ' ' << p1 << endl;
+//		//int lc = lca(p1, p);
+//		//int sm = 0;
+//		//if(lc == p1 || lc == p) sm = 1;
+//		//if(st1.count({dep[p1],p1})) {
+//		//	if(sm) {st1.insert({dep[p],p});}
+//		//	else st2.insert({dep[p],p});
+//		//}else{
+//		//	if(sm) st2.insert({dep[p],p});
+//		//	else {st1.insert({dep[p],p});}
+//		//}
+//	}
+
+//	while(q--){
+//		cin >> p;
+//		c[p] ^= 1;
+//		if(c[p]){
+//			if(st.empty()) p1 = p;
+//			else p1 = st.rbegin()->second;
+//			st.insert({dep[p], p});
+//			tr.modify(1, 1, n, dfn[p], 1);
+
+//			if(st1.empty() && st2.empty()) st1.insert({dep[p], p});
+//			else if(st1.size()){
+//				int lc = lca(p, st1.rbegin()->second);
+//				if(lc == p || lc == st1.rbegin()->second) st2.insert({dep[p], p});
+//				else st1.insert({dep[p], p});
+//			}else{
+//				int lc = lca(p, st2.rbegin()->second);
+//				if(lc == p || lc == st2.rbegin()->second) st1.insert({dep[p], p});
+//				else st2.insert({dep[p], p});
+//			}
+			
+//			//int lc = lca(p1, p);
+//			//int sm = 0;
+//			//if(lc == p1 || lc == p) sm = 1;
+//			//if(st1.count({dep[p1],p1})) {
+//			//	if(sm) st1.insert({dep[p],p});
+//			//	else st2.insert({dep[p],p});
+//			//}else{
+//			//	if(sm) st2.insert({dep[p],p});
+//			//	else st1.insert({dep[p],p});
+//			//}
+//		}else{
+//			st.erase({dep[p], p});
+//			st1.erase({dep[p], p});
+//			st2.erase({dep[p], p});
+//			tr.modify(1, 1, n, dfn[p], -1);
+//		}
+
+//		if(st.empty()) {
+//			cout << "No\n";
+//			continue;
+//		}
+//		if(st.size() == 1) {
+//			cout << "Yes\n";
+//			continue;
+//		}
+//		//p1 = st.rbegin()->second;
+//		p3 = st.begin()->second;
+//		if(st1.empty()) p1 = p3;
+//		else p1 = st1.rbegin()->second;
+//		if(st2.empty()) p2 = p3;
+//		else p2 = st2.rbegin()->second;
+//		//if(st1.count({dep[p1],p1})){
+//		//	if(st2.empty()) p2 = p1;
+//		//	else p2 = st2.rbegin()->second;
+//		//}else{
+//		//	if(st1.empty()) p2 = p1;
+//		//	else p2 = st1.rbegin()->second;
+//		//}
+//		sum = max(query(p1, p2), query(p1, p3));
+//		//auto it = next(st.rbegin());
+//		//p2 = it->second;
+//		//sum = max(sum, query(p1, p2));
+		
+//		//it = next(it);
+//		//if(it != st.rend() && it->first == dep[p2]){
+//		//	p4 = it->second;
+//		//	sum = max(sum, query(p1, p4));
+//		//}
+
+//		//cerr << query(p1, p2) << ' ' << query(p1, p3) << endl;
+//		cerr << p1 << ' ' << p2 << ' ' << p3 << ' ' << sum << endl;
+//		if(sum == st.size()) cout << "Yes\n";
+//		else cout << "No\n";
+//	}
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+//void solve(){
+//	int n, sum = 0;
+//	cin >> n;
+//	for(int i = 1, x;i <= n;i++){
+//		cin >> x;
+//		sum += x;
+//	}
+//	sum = abs(sum);
+//	if(sum & 1) cout << 0 << endl;
+//	else cout << n << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+//void solve(){
+//	int l, r;
+//	cin >> l >> r;
+//	int ans = 0;
+//	for(int i = 1;i <= 100000;i++) {
+//		if(i*i >= l && i*i <= r) ans++;
+//	}
+//	cout << ans << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int N = 1e6 + 10;
+//bool isprime[N];
+//int prime[N];
+//int cnt;
+
+//void euler(){
+//    memset(isprime, true, sizeof(isprime));
+//    isprime[1] = false;
+//    for(int i = 2;i < N;i++){
+//        if(isprime[i]) prime[++cnt] = i;
+//        for(int j = 1; j <= cnt && prime[j] * i < N;j++){
+//            isprime[prime[j]*i] = false;
+//            if(i % prime[j] == 0) break;
+//        }
+//    }
+//}
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	unordered_map<int,int>mp;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		if(isprime[a[i]]) {
+//			mp[a[i]] = max(mp[a[i]], 1ll);
+//			continue;
+//		}
+//		unordered_map<int,int>tmp;
+//		for(int j = 1; j <= cnt && prime[j] <= a[i];j++){
+//			while(a[i] % prime[j] == 0) {
+//				tmp[prime[j]]++;
+//				a[i] /= prime[j];
+//			}
+//		}
+//		for(auto [k, v] : tmp) mp[k] = max(mp[k], v);
+//	}
+
+//	int sum = 0;
+//	for(auto [k, v] : mp) sum += v;
+
+//	if(sum & 1) cout << "Alice\n";
+//	else cout << "Bob\n";
+//}
+
+//signed main(){
+
+//	IO;
+//	euler();
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+////#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int N = 1e7 + 10;
+//bool isprime[N];
+//int prime[N];
+//int cnt;
+
+//void euler(){
+//    memset(isprime, true, sizeof(isprime));
+//    isprime[1] = false;
+//    for(int i = 2;i < N;i++){
+//        if(isprime[i]) prime[++cnt] = i;
+//        for(int j = 1; j <= cnt && prime[j] * i < N;j++){
+//            isprime[prime[j]*i] = false;
+//            if(i % prime[j] == 0) break;
+//        }
+//    }
+//}
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	if(n < 4) {
+//		cout << n-2 << endl;
+//		return;
+//	}
+//	int R = upper_bound(prime+1, prime+cnt+1, n) - prime - 1;
+//	int l = 1, r = R;
+//	while(l <= r){
+//		int mid = l + r >> 1;
+//		if(2*prime[mid] <= n) l = mid + 1;
+//		else r = mid - 1;
+//	}
+//	cout << R-r << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	euler();
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//int lowbit(int x){
+//	return x & -x;
+//}
+
+//void solve(){
+//	int a, b;
+//	cin >> a >> b;
+//	if(a == 0 && b == 0){
+//		cout << "1\n0\n";
+//		return;
+//	}
+//	if((a|b) != a) {
+//		cout << -1 << endl;
+//		return;
+//	}
+//	if(a == lowbit(a)){
+//		if(b == 0){
+//			cout << -1 << endl;
+//		}else{
+//			cout << "2\n0 " << a << endl;
+//		}
+//		return;
+//	}
+//	vector<int>num;
+//	num.push_back(0);
+//	for(int i = 1;i <= a;i++) if(i != b) {
+//		if((a|i) == a) num.push_back(i);
+//	}
+
+//	int x = 0;
+//	for(auto e : num) x ^= e;
+//	if(x != b) {
+//		while(1);
+//		//cout << -1 << endl;
+//		//return;
+//	}
+
+//	cout << num.size() << endl;
+//	for(auto e : num) cout << e << ' ';
+//	cout << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -2684,15 +3391,44 @@ using namespace std;
 
 const int inf = 0x3f3f3f3f3f3f3f3f;
 
+int fun(string a, string b) {
+	string s;
+	s.push_back(b[0]);
+	for(auto c : b)	if(c != s.back()) s.push_back(c);
+	int p = 0;
+	for(auto c : a){
+		if(c == s[p]) p++;
+		if(p == s.size()) return 1;
+	}
+	return 0;
+}
+
 void solve(){
-	
+	int n, k;
+	cin >> n >> k;
+	string s, t;
+	cin >> s >> t;
+	vector<string>a, b;
+	for(int i = 0;i < k;i++){
+		a.push_back("");
+		b.push_back("");
+		for(int j = i;j < n;j += k){
+			a.back().push_back(s[j]);
+			b.back().push_back(t[j]);
+		}
+	}
+
+	int ans = 1;
+	for(int i = 0;i < a.size();i++) ans &= fun(a[i], b[i]);
+	if(ans) cout << "Yes\n";
+	else cout << "No\n";
 }
 
 signed main(){
 
 	IO;
 	int t = 1;
-	//cin >> t;
+	cin >> t;
 	while(t--) solve();
 
 	return 0;
