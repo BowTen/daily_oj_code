@@ -4948,3 +4948,153 @@
 
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int N = 1e6 + 10;
+//int Log[N];
+
+//class ST{
+//	vector<array<int,20>>f;
+//public:
+//	ST(int n, vector<int>&a) : f(n+5) {
+//		for(int i = 1;i <= n;i++) f[i][0] = a[i];
+//		for(int j = 1;j < 20;j++){
+//			for(int i = 1;i <= n && i+(1<<j)-1 <= n;i++){
+//				f[i][j] = max(f[i][j-1], f[i+(1<<(j-1))-1][j-1]);
+//			}
+//		}
+//	}
+//	int query(int l, int r) {
+//		int s = Log[r-l+1];
+//		return max(f[l][s], f[r-(1<<s)+1][s]);
+//	}
+//};
+
+//void solve(){
+//	string s;
+//	cin >> s;
+//	int n = s.size();
+//	s = ' ' + s;
+//	vector<int>a(n+5), pre(n+5);
+//	unordered_map<int,vector<int>>mp;
+//	for(int i = 1;i <= n;i++){
+//		a[i] = (s[i] == '(' ? 1 : -1);
+//		pre[i] = pre[i-1] + a[i];
+//		mp[pre[i]].push_back(i);
+//	}
+//	ST st(n, pre);
+
+//	int ans = 0;
+//	for(auto &[k, p] : mp){
+//		for(int i = 0;i+1 < p.size();i++){
+//			int l = p[i]+1, r = n;
+//			while(l <= r){
+//				int mid = l + r >> 1;
+//				if(st.query(p[i]+1, mid) <= 2*pre[p[i]]) l = mid + 1;
+//				else r = mid - 1;
+//			}
+//			int tmp = upper_bound(all(p), r) - p.begin() - 1;
+//			ans += max(0ll, tmp - i);
+//		}
+//	}
+//	cout << ans << endl;
+//}
+
+
+//signed main(){
+
+//	IO;
+//	for(int i = 2;i < N;i++) Log[i] = Log[i/2] + 1;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int N = 1e6 + 10;
+//int Log[N];
+
+//class ST{
+//	vector<array<int,20>>f;
+//public:
+//	ST(int n, vector<int>&a) : f(n+5) {
+//		for(int i = 1;i <= n;i++) f[i][0] = a[i];
+//		for(int j = 1;j < 20;j++){
+//			for(int i = 1;i <= n && i+(1<<j)-1 <= n;i++){
+//				f[i][j] = max(f[i][j-1], f[i+(1<<(j-1))][j-1]);
+//			}
+//		}
+//	}
+//	int query(int l, int r) {
+//		int s = Log[r-l+1];
+//		return max(f[l][s], f[r-(1<<s)+1][s]);
+//	}
+//};
+
+
+//void solve(){
+//	string s;
+//	cin >> s;
+//	int n = s.size();
+//	s = ' ' + s;
+//	vector<int>a(n+5), pre(n+5);
+//	unordered_map<int,vector<int>>mp;
+//	for(int i = 1;i <= n;i++){
+//		a[i] = (s[i] == '(' ? 1 : -1);
+//		pre[i] = pre[i-1] + a[i];
+//		mp[pre[i]].push_back(i);
+//	}
+//	ST st(n, pre);
+
+//	int ans = 0;
+//	for(auto &[k, p] : mp){
+//		for(int i = 0;i+1 < p.size();i++){
+//			int l = p[i]+1, r = n;
+//			while(l <= r){
+//				int mid = l + r >> 1;
+//				if(st.query(p[i]+1, mid) <= 2*pre[p[i]]) l = mid + 1;
+//				else r = mid - 1;
+//			}
+//			int tmp = upper_bound(all(p), r) - p.begin() - 1;
+//			ans += max(0ll, tmp - i);
+//		}
+//	}
+//	cout << ans << endl;
+//}
+
+
+//signed main(){
+
+//	IO;
+//	for(int i = 2;i < N;i++) Log[i] = Log[i/2] + 1;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
