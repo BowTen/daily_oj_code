@@ -676,6 +676,393 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+
+//const int N = 1e6 + 10;
+//bool isprime[N];
+//int prime[N], pre[N];
+//int cnt, n, k, op;
+
+//void euler(){
+//    memset(isprime, true, sizeof(isprime));
+//    isprime[1] = false;
+//    for(int i = 2;i < N;i++){
+//        if(isprime[i]) prime[++cnt] = i;
+//        for(int j = 1; j <= cnt && prime[j] * i < N;j++){
+//            isprime[prime[j]*i] = false;
+//            if(i % prime[j] == 0) break;
+//        }
+//    }prime[0] = 1;
+//	isprime[1] = 1;
+//	for(int i = 1;i < N;i++){
+//		pre[i] = pre[i-1];
+//		if(isprime[i]) pre[i]++;
+//	}
+//}
+
+//int dfs1(int n, int k) {
+//	if(k <= pre[n]) return k == 1 ? 1 : prime[k-1];
+//	int x = dfs1(n-pre[n], k-pre[n]);
+//	int l = 1, r = n;
+//	while(l <= r){
+//		int mid = l + r >> 1;
+//		if(mid - pre[mid] >= x) r = mid - 1;
+//		else l = mid + 1;
+//	}
+//	return l;
+//}
+//int dfs2(int n, int k) {
+//	if(isprime[k]) return pre[k];
+//	int x = dfs2(n-pre[n], k-pre[k]);
+//	return x + pre[n];
+//}
+
+//int d2(int n, int k) {
+//	vector<int>v(n);
+//	iota(all(v),1);
+//	int id = 0;
+//	while(1){
+//		vector<int>tmp;
+//		for(int i = 0;i < v.size();i++) {
+//			if(isprime[i+1]){
+//				++id;
+//				if(k == v[i]) return id;
+//			}else{
+//				tmp.push_back(v[i]);
+//			}
+//		}
+//		v = tmp;
+//	}
+//}
+
+//void solve(){
+//	cin >> op >> n >> k;
+//	if(op == 2) cout << dfs1(n, k) << endl;
+//	else cout << dfs2(n, k) << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	euler();
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	if(n == 1){
+//		cout << 1 << endl;
+//		return;
+//	}
+//	cout << 2 << ' ';
+//	for(int i = 2;i < n;i++) cout << i+1 << ' ';
+//	cout << 1 << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+
+
+//void solve(){
+//	int n, m;
+//	cin >> n >> m;
+//	vector<int>a(n+5), d(n+5);
+//	vector<array<int,2>>E;
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	for(int i = 1, u, v;i <= m;i++){
+//		cin >> u >> v;
+//		d[u]++; d[v]++;
+//		E.push_back({u, v});
+//	}
+//	if(m % 2 == 0) {
+//		cout << 0 << endl;
+//		return;
+//	}
+
+//	int ans = inf;
+//	for(int i = 1;i <= n;i++) if(d[i] & 1) {
+//		ans = min(ans, a[i]);
+//	}
+//	for(auto [u, v] : E) if(d[u]%2 == 0 && d[v]%2 == 0){
+//		ans = min(ans, a[u]+a[v]);
+//	}
+
+//	cout << ans << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+
+
+//void solve(){
+//	int n, m, k, f = 0;
+//	cin >> n >> m >> k;
+//	vector<int>a(k+5), c, r;
+//	for(int i = 1;i <= k;i++) {
+//		cin >> a[i];
+//		if(a[i]/n > 1){
+//			c.push_back(a[i]/n);
+//			if(c.back() >= m) f = 1;
+//		}
+//		if(a[i]/m > 1){
+//			r.push_back(a[i]/m);
+//			if(r.back() >= n) f = 1;
+//		}
+//	}
+//	sort(all(c));
+//	sort(all(r));
+//	if(f){
+//		cout << "Yes\n";
+//		return;
+//	}
+
+//	int s = 0;
+//	if(c.size())
+//	for(int i = 0;i < c.size()-1;i++){
+//		s += c[i];
+//		if(s+1 == m) {
+//			s--;
+//			if(c[i] == 2) s--;
+//		}
+//		if(s + c.back() >= m) {
+//			cout << "Yes\n";
+//			return;
+//		}
+//	}
+//	s = 0;
+//	if(r.size())
+//	for(int i = 0;i < r.size()-1;i++){
+//		s += r[i];
+//		if(s+1 == n) {
+//			s--;
+//			if(r[i] == 2) s--;
+//		}
+//		if(s + r.back() >= n){
+//			cout << "Yes\n";
+//			return;
+//		}
+//	}
+//	cout << "No\n";
+
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	int mn = inf;
+//	for(int i = 1;i < n;i++) {
+//		mn = min(mn, max(a[i], a[i+1]));
+//	}
+//	cout << mn - 1 << endl;
+
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+
+//int lowbit(int x){
+//	return x & -x;
+//}
+
+//void solve(){
+//	int x, y;
+//	cin >> x >> y;
+//	cout << lowbit(x^y) << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+
+
+//void solve(){
+//	int n, m = 1;
+//	cin >> n;
+//	vector<int>k(n+5), z(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> k[i];
+//		m = (m*k[i]) / gcd(m, k[i]);
+//	}
+//	int sum = 0;
+//	for(int i = 1;i <= n;i++){
+//		z[i] = m / k[i];
+//		sum += z[i];
+//	}
+//	if(sum >= m){
+//		cout << "-1\n";
+//		return;
+//	}
+//	for(int i = 1;i <= n;i++) cout << z[i] << ' ';
+//	cout << endl;
+
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -690,73 +1077,67 @@ using namespace std;
 const int inf = 0x3f3f3f3f3f3f3f3f;
 const int mod = 998244353;
 
-const int N = 1e6 + 10;
-bool isprime[N];
-int prime[N], pre[N];
-int cnt, n, k, op;
-
-void euler(){
-    memset(isprime, true, sizeof(isprime));
-    isprime[1] = false;
-    for(int i = 2;i < N;i++){
-        if(isprime[i]) prime[++cnt] = i;
-        for(int j = 1; j <= cnt && prime[j] * i < N;j++){
-            isprime[prime[j]*i] = false;
-            if(i % prime[j] == 0) break;
-        }
-    }prime[0] = 1;
-	isprime[1] = 1;
-	for(int i = 1;i < N;i++){
-		pre[i] = pre[i-1];
-		if(isprime[i]) pre[i]++;
-	}
-}
-
-int dfs1(int n, int k) {
-	if(k <= pre[n]) return k == 1 ? 1 : prime[k-1];
-	int x = dfs1(n-pre[n], k-pre[n]);
-	int l = 1, r = n;
-	while(l <= r){
-		int mid = l + r >> 1;
-		if(mid - pre[mid] >= x) r = mid - 1;
-		else l = mid + 1;
-	}
-	return l;
-}
-int dfs2(int n, int k) {
-	if(isprime[k]) return pre[k];
-	int x = dfs2(n-pre[n], k-pre[k]);
-	return x + pre[n];
-}
-
-int d2(int n, int k) {
-	vector<int>v(n);
-	iota(all(v),1);
-	int id = 0;
-	while(1){
-		vector<int>tmp;
-		for(int i = 0;i < v.size();i++) {
-			if(isprime[i+1]){
-				++id;
-				if(k == v[i]) return id;
-			}else{
-				tmp.push_back(v[i]);
-			}
-		}
-		v = tmp;
-	}
-}
 
 void solve(){
-	cin >> op >> n >> k;
-	if(op == 2) cout << dfs1(n, k) << endl;
-	else cout << dfs2(n, k) << endl;
+	int n, k;
+	cin >> n >> k;
+	string s;
+	cin >> s;
+	s = ' ' + s;
+
+	vector<int>nxt(n+5);
+	int las[2] = {n+1, n+1};
+	for(int i = n;i >= 1;i--){
+		nxt[i] = las[(s[i]-'0')^1];
+		las[s[i]-'0'] = i;
+	}
+	vector<int>seg;
+	for(int i = 1;i <= n;i = nxt[i]){
+		seg.push_back(nxt[i]-i);
+	}
+
+	if(seg.back() > k){
+		cout << -1 << endl;
+		return;
+	}
+
+	int tmp = 0, it=0;
+	for(int i = 0;i+1 < seg.size();i++){
+		tmp += (seg[i] != k);
+		if(seg[i] != k) it = i;
+	}
+
+	if(tmp > 1) {
+		cout << -1 << endl;
+		return;
+	}
+
+	if(tmp == 0){
+		if(seg.back() == k) cout << n << endl;
+		else cout << -1 << endl;
+		return;
+	}
+
+	if(seg[it] == 2*k){
+		if(seg.back() == k && (it&1) != ((seg.size()-1)&1)) cout << k*it+k << endl;
+		else cout << -1 << endl;
+		return;
+	}else{
+		if(seg[it] < k){
+			if(seg.back()+seg[it] == k && (it&1) == ((seg.size()-1)&1)) cout << k*it+seg[it] << endl;
+			else cout << -1 << endl;
+		}else{
+			if(seg.back()+seg[it] == 2*k && (it&1) == ((seg.size()-1)&1)) cout << k*it+seg[it]-k << endl;
+			else cout << -1 << endl;
+		}
+		return;
+	}
+
 }
 
 signed main(){
 
 	IO;
-	euler();
 	int t = 1;
 	cin >> t;
 	while(t--) solve();
