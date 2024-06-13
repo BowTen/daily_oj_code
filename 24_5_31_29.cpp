@@ -1286,74 +1286,149 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define endl '\n'
-#define all(x) (x).begin(), (x).end()
-#define all1(x) (x).begin()+1, (x).begin()+1+n
-#define ls id << 1
-#define rs id << 1 | 1
-#define mk make_pair
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
 
-const int inf = 0x3f3f3f3f3f3f3f3f;
-const int mod = 998244353;
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
 
 
-void solve(){
-	int n, d;
-	cin >> n >> d;
-	vector<int>k(n+5), s(n+5), t(n+5), vis(n+5);
-	for(int i = 1;i <= n;i++) cin >> k[i] >> s[i];
-	vector<int>ok(k);
-	for(int i = n-1;i >= 1;i--) k[i] = max(k[i], k[i+1]);
+//void solve(){
+//	int n, d;
+//	cin >> n >> d;
+//	vector<int>k(n+5), s(n+5), t(n+5), vis(n+5);
+//	for(int i = 1;i <= n;i++) cin >> k[i] >> s[i];
+//	vector<int>ok(k);
+//	for(int i = n-1;i >= 1;i--) k[i] = max(k[i], k[i+1]);
 
-	if(d < n){
-		cout << -1 << endl;
-		return;
-	}
+//	if(d < n){
+//		cout << -1 << endl;
+//		return;
+//	}
 
-	priority_queue<int, vector<int>, function<bool(int,int)>> que([&](const int i, const int j) -> bool {
-		if(k[i] == k[j]) {
-			if(t[i] == t[j]) return s[j] < s[i];
-			return t[j] < t[i];
-		}
-		return k[j] > k[i];
-	});
-	vector<vector<int>>vec(d+5);
+//	priority_queue<int, vector<int>, function<bool(int,int)>> que([&](const int i, const int j) -> bool {
+//		if(k[i] == k[j]) {
+//			if(t[i] == t[j]) return s[j] < s[i];
+//			return t[j] < t[i];
+//		}
+//		return k[j] > k[i];
+//	});
+//	vector<vector<int>>vec(d+5);
 
-	int it = 1;
+//	int it = 1;
 
-	for(int i = 1;i <= d;i++){
-		if(it <= n && !vis[it]){
-			vis[it] = 1;
-			que.push(it);
-		}
-		for(auto u : vec[i]) que.push(u);
-		int u = que.top();
-		que.pop();
-		k[u] = ok[u];
-		it = max(it, u+1);
-		if(u == n) {
-			cout << i << endl;
-			return;
-		}
-		if(i+s[u]+1 <= d){
-			t[u] = i+s[u]+1;
-			vec[i+s[u]+1].push_back(u);
-		}
-	}
+//	for(int i = 1;i <= d;i++){
+//		if(it <= n && !vis[it]){
+//			vis[it] = 1;
+//			que.push(it);
+//		}
+//		for(auto u : vec[i]) que.push(u);
+//		int u = que.top();
+//		que.pop();
+//		k[u] = ok[u];
+//		it = max(it, u+1);
+//		if(u == n) {
+//			cout << i << endl;
+//			return;
+//		}
+//		if(i+s[u]+1 <= d){
+//			t[u] = i+s[u]+1;
+//			vec[i+s[u]+1].push_back(u);
+//		}
+//	}
 
-	cout << -1 << endl;
-}	
+//	cout << -1 << endl;
+//}	
 
-signed main(){
+//signed main(){
 
-	IO;
-	int t = 1;
-	cin >> t;
-	while(t--) solve();
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
 
-	return 0;
-}
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+//const int N = 2e5 + 10;
+//int n, k;
+//vector<int>g[N];
+
+//int dep[N], mxd[N], last, ldep, val[N];
+
+//void dfs(int u, int fa){
+//	mxd[u] = dep[u] = dep[fa] + 1;
+//	for(auto v : g[u]) {
+//		dfs(v, u);
+//		mxd[u] = max(mxd[u], mxd[v]);
+//	}
+//	sort(all(g[u]), [&](int i, int j) -> int {
+//		return mxd[i] < mxd[j];
+//	});
+//}
+//void dfs2(int u){
+//	if(g[u].empty()){
+//		val[last] = dep[last] + 1 - 2*ldep;
+//		ldep = dep[u];
+//		last = u;
+//	}
+//	for(auto v : g[u]) {
+//		dfs2(v);
+//		ldep = min(ldep, dep[u]);
+//	}
+//}
+
+
+//void solve(){
+//	cin >> n >> k;
+//	for(int i = 2, f;i <= n;i++){
+//		cin >> f;
+//		g[f].push_back(i);
+//	}
+
+//	dfs(1, 0);
+//	dfs2(1);
+//	val[last] = dep[last] + 1 - 2*ldep;
+
+//	sort(val+1, val+1+n, greater<int>());
+
+//	k = min(k+1, n);
+//	int ans = 2*(n-1);
+//	for(int i = 1;i <= k;i++){
+//		ans -= max(0ll, val[i]);
+//	}
+
+//	cout << ans << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
