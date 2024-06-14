@@ -1432,3 +1432,95 @@
 
 //	return 0;
 //}
+
+
+#include<bits/stdc++.h>
+using namespace std;
+//#define int long long
+#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+#define all1(x) (x).begin()+1, (x).begin()+1+n
+#define ls id << 1
+#define rs id << 1 | 1
+#define mk make_pair
+
+const int inf = 0x3f3f3f3f;
+const int mod = 998244353;
+const int N = 105;
+int f[N][N][N], g[N][N][N];
+
+
+void solve(){
+	int n, x;
+	cin >> n >> x;
+	vector<int>a(n+5);
+	for(int i = 1;i <= n;i++) cin >> a[i];
+
+	//for(int i = 1;i <= n;i++){
+	//	for(int j = i;j <= n;j++){
+	//		for(int k = 1;k <= x;k++){
+	//			f[i][j][k] = g[i][j][k] = inf;
+	//		}
+	//	}
+	//}
+
+	for(int s = 1;s <= n;s++){
+		for(int l = 1, r = s;r <= n;l++, r++){
+			int mn = inf;
+			for(int k = 1;k <= x;k++){
+				g[l][r][k] = 0;
+				for(int i = l;i <= r;i++) if(a[i] == k){
+					g[l][r][k] = inf;
+					break;
+				}
+				for(int mid = l;mid < r;mid++){
+					g[l][r][k] = min(g[l][r][k], g[l][mid][k]+g[mid+1][r][k]);
+				}
+				mn = min(mn, g[l][r][k]+1);
+			}
+			for(int k = 1;k <= x;k++){
+				g[l][r][k] = min(mn, g[l][r][k]);
+			}
+		}
+	}
+	for(int s = 1;s <= n;s++){
+		for(int l = 1, r = s;r <= n;l++, r++){
+			for(int k = 1;k <= x;k++){
+				int ok = 1;
+				for(int i = l;i <= r;i++) if(a[i] != k){
+					ok = 0; break;
+				}
+				if(ok){
+					f[l][r][k] = 0;
+					continue;
+				}
+				f[l][r][k] = g[l][r][k]+1;
+				for(int mid = l;mid < r;mid++){
+					f[l][r][k] = min(f[l][r][k], f[l][mid][k]+f[mid+1][r][k]);
+				}
+			}
+		}
+	}
+
+	//cerr << f[1][1][1] << endl;
+	//cerr << f[2][2][1] << endl;
+	//cerr << f[3][3][1] << endl;
+
+	int ans = inf;
+	for(int k = 1;k <= x;k++){
+		ans = min(ans, f[1][n][k]);
+	}
+
+	cout << ans << endl;
+}	
+
+signed main(){
+
+	IO;
+	int t = 1;
+	cin >> t;
+	while(t--) solve();
+
+	return 0;
+}
