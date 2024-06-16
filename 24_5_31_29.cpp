@@ -1766,3 +1766,222 @@
 
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+
+//void solve(){
+//	string s;
+//	cin >> s;
+//	int n = s.size();
+//	s = ' ' + s;
+//	int ans = 1, L = 0, R = 0;
+//	for(int l = 1;l <= n;l++){
+//		for(int r = l+1;r <= n;r++){
+//			int f = 1;
+//			int q = l, p = r;
+//			while(q <= p){
+//				if(s[q] != s[p]) {f = 0; break;}
+//				q++, p--;
+//			}
+//			if(f && r-l+1 > ans) {
+//				ans = r-l+1;
+//				L = l, R = r;
+//			}
+//		}
+//	}
+
+//	cout << ans << endl;
+//	cout << L << ' ' << R << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+//const int N = 2e5 + 10;
+
+//int n, q, dep[N], L[N], R[N], tot, par[N][20], tr_data[N];
+//vector<int>g[N];
+
+//void dfs(int u, int fa){
+//	par[u][0] = fa;
+//	for(int i = 1;i < 20;i++) par[u][i] = par[par[u][i-1]][i-1];
+//	L[u] = ++tot;
+//	dep[u] = dep[fa] + 1;
+//	tr_data[L[u]] = dep[u];
+//	for(auto v : g[u]) if(v != fa){	
+//		dfs(v, u);
+//	}
+//	R[u] = tot;
+//}
+
+//int tr[N<<2], tag[N<<2];
+
+//void up(int id){
+//	tr[id] = max(tr[ls], tr[rs]);
+//}
+//void build(int id, int l, int r){
+//	if(l == r){
+//		tr[id] = tr_data[l];
+//		return;
+//	}
+//	int mid = l + r >> 1;
+//	build(ls, l, mid);
+//	build(rs, mid + 1, r);
+//	up(id);
+//}
+//void settag(int id, int x){
+//	tr[id] += x;
+//	tag[id] += x;
+//}
+//void down(int id){
+//	settag(ls, tag[id]);
+//	settag(rs, tag[id]);
+//	tag[id] = 0;
+//}
+//void modify(int id, int l, int r, int ql, int qr, int x){
+//	if(ql <= l && r <= qr) {
+//		settag(id, x);
+//		return;
+//	}
+//	if(tag[id]) down(id);
+//	int mid = l + r >> 1;
+//	if(qr <= mid) modify(ls, l, mid, ql, qr, x);
+//	else if(ql > mid) modify(rs, mid + 1, r, ql, qr, x);
+//	else modify(ls, l, mid, ql, qr, x), modify(rs, mid + 1, r, ql, qr, x);
+//	up(id);
+//}
+
+//int query(int id, int l, int r, int ql, int qr){
+//	if(ql <= l && r <= qr) return tr[id];
+//	if(tag[id]) down(id);
+//	int mid = l + r >> 1;
+//	if(qr <= mid) return query(ls, l, mid, ql, qr);
+//	else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//	else return max(query(ls, l, mid, ql, qr), query(rs, mid+1, r, ql, qr));
+//}
+
+//int lca(int u, int v){
+//	if(dep[u] < dep[v]) swap(u, v);
+//	for(int i = 19;i >= 0;i--) if(dep[par[u][i]] >= dep[v]) u = par[u][i];
+//	if(u == v) return u;
+//	for(int i = 19;i >= 0;i--) if(par[u][i] != par[v][i]) {
+//		u = par[u][i]; v = par[v][i];
+//	}
+//	return par[u][0];
+//}
+
+//void add(int u, int v, int x){
+//	int lc = lca(u, v);
+//	if(lc == v){
+//		for(int i = 19;i >= 0;i--) if(dep[par[u][i]] > dep[v]) u = par[u][i];
+//		modify(1, 1, n, 1, n, n*x);
+//		modify(1, 1, n, L[u], R[u], -n*x);
+//	}else{
+//		modify(1, 1, n, L[v], R[v], n*x);
+//	}
+//}
+
+
+//void solve(){
+//	cin >> n >> q;
+//	for(int i = 1, u, v;i < n;i++){
+//		cin >> u >> v;
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+
+	
+//	dep[0] = -1;
+//	dfs(1, 0);
+//	build(1, 1, n);
+
+//	vector<int>x(q+5), ans(q+5);
+//	vector<vector<pair<int, vector<int>>>>qur(n+5);
+//	for(int i = 1, k, a;i <= q;i++){
+//		cin >> x[i] >> k;
+//		qur[x[i]].push_back({i, vector<int>()});
+//		while(k--){
+//			cin >> a;
+//			qur[x[i]].back().second.push_back(a);
+//		}
+//	}
+//	//cerr << "DEBUG\n";
+
+//	auto calc = [&](auto self, int u, int fa) -> void {
+//		for(auto [id, vec] : qur[u]){
+//			for(auto e : vec) add(u, e, -1);
+//			ans[id] = tr[1];
+//			for(auto e : vec) add(u, e, 1);
+//		}
+
+//		for(auto v : g[u]) if(v != fa){
+//			modify(1, 1, n, 1, n, 1);
+//			modify(1, 1, n, L[v], R[v], -2);
+//			self(self, v, u);
+//			modify(1, 1, n, 1, n, -1);
+//			modify(1, 1, n, L[v], R[v], 2);
+//		}
+//	};
+	
+//	calc(calc, 1, 0);
+
+//	//for(int i = 1;i <= n;i++){
+//	//	cerr << L[i] << ' ' << R[i] << ' ' << dep[i] << endl;
+//	//}
+
+//	//cerr << query(1, 1, n, L[7], R[7]) << endl;
+//	//modify(1, 1, n, 1, n, 1);
+//	//modify(1, 1, n, L[2], R[2], -2);
+//	//cerr << query(1, 1, n, L[7], R[7]) << endl;
+
+//	for(int i = 1;i <= q;i++) cout << ans[i] << endl;
+//	cout << endl;
+
+
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
