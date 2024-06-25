@@ -2250,6 +2250,223 @@
 //}
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+//const int N = 2e5 + 10;
+
+
+//void solve(){
+//	int a, b, c, d;
+//	cin >> a >> b >> c >> d;
+//	if(a < b){
+//		if(c < d) cout << "YES\n";
+//		else cout << "NO\n";
+//	}else{
+//		if(c > d) cout << "YES\n";
+//		else cout << "NO\n";
+//	}
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+//const int N = 2e5 + 10;
+
+
+//void solve(){
+//	int n, l, r;
+//	cin >> n >> l >> r;
+//	vector<int>a(n+5), f(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		a[i] += a[i-1];	
+//	}
+//	priority_queue<pair<int,int>>que;
+//	int L = 0, R =  0;
+//	for(int i = 1;i <= n;i++){
+//		f[i] = f[i-1];
+//		while(a[i] - a[R] >= l) que.push({f[R], R++});
+//		while(a[i] - a[L] > r) L++;
+//		while(que.size() && que.top().second < L) que.pop();
+//		if(que.size()) f[i] = max(f[i], que.top().first+1);
+//		//cerr << f[i] << endl;
+//	}
+
+//	cout << f[n] << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+//const int N = 2e5 + 10;
+
+////int f(int x, int y, int k){
+
+////}
+
+
+//void solve(){
+//	int x, y, k;
+//	cin >> x >> y >> k;
+//	while(k){
+//		if(x < y) {
+//			k %= y-1;
+//			//cerr << x << ' ' << y << ' ' << k << endl;
+//			//cout << f(x, y, k%(y-1)) << endl;
+//			//return;
+//		}
+//		int d = min(k, y-(x%y));
+//		k -= d;
+//		x += d;
+//		while(x % y == 0) x /= y;
+//	}
+//	cout << x << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 998244353;
+//const int N = 2e5 + 10;
+
+
+//void solve(){
+//	int n, m, k, s = 0;
+//	cin >> n >> m >> k;
+//	vector<vector<int>>a(n+5, vector<int>(m+5)), pre(n+5, vector<int>(m+5)), b(n+5, vector<int>(m+5));
+//	for(int i = 1;i <= n;i++){
+//		for(int j = 1;j <= m;j++){
+//			cin >> a[i][j];
+//		}
+//	}
+//	vector<string>mp(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> mp[i];
+//		mp[i] = ' ' + mp[i];
+//		for(int j = 1;j <= m;j++){
+//			b[i][j] = (mp[i][j] == '1' ? 1 : -1);
+//			s += b[i][j] * a[i][j];
+//			pre[i][j] = b[i][j] + pre[i-1][j] + pre[i][j-1] - pre[i-1][j-1];
+//		}
+//	}
+
+//	if(s == 0){
+//		cout << "YES\n";
+//		return;
+//	}
+
+//	vector<int>num;
+//	for(int i = k;i <= n;i++){
+//		for(int j = k;j <= m;j++){
+//			num.push_back(pre[i][j] - pre[i-k][j] - pre[i][j-k] + pre[i-k][j-k]);
+//			//cerr << i << ' ' << j << endl;
+//		}
+//	}
+
+//	sort(all(num));
+//	num.erase(unique(all(num)), num.end());
+//	int g = abs(num.front());
+//	if(g == 0) g = abs(num.back());
+//	if(g == 0){
+//		cout << "NO\n";
+//		return;
+//	}
+//	for(auto e : num) if(e) g = gcd(g, abs(e));
+//	//cerr << "DEBUG\n";
+
+//	s = abs(s);
+//	if(s % g == 0) cout << "YES\n";
+//	else cout << "NO\n";
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -2262,12 +2479,14 @@ using namespace std;
 #define mk make_pair
 
 const int inf = 0x3f3f3f3f3f3f3f3f;
-const int mod = 998244353;
+const int mod = 1e9 + 7;
 const int N = 2e5 + 10;
 
 
 void solve(){
-
+	int n, k;
+	cin >> n >> k;
+	
 }	
 
 signed main(){
