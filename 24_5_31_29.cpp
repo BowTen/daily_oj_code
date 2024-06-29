@@ -2467,6 +2467,145 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 1e9 + 7;
+//const int N = 2e5 + 10;
+
+
+//void solve(){
+//	int x, y;
+//	cin >> x >> y;
+//	y -= abs(x) - 1;
+//	if(y < -abs(x)) cout << "NO\n";
+//	else cout << "YES\n";
+
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 1e9 + 7;
+//const int N = 2e5 + 10;
+
+
+//void solve(){
+//	string a, b;
+//	cin >> a >> b;
+//	int n = a.size(), m = b.size();
+//	a = ' ' + a;
+//	b = ' ' + b;
+//	int ans = inf;
+//	for(int i = 1;i <= m;i++){
+//		int p = i;
+//		for(int j = 1;j <= n && p <= m;j++){
+//			if(a[j] == b[p]) p++;
+//		}
+//		ans = min(ans, n + i-1 + m-p+1);
+//	}
+
+//	cout << ans << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 1e9 + 7;
+//const int N = 2e5 + 10;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5), b(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	for(int i = 1;i <= n;i++) cin >> b[i];
+
+//	int ad = 0, s1 = 0, s2 = 0, dv = 0;
+//	for(int i = 1;i <= n;i++) {
+//		if(a[i] == b[i]){
+//			if(a[i] == 1) ad++;
+//			else if(a[i] == -1) dv++;
+//		}else{
+//			if(a[i] > b[i]) s1 += a[i];
+//			else s2 += b[i];
+//		}
+//	}
+
+//	while(ad--){
+//		if(s1 < s2) s1++;
+//		else s2++;
+//	}
+//	while(dv--){
+//		if(s1 > s2) s1--;
+//		else s2--;
+//	}
+
+//	cout << min(s1, s2) << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -2480,20 +2619,66 @@ using namespace std;
 
 const int inf = 0x3f3f3f3f3f3f3f3f;
 const int mod = 1e9 + 7;
-const int N = 2e5 + 10;
+const int N = 1e6 + 10;
 
 
 void solve(){
-	int n, k;
-	cin >> n >> k;
+	int n, m;
+	cin >> n >> m;
+	vector<int>a(n+5), b(n+5), c(m+5), d(N, inf);
+	for(int i = 1;i <= n;i++) cin >> a[i];
+	for(int i = 1;i <= n;i++) cin >> b[i];
+	for(int i = 1;i <= m;i++) cin >> c[i];
+
+	for(int i = 1;i <= n;i++){
+		int tmp = a[i] - b[i];
+		d[tmp] = min(d[tmp], a[i]);
+	}
+
+	vector<int>k, dt;
+	for(int i = 1;i < N;i++) if(d[i] != inf){
+		if(k.empty() || d[i] < k.back()){
+			dt.push_back(i);
+			k.push_back(d[i]);
+		}
+	}
+
+	//for(auto e : k) cerr << e << ' ';
+	//cerr << endl;
+	//for(auto e : dt) cerr << e << ' ';
+	//cerr << endl;
+
 	
+
+	vector<int>f(N);
+	int p = k.size()-1;
+	for(int i = k.back();i < N;i++){
+		while(p && k[p-1] <= i) p--;
+		int tmp = (i-k[p]+dt[p]) / dt[p];
+		f[i] = f[i-tmp*dt[p]] + tmp;
+	}
+
+	//for(int i = 1;i <= 10;i++) cerr << f[i] << ' ';
+	//cerr << endl;
+
+	int sum = 0;
+	for(int i = 1;i <= m;i++){
+		if(c[i] < N){
+			sum += f[c[i]];
+		}else{
+			int tmp = (c[i] - k[0] + dt[0]) / dt[0];
+			int ans = tmp + f[c[i] - tmp*dt[0]];
+			sum += ans;
+		}
+	}
+	cout << sum*2 << endl;
 }	
 
 signed main(){
 
 	IO;
 	int t = 1;
-	cin >> t;
+	//cin >> t;
 	while(t--) solve();
 
 	return 0;
