@@ -2916,3 +2916,196 @@
 
 //	return 0;
 //}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 1e9 + 7;
+//const int N = 1e6 + 10;
+
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	cout << (n-1)*k + 1 << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 1e9 + 7;
+//const int N = 1e6 + 10;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	int mx = 0, ans = 0, sum = 0;
+//	for(int i = 1;i <= n;i++){
+//		mx = max(mx, a[i]);
+//		sum += max(0ll, mx-a[i]);
+//		ans = max(ans, max(0ll, mx-a[i]));
+//	}
+//	cout << ans+sum << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 1e9 + 7;
+//const int N = 1e6 + 10;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5), f(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	f[n] = a[n];
+//	for(int i = n-1;i >= 1;i--){
+//		f[i] = max(f[i+1]+1, a[i]);
+//	}
+//	cout << f[1] << endl;
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 1e9 + 7;
+//const int N = 1e6 + 10;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	map<int,int>mp;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		mp[a[i]]++;
+//	}
+//	int m = mp.size();
+//	vector<int>f(m+5), gt(m+5);
+//	int it = 1;
+//	for(auto [k, v] : mp) {
+//		f[it++] = v;
+//	}
+
+//	int ans = m;
+//	for(int i = 1;i <= n;i++){
+//		int p = 1;
+//		for(int j = 1;j <= m;j = max(j+1, p+1)) {
+//			if(gt[j]) {
+//				p += f[j]+1;
+//				continue;
+//			}
+//			if(f[j] == i && p+f[j] <= j){
+//				int ok = 1;
+//				int pp = p + f[j]+1;
+//				for(int k = j+1;k <= m;k++){
+//					if(gt[k]) {
+//						if(pp + f[k] > k) {
+//							ok = 0;
+//							break;
+//						}
+//						pp += f[k] + 1;
+//					}
+//				}
+//				if(ok){
+//					//cerr << j << endl;
+//					ans--;
+//					gt[j] = 1;
+//					p += f[j]+1;
+//				}
+//			}
+//		}
+//	}
+
+//	cout << ans << endl;
+	
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
