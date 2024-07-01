@@ -3109,3 +3109,199 @@
 
 //	return 0;
 //}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 1e9 + 7;
+//const int N = 1e6 + 10;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5), d(n+5);
+//	vector<vector<int>>g(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	for(int i = 2, p;i <= n;i++) {
+//		cin >> p;
+//		g[p].push_back(i);
+//	}
+
+//	int ans = 0;
+
+//	auto dfs = [&](auto self, int u) -> void {
+//		if(g[u].empty()){
+//			d[u] = inf;
+//			return;
+//		}
+//		d[u] = -a[u];
+//		for(auto v : g[u]) {
+//			self(self, v);
+//			d[u] += a[v];
+//		}
+//		queue<array<int, 2>>que;
+//		que.push({u, 0});
+//		while(d[u] < 0){
+//			auto [v, k] = que.front();
+//			que.pop();
+//			if(d[v] == inf){
+//				int tmp = -d[u];
+//				d[u] += tmp;
+//				ans += tmp * k;
+//				break;
+//			}
+//			if(d[v] > 0){
+//				int tmp = min(d[v], -d[u]);
+//				d[u] += tmp;
+//				d[v] -= tmp;
+//				ans += tmp * k;
+//			}
+//			for(auto vv : g[v]) que.push({vv, k+1});
+//		}
+//	};
+
+//	dfs(dfs, 1);
+//	cout << ans << endl;
+	
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+//#define mk make_pair
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 1e9 + 7;
+//const int N = 1e6 + 10;
+
+
+//void solve(){
+//	int n, s1, s2;
+//	cin >> n >> s1 >> s2;
+//	vector<int>x(n+5), y(n+5), t(n+5), r(n+5), id(n+5);
+//	for(int i = 1;i <= n;i++) cin >> x[i] >> t[i] >> y[i] >> r[i];
+
+//	vector<vector<int>>f(s1+510, vector<int>(510, inf));
+//	f[0][0] = 0;
+
+//	iota(all(id), 0);
+//	sort(all1(id), [&](int i, int j) -> int {return x[i] < x[j];});
+
+//	int ans = inf;
+
+//	for(int ii = 1, i = id[1];ii <= n;ii++, i = id[ii]){
+//		for(int a = s1+500; a >= 0;a--){
+//			for(int b = 500;b >= 0;b--){
+//				if(b-y[i] >= 0) f[a][b] = min(f[a][b], f[a][b-y[i]]+r[i]);
+//				if(a-x[i] >= 0 && a-x[i] < s1) f[a][b] = min(f[a][b], f[a-x[i]][b]+t[i]);
+//				if(a >= s1 && a+b >= s1+s2) ans = min(ans, f[a][b]);
+//			}
+//		}
+//	}
+
+//	if(ans == inf) cout << -1 << endl;
+//	else cout << ans << endl;
+	
+//}	
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+//void solve(){
+//	int n, k, lc, lm, pc, pm, t, d;
+//	cin >> n >> k >> lc >> pc >> lm >> pm >> t >> d;
+//	vector<int>a(n+5), prec(n+5), prem(n+5), prep(n+5), ndc(n+5), ndm(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	sort(a.begin()+1, a.begin()+1+n);
+
+//	for(int i = 1;i <= n;i++){
+//		prec[i] += prec[i-1];
+//		if(a[i] < lc) prec[i] -= lc - a[i];
+//		else prec[i] += min(d, a[i] - lc);
+
+//		prem[i] += prem[i-1];
+//		if(a[i] < lm) prem[i] -= lm - a[i];
+//		else prem[i] += min(d, a[i] - lm);
+
+//		prep[i] += prep[i-1];
+//		prep[i] += min(d, a[i]-1);
+
+//		ndc[i] += ndc[i-1];
+//		if(a[i] < lc) ndc[i] += lc - a[i];
+
+//		ndm[i] += ndm[i-1];
+//		if(a[i] < lm) ndm[i] += lm - a[i];
+//	}
+
+//	int ans = inf;
+
+//	a[n+1] = lc;
+//	for(int i = 0;i <= n;i++){
+//		int r = min(n-i, (k-1)*i), cl = n-i+1;
+//		int ag = prep[r] + (prem[cl-1] - prem[r]) + (prec[n] - prec[cl-1]);
+//		if(ag < 0 || (r+1 < cl && a[r+1]+d < lm) || a[cl]+d < lc) continue;
+
+//		int nd = (ndm[cl-1] - ndm[r]) + (ndc[n] - ndc[cl-1]);
+
+//		int ms = cl-1-r;
+//		int tmp = nd*t + i*pc + ms*pm;
+
+//		ans = min(ans, tmp);
+//	}
+
+//	if(ans == inf) cout << -1 << endl;
+//	else cout << ans << endl;
+	
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
