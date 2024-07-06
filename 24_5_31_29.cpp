@@ -3846,6 +3846,177 @@
 //}
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+////#define ls id << 1
+////#define rs id << 1 | 1
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	sort(a.begin()+1, a.begin()+1+n);
+//	a[n+1] = inf;
+
+//	priority_queue<array<int,2>, vector<array<int,2>>, greater<array<int,2>>>que;
+//	que.push({a[1], 1});
+//	while(--k){
+//		auto [d, id] = que.top();
+//		que.pop();
+//		que.push({d-a[id]+a[id+1], id+1});
+//		que.push({d+a[id+1], id+1});
+//	}
+
+//	cout << que.top()[0] << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+////#define ls id << 1
+////#define rs id << 1 | 1
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5), len(n+5, inf), f(n+5);
+//	vector<vector<int>>g(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+
+//	int mx = 0;
+//	len[0] = 0;
+//	g[0].push_back(0);
+//	for(int i = 1;i <= n;i++){
+//		f[i] = upper_bound(all(len), a[i]) - len.begin();
+//		len[f[i]] = a[i];
+//		g[f[i]].push_back(i);
+//		mx = max(mx, f[i]);
+//	}
+
+//	vector<int>vis(n+5);
+//	int p = g[mx].front();
+//	while(p){
+//		vis[p] = 1;
+//		int pre = f[p] - 1;
+//		int l = 0, r = g[pre].size()-1;
+//		while(l <= r){
+//			int mid = l + r >> 1;
+//			if(a[p] > a[g[pre][mid]]) r = mid - 1;
+//			else l = mid + 1;
+//		}
+//		p = g[pre][l];
+//	}
+
+//	vector<int>op;
+//	for(int i = 1, l = 1;i <= n;i++) if(vis[i]) {
+//		while(l < i){
+//			if(!vis[l] && a[l] > a[i]) op.push_back(l);
+//			l++;
+//		}
+//	}
+
+//	cout << mx << ' ' << op.size() << endl;
+//	for(auto e : op) cout << e << ' ';
+//	cout << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+////#define ls id << 1
+////#define rs id << 1 | 1
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+
+//int lowbit(int x){
+//	return x & -x;
+//}
+//int neb(int x){
+//	if(lowbit(x) == x) return x;
+//	while(lowbit(x) != x) x -= lowbit(x);
+//	return x << 1;
+//}
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n);
+
+//	auto f = [&](auto self, int n) -> void {
+//		if(n <= 3){
+//			if(n == 1) a[0] = 0;
+//			else if(n == 2) { a[0] = 1; a[1] = 0; }
+//			else { a[0] = 0; a[1] = 2; a[2] = 1; }
+//			return;
+//		}
+//		if(lowbit(n) == n) {
+//			for(int i = 0;i < n;i++) a[i] = n-1-i;
+//			return;
+//		}
+//		int m = neb(n);
+//		for(int i = m-n;i < n;i++) a[i] = m-1-i;
+//		self(self, m-n);
+//	};	
+
+//	f(f, n);
+
+//	for(auto e : a) cout << e << ' ';
+//	cout << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+//	//cerr << neb(5);
+
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long 
@@ -3856,26 +4027,32 @@ using namespace std;
 #define rall(x) (x).rbegin(), (x).rend()
 
 const int inf = 0x3f3f3f3f3f3f3f3f;
-
+const int N = 5e5;
 
 void solve(){
 	int n, k;
 	cin >> n >> k;
-	vector<int>a(n+5);
-	for(int i = 1;i <= n;i++) cin >> a[i];
-	sort(a.begin()+1, a.begin()+1+n);
-	a[n+1] = inf;
+	vector<vector<int>>a(n+5);
 
-	priority_queue<array<int,2>, vector<array<int,2>>, greater<array<int,2>>>que;
-	que.push({a[1], 1});
-	while(--k){
-		auto [d, id] = que.top();
-		que.pop();
-		que.push({d-a[id]+a[id+1], id+1});
-		que.push({d+a[id+1], id+1});
+	int i = 1;
+	for(int j = 1;i <= n && j+k-1 <= N;i++, j += k) {
+		for(int x = j;x < j+k;x++) a[i].push_back(x);
 	}
 
-	cout << que.top()[0] << endl;
+	int st = 1, d = 0;
+	while(i <= n){
+		for(int j = st;j < st+k;j++) a[i].push_back(a[j][d]);
+		if(++d == k) {
+			d = 0;
+			st += k;
+		}
+		i++;
+	}
+
+	for(int i = 1;i <= n;i++) {
+		for(auto e : a[i]) cout << e << ' ';
+		cout << endl;
+	}
 }
 
 signed main(){
