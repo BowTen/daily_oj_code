@@ -4365,6 +4365,414 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int N = 1e6 + 10;
+
+//void solve(){
+//	int n, m, ze = 0;
+//	cin >> n >> m;
+//	vector<string>s(n+5);
+//	int fx = 0, fy = 0;
+//	for(int i = 1;i <= n;i++){
+//		cin >> s[i];
+//		for(auto c : s[i]) ze += (c == '0');
+//		s[i] = ' ' + s[i] + ' ';
+//		for(int j = 1;!fx && j <= m;j++) if(s[i][j] == '0') fx = i, fy = j;
+//	}
+//	if(!fx) {
+//		cout << "No\n";
+//		return;
+//	}
+//	if(n == 1 || m == 1){
+//		if(ze & 1){
+//			cout << "Yes\n";
+//			vector<array<int,2>>ans;
+//			for(int i = 1;i <= n;i++) 
+//				for(int j = 1;j <= m;j++) ans.push_back({i, j});
+//				ans.pop_back();
+//			for(auto [x, y] : ans) cout << x << ' ' << y << endl;
+//		}else{
+//			cout << "No\n";
+//		}
+//		return;
+//	}
+//	cout << "Yes\n";
+
+//	int rx = 0, ry = 0;
+//	if(fx == n) {
+//		rx = 1;
+//		fx = 1;
+//		for(int i = 1, j = n;i < j;i++, j--) swap(s[i], s[j]);
+//	}
+//	if(fy == m){
+//		ry = 1;
+//		fy = 1;
+//		for(int i = 1, j = m;i < j;i++, j--) {
+//			for(int k = 1;k <= n;k++) swap(s[k][i], s[k][j]);
+//		}
+//	}
+//	vector<vector<int>>vis(n+5, vector<int>(m+5));
+//	vector<array<int,2>>ans;
+//	auto push = [&](int x, int y) {
+//		if(vis[x][y] % 2 == 0) {
+//			vis[x+1][y]++;
+//			vis[x-1][y]++;
+//			vis[x][y+1]++;
+//			vis[x][y-1]++;
+//		}
+//		if(rx) x = n-x+1;
+//		if(ry) y = m-y+1;
+//		ans.push_back({x, y});
+//	};
+//	for(int i = 1;i <= n;i++){
+//		for(int j = 1;j <= m;j++) vis[i][j] = s[i][j] - '0';
+//	}
+
+//	for(int i = 1;i < fx;i++)
+//		for(int j = 1;j <= m;j++) push(i, j);
+//	for(int j = 1;j < fy;j++) push(fx, j);
+//	for(int j = m;j > fy+1;j--) push(fx, j);
+
+//	for(int i = n;i >= fx+2;i--)
+//		for(int j = 1;j <= m;j++) push(i, j);
+//	for(int j = 1;j < fy;j++) push(fx+1, j);
+//	for(int j = m;j > fy+1;j--) push(fx+1, j);
+
+//	int tmp = 0;
+//	tmp += vis[fx][fy];
+//	tmp += vis[fx+1][fy];
+//	tmp += vis[fx+1][fy+1];
+//	tmp += vis[fx][fy+1];
+	
+//	if(tmp & 1){
+//		if(vis[fx+1][fy+1] & 1){
+//			push(fx+1, fy+1);
+//			push(fx+1, fy);
+//			push(fx, fy+1);
+//		}else if(vis[fx+1][fy] & 1){
+//			push(fx+1, fy);
+//			push(fx+1, fy+1);
+//			push(fx, fy+1);
+//		}else if(vis[fx][fy+1] & 1){
+//			push(fx, fy+1);
+//			push(fx+1, fy+1);
+//			push(fx+1, fy);
+//		}
+//	}else{
+//		push(fx, fy);
+//		push(fx, fy+1);
+//		push(fx+1, fy);
+//	}
+
+//	for(auto [x, y] : ans) cout << x << ' ' << y << endl;
+
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int N = 1e6 + 10;
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5, 1);
+//	for(int i = 1;i <= n;i++){
+//		for(int j = i;j <= n;j += i) if(a[j] % i) a[j] *= i;
+//	}
+
+//	for(int i = 1;i <= n;i++) cout << a[i] << ' ';
+//	cout << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int N = 1e6 + 10;
+
+//void solve(){
+//	int n, m;
+//	cin >> n >> m;
+//	vector<string>sa(n+5), sb(n+5);
+//	vector<vector<int>>a(n+5, vector<int>(m+5)), b(n+5, vector<int>(m+5)), s(n+5, vector<int>(m+5));
+//	for(int i = 1;i <= n;i++){
+//		cin >> sa[i];
+//		sa[i] = ' ' + sa[i];
+//	}
+//	for(int i = 1;i <= n;i++){
+//		cin >> sb[i];
+//		sb[i] = ' ' + sb[i];
+//	}
+
+//	for(int i = 1;i <= n;i++){
+//		int tmp = 0;
+//		for(int j = 1;j <= m;j++) {
+//			a[i][j] = sa[i][j] - '0';
+//			b[i][j] = sb[i][j] - '0';
+//			s[i][j] = (b[i][j] - a[i][j] + 3) % 3;
+//			tmp += s[i][j];
+//		}
+//		if(tmp % 3) {
+//			cout << "NO\n";
+//			return;
+//		}
+//	}
+//	for(int j = 1;j <= m;j++){
+//		int tmp = 0;
+//		for(int i = 1;i <= n;i++){
+//			tmp += s[i][j];
+//		}
+//		if(tmp % 3) {
+//			cout << "NO\n";
+//			return;
+//		}
+//	}
+//	cout << "YES\n";
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--){
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int N = 1e6 + 10;
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<vector<int>>a(3, vector<int>(n+5)), pre(3, vector<int>(n+5));
+//	vector<int>p(3), s(3);
+//	for(int i = 0;i < 3;i++) {
+//		for(int j = 1;j <= n;j++){
+//			cin >> a[i][j];
+//			pre[i][j] = pre[i][j-1] + a[i][j];
+//			//cerr << a[i][j] << ' ';
+//		}
+//		//cerr << endl;
+//	}
+//	int av = (pre[0][n] + 2) / 3;
+
+//	//cerr << av << endl;
+
+//	for(int i = 0;i < 3;i++) {
+//		int tmp = 0;
+//		for(int j = 1;j <= n;j++) {
+//			tmp += a[i][j];
+//			if(tmp >= av) {
+//				p[i] = j;
+//				break;
+//			}
+//		}
+//		tmp = 0;
+//		for(int j = n;j >= 1;j--) {
+//			tmp += a[i][j];
+//			if(tmp >= av) {
+//				s[i] = j;
+//				break;
+//			}
+//		}
+//	}
+//	//for(int i = 0;i < 3;i++){
+//	//	cerr << p[i] << ' ' << s[i] << endl;
+//	//}
+
+//	vector<array<int,2>>ans(3);
+//	for(int i = 0;i < 3;i++){
+//		for(int j = 0;j < 3;j++) if(i != j && p[i] < s[j]) {
+//			int l = p[i]+1, r = s[j]-1;
+//			int k;
+//			for(k = 0;k == i || k == j;k++);
+//			//cerr << i << ' ' << j << ' ' << k << ' ' << l << ' ' << r << endl;
+//			if(l <= r && pre[k][r] - pre[k][l-1] >= av){
+//				ans[i] = {1, p[i]};
+//				ans[j] = {s[j], n};
+//				ans[k] = {l, r};
+//				for(auto [x, y] : ans) cout << x << ' ' << y << ' ';
+//				cout << endl;
+//				return;
+//			}
+//		}
+//	}
+
+//	cout << -1 << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--){
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int N = 1e5 + 10;
+
+//int n;
+
+//int tr[N];
+//int lowbit(int x){
+//	return x & -x;
+//}
+//void add(int x){
+//	while(x <= n){
+//		tr[x]++;
+//		x += lowbit(x);
+//	}
+//}
+//int getsum(int x){
+//	int ret = 0;
+//	while(x > 0){
+//		ret += tr[x];
+//		x -= lowbit(x);
+//	}
+//	return ret;
+//}
+//void init(){
+//	for(int i = 0;i <= n;i++) tr[i] = 0;
+//}
+
+//void solve(){
+//	int mcnt = 0;
+//	cin >> n;
+//	vector<int>a(n+5), b(n+5);
+//	unordered_map<int,int>mp, pa, pb;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		pa[a[i]] = i;
+//		mp[a[i]]++;
+//		mcnt = max(mcnt, mp[a[i]]);
+//	}
+//	for(int i = 1;i <= n;i++){
+//		cin >> b[i];
+//		pb[b[i]] = i;
+//	}
+//	sort(all1(a));
+//	sort(all1(b));
+//	for(int i = 1;i <= n;i++) if(a[i] != b[i]) {
+//		cout << "NO\n";
+//		return;
+//	}
+//	if(mcnt > 1) {
+//		cout << "YES\n";
+//		return;
+//	}
+
+//	vector<int>ia(a), ib(b);
+//	for(int i = 1;i <= n;i++){
+//		ia[pa[a[i]]] = i;
+//		ib[pb[b[i]]] = i;
+//	}
+//	int as = 0, bs = 0;
+//	for(int i = 1;i <= n;i++) {
+//		//cerr << ia[i] << ' ';
+//		as += getsum(n) - getsum(ia[i]);
+//		add(ia[i]);
+//	}
+//	//cerr << endl;
+//	init();
+//	for(int i = 1;i <= n;i++) {
+//		//cerr << ib[i] << ' ';
+//		bs += getsum(n) - getsum(ib[i]);
+//		add(ib[i]);
+//	}
+//	//cerr << endl;
+//	init();
+
+//	if(abs(as - bs) % 2 == 0) cout << "YES\n";
+//	else cout << "NO\n";
+
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--){
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long 
@@ -4373,114 +4781,67 @@ using namespace std;
 #define all1(x) (x).begin()+1, (x).begin()+1+n
 #define rall(x) (x).rbegin(), (x).rend()
 
-const int N = 1e6 + 10;
+const int N = 5e5 + 10;
+const int mod = 1e9 + 7;
+
+int qpow(int a, int b){
+	int ret = 1;
+	while(b){
+		if(b & 1) ret = ret * a % mod;
+		a = a * a % mod;
+		b >>= 1;
+	}
+	return ret;
+}
+int fac[N], inv[N];
+void get_inv(){
+	fac[0] = inv[0] = 1;
+	for(int i = 1;i < N;i++) fac[i] = fac[i-1] * i % mod;
+	inv[N-1] = qpow(fac[N-1], mod-2);
+	for(int i = N-2;i >= 1;i--) inv[i] = inv[i+1] * (i+1) % mod;
+}
+
 
 void solve(){
-	int n, m, ze = 0;
-	cin >> n >> m;
-	vector<string>s(n+5);
-	int fx = 0, fy = 0;
+	int n, k, a = 0, b = 0;
+	cin >> n >> k;
+	vector<int>v(n+5);
+	for(int i = 1;i <= n;i++) cin >> v[i];
+	for(int i = 1;i <= k;i++) a += v[i];
+	for(int i = k+1;i <= n;i++) b += v[i];
+	a %= mod;
+	b %= mod;
+	(a *= inv[k]) %= mod;
+	(b *= inv[n-k]) %= mod;
+
+	vector<int>p(n+5);
+	vector<array<int,2>>g(n+5), f(n+5);
+	p[1] = k;
+	g[1] = {1, 0};
+
+	for(int i = 2;i <= n;i++){
+		p[i] = (p[i-1] - (p[i-1] * inv[n] % mod) + mod) % mod;
+		g[i][0] = (g[i-1][0] * (p[i-1] * inv[n] % mod) % mod) + (g[i-1][1] * (((n-p[i-1]+mod)%mod) * inv[n] % mod) % mod);
+		g[i][1] = (g[i-1][1] * (p[i-1] * inv[n] % mod) % mod) + (g[i-1][0] * (((n-p[i-1]+mod)%mod) * inv[n] % mod) % mod);
+	}
+
 	for(int i = 1;i <= n;i++){
-		cin >> s[i];
-		for(auto c : s[i]) ze += (c == '0');
-		s[i] = ' ' + s[i] + ' ';
-		for(int j = 1;!fx && j <= m;j++) if(s[i][j] == '0') fx = i, fy = j;
-	}
-	if(!fx) {
-		cout << "No\n";
-		return;
-	}
-	if(n == 1 || m == 1){
-		if(ze & 1){
-			cout << "Yes\n";
-			vector<array<int,2>>ans;
-			for(int i = 1;i <= n;i++) 
-				for(int j = 1;j <= m;j++) ans.push_back({i, j});
-				ans.pop_back();
-			for(auto [x, y] : ans) cout << x << ' ' << y << endl;
-		}else{
-			cout << "No\n";
-		}
-		return;
-	}
-	cout << "Yes\n";
-
-	int rx = 0, ry = 0;
-	if(fx == n) {
-		rx = 1;
-		fx = 1;
-		for(int i = 1, j = n;i < j;i++, j--) swap(s[i], s[j]);
-	}
-	if(fy == m){
-		ry = 1;
-		fy = 1;
-		for(int i = 1, j = m;i < j;i++, j--) {
-			for(int k = 1;k <= n;k++) swap(s[k][i], s[k][j]);
-		}
-	}
-	vector<vector<int>>vis(n+5, vector<int>(m+5));
-	vector<array<int,2>>ans;
-	auto push = [&](int x, int y) {
-		if(vis[x][y] % 2 == 0) {
-			vis[x+1][y]++;
-			vis[x-1][y]++;
-			vis[x][y+1]++;
-			vis[x][y-1]++;
-		}
-		if(rx) x = n-x+1;
-		if(ry) y = m-y+1;
-		ans.push_back({x, y});
-	};
-	for(int i = 1;i <= n;i++){
-		for(int j = 1;j <= m;j++) vis[i][j] = s[i][j] - '0';
+		int d = (((p[i] * inv[n] % mod) * a % mod) + (((n-p[i]+mod)%mod) * b % mod) % mod);
+		f[i][0] = (f[i-1][0] + (g[i][0] * d % mod)) % mod;
+		f[i][1] = (f[i-1][1] + (g[i][1] * d % mod)) % mod;
 	}
 
-	for(int i = 1;i < fx;i++)
-		for(int j = 1;j <= m;j++) push(i, j);
-	for(int j = 1;j < fy;j++) push(fx, j);
-	for(int j = m;j > fy+1;j--) push(fx, j);
-
-	for(int i = n;i >= fx+2;i--)
-		for(int j = 1;j <= m;j++) push(i, j);
-	for(int j = 1;j < fy;j++) push(fx+1, j);
-	for(int j = m;j > fy+1;j--) push(fx+1, j);
-
-	int tmp = 0;
-	tmp += vis[fx][fy];
-	tmp += vis[fx+1][fy];
-	tmp += vis[fx+1][fy+1];
-	tmp += vis[fx][fy+1];
-	
-	if(tmp & 1){
-		if(vis[fx+1][fy+1] & 1){
-			push(fx+1, fy+1);
-			push(fx+1, fy);
-			push(fx, fy+1);
-		}else if(vis[fx+1][fy] & 1){
-			push(fx+1, fy);
-			push(fx+1, fy+1);
-			push(fx, fy+1);
-		}else if(vis[fx][fy+1] & 1){
-			push(fx, fy+1);
-			push(fx+1, fy+1);
-			push(fx+1, fy);
-		}
-	}else{
-		push(fx, fy);
-		push(fx, fy+1);
-		push(fx+1, fy);
-	}
-
-	for(auto [x, y] : ans) cout << x << ' ' << y << endl;
-
+	cout << f[n][0] << ' ' << f[n][1] << endl;
 }
 
 signed main(){
 
 	IO;
 	int t = 1;
-	//cin >> t;
-	while(t--) solve();
+	cin >> t;
+	while(t--){
+		solve();
+	}
 
 	return 0;
 }
