@@ -4773,6 +4773,183 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int N = 5e5 + 10;
+//const int mod = 1e9 + 7;
+
+//int qpow(int a, int b){
+//	int ret = 1;
+//	while(b){
+//		if(b & 1) ret = ret * a % mod;
+//		a = a * a % mod;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+//int fac[N], inv[N];
+//void get_inv(){
+//	fac[0] = inv[0] = 1;
+//	for(int i = 1;i < N;i++) fac[i] = fac[i-1] * i % mod;
+//	inv[N-1] = qpow(fac[N-1], mod-2);
+//	for(int i = N-2;i >= 1;i--) inv[i] = inv[i+1] * (i+1) % mod;
+//}
+
+
+//void solve(){
+//	int n, k, a = 0, b = 0;
+//	cin >> n >> k;
+//	vector<int>v(n+5);
+//	for(int i = 1;i <= n;i++) cin >> v[i];
+//	for(int i = 1;i <= k;i++) a += v[i];
+//	for(int i = k+1;i <= n;i++) b += v[i];
+//	a %= mod;
+//	b %= mod;
+//	(a *= inv[k]) %= mod;
+//	(b *= inv[n-k]) %= mod;
+
+//	vector<int>p(n+5);
+//	vector<array<int,2>>g(n+5), f(n+5);
+//	p[1] = k;
+//	g[1] = {1, 0};
+
+//	for(int i = 2;i <= n;i++){
+//		p[i] = (p[i-1] - (p[i-1] * inv[n] % mod) + mod) % mod;
+//		g[i][0] = (g[i-1][0] * (p[i-1] * inv[n] % mod) % mod) + (g[i-1][1] * (((n-p[i-1]+mod)%mod) * inv[n] % mod) % mod);
+//		g[i][1] = (g[i-1][1] * (p[i-1] * inv[n] % mod) % mod) + (g[i-1][0] * (((n-p[i-1]+mod)%mod) * inv[n] % mod) % mod);
+//	}
+
+//	for(int i = 1;i <= n;i++){
+//		int d = (((p[i] * inv[n] % mod) * a % mod) + (((n-p[i]+mod)%mod) * b % mod) % mod);
+//		f[i][0] = (f[i-1][0] + (g[i][0] * d % mod)) % mod;
+//		f[i][1] = (f[i-1][1] + (g[i][1] * d % mod)) % mod;
+//	}
+
+//	cout << f[n][0] << ' ' << f[n][1] << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--){
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int N = 5e5 + 10;
+//const int mod = 1e9 + 7;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<vector<int>>a;
+
+//	if(n & 1){
+//		a.push_back({});	
+//		for(int i = 1;i <= n;i++) a.back().push_back(i);
+
+//		int m1 = n/2+1, m2 = n+m1;
+//		a.push_back({});	
+//		a.back().push_back(1);
+//		for(int i = n+1;i < 2*n;i++) a.back().push_back(i);
+//		a.push_back({});	
+//		for(int i = m2;i <= 2*n;i++) a.back().push_back(i);
+//		for(int i = m1+1;i <= n;i++) a.back().push_back(i);
+
+//		a.push_back({});	
+//		for(int i = m2;i <= 2*n;i++) a.back().push_back(i);
+//		for(int i = 2;i <= m1;i++) a.back().push_back(i);
+		
+//		a.push_back({});	
+//		a.back().push_back(1);
+//		for(int i = n+1;i < m2;i++) a.back().push_back(i);
+//		a.back().push_back(2*n);
+//		for(int i = m1+1;i < n;i++) a.back().push_back(i);
+		
+//		a.push_back({});	
+//		a.back().push_back(n);
+//		for(int i = n+1;i < m2;i++) a.back().push_back(i);
+//		for(int i = 2;i <= m1;i++) a.back().push_back(i);
+//	}else{
+//		a.push_back({});	
+//		for(int i = 1;i <= n;i++) a.back().push_back(i);
+//		a.push_back({});	
+//		for(int i = n+1;i <= 2*n;i++) a.back().push_back(i);
+		
+//		int m1 = n/2, m2 = n+n/2;
+//		a.push_back({});
+//		for(int i = 1;i <= m1;i++) a.back().push_back(i);
+//		for(int i = n+1;i <= m2;i++) a.back().push_back(i);
+//		a.push_back({});
+//		for(int i = 1;i <= m1;i++) a.back().push_back(i);
+//		for(int i = m2+1;i <= 2*n;i++) a.back().push_back(i);
+//		a.push_back({});
+//		for(int i = m1+1;i <= n;i++) a.back().push_back(i);
+//		for(int i = n+1;i <= m2;i++) a.back().push_back(i);
+//		a.push_back({});
+//		for(int i = m1+1;i <= n;i++) a.back().push_back(i);
+//		for(int i = m2+1;i <= 2*n;i++) a.back().push_back(i);
+//	}
+	
+//	//set<pair<int,int>>st;
+//	//for(auto &vec : a){
+//	//	sort(all(vec));
+//	//	if(vec.size() != n){
+//	//		cerr << "NONO\n";
+//	//		return;
+//	//	}
+//	//	for(int i = 0;i < n;i++){
+//	//		for(int j = i+1;j < n;j++) st.insert({vec[i], vec[j]});
+//	//	}
+//	//}
+//	//for(int i = 1;i <= 2*n;i++){
+//	//	for(int j = i+1;j <= 2*n;j++){
+//	//		if(st.count({i, j}) == 0) {
+//	//			cerr << i << ' ' << j << endl;
+//	//		}
+//	//	}
+//	//}
+
+//	cout << a.size() << endl;
+//	for(auto vec : a) {
+//		for(auto e : vec) cout << e << ' ';
+//		cout << endl;
+//	}
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--){
+//		solve();
+//	}
+
+//	return 0;
+//}
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long 
@@ -4781,67 +4958,86 @@ using namespace std;
 #define all1(x) (x).begin()+1, (x).begin()+1+n
 #define rall(x) (x).rbegin(), (x).rend()
 
-const int N = 5e5 + 10;
+const int N = 51;
 const int mod = 1e9 + 7;
+const int inf = 0x3f3f3f3f3f3f3f3f;
 
-int qpow(int a, int b){
-	int ret = 1;
-	while(b){
-		if(b & 1) ret = ret * a % mod;
-		a = a * a % mod;
-		b >>= 1;
-	}
-	return ret;
-}
-int fac[N], inv[N];
-void get_inv(){
-	fac[0] = inv[0] = 1;
-	for(int i = 1;i < N;i++) fac[i] = fac[i-1] * i % mod;
-	inv[N-1] = qpow(fac[N-1], mod-2);
-	for(int i = N-2;i >= 1;i--) inv[i] = inv[i+1] * (i+1) % mod;
-}
-
+int f[N][N][N][N], v[N];
 
 void solve(){
-	int n, k, a = 0, b = 0;
-	cin >> n >> k;
-	vector<int>v(n+5);
+	int n, m1, m2;
+	cin >> n >> m1 >> m2;
 	for(int i = 1;i <= n;i++) cin >> v[i];
-	for(int i = 1;i <= k;i++) a += v[i];
-	for(int i = k+1;i <= n;i++) b += v[i];
-	a %= mod;
-	b %= mod;
-	(a *= inv[k]) %= mod;
-	(b *= inv[n-k]) %= mod;
-
-	vector<int>p(n+5);
-	vector<array<int,2>>g(n+5), f(n+5);
-	p[1] = k;
-	g[1] = {1, 0};
-
-	for(int i = 2;i <= n;i++){
-		p[i] = (p[i-1] - (p[i-1] * inv[n] % mod) + mod) % mod;
-		g[i][0] = (g[i-1][0] * (p[i-1] * inv[n] % mod) % mod) + (g[i-1][1] * (((n-p[i-1]+mod)%mod) * inv[n] % mod) % mod);
-		g[i][1] = (g[i-1][1] * (p[i-1] * inv[n] % mod) % mod) + (g[i-1][0] * (((n-p[i-1]+mod)%mod) * inv[n] % mod) % mod);
-	}
+	sort(v+1, v+1+n);
+	//reverse(v+1, v+1+n);
 
 	for(int i = 1;i <= n;i++){
-		int d = (((p[i] * inv[n] % mod) * a % mod) + (((n-p[i]+mod)%mod) * b % mod) % mod);
-		f[i][0] = (f[i-1][0] + (g[i][0] * d % mod)) % mod;
-		f[i][1] = (f[i-1][1] + (g[i][1] * d % mod)) % mod;
+		for(int b = 0;b <= m2;b++){
+			for(int j = 0;j <= b;j++){
+				for(int a = 0;a <= m1;a++){
+					if(a) f[i][b][j][a] = f[i][b][j][a-1];
+					for(int k = 0;k <= b-j;k++){
+						if(a-j >= 0) f[i][b][j][a] = max(f[i][b][j][a], f[i-1][b-j][k][a-j]+v[i]);
+						f[i][b][j][a] = max(f[i][b][j][a], f[i-1][b-j][k][a]);
+					}
+				}
+			}
+		}
 	}
 
-	cout << f[n][0] << ' ' << f[n][1] << endl;
+	int ans = inf;
+	for(int j = 0;j <= m2;j++) ans = min(ans, f[n][m2][j][m1]);
+	cout << ans << endl;
 }
 
 signed main(){
 
 	IO;
 	int t = 1;
-	cin >> t;
+	//cin >> t;
 	while(t--){
 		solve();
 	}
 
 	return 0;
 }
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define rall(x) (x).rbegin(), (x).rend()
+
+//const int N = 5e5 + 10;
+//const int mod = 1e9 + 7;
+
+
+//void solve(){
+//	string s;
+//	cin >> s;
+//	s = 'y' + s;
+//	int ans = 0;
+//	for(int i = 2;i < s.size();i++) if(s[i] == 'y' && s[i-1] == 'x') {
+//		if(s[i-2] == 'y'){
+//			s[i] = 'x';
+//			ans++;
+//		}
+//	}
+//	cout << ans << endl;
+//}
+
+//signed main(){
+
+//	IO;
+//	int t = 1;
+//	//cin >> t;
+//	while(t--){
+//		solve();
+//	}
+
+//	return 0;
+//}
