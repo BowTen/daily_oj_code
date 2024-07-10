@@ -5417,78 +5417,78 @@
 //}
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long 
-#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-#define all(x) (x).begin(), (x).end()
-#define all1(x) (x).begin()+1, (x).begin()+1+n
-#define rall(x) (x).rbegin(), (x).rend()
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define IO ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define rall(x) (x).rbegin(), (x).rend()
 
-const int mod = 1e9 + 7;
-const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int mod = 1e9 + 7;
+//const int inf = 0x3f3f3f3f3f3f3f3f;
 
 
-void solve(){
-	int n, hd, bk;
-	cin >> n;
-	vector<int>e(n+5), f(n+5), que(n+5);
-	for(int i = 1;i <= n;i++) cin >> e[i];
+//void solve(){
+//	int n, hd, bk;
+//	cin >> n;
+//	vector<int>e(n+5), f(n+5), que(n+5);
+//	for(int i = 1;i <= n;i++) cin >> e[i];
 
-	//auto K = [&](int p1, int p2) -> double {
-	//	double x1 = p1, y1 = f[p1] + (p1*p1+p1)/2.0;
-	//	double x2 = p2, y2 = f[p2] + (p2*p2+p2)/2.0;
-	//	return (y2-y1) / (x2-x1);
-	//};
-	auto les = [&](int p1, int p2, int p3, int p4) -> int {
-		int x1 = p1, y1 = f[p1] + (p1*p1+p1)/2;
-		int x2 = p2, y2 = f[p2] + (p2*p2+p2)/2;
-		int x3 = p3, y3 = f[p3] + (p3*p3+p3)/2;
-		int x4 = p4, y4 = f[p4] + (p4*p4+p4)/2;
-		return (y2-y1)*(x4-x3) <= (y4-y3)*(x2-x1);
-	};
-	auto gt = [&](int k, int p1, int p2) -> int {
-		int x1 = p1, y1 = f[p1] + (p1*p1+p1)/2;
-		int x2 = p2, y2 = f[p2] + (p2*p2+p2)/2;
-		return k*(x2-x1) >= (y2-y1);
-	};
+//	//auto K = [&](int p1, int p2) -> double {
+//	//	double x1 = p1, y1 = f[p1] + (p1*p1+p1)/2.0;
+//	//	double x2 = p2, y2 = f[p2] + (p2*p2+p2)/2.0;
+//	//	return (y2-y1) / (x2-x1);
+//	//};
+//	auto les = [&](int p1, int p2, int p3, int p4) -> int {
+//		int x1 = p1, y1 = f[p1] + (p1*p1+p1)/2;
+//		int x2 = p2, y2 = f[p2] + (p2*p2+p2)/2;
+//		int x3 = p3, y3 = f[p3] + (p3*p3+p3)/2;
+//		int x4 = p4, y4 = f[p4] + (p4*p4+p4)/2;
+//		return (y2-y1)*(x4-x3) <= (y4-y3)*(x2-x1);
+//	};
+//	auto gt = [&](int k, int p1, int p2) -> int {
+//		int x1 = p1, y1 = f[p1] + (p1*p1+p1)/2;
+//		int x2 = p2, y2 = f[p2] + (p2*p2+p2)/2;
+//		return k*(x2-x1) >= (y2-y1);
+//	};
 
-	auto dfs = [&](auto self, int l, int r) -> void {
-		if(l == r) return;
-		int mid = l + r >> 1;
-		self(self, l, mid);
+//	auto dfs = [&](auto self, int l, int r) -> void {
+//		if(l == r) return;
+//		int mid = l + r >> 1;
+//		self(self, l, mid);
 
-		hd = 0, bk = -1;
-		for(int i = r, j = mid;i > mid;i--){
-			while(j >= l && 2*e[j+1]*e[j+1] > e[i]*e[i]) {
-				//while(bk-hd+1 >= 2 && K(j, que[bk]) <= K(que[bk], que[bk-1])) bk--;
-				while(bk-hd+1 >= 2 && les(j, que[bk], que[bk], que[bk-1])) bk--;
-				que[++bk] = j--;
-			}
-			//while(bk-hd+1 >= 2 && i >= K(que[hd+1], que[hd])) hd++;
-			while(bk-hd+1 >= 2 && gt(i, que[hd+1], que[hd])) hd++;
-			if(hd <= bk){
-				int d = f[que[hd]] + (que[hd]*que[hd]+que[hd])/2 - i*que[hd];
-				f[i] = max(f[i], d - (i-i*i)/2);
-			}
-		}
+//		hd = 0, bk = -1;
+//		for(int i = r, j = mid;i > mid;i--){
+//			while(j >= l && 2*e[j+1]*e[j+1] > e[i]*e[i]) {
+//				//while(bk-hd+1 >= 2 && K(j, que[bk]) <= K(que[bk], que[bk-1])) bk--;
+//				while(bk-hd+1 >= 2 && les(j, que[bk], que[bk], que[bk-1])) bk--;
+//				que[++bk] = j--;
+//			}
+//			//while(bk-hd+1 >= 2 && i >= K(que[hd+1], que[hd])) hd++;
+//			while(bk-hd+1 >= 2 && gt(i, que[hd+1], que[hd])) hd++;
+//			if(hd <= bk){
+//				int d = f[que[hd]] + (que[hd]*que[hd]+que[hd])/2 - i*que[hd];
+//				f[i] = max(f[i], d - (i-i*i)/2);
+//			}
+//		}
 
-		self(self, mid+1, r);
-	};
+//		self(self, mid+1, r);
+//	};
 
-	dfs(dfs, 0, n);
+//	dfs(dfs, 0, n);
 
-	cout << f[n] << endl;
-}
+//	cout << f[n] << endl;
+//}
 
-signed main(){
+//signed main(){
 
-	IO;
-	int t = 1;
-	cin >> t;
-	while(t--){
-		solve();
-	}
+//	IO;
+//	int t = 1;
+//	cin >> t;
+//	while(t--){
+//		solve();
+//	}
 
-	return 0;
-}
+//	return 0;
+//}
