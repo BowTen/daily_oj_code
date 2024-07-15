@@ -1450,6 +1450,152 @@
 //}
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int N = 1e6 + 10;
+
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	if(n == 1) {
+//		cout << 0 << endl;
+//		return;
+//	}
+//	if(k == 2){
+//		cout << n-1 << endl;
+//		return;
+//	}
+//	int ans = n / (k-1);
+//	if((n%(k-1)) > 1) ans++;
+//	cout << ans << endl;
+//}
+
+//signed main(){
+	
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--){
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int N = 1e6 + 10;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	string s;
+//	cin >> s;
+//	int cnt = 0, ze = 0;
+//	char pre = '1';
+//	for(auto c : s){
+//		cnt += (c == '1');
+//		if(c == '0' && pre == '1') ze++;
+//		pre = c; 
+//	}
+//	if(cnt > ze) cout << "Yes\n";
+//	else cout << "No\n";
+//}
+
+//signed main(){
+	
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--){
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int N = 1e6 + 10;
+
+//int bitcnt(int x){
+//	int ret = 0;
+//	while(x){
+//		ret += (x & 1);
+//		x >>= 1;
+//	}
+//	return ret;
+//}
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	int m = bitcnt(n);
+//	//cerr << m << endl;
+
+//	if(m == 1){
+//		cout << 1 << endl << n << endl;
+//		return;
+//	}
+
+//	vector<int>v(m+5);
+//	int p = 1, t = n;
+//	for(int i = 0;t;i++) if((1ll<<i) & t){
+//		v[p++] = (1ll<<i);
+//		t -= (1ll<<i);
+//	}
+
+//	vector<int>a(m+5);
+//	auto dfs = [&](auto self, int l, int r, int p) -> void {
+//		if(l == r) return;
+//		for(int i = 1;i < p;i++) a[l] += v[i];
+//		for(int i = l+1;i <= r;i++) a[i] += v[p];
+//		self(self, l+1, r, p-1);
+//	};
+
+//	dfs(dfs, 1, m+1, m);
+
+//	cout << m+1 << endl;
+//	for(int i = 1;i <= m+1;i++) cout << a[i] << ' ';
+//	cout << endl;
+//}
+
+//signed main(){
+	
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--){
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long 
@@ -1461,14 +1607,46 @@ const int N = 1e6 + 10;
 
 
 void solve(){
+	int n;
+	cin >> n;
+	vector<int>a(n+5);
+	vector<array<int,20>>f(n+5);
+	vector<vector<int>>g(n+5);
+	for(int i = 1;i <= n;i++){
+		cin >> a[i];
+	}
+	for(int i = 1, u, v;i < n;i++){
+		cin >> u >> v;
+		g[u].push_back(v);
+		g[v].push_back(u);
+	}
 
+	auto dfs = [&](auto self, int u, int fa) -> void {
+		for(int i = 1;i < 20;i++) f[u][i] = a[u]*i;
+		for(auto v : g[u]) if(v != fa){
+			self(self, v, u);
+			for(int i = 1;i < 20;i++){
+				int mn = inf;
+				for(int j = 1;j < 20;j++) if(i != j) {
+					mn = min(mn, f[v][j]);
+				}
+				f[u][i] += mn;
+			}
+		}
+	};
+
+	dfs(dfs, 1, 0);
+
+	int ans = inf;
+	for(int i = 1;i < 20;i++) ans = min(ans, f[1][i]);
+	cout << ans << endl;
 }
 
 signed main(){
 	
 	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 	int t = 1;
-	//cin >> t;
+	cin >> t;
 	while(t--){
 		solve();
 	}
