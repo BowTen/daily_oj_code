@@ -1596,57 +1596,209 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long 
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//const int inf = 0x3f3f3f3f3f3f3f3f;
+//const int N = 1e6 + 10;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	vector<array<int,20>>f(n+5);
+//	vector<vector<int>>g(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//	}
+//	for(int i = 1, u, v;i < n;i++){
+//		cin >> u >> v;
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+
+//	auto dfs = [&](auto self, int u, int fa) -> void {
+//		for(int i = 1;i < 20;i++) f[u][i] = a[u]*i;
+//		for(auto v : g[u]) if(v != fa){
+//			self(self, v, u);
+//			for(int i = 1;i < 20;i++){
+//				int mn = inf;
+//				for(int j = 1;j < 20;j++) if(i != j) {
+//					mn = min(mn, f[v][j]);
+//				}
+//				f[u][i] += mn;
+//			}
+//		}
+//	};
+
+//	dfs(dfs, 1, 0);
+
+//	int ans = inf;
+//	for(int i = 1;i < 20;i++) ans = min(ans, f[1][i]);
+//	cout << ans << endl;
+//}
+
+//signed main(){
+	
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--){
+//		solve();
+//	}
+
+//	return 0;
+//}
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long 
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
 
-const int inf = 0x3f3f3f3f3f3f3f3f;
-const int N = 1e6 + 10;
+#define ab(x) (x+tot*0)
+#define ri(x) (x+tot*1)
+#define be(x) (x+tot*2)
+#define le(x) (x+tot*3)
 
+const int inf = 0x3f3f3f3f3f3f3f3f;
+const int N = 1e3 + 10;
+const int M = N*N;
+
+int n, m, tot, id[N][N];
+
+vector<int>g[M*4];
+
+string mp[N];
+int fa[M*4];
+unordered_set<int>st[M*4];
+int find(int x){
+	return x == fa[x] ? x : fa[x] = find(fa[x]);
+}
+void merg(int a, int b){
+	a = find(a);
+	b = find(b);
+	if(a == b) return;
+	fa[b] = a;
+	if(st[b].size() > st[a].size()) swap(st[a], st[b]);
+	for(auto e : st[b]) st[a].insert(e);
+	st[b].clear();
+}
+
+void add(int u, int v){
+	g[u].push_back(v);
+	g[v].push_back(u);
+	merg(u, v);
+}
+
+int ans[M*4];
+unordered_set<int>vs;
+void dfs(int u, int fa, int f){
+	int dir = (u-1) / tot;
+	int x = (u-tot*dir+m-1)/m;
+	int y = ((u-tot*dir-1)%m) + 1;
+	if(f & 1){
+		ans[u] = vs.size();
+	}else{
+		if(mp[x][y] == '/' || mp[x][y] == '\\') vs.insert(id[x][y]);
+	}
+	for(auto v : g[u]) if(v != fa){
+		dfs(v, u, f+1);
+	}
+}
 
 void solve(){
-	int n;
-	cin >> n;
-	vector<int>a(n+5);
-	vector<array<int,20>>f(n+5);
-	vector<vector<int>>g(n+5);
-	for(int i = 1;i <= n;i++){
-		cin >> a[i];
-	}
-	for(int i = 1, u, v;i < n;i++){
-		cin >> u >> v;
-		g[u].push_back(v);
-		g[v].push_back(u);
+	cin >> n >> m;
+	for(int i = 1;i <= n;i++) {
+		cin >> mp[i];
+		mp[i] = ' ' + mp[i] + ' ';
+		for(int j = 1;j <= m;j++) id[i][j] = ++tot;
 	}
 
-	auto dfs = [&](auto self, int u, int fa) -> void {
-		for(int i = 1;i < 20;i++) f[u][i] = a[u]*i;
-		for(auto v : g[u]) if(v != fa){
-			self(self, v, u);
-			for(int i = 1;i < 20;i++){
-				int mn = inf;
-				for(int j = 1;j < 20;j++) if(i != j) {
-					mn = min(mn, f[v][j]);
-				}
-				f[u][i] += mn;
+	for(int i = 1;i <= tot;i++){
+		for(int j = 0;j < 4;j++){
+			ans[i+j*tot] = -1;
+			fa[i+j*tot] = i+j*tot;
+			//st[i+j*tot].insert(i);
+		}
+	}
+
+	for(int i = 1;i <= n;i++){
+		for(int j = 1;j <= m;j++){
+			int x = id[i][j];
+			if(i > 1){
+				add(ab(x), be(id[i-1][j]));
+				int f = find(ab(x));
+				if(mp[i][j] != '|') st[f].insert(id[i][j]);
+				if(mp[i-1][j] != '|') st[f].insert(id[i-1][j]);
+			}
+			if(j > 1){
+				add(le(x), ri(id[i][j-1]));
+				int f = find(le(x));
+				if(mp[i][j] != '-') st[f].insert(id[i][j]);
+				if(mp[i][j-1] != '-') st[f].insert(id[i][j-1]);
+			}
+			if(mp[i][j] == '-'){
+				add(le(x), ri(x));
+			}else if(mp[i][j] == '|'){
+				add(ab(x), be(x));
+			}else if(mp[i][j] == '/'){
+				add(le(x), ab(x));
+				add(ri(x), be(x));
+			}else{
+				add(le(x), be(x));
+				add(ri(x), ab(x));
 			}
 		}
-	};
+	}
 
-	dfs(dfs, 1, 0);
+	for(int i = 1;i <= n;i++) if(ans[le(id[i][1])] == -1){
+		vs.clear();
+		dfs(le(id[i][1]), 0, 1);
+	}
+	for(int i = 1;i <= n;i++) if(ans[ri(id[i][m])] == -1){
+		vs.clear();
+		dfs(ri(id[i][m]), 0, 1);
+	}
+	for(int i = 1;i <= m;i++) if(ans[ab(id[1][i])] == -1){
+		vs.clear();
+		dfs(ab(id[1][i]), 0, 1);
+	}
+	for(int i = 1;i <= m;i++) if(ans[be(id[n][i])] == -1){
+		vs.clear();
+		dfs(be(id[n][i]), 0, 1);
+	}
 
-	int ans = inf;
-	for(int i = 1;i < 20;i++) ans = min(ans, f[1][i]);
-	cout << ans << endl;
+	int q, x, y, dir;
+	string op;
+	cin >> q;
+	while(q--){
+		cin >> x >> y >> op;
+		if(op[0] == 'l'){
+			dir = 3;
+		}else if(op[0] == 'r'){
+			dir = 1;
+		}else if(op[0] == 'a'){
+			dir = 0;
+		}else{
+			dir = 2;
+		}
+		int i = dir*tot + id[x][y];
+		//cerr << ans[i] << endl;
+		if(~ans[i]) cout << ans[i] << endl;
+		else cout << st[find(i)].size() << endl;
+	}
 }
 
 signed main(){
 	
 	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 	int t = 1;
-	cin >> t;
+	//cin >> t;
 	while(t--){
 		solve();
 	}
