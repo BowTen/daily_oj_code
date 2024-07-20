@@ -3618,9 +3618,137 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int unsigned long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 1e6 + 10;
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	map<int,int>mp;
+//	int x;
+//	while(n--){
+//		cin >> x;
+//		mp[x]++;
+//	}	
+//	for(auto [k, v] : mp) if(v & 1){
+//		cout << "YES\n";
+//		return;
+//	}
+//	cout << "NO\n";
+//}
+
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 1e6 + 10;
+
+//void solve(){
+//	int n, x, y;
+//	cin >> n >> x >> y;
+//	vector<int>a(n+5);
+//	for(int i = y;i <= x;i++) a[i] = 1;
+//	a[y-1] = a[x+1] = -1;
+//	for(int i = y-2;i >= 1;i--) a[i] = -a[i+1];
+//	for(int i = x+2;i <= n;i++) a[i] = -a[i-1];
+//	for(int i = 1;i <= n;i++) cout << a[i] << ' ';
+//	cout << endl;
+//}
+
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 1e6 + 10;
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5), md(n+5);
+//	set<int>st1, st2;
+//	int ans = 0;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		ans += a[i];
+//		if(st1.count(a[i])) st2.insert(a[i]);
+//		else st1.insert(a[i]);
+//		if(st2.size()) md[i] = *st2.rbegin();
+//		ans += md[i];
+//		//cerr << md[i] << endl;
+//	}
+
+//	st1.clear();
+//	st2.clear();
+//	for(int i = 1;i <= n;i++){
+//		if(st1.count(md[i])) st2.insert(md[i]);
+//		else st1.insert(md[i]);
+//		if(st2.size()) md[i] = *st2.rbegin();
+//		else md[i] = 0;
+//		//ans += md[i];
+//		//cerr << md[i] << endl;
+//	}
+
+//	for(int i = 1;i <= n;i++) {
+//		md[i] += md[i-1];
+//		ans += md[i];
+//	}
+
+//	cout << ans << endl;
+//}
+
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
-#define int unsigned long long
+#define int long long
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
 #define all1(x) (x).begin()+1, (x).begin()+1+n
@@ -3628,13 +3756,43 @@ using namespace std;
 const int N = 1e6 + 10;
 
 void solve(){
+	int n, s = 0;
+	cin >> n;
+	vector<int>a(n+5);
+	for(int i = 1;i <= n;i++){
+		cin >> a[i];
+		if(a[i]) s++;
+		a[i] = (a[i] + 1) / 2;
+	}
+
+	//for(int i = 1;i <= n;i++) if(a[i] == 1 && a[i+1] == 1) {
+	//	a[i] = a[i+1] = 0;
+	//	s--;
+	//	i++;
+	//}
+
+	for(int i = 1, j = -1;i <= n;i++) {
+		if(a[i] == 0) {
+			j = -1;
+		}else if(a[i] == 1){
+			if((j != -1) && ((i-j)&1) ) {
+				j = -1;
+				s--;
+			}else j = i;
+		}else if(a[i] > 2){
+			j = -1;
+		}
+	}
+
+	cout << s << endl;
 }
+
 
 signed main(){
 
 	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 	int t = 1;
-	//cin >> t;
+	cin >> t;
 	while(t--) solve();
 
 	return 0;
