@@ -4107,6 +4107,210 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int mod = 1e9 + 7;
+
+//int qpow(int a, int b){
+//	int ret = 1;
+//	while(b){
+//		if(b & 1) ret = ret * a % mod;
+//		a = a * a % mod;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+
+//void solve(){
+//	int n, m;
+//	cin >> n >> m;
+//	vector<vector<int>>g(n+5);
+//	for(int i = 1, u, v;i < n;i++){
+//		cin >> u >> v;
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+
+//	auto val = [&](array<int,2>a) -> int {
+//		return ((a[0] * ((qpow(2, m)-1+mod)%mod) % mod) + a[1]) % mod;
+//	};
+
+//	vector<array<int,2>>dep(n+5);
+//	int mxp = 0;
+//	auto dfs = [&](auto self, int u, int fa) -> void {
+//		dep[u][1] = dep[fa][1] + 1;
+//		dep[u][0] = dep[fa][0] + g[u].size() - 1;
+//		if(m <= 10){
+//			if(val(dep[u]) > val(dep[mxp])) mxp = u;
+//		}else if(dep[u] > dep[mxp]) mxp = u;
+//		for(auto v : g[u]) if(v != fa){
+//			self(self, v, u);
+//		}
+//	};
+//	dfs(dfs, 1, 0);
+//	dfs(dfs, mxp, 0);
+
+//	cout << val(dep[mxp]) << endl;
+//}	
+
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 255;
+//const int mod = 998244353;
+
+//int n, a[N], f[N][N][N], pre[N][N][N];
+
+//void solve(){
+//	cin >> n;
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	for(int i = 1;i <= n;i++)
+//		for(int j = 1;j <= n;j++)
+//			for(int k = 1;k <= n;k++){
+//				if(a[i] == a[j] && a[i] == a[k]) (f[i][j][k] += pre[i-1][j-1][k-1] + 1) %= mod;
+//				pre[i][j][k] = f[i][j][k];
+//				(pre[i][j][k] += pre[i-1][j][k] + pre[i][j-1][k] + pre[i][j][k-1]) %= mod;
+//				(pre[i][j][k] -= pre[i][j-1][k-1] + pre[i-1][j][k-1] + pre[i-1][j-1][k]) %= mod;
+//				(pre[i][j][k] += mod) %= mod;
+//				(pre[i][j][k] += pre[i-1][j-1][k-1]) %= mod;
+//			}
+//	cout << pre[n][n][n] << endl;
+//}	
+
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 3e5 + 10;
+//const int M = N * 20;
+
+//int n, q, ans[N];
+//vector<int>g[N];
+//vector<array<int,2>>qur[N];
+//int rt[N], tr[M], ls[M], rs[M], tot;
+
+//void up(int id){
+//	tr[id] = tr[ls[id]] + tr[rs[id]];
+//}
+//void add(int &id, int l, int r, int x, int v){
+//	if(!id) id = ++tot;
+//	if(l == r){
+//		tr[id] += v;
+//		return;
+//	}
+//	int mid = l + r >> 1;
+//	if(x <= mid) add(ls[id], l, mid, x, v);
+//	else add(rs[id], mid + 1, r, x, v);
+//	up(id);
+//}
+//void merg(int &a, int b, int l, int r){
+//	if(!a || !b) {
+//		a |= b;
+//		return;
+//	} 
+//	if(l == r) {
+//		tr[a] += tr[b];
+//		return;
+//	}
+//	int mid = l + r >> 1;
+//	merg(ls[a], ls[b], l, mid) ;
+//	merg(rs[a], rs[b], mid + 1, r);
+//	up(a);
+//}
+//int query(int id, int l, int r, int ql, int qr) {
+//	if(ql <= l && r <= qr) return tr[id];
+//	int mid = l + r >> 1;
+//	if(qr <= mid) return query(ls[id], l, mid, ql, qr);
+//	else if(ql > mid) return query(rs[id], mid + 1, r, ql, qr);
+//	else return query(ls[id], l, mid, ql, qr) + query(rs[id], mid + 1, r, ql, qr);
+//}
+
+
+//int dep[N], siz[N];
+//void dfs(int u, int fa) {
+//	siz[u] = 1;
+//	dep[u] = dep[fa] + 1;
+//	for(auto v : g[u]) if(v != fa){
+//		dfs(v, u);
+//		merg(rt[u], rt[v], 1, n);
+//		siz[u] += siz[v];
+//	}
+//	add(rt[u], 1, n, dep[u], siz[u]-1);
+//	for(auto [k, id] : qur[u]) {
+//		int l = dep[u]+1, r = min(n, dep[u]+k);
+//		if(l <= r) ans[id] += query(rt[u], 1, n, l, r);
+//		ans[id] += min(k, (dep[u]-1)) * (siz[u]-1);
+//	}
+//}
+
+//void solve(){
+//	cin >> n >> q;
+//	for(int i = 1, u, v;i < n;i++){
+//		cin >> u >> v;
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+//	int p, x;
+//	for(int i = 1;i <= q;i++){
+//		cin >> p >> x;
+//		qur[p].push_back({x, i});
+//	}
+
+//	dfs(1, 0);
+//	for(int i = 1;i <= q;i++) cout << ans[i] << endl;
+//}	
+
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -4114,48 +4318,12 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define all1(x) (x).begin()+1, (x).begin()+1+n
 
-const int mod = 1e9 + 7;
+const int N = 3e5 + 10;
+const int M = N * 20;
 
-int qpow(int a, int b){
-	int ret = 1;
-	while(b){
-		if(b & 1) ret = ret * a % mod;
-		a = a * a % mod;
-		b >>= 1;
-	}
-	return ret;
-}
 
 void solve(){
-	int n, m;
-	cin >> n >> m;
-	vector<vector<int>>g(n+5);
-	for(int i = 1, u, v;i < n;i++){
-		cin >> u >> v;
-		g[u].push_back(v);
-		g[v].push_back(u);
-	}
 
-	auto val = [&](array<int,2>a) -> int {
-		return ((a[0] * ((qpow(2, m)-1+mod)%mod) % mod) + a[1]) % mod;
-	};
-
-	vector<array<int,2>>dep(n+5);
-	int mxp = 0;
-	auto dfs = [&](auto self, int u, int fa) -> void {
-		dep[u][1] = dep[fa][1] + 1;
-		dep[u][0] = dep[fa][0] + g[u].size() - 1;
-		if(m <= 10){
-			if(val(dep[u]) > val(dep[mxp])) mxp = u;
-		}else if(dep[u] > dep[mxp]) mxp = u;
-		for(auto v : g[u]) if(v != fa){
-			self(self, v, u);
-		}
-	};
-	dfs(dfs, 1, 0);
-	dfs(dfs, mxp, 0);
-
-	cout << val(dep[mxp]) << endl;
 }	
 
 
@@ -4163,7 +4331,7 @@ signed main(){
 
 	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 	int t = 1;
-	cin >> t;
+	//cin >> t;
 	while(t--) solve();
 
 	return 0;
