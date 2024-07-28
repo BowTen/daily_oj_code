@@ -456,53 +456,169 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//const int N = 1e5 + 10;
+//const int M = N*30;
+//const int mxn = 1e9;
+
+//array<int,5>tr[M];
+//int ls[M], rs[M], tot, cnt[M], rt;
+
+//void up(int id){
+//	cnt[id] = (cnt[ls[id]] + cnt[rs[id]]) % 5;
+//	for(int i = 0;i < 5;i++) tr[id][i] = tr[ls[id]][i] + tr[rs[id]][(i-cnt[ls[id]]+5)%5];
+//}
+//void add(int &id, int l, int r, int x, int v){
+//	if(!id) id = ++tot;
+//	if(l == r){
+//		tr[id][1] += v*x;
+//		cnt[id] += v;
+//		return;
+//	}
+//	int mid = l + r >> 1;
+//	if(x <= mid) add(ls[id], l, mid, x, v);
+//	else add(rs[id], mid + 1, r, x, v);
+//	up(id);
+//}
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	string op;
+//	int x;
+//	while(n--){
+//		cin >> op;
+//		if(op[0] == 'a'){
+//			cin >> x;
+//			add(rt, 1, mxn, x, 1);
+//		}else if(op[0] == 'd'){
+//			cin >> x;
+//			add(rt, 1, mxn, x, -1);
+//		}else{
+//			cout << tr[rt][3] << endl;
+//		}
+//	}
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//const double eps = 1e-7;
+
+//struct P{
+//	int x, y;
+//	P() {}
+//	P(int x, int y) : x(x), y(y) {}
+//	P operator-(const P &e) const { return P(x-e.x, y-e.y); }
+//	P operator+(const P &e) const { return P(x+e.x, y+e.y); }
+//	P operator*(double k) const { return P(x*k, y*k); }
+//	int operator*(const P &e) const { return x*e.y - y*e.x; }
+
+//};
+//struct Line{
+//	P s, e;
+//	Line() {}
+//	Line(P s, P e) : s(s), e(e) {}
+
+//	double angle() const {
+//		return atan2(e.y-s.y, e.x-s.x);
+//	}
+
+//	int operator<(const Line& b) const {
+//		double A = angle(), B = b.angle();
+//		return fabs(A-B) > eps ? A<B : (e-s)*(b.e-s) < 0;
+//	}
+
+//	P cross(Line b) {
+//	    P u = s - b.s, v = e - s, w = b.e - b.s;
+//	    double t = u * w / (w * v);
+//	    return s + v * t;
+//	}
+//	bool right(P p) {
+//		return (e-s) * (p-s) < 0;
+//	}
+//};
+
+//vector<P> half_plane(vector<Line> L) {
+//	int n = L.size();
+//	sort(all(L));
+//	vector<Line>q(n+1);
+//	int h = 0, t = 0; q[0] = L[0];
+//	for(int i = 1;i < n;i++){
+//		if(L[i].angle() - L[i-1].angle() < eps) continue;
+//		while(t>h && L[i].right(q[t].cross(q[t-1]))) t--;
+//		while(t>h && L[i].right(q[h].cross(q[h+1]))) h++;
+//		q[++t] = L[i];
+//	}
+//	while(t>h && q[h].right(q[t].cross(q[t-1]))) t--;
+//	q[++t] = q[h];
+//	vector<P>ret;
+//	for(int i = h;i < t;i++) ret.push_back(q[i].cross(q[i+1]));
+//	return ret;
+//}
+
+//double area(vector<P> p){
+//	double res = 0;
+//	int n = p.size();
+//	for(int i = 1;i < n;i++) res += (p[i]-p[1]) * (p[i+1]-p[1]);
+//	return res/2;
+//}
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<Line>L;
+//	for(int i = 1, m;i <= n;i++){
+//		cin >> m;
+//		vector<P>p(m);
+//		for(int j = 0;j < m;j++) cin >> p[j].x >> p[j].y;
+//		for(int j = 0;j < m;j++) L.push_back(Line(p[j], p[(j+1)%m]));
+//	}
+
+//	cout << area(half_plane(L)) << endl;
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
 
-const int N = 1e5 + 10;
-const int M = N*30;
-const int mxn = 1e9;
-
-array<int,5>tr[M];
-int ls[M], rs[M], tot, cnt[M], rt;
-
-void up(int id){
-	cnt[id] = (cnt[ls[id]] + cnt[rs[id]]) % 5;
-	for(int i = 0;i < 5;i++) tr[id][i] = tr[ls[id]][i] + tr[rs[id]][(i-cnt[ls[id]]+5)%5];
-}
-void add(int &id, int l, int r, int x, int v){
-	if(!id) id = ++tot;
-	if(l == r){
-		tr[id][1] += v*x;
-		cnt[id] += v;
-		return;
-	}
-	int mid = l + r >> 1;
-	if(x <= mid) add(ls[id], l, mid, x, v);
-	else add(rs[id], mid + 1, r, x, v);
-	up(id);
-}
 
 void solve(){
-	int n;
-	cin >> n;
-	string op;
-	int x;
-	while(n--){
-		cin >> op;
-		if(op[0] == 'a'){
-			cin >> x;
-			add(rt, 1, mxn, x, 1);
-		}else if(op[0] == 'd'){
-			cin >> x;
-			add(rt, 1, mxn, x, -1);
-		}else{
-			cout << tr[rt][3] << endl;
-		}
-	}
+
 }	
 
 signed main(){
