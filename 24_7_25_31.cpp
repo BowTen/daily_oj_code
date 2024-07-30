@@ -865,126 +865,238 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//class Tree {
+//	int n;
+//public:
+//	vector<int>mx;
+//	Tree(int n) : mx(n*4+10), n(n) {}
+//	#define ls id << 1
+//	#define rs id << 1 | 1
+//	void init(){
+//		for(int i = 0;i < mx.size();i++) mx[i] = 0;
+//	}
+//	void up(int id){
+//		mx[id] = max(mx[ls], mx[rs]);
+//	}
+//	void change(int id, int l, int r, int x, int v){
+//		if(l == r) {
+//			mx[id] = max(mx[id], v);
+//			return;
+//		}
+//		int mid = l + r >> 1;
+//		if(x <= mid) change(ls, l, mid, x, v);
+//		else change(rs, mid + 1, r, x, v);
+//		up(id);
+//	}
+//	int query(int id, int l, int r, int ql, int qr) {
+//		if(ql <= l && r <= qr) return mx[id];
+//		int mid = l + r >> 1;
+//		if(qr <= mid) return query(ls, l, mid, ql, qr);
+//		else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//		else return max(query(ls, l, mid, ql, qr), query(rs, mid + 1, r, ql, qr));
+//	}
+//	void change(int x, int v){
+//		change(1, 1, n, x, v);
+//	}
+//	int query(int l, int r){
+//		if(l < 1 || r > n || l > r) return 0;
+//		return query(1, 1, n, l, r);
+//	}
+//};	
+
+//void solve(){
+//	int n, m;
+//	cin >> n >> m;
+//	vector<int>p(n+5), v(n+5), f(n+5), g(n+5), h(n+5);
+//	vector<int>x1(m+5), x2(m+5), y1(m+5), y2(m+5);
+//	for(int i = 1;i <= n;i++) cin >> p[i] >> v[i];
+//	for(int i = 1;i <= m;i++) cin >> x1[i] >> y1[i] >> x2[i] >> y2[i];
+
+//	Tree t1(n), t2(n);
+//	for(int i = 1;i <= n;i++){
+//		f[i] = t1.query(1, p[i]) + v[i];
+//		t1.change(p[i], f[i]);
+//	}
+//	for(int i = n;i >= 1;i--){
+//		g[i] = t2.query(p[i], n) + v[i];
+//		t2.change(p[i], g[i]);
+//	}
+//	for(int i = 1;i <= n;i++){
+//		h[i] = f[i] + g[i] - v[i];
+//	}
+
+//	vector<int>f1(m+5), f2(m+5), hh(m+5), g1(m+5), g2(m+5);
+//	vector<vector<int>>qur(n+5);
+
+//	for(int i = 1;i <= m;i++){
+//		qur[x1[i]].push_back(i);
+//		qur[x2[i]+1].push_back(i);
+//	}
+//	t1.init();
+//	t2.init();
+//	for(int i = 1;i <= n+1;i++){
+//		for(auto id : qur[i])  {
+//			if(i == x1[id]){
+//				f1[id] = max(f1[id], t1.query(1, y2[id])); 
+//				hh[id] = max(hh[id], t2.query(y2[id]+1, n));
+//			}
+//			if(i == x2[id]+1){
+//				f2[id] = max(f2[id], t1.query(1, y1[id]-1));
+//			}
+//		}
+//		qur[i].clear();
+//		t1.change(p[i], f[i]);
+//		t2.change(p[i], h[i]);
+//	}
+
+//	for(int i = 1;i <= m;i++){
+//		qur[x1[i]-1].push_back(i);
+//		qur[x2[i]].push_back(i);
+//	}
+//	t1.init();
+//	t2.init();
+//	for(int i = n;i >= 0;i--){
+//		for(auto id : qur[i])  {
+//			if(i == x1[id]-1){
+//				g1[id] = max(g1[id], t1.query(y2[id]+1, n));
+//			}
+//			if(i == x2[id]){
+//				hh[id] = max(hh[id], t2.query(1, y1[id]-1));
+//				g2[id] = max(g2[id], t1.query(y1[id], n));
+//			}
+//		}
+//		t1.change(p[i], g[i]);
+//		t2.change(p[i], h[i]);
+//	}
+
+//	for(int i = 1;i <= m;i++){
+//		cout << max({hh[i], f1[i]+g1[i], f2[i]+g2[i]}) << endl;
+//	}
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+
+//void solve(){
+//	int n, q;
+//	cin >> n >> q;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+
+//	vector<vector<int>>idx, idx2;
+//	vector<int>cur;
+//	auto dfs = [&](auto self, int x, int st) -> void {
+//		if(x == 3) {
+//			idx.push_back(cur);
+//			return;
+//		}
+//		for(int i = st;6-i >= 3-x;i++) {
+//			cur.push_back(i);
+//			self(self, x+1, i+1);
+//			cur.pop_back();
+//		}
+//	};
+//	dfs(dfs, 0, 0);
+	
+//	for(auto id : idx) {
+//		vector<int>vis(6);
+//		for(auto e : id) vis[e] = 1;
+//		vector<int>tmp;
+//		for(int i = 0;i < 6;i++) if(!vis[i]) tmp.push_back(i);
+//		idx2.push_back(tmp);
+//	}
+
+//	auto check = [&](vector<int>a) -> int {
+//		for(int i = 0;i < 20;i++){
+//			if(a[idx[i][0]]+a[idx[i][1]] > a[idx[i][2]] && a[idx2[i][0]]+a[idx2[i][1]] > a[idx2[i][2]]) return 1;
+//		}
+//		return 0;
+//	};
+
+//	while(q--){
+//		int l, r;
+//		cin >> l >> r;
+//		if(r-l+1 >= 48){
+//			cout << "YES\n";
+//			continue;
+//		}
+//		vector<int>b;
+//		for(int i = l;i <= r;i++) b.push_back(a[i]);
+//		sort(all(b));
+
+//		int p = 0, cnt = 0;
+//		for(int i = b.size()-3;i >= 0;i--){
+//			if(b[i]+b[i+1] > b[i+2]){
+//				p = i;
+//				cnt++;
+//				i -= 2;
+//			}
+//		}
+//		if(cnt >= 2){
+//			cout << "YES\n";
+//			continue;
+//		}
+//		if(p >= 3){
+//			vector<int>tmp;
+//			for(int i = p-3;i < p+3;i++) tmp.push_back(b[i]);
+//			if(check(tmp)) {
+//				cout << "YES\n";
+//				continue;
+//			}
+//		}
+//		cout << "NO\n";
+//	}
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
 
-class Tree {
-	int n;
-public:
-	vector<int>mx;
-	Tree(int n) : mx(n*4+10), n(n) {}
-	#define ls id << 1
-	#define rs id << 1 | 1
-	void init(){
-		for(int i = 0;i < mx.size();i++) mx[i] = 0;
-	}
-	void up(int id){
-		mx[id] = max(mx[ls], mx[rs]);
-	}
-	void change(int id, int l, int r, int x, int v){
-		if(l == r) {
-			mx[id] = max(mx[id], v);
-			return;
-		}
-		int mid = l + r >> 1;
-		if(x <= mid) change(ls, l, mid, x, v);
-		else change(rs, mid + 1, r, x, v);
-		up(id);
-	}
-	void change(int x, int v){
-		change(1, 1, n, x, v);
-	}
-	int query(int id, int l, int r, int ql, int qr) {
-		if(ql <= l && r <= qr) return mx[id];
-		int mid = l + r >> 1;
-		if(qr <= mid) return query(ls, l, mid, ql, qr);
-		else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
-		else return max(query(ls, l, mid, ql, qr), query(rs, mid + 1, r, ql, qr));
-	}
-	int query(int l, int r){
-		if(l < 1 || r > n || l > r) return 0;
-		return query(1, 1, n, l, r);
-	}
-};	
 
 void solve(){
-	int n, m;
-	cin >> n >> m;
-	vector<int>p(n+5), v(n+5), f(n+5), g(n+5), h(n+5);
-	vector<int>x1(m+5), x2(m+5), y1(m+5), y2(m+5);
-	for(int i = 1;i <= n;i++) cin >> p[i] >> v[i];
-	for(int i = 1;i <= m;i++) cin >> x1[i] >> y1[i] >> x2[i] >> y2[i];
 
-	Tree t1(n), t2(n);
-	for(int i = 1;i <= n;i++){
-		f[i] = t1.query(1, p[i]) + v[i];
-		t1.change(p[i], f[i]);
-	}
-	for(int i = n;i >= 1;i--){
-		g[i] = t2.query(p[i], n) + v[i];
-		t2.change(p[i], g[i]);
-	}
-	for(int i = 1;i <= n;i++){
-		h[i] = f[i] + g[i] - v[i];
-	}
-
-	vector<int>f1(m+5), f2(m+5), hh(m+5), g1(m+5), g2(m+5);
-	vector<vector<int>>qur(n+5);
-
-	for(int i = 1;i <= m;i++){
-		qur[x1[i]].push_back(i);
-		qur[x2[i]+1].push_back(i);
-	}
-	t1.init();
-	t2.init();
-	for(int i = 1;i <= n+1;i++){
-		for(auto id : qur[i])  {
-			if(i == x1[id]){
-				f1[id] = max(f1[id], t1.query(1, y2[id])); 
-				hh[id] = max(hh[id], t2.query(y2[id]+1, n));
-			}
-			if(i == x2[id]+1){
-				f2[id] = max(f2[id], t1.query(1, y1[id]-1));
-			}
-		}
-		qur[i].clear();
-		t1.change(p[i], f[i]);
-		t2.change(p[i], h[i]);
-	}
-
-	for(int i = 1;i <= m;i++){
-		qur[x1[i]-1].push_back(i);
-		qur[x2[i]].push_back(i);
-	}
-	t1.init();
-	t2.init();
-	for(int i = n;i >= 0;i--){
-		for(auto id : qur[i])  {
-			if(i == x1[id]-1){
-				g1[id] = max(g1[id], t1.query(y2[id]+1, n));
-			}
-			if(i == x2[id]){
-				hh[id] = max(hh[id], t2.query(1, y1[id]-1));
-				g2[id] = max(g2[id], t1.query(y1[id], n));
-			}
-		}
-		t1.change(p[i], g[i]);
-		t2.change(p[i], h[i]);
-	}
-
-	for(int i = 1;i <= m;i++){
-		cout << max({hh[i], f1[i]+g1[i], f2[i]+g2[i]}) << endl;
-	}
 }	
 
 signed main(){
 
 	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 	int t = 1;
-	cin >> t;
+	//cin >> t;
 	while(t--) solve();
 
 	return 0;
