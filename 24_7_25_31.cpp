@@ -2196,3 +2196,258 @@
 
 //	return 0;
 //}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//using ll = long long;
+
+
+
+//void solve(){
+//	int n;
+//	cin >>n;
+//	string s;
+//	cin >> s;
+//	map<int,int>mp;
+//	for(auto c : s) mp[c]++;
+//	int ans = 0;
+//	for(auto [k, v] : mp) if(k != '?') ans += min(n, v);
+//	cout << ans << endl;
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//using ll = long long;
+
+
+
+//void solve(){
+//	int n;
+//	cin >>n;
+//	vector<int>a(n+5);
+//	int s = 0;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		s += (a[i] & 1);
+//	}
+//	sort(a.begin()+1, a.begin()+1+n);
+//	if(s == 0 || s == n) {
+//		cout << 0 << endl;
+//		return;
+//	}
+//	int fs = 0, p = 0;
+//	for(int i = n;i >= 1;i--) {
+//		if(a[i] & 1){
+//			if(!fs) fs = a[i];
+//			if(!p) p = i;
+//		}else if(fs){
+//			fs += a[i];
+//		}
+//	}
+//	int bg = 1;
+//	for(int i = p+1;i <= n;i++){
+//		if(fs < a[i]) {
+//			bg = 0;
+//			break;
+//		}
+//		fs += a[i];
+//	}
+//	//cerr << bg << endl;
+//	s = n-s;
+//	if(a[n] % 2 == 0 && !bg) s++;
+//	cout << s << endl; 
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//using ll = long long;
+
+
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	sort(a.begin()+1, a.begin()+1+n);
+//	for(int i = 1;i < n;i++){
+//		int d = a[n] - a[i];
+//		int m = d / (2 * k);
+//		if(d % (2 * k) > k) m++;
+//		a[i] += 2*k*m;
+//	}
+//	sort(a.begin()+1, a.begin()+1+n);
+//	if(a[n] >= a[1] + k) cout << -1 << endl;
+//	else cout << a[n] << endl;
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//using ll = long long;
+
+//const int inf = 1e16;
+
+//void solve(){
+//	int n, k, m;
+//	cin >> n >> k;
+//	m = n % k;
+//	if(m == 0) m = k;
+//	vector<int>a(n+5), idx;
+//	idx.push_back(0);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		idx.push_back(a[i]);
+//	}
+
+//	if(m == n){
+//		sort(a.begin()+1, a.begin()+1+n);
+//		cout << a[(n+1)/2] << endl;
+//		return;
+//	}
+
+//	sort(all(idx));
+
+//	auto check = [&](int x) -> int {
+//		vector<int>f(n+5, -inf), mx(min(n, k)+5, -inf), smn(n+5, inf);
+//		for(int i = n;i >= 1;i--) smn[i] = min(smn[i+1], a[i]);
+//		mx[0] = 0;
+//		int mxv = 0;
+//		for(int i = 1;i <= n;i++) if(a[i] >= x) {
+//			f[i] = max(f[i], mx[(i-1)%k]) + 1;
+//			if(i+k > n){
+//				if(smn[i] < x) f[i] = 0;
+//			}
+//			mx[i%k] = max(mx[i%k], f[i]);
+//			mxv = max(mxv, f[i]);
+//		}
+//		return mxv*2 > m;
+//	};
+
+//	int l = 1, r = idx.size()-1;
+//	while(l <= r){
+//		int mid = l + r >> 1;
+//		if(check(idx[mid])) l = mid + 1;
+//		else r = mid - 1;
+//	}
+
+//	//for(auto e : idx) cerr << e << ' ' << check(e) << endl;
+//	cout << idx[r] << endl;
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+using ll = long long;
+
+const int inf = 1e16;
+
+void solve(){
+	int n, k, m;
+	cin >> n >> k;
+	m = n % k;
+	if(m == 0) m = k;
+	vector<int>a(n+5);
+	for(int i = 1;i <= n;i++) cin >> a[i];
+
+	if(m == n){
+		sort(a.begin()+1, a.begin()+1+n);
+		cout << a[(n+1)/2] << endl;
+		return;
+	}
+
+	auto check = [&](int x) -> int {
+		vector<int>f(n+5, -inf), mx(k+5, -inf);
+		mx[0] = 0;
+		int cnt = 0;
+		for(int i = 1;i <= n;i++) if(a[i] >= x){
+			f[i] = mx[(i-1)%k] + 1;
+			mx[i%k] = max(mx[i%k], f[i]);
+			cnt = max(cnt, f[i]);
+		}
+		return cnt * 2 > m;
+	};
+
+	int l = 1, r = 1e9;
+	while(l <= r){
+		int mid = l + r >> 1;
+		if(check(mid)) l = mid + 1;
+		else r = mid - 1;
+	}
+
+	cout << r << endl;
+}	
+
+signed main(){
+
+	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+	int t = 1;
+	cin >> t;
+	while(t--) solve();
+
+	return 0;
+}
