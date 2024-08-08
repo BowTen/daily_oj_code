@@ -2746,3 +2746,59 @@
 
 //	return 0;
 //}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+
+
+unordered_map<char, array<int,2>>op;
+
+void solve(){
+	int n, k, w, h;
+	cin >> n >> k >> w >> h;
+	string s;
+	cin >> s;
+	w *= 2;
+	h *= 2;
+
+	unordered_map<int, unordered_map<int,int>>mp;
+	int x = 0, y = 0;
+	for(auto c : s) {
+		(x += op[c][0] + w) %= w;
+		(y += op[c][1] + h) %= h;
+		mp[x][y]++;
+	}
+	int ex = x, ey = y;
+
+	int tx = 0, ty = 0;
+	int ans = 0;
+	for(int i = 1;i <= k;i++){
+		ans += mp[tx][ty];
+		tx = (w - x) % w;
+		ty = (h - y) % h;
+		(x += ex) %= w;
+		(y += ey) %= h;
+	}
+	cout << ans << endl;
+}
+
+signed main(){
+
+	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+
+	op['U'] = {0, 1};
+	op['D'] = {0, -1};
+	op['L'] = {-1, 0};
+	op['R'] = {1, 0};
+
+	int t = 1;
+	cin >> t;
+	while(t--) solve();
+
+	return 0;
+}
