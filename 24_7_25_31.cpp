@@ -2749,55 +2749,269 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+
+//unordered_map<char, array<int,2>>op;
+
+//void solve(){
+//	int n, k, w, h;
+//	cin >> n >> k >> w >> h;
+//	string s;
+//	cin >> s;
+//	w *= 2;
+//	h *= 2;
+
+//	unordered_map<int, unordered_map<int,int>>mp;
+//	int x = 0, y = 0;
+//	for(auto c : s) {
+//		(x += op[c][0] + w) %= w;
+//		(y += op[c][1] + h) %= h;
+//		mp[x][y]++;
+//	}
+//	int ex = x, ey = y;
+
+//	int tx = 0, ty = 0;
+//	int ans = 0;
+//	for(int i = 1;i <= k;i++){
+//		ans += mp[tx][ty];
+//		tx = (w - x) % w;
+//		ty = (h - y) % h;
+//		(x += ex) %= w;
+//		(y += ey) %= h;
+//	}
+//	cout << ans << endl;
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+
+//	op['U'] = {0, 1};
+//	op['D'] = {0, -1};
+//	op['L'] = {-1, 0};
+//	op['R'] = {1, 0};
+
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//const double eps = 1e-7;
+
+//struct P{
+//	double x, y;
+//	P() {}
+//	P(double x, double y) : x(x), y(y) {}
+//	P operator-(const P &e) const { return P(x-e.x, y-e.y); }
+//	P operator+(const P &e) const { return P(x+e.x, y+e.y); }
+//	P operator*(double k) const { return P(x*k, y*k); }
+//	double operator*(const P &e) const { return x*e.y - y*e.x; }
+//};
+//struct Line{
+//	P s, e;
+//	Line() {}
+//	Line(P s, P e) : s(s), e(e) {}
+
+//	double angle() const {
+//		return atan2(e.y-s.y, e.x-s.x);
+//	}
+
+//	int operator<(const Line& b) const {
+//		double A = angle(), B = b.angle();
+//		return fabs(A-B) > eps ? A<B : (e-s)*(b.e-s) < 0; //先比较斜率，再比较截距，靠内的更小
+//	}
+
+//	P cross(Line b) { //求两直线交点
+//	    P u = s - b.s, v = e - s, w = b.e - b.s;
+//	    double t = (u * w) / (w * v);
+//	    return s + (v * t);
+//	}
+//	bool right(P p) { //判断点是否在直线右边
+//		return (e-s) * (p-s) < 0;
+//	}
+//};
+
+//vector<P> half_plane(vector<Line> L) {
+//	int n = L.size();
+//	sort(all(L));
+//	vector<Line>q(n+5);
+//	int h = 0, t = 0; q[0] = L[0];
+//	for(int i = 1;i < n;i++){
+//		if(fabs(L[i].angle() - L[i-1].angle()) < eps) continue;
+//		while(t>h && L[i].right(q[t].cross(q[t-1]))) t--;
+//		while(t>h && L[i].right(q[h].cross(q[h+1]))) h++;
+//		q[++t] = L[i];
+//	}
+//	while(t>h && q[h].right(q[t].cross(q[t-1]))) t--;
+//	q[++t] = q[h];
+//	vector<P>ret;
+//	for(int i = h;i < t;i++) ret.push_back(q[i].cross(q[i+1]));
+//	return ret;
+//}
+
+//double area(vector<P> p){
+//	double res = 0;
+//	int n = p.size();
+//	for(int i = 1;i + 1 < n;i++) res += (p[i]-p[0]) * (p[i+1]-p[0]);
+//	return res/2.0;
+//}
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<Line>L;
+//	for(int i = 1, m;i <= n;i++){
+//		cin >> m;
+//		vector<P>p(m);
+//		for(int j = 0;j < m;j++) cin >> p[j].x >> p[j].y;
+//		for(int j = 0;j < m;j++) L.push_back(Line(p[j], p[(j+1)%m]));
+//	}
+
+//	cout << fixed << setprecision(3) << area(half_plane(L)) << endl;
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
 
+const int inf = 1e15;
 
-unordered_map<char, array<int,2>>op;
 
 void solve(){
-	int n, k, w, h;
-	cin >> n >> k >> w >> h;
-	string s;
-	cin >> s;
-	w *= 2;
-	h *= 2;
-
-	unordered_map<int, unordered_map<int,int>>mp;
-	int x = 0, y = 0;
-	for(auto c : s) {
-		(x += op[c][0] + w) %= w;
-		(y += op[c][1] + h) %= h;
-		mp[x][y]++;
+	int n, m, tot = 0;
+	cin >> n;
+	vector<int>dfn(n+5), dep(n+5);
+	vector<vector<int>>par(n+5, vector<int>(20)), mn(n+5, vector<int>(20, inf));
+	vector<vector<array<int,2>>>g(n+5), G(n+5);
+	for(int i = 1, u, v, w;i < n;i++){
+		cin >> u >> v >> w;
+		g[u].push_back({v, w});
+		g[v].push_back({u, w});
 	}
-	int ex = x, ey = y;
 
-	int tx = 0, ty = 0;
-	int ans = 0;
-	for(int i = 1;i <= k;i++){
-		ans += mp[tx][ty];
-		tx = (w - x) % w;
-		ty = (h - y) % h;
-		(x += ex) %= w;
-		(y += ey) %= h;
+	auto dfs1 = [&](auto self, int u, int fa, int d) -> void {
+		dfn[u] = ++tot;
+		dep[u] = dep[fa] + 1;
+		par[u][0] = fa;
+		mn[u][0] = d;
+		for(int i = 1;i < 20;i++){
+			par[u][i] = par[par[u][i-1]][i-1];
+			mn[u][i] = min(mn[u][i-1], mn[par[u][i-1]][i-1]);
+		}
+		for(auto [v, w] : g[u]) if(v != fa) {
+			self(self, v, u, w);
+		}
+	};
+	dfs1(dfs1, 1, 0, 0);
+
+	auto lca = [&](int u, int v) -> int {
+		if(dep[u] < dep[v]) swap(u, v);
+		for(int i = 19;i >= 0;i--) if(dep[par[u][i]] >= dep[v]) u = par[u][i];
+		if(u == v) return u;
+		for(int i = 19;i >= 0;i--) if(par[u][i] != par[v][i]) {
+			u = par[u][i];
+			v = par[v][i];
+		}
+		return par[u][0];
+	};
+
+	auto dis = [&](int u, int v) -> int {
+		if(dep[u] < dep[v]) swap(u, v);
+		int ret = mn[u][0];
+		for(int i = 19;i >= 0;i--) if(dep[par[u][i]] >= dep[v]) {
+			ret = min(ret, mn[u][i]);
+			u = par[u][i];
+		}
+		return ret;
+	};
+
+	vector<int>isq(n+5);
+	auto dfs = [&](auto self, int u, int d) -> int {
+		int s = 0;
+		for(auto [v, w] : G[u]) {
+			s += self(self, v, w);
+		}
+		G[u].clear();
+		if(isq[u]) return d;
+		return min(s, d);
+	};	
+
+	cin >> m;
+	while(m--){
+		int k, top = 0;
+		cin >> k;
+		vector<int>p(k), st(k*2+5);
+		for(int i = 0;i < k;i++){
+			cin >> p[i];
+			isq[p[i]] = 1;
+		}
+		sort(all(p), [&](int i, int j) -> int {
+			return dfn[i] < dfn[j];
+		});
+
+		st[++top] = 1;
+		for(auto u : p) {
+			int lc = lca(u, st[top]);
+			if(lc == st[top]) {
+				st[++top] = u;
+				continue;
+			}
+			while(dep[st[top-1]] >= dep[lc]){
+				G[st[top-1]].push_back({st[top], dis(st[top], st[top-1])});
+				top--;
+			}
+			if(st[top] == lc) {
+				st[++top] = u;
+				continue;
+			}
+			G[lc].push_back({st[top], dis(st[top], lc)});
+			top--;
+			st[++top] = lc;
+			st[++top] = u;
+		}
+		while(top > 1) {
+			G[st[top-1]].push_back({st[top], dis(st[top], st[top-1])});
+			top--;
+		}
+
+		cout << dfs(dfs, 1, inf) << endl;
+		for(auto u : p) isq[u] = 0;
 	}
-	cout << ans << endl;
-}
+}	
 
 signed main(){
 
 	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-
-	op['U'] = {0, 1};
-	op['D'] = {0, -1};
-	op['L'] = {-1, 0};
-	op['R'] = {1, 0};
-
 	int t = 1;
-	cin >> t;
+	//cin >> t;
 	while(t--) solve();
 
 	return 0;
