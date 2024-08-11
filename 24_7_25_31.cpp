@@ -3535,112 +3535,304 @@
 
 
 
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int inf = 1e9;
+//const int N = 2e5 + 10;
+
+//int n, a[N];
+
+//struct node{
+//	int sum, sl, sr;
+//}tr[N<<2];
+//#define ls id << 1
+//#define rs id << 1 | 1
+
+//node operator+(node l, node r) {
+//	node ret;
+//	ret.sum = l.sum + r.sum;
+//	ret.sl = l.sl + max(0ll, r.sl - l.sum);
+//	ret.sr = r.sr + max(0ll, l.sr - r.sum);
+//	return ret;
+//}
+
+//void up(int id){
+//	tr[id] = tr[ls] + tr[rs];
+//}
+//void build(int id, int l, int r){
+//	if(l == r){
+//		tr[id] = {a[l], a[l], a[l]};
+//		return;
+//	}
+//	int mid = l + r >> 1;
+//	build(ls, l, mid);
+//	build(rs, mid + 1, r);
+//	up(id);
+//}
+//node query(int id, int l, int r, int ql, int qr){
+//	if(ql <= l && r <= qr) return tr[id];
+//	int mid = l + r >> 1;
+//	if(qr <= mid) return query(ls, l, mid, ql, qr);
+//	else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+//	else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
+//}
+//int searchl(int id, int l, int r, int p, int &v){
+//	if(l == r){
+//		if(v >= tr[id].sum) {
+//			v += tr[id].sum;
+//			return l;
+//		}
+//		return l+1;
+//	}
+//	int mid = l + r >> 1;
+//	if(p <= mid) return searchl(ls, l, mid, p, v);
+//	else{
+//		if(p >= r){
+//			if(v >= tr[rs].sr) {
+//				v += tr[rs].sum;
+//				return searchl(ls, l, mid, p, v);
+//			}else return searchl(rs, mid + 1, r, p, v);
+//		}else{
+//			int L = searchl(rs, mid + 1, r, p, v);
+//			if(L == mid + 1) return searchl(ls, l, mid, p, v);
+//			return L;
+//		}
+//	}
+//}	
+//int searchr(int id, int l, int r, int p, int &v){
+//	if(l == r){
+//		if(v >= tr[id].sum){
+//			v += tr[id].sum;
+//			return l;
+//		}
+//		return l-1;
+//	}
+//	int mid = l + r >> 1;
+//	if(p > mid) return searchr(rs, mid+1, r, p, v);
+//	else {
+//		if(p <= l){
+//			if(v >= tr[ls].sl) {
+//				v += tr[ls].sum;
+//				return searchr(rs, mid + 1, r, p, v);
+//			}else return searchr(ls, l, mid, p, v);
+//		}else{
+//			int R = searchr(ls, l, mid, p, v);
+//			if(R == mid) return searchr(rs, mid + 1, r, p, v);
+//			return R;
+//		}
+//	}
+//}
+
+//void solve(){
+//	int sum = 0, k;
+//	cin >> n >> k;
+//	vector<int>pre(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		pre[i] = pre[i-1] + a[i];
+//		sum += a[i];
+//	}
+//	build(1, 1, n);
+
+//	int ans = 0;
+//	for(int i = 1;i <= n;i++){
+//		int q = i, p = i, s = a[i];
+
+//		while(1){
+//			int l, r, fg = 0;
+//			if(q > 1 && s >= a[q-1]){
+//				q = searchl(1, 1, n, q-1, s);
+//				fg = 1;
+//			}
+//			if(p < n && s >= a[p+1]){
+//				p = searchr(1, 1, n, p+1, s);
+//				fg = 1;
+//			}
+//			if(!fg) break;
+//		}
+
+//		ans += s == sum;
+
+//	}
+
+//	cout << ans << endl;
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls id << 1
+//#define rs id << 1 | 1
+ 
+//const int inf = 1e9;
+//const int N = 2e5 + 10;
+ 
+//int n, a[N], k;
+ 
+//struct node{
+//	int sum, sl, sr;
+//}tr[N<<2];
+ 
+//node operator+(node l, node r) {
+//	node ret;
+//	ret.sum = l.sum + r.sum;
+//	ret.sl = l.sl + max(0ll, r.sl - (l.sum + l.sl));
+//	ret.sr = r.sr + max(0ll, l.sr - (r.sum + r.sr));
+//	return ret;
+//}
+ 
+//void up(int id){
+//	tr[id] = tr[ls] + tr[rs];
+//}
+//void build(int id, int l, int r){
+//	if(l == r){
+//		tr[id] = {a[l], a[l], a[l]};
+//		return;
+//	}
+//	int mid = l + r >> 1;
+//	build(ls, l, mid);
+//	build(rs, mid + 1, r);
+//	up(id);
+//}
+//int searchl(int id, int l, int r, int p, int &v){
+//	if(l == r){
+//		if(v >= tr[id].sum) {
+//			v += tr[id].sum;
+//			return l;
+//		}
+//		return l+1;
+//	}
+//	int mid = l + r >> 1;
+//	if(p <= mid) return searchl(ls, l, mid, p, v);
+//	else{
+//		if(p >= r){
+//			if(v >= tr[rs].sr) {
+//				v += tr[rs].sum;
+//				return searchl(ls, l, mid, p, v);
+//			}else return searchl(rs, mid + 1, r, p, v);
+//		}else{
+//			int L = searchl(rs, mid + 1, r, p, v);
+//			if(L == mid + 1) return searchl(ls, l, mid, p, v);
+//			return L;
+//		}
+//	}
+//}	
+//int searchr(int id, int l, int r, int p, int &v){
+//	if(l == r){
+//		if(v >= tr[id].sum){
+//			v += tr[id].sum;
+//			return l;
+//		}
+//		return l-1;
+//	}
+//	int mid = l + r >> 1;
+//	if(p > mid) return searchr(rs, mid+1, r, p, v);
+//	else {
+//		if(p <= l){
+//			if(v >= tr[ls].sl) {
+//				v += tr[ls].sum;
+//				return searchr(rs, mid + 1, r, p, v);
+//			}else return searchr(ls, l, mid, p, v);
+//		}else{
+//			int R = searchr(ls, l, mid, p, v);
+//			if(R == mid) return searchr(rs, mid + 1, r, p, v);
+//			return R;
+//		}
+//	}
+//}
+
+//void solve(){
+//	cin >> n >> k;
+//	vector<int>pre(n+5), ans(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		pre[i] = pre[i-1] + a[i];
+//	}
+//	build(1, 1, n);
+
+//	for(int i = 1;i <= n;i++){
+//		int L = i, R = i, tmp;
+
+//		if(L > 1)
+//		while(1){
+//			tmp = pre[R] - pre[L-1];
+//			L = searchl(1, 1, n, L-1, tmp);
+//			if(L == 1) break;
+//			if(R < n){
+//				int l = R, r = n, pos = R;
+//				while(l <= r){
+//					int mid = l + r >> 1;
+//					if(pre[mid] - pre[L-1] >= a[L-1]) pos = mid, r = mid - 1;
+//					else l = mid + 1;
+//				}
+//				l = pos;
+//				if(pre[l] - pre[L-1] < a[L-1]) break;
+//				tmp = pre[R] - pre[L-1];
+//				int mxr = searchr(1, 1, n, R+1, tmp);
+//				if(mxr < l) break;
+//				R = l;
+//			}else break;
+//		}
+
+//		if(L == 1){
+//			tmp = pre[R];
+//			int p = (R < n ? searchr(1, 1, n, R+1, tmp) : R);
+//			ans[R]++;
+//			ans[p+1]--;
+//		}
+//	}
+
+//	for(int i = 1;i <= n;i++) {
+//		ans[i] += ans[i-1];
+//		if(i >= k) cout << ans[i] << ' ';
+//	}
+//	cout << endl;
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
 #define all1(x) (x).begin()+1, (x).begin()+1+n
-
-const int inf = 1e9;
-const int N = 2e5 + 10;
-
-int n, a[N];
-
-struct node{
-	int sum, sl, sr;
-}tr[N<<2];
 #define ls id << 1
 #define rs id << 1 | 1
+ 
 
-node operator+(node l, node r) {
-	node ret;
-	ret.sum = l.sum + r.sum;
-	ret.sl = l.sl + max(0ll, r.sl - l.sum);
-	ret.sr = r.sl + max(0ll, l.sr - r.sum);
-	return ret;
-}
-
-void up(int id){
-	tr[id] = tr[ls] + tr[rs];
-}
-void build(int id, int l, int r){
-	if(l == r){
-		tr[id] = {a[l], a[l], a[l]};
-		return;
-	}
-	int mid = l + r >> 1;
-	build(ls, l, mid);
-	build(rs, mid + 1, r);
-	up(id);
-}
-node query(int id, int l, int r, int ql, int qr){
-	if(ql <= l && r <= qr) return tr[id];
-	int mid = l + r >> 1;
-	if(qr <= mid) return query(ls, l, mid, ql, qr);
-	else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
-	else return query(ls, l, mid, ql, qr) + query(rs, mid + 1, r, ql, qr);
-}
 
 void solve(){
-	int sum = 0, k;
-	cin >> n >> k;
-	vector<int>pre(n+5);
-	for(int i = 1;i <= n;i++){
-		cin >> a[i];
-		pre[i] = pre[i-1] + a[i];
-		sum += a[i];
-	}
-	build(1, 1, n);
-
-	int ans = 0;
-	for(int i = 1;i <= n;i++){
-		int q = i, p = i, s = a[i];
-
-		while(1){
-			int l, r, fg = 0;
-			if(q > 1){
-				l = 1, r = q-1;
-				while(l <= r){
-					int mid = l + r >> 1;
-					if(query(1, 1, n, mid, q-1).sr <= s) r = mid - 1;
-					else l = mid + 1;
-				}
-				if(l < q) {
-					fg = 1;
-					s += pre[q-1] - pre[l-1];
-					q = l;
-				}
-			}
-		//cerr << q << ' ' << p << ' ' << s << endl;
-			if(p < n){
-				l = p+1, r = n;
-				while(l <= r){
-					int mid = l + r >> 1;
-					if(query(1, 1, n, p+1, mid).sl <= s) l = mid + 1;
-					else r = mid - 1;
-				}
-				if(r > p) {
-					fg = 1;
-					s += pre[r] - pre[p];
-					p = r;
-				}
-			}
-		//cerr << q << ' ' << p << ' ' << s << endl;
-			if(!fg) break;
-		}
-		//cerr << endl;
-
-		ans += s == sum;
-
-	}
-
-	//cerr << query(1, 1, n, 2, 5).sl << endl;
-	//cerr << query(1, 1, n, 2, 4).sl << endl;
-	//cerr << query(1, 1, n, 2, 3).sl << endl;
-	//cerr << query(1, 1, n, 2, 2).sl << endl;
-
-	cout << ans << endl;
+	
 }	
 
 signed main(){
