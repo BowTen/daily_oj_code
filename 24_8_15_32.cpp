@@ -3655,9 +3655,110 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define all1(x) (x).begin()+1, (x).begin()+1+n
 
+const int inf = 1e15;
+using ll = long long;
 
 void solve() {
+	int n, m;
+	cin >> n;
+	vector<vector<array<int,2>>>p(n+5, vector<array<int,2>>(2));
+	for(int i = 1;i < n;i++){
+		for(int j = 0;j < 2;j++) cin >> p[i][j][0] >> p[i][j][1];
+	}
 
+	vector<array<array<array<int,2>,2>,20>>dis(n+5);
+
+	auto mov = [&](int x, int y, int u, int v) -> int {
+		return abs(x-u) + abs(y-v);
+	};
+	auto nxt = [&](int f1, int id, int x, int y) -> int {
+		auto [u, v] = p[f1][id];
+		if(id == 0) u++;
+		else v++;
+		int ret = mov(u, v, x, y) + 1;
+		if(id == 0) u--;
+		else v--;
+		
+		auto [uu, vv] = p[f1][id^1];
+		int tmp = mov(u, v, uu, vv);
+		if(id == 0) vv++;
+		else uu++;
+		ret = min(ret, tmp+1+mov(uu, vv, x, y));
+
+		return ret;
+	};
+	auto jump = [&](auto self, int f1, int f2, int id) -> int {
+	//auto jump = [&](auto self, int s, int g, int k1, int k2) -> int {
+		if(f1 == f2) return 0;
+		for(int i = 19;i >= 0;i--) if(f1+(1<<i) <= f2) {
+			int ne = f1+(1<<i);
+			return self(self, ne, f2, id) + dis[f1][i][id][id];
+			//int d[2] = {self(self, ne, f2, 0, y), self(self, ne, f2, 1, y)};
+			//return min(dis[f1][i][x][0]+d[0], dis[f1][i][x][1]+d[1]);
+		}
+		//assert(0);
+		//ll dp[2][2];
+		//dp[0][k1]=0;
+		//dp[0][k1^1]=mov(p[s][k1][0],p[s][k1][1],p[s][k1^1][0],p[s][k1^1][1]);
+		//int cur=s,pre=0,now=1;
+		//for(int i=19;i>=0;i--)//分解成多个区间
+		//	if (cur+(1<<i)<=g)
+		//	{
+		//		for(int k=0;k<2;k++)
+		//			dp[now][k]=min(dp[pre][0]+dis[cur][i][0][k],dp[pre][1]+dis[cur][i][1][k]);
+		//		cur += (1<<i);
+		//		swap(pre,now);
+		//	}
+		//return dp[pre][k2];
+	};
+	auto dist = [&](int x, int y, int u, int v) -> int {
+		int f1 = max(x, y), f2 = max(u, v);
+		if(f1 == f2) return mov(x, y, u, v);
+		if(f1 > f2){
+			swap(f1, f2);
+			swap(x, u);
+			swap(y, v);
+		}
+		if(f1 + 1 == f2) {
+			return min(mov(x, y, p[f1][0][0], p[f1][0][1]) + nxt(f1, 0, u, v),
+			 			mov(x, y, p[f1][1][0], p[f1][1][1]) + nxt(f1, 1, u, v));
+		}
+
+		f2--;
+		int mn = inf;
+		for(int i = 0;i < 2;i++){
+			int tmp = mov(x, y, p[f1][i][0], p[f1][i][1]) + jump(jump, f1, f2, i) + nxt(f2, i, u, v);
+			mn = min(mn, tmp);
+		}
+
+		return mn;
+	};
+
+	for(int i = 1;i < n;i++){
+		for(int x = 0;x < 2;x++){
+			for(int y = 0;y < 2;y++){
+				dis[i][0][x][y] = nxt(i, x, p[i+1][y][0], p[i+1][y][1]);
+			}
+		}
+	}
+	
+	for(int j = 1;j < 20;j++){
+		for(int i = 1;i <= n;i++){
+			for(int x = 0;x < 2;x++){
+				for(int y = 0;y < 2;y++) if(i+(1<<j) <= n) {
+					int ne = i+(1<<j);
+					dis[i][j][x][y] = dist(p[i][x][0],p[i][x][1],p[ne][y][0],p[ne][y][1]);
+				}
+			}
+		}
+	}
+
+	cin >> m;
+	while(m--){
+		int x1, y1, x2, y2;
+		cin >> x1 >> y1 >> x2 >> y2;
+		cout << dist(x1, y1, x2, y2) << endl;
+	}
 }
 
 signed main(){
