@@ -4891,3 +4891,88 @@
 
 //	return 0;
 //}
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define endl '\n'
+#define all(x) (x).begin(), (x).end()
+#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+int lowbit(int x){
+	return x & -x;
+}
+struct BIT{
+	vector<int>tr;
+	int N;
+	BIT(int n) : N(n+5), tr(n+5) {};
+	void add(int x){
+		while(x < N){
+			tr[x]++;
+			x += lowbit(x);
+		}
+	}
+	int getsum(int x){
+		int ret = 0;
+		while(x){
+			ret += tr[x];
+			x -= lowbit(x);
+		}
+		return ret;
+	}
+	int query(int l, int r) {
+		if(l > r) return 0;
+		return getsum(r) - getsum(l-1);
+	}
+};
+
+void solve() {
+	int n, k;
+	cin >> n >> k;
+	BIT L(n*2), R(n*2);
+	vector<vector<int>>a(n+5, vector<int>(n+5)), lid(n+5, vector<int>(n+5)), rid(n+5, vector<int>(n+5)), f(n+5, vector<int>(n+5));
+	vector<array<int,2>>id;
+	for(int i = 1;i <= n;i++){
+		for(int j = 1;j <= n;j++){
+			cin >> a[i][j];
+			id.push_back({i, j});
+			lid[i][j] = i+j-1;
+			rid[i][j] = i+(n-j);
+		}
+	}
+	sort(all(id), [&](array<int,2>i, array<int,2>j) -> int {
+		return a[i[0]][i[1]] > a[j[0]][j[1]];
+	});
+	for(auto [x, y] : id){
+		int l = lid[x][y] - k - 1, r = lid[x][y] + k + 1;
+		int s = 0;
+		s += L.query(1, l);
+		s += L.query(r, 2*n);
+		l = rid[x][y] - k - 1, r = rid[x][y] + k + 1;
+		s += R.query(1, l);
+		s += R.query(r, 2*n);
+		if(s == 0){
+			f[x][y] = 1;
+			L.add(lid[x][y]);
+			R.add(rid[x][y]);
+		}
+	}
+
+	for(int i = 1;i <= n;i++){
+		for(int j = 1;j <= n;j++){
+			if(f[i][j]) cout << 'M';
+			else cout << 'G';
+		}
+		cout << endl;
+	}
+}
+
+signed main(){
+
+	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+	int t = 1;
+	//cin >> t;
+	while(t--) solve();
+
+	return 0;
+}
