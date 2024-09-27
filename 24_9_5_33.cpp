@@ -2150,10 +2150,29 @@ using namespace std;
 #define int long long
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
-
-
+#define all1(x) (x).begin()+1, (x).end()+1+n
 
 void solve(){
+	int n, k, mx = 0, s = 0;
+	cin >> n >> k;
+	vector<int>a(n+5);
+	for(int i = 1;i <= n;i++){
+		cin >> a[i];
+		s += a[i];
+		mx = max(mx, a[i]);
+	}
+	if(s % mx == 0 || k >= (mx - (s % mx))){
+		cout << min(n, (s + k) / mx) << endl;
+		return;
+	}
+	for(int i = s/mx;i >= 1;i--){
+		int nd = i - (s % i);
+		if(k >= nd){
+			cout << i << endl;
+			return;
+		}
+	}
+	cout << 1 << endl;
 }
 
 signed main(){
