@@ -1971,56 +1971,189 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//using i128 = __int128_t;
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	vector<int>a(n+5), b(k+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	for(int i = 1;i <= k;i++) cin >> b[i];
+//	sort(a.begin()+1, a.begin()+1+n);
+
+//	auto check = [&](int x) -> int {
+//		vector<i128>c(n+5), b2(k+5);
+//		for(int i = 1;i <= k;i++) b2[i] = b[i];
+//		for(int i = 1;i <= n;i++) {
+//			c[i] = a[i];
+//			c[i] *= x;
+//		}
+
+//		for(int i = k;i >= 1 && c[n] > 0;i--){
+//			for(int j = n;j >= 1;j--){
+//				i128 tmp = c[j] / (1<<(i-1));
+//				tmp = min(tmp, b2[i]);
+//				c[j] -= tmp * (1<<(i-1));
+//				b2[i] -= tmp;
+//			}
+//			sort(c.begin()+1, c.begin()+1+n);
+//			if(b2[i]){
+//				for(int j = n;j >= 1 && b2[i] > 0;j--) {
+//					c[j] = 0;
+//					b2[i]--;
+//				}
+//				sort(c.begin()+1, c.begin()+1+n);
+//			}
+//		}
+//		return c[n] <= 0;
+//	};
+
+//	int l = 0, r = 1e16;
+//	while(l <= r){
+//		int mid = l + r >> 1;
+//		if(check(mid)) l = mid + 1;
+//		else r = mid - 1;
+//	}
+//	cout << r << endl;
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) {
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+
+//using i128 = __int128_t;
+
+//const int inf = 1e12;
+
+//array<int,2> fun(int k, int x){
+//	int s = k*(k+1)/2;
+//	if(s > x) return {1, 0};
+//	int l = 1, r = k;
+//	int tmp = (x - s) / k;
+//	s += tmp * k;
+//	l += tmp, r += tmp;
+//	if(s < x) r++;
+//	return {l, r};
+//}
+//string tos(i128 x){
+//	string s;
+//	if(x == 0) s = "0";
+//	while(x){
+//		s.push_back('0' + x % 10);
+//		x /= 10;
+//	}
+//	reverse(all(s));
+//	return s;
+//}
+
+//void solve(){
+//	int n, bd = 0;
+//	cin >> n;
+//	vector<array<int,2>>a1, a2;
+//	for(int i = 1, t, k, x;i <= n;i++){
+//		cin >> t >> k >> x;
+//		auto p = fun(k, x);
+//		if(p[0] <= p[1]){ 
+//			if(t == 1) a1.push_back(p);
+//			else a2.push_back(p);
+//		}else{
+//			if(t == 1) bd = 1;
+//		}
+//	}
+//	if(bd){
+//		cout << 0 << endl;
+//		return;
+//	}
+
+//	int L = inf, R = -inf;
+//	for(auto [l, r] : a1){
+//		L = min(L, l);
+//		R = max(R, r);
+//	}
+
+//	int rr = inf, ll = 0;
+//	vector<array<int,2>>e;
+//	for(auto [l, r] : a2){
+//		if(L <= l && r <= R) {
+//			bd = 1;
+//			continue;
+//		}
+//		if(l < L && r > R){
+//			continue;
+//		}
+//		if(r > R) rr = min(rr, r);
+//		if(l < L) ll = max(ll, l);
+//	}
+//	if(bd){
+//		cout << 0 << endl;
+//		return;
+//	}
+//	if(rr == inf){
+//		cout << -1 << endl;
+//		return;
+//	}
+
+//	for(auto [l, r] : a2) if(l < L && r > R && l > ll && r < rr) e.push_back({l, r});
+//	e.push_back({ll, rr});
+//	sort(all(e), [&](array<int,2>a, array<int,2>b) -> int {
+//		if(a[0] == b[0]) return a[1] < b[1];
+//		return a[0] > b[0];
+//	});
+
+//	int ans = 0;
+//	int las = L;
+//	for(auto [l, r] : e){
+//		ans += (rr - R) * (las - l);
+//		las = l;
+//		rr = min(rr, r);
+//	}
+//	cout << ans << endl;
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) {
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
 
-using i128 = __int128_t;
+
 
 void solve(){
-	int n, k;
-	cin >> n >> k;
-	vector<int>a(n+5), b(k+5);
-	for(int i = 1;i <= n;i++) cin >> a[i];
-	for(int i = 1;i <= k;i++) cin >> b[i];
-	sort(a.begin()+1, a.begin()+1+n);
-
-	auto check = [&](int x) -> int {
-		vector<i128>c(n+5), b2(k+5);
-		for(int i = 1;i <= k;i++) b2[i] = b[i];
-		for(int i = 1;i <= n;i++) {
-			c[i] = a[i];
-			c[i] *= x;
-		}
-
-		for(int i = k;i >= 1 && c[n] > 0;i--){
-			for(int j = n;j >= 1;j--){
-				i128 tmp = c[j] / (1<<(i-1));
-				tmp = min(tmp, b2[i]);
-				c[j] -= tmp * (1<<(i-1));
-				b2[i] -= tmp;
-			}
-			sort(c.begin()+1, c.begin()+1+n);
-			if(b2[i]){
-				for(int j = n;j >= 1 && b2[i] > 0;j--) {
-					c[j] = 0;
-					b2[i]--;
-				}
-				sort(c.begin()+1, c.begin()+1+n);
-			}
-		}
-		return c[n] <= 0;
-	};
-
-	int l = 0, r = 1e16;
-	while(l <= r){
-		int mid = l + r >> 1;
-		if(check(mid)) l = mid + 1;
-		else r = mid - 1;
-	}
-	cout << r << endl;
 }
 
 signed main(){
