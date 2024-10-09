@@ -4201,6 +4201,250 @@
 //}
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 1e6 + 10;
+//const int MAXN = N*2;
+//const int CHAR_NUM = 26;
+
+//struct GSA {
+//  	int len[MAXN];             // 节点长度
+//  	int link[MAXN];            // 后缀链接，link
+//  	int next[MAXN][CHAR_NUM];  // 转移
+//  	int tot;                   // 节点总数：[0, tot)
+
+//  	GSA() {
+//  		tot = 1;
+//  		link[0] = -1;
+//  	}
+
+//  	int insertSAM(int last, int c) {
+//  	  	int cur = next[last][c];
+//  	  	len[cur] = len[last] + 1;
+//  	  	int p = link[last];
+//  	  	while (p != -1) {
+//  	  	  	if (!next[p][c])
+//  	  	  	  	next[p][c] = cur;
+//  	  	  	else
+//  	  	  	  	break;
+//  	  	  	p = link[p];
+//  	  	}
+//  	  	if (p == -1) {
+//  	  	  	link[cur] = 0;
+//  	  	  	return cur;
+//  	  	}
+//  	  	int q = next[p][c];
+//  	  	if (len[p] + 1 == len[q]) {
+//  	  	  	link[cur] = q;
+//  	  	  	return cur;
+//  	  	}
+//  	  	int clone = tot++;
+//  	  	for (int i = 0; i < CHAR_NUM; ++i)
+//  	  	  	next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;
+//  	  	len[clone] = len[p] + 1;
+//  	  	while (p != -1 && next[p][c] == q) {
+//  	  	  	next[p][c] = clone;
+//  	  	  	p = link[p];
+//  	  	}
+//  	  	link[clone] = link[q];
+//  	  	link[cur] = clone;
+//  	  	link[q] = clone;
+//  	  	return cur;
+//  	}
+
+//	void insert(string s){
+//		int p = 0;
+//		for(int i = 0;i < s.size();i++){
+//			int c = s[i] - 'a';
+//			if(!next[p][c]) next[p][c] = tot++;
+//			p = next[p][c];
+//		}
+//	}
+
+//  	void build() {
+//  	  	queue<pair<int, int>> q;
+//  	  	for (int i = 0; i < 26; ++i)
+//  	  	  	if (next[0][i]) q.push({i, 0});
+//  	  	while (!q.empty()) {
+//  	  	  	auto item = q.front();
+//  	  	  	q.pop();
+//  	  	  	auto last = insertSAM(item.second, item.first);
+//  	  	  	for (int i = 0; i < 26; ++i)
+//  	  	  	  	if (next[last][i]) q.push({i, last});
+//  	  	}
+//  	}
+
+//	int getsum(){
+//		int s = 0;
+//		for(int i = 1;i < tot;i++) {
+//			s += len[i] - len[link[i]];
+//		}
+//		return s;
+//	}
+//}exSAM;
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<string>s(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> s[i];
+//		exSAM.insert(s[i]);
+//	}
+//	exSAM.build();
+//	cout << exSAM.getsum() << endl;
+//	cout << exSAM.tot << endl;
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	for(int i = 1;i <= t;i++) {
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int N = 1e5 + 10;
+//const int MAXN = N*40;
+//const int CHAR_NUM = 10;
+
+//struct GSA {
+//  	int len[MAXN];             // 节点长度
+//  	int link[MAXN];            // 后缀链接，link
+//  	int next[MAXN][CHAR_NUM];  // 转移
+//  	int tot;                   // 节点总数：[0, tot)
+
+//  	GSA() {
+//  		tot = 1;
+//  		link[0] = -1;
+//  	}
+
+//  	int insertSAM(int last, int c) {
+//  	  	int cur = next[last][c];
+//  	  	len[cur] = len[last] + 1;
+//  	  	int p = link[last];
+//  	  	while (p != -1) {
+//  	  	  	if (!next[p][c])
+//  	  	  	  	next[p][c] = cur;
+//  	  	  	else
+//  	  	  	  	break;
+//  	  	  	p = link[p];
+//  	  	}
+//  	  	if (p == -1) {
+//  	  	  	link[cur] = 0;
+//  	  	  	return cur;
+//  	  	}
+//  	  	int q = next[p][c];
+//  	  	if (len[p] + 1 == len[q]) {
+//  	  	  	link[cur] = q;
+//  	  	  	return cur;
+//  	  	}
+//  	  	int clone = tot++;
+//  	  	for (int i = 0; i < CHAR_NUM; ++i)
+//  	  	  	next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;
+//  	  	len[clone] = len[p] + 1;
+//  	  	while (p != -1 && next[p][c] == q) {
+//  	  	  	next[p][c] = clone;
+//  	  	  	p = link[p];
+//  	  	}
+//  	  	link[clone] = link[q];
+//  	  	link[cur] = clone;
+//  	  	link[q] = clone;
+//  	  	return cur;
+//  	}
+
+//	void insert(string s){
+//		int p = 0;
+//		for(int i = 0;i < s.size();i++){
+//			int c = s[i] - 'a';
+//			p = insert(p, c);
+//		}
+//	}
+
+//	int insert(int p, int c){
+//		if(!next[p][c]) next[p][c] = tot++;
+//		return next[p][c];
+//	}
+
+//  	void build() {
+//  	  	queue<pair<int, int>> q;
+//  	  	for (int i = 0; i < CHAR_NUM; ++i)
+//  	  	  	if (next[0][i]) q.push({i, 0});
+//  	  	while (!q.empty()) {
+//  	  	  	auto item = q.front();
+//  	  	  	q.pop();
+//  	  	  	auto last = insertSAM(item.second, item.first);
+//  	  	  	for (int i = 0; i < CHAR_NUM; ++i)
+//  	  	  	  	if (next[last][i]) q.push({i, last});
+//  	  	}
+//  	}
+
+//	int getsum(){
+//		int s = 0;
+//		for(int i = 1;i < tot;i++) {
+//			s += len[i] - len[link[i]];
+//		}
+//		return s;
+//	}
+//}exSAM;
+
+
+//void solve(){
+//	int n, c;
+//	cin >> n >> c;
+//	vector<int>col(n+5);
+//	vector<vector<int>>g(n+5);
+//	for(int i = 1;i <= n;i++) cin >> col[i];
+//	for(int i = 1, u, v;i < n;i++){
+//		cin >> u >> v;
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+
+//	auto dfs = [&](auto self, int u, int fa, int fid) -> void {
+//		int id = exSAM.insert(fid, col[u]);
+//		for(auto v : g[u]) if(v != fa) {
+//			self(self, v, u, id);
+//		}
+//	};
+//	for(int i = 1;i <= n;i++) if(g[i].size() == 1) {
+//		dfs(dfs, i, 0, 0);
+//	}
+
+//	exSAM.build();
+//	cout << exSAM.getsum() << endl;
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	for(int i = 1;i <= t;i++) {
+//		solve();
+//	}
+
+//	return 0;
+//}
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -4208,16 +4452,99 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define all1(x) (x).begin()+1, (x).begin()+1+n
 
+using ll = long long;
+using i128 = __int128_t;
+//#define int i128
+
+const int mod = 998244353;
+const int N = 3;
+
+struct Mat{
+	int f[N][N];
+	int n, m;
+	Mat(int _n, int _m) : n(_n), m(_m) {
+		for(int i = 1;i <= n;i++){
+			for(int j = 1;j <= m;j++) f[i][j] = 0;
+		}
+	}
+	int* operator[](int r){
+		return f[r];
+	}
+	void init(){
+		for(int i = 1;i <= n;i++){
+			f[i][i] = 1;
+		}
+	}
+};
+Mat operator*(Mat a, Mat b){
+	Mat c(a.n, b.m);
+	for(int i = 1;i <= c.n;i++){
+		for(int j = 1;j <= c.m;j++){
+			for(int k = 1;k <= a.m;k++){
+				(c[i][j] += a[i][k] * b[k][j] % mod) %= mod;
+			}
+		}
+	}
+	return c;
+}
+
+Mat qpow(Mat a, int b){
+	Mat ret(a.n, a.n);
+	ret.init();
+	while(b){
+		if(b & 1) ret = ret * a;
+		a = a * a;
+		b >>= 1;
+	}
+	return ret;
+}
+
+int qpow(int a, int b){
+	int ret = 1;
+	while(b){
+		if(b & 1) ret = ret * a % mod;
+		a = a * a % mod;
+		b >>= 1;
+	}
+	return ret;
+}
+
+int mul(int a, int b){
+	return a * b % mod;
+}
+int add(int a, int b){
+	return (a + b) % mod;
+}
+int dv(int a, int b){
+	return add((a - b) % mod, mod);
+}
+int chu(int a, int b){
+	return a * qpow(b, mod-2) % mod;
+}
 
 void solve(){
+	ll cn, cm;
+	cin >> cn >> cm;
+	int n = cn, m = cm;
+	n %= mod;
+	//m %= mod;
+	Mat op(2, 2), u(1, 2);
+	u[1][1] = 1;
+	op[1][1] = chu( dv(n*n%mod, 2*n%mod) + 2, n*n%mod );
+	op[2][1] = chu( 2, n*n%mod );
+	op[1][2] = dv(1, op[1][1]);
+	op[2][2] = dv(1, op[2][1]);
 
+	op = qpow(op, m);
+	u = u * op;
+	cout << (ll)(u[1][2] * n % mod) << endl;
 }	
 
 signed main(){
 
 	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-	int t = 1;
-	//cin >> t;
+	ll t = 1;
+	cin >> t;
 	for(int i = 1;i <= t;i++) {
 		solve();
 	}
