@@ -4445,6 +4445,254 @@
 //	return 0;
 //}
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//using ll = long long;
+//using i128 = __int128_t;
+////#define int i128
+
+//const int mod = 998244353;
+//const int N = 3;
+
+//struct Mat{
+//	int f[N][N];
+//	int n, m;
+//	Mat(int _n, int _m) : n(_n), m(_m) {
+//		for(int i = 1;i <= n;i++){
+//			for(int j = 1;j <= m;j++) f[i][j] = 0;
+//		}
+//	}
+//	int* operator[](int r){
+//		return f[r];
+//	}
+//	void init(){
+//		for(int i = 1;i <= n;i++){
+//			f[i][i] = 1;
+//		}
+//	}
+//};
+//Mat operator*(Mat a, Mat b){
+//	Mat c(a.n, b.m);
+//	for(int i = 1;i <= c.n;i++){
+//		for(int j = 1;j <= c.m;j++){
+//			for(int k = 1;k <= a.m;k++){
+//				(c[i][j] += a[i][k] * b[k][j] % mod) %= mod;
+//			}
+//		}
+//	}
+//	return c;
+//}
+
+//Mat qpow(Mat a, int b){
+//	Mat ret(a.n, a.n);
+//	ret.init();
+//	while(b){
+//		if(b & 1) ret = ret * a;
+//		a = a * a;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+
+//int qpow(int a, int b){
+//	int ret = 1;
+//	while(b){
+//		if(b & 1) ret = ret * a % mod;
+//		a = a * a % mod;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+
+//int mul(int a, int b){
+//	return a * b % mod;
+//}
+//int add(int a, int b){
+//	return (a + b) % mod;
+//}
+//int dv(int a, int b){
+//	return add((a - b) % mod, mod);
+//}
+//int chu(int a, int b){
+//	return a * qpow(b, mod-2) % mod;
+//}
+
+//void solve(){
+//	ll cn, cm;
+//	cin >> cn >> cm;
+//	int n = cn, m = cm;
+//	n %= mod;
+//	//m %= mod;
+//	Mat op(2, 2), u(1, 2);
+//	u[1][1] = 1;
+//	op[1][1] = chu( dv(n*n%mod, 2*n%mod) + 2, n*n%mod );
+//	op[2][1] = chu( 2, n*n%mod );
+//	op[1][2] = dv(1, op[1][1]);
+//	op[2][2] = dv(1, op[2][1]);
+
+//	op = qpow(op, m);
+//	u = u * op;
+//	cout << (ll)(u[1][2] * n % mod) << endl;
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	ll t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) {
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5), ans(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	sort(all1(a));
+
+//	vector<list<int>>ls(n+5);
+//	list<int>t;
+//	for(int i = 1;i <= n;i++) t.push_back(a[i]);
+//	ls[1] = t;
+
+//	int p = 1, fg = 0, sum = n;
+//	auto it = ls[1].begin();
+//	ans[1] = n;
+//	for(int i = 2;i <= n;i++){
+//		if(!fg){
+//			int tmp = 0;
+//			while(1){
+//				tmp++;
+//				if(tmp >= *it){
+//					it++;
+//					break;
+//				}
+//				it++;
+//			}
+//			tmp = ls[p].size() - tmp;
+//			if(tmp < ls[p].back()){
+//				fg = 1;
+//			}else{
+//				ls[p+1].splice(ls[p+1].end(), ls[p], it, ls[p].end());
+//				p++;
+//				it = ls[p].begin(); //
+//			}
+//		}
+//		//cerr << i << ' ' << fg << ' ' << p << ' ' << sum << ' ' << ls[p].size() << endl;
+//		if(fg){
+//			ls[p].pop_back();
+//			sum--;
+//			if(ls[p].back() > ls[p].size()){
+//				while(ls[p].size() && ls[p].size() < ls[p].back()){
+//					ls[p].pop_back();
+//					sum--;
+//					if(p > 1){
+//						p--;
+//						ls[p].splice(ls[p].end(), ls[p+1]);
+//					}
+//				}
+//			}
+//		}
+//		ans[i] = sum;
+//		if(sum == 0) break;
+//	}
+
+//	int q;
+//	cin >> q;
+//	while(q--){
+//		int x;
+//		cin >> x;
+//		cout << ans[x] << endl;
+//	}
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	for(int i = 1;i <= t;i++) {
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	sort(all1(a));
+
+//	vector<int>f(n+5), mx(n+5), ans(n+5);
+//	int l = 1, p = 1, cnt = 1;
+//	for(int i = 1;i <= n;i++){
+//		if(i-a[i] < 0){
+//			f[i] = i-a[i]+1;
+//		}else{
+//			f[i] = mx[i-a[i]] + 1;
+//		}
+//		mx[i] = max({mx[i], f[i], mx[i-1]});
+//		f[i] += n-i;
+//		ans[f[i]] = max(ans[f[i]], i);
+//		//cerr << f[i] << endl;
+//	}
+//	ans[1] = n;
+//	for(int i = n;i >= 1;i--) ans[i] = max(ans[i], ans[i+1]);
+
+//	int q;
+//	cin >> q;
+//	while(q--){
+//		int x;
+//		cin >> x;
+//		cout << ans[x] << endl;
+//	}
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	for(int i = 1;i <= t;i++) {
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -4452,98 +4700,89 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define all1(x) (x).begin()+1, (x).begin()+1+n
 
-using ll = long long;
-using i128 = __int128_t;
-//#define int i128
+const int inf = 1e9;
+const int N = 1010;
 
-const int mod = 998244353;
-const int N = 3;
-
-struct Mat{
-	int f[N][N];
-	int n, m;
-	Mat(int _n, int _m) : n(_n), m(_m) {
-		for(int i = 1;i <= n;i++){
-			for(int j = 1;j <= m;j++) f[i][j] = 0;
+int sq[N];
+vector<array<int,2>> getfac(int x){
+	vector<array<int,2>>f;
+	for(int i = 2;i <= x;i++) if(x % i == 0) {
+		int cnt = 0;
+		while(x % i == 0){
+			cnt++;
+			x /= i;
 		}
+		f.push_back({i, cnt});
 	}
-	int* operator[](int r){
-		return f[r];
-	}
-	void init(){
-		for(int i = 1;i <= n;i++){
-			f[i][i] = 1;
+	return f;
+}
+void init(){
+	sq[1] = 1;
+	for(int i = 2;i < N;i++){
+		auto f = getfac(i);
+		int x = 1;
+		for(auto [num, cnt] : f){
+			cnt = (cnt + 1) / 2;
+			for(int j = 1;j <= cnt;j++) x *= num;
 		}
+		sq[i] = x;
 	}
-};
-Mat operator*(Mat a, Mat b){
-	Mat c(a.n, b.m);
-	for(int i = 1;i <= c.n;i++){
-		for(int j = 1;j <= c.m;j++){
-			for(int k = 1;k <= a.m;k++){
-				(c[i][j] += a[i][k] * b[k][j] % mod) %= mod;
-			}
-		}
-	}
-	return c;
-}
-
-Mat qpow(Mat a, int b){
-	Mat ret(a.n, a.n);
-	ret.init();
-	while(b){
-		if(b & 1) ret = ret * a;
-		a = a * a;
-		b >>= 1;
-	}
-	return ret;
-}
-
-int qpow(int a, int b){
-	int ret = 1;
-	while(b){
-		if(b & 1) ret = ret * a % mod;
-		a = a * a % mod;
-		b >>= 1;
-	}
-	return ret;
-}
-
-int mul(int a, int b){
-	return a * b % mod;
-}
-int add(int a, int b){
-	return (a + b) % mod;
-}
-int dv(int a, int b){
-	return add((a - b) % mod, mod);
-}
-int chu(int a, int b){
-	return a * qpow(b, mod-2) % mod;
 }
 
 void solve(){
-	ll cn, cm;
-	cin >> cn >> cm;
-	int n = cn, m = cm;
-	n %= mod;
-	//m %= mod;
-	Mat op(2, 2), u(1, 2);
-	u[1][1] = 1;
-	op[1][1] = chu( dv(n*n%mod, 2*n%mod) + 2, n*n%mod );
-	op[2][1] = chu( 2, n*n%mod );
-	op[1][2] = dv(1, op[1][1]);
-	op[2][2] = dv(1, op[2][1]);
+	int n, k;
+	cin >> n >> k;
+	vector<int>a(n+5);
+	for(int i = 1;i <= n;i++) cin >> a[i];
+	vector<vector<int>>g(n+5);
+	for(int i = 1, u, v;i < n;i++){
+		cin >> u >> v;
+		g[u].push_back(v);
+		g[v].push_back(u);
+	}
 
-	op = qpow(op, m);
-	u = u * op;
-	cout << (ll)(u[1][2] * n % mod) << endl;
+	if(k == 0){
+		cout << a[1] << endl;
+		return;
+	}
+
+	vector<int>gc(n+5);
+	auto dfs0 = [&](auto self, int u, int fa) -> void {
+		gc[u] = a[u];
+		for(auto v : g[u]) if(v != fa) {
+			self(self, v, u);
+			gc[u] = gcd(gc[u], gc[v]);
+		}
+	};
+	dfs0(dfs0, 1, 0);
+
+	auto dfs = [&](auto self, int u, int fa, int d) -> int {
+		//cerr << u << ' ' << gc[u] << ' ' << d << endl;
+		if(gc[u] % d == 0) return 0;
+		if(a[u] % d) return inf;
+		int ret = 0;
+		for(auto v : g[u]) if(v != fa && gc[v] % d){
+			ret += self(self, v, u, sq[d]) + 1;
+		}
+		return ret;
+	};
+
+
+	for(int i = a[1];i >= 1;i--) if(a[1] % i == 0) {
+		int ret = dfs(dfs, 1, 0, i) + 1;
+		//cerr << i << ' ' << ret << endl;
+		if(ret <= k){
+			cout << a[1] * i << endl;
+			return;
+		}
+	}
 }	
 
 signed main(){
 
 	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-	ll t = 1;
+	init();
+	int t = 1;
 	cin >> t;
 	for(int i = 1;i <= t;i++) {
 		solve();
