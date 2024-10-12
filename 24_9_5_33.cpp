@@ -4693,6 +4693,106 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define endl '\n'
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int inf = 1e9;
+//const int N = 1010;
+
+//int sq[N];
+//vector<array<int,2>> getfac(int x){
+//	vector<array<int,2>>f;
+//	for(int i = 2;i <= x;i++) if(x % i == 0) {
+//		int cnt = 0;
+//		while(x % i == 0){
+//			cnt++;
+//			x /= i;
+//		}
+//		f.push_back({i, cnt});
+//	}
+//	return f;
+//}
+//void init(){
+//	sq[1] = 1;
+//	for(int i = 2;i < N;i++){
+//		auto f = getfac(i);
+//		int x = 1;
+//		for(auto [num, cnt] : f){
+//			cnt = (cnt + 1) / 2;
+//			for(int j = 1;j <= cnt;j++) x *= num;
+//		}
+//		sq[i] = x;
+//	}
+//}
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	vector<vector<int>>g(n+5);
+//	for(int i = 1, u, v;i < n;i++){
+//		cin >> u >> v;
+//		g[u].push_back(v);
+//		g[v].push_back(u);
+//	}
+
+//	if(k == 0){
+//		cout << a[1] << endl;
+//		return;
+//	}
+
+//	vector<int>gc(n+5);
+//	auto dfs0 = [&](auto self, int u, int fa) -> void {
+//		gc[u] = a[u];
+//		for(auto v : g[u]) if(v != fa) {
+//			self(self, v, u);
+//			gc[u] = gcd(gc[u], gc[v]);
+//		}
+//	};
+//	dfs0(dfs0, 1, 0);
+
+//	auto dfs = [&](auto self, int u, int fa, int d) -> int {
+//		//cerr << u << ' ' << gc[u] << ' ' << d << endl;
+//		if(gc[u] % d == 0) return 0;
+//		if(a[u] % d) return inf;
+//		int ret = 0;
+//		for(auto v : g[u]) if(v != fa && gc[v] % d){
+//			ret += self(self, v, u, sq[d]) + 1;
+//		}
+//		return ret;
+//	};
+
+
+//	for(int i = a[1];i >= 1;i--) if(a[1] % i == 0) {
+//		int ret = dfs(dfs, 1, 0, i) + 1;
+//		//cerr << i << ' ' << ret << endl;
+//		if(ret <= k){
+//			cout << a[1] * i << endl;
+//			return;
+//		}
+//	}
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	init();
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) {
+//		solve();
+//	}
+
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -4700,88 +4800,99 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define all1(x) (x).begin()+1, (x).begin()+1+n
 
-const int inf = 1e9;
-const int N = 1010;
-
-int sq[N];
-vector<array<int,2>> getfac(int x){
-	vector<array<int,2>>f;
-	for(int i = 2;i <= x;i++) if(x % i == 0) {
-		int cnt = 0;
-		while(x % i == 0){
-			cnt++;
-			x /= i;
-		}
-		f.push_back({i, cnt});
-	}
-	return f;
-}
-void init(){
-	sq[1] = 1;
-	for(int i = 2;i < N;i++){
-		auto f = getfac(i);
-		int x = 1;
-		for(auto [num, cnt] : f){
-			cnt = (cnt + 1) / 2;
-			for(int j = 1;j <= cnt;j++) x *= num;
-		}
-		sq[i] = x;
-	}
-}
+const int inf = 1e15;
 
 void solve(){
-	int n, k;
-	cin >> n >> k;
-	vector<int>a(n+5);
-	for(int i = 1;i <= n;i++) cin >> a[i];
-	vector<vector<int>>g(n+5);
-	for(int i = 1, u, v;i < n;i++){
-		cin >> u >> v;
-		g[u].push_back(v);
-		g[v].push_back(u);
-	}
-
-	if(k == 0){
-		cout << a[1] << endl;
-		return;
-	}
-
-	vector<int>gc(n+5);
-	auto dfs0 = [&](auto self, int u, int fa) -> void {
-		gc[u] = a[u];
-		for(auto v : g[u]) if(v != fa) {
-			self(self, v, u);
-			gc[u] = gcd(gc[u], gc[v]);
+	int n, m;
+	cin >> n >> m;
+	vector<vector<int>>a(n+5, vector<int>(m+5)), f(n+5, vector<int>(m+5, -inf)), g(n+5, vector<int>(m+5, -inf));
+	vector<vector<int>>pre(n+5, vector<int>(m+5)), pmx(n+5, vector<int>(m+5)), smx(n+5, vector<int>(m+5));
+	for(int i = 1;i <= n;i++){
+		for(int j = 1;j <= m;j++){
+			cin >> a[i][j];
+			pre[i][j] = pre[i][j-1] + a[i][j];
 		}
-	};
-	dfs0(dfs0, 1, 0);
-
-	auto dfs = [&](auto self, int u, int fa, int d) -> int {
-		//cerr << u << ' ' << gc[u] << ' ' << d << endl;
-		if(gc[u] % d == 0) return 0;
-		if(a[u] % d) return inf;
-		int ret = 0;
-		for(auto v : g[u]) if(v != fa && gc[v] % d){
-			ret += self(self, v, u, sq[d]) + 1;
+		int s = 0;
+		for(int j = 1;j <= m;j++){
+			s = max(0ll, s + a[i][j]);
+			pmx[i][j] = max(pmx[i][j], s);
 		}
-		return ret;
-	};
-
-
-	for(int i = a[1];i >= 1;i--) if(a[1] % i == 0) {
-		int ret = dfs(dfs, 1, 0, i) + 1;
-		//cerr << i << ' ' << ret << endl;
-		if(ret <= k){
-			cout << a[1] * i << endl;
-			return;
+		s = 0;
+		for(int j = m;j >= 1;j--){
+			s = max(0ll, s + a[i][j]);
+			smx[i][j] = max(smx[i][j], s);
 		}
 	}
+
+	int s = 0;
+	for(int i = 1;i <= m;i++){
+		s += a[1][i];
+		f[1][i] = s;
+		s = max(0ll, s);
+	}
+	s = 0;
+	for(int i = m;i >= 1;i--){
+		s += a[1][i];
+		g[1][i] = s;
+		s = max(0ll, s);
+	}
+
+	f[0] = g[0] = vector<int>(m+5);
+	for(int i = 2;i <= n;i++){
+		int rmx = -inf, lmx = -inf, rd = 0, ld = 0;
+		for(int j = 2;j <= m;j++){
+			rd += a[i][j];
+			int tmp = f[i-1][j-1] + (pre[i][j] - pre[i][j-2]) + pmx[i][j-2] - rd;
+			rmx = max(rmx, tmp);
+			f[i][j] = rmx + rd;
+
+			ld += a[i][j];
+			tmp = g[i-1][j] + (pre[i][j] - pre[i][j-2]) + pmx[i][j-2] - ld;
+			lmx = max(lmx, tmp);
+			f[i][j] = max(f[i][j], lmx + ld);
+			//cerr << rmx << ' ';
+		}
+		//cerr << endl;
+		rmx = lmx = -inf;
+		rd = ld = 0;
+		for(int j = m-1;j >= 1;j--){
+			rd += a[i][j];
+			int tmp = f[i-1][j] + (pre[i][j+1] - pre[i][j-1]) + smx[i][j+2] - rd;
+			rmx = max(rmx, tmp);
+			g[i][j] = rmx + rd;
+
+			ld += a[i][j];
+			tmp = g[i-1][j+1] + (pre[i][j+1] - pre[i][j-1]) + smx[i][j+2] - ld;
+			lmx = max(lmx, tmp);
+			g[i][j] = max(g[i][j], lmx + ld);
+			//cerr << rmx << " " << lmx << "  ";
+		}
+		//cerr << endl;
+
+	}
+	//	cerr << endl;
+	//for(int i = 1;i <= n;i++){
+	//	for(int j = 1;j <= m;j++){
+	//		cerr << f[i][j] << ' ';
+	//	}
+	//	cerr << endl;
+	//}
+	//cerr << endl;
+	//for(int i = 1;i <= n;i++){
+	//	for(int j = 1;j <= m;j++){
+	//		cerr << g[i][j] << ' ';
+	//	}
+	//	cerr << endl;
+	//}
+
+	int ans = -inf;
+	for(int i = 1;i <= m;i++) ans = max(ans, f[n][i]);
+	cout << ans << endl;
 }	
 
 signed main(){
 
 	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-	init();
 	int t = 1;
 	cin >> t;
 	for(int i = 1;i <= t;i++) {
