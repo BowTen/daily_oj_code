@@ -3427,101 +3427,414 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+
+//const int mod = 998244353;
+//const int N = 2e5 + 10;
+//int fac[N], inv[N];
+
+//int qpow(int a, int b){
+//	int ret = 1;
+//	while(b){
+//		if(b & 1) ret = ret * a % mod;
+//		a = a * a % mod;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+//void init(){
+//	fac[0] = inv[0] = 1;
+//	for(int i = 1;i < N;i++) fac[i] = fac[i-1] * i % mod;
+//	inv[N-1] = qpow(fac[N-1], mod-2);
+//	for(int i = N-2;i >= 1;i--) inv[i] = inv[i+1] * (i+1) % mod;
+//}
+//int C(int a, int b) {
+//	return (fac[a] * inv[a-b] % mod) * inv[b] % mod;
+//}
+
+//int jian(int a, int b){
+//	a -= b;
+//	while(a < 0) a += mod;
+//	return a;
+//}
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5), c(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		c[a[i]]++;
+//	}
+
+//	int me = 0;
+//	while(c[me]) me++;
+
+//	vector<vector<int>>f(me+5), g(me+5), pf(me+5), pg(me+5);
+//	for(int i = 0;i <= me;i++){
+//		f[i].resize(c[i]+1);
+//		pf[i].resize(c[i]+1);
+//		g[i].resize(c[i]+1);
+//		pg[i].resize(c[i]+1);
+//	}
+//	pg[me][0] = g[me][0] = 1;
+
+//	for(int i = me-1;i >= 0;i--){
+//		for(int j = 0;j <= c[i];j++){
+//			int j2 = min(j, c[i+1]);
+//			f[i][j] = (pf[i+1][j2] + pg[i+1][j2]*j % mod) % mod;
+//			if(c[i+1] > j){
+//				int dpg = jian(pg[i+1][c[i+1]], pg[i+1][j]);
+//				(f[i][j] += (dpg*f[i+1][j]%mod + dpg*j%mod) % mod) %= mod;
+//			}
+//			g[i][j] = pg[i+1][j2];
+//			(f[i][j] *= C(c[i], j)) %= mod;
+//			(g[i][j] *= C(c[i], j)) %= mod;
+//		}
+//		pf[i][0] = f[i][0];
+//		pg[i][0] = g[i][0];
+//		for(int j = 1;j <= c[i];j++){
+//			pf[i][j] = (pf[i][j-1] + f[i][j]) % mod;
+//			pg[i][j] = (pg[i][j-1] + g[i][j]) % mod;
+//		}
+//	}
+
+//	for(int i = me-1;i >= 0;i--){
+//		cerr << i << " : ";
+//		for(int j = 0;j <= c[i];j++) cerr << f[i][j] << ' ';
+//		cerr << '\n';
+//	}
+//	for(int i = me-1;i >= 0;i--){
+//		cerr << i << " : ";
+//		for(int j = 0;j <= c[i];j++) cerr << pf[i][j] << ' ';
+//		cerr << '\n';
+//	}
+//	for(int i = me-1;i >= 0;i--){
+//		cerr << i << " : ";
+//		for(int j = 0;j <= c[i];j++) cerr << g[i][j] << ' ';
+//		cerr << '\n';
+//	}
+//	for(int i = me-1;i >= 0;i--){
+//		cerr << i << " : ";
+//		for(int j = 0;j <= c[i];j++) cerr << pg[i][j] << ' ';
+//		cerr << '\n';
+//	}
+
+//	int ans = pf[0][c[0]];
+//	int k = 0;
+//	for(int i = me;i <= n;i++) k += c[i];
+//	(ans *= qpow(2, k)) %= mod;
+
+//	cout << ans << '\n';
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	init();
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//} 
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+
+//const int mod = 998244353;
+//const int N = 2e5 + 10;
+//int fac[N], inv[N];
+
+//int qpow(int a, int b){
+//	int ret = 1;
+//	while(b){
+//		if(b & 1) ret = ret * a % mod;
+//		a = a * a % mod;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+//void init(){
+//	fac[0] = inv[0] = 1;
+//	for(int i = 1;i < N;i++) fac[i] = fac[i-1] * i % mod;
+//	inv[N-1] = qpow(fac[N-1], mod-2);
+//	for(int i = N-2;i >= 1;i--) inv[i] = inv[i+1] * (i+1) % mod;
+//}
+//int C(int a, int b) {
+//	return (fac[a] * inv[a-b] % mod) * inv[b] % mod;
+//}
+
+//int jian(int a, int b){
+//	a -= b;
+//	while(a < 0) a += mod;
+//	return a;
+//}
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5), c(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		c[a[i]]++;
+//	}
+
+//	int me = 0;
+//	while(c[me]) me++;
+
+//	vector<vector<int>>f(me+5), g(me+5), pf(me+5), pg(me+5);
+//	for(int i = 0;i <= me;i++){
+//		f[i].resize(c[i]+1);
+//		pf[i].resize(c[i]+1);
+//		g[i].resize(c[i]+1);
+//		pg[i].resize(c[i]+1);
+//	}
+
+//	for(int j = 0;j <= c[0];j++){
+//		f[0][j] = j * C(c[0], j) % mod;
+//		g[0][j] = C(c[0], j);
+//		pf[0][j] = f[0][j];
+//		pg[0][j] = g[0][j];
+//	}
+//	for(int j = 1;j <= c[0];j++){
+//		(pf[0][j] += pf[0][j-1]) %= mod;
+//		(pg[0][j] += pg[0][j-1]) %= mod;
+//	}
+
+//	for(int i = 1;i < me;i++){
+//		for(int j = 0;j <= min(c[i], c[i-1]);j++){
+//			f[i][j] = jian(pf[i-1][c[i-1]], j == 0 ? 0 : pf[i-1][j-1]);
+//			(f[i][j] += jian(pg[i-1][c[i-1]], j == 0 ? 0 : pg[i-1][j-1]) * j % mod) %= mod;
+//			g[i][j] = jian(pg[i-1][c[i-1]], j == 0 ? 0 : pg[i-1][j-1]);
+//			(f[i][j] *= C(c[i], j)) %= mod;
+//			(g[i][j] *= C(c[i], j)) %= mod;
+//		}
+//		pf[i][0] = f[i][0];
+//		pg[i][0] = g[i][0];
+//		for(int j = 1;j <= c[i];j++) {
+//			pf[i][j] = (pf[i][j-1] + f[i][j]) % mod;
+//			pg[i][j] = (pg[i][j-1] + g[i][j]) % mod;
+//		}
+//	}
+
+//	for(int i = 0;i < me;i++){
+//		cerr << i << " : ";
+//		for(int j = 0;j <= c[i];j++){
+//			cerr << f[i][j] << ' ';
+//		}
+//		cerr << '\n';
+//	}
+
+//	int ans = pf[me-1][c[me-1]];
+//	cout << ans << '\n';
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	init();
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//}
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+
+
+//void solve(){
+//	int n, r;
+//	cin >> n >> r;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	int ans = 0, s = 0;
+//	for(int i = 1;i <= n;i++){
+//		r -= a[i]/2;
+//		if(a[i] & 1){
+//			s++;
+//			a[i]--;
+//		}
+//		ans += a[i];
+//	}
+//	ans += s;
+//	if(s > r){
+//		int d = s-r;
+//		ans -= d*2;
+//	}
+//	cout << ans << '\n';
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+
+
+//void solve(){
+//	int n, x;
+//	cin >> n >> x;
+//	vector<int>a(n+5);
+//	multiset<int>st;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//	}
+//	sort(a.begin()+1, a.begin()+1+n);
+//	for(int i = n;i >= n-x+1 && i >= 1;i--) st.insert(a[i]);
+//	for(int i = n-x;i >= 1;i--){
+//		auto u = *st.begin();
+//		st.erase(st.begin());
+//		u += a[i];
+//		st.insert(u);
+//	}
+//	cout << *st.rbegin() << '\n';
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+
+
+//void solve(){
+//	int n, x;
+//	cin >> n >> x;
+//	vector<int>a(n+5);
+//	int mx = 0, sum = 0;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		sum += a[i];
+//		mx = max(mx, a[i]);
+//	}
+
+//	int l = mx, r = 1e17;
+//	while(l <= r){
+//		int mid = l + r >> 1;
+//		if((sum+mid-1)/mid <= x) r = mid-1;
+//		else l = mid+1;
+//	}
+//	cout << l << '\n';
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//}
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 
-const int mod = 998244353;
-const int N = 2e5 + 10;
-int fac[N], inv[N];
-
-int qpow(int a, int b){
-	int ret = 1;
-	while(b){
-		if(b & 1) ret = ret * a % mod;
-		a = a * a % mod;
-		b >>= 1;
-	}
-	return ret;
-}
-void init(){
-	fac[0] = inv[0] = 1;
-	for(int i = 1;i < N;i++) fac[i] = fac[i-1] * i % mod;
-	inv[N-1] = qpow(fac[N-1], mod-2);
-	for(int i = N-2;i >= 1;i--) inv[i] = inv[i+1] * (i+1) % mod;
-}
-int C(int a, int b) {
-	return (fac[a] * inv[a-b] % mod) * inv[b] % mod;
-}
-
-int jian(int a, int b){
-	a -= b;
-	while(a < 0) a += mod;
-	return a;
-}
+int op[6][6] = {
+	0, 0, 1, 0, 1, 1,
+	0, 0, 0, 1, 1, 0,
+	0, 0, 0, 1, 1, 1,
+	0, 1, 1, 0, 1, 1,
+	0, 0, 0, 1, 0, 2,
+	1, 0, 1, 1, 1, 2,
+};
 
 void solve(){
 	int n;
 	cin >> n;
-	vector<int>a(n+5), c(n+5);
-	for(int i = 1;i <= n;i++){
-		cin >> a[i];
-		c[a[i]]++;
-	}
+	vector<string>s(3);
+	cin >> s[1] >> s[2];
+	s[1] = " " + s[1] + "    ";
+	s[2] = " " + s[2] + "    ";
 
-	int me = 0;
-	while(c[me]) me++;
-
-	vector<vector<int>>f(me+5), g(me+5), pf(me+5), pg(me+5);
-	for(int i = 0;i <= me;i++){
-		f[i].resize(c[i]+1);
-		pf[i].resize(c[i]+1);
-		g[i].resize(c[i]+1);
-		pg[i].resize(c[i]+1);
-	}
-	pg[me][0] = 1;
-
-	for(int i = me-1;i >= 0;i--){
-		for(int j = 0;j <= c[i];j++){
-			int j2 = min(j, c[i+1]);
-			f[i][j] = (pf[i+1][j2] + pg[i+1][j2]*j % mod) % mod;
-			if(c[i+1] > c[i]){
-				int dpg = jian(pg[i+1][c[i+1]], pg[i+1][j]);
-				(f[i][j] += (dpg*f[i+1][j]%mod + dpg*j%mod) % mod) %= mod;
-			}
-			g[i][j] = pg[i+1][j2];
-			(f[i][j] *= C(c[i], j)) %= mod;
-			(g[i][j] *= C(c[i], j)) %= mod;
+	auto val = [&](int c, int id) -> int {
+		int x = 1, y = c;
+		int ret = 0;
+		for(int i = 0;i < 6;i += 2){
+			int nx = x + op[id][i];
+			int ny = y + op[id][i+1];
+			ret += (s[nx][ny] == 'A');
 		}
-		pf[i][0] = f[i][0];
-		pg[i][0] = g[i][0];
-		for(int j = 1;j <= c[i];j++){
-			pf[i][j] = (pf[i][j-1] + f[i][j]) % mod;
-			pg[i][j] = (pg[i][j-1] + g[i][j]) % mod;
+		return (ret >= 2);
+	};
+
+	vector<vector<int>>f(n+10, vector<int>(7));
+	for(int i = 0;i <= n;i++){
+		f[i+1][4] = max(f[i+1][4], f[i][3] + val(i+1, 0));
+		f[i+2][2] = max(f[i+2][2], f[i][3] + val(i+1, 1));
+		f[i+2][3] = max(f[i+2][2], f[i][4] + val(i+1, 2));
+		if(i >= 1) f[i+1][3] = max(f[i+1][3], f[i][2] + val(i, 3));
+		
+		for(int k = 0;k <= 3;k++){
+			int j = k+3;
+			f[i+3][j-3] = max(f[i+3][j-3], f[i][j] + val(i+1, 4));
 		}
+		for(int k = -3;k <= 0;k++){
+			int j = k+3;
+			if(i+k+1 >= 1) f[i][j+3] = max(f[i][j+3], f[i][j] + val(i+k+1, 5));
+		}
+
+		f[i+1][4] = max(f[i+1][4], f[i][3] + val(i+1, 0));
+		f[i+2][2] = max(f[i+2][2], f[i][3] + val(i+1, 1));
+		f[i+2][3] = max(f[i+2][2], f[i][4] + val(i+1, 2));
+		if(i >= 1) f[i+1][3] = max(f[i+1][3], f[i][2] + val(i, 3));
+		
+		for(int k = 0;k <= 3;k++){
+			int j = k+3;
+			f[i+3][j-3] = max(f[i+3][j-3], f[i][j] + val(i+1, 4));
+		}
+		for(int k = -3;k <= 0;k++){
+			int j = k+3;
+			if(i+k+1 >= 1) f[i][j+3] = max(f[i][j+3], f[i][j] + val(i+k+1, 5));
+		}
+
+		//for(int j = 0;j < 7;j++) cerr << f[i][j] << ' ';
+		//cerr << '\n';
 	}
 
-	for(int i = me-1;i >= 0;i--){
-		cerr << i << " : ";
-		for(int j = 0;j <= c[i];j++) cerr << f[i][j] << ' ';
-		cerr << '\n';
-	}
+	//cerr << val(2, 2) << '\n';
+	//cerr << val(2, 3) << '\n';
 
-	int ans = pf[0][c[0]];
-	int k = 1;
-	for(int i = me;i <= n;i++) (k *= c[i]+1) %= mod;
-	(ans *= k) %= mod;
-
-	cout << ans << '\n';
+	cout << f[n][3] << '\n';
 }
 
 signed main(){
 
 	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-	init();
 	int t = 1;
 	cin >> t;
 	for(int i = 1;i <= t;i++) solve();
 
 	return 0;
-} 
+}
