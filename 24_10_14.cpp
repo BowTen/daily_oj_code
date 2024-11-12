@@ -4745,88 +4745,369 @@
 
 
 
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int mod = 1e9 + 7;
+//int qpow(int a, int b){
+//	int ret = 1;
+//	while(b){
+//		if(b & 1) ret = ret * a % mod;
+//		a = a * a % mod;
+//		b >>= 1;
+//	}
+//	return ret;
+//}
+//array<int,2> fj(int x){
+//	array<int,2>a = {x, 0};
+//	while(a[0] % 2 == 0){
+//		a[0] /= 2;
+//		a[1]++;
+//	}
+//	return a;
+//}
+//int val(array<int,2>a){
+//	return a[0] * qpow(2, a[1]) % mod;
+//}
+//int rval(array<int,2>a){
+//	return a[0] * (1ll<<a[1]);
+//}
+//int jian(int a, int b){
+//	a -= b;
+//	while(a < 0) a += mod;
+//	return a;
+//}
+//int jia(int a, int b){
+//	return (a + b) % mod;
+//}
+//void pt(stack<array<int,2>>st){
+//	while(st.size()){
+//		cerr << st.top()[0] << ' ' << st.top()[1] << '\n';
+//		st.pop();
+//	}
+//}
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+	
+//	stack<array<int,2>>st;
+//	int ans = 0, sm = 0;
+//	for(int i = 1;i <= n;i++){
+//		auto u = fj(a[i]);
+
+//		//if(i == 15){
+//		//	pt(st);
+//		//	cerr << u[0] << ' ' << u[1] << '\n';
+//		//}
+
+//		while(st.size()) {
+//			if(u[1] >= 30 || rval(u) >= st.top()[0]){
+//				auto v = st.top();
+//				st.pop();
+//				ans = jian(ans, val(v));
+//				ans = jia(ans, v[0]);
+//				u[1] += v[1];
+//			}else break;
+//		}
+
+
+//		//if(i == 15){
+//		//	cerr << '\n';
+//		//	pt(st);
+//		//	cerr << u[0] << ' ' << u[1] << '\n';
+//		//}
+//		ans = jia(ans, val(u));
+//		if(u[1]) st.push(u);
+//		cout << ans << ' ';
+//	}
+//	cout << '\n';	
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	for(int i = 1;i < n;i++) if(abs(a[i]-a[i+1]) != 5 && abs(a[i]-a[i+1]) != 7) {
+//		cout << "NO\n";
+//		return;
+//	}
+//	cout << "YES\n";
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int n, k;
+//	cin >> n >> k;
+//	vector<int>sum(k+5), b(k+5), c(k+5);
+//	for(int i = 1;i <= k;i++){
+//		cin >> b[i] >> c[i];
+//		sum[b[i]] += c[i];
+//	}
+//	sort(sum.begin()+1, sum.begin()+1+k, greater<int>());
+//	int s = 0;
+//	for(int i = 1;i <= min(n, k);i++){
+//		s += sum[i];
+//	}
+//	cout << s << '\n';
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int q, sum = 0, n;
+//	string s;
+//	cin >> s >> q;
+//	n = s.size();
+//	s = ' ' + s;
+
+//	auto val = [&](int i) -> int {
+//		if(i < 1 || i+3 > n) return 0;
+//		return s.substr(i, 4) == "1100";
+//	};
+//	auto del = [&](int i) -> void {
+//		for(int j = i-3;j <= i;j++) sum -= val(j);
+//	};
+//	auto add = [&](int i) -> void {
+//		for(int j = i-3;j <= i;j++) sum += val(j);
+//	};
+
+//	for(int i = 1;i <= n;i++) sum += val(i);
+
+//	while(q--){
+//		int p, v;
+//		cin >> p >> v;
+//		del(p);
+//		s[p] = v+'0';
+//		add(p);
+//		if(sum) cout << "YES\n";
+//		else cout << "NO\n";
+//	}
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int n, m;
+//	cin >> n >> m;
+//	vector<string>s(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> s[i];
+//		s[i] = ' ' + s[i] + ' ';
+//	}
+
+//	int ans = 0;
+
+//	int st = 1;
+//	while(n && m){
+//		string ss;
+//		for(int j = 0;j < m-1;j++) ss.push_back(s[st][st+j]);
+//		for(int i = 0;i < n-1;i++) ss.push_back(s[st+i][st+m-1]);
+//		for(int j = m-1;j > 0;j--) ss.push_back(s[st+n-1][st+j]);
+//		for(int i = n-1;i > 0;i--) ss.push_back(s[st+i][st]);
+//		ss += ss.substr(0, 3);
+
+//		for(int i = 0;i+3 < ss.size();i++) ans += (ss.substr(i, 4) == "1543");
+
+//		st++;
+//		n -= 2;
+//		m -= 2;
+//	}
+
+//	cout << ans << '\n';
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+//const int inf = 1e15;
+
+//void solve(){
+//	int n, k, q;
+//	cin >> n >> k >> q;
+//	vector<vector<int>>a(k+5, vector<int>(n+5));
+//	vector<int>L(k+5), R(k+5, inf);
+//	for(int i = 1;i <= n;i++){
+//		for(int j = 1;j <= k;j++){
+//			cin >> a[j][i];
+//			a[j][i] |= a[j][i-1];
+//		}
+//	}
+
+//	int p, c;
+//	char op;
+//	while(q--){
+//		int m;
+//		cin >> m;
+//		vector<int>id;
+//		while(m--){
+//			cin >> p >> op >> c;
+//			id.push_back(p);
+//			if(op == '>') L[p] = max(L[p], c+1);
+//			else R[p] = min(R[p], c-1);
+//		}
+//		sort(all(id));
+//		id.erase(unique(all(id)), id.end());
+
+//		int l = 1, r = n, i;
+//		for(auto p : id) {
+//			i = lower_bound(a[p].begin()+1, a[p].begin()+1+n, L[p]) - a[p].begin();
+//			l = max(l, i);
+//			i = upper_bound(a[p].begin()+1, a[p].begin()+1+n, R[p]) - a[p].begin() - 1;
+//			r = min(r, i);			
+		
+//			L[p] = 0; R[p] = inf;
+//		}
+
+//		if(l > r) cout << -1 << '\n';
+//		else cout << l << '\n';
+//	}
+//}
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
+
+//	return 0;
+//}
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
 #define all(x) (x).begin(), (x).end()
 #define all1(x) (x).begin()+1, (x).begin()+1+n
 
-const int mod = 1e9 + 7;
-int qpow(int a, int b){
-	int ret = 1;
-	while(b){
-		if(b & 1) ret = ret * a % mod;
-		a = a * a % mod;
-		b >>= 1;
+int prex(int p){
+	int x = (p % 4 == 1 || p % 4 == 2);
+	for(int i = 1, m = 4;(1ll << i) <= p;i++, m <<= 1){
+		if((p % m) % 2 == 0 && (p % m) * 2 >= m) x += (1ll << i);
 	}
-	return ret;
-}
-array<int,2> fj(int x){
-	array<int,2>a = {x, 0};
-	while(a[0] % 2 == 0){
-		a[0] /= 2;
-		a[1]++;
-	}
-	return a;
-}
-int val(array<int,2>a){
-	return a[0] * qpow(2, a[1]) % mod;
-}
-int rval(array<int,2>a){
-	return a[0] * (1ll<<a[1]);
-}
-int jian(int a, int b){
-	a -= b;
-	while(a < 0) a += mod;
-	return a;
-}
-int jia(int a, int b){
-	return (a + b) % mod;
-}
-void pt(stack<array<int,2>>st){
-	while(st.size()){
-		cerr << st.top()[0] << ' ' << st.top()[1] << '\n';
-		st.pop();
-	}
+	return x;
 }
 
 void solve(){
-	int n;
-	cin >> n;
-	vector<int>a(n+5);
-	for(int i = 1;i <= n;i++) cin >> a[i];
-	
-	stack<array<int,2>>st;
-	int ans = 0, sm = 0;
-	for(int i = 1;i <= n;i++){
-		auto u = fj(a[i]);
+	int l, r, i, k, dt;
+	cin >> l >> r >> i >> k;
+	int L = 0, R;
+	dt = (1ll<<i);
 
-		//if(i == 15){
-		//	pt(st);
-		//	cerr << u[0] << ' ' << u[1] << '\n';
-		//}
+	int ans = prex(r) ^ prex(l-1);
+	//cerr << ans << '\n';
 
-		while(st.size()) {
-			if(u[1] >= 30 || rval(u) >= st.top()[0]){
-				auto v = st.top();
-				st.pop();
-				ans = jian(ans, val(v));
-				ans = jia(ans, v[0]);
-				u[1] += v[1];
-			}else break;
-		}
-
-
-		//if(i == 15){
-		//	cerr << '\n';
-		//	pt(st);
-		//	cerr << u[0] << ' ' << u[1] << '\n';
-		//}
-		ans = jia(ans, val(u));
-		if(u[1]) st.push(u);
-		cout << ans << ' ';
+	if(k > r){
+		cout << ans << '\n';
+		return;
 	}
-	cout << '\n';	
+
+	if(k < l){
+		L = (l-k + dt-1) / dt;
+	}
+	R = (r-k + dt-1) / dt - 1;
+	if((R+1)*dt + k <= r) R++;
+
+	//cerr << L << ' ' << R << '\n';
+
+	int lx = (k + dt*L) >> i;
+	int rx = lx + (R-L);
+	int x = (prex(rx) ^ prex(lx-1)) << i;
+	if((R-L+1) & 1) x ^= ((k + dt*L) & ((1ll<<i)-1));
+
+	ans ^= x;
+	cout << ans << '\n';
 }
 
 signed main(){
