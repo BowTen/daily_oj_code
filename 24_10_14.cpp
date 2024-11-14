@@ -5065,57 +5065,71 @@
 //}
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define all(x) (x).begin(), (x).end()
-#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
 
-int prex(int p){
-	int x = (p % 4 == 1 || p % 4 == 2);
-	for(int i = 1, m = 4;(1ll << i) <= p;i++, m <<= 1){
-		if((p % m) % 2 == 0 && (p % m) * 2 >= m) x += (1ll << i);
-	}
-	return x;
-}
+//int bit(int x){
+//	int ret = 0;
+//	while(x){
+//		ret++;
+//		x >>= 1;
+//	}
+//	return ret;
+//}
 
-void solve(){
-	int l, r, i, k, dt;
-	cin >> l >> r >> i >> k;
-	int L = 0, R;
-	dt = (1ll<<i);
+//void solve(){
+//	int n, a, b, c, x;
+//	cin >> n;
 
-	int ans = prex(r) ^ prex(l-1);
-	//cerr << ans << '\n';
+//	auto query = [&](int l, int r) -> void {
+//		cout << "xor " << l << ' ' << r << endl;
+//		cin >> x;
+//	};
 
-	if(k > r){
-		cout << ans << '\n';
-		return;
-	}
+//	query(1, n);
+//	if(x == 0){
+//		for(int i = bit(n)-1;i >= 1;i--){
+//			query(1ll<<i, min(n, 1ll<<(i+1)));
+//			if(x){
+//				a = x;
+//				break;
+//			}
+//		}
+//	}else{
+//		int l = 1, r = n;
+//		while(l <= r) {
+//			int mid = l + r >> 1;
+//			query(1, mid);
+//			if(x) r = mid-1;
+//			else l = mid+1;
+//		}
+//		a = l;
+//	}
 
-	if(k < l){
-		L = (l-k + dt-1) / dt;
-	}
-	R = (r-k + dt-1) / dt - 1;
-	if((R+1)*dt + k <= r) R++;
+//	int l = a + 1, r = n;
+//	while(l <= r){
+//		int mid = l + r >> 1;
+//		query(a+1, mid);
+//		if(x) r = mid-1;
+//		else l = mid+1;
+//	}
+//	b = l;
 
-	//cerr << L << ' ' << R << '\n';
+//	query(1, n);
+//	c = (x ^ a ^ b);
 
-	int lx = (k + dt*L) >> i;
-	int rx = lx + (R-L);
-	int x = (prex(rx) ^ prex(lx-1)) << i;
-	if((R-L+1) & 1) x ^= ((k + dt*L) & ((1ll<<i)-1));
+//	cout << "ans " << a << ' ' << b << ' ' << c << endl;	
+//}
 
-	ans ^= x;
-	cout << ans << '\n';
-}
+//signed main(){
 
-signed main(){
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	for(int i = 1;i <= t;i++) solve();
 
-	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-	int t = 1;
-	cin >> t;
-	for(int i = 1;i <= t;i++) solve();
-
-	return 0;
-}
+//	return 0;
+//}
