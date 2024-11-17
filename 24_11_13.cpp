@@ -1193,37 +1193,230 @@
 //}
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
 
 
-void solve(){
-	int n;
-	cin >> n;
-	vector<int>a(2*n+5);
-	for(int i = 2;i < 2*n;i += 2) {
-		a[i] = 2;
-		a[i+1] = -1;
-	}
-	a[2*n] = 1;
-	for(int i = 3;i <= 2*n;i += 2) a[1] -= a[i] * a[i+1];
-	for(int i = 1;i <= 2*n;i++) cout << a[i] << ' ';
-	cout << '\n';
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(2*n+5);
+//	for(int i = 2;i < 2*n;i += 2) {
+//		a[i] = 2;
+//		a[i+1] = -1;
+//	}
+//	a[2*n] = 1;
+//	for(int i = 3;i <= 2*n;i += 2) a[1] -= a[i] * a[i+1];
+//	for(int i = 1;i <= 2*n;i++) cout << a[i] << ' ';
+//	cout << '\n';
 
-	//int s1 = 0;
-	//for(int i = 1;i+1 <= 2*n;i += 2) s1 += a[i] * a[i+1];
-	//int s2 = a[1] * a[n*2];
-	//for(int i = 2;i+1 <= 2*n;i += 2) s2 *= a[i] + a[i+1];
-	//if(s1 != s2) cerr << s1 << ' ' << s2 << '\n';
-}	
+//	//int s1 = 0;
+//	//for(int i = 1;i+1 <= 2*n;i += 2) s1 += a[i] * a[i+1];
+//	//int s2 = a[1] * a[n*2];
+//	//for(int i = 2;i+1 <= 2*n;i += 2) s2 *= a[i] + a[i+1];
+//	//if(s1 != s2) cerr << s1 << ' ' << s2 << '\n';
+//}	
 
-signed main(){
+//signed main(){
 
-	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-	int t = 1;
-	cin >> t;
-	while(t--) solve();
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
 
-	return 0;
-}
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+
+
+//void solve(){
+//	string s;
+//	cin >> s;
+//	s.push_back(' ');
+//	char ls = ' ';
+//	int len = 0;
+//	for(auto c : s){
+//		if(c == ls){
+//			len++;
+//		}else{
+//			if(len == 1){
+//				cout << "NO\n";
+//				return;
+//			}
+//			len = 1;
+//			ls = c;
+//		}
+//	} 
+//	cout << "YES\n";
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+
+
+//void solve(){
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	int d = 0;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		if(i > 1) d += a[i] - a[i-1] - 1;
+//	}
+//	if(d > 2) cout << "NO\n";
+//	else cout << "YES\n";
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int n, x;
+//	cin >> n >> x;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++) cin >> a[i];
+//	sort(all1(a));
+//	for(int i = 1;i <= n;i++) a[i] += a[i-1];
+
+//	int d = 0, s = 0;
+//	for(int i = n;i >= 1;i--){
+//		int l = 1, r = x;
+//		while(l <= r){
+//			int mid = l + r >> 1;
+//			if(x >= a[i] + (d+mid-1)*i) l = mid+1;
+//			else r = mid-1;
+//		}
+//		s += i * r;
+//		d += r;
+//	}	
+//	cout << s << '\n';
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+
+//void solve(){
+//	int n, mx = 0, mn = 1e9, x;
+//	cin >> n >> x;
+//	vector<int>a(n+5);
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		mx = max(mx, a[i]);
+//		mn = min(mn, a[i]);
+//	}
+//	int s = 0;
+//	for(int i = 2;i <= n;i++) s += abs(a[i] - a[i-1]);
+
+//	s += min({a[1]-1, a[n]-1, (mn-1)*2});
+//	if(x > mx) s += min({x-a[1], x-a[n], (x-mx)*2});
+
+//	cout << s << '\n';
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#define ls (id << 1)
+//#define rs (id << 1 | 1)
+
+//const int mod = 998244353;
+//mt19937_64 rnd(time(0));
+
+//void solve(){
+//	int n, m;
+//	cin >> n;
+//	m = (1<<n)-1;
+//	int val[2] = {rnd()%mod, rnd()%mod};
+
+//	string a;
+//	cin >> a;
+//	a = ' ' + a;
+
+//	vector<int>h(m+5), f(m+5);
+//	auto dfs = [&](auto self, int id) -> void {
+//		if(ls > m){
+//			f[id] = 1;
+//			h[id] = val[a[id]-'A'];
+//			(h[id] *= h[id]) %= mod;
+//			return;
+//		}
+//		self(self, ls);
+//		self(self, rs);
+//		f[id] = f[ls] * f[rs] % mod;
+//		if(h[ls] != h[rs]) (f[id] *= 2) %= mod;
+//		h[id] = ((h[ls] * h[rs] % mod) + val[a[id]-'A']) % mod;
+//		(h[id] *= h[id]) %= mod;
+//	};
+
+//	dfs(dfs, 1);
+
+//	cout << f[1] << '\n';
+//}	
+
+//signed main(){
+
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	//cin >> t;
+//	while(t--) solve();
+
+//	return 0;
+//}
