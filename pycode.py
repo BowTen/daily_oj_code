@@ -1,18 +1,26 @@
-def f(x):
-    ret = 0
-    while x > 0:
-        ret *= 10
-        ret += 1
-        x -= 1
-    return ret
+map="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+x, y, z = input().split()
+
+x = int(x)
+y = int(y)
+
+s = 0
+for c in z :
+	s *= x
+	s += map.find(c)
 
 
-a = int(input())
-for i in range(1, 100) :
-    k = f(i)
-    # print(i, end=' ')
-    # print(k)
-    if k % a == 0 :
-        print(int(k / a), end= ' ')
-        print(i)
-        break
+ans = ""
+f = 0
+if(s == 0) :
+	f = 1
+while(s > 0) :
+	m = int(s%y)
+	ans += map[m]
+	s //= y
+
+ans = ans[::-1]
+if(f == 1) :
+	ans = "0"
+print(ans)
