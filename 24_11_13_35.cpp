@@ -2630,67 +2630,67 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-#define all(x) (x).begin(), (x).end()
-#define all1(x) (x).begin()+1, (x).begin()+1+n
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+//#define all(x) (x).begin(), (x).end()
+//#define all1(x) (x).begin()+1, (x).begin()+1+n
 
 
-void solve(){
-	int n;
-	cin >> n;
-	string s;
-	cin >> s;
-	int m = s.size();
+//void solve(){
+//	int n;
+//	cin >> n;
+//	string s;
+//	cin >> s;
+//	int m = s.size();
 
-	if(min_element(all(s)) == max_element(all(s))){
-		cout << n << '\n';
-		return;
-	}
+//	if(min_element(all(s)) == max_element(all(s))){
+//		cout << n << '\n';
+//		return;
+//	}
 
-	int ans = 0;
+//	int ans = 0;
 
-	int p, h;
-	//LD
-	for(int i = 0;i < m;i++) if(s[i] == 'D') {
-		p = i;
-		break;
-	}
-	h = 0;
-	for(int i = m-2;i >= 0;i--){
-		if(s[i+1] == 'D'){
-			h++;
-			if(i+1 == p) h = n-1;
-		}
-		else ans += h;
-	}
+//	int p, h;
+//	//LD
+//	for(int i = 0;i < m;i++) if(s[i] == 'D') {
+//		p = i;
+//		break;
+//	}
+//	h = 0;
+//	for(int i = m-2;i >= 0;i--){
+//		if(s[i+1] == 'D'){
+//			h++;
+//			if(i+1 == p) h = n-1;
+//		}
+//		else ans += h;
+//	}
 
-	//RT
-	for(int i = 0;i < m;i++) if(s[i] == 'R') {
-		p = i;
-		break;
-	}
-	h = 0;
-	for(int i = m-2;i >= 0;i--){
-		if(s[i+1] == 'R'){
-			h++;
-			if(i+1 == p) h = n-1;
-		}else ans += h;
-	}
+//	//RT
+//	for(int i = 0;i < m;i++) if(s[i] == 'R') {
+//		p = i;
+//		break;
+//	}
+//	h = 0;
+//	for(int i = m-2;i >= 0;i--){
+//		if(s[i+1] == 'R'){
+//			h++;
+//			if(i+1 == p) h = n-1;
+//		}else ans += h;
+//	}
 
-	ans += n-1;
-	ans = n*n - ans;
+//	ans += n-1;
+//	ans = n*n - ans;
 
-	cout << ans << '\n';
-}		
+//	cout << ans << '\n';
+//}		
 
-signed main(){
+//signed main(){
 
-	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-	int t = 1;
-	cin >> t;
-	while(t--) solve();
+//	ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+//	int t = 1;
+//	cin >> t;
+//	while(t--) solve();
 
-	return 0;
-}
+//	return 0;
+//}
