@@ -2694,3 +2694,184 @@
 
 //	return 0;
 //}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+
+//const int mod = 1e9 + 7;
+
+
+//signed main(){
+
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	int mx = 0;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		mx = max(mx, a[i]);
+//	}
+
+//	int ans = 0;
+
+//	auto add = [&](int i) -> void {
+//		ans++;
+//		if(ans & 1) a[i] += 1;
+//		else a[i] += 2;
+//	};
+
+//	for(int i = 1;i <= n;i++) if(a[i] < mx-2) {
+//		int d = (mx-2) - a[i];
+//		int tmp = d / 3;
+//		a[i] += tmp * 3;
+//		ans += 2 * tmp;
+
+//		while(a[i] < mx-2) add(i);
+//	}
+
+//	vector<int>cnt(3);
+//	for(int i = 1;i <= n;i++){
+//		cnt[mx-a[i]]++;
+//	}
+
+//	if(cnt[1] > cnt[2]) mx = 1;
+//	else mx = 2;
+//	ans += 2 * cnt[mx];
+//	if(cnt[mx]) if((ans&1) != (mx&1) || cnt[1] == cnt[2]) ans--;
+
+//	ans %= mod;
+
+//	cout << ans << '\n';
+
+//	return 0;
+//}
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+
+//const int mod = 1e9 + 7;
+//const int mxn = 1e16;
+
+
+//signed main(){
+
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	int mx = 0;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		mx = max(mx, a[i]);
+//	}
+
+//	int l = 0, r = mxn;
+//	while(l <= r){
+//		int mid = l + r >> 1;
+//		if(check(mid)) r = mid-1;
+//		else l = mid+1;
+//	}
+
+//	cout << l << '\n';
+
+//	return 0;
+//}
+
+
+
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define int long long
+
+//const int mod = 1e9 + 7;
+
+
+//signed main(){
+
+//	int n;
+//	cin >> n;
+//	vector<int>a(n+5);
+//	int mx = 0;
+//	for(int i = 1;i <= n;i++){
+//		cin >> a[i];
+//		mx = max(mx, a[i]);
+//	}
+
+//	int ans = 0, sum = 0;
+//	for(int i = 1;i <= n;i++){
+//		sum += mx - a[i];
+//	}
+
+//	ans += (sum/3) * 2;
+
+//	return 0;
+//}
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define all1(x) (x).begin()+1, (x).begin()+1+n
+
+const int N = 1e3 + 5;
+const int mod = 1e9+7;
+int C[N][N];
+
+void init()
+{
+    for (int i = 1; i < N; i++)
+    {
+        C[i][0] = C[i][i] = 1;
+        for (int j = 1; j < i; j++)
+            C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % mod;
+    }
+	C[0][0] = 1;
+}
+
+signed main(){
+
+	init();
+
+	int n;
+	cin >> n;
+	vector<int>a(n+5);
+	for(int i = 1;i <= n;i++) cin >> a[i];
+
+	int ans = 0;
+	for(int i = 1;i <= 1;i++){
+		vector<int>f(n+5), g(n+5), sf(n+5), sg(n+5);
+		int x = 0, y = 0, s1 = 0, s2 = 0, s;
+		for(int j = 1;j < i;j++){
+			if(a[j] < a[i]) x++;
+			else y++;
+		}
+		for(int j = 0;j <= x;j++) {f[j] = C[x][j]; s1 += f[j];}
+		for(int j = 0;j <= y;j++) g[j] = C[y][j];
+
+		x = 0, y = 0;
+		for(int j = i+1;j <= n;j++){
+			if(a[j] < a[i]) x++;
+			else y++;
+		}
+		for(int j = 0;j <= x;j++) sf[j] = C[x][j];
+		for(int j = 0;j <= y;j++) {sg[j] = C[y][j]; s2 += sg[j];}
+
+		//cerr << f[0] << ' ' << g[0] << '\n';
+
+		s = s1 * s2 % mod;
+		cerr << x << ' ' << s << '\n';
+		for(int j = 0;j <= x;j++){
+			int tmp = g[j] * sf[j] % mod;
+			tmp = tmp * s % mod;
+			(ans += tmp) %= mod;
+		}
+	}
+
+	cout << ans << '\n';
+
+	return 0;
+}
