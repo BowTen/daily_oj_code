@@ -3046,3 +3046,147 @@
 
 // 	return 0;
 // }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     int res = 1;
+//     int ans = 0;
+//     while(n--){
+//         int x;
+//         cin >> x;
+//         if(x == 0) {
+//             ans++;
+//         }else {
+//             res *= x;
+//         }
+//     }
+//     if(res == -1) ans += 2;
+//     cout << ans << endl;
+// }
+
+// int main(){
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+
+// void solve(){
+//     int n;
+//     cin >> n;
+//     vector<int>a(n);
+//     for(auto &x : a) cin >> x;
+//     sort(a.begin(), a.end());
+//     int mx = 0;
+//     for(int i = 0;i < n;i += 2) {
+//         mx = max(mx, a[i+1] - a[i]);
+//     }
+//     cout << mx << endl;
+// }
+
+// int main(){
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+
+// void solve(){
+//     int n, k, num = 0;
+//     cin >> n >> k;
+//     set<int>a;
+//     while(n--) {
+//         int x;
+//         cin >> x;
+//         a.insert(x);
+//         if(x == k) num++;
+//     }
+
+//     int ans = k;
+//     for(int i = 0;i < k;i++){
+//         if(a.count(i)){
+//             ans--;
+//         }else{
+//             num--;
+//         }
+//     }
+
+//     ans += max(0, num);
+//     cout << ans << endl;
+// }
+
+// int main(){
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+
+
+// int fun(string s) {
+//     int n = s.size();
+//     vector<int>pre(n), suf(n);
+//     int cnt = s[0] == 'a';
+//     for(int i = 1;i < n;i++) {
+//         pre[i] = pre[i-1];
+//         if(s[i] == 'b') pre[i] += cnt;
+//         cnt += s[i] == 'a';
+//     }
+//     cnt = s.back() == 'a';
+//     for(int i = n-2;i >= 0;i--) {
+//         suf[i] = suf[i+1];
+//         if(s[i] == 'b') suf[i] += cnt;
+//         cnt += s[i] == 'a';
+//     }
+//     if(cnt <= 1) return 0;
+
+//     int mn = 1e18;
+//     for(int i = 1;i < n;i++){
+//         mn = min(mn, pre[i-1] + suf[i]);
+//     }
+//     return mn;
+// }
+
+// void solve(){
+//     int n;
+//     string s, s2;
+//     cin >> n >> s;
+//     for(auto c : s) {
+//         if(c == 'a') s2 += 'b';
+//         else s2 += 'a';
+//     }
+
+//     cout << min(fun(s), fun(s2)) << endl;
+// }
+
+// signed main(){
+//     int t = 1;
+//     cin >> t;
+//     while(t--) solve();
+
+//     return 0;
+// }
